@@ -1,0 +1,19 @@
+--- 
+title: "Fundamentos de Inferência Bayesiana"
+author: "Victor Fossaluza"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [bibliografia.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Notas de aula de Infência Bayesiana"
+---
+
+```{r setup, include=FALSE}
+require(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE)
+```
+
+Essas notas de aula tem o intuito apenas de ser um guia de estudos e não necessariamente irá apresentar todo o conteúdo da disciplina de *Inferência Bayesiana*. Além disso, esta é uma versão preliminar e está bem longe de ser uma versão final, de modo que podem haver muitos erros e correções ou sugestões seráo bem vindas!
+
