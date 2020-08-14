@@ -1,5 +1,5 @@
 \babel@toc {brazil}{}
-\contentsline {chapter}{Preface}{5}{chapter*.2}%
+\contentsline {chapter}{Prefácio}{5}{chapter*.2}%
 \contentsline {chapter}{\numberline {1}Probabilidade Subjetiva}{7}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Definição Axiomática}{7}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Interpretações de Probabilidade}{7}{section.1.2}%
