@@ -10,3 +10,6 @@ stringr
 forcats
 futile.logger
 VennDiagram
+transformr
+knitr
+kableExtra

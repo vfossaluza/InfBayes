@@ -1,0 +1,43 @@
+\babel@toc {brazil}{}
+\contentsline {chapter}{\numberline {1}Probabilidade Subjetiva}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Definição Axiomática}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Interpretações de Probabilidade}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Relação de Crença \(\precsim \)}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Medida de Probabilidade que ``representa'' \(\precsim \)}{10}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Medida de Probabilidade Condicional}{11}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Introdução à Inferência Bayesiana}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Conceitos Básicos}{13}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Inferência Frequentista (ou Clássica)}{13}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Inferência Bayesiana}{14}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Suficiência}{17}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Distribuição a Priori}{19}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Método do Histograma}{19}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Elicitação de Hiperparâmetros}{21}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Prioris Conjugadas}{22}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}Introdução à Teoría da Decisão}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Conceitos Básicos}{29}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Aleatorização e Decisões Mistas}{31}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Problemas com Dados}{32}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Estimação}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Estimação Pontual}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Estimação por Regiões}{38}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Custo das Observações}{44}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Testes de Hipóteses}{47}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conceitos Básicos}{47}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Revisão: Abordagem Frequentista}{47}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Abordagem Bayesiana (via Teoria da Decisão)}{49}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Probabilidade Posterior de \(H_0\)}{51}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Fator de Bayes}{52}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Teste de Jeffreys}{54}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Hipóteses Precisas}{57}{section.5.7}%
+\contentsline {section}{\numberline {5.8}FBST - \emph {Full Bayesian Significance Test}}{58}{section.5.8}%
+\contentsline {section}{\numberline {5.9}P-value - Nivel de Significância Adaptativo}{61}{section.5.9}%
+\contentsline {chapter}{\numberline {A}Apêndice A: Breve Resumo de Medida e Probabilidade}{65}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Breve Resumo de Medida e Probabilidade}{65}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{67}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Propriedades da integral (\emph {de Lebesque}) de \(X\) (v.a) em relação a \(P\)}{68}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Funções de Variáveis Aleatórias}{71}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Aula 6}{73}{section.A.5}%
+\contentsline {section}{\numberline {A.6}Aula 7}{76}{section.A.6}%
+\contentsline {subsection}{\numberline {A.6.1}Probabilidade Condicional}{76}{subsection.A.6.1}%
+\contentsline {subsection}{\numberline {A.6.2}Teorema da Medida Produto (para medidas de probabilidade)}{76}{subsection.A.6.2}%
