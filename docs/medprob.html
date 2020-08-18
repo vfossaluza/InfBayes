@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-08-14" />
+<meta name="date" content="2020-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,14 +184,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
-<li class="chapter" data-level="A.1" data-path="medprob.html"><a href="medprob.html#breve-resumo-de-medida-e-probabilidade"><i class="fa fa-check"></i><b>A.1</b> Breve Resumo de Medida e Probabilidade</a></li>
-<li class="chapter" data-level="A.2" data-path="medprob.html"><a href="medprob.html#valor-esperado-de-x-ou-uma-ideia-da-tal-integral-de-lebesgue"><i class="fa fa-check"></i><b>A.2</b> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</a></li>
-<li class="chapter" data-level="A.3" data-path="medprob.html"><a href="medprob.html#propriedades-da-integral-de-lebesque-de-x-v.a-em-relação-a-p"><i class="fa fa-check"></i><b>A.3</b> Propriedades da integral (<em>de Lebesque</em>) de <span class="math inline">\(X\)</span> (v.a) em relação a <span class="math inline">\(P\)</span></a></li>
-<li class="chapter" data-level="A.4" data-path="medprob.html"><a href="medprob.html#funções-de-variáveis-aleatórias"><i class="fa fa-check"></i><b>A.4</b> Funções de Variáveis Aleatórias</a></li>
-<li class="chapter" data-level="A.5" data-path="medprob.html"><a href="medprob.html#aula-6"><i class="fa fa-check"></i><b>A.5</b> Aula 6</a></li>
-<li class="chapter" data-level="A.6" data-path="medprob.html"><a href="medprob.html#aula-7"><i class="fa fa-check"></i><b>A.6</b> Aula 7</a><ul>
-<li class="chapter" data-level="A.6.1" data-path="medprob.html"><a href="medprob.html#probabilidade-condicional"><i class="fa fa-check"></i><b>A.6.1</b> Probabilidade Condicional</a></li>
-<li class="chapter" data-level="A.6.2" data-path="medprob.html"><a href="medprob.html#teorema-da-medida-produto-para-medidas-de-probabilidade"><i class="fa fa-check"></i><b>A.6.2</b> Teorema da Medida Produto (para medidas de probabilidade)</a></li>
+<li class="chapter" data-level="A.1" data-path="medprob.html"><a href="medprob.html#basprob"><i class="fa fa-check"></i><b>A.1</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="A.2" data-path="medprob.html"><a href="medprob.html#lebesgue"><i class="fa fa-check"></i><b>A.2</b> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</a></li>
+<li class="chapter" data-level="A.3" data-path="medprob.html"><a href="medprob.html#funções-de-variáveis-aleatórias"><i class="fa fa-check"></i><b>A.3</b> Funções de Variáveis Aleatórias</a></li>
+<li class="chapter" data-level="A.4" data-path="medprob.html"><a href="medprob.html#probabilidade-condicional"><i class="fa fa-check"></i><b>A.4</b> Probabilidade Condicional</a><ul>
+<li class="chapter" data-level="A.4.1" data-path="medprob.html"><a href="medprob.html#teorema-da-medida-produto-para-medidas-de-probabilidade"><i class="fa fa-check"></i><b>A.4.1</b> Teorema da Medida Produto (para medidas de probabilidade)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
@@ -217,9 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="medprob" class="section level1">
 <h1><span class="header-section-number">A</span> Breve Resumo de Medida e Probabilidade</h1>
-<!-- ## Aula 04 -->
-<div id="breve-resumo-de-medida-e-probabilidade" class="section level2">
-<h2><span class="header-section-number">A.1</span> Breve Resumo de Medida e Probabilidade</h2>
+<p>Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma medida e da integral de Lebesgue. Para maiores detalhes, ver <span class="citation">Ash and Doleans-Dade (<a href="#ref-Ash00" role="doc-biblioref">2000</a>)</span>, <span class="citation">Billingsley (<a href="#ref-Billingsley86" role="doc-biblioref">1986</a>)</span>, <span class="citation">Shiryaev (<a href="#ref-Shiryaev96" role="doc-biblioref">1996</a>)</span> ou, para uma versão mais resumida, os Apêndices de <span class="citation">Schervish (<a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>.</p>
+<div id="basprob" class="section level2">
+<h2><span class="header-section-number">A.1</span> Conceitos Básicos</h2>
 <ul>
 <li><p><span class="math inline">\(\Omega\)</span>: espaço amostral (um conjunto não vazio).</p></li>
 <li><p><span class="math inline">\(\mathcal{A}\)</span>: <em><span class="math inline">\(\sigma\)</span>-álgebra de subconjuntos</em> de <span class="math inline">\(\Omega\)</span>, isto é,</p>
@@ -229,6 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A} \Longrightarrow \bigcup_{i\geq1} A_i \in \mathcal{A}\)</span>.</li>
 </ol></li>
 <li><p>Os elementos de <span class="math inline">\(\mathcal{A}\)</span> são chamados de <em>eventos</em> e serão denotados por <span class="math inline">\(A, B, C, \ldots, A_1, A_2, \ldots\)</span></p></li>
+<li><p>Uma coleção de eventos <span class="math inline">\(A_1,A_2,\ldots\)</span> forma uma <em>partição</em> de <span class="math inline">\(\Omega\)</span> se <span class="math inline">\(A_i \cap A_j = \emptyset\)</span>, <span class="math inline">\(\forall i \neq j\)</span>, e <span class="math inline">\(\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega\)</span>.</p></li>
 <li><p><span class="math inline">\((\Omega, \mathcal{A})\)</span>: <em>espaço mensurável</em>.</p></li>
 <li><p>Usualmente, denota-se a <span class="math inline">\(\sigma\)</span>-álgebra gerada por um conjunto <span class="math inline">\(\mathcal{C}\)</span> como <span class="math inline">\(\sigma(\mathcal{C})\)</span>. Por exemplo:</p>
 <ul>
@@ -239,17 +237,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
+<p><strong>Definição:</strong> A função <span class="math inline">\(\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+\)</span> é uma <em>medida</em> se<br />
+1. <span class="math inline">\(\mu(\emptyset) = 0\)</span>;<br />
+2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\forall i \neq j\)</span> , <span class="math inline">\(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\)</span>.</p>
 <ul>
-<li><span class="math inline">\(\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+\)</span> é uma <em>medida</em> se
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\mu(\emptyset) = 0\)</span>;</li>
-<li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\forall i \neq j\)</span> , <span class="math inline">\(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\)</span>.</li>
-</ol></li>
 <li><span class="math inline">\((\Omega,\mathcal{A}, \mu)\)</span> é chamado de <em>espaço de medida</em>.</li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 1 (medida de contagem):</strong> Seja <span class="math inline">\(\Omega\)</span> um conjunto não vazio e <span class="math inline">\(A\subseteq \Omega\)</span>. Defina <span class="math inline">\(\mu(A)=|A|\)</span> como o número de elementos (cardinalidade) de <span class="math inline">\(A\)</span>. Assim, <span class="math inline">\(\mu(\Omega) &gt; 0\)</span>, <span class="math inline">\(\mu(\emptyset)=0\)</span> e, se <span class="math inline">\((A_n)_{n \geq 1}\)</span> é uma sequência de eventos disjuntos, então <span class="math inline">\(\mu(\cup A_n) = \sum \mu(A_n)\)</span>. Note que <span class="math inline">\(\mu(A)=\infty\)</span> é possivel se <span class="math inline">\(\Omega\)</span> tem infinitos elementos.</p>
+<p><strong>Exemplo 1 (medida de contagem):</strong> Seja <span class="math inline">\(\Omega\)</span> um conjunto não vazio e <span class="math inline">\(A\subseteq \Omega\)</span>. Defina <span class="math inline">\(\nu(A)=|A|\)</span> como o número de elementos (cardinalidade) de <span class="math inline">\(A\)</span>. Assim, <span class="math inline">\(\nu(\Omega) &gt; 0\)</span>, <span class="math inline">\(\nu(\emptyset)=0\)</span> e, se <span class="math inline">\((A_n)_{n \geq 1}\)</span> é uma sequência de eventos disjuntos, então <span class="math inline">\(\nu(\cup A_n) = \sum \nu(A_n)\)</span>. Note que <span class="math inline">\(\nu(A)=\infty\)</span> é possivel se <span class="math inline">\(\Omega\)</span> tem infinitos elementos.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -260,94 +256,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Exemplo 3:</strong> Seja <span class="math inline">\(f: \mathbb{R} \longrightarrow \mathbb{R}_+\)</span> uma função contínua e não nula. Para cada intervalo <span class="math inline">\(A\)</span>, defina <span class="math inline">\(\displaystyle \mu(A) = \int_A f(x) dx = \int_{\mathbb{R}} \mathbb{I}_A(x) f(x) dx\)</span>. Então, <span class="math inline">\(\mu(\mathbb{R})&gt;0\)</span>, <span class="math inline">\(\mu(\emptyset)=0\)</span> e, se <span class="math inline">\(A_1 \cap A_2 = \emptyset\)</span> e <span class="math inline">\(A_1 \cup A_2\)</span> é um intervalo (ou uma união de intervalos disjuntos), então <span class="math inline">\(\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
+<ul>
+<li>Se <span class="math inline">\(\mu(\Omega) &lt; \infty\)</span> dizemos que <span class="math inline">\(\mu\)</span> é uma <em>medida finita</em>. Se existe uma partição enumerável de <span class="math inline">\(\Omega\)</span>, <span class="math inline">\(A_1,A_2,\ldots\)</span>, tal que cada elemento da partição tem medida finita, <span class="math inline">\(\mu(A_i)&lt;\infty\)</span>, <span class="math inline">\(\forall i\)</span>, dizemos que <span class="math inline">\(\mu\)</span> é uma <em>medida <span class="math inline">\(\sigma\)</span>-finita</em>.</li>
+</ul>
+<p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição:</strong> Seja <span class="math inline">\((\Omega,\mathcal{A})\)</span> um espaço mensurável e <span class="math inline">\(\mu_1\)</span> e <span class="math inline">\(\mu_2\)</span> medidas nesse espaço. Dizemos que <span class="math inline">\(\mu_2\)</span> é <em>absolutamente contínua</em> com relação à <span class="math inline">\(\mu_1\)</span> se, <span class="math inline">\(\forall A \in \mathcal{A}\)</span>, <span class="math inline">\(\mu_1(A)=0\)</span> <span class="math inline">\(~\Rightarrow~ \mu_2(A)=0\)</span>.</p>
-<p>Nesse caso, dizemos que <span class="math inline">\(\mu_2\)</span> é dominada por <span class="math inline">\(\mu_1\)</span> ou que <span class="math inline">\(\mu_1\)</span> é uma medida dominante para <span class="math inline">\(\mu_2\)</span> e denotamos <span class="math inline">\(\mu_2 \ll \mu_1\)</span>.</p>
+<ul>
+<li>Nesse caso, dizemos que <span class="math inline">\(\mu_2\)</span> é dominada por <span class="math inline">\(\mu_1\)</span> ou que <span class="math inline">\(\mu_1\)</span> é uma medida dominante para <span class="math inline">\(\mu_2\)</span> e denotamos <span class="math inline">\(\mu_2 \ll \mu_1\)</span>.</li>
+</ul>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema (de Radon-Nikodin):</strong> Seja <span class="math inline">\(\mu_2 \ll \mu_1\)</span> com <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\sigma\)</span>-finita. Então, <span class="math inline">\(\exists f: \Omega \longrightarrow [0,+\infty]\)</span> tal que, <span class="math inline">\(\forall A \in \mathcal{A}\)</span>,
 <span class="math display">\[\mu_2(A) = \int_A f(x) d\mu_1(x).\]</span>
 Além disso, se <span class="math inline">\(g:\Omega \longrightarrow \mathbb{R}\)</span> é <span class="math inline">\(\mu_2\)</span>-integrável, então
 <span class="math display">\[\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).\]</span>
-A função <span class="math inline">\(f=\frac{d\mu_2}{d\mu_1}\)</span> é chamada de derivada de Radon-Nikodin da medida <span class="math inline">\(\mu_2\)</span> com relação à medida <span class="math inline">\(\mu_1\)</span> e é única <span class="math inline">\(\mu_1\)</span>-q.c.</p>
+A função <span class="math inline">\(f=\frac{d\mu_2}{d\mu_1}\)</span> é chamada de derivada de Radon-Nikodin da medida <span class="math inline">\(\mu_2\)</span> com relação à medida <span class="math inline">\(\mu_1\)</span> e é única <span class="math inline">\(\mu_1\)</span>-q.c. (ou seja, é única em todo conjunto <span class="math inline">\(\Omega\)</span> com eventual excessão de um conjunto <span class="math inline">\(C\)</span> tal que <span class="math inline">\(\mu_1(C)=0\)</span>).</p>
 <p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Definição:</strong> <span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> é uma <strong>medida de probabilidade</strong> se<br />
+1. <span class="math inline">\(P(\Omega) = 1\)</span>;
+2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</p>
 <ul>
-<li><p><span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> é uma <em>medida de probabilidade</em> se</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(P(\Omega) = 1\)</span>;</li>
-<li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</li>
-</ol></li>
-<li><p><span class="math inline">\((\Omega, \mathcal{A}, P)\)</span>: espaço de probabilidade</p></li>
-<li><p>Seja <span class="math inline">\((\Omega,\mathcal{A})\)</span> e <span class="math inline">\((\mathfrak{X},\mathcal{F})\)</span> dois espaços mensuráveis. Se <span class="math inline">\(X: \Omega \longrightarrow \mathfrak{X}\)</span> é chamado de <em>quantidade aleatória</em> se uma função mensurável, isto é, se <span class="math inline">\(\forall B \in \mathcal{F}\)</span>, <span class="math inline">\(A = X^{-1}(B) \in \mathcal{A}\)</span>. Se <span class="math inline">\(\mathfrak{X} = \mathbb{R}\)</span> e <span class="math inline">\(\mathcal{F}=\mathcal{B}\)</span> (<span class="math inline">\(\sigma\)</span>-álgebra de Borel), <span class="math inline">\(X\)</span> é chamado <em>variável aleatória</em>.</p></li>
-<li><p>A medida de probabilidade induzida por <span class="math inline">\(X\)</span> recebe o nome de <em>distribuição de</em> <span class="math inline">\(X\)</span>:
-<span class="math display">\[P_X(B) = P(\{\omega \in \Omega :  X(\omega) \in B\})\]</span></p></li>
+<li><span class="math inline">\((\Omega, \mathcal{A}, P)\)</span>: espaço de probabilidade</li>
 </ul>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Definição:</strong> Seja <span class="math inline">\((\Omega,\mathcal{A})\)</span> e <span class="math inline">\((\mathfrak{X},\mathcal{F})\)</span> dois espaços mensuráveis. Uma função <span class="math inline">\(X: \Omega \longrightarrow \mathfrak{X}\)</span> é chamado de <em>quantidade aleatória</em> se é uma <em>função mensurável</em>, isto é, se <span class="math inline">\(\forall B \in \mathcal{F}\)</span>, <span class="math inline">\(A = X^{-1}(B) \in \mathcal{A}\)</span>. Se <span class="math inline">\(\mathfrak{X} = \mathbb{R}\)</span> e <span class="math inline">\(\mathcal{F}=\mathcal{B}\)</span> (<span class="math inline">\(\sigma\)</span>-álgebra de Borel), <span class="math inline">\(X\)</span> é chamada <strong>variável aleatória</strong> (v.a.).</p>
+<ul>
+<li>A medida de probabilidade induzida por <span class="math inline">\(X\)</span> recebe o nome de <em>distribuição de <span class="math inline">\(X\)</span></em>. Se <span class="math inline">\(B \in \mathcal{F}\)</span> e <span class="math inline">\(A = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{A}\)</span>, a medida induzida por <span class="math inline">\(X\)</span> é
+<span class="math display">\[P_X(B) = P(\{\omega \in \Omega :  X(\omega) \in B\}) = P(A)~.\]</span></li>
+</ul>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 1:</strong> Seja <span class="math inline">\(\Omega=\mathfrak{X}=\mathbb{R}\)</span> com a <span class="math inline">\(\sigma\)</span>-álgebra de Borel e <span class="math inline">\(f\)</span> uma função não negativa tal que <span class="math inline">\(\int f(x) dx = 1\)</span>. Defina <span class="math inline">\(\displaystyle\mu(A)= \int_A f(x) dx\)</span> e <span class="math inline">\(X(\omega)=\omega\)</span>. Então, <span class="math inline">\(X\)</span> é uma variável aleatória contínua com função de densidade de probabilidade (f.d.p.) <span class="math inline">\(f\)</span> e <span class="math inline">\(\mu_x = \mu\)</span>. Além disso, <span class="math inline">\(\mu_X\)</span> é absolutamente contínua com relação à medida de Lebesgue <span class="math inline">\((\mu_X \ll \lambda)\)</span> e <span class="math inline">\(\frac{d\mu_X}{d\lambda}=f\)</span>.</p>
+<p><strong>Exemplo 1:</strong> Seja <span class="math inline">\(\Omega=\mathfrak{X}=\mathbb{R}\)</span> com a <span class="math inline">\(\sigma\)</span>-álgebra de Borel e <span class="math inline">\(f\)</span> uma função não negativa tal que <span class="math inline">\(\displaystyle\int f(x) dx = 1\)</span>. Defina <span class="math inline">\(\displaystyle\mu(A)= \int_A f(x) dx\)</span> e <span class="math inline">\(X(\omega)=\omega\)</span>. Então, <span class="math inline">\(X\)</span> é uma variável aleatória contínua com função de densidade de probabilidade (f.d.p.) <span class="math inline">\(f\)</span> e <span class="math inline">\(\mu_x = \mu\)</span>. Além disso, <span class="math inline">\(\mu_X\)</span> é absolutamente contínua com relação à medida de Lebesgue <span class="math inline">\((\mu_X \ll \lambda)\)</span> e <span class="math inline">\(\frac{d\mu_X}{d\lambda}=f\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Exemplo 2:</strong> Seja <span class="math inline">\(\Omega=\mathbb{R}\)</span> com a <span class="math inline">\(\sigma\)</span>-álgebra de Borel, <span class="math inline">\(\mathfrak{X} = \{x_1,x_2,\ldots\}\)</span> um conjunto enumerável. Seja <span class="math inline">\(f\)</span> uma função não negativa definida em <span class="math inline">\(\mathfrak{X}\)</span> tal que <span class="math inline">\(\displaystyle \sum_{i=1}^{\infty} f(x_1) = 1\)</span>. Defina <span class="math inline">\(\displaystyle \mu(A) = \sum_{\{i: x_i \in A\}} f(x_i)\)</span>. Então <span class="math inline">\(X\)</span> é uma variável aleatória discreta com função de probabilidade (f.d.p.) <span class="math inline">\(f\)</span> e <span class="math inline">\(\mu_X=\mu\)</span>. Além disso, <span class="math inline">\(\mu_X\)</span> é absolutamente contínua com relação à medida de contagem <span class="math inline">\((\mu_X \ll \nu)\)</span> e <span class="math inline">\(\frac{d\mu_X}{d\nu}=f\)</span>.</p>
 </blockquote>
+<p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="valor-esperado-de-x-ou-uma-ideia-da-tal-integral-de-lebesgue" class="section level2">
+<div id="lebesgue" class="section level2">
 <h2><span class="header-section-number">A.2</span> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</h2>
-<p>Por simplicidade, considere <span class="math inline">\(\Big(\Omega = [0,1]~,~~ \mathcal{A} = \mathcal{B}\left([0,1]\right)~,~~ P=\lambda\Big)\)</span>.</p>
-<p>Considere uma variável aleatória discreta <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span>, assumindo valores em <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots,x_k\}\)</span> com probabilidades <span class="math inline">\(\{p_1,p_2,\ldots,p_k\}\)</span> com <span class="math inline">\(x_i \geq 0, \forall i\)</span>. Já vimos que o <em>valor esperado</em> (ou <em>esperança</em>) de <span class="math inline">\(X\)</span> é <span class="math inline">\(E[X] =\)</span> <span class="math inline">\(\sum x_i P(X=x_i) =\)</span> <span class="math inline">\(\sum x_i p_i\)</span>.</p>
+<p>Por simplicidade, considere o espaço <span class="math inline">\(\Big(\Omega = [0,1]~,~~ \mathcal{A} = \mathcal{B}\left([0,1]\right)~,~~ P=\lambda\Big)\)</span>.</p>
+<p>Seja <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}_+\)</span> uma variável aleatória discreta, assumindo valores não negativos <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots,x_k\}\)</span> com probabilidades <span class="math inline">\(\{p_1,p_2,\ldots,p_k\}\)</span>. Nos cursos básicos de probabilidade é visto que o <em>valor esperado</em> (ou <em>esperança</em>) de <span class="math inline">\(X\)</span> é <span class="math inline">\(E[X] =\)</span> <span class="math inline">\(\sum x_i P(X=x_i) =\)</span> <span class="math inline">\(\sum x_i p_i\)</span>.</p>
 <p>Podemos definir essa v.a. como</p>
-<p><span class="math inline">\(X(\omega) = \left\{\begin{array}{lccc} x_1, &amp; 0 &amp; \leq \omega \leq &amp; p_1 \\  x_2, &amp; p_1 &amp; &lt; \omega \leq &amp; p_1+p_2 \\  \vdots &amp; &amp; &amp; \\  x_j, &amp; \sum_{i=1}^{j-1} p_j &amp; &lt; \omega \leq &amp; \sum_{i=1}^{j} p_j \\  \vdots &amp; &amp; &amp; \\  x_k, &amp; 1-p_k &amp; &lt; \omega \leq&amp; 1 \end{array}\right.\)</span>
-<img src="InfBayes_files/figure-html/va_discreta-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><span class="math inline">\(X(\omega) = \left\{\begin{array}{lccc} x_1, &amp; 0 &amp; \leq \omega \leq &amp; p_1 \\  x_2, &amp; p_1 &amp; &lt; \omega \leq &amp; p_1+p_2 \\  \vdots &amp; &amp; &amp; \\  x_j, &amp; \sum_{i=1}^{j-1} p_j &amp; &lt; \omega \leq &amp; \sum_{i=1}^{j} p_j \\  \vdots &amp; &amp; &amp; \\  x_k, &amp; 1-p_k &amp; &lt; \omega \leq &amp; 1 \end{array}\right.\)</span></p>
+<p><img src="InfBayes_files/figure-html/va_discreta-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Assim, temos que</p>
 <ul>
 <li><p><span class="math inline">\(P_X(X=x_1) =\)</span> <span class="math inline">\(P\left(\{\omega \in \Omega : X(\omega)=x_1\}\right) =\)</span> <span class="math inline">\(\lambda\left([0,p_1]\right) =\)</span> <span class="math inline">\(p_1\)</span>,</p></li>
 <li><p><span class="math inline">\(P_X(X=x_j) =\)</span> <span class="math inline">\(P\left(\{\omega \in \Omega : X(\omega)=x_j\}\right) =\)</span> <span class="math inline">\(\lambda\left(\left[\sum_{i=1}^{j-1} p_i,\sum_{i=1}^{j} p_i\right]\right) =\)</span> <span class="math inline">\(p_j ~,~\)</span> <span class="math inline">\(j \in \{2,\ldots,k\}\)</span>.</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Definição:</strong> Uma função mensurável (v.a.) <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}_+\)</span> é dita <em>simples</em> se assumir um número finito de valores.</p>
+<p><strong>Definição:</strong> Uma função mensurável <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}_+\)</span> é dita <em>simples</em> se assumir um número finito de valores.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Definição:</strong> Considere <span class="math inline">\((\Omega, \mathcal{A}, P)\)</span>, <span class="math inline">\(X:\Omega\longrightarrow \mathbb{R}_+\)</span> v.a. assumindo valores <span class="math inline">\(\{x_1,x_2,\ldots,x_k\}\)</span> e <span class="math inline">\(A_1,A_2,\ldots,A_k\)</span> eventos disjuntos em <span class="math inline">\(\mathcal{A}\)</span>. Seja <span class="math inline">\(\displaystyle X(\omega) = \sum_{i=1}^{k} x_i ~\mathbb{I}_{A_i}(\omega)\)</span>, uma função simples com <span class="math inline">\(A_i = X^{-1}(x_i)\)</span>, <span class="math inline">\(i=1,\ldots,k\)</span>. A <em>integral de Lebesgue</em> de <span class="math inline">\(X\)</span> em relação à medida <span class="math inline">\(P\)</span> é
+<p><strong>Definição:</strong> Considere um espaço de probabilidade <span class="math inline">\((\Omega, \mathcal{A}, P)\)</span>, <span class="math inline">\(X:\Omega\longrightarrow \mathbb{R}_+\)</span> v.a. assumindo valores <span class="math inline">\(\{x_1,x_2,\ldots,x_k\}\)</span> e <span class="math inline">\(A_1,A_2,\ldots,A_k\)</span> eventos disjuntos em <span class="math inline">\(\mathcal{A}\)</span>. Seja <span class="math inline">\(\displaystyle X(\omega) = \sum_{i=1}^{k} x_i ~\mathbb{I}_{A_i}(\omega)\)</span>, uma função simples com <span class="math inline">\(A_i = X^{-1}(x_i)\)</span>, <span class="math inline">\(i=1,\ldots,k\)</span>. A <em>integral de Lebesgue</em> de <span class="math inline">\(X\)</span> em relação à medida <span class="math inline">\(P\)</span> é
 <span class="math display">\[E[X] = \int_\Omega X dP = \sum_{i=1}^{k} x_i P(A_i).\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<!-- ## Aula 05  -->
-</div>
-<div id="propriedades-da-integral-de-lebesque-de-x-v.a-em-relação-a-p" class="section level2">
-<h2><span class="header-section-number">A.3</span> Propriedades da integral (<em>de Lebesque</em>) de <span class="math inline">\(X\)</span> (v.a) em relação a <span class="math inline">\(P\)</span></h2>
-<p><strong>P1.</strong> <span class="math inline">\(~\int_\Omega X dP \geq 0,\)</span></p>
-<p><strong>P2.</strong> <span class="math inline">\(~\int_\Omega cX dP = c\int_\Omega X dP.\)</span></p>
-<p><strong>P3.</strong> <span class="math inline">\(~\int_\Omega (X|Y) dP = \int_\Omega X dP + \int_\Omega Y dP\)</span></p>
+<p><strong>Propriedades:</strong> se <span class="math inline">\(X, Y: \Omega \longrightarrow \mathbb{R}_+\)</span> são funções simples, então</p>
+<p><strong>1.</strong> <span class="math inline">\(\displaystyle\int_\Omega X dP \geq 0\)</span>;</p>
+<p><strong>2.</strong> <span class="math inline">\(\displaystyle\int_\Omega cX dP = c\int_\Omega X dP\)</span>;</p>
+<p><strong>3.</strong> <span class="math inline">\(\displaystyle\int_\Omega (X+Y) dP = \int_\Omega X dP + \int_\Omega Y dP\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Demo (P1):</strong> Segue de <span class="math inline">\(x_i \geq 0\)</span> e <span class="math inline">\(P(A_i) \geq 0\)</span>.</p>
+<p><strong>Demo 1.</strong> Segue de <span class="math inline">\(x_i \geq 0\)</span> e <span class="math inline">\(P(A_i) \geq 0\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><strong>Demo (P2):</strong><br />
+<p><strong>Demo 2.</strong><br />
 Para <span class="math inline">\(X\)</span> v.a. temos<br />
-<span class="math inline">\(X = \sum_{i=1}^kx_i~\mathbb{I}_{A_i}\)</span> e <span class="math inline">\(cX\)</span> (também v.a.)<br />
-<span class="math inline">\(cX = \sum_{i=1}^k(cx_i)~\mathbb{I}_{A_i}\)</span>, logo<br />
-<span class="math inline">\(\int_\Omega cX dP = \sum_{i=1}^k(cx_i) P(A_i)\)</span> <span class="math inline">\(= c\sum_{i=1}^kx_i P(A_i) = c\int_\Omega X dP\)</span></p>
+<span class="math inline">\(X =\displaystyle \sum_{i=1}^kx_i~\mathbb{I}_{A_i}\)</span> e <span class="math inline">\(cX = \displaystyle\sum_{i=1}^k c~x_i ~\mathbb{I}_{A_i}\)</span>. Logo,<br />
+<span class="math inline">\(\displaystyle\int_\Omega cX~dP = \sum_{i=1}^k c~x_i~P(A_i)\)</span> <span class="math inline">\(=\displaystyle c\sum_{i=1}^kx_i P(A_i) = c\int_\Omega X dP\)</span>.</p>
 </blockquote>
 <blockquote>
-<p><strong>Demo (P3):</strong><br />
+<p><strong>Demo 3.</strong><br />
 <span class="math inline">\(X = \sum_{i=1}^kx_i~\mathbb{I}_{A_i}\)</span> e <span class="math inline">\(Y = \sum_{j=1}^ly_j~\mathbb{I}_{B_j}\)</span>.<br />
-<span class="math inline">\(\begin{array}{ll} X + Y &amp; = \sum_{i=1}^k x_i ~\mathbb{I}_{A_i} + \sum_{j=1}^l y_j\\ &amp; = \sum_{i=1}^k\sum_{j=1}^lx_i~\mathbb{I}_{A_i\cap B_j} + \sum_{i=1}^k\sum_{j=1}^ly_j~\mathbb{I}_{A_i\cap B_j}\\ \end{array}\)</span><br />
-<span class="math inline">\(\Longrightarrow X + Y = \sum_{i=1}^k\sum_{j=1}^l(x_i+y_j)~\mathbb{I}_{A_i\cap B_j}\)</span>.<br />
-<span class="math inline">\(\begin{array}{ll} \int_\Omega (X + Y) dP &amp; = \sum_{i=1}^k\sum_{j=1}^l (x_i + y_j)P(A_i\cap B_j)\\ &amp; = \sum_{i=1}^k\sum_{j=1}^l (x_i)P(A_i\cap B_j) + \sum_{i=1}^k\sum_{j=1}^l (y_j)P(A_i\cap B_j)\\ &amp; = \sum_{i=1}^k x_i P(A_i) + \sum_{j=1}^l y_j P(B_j)\\ &amp; = \int_\Omega X dP + \int_\Omega Y dP. \end{array}\)</span></p>
+<span class="math inline">\(X + Y\)</span> <span class="math inline">\(=\displaystyle \sum_{i=1}^k x_i ~\mathbb{I}_{A_i} + \sum_{j=1}^l y_j~\mathbb{I}_{B_j}\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^k\sum_{j=1}^lx_i~\mathbb{I}_{A_i\cap B_j} + \sum_{i=1}^k\sum_{j=1}^ly_j~\mathbb{I}_{A_i\cap B_j}\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^k\sum_{j=1}^l(x_i+y_j)~\mathbb{I}_{A_i\cap B_j}\)</span>.<br />
+<span class="math inline">\(\displaystyle \int_\Omega (X + Y) dP\)</span> <span class="math inline">\(=\displaystyle \sum_{i=1}^k\sum_{j=1}^l (x_i + y_j)P(A_i\cap B_j)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^k\sum_{j=1}^l x_iP(A_i\cap B_j) + \sum_{i=1}^k\sum_{j=1}^l y_jP(A_i\cap B_j)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^k x_i P(A_i) + \sum_{j=1}^l y_j P(B_j)\)</span> <span class="math inline">\(=\displaystyle\int_\Omega X dP + \int_\Omega Y dP\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Seja <span class="math inline">\(X:\Omega\longrightarrow \mathbb{R}\)</span> uma função mensurável não negativa e considere o conjunto de funções <span class="math inline">\(\mathcal{C}_X\)</span> <span class="math inline">\(= \{ f:\Omega\longrightarrow \mathbb{R}_+,\quad f\)</span> simples, <span class="math inline">\(f \leq x\}\)</span>.</p>
+<p>A generalização da integral de Lebesgue é feita usando resultados como o <em>Lema de Fatou</em> e os teoremas da <em>convergência monótona</em> e da <em>convergência dominada</em>. Aqui será apresentado apenas uma ideia dessa extensão. Para maiores detalhes, veja as referências citadas anteriormente <span class="citation">(Ash and Doleans-Dade <a href="#ref-Ash00" role="doc-biblioref">2000</a>; Schervish <a href="#ref-Schervish12" role="doc-biblioref">2012</a>; Billingsley <a href="#ref-Billingsley86" role="doc-biblioref">1986</a>; Shiryaev <a href="#ref-Shiryaev96" role="doc-biblioref">1996</a>)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>(INCLUIR GRÁFICOS DE f1 e f2)</strong></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Definimos, nesse caso, o <em>valor esperado de</em> <span class="math inline">\(X\)</span> por</p>
-<p><span class="math inline">\(E[X]\)</span> <span class="math inline">\(=\int_\Omega XdP\)</span> <span class="math inline">\(=sup\{\int_\Omega fdP: f\in \mathcal{C}_X\}\)</span>.</p>
-<p><span class="math inline">\(~\)</span></p>
-<p><strong>Resultado</strong></p>
-<p><span class="math inline">\(X,Y: \Omega \longrightarrow\mathbb{R}_+,\)</span> com <span class="math inline">\(X\leq Y\)</span>. Então <span class="math inline">\(E[X] \leq E[Y]\)</span>.</p>
-<blockquote>
-<p><strong>Demo:</strong> Como <span class="math inline">\(X \leq Y\)</span> (isto é, <span class="math inline">\(X(w) \leq Y(w)\)</span> <span class="math inline">\(\forall w \in \Omega\)</span>), <span class="math inline">\(\mathcal{C}_X \subseteq \mathcal{C}_Y\)</span><br />
-<span class="math inline">\(\Rightarrow sup\{\int_\Omega fdP: f\in \mathcal{C}_X\} \leq sup\{\int_\Omega fdP: f\in \mathcal{C}_Y\}\)</span> <span class="math inline">\(\Rightarrow \int_\Omega XdP \leq \int_\Omega YdP\)</span>.</p>
-</blockquote>
-<p><span class="math inline">\(~\)</span></p>
-<p><strong>Definição</strong>: Seja <span class="math inline">\(X:\Omega \longrightarrow\mathbb{R}_+\)</span> e <span class="math inline">\(E \in \mathcal{A}\)</span> definimos <span class="math inline">\(E(X~\mathbb{I}_E) = \int_EXdP\)</span> <span class="math inline">\(=\int_\Omega X~\mathbb{I}_EdP\)</span>. Se <span class="math inline">\(E,F \in \mathcal{A}\)</span> com <span class="math inline">\(E\subseteq F\)</span>, <span class="math inline">\(\int_E XdP \leq \int_F xdP.\)</span></p>
+<p><strong>Definição:</strong> Seja <span class="math inline">\(X:\Omega\longrightarrow \mathbb{R}_+\)</span> uma função mensurável não negativa e considere o conjunto de funções <span class="math inline">\(\mathcal{C}_X\)</span> <span class="math inline">\(= \{ f:\Omega\longrightarrow \mathbb{R}_+~,~~f~~\text{simples}~,~~f \leq X\}\)</span>. O <em>valor esperado de <span class="math inline">\(X\)</span></em> é
+<span class="math display">\[E[X]=\int_\Omega XdP=\sup\left\{\int_\Omega fdP: f\in \mathcal{C}_X\right\}~.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Resultado:</strong> Para toda função <span class="math inline">\(X:\Omega \longrightarrow \mathbb{R}_+\)</span>, existe uma sequência <span class="math inline">\((f_n)_{n\geq 1}\)</span> de funções simples não-negativas tais que <span class="math inline">\(f_n(w)\leq f_{n+1}(w),\)</span> <span class="math inline">\(\forall w \in \Omega,\)</span> <span class="math inline">\(\forall n \in \mathbb{N}\)</span> com <span class="math inline">\(f_n(w)\uparrow X(w),\)</span> <span class="math inline">\(\forall w \in \Omega.\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
@@ -355,70 +347,90 @@ Para <span class="math inline">\(X\)</span> v.a. temos<br />
 <p>Para cada <span class="math inline">\(n\)</span>, considere <span class="math inline">\(1+n2^n\)</span> conjuntos em <span class="math inline">\(\mathcal{A}:\)</span></p>
 <ul>
 <li><p><span class="math inline">\(E_j^n = \left\{w \in \Omega: \dfrac{j}{2^n} \leq X(w) \leq \dfrac{j+1}{2^n} \right\}\)</span>, <span class="math inline">\(j = 0,1,...,n2^n-1.\)</span></p></li>
-<li><p><span class="math inline">\(E_{n2^n}^n = \left\{ w \in \Omega: X(w)\geq n \right\}\)</span></p></li>
+<li><p><span class="math inline">\(E_{n2^n}^n = \Big\{ w \in \Omega: X(w)\geq n \Big\}\)</span></p></li>
 </ul>
-<p>e defina <span class="math inline">\(X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)\)</span>. Pode-se provar que <span class="math inline">\((X_n)_{n\geq 1}\)</span> é tal que</p>
+<p>e defina <span class="math inline">\(\displaystyle X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)\)</span>. Pode-se provar que <span class="math inline">\((X_n)_{n\geq 1}\)</span> é tal que</p>
 <ul>
 <li><p><span class="math inline">\(X_n\)</span> é simples, <span class="math inline">\(\forall n \geq 1\)</span></p></li>
 <li><p><span class="math inline">\(X_n \leq X_{n+1}\)</span></p></li>
 <li><p><span class="math inline">\(X_{n}(w) \uparrow X(w)\)</span></p></li>
 </ul>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-37-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>(INCLUIR GRÁFICOS DA CONVERGÊNCIA)</strong></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Propriedades:</strong> Se <span class="math inline">\(X, Y: \Omega \longrightarrow \mathbb{R}_+\)</span> são funções mensuráveis (v.a.) então</p>
-<ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(\int_\Omega cXdP =\)</span> <span class="math inline">\(c\int_\Omega XdP, c\geq 0\)</span></p></li>
-<li><p><span class="math inline">\(\int_\Omega (X+Y)dP =\)</span> <span class="math inline">\(\int_\Omega XdP + \int_\Omega YdP\)</span></p></li>
-</ol>
+<p><strong>Resultado:</strong> <span class="math inline">\(X,Y: \Omega \longrightarrow\mathbb{R}_+,\)</span> com <span class="math inline">\(X\leq Y\)</span>. Então <span class="math inline">\(E[X] \leq E[Y]\)</span>.</p>
 <blockquote>
-<p><strong>Demo (1)</strong> Seja <span class="math inline">\(X_n\uparrow X,\)</span> <span class="math inline">\(X_n \geq 0\)</span> simples. Então <span class="math inline">\(cX_n\uparrow cX,\)</span> <span class="math inline">\(cX_n \geq 0,\)</span> simples.<br />
-<span class="math inline">\(\begin{array}{rcl} \int_\Omega cX dP &amp; = &amp; \underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP\\ &amp; = &amp; \underset{n\rightarrow\infty}{lim}c\int_\Omega X_n dP\\ &amp; = &amp; c\underset{n\rightarrow\infty}{lim}\int_\Omega X_n dP\\ &amp; = &amp; c\int_\Omega X dP. \end{array}\)</span></p>
-</blockquote>
-<blockquote>
-<p><strong>Demo (2)</strong> Exercício.</p>
+<p><strong>Demo:</strong> Como <span class="math inline">\(X \leq Y\)</span> (isto é, <span class="math inline">\(X(w) \leq Y(w)\)</span> <span class="math inline">\(\forall w \in \Omega\)</span>), <span class="math inline">\(\mathcal{C}_X \subseteq \mathcal{C}_Y\)</span><br />
+<span class="math inline">\(\Rightarrow \sup\left\{\displaystyle\int_\Omega f~dP:~ f\in \mathcal{C}_X\right\} \leq \sup\left\{\displaystyle\int_\Omega g~dP:~ g\in \mathcal{C}_Y\right\}\)</span> <span class="math inline">\(\Rightarrow \displaystyle\int_\Omega XdP \leq \displaystyle\int_\Omega YdP\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Exemplo:</strong> Suponha que <span class="math inline">\(X\)</span> assume valores em <span class="math inline">\(\mathbb{N}\)</span>. Pode-se escrever <span class="math inline">\(X = \sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~\)</span>, com <span class="math inline">\(A_i = x^{-1}(\{i\})\)</span>.</p>
-<p>Defina <span class="math inline">\(X_n = \sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}\)</span> <span class="math inline">\(+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}\)</span>. Então <span class="math inline">\(X_n\)</span> é simples, <span class="math inline">\(X_n \geq 0~\)</span>, <span class="math inline">\(X_n \leq X_{n+1}\)</span> e <span class="math inline">\(X_n \uparrow X\)</span>, de modo que <span class="math inline">\(E(X)\)</span> <span class="math inline">\(= \int_\Omega X dP\)</span> <span class="math inline">\(= \underset{n \rightarrow\infty}{lim}\int_\Omega X_n dP\)</span>. Além disso,</p>
-<p><span class="math inline">\(\begin{array}{rcl} \int_\Omega X_n dp &amp; = &amp; \sum_{i=1}^{n-1} i P(A_i) + nP\left(\underset{j=n}{\cup}A_j\right)\\ &amp; = &amp; \sum_{i=1}^{n-1}iP(X = i) + nP(X \geq n)\\ &amp; = &amp; \sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + nP(X \geq n)\\ &amp; = &amp; \sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n P(X \geq n)\\ &amp; = &amp; \sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n P(X \geq n)\\ &amp; = &amp; \sum_{j=1}^n P(X \geq j), \end{array}\)</span></p>
-<p>então, <span class="math inline">\(E(X)\)</span> <span class="math inline">\(= \underset{n\rightarrow \infty}{lim} \sum_{j=1}^nP(X \geq j)\)</span> <span class="math inline">\(= \sum_{j=1}^nP(X \geq j)\)</span>.</p>
+<p><strong>Definição</strong>: Seja <span class="math inline">\(X:\Omega \longrightarrow\mathbb{R}_+\)</span> e <span class="math inline">\(E \in \mathcal{A}\)</span> definimos <span class="math inline">\(E(X~\mathbb{I}_E) = \displaystyle\int_EXdP\)</span> <span class="math inline">\(=\displaystyle\int_\Omega X~\mathbb{I}_EdP\)</span>.<br />
+Se <span class="math inline">\(E,F \in \mathcal{A}\)</span> com <span class="math inline">\(E\subseteq F\)</span>, <span class="math inline">\(\displaystyle\int_E XdP \leq \int_F XdP.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Propriedades:</strong> se <span class="math inline">\(X, Y: \Omega \longrightarrow \mathbb{R}_+\)</span> são funções mensuráveis positivas, então</p>
+<p><strong>1.</strong> <span class="math inline">\(\displaystyle\int_\Omega cXdP =\)</span> <span class="math inline">\(c\int_\Omega XdP, c\geq 0\)</span>;</p>
+<p><strong>2.</strong> <span class="math inline">\(\displaystyle\int_\Omega (X+Y)dP =\)</span> <span class="math inline">\(\int_\Omega XdP + \int_\Omega YdP\)</span>.</p>
+<blockquote>
+<p><strong>Demo 1.</strong> Seja <span class="math inline">\(X_n\uparrow X,\)</span> <span class="math inline">\(X_n \geq 0\)</span> simples. Então <span class="math inline">\(cX_n\uparrow cX,\)</span> <span class="math inline">\(cX_n \geq 0,\)</span> simples.<br />
+<span class="math inline">\(\displaystyle\int_\Omega cX dP\)</span> <span class="math inline">\(=\underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\int_\Omega X dP\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Demo 2.</strong> Exercício.</p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Exemplo:</strong> Suponha que <span class="math inline">\(X\)</span> assume valores em <span class="math inline">\(\mathbb{N}\)</span>. Pode-se escrever <span class="math inline">\(X =\displaystyle\sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~\)</span>, com <span class="math inline">\(A_i = X^{-1}\left(\{i\}\right)\)</span>.</p>
+<p>Defina <span class="math inline">\(X_n =\displaystyle\sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}\)</span>. Então <span class="math inline">\(X_n\)</span> é simples, <span class="math inline">\(X_n \geq 0~\)</span>, <span class="math inline">\(X_n \leq X_{n+1}\)</span> e <span class="math inline">\(X_n \uparrow X\)</span>, de modo que <span class="math inline">\(E(X)\)</span> <span class="math inline">\(=\displaystyle\int_\Omega X dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n \rightarrow\infty}\int_\Omega X_n dP\)</span>. Além disso,</p>
+<p><span class="math inline">\(\displaystyle\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^{n-1} i~P(A_i) + n~P\left(\bigcup_{j=n}^{\infty} A_j\right)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^{n-1}i~P(X = i) + n~P(X \geq n)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + n~P(X \geq n)\)</span> <span class="math inline">\(\displaystyle=\sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n~P(X \geq n)\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n~P(X \geq n)\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^n P(X \geq j)\)</span>,</p>
+<p>então, <span class="math inline">\(E(X)\)</span> <span class="math inline">\(\displaystyle=\lim_{n\rightarrow \infty}\sum_{j=1}^nP(X \geq j)\)</span> <span class="math inline">\(\displaystyle=\sum_{j=1}^{\infty}P(X \geq j)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Seja <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span> e <span class="math inline">\(X^-,X^+: \Omega \longrightarrow \mathbb{R}\)</span> dados por</p>
 <ul>
-<li><p><span class="math inline">\(X^- = max\{-X,0\}~\)</span> (parte negativa de <span class="math inline">\(X\)</span>) e</p></li>
-<li><p><span class="math inline">\(X^+ = max\{X,0\}~\)</span> (parte positiva de <span class="math inline">\(X\)</span>)</p></li>
+<li><p><span class="math inline">\(X^- = \max\{-X,0\}~\)</span> (parte negativa de <span class="math inline">\(X\)</span>) e</p></li>
+<li><p><span class="math inline">\(X^+ = \max\{X,0\}~\)</span> (parte positiva de <span class="math inline">\(X\)</span>)</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>(INCLUIR GRÁFICO DAS PARTES POSITIVAS E NEGATIVAS DE X)</strong></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-38-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Note que <span class="math inline">\(X = X^+ - X^-\)</span></p>
-<p>Se <span class="math inline">\(\int_\Omega X^+ dP &lt; \infty\)</span> ou <span class="math inline">\(\int_\Omega X^- dP &lt; \infty\)</span>, definimos</p>
-<p><span class="math inline">\(E(X)\)</span> <span class="math inline">\(=\int X dP\)</span> <span class="math inline">\(= \int_\Omega X^+dP - \int_\Omega X^- dP\)</span> <span class="math inline">\(=E(X^+) - E(X^-)\)</span>.</p>
-<p>Além disso, seja <span class="math inline">\(|X| = X^+ + X^-\)</span>. Então <span class="math inline">\(E[|X|] &lt; \infty\)</span> se <span class="math inline">\(E(X^+) &lt; \infty\)</span> e <span class="math inline">\(E(X^-) &lt; \infty\)</span>, e, nesse caso, dizemos que <span class="math inline">\(X\)</span> é <em>integrável</em>.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Propriedades:</strong></p>
-<ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(X \leq Y \Rightarrow E(X) \leq E(Y)\)</span>
-&gt; <strong>Demo:</strong> <span class="math inline">\(X \leq Y \Rightarrow\)</span> <span class="math inline">\(\left\{\begin{array}{c}X^+ \leq Y^+\\ X^- \geq Y^-\end{array}\right.\)</span><br />
-<span class="math inline">\(E(X) =\)</span> <span class="math inline">\(E(X^+) - E(X^-)\)</span> <span class="math inline">\(\leq E(Y^+) - E(Y^-)\)</span> <span class="math inline">\(=E(Y).\)</span></p></li>
-<li><p><span class="math inline">\(c \in \mathbb{R},\)</span> <span class="math inline">\(E(cX) = cE(X)\)</span><br />
-&gt; <strong>Demo:</strong> <span class="math inline">\((cX)^+ =\)</span> <span class="math inline">\(\left\{\begin{array}{c}cX^+, \; c \geq 0\\ (-c)X^-, \; c &lt; 0 \end{array}\right.\)</span><br />
-<span class="math inline">\((cX)^- =\)</span> <span class="math inline">\(\left\{\begin{array}{c}cX^-, \; c \geq 0\\ (-c)X^+, \; c &lt; 0 \end{array}\right.\)</span><br />
-Para <span class="math inline">\(c &lt; 0,\)</span> <span class="math inline">\(E[cX]\)</span> <span class="math inline">\(= E[(X)^+] - E[(cX)]\)</span> <span class="math inline">\(= E[(-c)X^-] - E[(-c)X^+]\)</span> <span class="math inline">\(= (-c)E[X^-] + cE[X^+]\)</span> <span class="math inline">\(= cE[X]\)</span>.</p></li>
-<li><p><span class="math inline">\(X,Y\)</span> integráveis. <span class="math inline">\(E(X+Y) = E(X) + E(Y).\)</span><br />
-&gt; <strong>Demo:</strong> <span class="math inline">\(\int_\Omega X^+ + Y^+ dP &lt; \infty\)</span> ou <span class="math inline">\(\int_\Omega X^- + Y^- dP &lt; \infty\)</span><br />
+<p>Se <span class="math inline">\(\displaystyle\int_\Omega X^+ dP &lt; \infty\)</span> ou <span class="math inline">\(\displaystyle\int_\Omega X^- dP &lt; \infty\)</span>, definimos</p>
+<p><span class="math inline">\(E[X]\)</span> <span class="math inline">\(=\displaystyle\int X dP\)</span> <span class="math inline">\(=\displaystyle\int_\Omega X^+dP - \int_\Omega X^- dP\)</span> <span class="math inline">\(=E\left[X^+\right] - E\left[X^-\right]\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Além disso, seja <span class="math inline">\(|X| = X^+ + X^-\)</span>. Então, <span class="math inline">\(E\left[~|X|~\right] &lt; \infty\)</span> se <span class="math inline">\(E(X^+) &lt; \infty\)</span> e <span class="math inline">\(E(X^-) &lt; \infty\)</span>, e, nesse caso, dizemos que <span class="math inline">\(X\)</span> é <em>integrável</em>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Propriedades:</strong> se <span class="math inline">\(X, Y: \Omega \longrightarrow \mathbb{R}\)</span> são funções mensuráveis, então</p>
+<p><strong>1.</strong> <span class="math inline">\(X \leq Y \Rightarrow E(X) \leq E(Y)\)</span>;</p>
+<p><strong>2.</strong> <span class="math inline">\(c \in \mathbb{R},\)</span> <span class="math inline">\(E(cX) = cE(X)\)</span>;</p>
+<p><strong>3.</strong> <span class="math inline">\(X,Y\)</span> integráveis. <span class="math inline">\(E(X+Y) = E(X) + E(Y)\)</span>.</p>
+<blockquote>
+<p><strong>Demo 1.</strong><br />
+<span class="math inline">\(X \leq Y \Rightarrow\)</span> <span class="math inline">\(\left\{\begin{array}{c}X^+ \leq Y^+\\ X^- \geq Y^-\end{array}\right.\)</span><br />
+<span class="math inline">\(E(X) =\)</span> <span class="math inline">\(E(X^+) - E(X^-)\)</span> <span class="math inline">\(\leq E(Y^+) - E(Y^-)\)</span> <span class="math inline">\(=E(Y).\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>Demo 2.</strong><br />
+<span class="math inline">\((cX)^+ =\)</span> <span class="math inline">\(\left\{\begin{array}{rcl}cX^+ &amp;,&amp; c \geq 0\\ -cX^- &amp;,&amp; c &lt; 0 \end{array}\right.\)</span><br />
+<span class="math inline">\((cX)^- =\)</span> <span class="math inline">\(\left\{\begin{array}{rcl}cX^- &amp;,&amp; c \geq 0\\ -cX^+ &amp;,&amp; c &lt; 0 \end{array}\right.\)</span><br />
+Para <span class="math inline">\(c&lt;0\)</span>,<br />
+<span class="math inline">\(E[cX]\)</span> <span class="math inline">\(= E[(cX)^+] - E[(cX)^-]\)</span> <span class="math inline">\(= E[-cX^-] - E[-cX^+]\)</span> <span class="math inline">\(= -cE[X^-] + cE[X^+]\)</span> <span class="math inline">\(= cE[X]\)</span>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Demo 3.</strong><br />
+<span class="math inline">\(\displaystyle\int_\Omega \left(X^+ + Y^+\right) dP &lt; \infty\)</span> ou <span class="math inline">\(\displaystyle\int_\Omega \left(X^- + Y^-\right) dP &lt; \infty\)</span><br />
 <span class="math inline">\(X + Y\)</span> <span class="math inline">\(= (X + Y)^+ - (X+Y)^-\)</span> <span class="math inline">\(= X^+ - X^- + Y^+ - Y^-\)</span><br />
 <span class="math inline">\(\Rightarrow (X+Y)^+ + X^- + Y^-\)</span> <span class="math inline">\(= X^+ + Y^+ + (X+Y)^-\)</span><br />
-<span class="math inline">\(\Rightarrow \int_\Omega (X+Y)^+dP + \int_\Omega X^-dP + \int_\Omega Y^-dP\)</span><br />
-<span class="math inline">\(=\int_\Omega X^+dP + \int_\Omega Y^+dP + \int_\Omega (X+Y)^-dP\)</span>.<br />
+<span class="math inline">\(\Rightarrow \displaystyle\int_\Omega (X+Y)^+dP + \int_\Omega X^-dP + \int_\Omega Y^-dP\)</span><br />
+<span class="math inline">\(=\displaystyle\int_\Omega X^+dP + \int_\Omega Y^+dP + \int_\Omega (X+Y)^-dP\)</span>.<br />
 <span class="math inline">\(|X+Y|\)</span> <span class="math inline">\(= |X^+-X^-+Y^+-Y^-|\)</span> <span class="math inline">\(\leq X^++X^-+Y^++Y^-\)</span><br />
-<span class="math inline">\(\Rightarrow \underbrace{\int_\Omega (X+Y)^+dP - \int_\Omega(X+Y)^-dP}_{\int_\Omega(X+Y)dP}\)</span> <span class="math inline">\(= \underbrace{\int_\Omega X^+dP -\int_\Omega X^-dP}_{\int_\Omega XdP}\)</span> <span class="math inline">\(+ \underbrace{\int_\Omega Y^+dP -\int_\Omega Y^-dP}_{\int_\Omega YdP}\)</span>.</p></li>
-</ol>
+<span class="math inline">\(\Rightarrow \displaystyle\int_\Omega (X+Y)^+dP - \int_\Omega(X+Y)^-dP\)</span> <span class="math inline">\(=\displaystyle \int_\Omega X^+dP -\int_\Omega X^-dP + \int_\Omega Y^+dP -\int_\Omega Y^-dP\)</span>.<br />
+<span class="math inline">\(\Rightarrow \displaystyle\int_\Omega(X+Y)dP = \int_\Omega XdP + \int_\Omega YdP\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="funções-de-variáveis-aleatórias" class="section level2">
-<h2><span class="header-section-number">A.4</span> Funções de Variáveis Aleatórias</h2>
+<h2><span class="header-section-number">A.3</span> Funções de Variáveis Aleatórias</h2>
 <p>Considere agora uma v.a. <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span> e uma função real <span class="math inline">\(g: \mathbb{R} \longrightarrow \mathbb{R}\)</span>. Defina <span class="math inline">\(Y = g(X)\)</span>. Então</p>
 <p><span class="math display">\[(\Omega, \mathcal{A},P) \overset{X}{\longrightarrow}(\mathbb{R},\mathcal{B}(\mathbb{R}),P_X)\overset{g}{\longrightarrow}(\mathbb{R},\mathcal{B}(\mathbb{R}),P_Y)\]</span></p>
 <p><span class="math display">\[(\Omega, \mathcal{A},P)\overset{Y = g(X)}{\longrightarrow}(\mathbb{R},\mathcal{B}(\mathbb{R}),P_Y)\]</span></p>
@@ -488,10 +500,6 @@ Para <span class="math inline">\(c &lt; 0,\)</span> <span class="math inline">\(
 </ul>
 <p><strong>Definição:</strong> <span class="math inline">\((\Omega, \mathcal{A}, P)\)</span> espaço de probabilidade e <span class="math inline">\((\mathfrak{X},\mathfrak{F},\mathcal{V})\)</span> espaço mensurável. Considere <span class="math inline">\(X: \Omega \longrightarrow \mathfrak{X}\)</span> uma v.a. e <span class="math inline">\(P_X\)</span> a medida induzida por <span class="math inline">\(X\)</span> de <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(P_X(B) = P(X^{-1}(B)).\)</span> Suponha que <span class="math inline">\(P_X &lt;&lt; \mathcal{V}\)</span>. Então, a derivada de Radom-Nicodin <span class="math inline">\(f_X = \dfrac{d\mu_X}{d\mathcal{V}}\)</span> é a densidade de <span class="math inline">\(X\)</span> com respeito a <span class="math inline">\(\mathcal{V}\)</span>.</p>
 <p><strong>Proposição:</strong> Se <span class="math inline">\(h: \mathfrak{X}\longrightarrow\mathbb{R}\)</span> é mensurável e <span class="math inline">\(f_X = \dfrac{dP_X}{d\mathcal{V}},\)</span> então <span class="math inline">\(\int h(x)dF_X(x)=\)</span> <span class="math inline">\(\int h(x)f_X(x)d\mathcal{V}.\)</span></p>
-</div>
-<div id="aula-6" class="section level2">
-<h2><span class="header-section-number">A.5</span> Aula 6</h2>
-<p><strong>Exemplos (continuação)</strong></p>
 <ol start="4" style="list-style-type: decimal">
 <li><span class="math inline">\(X \sim Geo(\theta)\)</span></li>
 </ol>
@@ -585,16 +593,13 @@ Para <span class="math inline">\(c &lt; 0,\)</span> <span class="math inline">\(
 <p><span class="math inline">\(E[X|Y](w)=\left\{\begin{array}{ll} 5/4, &amp; w \in B_1\\ 7/4, &amp; w \in B_2 \end{array}\right.\)</span></p>
 <p><span class="math inline">\(E[X|Y]=E[X|\sigma_X].\)</span></p>
 </div>
-<div id="aula-7" class="section level2">
-<h2><span class="header-section-number">A.6</span> Aula 7</h2>
-<div id="probabilidade-condicional" class="section level3">
-<h3><span class="header-section-number">A.6.1</span> Probabilidade Condicional</h3>
+<div id="probabilidade-condicional" class="section level2">
+<h2><span class="header-section-number">A.4</span> Probabilidade Condicional</h2>
 <p><strong>Motivação</strong></p>
 <p><span class="math inline">\(P(A|B)=\)</span> <span class="math inline">\(\dfrac{P(A\cap B)}{P(B)}\)</span> é bem definido se <span class="math inline">\(P(B)&gt;0.\)</span></p>
 <p><strong>Exemplo</strong> Seja <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span> v.a. e considere um experimento em dois estagios onde seleciona-se <span class="math inline">\(X\sim F_X\)</span> e, dado <span class="math inline">\(X=x,\)</span> <span class="math inline">\(0\leq x\leq 1,\)</span> uma moeda com probabilidade <span class="math inline">\(x\)</span> é lançada <span class="math inline">\(n\)</span> vezes. Nesse caso, é natural definir <span class="math inline">\(Y|X=x\sim Bin(n,x)\)</span> mesmo que <span class="math inline">\(P(X=x)=0,\)</span> <span class="math inline">\(\forall x \in [0,1].\)</span></p>
-</div>
 <div id="teorema-da-medida-produto-para-medidas-de-probabilidade" class="section level3">
-<h3><span class="header-section-number">A.6.2</span> Teorema da Medida Produto (para medidas de probabilidade)</h3>
+<h3><span class="header-section-number">A.4.1</span> Teorema da Medida Produto (para medidas de probabilidade)</h3>
 <p>Seja <span class="math inline">\((\Omega_1, \mathcal{A}_1,P_1)\)</span> um espaço de probabilidade e <span class="math inline">\((\Omega_2,\mathcal{A}_2)\)</span> um espaço mensurável. Para cada <span class="math inline">\(w_1 \in \Omega_1,\)</span> defina uma medida de probabilidade <span class="math inline">\(\mu(w_1,.)\)</span> em <span class="math inline">\(\mathcal{A}_2.\)</span> Assuma que, para cada <span class="math inline">\(B \in \mathcal{A}_2,\)</span> <span class="math inline">\(\mu(.,B)\)</span> também é <span class="math inline">\(\mathcal{A}_1\)</span>-mensurável. Então, existe uma única medida de probabilidade <span class="math inline">\(P\)</span> em <span class="math inline">\(\mathcal{A}=\mathcal{A}_1\times \mathcal{A}_2\)</span> tal que <span class="math inline">\(P(A\times B)=\)</span> <span class="math inline">\(\int_A \mu(w_1,B)dP_1(w_1),\)</span> <span class="math inline">\(\forall A\in \mathcal{A}_1,\)</span> <span class="math inline">\(\forall B\in \mathcal{A}_2.\)</span></p>
 <p>Se <span class="math inline">\(D(w_1)\)</span> denota uma secção de <span class="math inline">\(D\)</span> em <span class="math inline">\(w_1,\)</span> isto é, <span class="math inline">\(D(w_1)=\)</span> <span class="math inline">\(\{w_2\in \Omega_2: (w_1,w_2)\in D\},\)</span> <span class="math inline">\(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\)</span> então</p>
 <p><span class="math inline">\(P(D)=\)</span> <span class="math inline">\(\int_{\Omega_1} \mu(w_1,D(w_1))dP_1(w_1).\)</span></p>
@@ -642,6 +647,21 @@ Para <span class="math inline">\(c &lt; 0,\)</span> <span class="math inline">\(
 </blockquote>
 
 </div>
+</div>
+</div>
+<h3>Referências</h3>
+<div id="refs" class="references">
+<div id="ref-Ash00">
+<p>Ash, R. B., and C. Doleans-Dade. 2000. <em>Probability and Measure Theory</em>. California: Academic Press.</p>
+</div>
+<div id="ref-Billingsley86">
+<p>Billingsley, P. 1986. <em>Probability and Measure</em>. Second. Wiley Series in Probability and Mathematical Statistics. New York: John Wiley &amp; Sons, Inc.</p>
+</div>
+<div id="ref-Schervish12">
+<p>Schervish, M. J. 2012. <em>Theory of Statistics</em>. Springer Science &amp; Business Media.</p>
+</div>
+<div id="ref-Shiryaev96">
+<p>Shiryaev, A. N. 1996. <em>Probability</em>. Second. Vol. 95. Graduate Texts in Mathematics. New York: Springer-Verlag.</p>
 </div>
 </div>
             </section>

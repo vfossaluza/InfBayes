@@ -2,9 +2,10 @@
 
 # Breve Resumo de Medida e Probabilidade {#medprob} 
 
-<!-- ## Aula 04 -->
+Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma medida e da integral de Lebesgue. Para maiores detalhes, ver @Ash00, @Billingsley86, @Shiryaev96 ou, para uma versão mais resumida, os Apêndices de  @Schervish12.
 
-## Breve Resumo de Medida e Probabilidade
+
+## Conceitos Básicos {#basprob}
 
 + $\Omega$: espaço amostral (um conjunto não vazio). 
 
@@ -14,6 +15,8 @@
     3. $\displaystyle A_1, A_2, \ldots \in \mathcal{A} \Longrightarrow \bigcup_{i\geq1} A_i \in \mathcal{A}$.
 
 + Os elementos de $\mathcal{A}$ são chamados de *eventos* e serão denotados por $A, B, C, \ldots, A_1, A_2, \ldots$
+
++ Uma coleção de eventos $A_1,A_2,\ldots$ forma uma *partição* de $\Omega$ se $A_i \cap A_j = \emptyset$, $\forall i \neq j$, e $\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega$.
 
 + $(\Omega, \mathcal{A})$: *espaço mensurável*.
 
@@ -25,15 +28,15 @@
 
 $~$
 
-+ $\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+$ é uma *medida* se
-    1. $\mu(\emptyset) = 0$;
-    2. $\displaystyle A_1, A_2, \ldots \in \mathcal{A}$ com $A_i \bigcap A_j = \emptyset$ , $\forall i \neq j$ ,  $\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)$.
+**Definição:** A função $\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+$ é uma *medida* se  
+1. $\mu(\emptyset) = 0$;  
+2. $\displaystyle A_1, A_2, \ldots \in \mathcal{A}$ com $A_i \bigcap A_j = \emptyset$ , $\forall i \neq j$ ,  $\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)$.
 
 + $(\Omega,\mathcal{A}, \mu)$ é chamado de *espaço de medida*.
 
 $~$
 
-> **Exemplo 1 (medida de contagem):** Seja $\Omega$ um conjunto não vazio e $A\subseteq \Omega$. Defina $\mu(A)=|A|$ como o número de elementos (cardinalidade) de $A$. Assim, $\mu(\Omega) > 0$, $\mu(\emptyset)=0$ e, se $(A_n)_{n \geq 1}$ é uma sequência de eventos disjuntos, então $\mu(\cup A_n) = \sum \mu(A_n)$. Note que $\mu(A)=\infty$ é possivel se $\Omega$ tem infinitos elementos.
+> **Exemplo 1 (medida de contagem):** Seja $\Omega$ um conjunto não vazio e $A\subseteq \Omega$. Defina $\nu(A)=|A|$ como o número de elementos (cardinalidade) de $A$. Assim, $\nu(\Omega) > 0$, $\nu(\emptyset)=0$ e, se $(A_n)_{n \geq 1}$ é uma sequência de eventos disjuntos, então $\nu(\cup A_n) = \sum \nu(A_n)$. Note que $\nu(A)=\infty$ é possivel se $\Omega$ tem infinitos elementos.
 
 $~$
 
@@ -45,9 +48,13 @@ $~$
 
 $~$
 
++ Se $\mu(\Omega) < \infty$ dizemos que $\mu$ é uma *medida finita*. Se existe uma partição enumerável de $\Omega$, $A_1,A_2,\ldots$, tal que cada elemento da partição tem medida finita, $\mu(A_i)<\infty$, $\forall i$, dizemos que $\mu$ é uma *medida $\sigma$-finita*.
+
+$~$
+
 **Definição:** Seja $(\Omega,\mathcal{A})$ um espaço mensurável e $\mu_1$ e $\mu_2$ medidas nesse espaço. Dizemos que $\mu_2$ é *absolutamente contínua* com relação à $\mu_1$ se, $\forall A \in \mathcal{A}$, $\mu_1(A)=0$ $~\Rightarrow~ \mu_2(A)=0$.
 
-Nesse caso, dizemos que $\mu_2$ é dominada por $\mu_1$ ou que $\mu_1$ é uma medida dominante para $\mu_2$ e denotamos $\mu_2 \ll \mu_1$.
++ Nesse caso, dizemos que $\mu_2$ é dominada por $\mu_1$ ou que $\mu_1$ é uma medida dominante para $\mu_2$ e denotamos $\mu_2 \ll \mu_1$.
 
 $~$
 
@@ -55,44 +62,54 @@ $~$
 $$\mu_2(A) = \int_A f(x) d\mu_1(x).$$
 Além disso, se $g:\Omega \longrightarrow \mathbb{R}$ é $\mu_2$-integrável, então
 $$\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).$$
-A função $f=\frac{d\mu_2}{d\mu_1}$ é chamada de derivada de Radon-Nikodin da medida $\mu_2$ com relação à medida $\mu_1$ e é única $\mu_1$-q.c.
+A função $f=\frac{d\mu_2}{d\mu_1}$ é chamada de derivada de Radon-Nikodin da medida $\mu_2$ com relação à medida $\mu_1$ e é única $\mu_1$-q.c. (ou seja, é única em todo conjunto $\Omega$ com eventual excessão de um conjunto $C$ tal que $\mu_1(C)=0$).
 
 $~$
 
-+ $P: \mathcal{A} \longrightarrow [0,1]$ é uma *medida de probabilidade* se  
+$~$ 
+
+**Definição:**  $P: \mathcal{A} \longrightarrow [0,1]$ é uma **medida de probabilidade** se  
     1. $P(\Omega) = 1$;
     2. $\displaystyle A_1, A_2, \ldots \in \mathcal{A}$ com $A_i \bigcap A_j = \emptyset$ , $\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)$.
     
 + $(\Omega, \mathcal{A}, P)$: espaço de probabilidade
 
-+ Seja $(\Omega,\mathcal{A})$ e $(\mathfrak{X},\mathcal{F})$ dois espaços mensuráveis. Se $X: \Omega \longrightarrow \mathfrak{X}$ é chamado de *quantidade aleatória* se uma função mensurável, isto é, se $\forall B \in \mathcal{F}$, $A = X^{-1}(B) \in \mathcal{A}$. Se $\mathfrak{X} = \mathbb{R}$ e $\mathcal{F}=\mathcal{B}$ ($\sigma$-álgebra de Borel), $X$ é chamado *variável aleatória*.
+$~$
 
-+ A medida de probabilidade induzida por $X$ recebe o nome de *distribuição de* $X$: 
-$$P_X(B) = P(\{\omega \in \Omega :  X(\omega) \in B\})$$
+**Definição:** Seja $(\Omega,\mathcal{A})$ e $(\mathfrak{X},\mathcal{F})$ dois espaços mensuráveis. Uma função $X: \Omega \longrightarrow \mathfrak{X}$ é chamado de *quantidade aleatória* se é uma *função mensurável*, isto é, se $\forall B \in \mathcal{F}$, $A = X^{-1}(B) \in \mathcal{A}$. Se $\mathfrak{X} = \mathbb{R}$ e $\mathcal{F}=\mathcal{B}$ ($\sigma$-álgebra de Borel), $X$ é chamada **variável aleatória** (v.a.).
 
++ A medida de probabilidade induzida por $X$ recebe o nome de *distribuição de $X$*. Se $B \in \mathcal{F}$ e $A = \{\omega \in \Omega :  X(\omega) \in B\} \in \mathcal{A}$, a medida induzida por $X$ é
+$$P_X(B) = P(\{\omega \in \Omega :  X(\omega) \in B\}) = P(A)~.$$
 
-> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\int f(x) dx = 1$. Defina $\displaystyle\mu(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória contínua com função de densidade de probabilidade (f.d.p.) $f$ e $\mu_x = \mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de Lebesgue $(\mu_X \ll \lambda)$ e $\frac{d\mu_X}{d\lambda}=f$.
+$~$
+
+$~$
+
+> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\displaystyle\int f(x) dx = 1$. Defina $\displaystyle\mu(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória contínua com função de densidade de probabilidade (f.d.p.) $f$ e $\mu_x = \mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de Lebesgue $(\mu_X \ll \lambda)$ e $\frac{d\mu_X}{d\lambda}=f$.
 
 $~$
 
 > **Exemplo 2:** Seja $\Omega=\mathbb{R}$ com a $\sigma$-álgebra de Borel, $\mathfrak{X} = \{x_1,x_2,\ldots\}$ um conjunto enumerável. Seja $f$ uma função não negativa definida em $\mathfrak{X}$ tal que $\displaystyle \sum_{i=1}^{\infty} f(x_1) = 1$. Defina $\displaystyle \mu(A) = \sum_{\{i: x_i \in A\}} f(x_i)$. Então $X$ é uma variável aleatória discreta com função de probabilidade (f.d.p.) $f$ e $\mu_X=\mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de contagem $(\mu_X \ll \nu)$ e $\frac{d\mu_X}{d\nu}=f$.
 
-## Valor Esperado de $X$ (OU uma ideia da tal Integral de Lebesgue)
+$~$ 
 
-Por simplicidade, considere $\Big(\Omega = [0,1]~,~~ \mathcal{A} = \mathcal{B}\left([0,1]\right)~,~~ P=\lambda\Big)$. 
+## Valor Esperado de $X$ (OU uma ideia da tal Integral de Lebesgue) {#lebesgue}
 
-Considere uma variável aleatória discreta $X: \Omega \longrightarrow \mathbb{R}$, assumindo valores em $\mathfrak{X}=\{x_1,x_2,\ldots,x_k\}$ com probabilidades $\{p_1,p_2,\ldots,p_k\}$ com $x_i \geq 0, \forall i$. Já vimos que o *valor esperado* (ou *esperança*) de $X$ é $E[X] =$ $\sum x_i P(X=x_i) =$ $\sum x_i p_i$.
+Por simplicidade, considere o espaço $\Big(\Omega = [0,1]~,~~ \mathcal{A} = \mathcal{B}\left([0,1]\right)~,~~ P=\lambda\Big)$. 
+
+Seja $X: \Omega \longrightarrow \mathbb{R}_+$ uma variável aleatória discreta, assumindo valores não negativos $\mathfrak{X}=\{x_1,x_2,\ldots,x_k\}$ com probabilidades $\{p_1,p_2,\ldots,p_k\}$. Nos cursos básicos de probabilidade é visto que o *valor esperado* (ou *esperança*) de $X$ é $E[X] =$ $\sum x_i P(X=x_i) =$ $\sum x_i p_i$.
 
 Podemos definir essa v.a. como
 
 $X(\omega) = \left\{\begin{array}{lccc} x_1, & 0 & \leq \omega \leq & p_1 \\ 
-                            x_2, & p_1 & < \omega \leq & p_1+p_2 \\
-                            \vdots & & & \\
-                            x_j, & \sum_{i=1}^{j-1} p_j & < \omega \leq & \sum_{i=1}^{j} p_j \\
-                            \vdots & & & \\
-                            x_k, & 1-p_k & < \omega \leq&  1
+  x_2, & p_1 & < \omega \leq & p_1+p_2 \\
+  \vdots & & & \\
+  x_j, & \sum_{i=1}^{j-1} p_j & < \omega \leq & \sum_{i=1}^{j} p_j \\
+  \vdots & & & \\
+  x_k, & 1-p_k & < \omega \leq &  1
 \end{array}\right.$
-```{r va_discreta, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.height=4, fig.width=4}
+
+```{r va_discreta, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 xgraf <- tibble(x=c(0,1),y=c(0,1)) %>% 
   ggplot(.,aes(x=x,y=y)) + #geom_line() +# labs(x = "w", y="X(w)") +
   scale_x_continuous(breaks=c(0,1/6,2/6,3/6,4/6,5/6,1),labels=c("0",expression(p[1]), expression(p[1]+p[2]), expression(p[1]+p[2]+p[3]), expression(ldots), expression(1-p[k]), "1"), limits=c(0,1), name=expression(omega)) +
@@ -100,7 +117,7 @@ xgraf <- tibble(x=c(0,1),y=c(0,1)) %>%
 
 dfv <- tibble(x1=c(0,1/6,2/6,3/6,5/6,1),x2=c(0,1/6,2/6,3/6,5/6,1),y1=c(0,0,0,0,0,0),y2=c(0.2,0.9,0.9,0.4,0.7,0.7))
 dfh <- tibble(x1=c(0,1/6,2/6,5/6),x2=c(1/6,2/6,3/6,1),y1=c(0.2,0.9,0.4,0.7),y2=c(0.2,0.9,0.4,0.7))
-xgraf + 
+xgraf + theme_bw() +
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = dfv, linetype=2) +
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = dfh, linetype=1, size=2)
 ```
@@ -113,77 +130,49 @@ Assim, temos que
 
 $~$
 
-**Definição:** Uma função mensurável (v.a.) $X: \Omega \longrightarrow \mathbb{R}_+$ é dita *simples* se assumir um número finito de valores.
+**Definição:** Uma função mensurável $X: \Omega \longrightarrow \mathbb{R}_+$ é dita *simples* se assumir um número finito de valores.
 
 $~$
 
-**Definição:** Considere $(\Omega, \mathcal{A}, P)$, $X:\Omega\longrightarrow \mathbb{R}_+$ v.a. assumindo valores $\{x_1,x_2,\ldots,x_k\}$ e $A_1,A_2,\ldots,A_k$ eventos disjuntos em $\mathcal{A}$. Seja $\displaystyle X(\omega) = \sum_{i=1}^{k} x_i ~\mathbb{I}_{A_i}(\omega)$, uma função simples com $A_i = X^{-1}(x_i)$, $i=1,\ldots,k$. A *integral de Lebesgue* de $X$ em relação à medida $P$ é 
+**Definição:** Considere um espaço de probabilidade $(\Omega, \mathcal{A}, P)$, $X:\Omega\longrightarrow \mathbb{R}_+$ v.a. assumindo valores $\{x_1,x_2,\ldots,x_k\}$ e $A_1,A_2,\ldots,A_k$ eventos disjuntos em $\mathcal{A}$. Seja $\displaystyle X(\omega) = \sum_{i=1}^{k} x_i ~\mathbb{I}_{A_i}(\omega)$, uma função simples com $A_i = X^{-1}(x_i)$, $i=1,\ldots,k$. A *integral de Lebesgue* de $X$ em relação à medida $P$ é 
 $$E[X] = \int_\Omega X dP = \sum_{i=1}^{k} x_i P(A_i).$$
 
 $~$
 
-<!-- ## Aula 05  -->
+**Propriedades:** se $X, Y: \Omega \longrightarrow \mathbb{R}_+$ são funções simples, então
 
-## Propriedades da integral (*de Lebesque*)  de $X$ (v.a) em relação a $P$
+**1.** $\displaystyle\int_\Omega X dP \geq 0$;
 
-**P1.** $~\int_\Omega X dP \geq 0,$
+**2.** $\displaystyle\int_\Omega cX dP = c\int_\Omega X dP$;
 
-**P2.** $~\int_\Omega cX dP = c\int_\Omega X dP.$
-
-**P3.** $~\int_\Omega (X|Y) dP = \int_\Omega X dP + \int_\Omega Y dP$
+**3.** $\displaystyle\int_\Omega (X+Y) dP = \int_\Omega X dP + \int_\Omega Y dP$.
 
 $~$
 
-> **Demo (P1):** Segue de $x_i \geq 0$  e $P(A_i) \geq 0$.  
+> **Demo 1.** Segue de $x_i \geq 0$  e $P(A_i) \geq 0$.  
 
-> **Demo (P2):**  
+> **Demo 2.**  
 Para $X$ v.a. temos  
-$X = \sum_{i=1}^kx_i~\mathbb{I}_{A_i}$ e $cX$ (também v.a.)  
-$cX = \sum_{i=1}^k(cx_i)~\mathbb{I}_{A_i}$, logo  
-$\int_\Omega cX dP = \sum_{i=1}^k(cx_i) P(A_i)$ $= c\sum_{i=1}^kx_i P(A_i) = c\int_\Omega X dP$  
+$X =\displaystyle \sum_{i=1}^kx_i~\mathbb{I}_{A_i}$ e $cX = \displaystyle\sum_{i=1}^k c~x_i ~\mathbb{I}_{A_i}$. Logo,  
+$\displaystyle\int_\Omega cX~dP = \sum_{i=1}^k c~x_i~P(A_i)$ $=\displaystyle c\sum_{i=1}^kx_i P(A_i) = c\int_\Omega X dP$.  
 
-> **Demo (P3):**  
+> **Demo 3.**  
 $X = \sum_{i=1}^kx_i~\mathbb{I}_{A_i}$ e $Y = \sum_{j=1}^ly_j~\mathbb{I}_{B_j}$.  
-$\begin{array}{ll} 
-X + Y & = \sum_{i=1}^k x_i ~\mathbb{I}_{A_i} + \sum_{j=1}^l y_j\\
-& = \sum_{i=1}^k\sum_{j=1}^lx_i~\mathbb{I}_{A_i\cap B_j} + \sum_{i=1}^k\sum_{j=1}^ly_j~\mathbb{I}_{A_i\cap B_j}\\
-\end{array}$  
-$\Longrightarrow X + Y = \sum_{i=1}^k\sum_{j=1}^l(x_i+y_j)~\mathbb{I}_{A_i\cap B_j}$.  
-$\begin{array}{ll} 
-\int_\Omega (X + Y) dP & = \sum_{i=1}^k\sum_{j=1}^l (x_i + y_j)P(A_i\cap B_j)\\
-& =  \sum_{i=1}^k\sum_{j=1}^l (x_i)P(A_i\cap B_j) + \sum_{i=1}^k\sum_{j=1}^l (y_j)P(A_i\cap B_j)\\
-& = \sum_{i=1}^k x_i P(A_i) + \sum_{j=1}^l y_j P(B_j)\\
-& = \int_\Omega X dP + \int_\Omega Y dP.
-\end{array}$
+$X + Y$ $=\displaystyle \sum_{i=1}^k x_i ~\mathbb{I}_{A_i} + \sum_{j=1}^l y_j~\mathbb{I}_{B_j}$ $=\displaystyle\sum_{i=1}^k\sum_{j=1}^lx_i~\mathbb{I}_{A_i\cap B_j} + \sum_{i=1}^k\sum_{j=1}^ly_j~\mathbb{I}_{A_i\cap B_j}$ $=\displaystyle\sum_{i=1}^k\sum_{j=1}^l(x_i+y_j)~\mathbb{I}_{A_i\cap B_j}$.  
+$\displaystyle \int_\Omega (X + Y) dP$ $=\displaystyle \sum_{i=1}^k\sum_{j=1}^l (x_i + y_j)P(A_i\cap B_j)$ $=\displaystyle\sum_{i=1}^k\sum_{j=1}^l x_iP(A_i\cap B_j) + \sum_{i=1}^k\sum_{j=1}^l y_jP(A_i\cap B_j)$ $=\displaystyle\sum_{i=1}^k x_i P(A_i) + \sum_{j=1}^l y_j P(B_j)$ $=\displaystyle\int_\Omega X dP + \int_\Omega Y dP$.
 
 $~$
 
 $~$
 
-Seja $X:\Omega\longrightarrow \mathbb{R}$ uma função mensurável não negativa e considere o conjunto de funções $\mathcal{C}_X$ $= \{ f:\Omega\longrightarrow \mathbb{R}_+,\quad f$ simples, $f \leq x\}$.
+A generalização da integral de Lebesgue é feita usando resultados como o *Lema de Fatou* e os teoremas da *convergência monótona* e da *convergência dominada*. Aqui será apresentado apenas uma ideia dessa extensão. Para maiores detalhes, veja as referências citadas anteriormente [@Ash00; @Schervish12; @Billingsley86; @Shiryaev96].
 
 $~$
 
-**(INCLUIR GRÁFICOS DE f1 e f2)**
-
 $~$
 
-Definimos, nesse caso, o *valor esperado de* $X$ por
-
-$E[X]$ $=\int_\Omega XdP$ $=sup\{\int_\Omega fdP: f\in \mathcal{C}_X\}$.
-
-$~$
-
-**Resultado** 
-
-$X,Y: \Omega \longrightarrow\mathbb{R}_+,$ com $X\leq Y$. Então $E[X] \leq E[Y]$.
-
-> **Demo:** Como $X \leq Y$ (isto é, $X(w) \leq Y(w)$ $\forall w \in \Omega$), $\mathcal{C}_X \subseteq \mathcal{C}_Y$  
-$\Rightarrow sup\{\int_\Omega fdP: f\in \mathcal{C}_X\} \leq sup\{\int_\Omega fdP: f\in \mathcal{C}_Y\}$ $\Rightarrow \int_\Omega XdP \leq \int_\Omega YdP$.  
-
-$~$
-
-**Definição**: Seja $X:\Omega \longrightarrow\mathbb{R}_+$ e $E \in \mathcal{A}$ definimos $E(X~\mathbb{I}_E) = \int_EXdP$ $=\int_\Omega X~\mathbb{I}_EdP$. Se $E,F \in \mathcal{A}$ com $E\subseteq F$, $\int_E XdP \leq \int_F xdP.$  
+**Definição:** Seja $X:\Omega\longrightarrow \mathbb{R}_+$ uma função mensurável não negativa e considere o conjunto de funções $\mathcal{C}_X$ $= \{ f:\Omega\longrightarrow \mathbb{R}_+~,~~f~~\text{simples}~,~~f \leq X\}$. O *valor esperado de $X$* é
+$$E[X]=\int_\Omega XdP=\sup\left\{\int_\Omega fdP: f\in \mathcal{C}_X\right\}~.$$
 
 $~$
 
@@ -197,9 +186,9 @@ Para cada $n$, considere $1+n2^n$ conjuntos em $\mathcal{A}:$
 
 + $E_j^n = \left\{w \in \Omega: \dfrac{j}{2^n} \leq X(w) \leq \dfrac{j+1}{2^n} \right\}$, $j = 0,1,...,n2^n-1.$
 
-+ $E_{n2^n}^n = \left\{ w \in \Omega: X(w)\geq n  \right\}$ 
++ $E_{n2^n}^n = \Big\{ w \in \Omega: X(w)\geq n  \Big\}$ 
 
-e defina $X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)$. Pode-se provar que $(X_n)_{n\geq 1}$ é tal que  
+e defina $\displaystyle X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)$. Pode-se provar que $(X_n)_{n\geq 1}$ é tal que  
 
 + $X_n$ é simples, $\forall n \geq 1$  
 
@@ -207,94 +196,183 @@ e defina $X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)$. Pod
 
 + $X_{n}(w) \uparrow X(w)$
 
+```{r, echo=FALSE}
+# f=w*beta(a1,b1)+(1-w)*beta(a2,b2)
+a1=5; b1=12
+a2=10; b2=3 
+k=5; x=2
+w=0.5
+theta = seq(0,1,0.001)
+A =  w*choose(k,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))*
+  (gamma(a1+x)*gamma(b1+k-x))/gamma(a1+b1+k)
+B = (1-w)*choose(k,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))*
+  (gamma(a2+x)*gamma(b2+k-x))/gamma(a2+b2+k)
+w2 = A/(A+B)
+post = w2*dbeta(theta,a1+x,b1+k-x)+
+  (1-w2)*dbeta(theta,a2+x,b2+k-x)
+#Criando as funções "simples"
+n=4
+w<-as.vector(apply(matrix(seq(1,n)),1,
+  function(x){seq(0/(2^x),(x*(2^x))/(2^x),1/(2^x))}))        
+En<-list()         
+for(i in 1:length(w)){
+  En[[i]]<-rep(0,length(post))
+}
+for(l in 1:(length(En))){
+  for(j in 1:(length(w[[l]])-1)){ 
+    for(i in 1:length(post)){
+      if(post[i]<w[[l]][j+1]&post[i]>=w[[l]][j]){
+        En[[l]][i]<-w[[l]][j]
+      }else{
+        En[[l]][i]<-En[[l]][i]
+      }
+    }
+  }          
+}
+for(l in 1:(length(En))){
+  for(j in length(w[[l]])){ 
+    for(i in 1:length(post)){
+      if(post[i]>=w[[l]][j]){
+        En[[l]][i]<-w[[l]][j]
+      }else{
+        En[[l]][i]<-En[[l]][i]
+      }
+    }
+  }          
+}
+# Criando o gráfico 
+if(knitr::is_latex_output()){
+tibble(x=as.factor(rep(seq(1,n),each=length(theta))),
+       En = unlist(En), theta = rep(theta,n), post = rep(post,n)) %>% 
+  ggplot() + 
+  geom_step(aes(x=theta,y=En, colour=x),lwd=1) +
+  geom_line(aes(x=theta,y=post, colour="f"),lwd=1)+
+  xlab(expression(w)) + ylab(expression(f[n](w))) +
+  theme_bw()+
+  scale_color_discrete(name="n")+
+  facet_wrap(~x)
+} else {
+tibble(x=as.factor(rep(seq(1,n),each=length(theta))),
+       En = unlist(En), theta = rep(theta,n), post = rep(post,n)) %>% 
+  ggplot() + 
+  geom_step(aes(x=theta,y=En, colour=x),lwd=1) +
+  geom_line(aes(x=theta,y=post, colour="f"),lwd=1)+
+  xlab(expression(w)) + ylab(expression(f[n](w))) +
+  theme_bw()+
+  scale_color_discrete(name="n")+
+  gganimate::transition_states(x)
+}
+```
+
 
 $~$
 
-**(INCLUIR GRÁFICOS DA CONVERGÊNCIA)**
+$~$
+
+**Resultado:** $X,Y: \Omega \longrightarrow\mathbb{R}_+,$ com $X\leq Y$. Então $E[X] \leq E[Y]$.
+
+> **Demo:** Como $X \leq Y$ (isto é, $X(w) \leq Y(w)$ $\forall w \in \Omega$), $\mathcal{C}_X \subseteq \mathcal{C}_Y$  
+$\Rightarrow \sup\left\{\displaystyle\int_\Omega f~dP:~ f\in \mathcal{C}_X\right\} \leq \sup\left\{\displaystyle\int_\Omega g~dP:~ g\in \mathcal{C}_Y\right\}$ $\Rightarrow \displaystyle\int_\Omega XdP \leq \displaystyle\int_\Omega YdP$.  
 
 $~$
 
-
-**Propriedades:** Se $X, Y: \Omega \longrightarrow \mathbb{R}_+$ são funções mensuráveis (v.a.) então  
-
-(1) $\int_\Omega cXdP  =$ $c\int_\Omega XdP, c\geq 0$  
-
-(2) $\int_\Omega (X+Y)dP =$ $\int_\Omega XdP + \int_\Omega YdP$  
-
-
-> **Demo (1)** Seja $X_n\uparrow X,$ $X_n \geq 0$ simples. Então $cX_n\uparrow cX,$ $cX_n \geq 0,$ simples.  
-$\begin{array}{rcl}
-\int_\Omega cX dP & = & \underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP\\
-& = & \underset{n\rightarrow\infty}{lim}c\int_\Omega X_n dP\\
-& = & c\underset{n\rightarrow\infty}{lim}\int_\Omega X_n dP\\
-& = & c\int_\Omega X dP.
-\end{array}$
-
-> **Demo (2)** Exercício.
+**Definição**: Seja $X:\Omega \longrightarrow\mathbb{R}_+$ e $E \in \mathcal{A}$ definimos $E(X~\mathbb{I}_E) = \displaystyle\int_EXdP$ $=\displaystyle\int_\Omega X~\mathbb{I}_EdP$.  
+Se $E,F \in \mathcal{A}$ com $E\subseteq F$, $\displaystyle\int_E XdP \leq \int_F XdP.$  
 
 $~$
 
-**Exemplo:** Suponha que $X$ assume valores em $\mathbb{N}$. Pode-se escrever $X = \sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~$, com $A_i = x^{-1}(\{i\})$.
+$~$
 
-Defina $X_n = \sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}$ $+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}$. Então $X_n$ é simples, $X_n \geq 0~$, $X_n \leq X_{n+1}$ e $X_n \uparrow X$, de modo que $E(X)$ $= \int_\Omega X dP$ $= \underset{n \rightarrow\infty}{lim}\int_\Omega X_n dP$. Além disso,
+**Propriedades:** se $X, Y: \Omega \longrightarrow \mathbb{R}_+$ são funções mensuráveis positivas, então  
 
-$\begin{array}{rcl}
-\int_\Omega X_n dp & = & \sum_{i=1}^{n-1} i P(A_i) + nP\left(\underset{j=n}{\cup}A_j\right)\\
-& = & \sum_{i=1}^{n-1}iP(X = i) + nP(X \geq n)\\
-& = & \sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + nP(X \geq n)\\
-& = & \sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n P(X \geq n)\\
-& = & \sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n P(X \geq n)\\
-& = & \sum_{j=1}^n P(X \geq j),
-\end{array}$
+**1.** $\displaystyle\int_\Omega cXdP  =$ $c\int_\Omega XdP, c\geq 0$;  
 
-então, $E(X)$ $= \underset{n\rightarrow \infty}{lim} \sum_{j=1}^nP(X \geq j)$ $= \sum_{j=1}^nP(X \geq j)$.
+**2.** $\displaystyle\int_\Omega (X+Y)dP =$ $\int_\Omega XdP + \int_\Omega YdP$.  
+
+
+> **Demo 1.** Seja $X_n\uparrow X,$ $X_n \geq 0$ simples. Então $cX_n\uparrow cX,$ $cX_n \geq 0,$ simples.  
+$\displaystyle\int_\Omega cX dP$ $=\underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP$ $=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP$ $=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP$ $=\displaystyle c\int_\Omega X dP$.
+
+> **Demo 2.** Exercício.
+
+$~$
+
+**Exemplo:** Suponha que $X$ assume valores em $\mathbb{N}$. Pode-se escrever $X =\displaystyle\sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~$, com $A_i = X^{-1}\left(\{i\}\right)$.
+
+Defina $X_n =\displaystyle\sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}$. Então $X_n$ é simples, $X_n \geq 0~$, $X_n \leq X_{n+1}$ e $X_n \uparrow X$, de modo que $E(X)$ $=\displaystyle\int_\Omega X dP$ $=\displaystyle\lim_{n \rightarrow\infty}\int_\Omega X_n dP$. Além disso,
+
+$\displaystyle\int_\Omega X_n dP$ $=\displaystyle\sum_{i=1}^{n-1} i~P(A_i) + n~P\left(\bigcup_{j=n}^{\infty} A_j\right)$ $=\displaystyle\sum_{i=1}^{n-1}i~P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + n~P(X \geq n)$ $\displaystyle=\sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^n P(X \geq j)$,
+
+então, $E(X)$ $\displaystyle=\lim_{n\rightarrow \infty}\sum_{j=1}^nP(X \geq j)$ $\displaystyle=\sum_{j=1}^{\infty}P(X \geq j)$.
 
 $~$
 
 Seja $X: \Omega \longrightarrow \mathbb{R}$ e $X^-,X^+: \Omega \longrightarrow \mathbb{R}$ dados por
 
-+ $X^- = max\{-X,0\}~$ (parte negativa de $X$) e 
++ $X^- = \max\{-X,0\}~$ (parte negativa de $X$) e 
 
-+ $X^+ = max\{X,0\}~$ (parte positiva de $X$)
++ $X^+ = \max\{X,0\}~$ (parte positiva de $X$)
 
 $~$
 
-**(INCLUIR GRÁFICO DAS PARTES POSITIVAS E NEGATIVAS DE X)**
+```{r, echo=FALSE}
+w=seq(-1.5,2.2,0.01)
+tibble(w) %>% mutate(X=w^3-w^2-2*w+1,
+               'X-'=ifelse(X<=0,-X,0),'X+'=ifelse(X>=0,X,0)) %>% 
+  gather("função","X",-w) %>% 
+  ggplot() + theme_bw() + 
+  geom_line(aes(x=w,y=X,colour=função,linetype=função),size=1.2) +
+  labs(colour="",linetype="")
+```
 
 $~$
 
 Note que $X = X^+ - X^-$
 
-Se $\int_\Omega X^+ dP < \infty$ ou $\int_\Omega X^- dP < \infty$, definimos 
+$~$
 
-$E(X)$ $=\int X dP$ $= \int_\Omega X^+dP - \int_\Omega X^- dP$ $=E(X^+) - E(X^-)$.
+Se $\displaystyle\int_\Omega X^+ dP < \infty$ ou $\displaystyle\int_\Omega X^- dP < \infty$, definimos 
 
-Além disso, seja $|X| = X^+ + X^-$. Então $E[|X|] < \infty$ se $E(X^+) < \infty$ e $E(X^-) < \infty$, e, nesse caso, dizemos que $X$ é *integrável*.
+$E[X]$ $=\displaystyle\int X dP$ $=\displaystyle\int_\Omega X^+dP - \int_\Omega X^- dP$ $=E\left[X^+\right] - E\left[X^-\right]$.
 
 $~$
 
-**Propriedades:**
+Além disso, seja $|X| = X^+ + X^-$. Então, $E\left[~|X|~\right] < \infty$ se $E(X^+) < \infty$ e $E(X^-) < \infty$, e, nesse caso, dizemos que $X$ é *integrável*.
 
-(1) $X \leq Y \Rightarrow E(X) \leq E(Y)$
-> **Demo:** $X \leq Y \Rightarrow$ $\left\{\begin{array}{c}X^+ \leq Y^+\\
+$~$
+
+**Propriedades:** se $X, Y: \Omega \longrightarrow \mathbb{R}$ são funções mensuráveis, então 
+
+**1.** $X \leq Y \Rightarrow E(X) \leq E(Y)$;  
+
+**2.** $c \in \mathbb{R},$ $E(cX) = cE(X)$;  
+
+**3.** $X,Y$ integráveis. $E(X+Y) = E(X) + E(Y)$.
+
+> **Demo 1.**  
+$X \leq Y \Rightarrow$ $\left\{\begin{array}{c}X^+ \leq Y^+\\
 X^- \geq Y^-\end{array}\right.$  
 $E(X) =$ $E(X^+) - E(X^-)$ $\leq E(Y^+) - E(Y^-)$ $=E(Y).$
 
-(2) $c \in \mathbb{R},$ $E(cX) = cE(X)$  
-> **Demo:** $(cX)^+ =$ $\left\{\begin{array}{c}cX^+, \; c \geq 0\\
-(-c)X^-, \; c < 0 \end{array}\right.$  
-$(cX)^- =$ $\left\{\begin{array}{c}cX^-, \; c \geq 0\\
-(-c)X^+, \; c < 0 \end{array}\right.$  
-Para $c < 0,$ $E[cX]$ $= E[(X)^+] - E[(cX)]$ $= E[(-c)X^-] - E[(-c)X^+]$ $= (-c)E[X^-] + cE[X^+]$ $= cE[X]$.  
+> **Demo 2.**  
+$(cX)^+ =$ $\left\{\begin{array}{rcl}cX^+ &,& c \geq 0\\
+-cX^- &,& c < 0 \end{array}\right.$  
+$(cX)^- =$ $\left\{\begin{array}{rcl}cX^- &,& c \geq 0\\
+-cX^+ &,& c < 0 \end{array}\right.$  
+Para $c<0$,  
+$E[cX]$ $= E[(cX)^+] - E[(cX)^-]$ $= E[-cX^-] - E[-cX^+]$ $= -cE[X^-] + cE[X^+]$ $= cE[X]$.
 
-(3) $X,Y$ integráveis. $E(X+Y) = E(X) + E(Y).$  
-> **Demo:** $\int_\Omega X^+ + Y^+ dP < \infty$ ou $\int_\Omega X^- + Y^- dP < \infty$  
+> **Demo 3.**   
+$\displaystyle\int_\Omega \left(X^+ + Y^+\right) dP < \infty$ ou $\displaystyle\int_\Omega \left(X^- + Y^-\right) dP < \infty$  
 $X + Y$ $= (X + Y)^+ - (X+Y)^-$ $= X^+ - X^- + Y^+ - Y^-$  
 $\Rightarrow (X+Y)^+ + X^- + Y^-$ $= X^+ + Y^+ + (X+Y)^-$  
-$\Rightarrow \int_\Omega (X+Y)^+dP + \int_\Omega X^-dP + \int_\Omega Y^-dP$  
-$=\int_\Omega X^+dP + \int_\Omega Y^+dP + \int_\Omega (X+Y)^-dP$.  
+$\Rightarrow \displaystyle\int_\Omega (X+Y)^+dP + \int_\Omega X^-dP + \int_\Omega Y^-dP$  
+$=\displaystyle\int_\Omega X^+dP + \int_\Omega Y^+dP + \int_\Omega (X+Y)^-dP$.  
 $|X+Y|$ $= |X^+-X^-+Y^+-Y^-|$ $\leq X^++X^-+Y^++Y^-$  
-$\Rightarrow \underbrace{\int_\Omega (X+Y)^+dP - \int_\Omega(X+Y)^-dP}_{\int_\Omega(X+Y)dP}$ $= \underbrace{\int_\Omega X^+dP -\int_\Omega X^-dP}_{\int_\Omega XdP}$ $+ \underbrace{\int_\Omega Y^+dP -\int_\Omega Y^-dP}_{\int_\Omega YdP}$.  
+$\Rightarrow \displaystyle\int_\Omega (X+Y)^+dP - \int_\Omega(X+Y)^-dP$ $=\displaystyle \int_\Omega X^+dP -\int_\Omega X^-dP + \int_\Omega Y^+dP -\int_\Omega Y^-dP$.  
+$\Rightarrow \displaystyle\int_\Omega(X+Y)dP = \int_\Omega XdP + \int_\Omega YdP$
+
+$~$
 
 $~$
 
@@ -396,9 +474,6 @@ $E[X] =$ $\int_{-\infty}^\infty xf_X(x)dx=$ $\int_0^1 x \dfrac{\Gamma(a+b)}{\Gam
 
 **Proposição:** Se $h: \mathfrak{X}\longrightarrow\mathbb{R}$ é mensurável e $f_X = \dfrac{dP_X}{d\mathcal{V}},$ então $\int h(x)dF_X(x)=$ $\int h(x)f_X(x)d\mathcal{V}.$
 
-## Aula 6
-
-**Exemplos (continuação)**
 
 4. $X \sim Geo(\theta)$ 
 
@@ -576,9 +651,7 @@ $E[X|Y](w)=\left\{\begin{array}{ll}
 
 $E[X|Y]=E[X|\sigma_X].$
 
-## Aula 7
-
-### Probabilidade Condicional
+## Probabilidade Condicional
 
 **Motivação** 
 
