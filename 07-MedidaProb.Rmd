@@ -40,7 +40,7 @@ $~$
 
 $~$
 
-> **Exemplo 2 (medida de Lebesgue):** Seja $\Omega=\mathbb{R}$ e $A\subseteq \Omega$ um intervalo. Se $A$ é limitado, defina $\mu(A)$ como o comprimento do intervalo A. Se $A$ não é limitado, $\mu(A)=\infty$. Note que $\mu(\mathbb{R})=\infty$, $\mu(\emptyset)=0$ e, se $A_1 \cap A_2 = \emptyset$ e $A_1 \cup A_2$ é um intervalo (ou uma união de intervalos disjuntos), então $\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)$.
+> **Exemplo 2 (medida de Lebesgue):** Seja $\Omega=\mathbb{R}$ e $A\subseteq \Omega$ um intervalo. Se $A$ é limitado, defina $\lambda(A)$ como o comprimento do intervalo $A$. Se $A$ não é limitado, $\lambda(A)=\infty$. Note que $\lambda(\mathbb{R})=\infty$, $\lambda(\emptyset)=0$ e, se $A_1 \cap A_2 = \emptyset$ e $A_1 \cup A_2$ é um intervalo (ou uma união de intervalos disjuntos), então $\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)$.
 
 $~$
 
@@ -69,27 +69,28 @@ $~$
 $~$ 
 
 **Definição:**  $P: \mathcal{A} \longrightarrow [0,1]$ é uma **medida de probabilidade** se  
-    1. $P(\Omega) = 1$;
-    2. $\displaystyle A_1, A_2, \ldots \in \mathcal{A}$ com $A_i \bigcap A_j = \emptyset$ , $\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)$.
+1. $P(\Omega) = 1$;  
+2. $\displaystyle A_1, A_2, \ldots \in \mathcal{A}$ com $A_i \bigcap A_j = \emptyset$ , $\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)$.  
     
 + $(\Omega, \mathcal{A}, P)$: espaço de probabilidade
 
 $~$
 
-**Definição:** Seja $(\Omega,\mathcal{A})$ e $(\mathfrak{X},\mathcal{F})$ dois espaços mensuráveis. Uma função $X: \Omega \longrightarrow \mathfrak{X}$ é chamado de *quantidade aleatória* se é uma *função mensurável*, isto é, se $\forall B \in \mathcal{F}$, $A = X^{-1}(B) \in \mathcal{A}$. Se $\mathfrak{X} = \mathbb{R}$ e $\mathcal{F}=\mathcal{B}$ ($\sigma$-álgebra de Borel), $X$ é chamada **variável aleatória** (v.a.).
+**Definição:** Seja $(\Omega,\mathcal{A})$ e $(\mathfrak{X},\mathcal{F})$ dois espaços mensuráveis. Uma função $X: \Omega \longrightarrow \mathfrak{X}$ é chamado de *quantidade aleatória* se é uma *função mensurável*, isto é, se $\forall B \in \mathcal{F}$, o evento $A = X^{-1}(B)$ $= \left\{\omega \in \Omega:~X(\omega)\in B\right\}$ pertence à $\sigma$-álgebra original $\mathcal{A}$.  
+Se $\mathfrak{X} = \mathbb{R}$ e $\mathcal{F}=\mathcal{B}(\mathbb{R})$ ($\sigma$-álgebra de Borel), $X$ é chamada **variável aleatória** (v.a.).
 
-+ A medida de probabilidade induzida por $X$ recebe o nome de *distribuição de $X$*. Se $B \in \mathcal{F}$ e $A = \{\omega \in \Omega :  X(\omega) \in B\} \in \mathcal{A}$, a medida induzida por $X$ é
-$$P_X(B) = P(\{\omega \in \Omega :  X(\omega) \in B\}) = P(A)~.$$
-
-$~$
-
-$~$
-
-> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\displaystyle\int f(x) dx = 1$. Defina $\displaystyle\mu(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória contínua com função de densidade de probabilidade (f.d.p.) $f$ e $\mu_x = \mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de Lebesgue $(\mu_X \ll \lambda)$ e $\frac{d\mu_X}{d\lambda}=f$.
++ Considere $(\Omega,\mathcal{A},P)$. A medida de probabilidade $P_X$ induzida por $X$ recebe o nome de *distribuição de $X$*. Se $B \in \mathcal{F}$ e $A = \{\omega \in \Omega :  X(\omega) \in B\} \in \mathcal{A}$, a medida induzida por $X$ é
+$$P_X(B) = P_X\left(X \in B\right) = P\left(\{\omega \in \Omega :  X(\omega) \in B\}\right) = P(A)~.$$
 
 $~$
 
-> **Exemplo 2:** Seja $\Omega=\mathbb{R}$ com a $\sigma$-álgebra de Borel, $\mathfrak{X} = \{x_1,x_2,\ldots\}$ um conjunto enumerável. Seja $f$ uma função não negativa definida em $\mathfrak{X}$ tal que $\displaystyle \sum_{i=1}^{\infty} f(x_1) = 1$. Defina $\displaystyle \mu(A) = \sum_{\{i: x_i \in A\}} f(x_i)$. Então $X$ é uma variável aleatória discreta com função de probabilidade (f.d.p.) $f$ e $\mu_X=\mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de contagem $(\mu_X \ll \nu)$ e $\frac{d\mu_X}{d\nu}=f$.
+$~$
+
+> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\displaystyle\int f(x) dx = 1$. Defina $\displaystyle\mu(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória absolutamente contínua com função de densidade de probabilidade (f.d.p.) $f$ e $\mu_X = \mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de Lebesgue $(\mu_X \ll \lambda)$ e $\frac{d\mu_X}{d\lambda}=f$.
+
+$~$
+
+> **Exemplo 2:** Seja $\Omega=\mathbb{R}$ com a $\sigma$-álgebra de Borel, $\mathfrak{X} = \{x_1,x_2,\ldots\}$ um conjunto enumerável. Seja $f$ uma função não negativa definida em $\mathfrak{X}$ tal que $\displaystyle \sum_{i=1}^{\infty} f(x_i) = 1$. Defina $\displaystyle \mu_X(A) = \sum_{\{i:~x_i \in A\}} f(x_i)$. Então $X$ é uma variável aleatória discreta com função de probabilidade (f.d.p.) $f$ e $\mu_X=\mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de contagem $(\mu_X \ll \nu)$ e $\frac{d\mu_X}{d\nu}=f$.
 
 $~$ 
 
@@ -101,12 +102,12 @@ Seja $X: \Omega \longrightarrow \mathbb{R}_+$ uma variável aleatória discreta,
 
 Podemos definir essa v.a. como
 
-$X(\omega) = \left\{\begin{array}{lccc} x_1, & 0 & \leq \omega \leq & p_1 \\ 
-  x_2, & p_1 & < \omega \leq & p_1+p_2 \\
-  \vdots & & & \\
-  x_j, & \sum_{i=1}^{j-1} p_j & < \omega \leq & \sum_{i=1}^{j} p_j \\
-  \vdots & & & \\
-  x_k, & 1-p_k & < \omega \leq &  1
+$X(\omega) = \left\{\begin{array}{ll} x_1, & \omega \in [0,p_1] = A_1 \\ 
+  x_2, & \omega \in [p_1,p_1+p_2] = A_2 \\
+  \vdots & \\
+  x_j, & \omega \in \left[\displaystyle\sum_{i=1}^{j-1} p_i,\sum_{i=1}^{j} p_i\right] = A_j \\
+  \vdots & \\
+  x_k, & \omega \in [1-p_k,1] = A_k
 \end{array}\right.$
 
 ```{r va_discreta, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
@@ -122,11 +123,11 @@ xgraf + theme_bw() +
   geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2), data = dfh, linetype=1, size=2)
 ```
 
-Assim, temos que 
+Note que a medida $\lambda$ define uma distribuição uniforme no espaço $(\Omega,\mathcal{A})$. Assim, temos que 
 
-+ $P_X(X=x_1) =$ $P\left(\{\omega \in \Omega : X(\omega)=x_1\}\right) =$ $\lambda\left([0,p_1]\right) =$ $p_1$,
++ $P_X(X=x_1)$ $=P\left(X^{-1}(x_1)\right)$ $=P\left(\{\omega \in \Omega : X(\omega)=x_1\}\right)$ $=P(A_1)$ $=\lambda\left([0,p_1]\right)$ $=p_1$,
 
-+ $P_X(X=x_j) =$ $P\left(\{\omega \in \Omega : X(\omega)=x_j\}\right) =$ $\lambda\left(\left[\sum_{i=1}^{j-1} p_i,\sum_{i=1}^{j} p_i\right]\right) =$ $p_j ~,~$ $j \in \{2,\ldots,k\}$.
++ $P_X(X=x_j)$ $=P\left(\{\omega \in \Omega : X(\omega)=x_j\}\right)$ $=\lambda\left(\left[\sum_{i=1}^{j-1} p_i,\sum_{i=1}^{j} p_i\right]\right)$ $=p_j ~,~$ $j \in \{2,\ldots,k\}$.
 
 $~$
 
@@ -184,7 +185,7 @@ $~$
 
 Para cada $n$, considere $1+n2^n$ conjuntos em $\mathcal{A}:$
 
-+ $E_j^n = \left\{w \in \Omega: \dfrac{j}{2^n} \leq X(w) \leq \dfrac{j+1}{2^n} \right\}$, $j = 0,1,...,n2^n-1.$
++ $E_j^n = \left\{w \in \Omega: \dfrac{j}{2^n} \leq X(w) \leq \dfrac{j+1}{2^n} \right\}$, $j = 0,1,\ldots,n2^n-1.$
 
 + $E_{n2^n}^n = \Big\{ w \in \Omega: X(w)\geq n  \Big\}$ 
 
@@ -285,9 +286,9 @@ $~$
 
 **Propriedades:** se $X, Y: \Omega \longrightarrow \mathbb{R}_+$ são funções mensuráveis positivas, então  
 
-**1.** $\displaystyle\int_\Omega cXdP  =$ $c\int_\Omega XdP, c\geq 0$;  
+**1.** $\displaystyle\int_\Omega cXdP  =$ $c\displaystyle\int_\Omega XdP, c\geq 0$;  
 
-**2.** $\displaystyle\int_\Omega (X+Y)dP =$ $\int_\Omega XdP + \int_\Omega YdP$.  
+**2.** $\displaystyle\int_\Omega (X+Y)dP =$ $\displaystyle\int_\Omega XdP + \int_\Omega YdP$.  
 
 
 > **Demo 1.** Seja $X_n\uparrow X,$ $X_n \geq 0$ simples. Então $cX_n\uparrow cX,$ $cX_n \geq 0,$ simples.  
@@ -386,169 +387,242 @@ $$(\Omega, \mathcal{A},P)\overset{Y = g(X)}{\longrightarrow}(\mathbb{R},\mathcal
 
 Logo, se $g$ é uma função mensurável, $Y=g(X)$ também é v.a. e as medidas induzidas por X e Y são
 
-$$P_X(A) = P(X^{-1}(A)) = P\left(\{w \in \Omega : X(w) \in A\}\right)$$
+$P_X(A)$ $= P(X^{-1}(A))$ $= P\left(\{w \in \Omega : X(w) \in A\}\right)$;
 
-$$P_Y(B) = P_X(g^{-1}(B)) = P_X\left(\{x \in \mathbb{R} : g(x) \in B\}\right) = P\left(\{w \in \Omega : g\left(X(w)\right) \in B\}\right).$$
+$P_Y(B)$ $= P_X(g^{-1}(B))$ $= P_X\left(\{x \in \mathbb{R} : g(x) \in B\}\right)$ $= P\left(\{w \in \Omega : g\left(X(w)\right) \in B\}\right)$.
 
 Assim, uma pergunta natural é como obter o valor esperado de $Y$.
 
-$E(Y) = \int_\Omega YdP=$ $\int_\Omega g(X)dP \overset{?}{=}$ $\int_{\mathbb{R}}gdP.$ 
+$E(Y) = \displaystyle\int_\Omega YdP$ $=\displaystyle\int_\Omega g(X)dP$ $\overset{?}{=} \displaystyle\int_{\mathbb{R}}g~dP_X$. 
 
 $~$
 
-(1) Seja $g$ simples $g = \sum_{i=1}^kg_i~\mathbb{I}_{B_i},$ $g_1,...,g_k \in \mathbb{R}$ e $B_1,...,B_k \in \mathcal{B}(\mathbb{R})$
+**Caso 1.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função simples tal que $g = \sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}$ e $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
 
-$\int_\Omega YdP =$ $\int_\Omega g(x)dP=$ $\int_\Omega \left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x)\right)dP=$ $\int_\Omega \left(\sum_{i=1}^k g_i ~\mathbb{I}_{X^{-1}(B_i)}\right)dP \overset{def}{=}$ $\sum_{i=1}^kg_iP(X^{-1}(B_i))=$ $\sum_{i=1}^kg_iP_X(B_i)=$ $\int_{\mathbb{R}}\left(\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\right)dP=$ $\int_{\mathbb{R}} gdP_X.$
+$\displaystyle\int_\Omega Y~dP$ 
+$=\displaystyle\int_\Omega g(X)~dP$ 
+$=\displaystyle\int_\Omega \left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(X)\right)dP$ 
+$=\displaystyle\int_\Omega \left(\sum_{i=1}^k g_i ~\mathbb{I}_{X^{-1}(B_i)}\right)dP$ 
+$~\displaystyle\overset{def}{=}~\sum_{i=1}^k g_i~P(X^{-1}(B_i))$ 
+$=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)$ 
+$=\displaystyle\int_{\mathbb{R}}\left(\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\right)dP_X$ 
+$=\displaystyle\int_{\mathbb{R}} g~dP_X$.
 
-(2) Seja $g$ não negativa $g \geq 0,$ e $(g_n)_{n\geq1},$ $g_n \geq 0$ simples tal que $g_n\uparrow g.$ Como $g_n$ é simples: 
+$~$
 
-$\int_\Omega g_n(x)dP=$ $\int_{\mathbb{R}}g_ndP_X$ $\overset{ limite}{\Rightarrow} \int_\Omega g(x)dP=$ $\int_{\mathbb{R}}gdP_X.$
+**Caso 2.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função não negativa e $(g_n)_{n\geq1}$, $g_n \geq 0$, uma sequência crescente de funções simples tal que $g_n\uparrow g$. Como $g_n$ é simples,
 
-(3) Agora $g: \mathbb{R} \longrightarrow \mathbb{R}.$
+$\displaystyle\int_\Omega g_n(X)dP$ $=\displaystyle\int_{\mathbb{R}}g_n~dP_X$ $\displaystyle~\underset{n\uparrow\infty}{\longrightarrow}~ \int_\Omega g(X)dP$ $=\displaystyle\int_{\mathbb{R}}g~dP_X$.
 
-$\int_\Omega g^+(x)dP=$ $\int_{\mathbb{R}}g^+dP_X,$ 
+$~$
 
-$\int_\Omega g^-(x)dP=$ $\int_{\mathbb{R}}g^-dP_X,$ 
+**Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos
 
-logo, $\int_\Omega g(x)dP=$ $\int_{\mathbb{R}}gdP_X.$
+$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^+dP_X$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^-dP_X$. 
 
-Suponha agora $X$ v.a. discrtea assumindo valores em $\{x_1,x_2,...\}$ com probabilidade $1$.
+Logo, $\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\int_{\mathbb{R}}g~dP_X$.
 
-$P(X \in A) =$ $\underset{i:x_i\in A}{\sum}P(X=x_i)$
+$~$
 
-Vamos "verificar" que $E[g(X)]=$ $\sum_{i=1}^\infty g(x_i)P(X=x_i)$
+$~$
 
-(1) $g$ simples
+Suponha agora $X$ v.a. discreta assumindo valores em $\{x_1,x_2,\ldots\}$ com probabilidade $1$. Nesse caso, $P(X \in A)$ $=\displaystyle\sum_{i:~x_i\in A} P(X=x_i)$. Vamos "verificar" que $E\left[g(X)\right]$ $=\displaystyle\sum_{i=1}^\infty g(x_i)P(X=x_i)$.
 
-$g = \sum_{i=1}^kg_i~\mathbb{I}_{B_i},$ $g_1,...,g_k \in \mathbb{R}$ $B_1,...,B_k \in \mathcal{B}(\mathbb{R})$
+**Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
 
-$E[g(X)] =...$ $\sum_{i=1}^k g_i P(X \in B_i)=$ $\sum_{i=1}^k g_i \sum_{j:x_j \in B_i}^k P(X = x_j)=$ $\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P(X=x_j)=$ $\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P(X = x_j).$
+$E\left[g(X)\right]$ $=\displaystyle\int_\Omega g(X)~dP$ 
+$=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)$ 
+$=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P(X = x_j)$ 
+$=\displaystyle\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P(X=x_j)$ 
+$=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P(X = x_j)$.
 
-(2) $g\geq 0,$ $g_n\geq0,$ $g_n$ simples tal que $g_n \uparrow g$
+$~$ 
 
-$\int_\Omega g(X)dP=$ $\underset{n\rightarrow\infty}{lim}\int_\Omega g_n(X)dP=$ $\underset{n\rightarrow\infty}{lim}\left\{\sum_{j=1}^\infty g_n(x_j)P(X=x_j)\right\}=$ $\sum_{j=1}^\infty g(x_j)P(X = x_j)$
+**Caso 2.** $g\geq 0,$ $g_n\geq0,$ $g_n$ simples tal que $g_n \uparrow g$
 
-Suponha agora $X$ v.a. absolutamente contínua com densidade $f_X,$
+$\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP$ $=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P(X=x_j)\right\}$ $=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)$
 
-$P(X\in A)=$ $\int_Af_X(t)dt.$
+$~$
+
+**Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos
+
+$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^+(x_j)P(X = x_j)$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^-(x_j)P(X = x_j)$. 
+
+Logo, $\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)$.
+
+
+$~$
+
+$~$
+
+
+Suponha agora $X$ v.a. absolutamente contínua com densidade $f_X$. Nesse caso, $P_X(X\in A)$ $=\displaystyle\int_Af_X(t)dt$ $=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt$. Vamos "verificar" que $E\left[g(X)\right]$ $=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx$.
+
+**Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
+
+$E\left[g(X)\right]$ $=\displaystyle\int_\Omega g(X)~dP$ 
+$=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{B_i}(X)\right)dP$
+$=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{X^{-1}(B_i)}\right)dP$ 
+$=\displaystyle\sum_{i=1}^k g_i~P(X^{-1}(B_i))$ 
+$=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)$ 
+$=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f(x)dx$ 
+$=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f(x)dx$
+$=\displaystyle\int_{\mathbb{R}}g(x)f(x)dx$.
+
+A extensão para funções positivas e para funções reais é análogo ao que foi feito nos exemplos anteriores.
+
+$~$ 
+
+$~$
 
 Assim, em geral, vale que:
 
-$X$ discreto: $E[g(X)] =$ $\sum_{j=1}^\infty g(x_j)P(X=x_j)$ e se
+* $X$ discreto: $E[g(X)]$ $=\displaystyle\sum_{j=1}^\infty g(x_j)P(X=x_j)$;
 
-$X$ contínua (absolutamente): $E[g(X)] =$ $\int_{\mathbb{R}} g(x_j)f_X(x)dx$
+* $X$ (absolutamente) contínuo: $E[g(X)] =$ $=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx$.
+
+$~$
 
 Esses resultados valem também se $X: \Omega \longrightarrow \mathbb{R}^k$ e $g: \mathbb{R}^k\longrightarrow \mathbb{R}.$
 
-**Exemplos**
+$~$
 
-1. $X \sim Poisson(\lambda)$
+$~$
 
-$E[X] =$ $\sum_{x=0}^\infty xP(X=x)=$ $\sum_{x=0}^\infty x\dfrac{e^{-\lambda}\lambda^x}{x!}=$ $\sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^x}{(x-1)!}$ $\lambda \sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^{x-1}}{(x-1)!} \Rightarrow$ $E(X) = \lambda.$
+**Exemplo 1.** Seja $X$ uma v.a. definida em $\mathbb{N}$ com função de probabilidade $P_X(X=x)=\dfrac{e^{-\lambda}\lambda^x}{x!}~\mathbb{I}_{\mathbb{N}}(x)$, para $\lambda>0$ fixado. Dizemos nesse caso que $X \sim \text{Poisson}(\lambda)$. Então, o valor esperado de $X$ é
 
-2. Ainda no Exemplo, considere $g(\mu) = e^\mu$
+$E\left[X\right]$ $=\displaystyle\sum_{x=0}^\infty x~P_X(X=x)$ 
+$=\displaystyle\sum_{x=0}^\infty x~\dfrac{e^{-\lambda}\lambda^x}{x!}$ 
+$=\displaystyle\sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^x}{(x-1)!}$ 
+$=\displaystyle\lambda~\sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^{x-1}}{(x-1)!}$ 
+$~\overset{t=x-1}{=}~\displaystyle\lambda~\sum_{t=0}^\infty \dfrac{e^{-\lambda}\lambda^{t}}{t!}$
+$\Longrightarrow E\left[X\right] = \lambda$.
 
-$E[g(x)]=$ $\sum_{x=0}^\infty g(x)P(X=x)=$ $\sum_{x=0}^\infty e^x \dfrac{e^{-\lambda}\lambda^x}{x!}=$ $e^{-\lambda}\sum_{x=0}^\infty \dfrac{(\lambda e)^x}{x!}=$ $e^{-\lambda}e^{\lambda e}\underbrace{\sum_{x=0}^{\infty} \dfrac{e^{-\lambda e}(\lambda e)^x}{x!}}_{1}=$ $e^{\lambda e - \lambda}=$ $e^{\lambda(e-1)}$.
+Ainda neste exemplo, considere $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = e^t$. Então,
 
-3. $X \sim Beta(a.b)$ $E[g(X)]$. $g(x) = x^n(1-x)^m$
+$E\left[g(X)\right]$ $=\displaystyle\sum_{x=0}^\infty g(x)P_X(X=x)$ $=\displaystyle\sum_{x=0}^\infty e^x~\dfrac{e^{-\lambda}\lambda^x}{x!}$ $=\displaystyle e^{-\lambda}\sum_{x=0}^\infty \dfrac{(\lambda e)^x}{x!}$ $=\displaystyle e^{-\lambda}e^{\lambda e}\underbrace{\sum_{x=0}^{\infty} \dfrac{e^{-\lambda e}(\lambda e)^x}{x!}}_{1}$ 
+$=e^{\lambda e-\lambda}$ $=e^{\lambda(e-1)}$.
 
-$E[X] =$ $\int_{-\infty}^\infty xf_X(x)dx=$ $\int_0^1 x \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=$ $\dfrac{\Gamma (a+1)\Gamma(b)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\int_0^1\dfrac{\Gamma(a+1+b)}{\Gamma(a+1)\Gamma(b)}x^{(a+1)-1}(1-x)^(b-1)dx$ $=\dfrac{\Gamma (a+1)\Gamma(b)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}$
+**Exemplo 2.** Seja $X$ uma v.a. definida em $[0,1]$ com função densidade de probabilidade $f_X(x)=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}~\mathbb{I}_{[0,1]}(x)$, para $a,b>0$ fixados. Dizemos nesse caso que $X \sim \text{Beta}(a,b)$. Então, o valor esperado de $X$ é
+
+$E[X]$ $=\displaystyle\int_{-\infty}^\infty x~f_X(x)dx$ 
+$=\displaystyle\int_0^1 x~\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx$ 
+$=\displaystyle\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}\int_0^1\dfrac{\Gamma(a+1+b)}{\Gamma(a+1)\Gamma(b)}~x^{(a+1)-1}(1-x)^{b-1}dx$ 
+$=\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}$.
+
+Ainda neste exemplo, considere $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = t^c(1-t)^d$, com $c,d>0$ fixados. Então,
+
+$E[g(X)]$ $=\displaystyle\int_{-\infty}^\infty g(x)~f_X(x)dx$ 
+$=\displaystyle\int_0^1 \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a+c-1}(1-x)^{b+d-1}dx$ 
+$=\displaystyle\dfrac{\Gamma (a+c)\Gamma(b+d)}{\Gamma(a+c+b+d)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\int_0^1\dfrac{\Gamma(a+c+b+d)}{\Gamma(a+b)\Gamma(b+d)}~x^{(a+c)-1}(1-x)^{(b+d)-1}dx$ 
+$=\dfrac{\Gamma(a+c)\Gamma(b+d)}{\Gamma(a+c+b+d)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}$
+$=\dfrac{\beta(a+c,b+d)}{\beta(a,b)}$.
+
+$~$
+
+$~$
 
 **Definição:** Uma função $F: \mathbb{R} \longrightarrow [0,1]$ é uma função de distribuição (f.d.) se
 
 (i) $F$ é não-decrescente e contínua à direita;
-(ii) $\underset{x\downarrow-\infty}{lim}F(x)=0$ e $\underset{x\uparrow+\infty}{lim}F(x)=1$
+(ii) $\displaystyle\lim_{x\downarrow-\infty}F(x)=0$ e $\displaystyle\lim_{x\uparrow+\infty}F(x)=1$.
 
-**Preposição:** Se $X$ é uma v.a., então $F_X(x)=P_X(X\leq x)$ é uma f.d. Recíprocamente, se $F_X$ é uma f.d, então existe uma v.a. $X$ com f.d. $F_X.$
+$~$
 
-* Podemos usar uma f.d. $F$ para criar uma medida em $(\mathbb{R},\mathcal{B}(\mathbb{R})).$ Defina $P((a,b]))=F(b)-F(a)$ e extenda essa medida para a $\sigma$-álgebra usando o teorema de extensão de Caratheodory.
+**Proposição:** Se $X$ é uma v.a., então $F_X(x)=P_X(X\leq x)$ é uma f.d. Recíprocamente, se $F_X$ é uma f.d, então existe uma v.a. $X$ com f.d. $F_X$.
 
-* Reciprocamente, se $P$ é uma medida de probabilidade em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$ então $F(x)=P((-\infty,x])$ é uma f.d.
+$~$
 
-* $f: \mathbb{R}\longrightarrow \mathbb{R}$ mensuravel, $\int f(x)dF(x)=$ $\int f(x)dP(x)$
+* É possível usar uma f.d. $F$ para criar uma medida em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$. Para tal, defina $P\left((a,b]\right)=F(b)-F(a)$ e extenda essa medida para a $\sigma$-álgebra usando o teorema de extensão de Caratheodory (veja, por exemplo, @Schervish12, pág. 578).
 
-* Se $P$ 
-é uma probabilidade em $(\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))$ então uma f.d. conjunta pode ser definida por $F(x_1,...,x_k)=$ $P((-\infty,x_1]\times ...\times (-\infty,x_k]),$ f.d. conjunta do vector aleatório $\boldsymbol{X} = (X_1,...,X_K).$
+* Reciprocamente, se $P$ é uma medida de probabilidade em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$ então $F(x)=P\left((-\infty,x]\right)$ é uma f.d. 
 
-**Definição:** $(\Omega, \mathcal{A}, P)$ espaço de probabilidade e $(\mathfrak{X},\mathfrak{F},\mathcal{V})$ espaço mensurável. Considere $X: \Omega \longrightarrow \mathfrak{X}$ uma v.a. e $P_X$ a medida induzida por $X$ de $P$, i.e. $P_X(B) = P(X^{-1}(B)).$ Suponha que $P_X << \mathcal{V}$. Então, a derivada de Radom-Nicodin $f_X = \dfrac{d\mu_X}{d\mathcal{V}}$ é a densidade de $X$ com respeito a $\mathcal{V}$.
+* Neste caso, se $g: \mathbb{R}\longrightarrow \mathbb{R}$ é uma função mensurável, não será feita distinção entre $\int g(x)dF(x)=$ $\int g(x)dP(x)$.
+
+* Se $P$ é uma probabilidade em $(\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))$ então $F(x_1,\ldots,x_k)=$ $P((-\infty,x_1]\times \ldots\times (-\infty,x_k])$ é a *função de distribuição conjunta* do *vector aleatório* $\boldsymbol{X} = (X_1,\ldots,X_K)$.
+
+$~$
+
+
+**Definição:** $(\Omega, \mathcal{A}, P)$ espaço de probabilidade e $(\mathfrak{X},\mathfrak{F},\mathcal{V})$ espaço mensurável. Considere $X: \Omega \longrightarrow \mathfrak{X}$ uma v.a. e $P_X$ a medida induzida por $X$ de $P$, i.e. $P_X(B) = P(X^{-1}(B)).$ Suponha que $P_X << \mathcal{V}$. Então, a derivada de Radon-Nikodin $f_X = \dfrac{d\mu_X}{d\mathcal{V}}$ é a densidade de $X$ com respeito a $\mathcal{V}$.
 
 **Proposição:** Se $h: \mathfrak{X}\longrightarrow\mathbb{R}$ é mensurável e $f_X = \dfrac{dP_X}{d\mathcal{V}},$ então $\int h(x)dF_X(x)=$ $\int h(x)f_X(x)d\mathcal{V}.$
 
 
-4. $X \sim Geo(\theta)$ 
+<!-- 4. $X \sim Geo(\theta)$  -->
 
-$P(X=x)=$ $(1-\theta)^{x-1}\theta ~\mathbb{I}_{\{1,2...\}}(x)$ como $X$ é inteira não-negativa, vale que:
+<!-- $P(X=x)=$ $(1-\theta)^{x-1}\theta ~\mathbb{I}_{\{1,2\ldots\}}(x)$ como $X$ é inteira não-negativa, vale que: -->
 
-$E(X)=$ $\sum_{i=1}^\infty P(X \geq 1)=$ $\sum_{i=1}^\infty \left\{\sum_{j=1}^\infty P(X=j)\right\}=$ $\sum_{i=1}^\infty \left\{\sum_{j=1}^\infty (1-\theta)^{j-1}\theta\right\}=$ $\sum_{i=1}^\infty (1-\theta)^{i-1}\Rightarrow$ $E(x)=\dfrac{1}{\theta}$
+<!-- $E(X)=$ $\sum_{i=1}^\infty P(X \geq 1)=$ $\sum_{i=1}^\infty \left\{\sum_{j=1}^\infty P(X=j)\right\}=$ $\sum_{i=1}^\infty \left\{\sum_{j=1}^\infty (1-\theta)^{j-1}\theta\right\}=$ $\sum_{i=1}^\infty (1-\theta)^{i-1}\Rightarrow$ $E(x)=\dfrac{1}{\theta}$ -->
 
-Se $X$ é contínua não-negativa, então
+<!-- Se $X$ é contínua não-negativa, então -->
 
-$E(X)=$ $\int_0^\infty P(X>t)dt.$
+<!-- $E(X)=$ $\int_0^\infty P(X>t)dt.$ -->
 
-**Exemplo**
+<!-- **Exemplo** -->
 
-$X\sim Exp(\lambda)$
+<!-- $X\sim Exp(\lambda)$ -->
 
-$f_X(x)=\lambda e^{\lambda x}~\mathbb{I}_{\mathbb{R}_+}(x)$
+<!-- $f_X(x)=\lambda e^{\lambda x}~\mathbb{I}_{\mathbb{R}_+}(x)$ -->
 
-$P(X > t)=$ $\int_t^\infty \lambda e^{-\lambda s}ds=$ $e^{-\lambda t}$
+<!-- $P(X > t)=$ $\int_t^\infty \lambda e^{-\lambda s}ds=$ $e^{-\lambda t}$ -->
 
-Assim, $E(X)=$ $\int_0^\infty P(X>t)dt=$ $\dfrac{1}{\lambda}\underbrace{\int_0^\infty \lambda e^{-\lambda t}dt}_{1} \Rightarrow$ $E(X)=\dfrac{1}{\lambda}$
+<!-- Assim, $E(X)=$ $\int_0^\infty P(X>t)dt=$ $\dfrac{1}{\lambda}\underbrace{\int_0^\infty \lambda e^{-\lambda t}dt}_{1} \Rightarrow$ $E(X)=\dfrac{1}{\lambda}$ -->
 
-5. $(X,Y)$ absolutamente contínuo com densidade
+<!-- 5. $(X,Y)$ absolutamente contínuo com densidade -->
 
-$f(x,y)=$ $\dfrac{1}{y}e^{-y}~\mathbb{I}_{(0,y)}(x)~\mathbb{I}_{\mathbb{R}_+}(y);$ $g(x,y)=xy$ 
+<!-- $f(x,y)=$ $\dfrac{1}{y}e^{-y}~\mathbb{I}_{(0,y)}(x)~\mathbb{I}_{\mathbb{R}_+}(y);$ $g(x,y)=xy$  -->
 
-$E(g(X,Y))=?$
+<!-- $E(g(X,Y))=?$ -->
 
-$E(XY)=$ $\int_{-\infty}^\infty \int_{-\infty}^\infty xyf(x,y)dxdy=$ $\int_{-\infty}^\infty \left[\int_{-\infty}^\infty xy\dfrac{1}{y}e^{-y}dx\right]dy=$ $\int_{0}^\infty \dfrac{y^2}{2}e^{-y}dy=$ $\dfrac{1}{2}\dfrac{\Gamma(3)}{1^3}\int_0^\infty \dfrac{1^3}{\Gamma(3)}y^2e^{-y}dy \Rightarrow$ $E(XY)=1$
+<!-- $E(XY)=$ $\int_{-\infty}^\infty \int_{-\infty}^\infty xyf(x,y)dxdy=$ $\int_{-\infty}^\infty \left[\int_{-\infty}^\infty xy\dfrac{1}{y}e^{-y}dx\right]dy=$ $\int_{0}^\infty \dfrac{y^2}{2}e^{-y}dy=$ $\dfrac{1}{2}\dfrac{\Gamma(3)}{1^3}\int_0^\infty \dfrac{1^3}{\Gamma(3)}y^2e^{-y}dy \Rightarrow$ $E(XY)=1$ -->
 
-6. $(X_1,...,X_k) \sim DIR(a_1,...a_k)$
+<!-- 6. $(X_1,\ldots,X_k) \sim DIR(a_1,\ldots,a_k)$ -->
 
-$g(X_1,...,X_k) = X_1^{n_1}X_2^{n_2}\cdots X_k^{n_k}(1-X_1-...-X_k)^{n_0}$
+<!-- $g(X_1,\ldots,X_k) = X_1^{n_1}X_2^{n_2}\cdots X_k^{n_k}(1-X_1-\ldots-X_k)^{n_0}$ -->
 
-$E[g(X_1,...,X_k)]=$ $\int_{S_k} X_1^{n_1}\cdots X_k^{n_k}(1-X_1-...-X_k)^{n_0}$ $\underbrace{\dfrac{\Gamma(a_0+a_1+...+a_k)}{\Gamma(a_0)\Gamma(a_1)...\Gamma(a_k)}}_{c(a_0,a_1,...,a_k)}$ $x_1^{a_1-1}x_2^{a_2-1}...x_k^{a_k-1}$ $(1-x_1-...-x_k)^{a_0-1}dx,$
+<!-- $E[g(X_1,\ldots,X_k)]=$ $\int_{S_k} X_1^{n_1}\cdots X_k^{n_k}(1-X_1-\ldots-X_k)^{n_0}$ $\underbrace{\dfrac{\Gamma(a_0+a_1+\ldots+a_k)}{\Gamma(a_0)\Gamma(a_1)\ldots\Gamma(a_k)}}_{c(a_0,a_1,\ldots,a_k)}$ $x_1^{a_1-1}x_2^{a_2-1}\ldots x_k^{a_k-1}$ $(1-x_1-\ldots-x_k)^{a_0-1}dx,$ -->
 
-onde $S_k = \left\{(y_1,y_2,...,y_k)\in \mathbb{R}^K_+: y_1+...+y_k \leq 1\right\}$
+<!-- onde $S_k = \left\{(y_1,y_2,\ldots,y_k)\in \mathbb{R}^K_+: y_1+\ldots+y_k \leq 1\right\}$ -->
 
-Então, $E[g(y_1,...,y_k)]=$ $c(a_0,a_1,...,a_k)$ $\int_{S_K}x_1^{a_1+n_1-1}...x_k^{a_k+n_k-1}$ $(1-x_1-...-x_k)^{a_0+n_0-1}dx$
+<!-- Então, $E[g(y_1,\ldots,y_k)]=$ $c(a_0,a_1,\ldots,a_k)$ $\int_{S_K}x_1^{a_1+n_1-1}\ldots x_k^{a_k+n_k-1}$ $(1-x_1-\ldots-x_k)^{a_0+n_0-1}dx$ -->
 
-$\Rightarrow E[g(x_1,...,x_k)]=$ $\dfrac{c(a_0,...,a_k)}{c(a_0+n_0,a_1+n_1,...,a_k+n_k)}$
+<!-- $\Rightarrow E[g(x_1,\ldots,x_k)]=$ $\dfrac{c(a_0,\ldots,a_k)}{c(a_0+n_0,a_1+n_1,\ldots,a_k+n_k)}$ -->
 
-7. n lançamentos de uma moeda. Dizemos que ocorre um "rum" de tamanho $k$ se são observadas $k$ caras consecutivas.
+<!-- 7. n lançamentos de uma moeda. Dizemos que ocorre um "rum" de tamanho $k$ se são observadas $k$ caras consecutivas. -->
 
-$X:$ Número de lançamentos de "run" de tamanho $k$ observados.
+<!-- $X:$ Número de lançamentos de "run" de tamanho $k$ observados. -->
 
-$n=4$ $cc\bar{c}c$
+<!-- $n=4$ $cc\bar{c}c$ -->
 
-$k=2$ $ccc\bar{c}$
+<!-- $k=2$ $ccc\bar{c}$ -->
 
-Definimos 
+<!-- Definimos  -->
 
-$X_i=\left\{\begin{array}{ll}
-1, & \text{ se ocorre rum de tamanho k iniciando no i=ésimo lançamento}\\
-0 & c.c.
-\end{array}\right.$
+<!-- $X_i=\left\{\begin{array}{ll} -->
+<!-- 1, & \text{ se ocorre rum de tamanho k iniciando no i=ésimo lançamento}\\ -->
+<!-- 0 & c.c. -->
+<!-- \end{array}\right.$ -->
 
-$X=\sum_{i=1}^{n-k+1}X_i$
+<!-- $X=\sum_{i=1}^{n-k+1}X_i$ -->
 
-$E(X) = E\left(\sum_{i=1}^{n-k+1}X_i\right)=$ $=\sum_{i=1}^{n-k+1}E(X_i)=$ $\sum_{i=1}^{n-k+1}\left\{1P(X_i=1)+0P(X_i=0)\right\}=$ $\sum_{i=1}^{n-k+1}P(X_i=1)=$ $\sum_{i=1}^{n-k+1}p^k \Rightarrow$ 
+<!-- $E(X) = E\left(\sum_{i=1}^{n-k+1}X_i\right)=$ $=\sum_{i=1}^{n-k+1}E(X_i)=$ $\sum_{i=1}^{n-k+1}\left\{1P(X_i=1)+0P(X_i=0)\right\}=$ $\sum_{i=1}^{n-k+1}P(X_i=1)=$ $\sum_{i=1}^{n-k+1}p^k \Rightarrow$  -->
 
-$E(X)=(n-k+1)p^k.$
+<!-- $E(X)=(n-k+1)p^k.$ -->
 
-8. Problema dos pareaentos ($n$ objetos)
+<!-- 8. Problema dos pareaentos ($n$ objetos) -->
 
-$X:$ NÚmero de pareamentos
+<!-- $X:$ NÚmero de pareamentos -->
 
-$X = X_1+X_2+...+X_n$ onde
+<!-- $X = X_1+X_2+\ldots+X_n$ onde -->
 
-$X_i=\left\{\begin{array}{ll}
-1, & \text{há areamento na i-ésima posição}\\
-0, & c.c.\end{array}\right.$
+<!-- $X_i=\left\{\begin{array}{ll} -->
+<!-- 1, & \text{há areamento na i-ésima posição}\\ -->
+<!-- 0, & c.c.\end{array}\right.$ -->
 
-$E(X)=$ $E\left(\sum_{i=1}^n X_i\right)=$  $\sum_{i=1}^n E(X_i)=$ $\sum_{i=1}^nP(X_i=1)=$ $\sum_{i=1}^n \dfrac{(n-1)!}{n!} \Rightarrow$ $E(X)=1$
+<!-- $E(X)=$ $E\left(\sum_{i=1}^n X_i\right)=$  $\sum_{i=1}^n E(X_i)=$ $\sum_{i=1}^nP(X_i=1)=$ $\sum_{i=1}^n \dfrac{(n-1)!}{n!} \Rightarrow$ $E(X)=1$ -->
 
-**Resultado:** $X_1,X_2,...,X_k$ são v.a. independentes com $E(X_i)<\infty,$ $i=1,...,k$
+**Resultado:** $X_1,X_2,\ldots,X_k$ são v.a. independentes com $E(X_i)<\infty,$ $i=1,\ldots,k$
 
 Então,
 
@@ -578,7 +652,7 @@ $X_n \uparrow X,$ $X_n \geq 0,$ simples.
 
 $\int_\Omega XdP=$ $\underset{n\rightarrow\infty}{lim}\int_\Omega X_n dP=$ $\underset{n\rightarrow\infty}{lim}\left\{\alpha\int_\Omega X_ndP_1+(1-\alpha)\int_\Omega X_ndP_2\right\}=$ $\alpha \underset{n\rightarrow\infty}{lim}\int_\Omega X_ndP_1 + (1-\alpha)\int_\Omega X_n dP_2=$ $\alpha \int XdP_1 + (1-\alpha)\int_\Omega XdP_2.$
 
-$P_1(\left\{x_1,x_2,...,\right\})=1$, $P_2$ "possui" função densidade de probabilidade $f_x,$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P(X \in A)=$ $\alpha P_1(X^{-1}(A))+(1-\alpha)P_2(X^{-1}(A))$
+$P_1(\left\{x_1,x_2,\ldots,\right\})=1$, $P_2$ "possui" função densidade de probabilidade $f_x,$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P(X \in A)=$ $\alpha P_1(X^{-1}(A))+(1-\alpha)P_2(X^{-1}(A))$
 
 Então:
 
@@ -687,9 +761,9 @@ Se $\mu(x,B)$ é mensurável em $x$ para cada $B\in \mathcal{B}(\mathbb{R}),$ an
 
 $P_X(A)=$ $\int_A dF_X(x)=$ $\int_A f_X(x)dx=$ $\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx$ 
 
-para $A \in \mathcal{A}_1.$ Além disso, considere $\Omega_2=\{0,1,...,n\},$ $\mathcal{A}_2=\mathcal{P}(\Omega_2)$ e, para cada $x \in [0,1],$ 
+para $A \in \mathcal{A}_1.$ Além disso, considere $\Omega_2=\{0,1,\ldots,n\},$ $\mathcal{A}_2=\mathcal{P}(\Omega_2)$ e, para cada $x \in [0,1],$ 
 
-$\mu(x,B)=$ $P(Y \in B| X=x).$ Então, pra $k=0,1,...,n;$ $\mu(x,B)=$ $P(Y\in B| X=x)=$ $\binom{n}{k}x^k(1-x)^{n-k}$ (que é mensurável em $x$). 
+$\mu(x,B)=$ $P(Y \in B| X=x).$ Então, pra $k=0,1,\ldots,n;$ $\mu(x,B)=$ $P(Y\in B| X=x)=$ $\binom{n}{k}x^k(1-x)^{n-k}$ (que é mensurável em $x$). 
 
 Tomando $\Omega=\Omega_1 \times \Omega_2,$ $\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,$ $P$ é a única medida de probabilidade determinada por $P_X (ou \; F_X)$ e $\mu(x,.).$
 
@@ -709,9 +783,9 @@ Além disso, $g$ é única $P_X$-q.c.
 
 **Demo:** segue diretamente do Teorema de Radom-Nikodim (se $\mu(A)=$ $P(\{x\in A\}\cap B)$ então $\lambda$ é medida finita em $\mathcal{F}$ com $\lambda << P_X$)
 
-**Exemplo1:** $\mathfrak{X}\{x_1,x_2,...\}$ com $p_i=P(\{X=x_i\})>0.$ Defina 
+**Exemplo1:** $\mathfrak{X}\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Defina 
 
-$g(x_i)=$ $P(B|X=x_i)=$ $\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},$ $i=1,2,...$
+$g(x_i)=$ $P(B|X=x_i)=$ $\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},$ $i=1,2,\ldots$
 
 ($g$ é uma "proposta" para $P(B|\{X=x_i\})$)
 
