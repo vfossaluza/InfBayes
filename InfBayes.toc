@@ -37,5 +37,6 @@
 \contentsline {section}{\numberline {A.1}Conceitos Básicos}{67}{section.A.1}%
 \contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{69}{section.A.2}%
 \contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{74}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Probabilidade Condicional}{79}{section.A.4}%
-\contentsline {subsection}{\numberline {A.4.1}Teorema da Medida Produto (para medidas de probabilidade)}{79}{subsection.A.4.1}%
+\contentsline {section}{\numberline {A.4}Função de Distribuição}{76}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{79}{section.A.5}%
+\contentsline {subsection}{\numberline {A.5.1}Teorema da Medida Produto (para medidas de probabilidade)}{80}{subsection.A.5.1}%

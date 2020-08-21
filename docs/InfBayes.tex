@@ -116,7 +116,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-08-20}
+\date{2020-08-21}
 
 \begin{document}
 \maketitle
@@ -2694,26 +2694,6 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
 
 \(~\)
 
-\textbf{Definição:} Seja \((\Omega,\mathcal{A})\) um espaço mensurável e \(\mu_1\) e \(\mu_2\) medidas nesse espaço. Dizemos que \(\mu_2\) é \emph{absolutamente contínua} com relação à \(\mu_1\) se, \(\forall A \in \mathcal{A}\), \(\mu_1(A)=0\) \(~\Rightarrow~ \mu_2(A)=0\).
-
-\begin{itemize}
-\tightlist
-\item
-  Nesse caso, dizemos que \(\mu_2\) é dominada por \(\mu_1\) ou que \(\mu_1\) é uma medida dominante para \(\mu_2\) e denotamos \(\mu_2 \ll \mu_1\).
-\end{itemize}
-
-\(~\)
-
-\textbf{Teorema (de Radon-Nikodin):} Seja \(\mu_2 \ll \mu_1\) com \(\mu_1\) \(\sigma\)-finita. Então, \(\exists f: \Omega \longrightarrow [0,+\infty]\) tal que, \(\forall A \in \mathcal{A}\),
-\[\mu_2(A) = \int_A f(x) d\mu_1(x).\]
-Além disso, se \(g:\Omega \longrightarrow \mathbb{R}\) é \(\mu_2\)-integrável, então
-\[\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).\]
-A função \(f=\frac{d\mu_2}{d\mu_1}\) é chamada de derivada de Radon-Nikodin da medida \(\mu_2\) com relação à medida \(\mu_1\) e é única \(\mu_1\)-q.c. (ou seja, é única em todo conjunto \(\Omega\) com eventual excessão de um conjunto \(C\) tal que \(\mu_1(C)=0\)).
-
-\(~\)
-
-\(~\)
-
 \textbf{Definição:} \(P: \mathcal{A} \longrightarrow [0,1]\) é uma \textbf{medida de probabilidade} se\\
 1. \(P(\Omega) = 1\);\\
 2. \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \emptyset\) , \(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\).
@@ -2737,18 +2717,6 @@ Se \(\mathfrak{X} = \mathbb{R}\) e \(\mathcal{F}=\mathcal{B}(\mathbb{R})\) (\(\s
 \end{itemize}
 
 \(~\)
-
-\(~\)
-
-\begin{quote}
-\textbf{Exemplo 1:} Seja \(\Omega=\mathfrak{X}=\mathbb{R}\) com a \(\sigma\)-álgebra de Borel e \(f\) uma função não negativa tal que \(\displaystyle\int f(x) dx = 1\). Defina \(\displaystyle\mu(A)= \int_A f(x) dx\) e \(X(\omega)=\omega\). Então, \(X\) é uma variável aleatória absolutamente contínua com função de densidade de probabilidade (f.d.p.) \(f\) e \(\mu_X = \mu\). Além disso, \(\mu_X\) é absolutamente contínua com relação à medida de Lebesgue \((\mu_X \ll \lambda)\) e \(\frac{d\mu_X}{d\lambda}=f\).
-\end{quote}
-
-\(~\)
-
-\begin{quote}
-\textbf{Exemplo 2:} Seja \(\Omega=\mathbb{R}\) com a \(\sigma\)-álgebra de Borel, \(\mathfrak{X} = \{x_1,x_2,\ldots\}\) um conjunto enumerável. Seja \(f\) uma função não negativa definida em \(\mathfrak{X}\) tal que \(\displaystyle \sum_{i=1}^{\infty} f(x_i) = 1\). Defina \(\displaystyle \mu_X(A) = \sum_{\{i:~x_i \in A\}} f(x_i)\). Então \(X\) é uma variável aleatória discreta com função de probabilidade (f.d.p.) \(f\) e \(\mu_X=\mu\). Além disso, \(\mu_X\) é absolutamente contínua com relação à medida de contagem \((\mu_X \ll \nu)\) e \(\frac{d\mu_X}{d\nu}=f\).
-\end{quote}
 
 \(~\)
 
@@ -3048,7 +3016,7 @@ Logo, \(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\sum_{j=1}^\infty g(x_
 
 \(~\)
 
-Suponha agora \(X\) v.a. absolutamente contínua com densidade \(f_X\). Nesse caso, \(P_X(X\in A)\) \(=\displaystyle\int_Af_X(t)dt\) \(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\). Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx\).
+Suponha agora \(X\) v.a. absolutamente contínua com função de densidade de probabilidade \(f_X\). Nesse caso, \(P_X(X\in A)\) \(=\displaystyle\int_Af_X(t)dt\) \(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\). Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx\).
 
 \textbf{Caso 1.} \(g\) simples com \(g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\), \(g_1,\ldots,g_k \in \mathbb{R}_+\) \(B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})\). Então,
 
@@ -3073,7 +3041,7 @@ Assim, em geral, vale que:
 \item
   \(X\) discreto: \(E[g(X)]\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X=x_j)\);
 \item
-  \(X\) (absolutamente) contínuo: \(E[g(X)] =\) \(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\).
+  \(X\) (absolutamente) contínuo: \(E[g(X)]\) \(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\).
 \end{itemize}
 
 \(~\)
@@ -3098,6 +3066,8 @@ Ainda neste exemplo, considere \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) 
 \(E\left[g(X)\right]\) \(=\displaystyle\sum_{x=0}^\infty g(x)P_X(X=x)\) \(=\displaystyle\sum_{x=0}^\infty e^x~\dfrac{e^{-\lambda}\lambda^x}{x!}\) \(=\displaystyle e^{-\lambda}\sum_{x=0}^\infty \dfrac{(\lambda e)^x}{x!}\) \(=\displaystyle e^{-\lambda}e^{\lambda e}\underbrace{\sum_{x=0}^{\infty} \dfrac{e^{-\lambda e}(\lambda e)^x}{x!}}_{1}\)
 \(=e^{\lambda e-\lambda}\) \(=e^{\lambda(e-1)}\).
 
+\(~\)
+
 \textbf{Exemplo 2.} Seja \(X\) uma v.a. definida em \([0,1]\) com função densidade de probabilidade \(f_X(x)=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}~\mathbb{I}_{[0,1]}(x)\), para \(a,b>0\) fixados. Dizemos nesse caso que \(X \sim \text{Beta}(a,b)\). Então, o valor esperado de \(X\) é
 
 \(E[X]\) \(=\displaystyle\int_{-\infty}^\infty x~f_X(x)dx\)
@@ -3105,7 +3075,7 @@ Ainda neste exemplo, considere \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) 
 \(=\displaystyle\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}\int_0^1\dfrac{\Gamma(a+1+b)}{\Gamma(a+1)\Gamma(b)}~x^{(a+1)-1}(1-x)^{b-1}dx\)
 \(=\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}\).
 
-Ainda neste exemplo, considere \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) = t^c(1-t)^d\), com \(c,d>0\) fixados. Então,
+Considere agora \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) = t^c(1-t)^d\), com \(c,d>0\) fixados. Então,
 
 \(E[g(X)]\) \(=\displaystyle\int_{-\infty}^\infty g(x)~f_X(x)dx\)
 \(=\displaystyle\int_0^1 \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a+c-1}(1-x)^{b+d-1}dx\)
@@ -3117,7 +3087,10 @@ Ainda neste exemplo, considere \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) 
 
 \(~\)
 
-\textbf{Definição:} Uma função \(F: \mathbb{R} \longrightarrow [0,1]\) é uma função de distribuição (f.d.) se
+\hypertarget{funuxe7uxe3o-de-distribuiuxe7uxe3o}{%
+\section{Função de Distribuição}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o}}
+
+\textbf{Definição:} Uma função \(F: \mathbb{R} \longrightarrow [0,1]\) é uma \emph{função de distribuição} (f.d.) se
 
 \begin{enumerate}
 \def\labelenumi{(\roman{enumi})}
@@ -3136,20 +3109,54 @@ Ainda neste exemplo, considere \(g:\mathbb{R}\rightarrow\mathbb{R}\) com \(g(t) 
 
 \begin{itemize}
 \item
-  É possível usar uma f.d. \(F\) para criar uma medida em \((\mathbb{R},\mathcal{B}(\mathbb{R}))\). Para tal, defina \(P\left((a,b]\right)=F(b)-F(a)\) e extenda essa medida para a \(\sigma\)-álgebra usando o teorema de extensão de Caratheodory (veja, por exemplo, \citet{Schervish12}, pág. 578).
+  É possível usar uma f.d. \(F\) para criar uma medida em \((\mathbb{R},\mathcal{B}(\mathbb{R}))\). Para tal, defina \(P\left((a,b]\right)=F(b)-F(a)\) e essa medida pode ser estendida para a \(\sigma\)-álgebra usando o Teorema de Extensão de Caratheodory (veja, por exemplo, \citet{Schervish12}, pág. 578).
 \item
   Reciprocamente, se \(P\) é uma medida de probabilidade em \((\mathbb{R},\mathcal{B}(\mathbb{R}))\) então \(F(x)=P\left((-\infty,x]\right)\) é uma f.d.
 \item
-  Neste caso, se \(g: \mathbb{R}\longrightarrow \mathbb{R}\) é uma função mensurável, não será feita distinção entre \(\int g(x)dF(x)=\) \(\int g(x)dP(x)\).
+  Neste caso, se \(g: \mathbb{R}\longrightarrow \mathbb{R}\) é uma função mensurável, não será feita distinção entre \(\displaystyle\int g(x)dF(x)=\) \(\displaystyle\int g(x)dP(x)\).
 \item
-  Se \(P\) é uma probabilidade em \((\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))\) então \(F(x_1,\ldots,x_k)=\) \(P((-\infty,x_1]\times \ldots\times (-\infty,x_k])\) é uma \emph{função de distribuição conjunta} do \emph{vector aleatório} \(\boldsymbol{X} = (X_1,\ldots,X_K)\).
+  Se \(P\) é uma medida de probabilidade em \((\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))\) então \(F(x_1,\ldots,x_k)=\) \(P((-\infty,x_1]\times \ldots\times (-\infty,x_k])\) é a \emph{função de distribuição conjunta} do \emph{vector aleatório} \(\boldsymbol{X} = (X_1,\ldots,X_K)\).
 \end{itemize}
 
 \(~\)
 
-\textbf{Definição:} \((\Omega, \mathcal{A}, P)\) espaço de probabilidade e \((\mathfrak{X},\mathfrak{F},\mathcal{V})\) espaço mensurável. Considere \(X: \Omega \longrightarrow \mathfrak{X}\) uma v.a. e \(P_X\) a medida induzida por \(X\) de \(P\), i.e.~\(P_X(B) = P(X^{-1}(B)).\) Suponha que \(P_X << \mathcal{V}\). Então, a derivada de Radon-Nikodin \(f_X = \dfrac{d\mu_X}{d\mathcal{V}}\) é a densidade de \(X\) com respeito a \(\mathcal{V}\).
+\(~\)
+
+\textbf{Definição:} Seja \((\Omega,\mathcal{A})\) um espaço mensurável e \(\mu_1\) e \(\mu_2\) medidas nesse espaço. Dizemos que \(\mu_2\) é \emph{absolutamente contínua} com relação à \(\mu_1\) se, \(\forall A \in \mathcal{A}\), \(\mu_1(A)=0\) \(~\Rightarrow~ \mu_2(A)=0\).
+
+\begin{itemize}
+\tightlist
+\item
+  Nesse caso, dizemos que \(\mu_2\) é dominada por \(\mu_1\) ou que \(\mu_1\) é uma medida dominante para \(\mu_2\) e denotamos \(\mu_2 \ll \mu_1\).
+\end{itemize}
+
+\(~\)
+
+\textbf{Teorema (de Radon-Nikodin):} Seja \(\mu_2 \ll \mu_1\) com \(\mu_1\) \(\sigma\)-finita. Então, \(\exists f: \Omega \longrightarrow [0,+\infty]\) tal que, \(\forall A \in \mathcal{A}\),
+\[\mu_2(A) = \int_A f(x) d\mu_1(x).\]
+Além disso, se \(g:\Omega \longrightarrow \mathbb{R}\) é \(\mu_2\)-integrável, então
+\[\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).\]
+A função \(f=\frac{d\mu_2}{d\mu_1}\) é chamada de derivada de Radon-Nikodin da medida \(\mu_2\) com relação à medida \(\mu_1\) e é única \(\mu_1\)-q.c. (ou seja, é única em todo conjunto \(\Omega\) com eventual excessão de um conjunto \(C\) tal que \(\mu_1(C)=0\)).
+
+\(~\)
+
+\(~\)
+
+\textbf{Definição:} \((\Omega, \mathcal{A}, P)\) espaço de probabilidade e \((\mathfrak{X},\mathcal{F},\mathcal{V})\) espaço mensurável. Considere \(X: \Omega \longrightarrow \mathfrak{X}\) uma v.a. e \(P_X\) a medida induzida por \(X\) de \(P\), i.e.~\(P_X(B) = P(X^{-1}(B)).\) Suponha que \(P_X << \mathcal{V}\). Então, a derivada de Radon-Nikodin \(f_X = \dfrac{d\mu_X}{d\mathcal{V}}\) é a densidade de \(X\) com respeito a \(\mathcal{V}\).
 
 \textbf{Proposição:} Se \(h: \mathfrak{X}\longrightarrow\mathbb{R}\) é mensurável e \(f_X = \dfrac{dP_X}{d\mathcal{V}},\) então \(\int h(x)dF_X(x)=\) \(\int h(x)f_X(x)d\mathcal{V}.\)
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1:} Seja \(\Omega=\mathfrak{X}=\mathbb{R}\) com a \(\sigma\)-álgebra de Borel e \(f\) uma função não negativa tal que \(\displaystyle\int f(x) dx = 1\). Defina \(\displaystyle\mu(A)= \int_A f(x) dx\) e \(X(\omega)=\omega\). Então, \(X\) é uma variável aleatória absolutamente contínua com função de densidade de probabilidade (f.d.p.) \(f\) e \(\mu_X = \mu\). Além disso, \(\mu_X\) é absolutamente contínua com relação à medida de Lebesgue \((\mu_X \ll \lambda)\) e \(\frac{d\mu_X}{d\lambda}=f\).
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2:} Seja \(\Omega=\mathbb{R}\) com a \(\sigma\)-álgebra de Borel, \(\mathfrak{X} = \{x_1,x_2,\ldots\}\) um conjunto enumerável. Seja \(f\) uma função não negativa definida em \(\mathfrak{X}\) tal que \(\displaystyle \sum_{i=1}^{\infty} f(x_i) = 1\). Defina \(\displaystyle \mu_X(A) = \sum_{\{i:~x_i \in A\}} f(x_i)\). Então \(X\) é uma variável aleatória discreta com função de probabilidade (f.d.p.) \(f\) e \(\mu_X=\mu\). Além disso, \(\mu_X\) é absolutamente contínua com relação à medida de contagem \((\mu_X \ll \nu)\) e \(\frac{d\mu_X}{d\nu}=f\).
+\end{quote}
 
 \textbf{Resultado:} \(X_1,X_2,\ldots,X_k\) são v.a. independentes com \(E(X_i)<\infty,\) \(i=1,\ldots,k\)
 
