@@ -67,6 +67,8 @@ Se $\mathfrak{X} = \mathbb{R}$ e $\mathcal{F}=\mathcal{B}(\mathbb{R})$ ($\sigma$
 + Considere $(\Omega,\mathcal{A},P)$. A medida de probabilidade $P_X$ induzida por $X$ recebe o nome de *distribuição de $X$*. Se $B \in \mathcal{F}$ e $A = \{\omega \in \Omega :  X(\omega) \in B\} \in \mathcal{A}$, a medida induzida por $X$ é
 $$P_X(B) = P_X\left(X \in B\right) = P\left(\{\omega \in \Omega :  X(\omega) \in B\}\right) = P(A)~.$$
 
++ A distribuição de $X$ é dita ser *discreta* se existe um conjunto enumerável $A \subseteq \mathfrak{X}$ tal que $P_X(A)=1$. A distribuição de $X$ é *contínua* se $P_X\left(\{x\}\right)=0$ para todo $x \in \mathfrak{X}$.
+
 $~$
 
 $~$ 
@@ -154,27 +156,36 @@ $$E[X]=\int_\Omega XdP=\sup\left\{\int_\Omega fdP: f\in \mathcal{C}_X\right\}~.$
 
 $~$
 
-**Resultado:** Para toda função $X:\Omega \longrightarrow \mathbb{R}_+$, existe uma sequência $(f_n)_{n\geq 1}$ de funções simples não-negativas tais que $f_n(w)\leq f_{n+1}(w),$ $\forall w \in \Omega,$  $\forall n \in \mathbb{N}$ com $f_n(w)\uparrow X(w),$ $\forall w \in \Omega.$
+**Resultado:** Para toda função $X:\Omega \longrightarrow \mathbb{R}_+$, existe uma sequência $(X_n)_{n\geq 1}$ de funções simples não-negativas tais que $X_n(\omega)\leq X_{n+1}(\omega)$, $\forall \omega \in \Omega$, $\forall n \in \mathbb{N}$ com $X_n(\omega)\uparrow X(\omega)$, $\forall \omega \in \Omega$.
 
 $~$
 
-**Exemplo** de sequência $(f_n)_{n\geq 1}$ atendendo as condições anteriores
+**Exemplo** de sequência $(X_n)_{n\geq 1}$ atendendo as condições anteriores
 
 Para cada $n$, considere $1+n2^n$ conjuntos em $\mathcal{A}:$
 
-+ $E_j^n = \left\{w \in \Omega: \dfrac{j}{2^n} \leq X(w) \leq \dfrac{j+1}{2^n} \right\}$, $j = 0,1,\ldots,n2^n-1.$
++ $E_j^n = \left\{\omega \in \Omega: \dfrac{j}{2^n} \leq X(\omega) \leq \dfrac{j+1}{2^n} \right\}$, $j = 0,1,\ldots,n2^n-1.$
 
-+ $E_{n2^n}^n = \Big\{ w \in \Omega: X(w)\geq n  \Big\}$ 
++ $E_{n2^n}^n = \Big\{ \omega \in \Omega: X(\omega)\geq n  \Big\}$ 
 
-e defina $\displaystyle X_n(w) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(w)$. Pode-se provar que $(X_n)_{n\geq 1}$ é tal que  
+e defina $\displaystyle X_n(\omega) = \sum_{j=0}^{n2^n} \dfrac{j}{2^n} ~\mathbb{I}_{E_j^n}(\omega)$. Pode-se provar que $(X_n)_{n\geq 1}$ é tal que  
 
 + $X_n$ é simples, $\forall n \geq 1$  
 
 + $X_n \leq X_{n+1}$  
 
-+ $X_{n}(w) \uparrow X(w)$
++ $X_{n}(\omega) \uparrow X(\omega)$
 
-```{r, echo=FALSE}
+$~$
+
+A primeira função dessa sequência é
+
+$X_1(\omega)$ 
+$= \displaystyle\sum_{i=0}^2 \frac{i}{2}~\mathbb{I}_{{E}_i^1}(\omega)$ 
+$=\displaystyle\left\{\begin{array}{ll}0,&\omega\in{E}_0^1\\
+0.5,&\omega\in{E}_1^1\\1,&\omega\in{E}_2^1 \end{array}\right.$.
+
+```{r X1w, echo=FALSE}
 # f=w*beta(a1,b1)+(1-w)*beta(a2,b2)
 a1=5; b1=12
 a2=10; b2=3 
@@ -186,7 +197,42 @@ A =  w*choose(k,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))*
 B = (1-w)*choose(k,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))*
   (gamma(a2+x)*gamma(b2+k-x))/gamma(a2+b2+k)
 w2 = A/(A+B)
-post = w2*dbeta(theta,a1+x,b1+k-x)+
+dpost = w2*dbeta(theta,a1+x,b1+k-x)+
+  (1-w2)*dbeta(theta,a2+x,b2+k-x)
+En=c(0,0.137,0.166,0.481,0.801,1)
+xbreak=c(0,0.0685,0.137,0.1515,0.166,0.3235,0.481,0.641,0.801,0.9005,1)
+xlab=c(0,expression(E[0]),"",expression(E[1]),"",expression(E[2]),0.481,expression(E[1]),0.801,expression(E[0]),1)
+xcol=c("black","black","black","darkgreen","black","darkred","black","darkgreen","black","black","black")
+fn=c(0,0.5,1,0.5,0)
+ggplot() + theme_bw() +
+  geom_line(data=tibble(w=theta,X=dpost),aes(x=w,y=X)) +
+  geom_segment(aes(x=En[-length(En)],xend=En[-1],y=fn,yend=fn),size=1.5) +
+  geom_segment(aes(x=En[-length(En)],xend=En[-1],y=0,yend=0,colour=as.factor(c(0,1,2,1,0))),size=1.5) +
+  scale_color_manual(values=c("black","green", "red")) +
+  theme(legend.position = "none") +
+  theme(axis.text.x=element_text(color=xcol)) +
+  scale_x_continuous(breaks=xbreak,labels=xlab) +
+  scale_y_continuous(breaks=c(0,0.5,1,2,3)) +
+  xlab(expression(w)) + ylab(expression(X(w))) +
+  theme(panel.grid.minor.x=element_blank())
+```
+
+
+O gráfico a seguir mostra os quatro primeiras funções da sequência $\left(X_n\right)_{n\geq 1}$ e é possível ter uma ideia da convergência para $X$.
+
+```{r convergXn, echo=FALSE}
+# f=w*beta(a1,b1)+(1-w)*beta(a2,b2)
+a1=5; b1=12
+a2=10; b2=3 
+k=5; x=2
+w=0.5
+theta = seq(0,1,0.001)
+A =  w*choose(k,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))*
+  (gamma(a1+x)*gamma(b1+k-x))/gamma(a1+b1+k)
+B = (1-w)*choose(k,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))*
+  (gamma(a2+x)*gamma(b2+k-x))/gamma(a2+b2+k)
+w2 = A/(A+B)
+dpost = w2*dbeta(theta,a1+x,b1+k-x)+
   (1-w2)*dbeta(theta,a2+x,b2+k-x)
 #Criando as funções "simples"
 n=4
@@ -194,12 +240,12 @@ w<-as.vector(apply(matrix(seq(1,n)),1,
   function(x){seq(0/(2^x),(x*(2^x))/(2^x),1/(2^x))}))        
 En<-list()         
 for(i in 1:length(w)){
-  En[[i]]<-rep(0,length(post))
+  En[[i]]<-rep(0,length(dpost))
 }
 for(l in 1:(length(En))){
   for(j in 1:(length(w[[l]])-1)){ 
-    for(i in 1:length(post)){
-      if(post[i]<w[[l]][j+1]&post[i]>=w[[l]][j]){
+    for(i in 1:length(dpost)){
+      if(dpost[i]<w[[l]][j+1]&dpost[i]>=w[[l]][j]){
         En[[l]][i]<-w[[l]][j]
       }else{
         En[[l]][i]<-En[[l]][i]
@@ -209,8 +255,8 @@ for(l in 1:(length(En))){
 }
 for(l in 1:(length(En))){
   for(j in length(w[[l]])){ 
-    for(i in 1:length(post)){
-      if(post[i]>=w[[l]][j]){
+    for(i in 1:length(dpost)){
+      if(dpost[i]>=w[[l]][j]){
         En[[l]][i]<-w[[l]][j]
       }else{
         En[[l]][i]<-En[[l]][i]
@@ -221,7 +267,7 @@ for(l in 1:(length(En))){
 # Criando o gráfico 
 if(knitr::is_latex_output()){
 tibble(x=as.factor(rep(seq(1,n),each=length(theta))),
-       En = unlist(En), theta = rep(theta,n), post = rep(post,n)) %>% 
+       En = unlist(En), theta = rep(theta,n), post = rep(dpost,n)) %>% 
   ggplot() + 
   geom_step(aes(x=theta,y=En, colour=x),lwd=1) +
   geom_line(aes(x=theta,y=post, colour="f"),lwd=1)+
@@ -231,11 +277,11 @@ tibble(x=as.factor(rep(seq(1,n),each=length(theta))),
   facet_wrap(~x)
 } else {
 tibble(x=as.factor(rep(seq(1,n),each=length(theta))),
-       En = unlist(En), theta = rep(theta,n), post = rep(post,n)) %>% 
+       En = unlist(En), theta = rep(theta,n), post = rep(dpost,n)) %>% 
   ggplot() + 
   geom_step(aes(x=theta,y=En, colour=x),lwd=1) +
-  geom_line(aes(x=theta,y=post, colour="f"),lwd=1)+
-  xlab(expression(w)) + ylab(expression(f[n](w))) +
+  geom_line(aes(x=theta,y=post, colour="X"),lwd=1)+
+  xlab(expression(w)) + ylab(expression(X[n](w))) +
   theme_bw()+
   scale_color_discrete(name="n")+
   gganimate::transition_states(x)
@@ -249,7 +295,7 @@ $~$
 
 **Resultado:** $X,Y: \Omega \longrightarrow\mathbb{R}_+,$ com $X\leq Y$. Então $E[X] \leq E[Y]$.
 
-> **Demo:** Como $X \leq Y$ (isto é, $X(w) \leq Y(w)$ $\forall w \in \Omega$), $\mathcal{C}_X \subseteq \mathcal{C}_Y$  
+> **Demo:** Como $X \leq Y$ (isto é, $X(\omega) \leq Y(\omega)$ $\forall \omega \in \Omega$), $\mathcal{C}_X \subseteq \mathcal{C}_Y$  
 $\Rightarrow \sup\left\{\displaystyle\int_\Omega f~dP:~ f\in \mathcal{C}_X\right\} \leq \sup\left\{\displaystyle\int_\Omega g~dP:~ g\in \mathcal{C}_Y\right\}$ $\Rightarrow \displaystyle\int_\Omega XdP \leq \displaystyle\int_\Omega YdP$.  
 
 $~$
@@ -275,12 +321,9 @@ $\displaystyle\int_\Omega cX dP$ $=\underset{n\rightarrow\infty}{lim}\int_\Omega
 
 $~$
 
-**Exemplo:** Suponha que $X$ assume valores em $\mathbb{N}$. Pode-se escrever $X =\displaystyle\sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~$, com $A_i = X^{-1}\left(\{i\}\right)$.
-
-Defina $X_n =\displaystyle\sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}$. Então $X_n$ é simples, $X_n \geq 0~$, $X_n \leq X_{n+1}$ e $X_n \uparrow X$, de modo que $E(X)$ $=\displaystyle\int_\Omega X dP$ $=\displaystyle\lim_{n \rightarrow\infty}\int_\Omega X_n dP$. Além disso,
-
-$\displaystyle\int_\Omega X_n dP$ $=\displaystyle\sum_{i=1}^{n-1} i~P(A_i) + n~P\left(\bigcup_{j=n}^{\infty} A_j\right)$ $=\displaystyle\sum_{i=1}^{n-1}i~P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + n~P(X \geq n)$ $\displaystyle=\sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^n P(X \geq j)$,
-
+> **Exemplo:** Suponha que $X$ assume valores em $\mathbb{N}$. Pode-se escrever $X =\displaystyle\sum_{i=1}^\infty i ~\mathbb{I}_{A_i}~$, com $A_i = X^{-1}\left(\{i\}\right)$.  
+Defina $X_n =\displaystyle\sum_{i=1}^{n-1} i ~\mathbb{I}_{A_i}+n~\mathbb{I}_{\underset{j=n}{\cup} A_j}$. Então $X_n$ é simples, $X_n \geq 0~$, $X_n \leq X_{n+1}$ e $X_n \uparrow X$, de modo que $E(X)$ $=\displaystyle\int_\Omega X dP$ $=\displaystyle\lim_{n \rightarrow\infty}\int_\Omega X_n dP$. Além disso,  
+$\displaystyle\int_\Omega X_n dP$ $=\displaystyle\sum_{i=1}^{n-1} i~P(A_i) + n~P\left(\bigcup_{j=n}^{\infty} A_j\right)$ $=\displaystyle\sum_{i=1}^{n-1}i~P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{i=1}^{n-1} \sum_{j=1}^{i} P(X = i) + n~P(X \geq n)$ $\displaystyle=\sum_{j=1}^{n-1} \sum_{i=j}^{n-1} P(X = i) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^{n-1}P(j \leq X \leq n-1) + n~P(X \geq n)$ $=\displaystyle\sum_{j=1}^n P(X \geq j)$,  
 então, $E(X)$ $\displaystyle=\lim_{n\rightarrow \infty}\sum_{j=1}^nP(X \geq j)$ $\displaystyle=\sum_{j=1}^{\infty}P(X \geq j)$.
 
 $~$
@@ -293,7 +336,7 @@ Seja $X: \Omega \longrightarrow \mathbb{R}$ e $X^-,X^+: \Omega \longrightarrow \
 
 $~$
 
-```{r, echo=FALSE}
+```{r Xmaismenos, echo=FALSE}
 w=seq(-1.5,2.2,0.01)
 tibble(w) %>% mutate(X=w^3-w^2-2*w+1,
                'X-'=ifelse(X<=0,-X,0),'X+'=ifelse(X>=0,X,0)) %>% 
@@ -364,9 +407,9 @@ $$(\Omega, \mathcal{A},P)\overset{Y = g(X)}{\longrightarrow}(\mathbb{R},\mathcal
 
 Logo, se $g$ é uma função mensurável, $Y=g(X)$ também é v.a. e as medidas induzidas por X e Y são
 
-$P_X(A)$ $= P(X^{-1}(A))$ $= P\left(\{w \in \Omega : X(w) \in A\}\right)$;
+$P_X(A)$ $= P(X^{-1}(A))$ $= P\left(\{\omega \in \Omega : X(\omega) \in A\}\right)$;
 
-$P_Y(B)$ $= P_X(g^{-1}(B))$ $= P_X\left(\{x \in \mathbb{R} : g(x) \in B\}\right)$ $= P\left(\{w \in \Omega : g\left(X(w)\right) \in B\}\right)$.
+$P_Y(B)$ $= P_X(g^{-1}(B))$ $= P_X\left(\{x \in \mathbb{R} : g(x) \in B\}\right)$ $= P\left(\{\omega \in \Omega : g\left(X(\omega)\right) \in B\}\right)$.
 
 Assim, uma pergunta natural é como obter o valor esperado de $Y$.
 
@@ -374,8 +417,7 @@ $E(Y) = \displaystyle\int_\Omega YdP$ $=\displaystyle\int_\Omega g(X)dP$ $\overs
 
 $~$
 
-**Caso 1.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função simples tal que $g = \sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}$ e $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
-
+> **Caso 1.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função simples tal que $g = \sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}$ e $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,  
 $\displaystyle\int_\Omega Y~dP$ 
 $=\displaystyle\int_\Omega g(X)~dP$ 
 $=\displaystyle\int_\Omega \left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(X)\right)dP$ 
@@ -387,16 +429,13 @@ $=\displaystyle\int_{\mathbb{R}} g~dP_X$.
 
 $~$
 
-**Caso 2.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função não negativa e $(g_n)_{n\geq1}$, $g_n \geq 0$, uma sequência crescente de funções simples tal que $g_n\uparrow g$. Como $g_n$ é simples,
-
+> **Caso 2.** Seja $g:\mathbb{R}\longrightarrow\mathbb{R}_+$ uma função não negativa e $(g_n)_{n\geq1}$, $g_n \geq 0$, uma sequência crescente de funções simples tal que $g_n\uparrow g$. Como $g_n$ é simples,  
 $\displaystyle\int_\Omega g_n(X)dP$ $=\displaystyle\int_{\mathbb{R}}g_n~dP_X$ $\displaystyle~\underset{n\uparrow\infty}{\longrightarrow}~ \int_\Omega g(X)dP$ $=\displaystyle\int_{\mathbb{R}}g~dP_X$.
 
 $~$
 
-**Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos
-
-$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^+dP_X$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^-dP_X$. 
-
+> **Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos  
+$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^+dP_X$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\int_{\mathbb{R}}g^-dP_X$.  
 Logo, $\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\int_{\mathbb{R}}g~dP_X$.
 
 $~$
@@ -405,8 +444,7 @@ $~$
 
 Suponha agora $X$ v.a. discreta assumindo valores em $\{x_1,x_2,\ldots\}$ com probabilidade $1$. Nesse caso, $P(X \in A)$ $=\displaystyle\sum_{i:~x_i\in A} P(X=x_i)$. Vamos "verificar" que $E\left[g(X)\right]$ $=\displaystyle\sum_{i=1}^\infty g(x_i)P(X=x_i)$.
 
-**Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
-
+> **Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,  
 $E\left[g(X)\right]$ $=\displaystyle\int_\Omega g(X)~dP$ 
 $=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)$ 
 $=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P(X = x_j)$ 
@@ -415,18 +453,14 @@ $=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_
 
 $~$ 
 
-**Caso 2.** $g\geq 0,$ $g_n\geq0,$ $g_n$ simples tal que $g_n \uparrow g$
-
+> **Caso 2.** $g\geq 0,$ $g_n\geq0,$ $g_n$ simples tal que $g_n \uparrow g$  
 $\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP$ $=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P(X=x_j)\right\}$ $=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)$
 
 $~$
 
-**Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos
-
-$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^+(x_j)P(X = x_j)$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^-(x_j)P(X = x_j)$. 
-
+> **Caso 3.** Agora para $g: \mathbb{R} \longrightarrow \mathbb{R}$, temos  
+$\displaystyle\int_\Omega g^+(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^+(x_j)P(X = x_j)$ e $\displaystyle\int_\Omega g^-(X)dP$ $=\displaystyle\sum_{j=1}^\infty g^-(x_j)P(X = x_j)$.  
 Logo, $\displaystyle\int_\Omega g(X)dP$ $=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)$.
-
 
 $~$
 
@@ -435,8 +469,7 @@ $~$
 
 Suponha agora $X$ v.a. absolutamente contínua com função de densidade de probabilidade $f_X$. Nesse caso, $P_X(X\in A)$ $=\displaystyle\int_Af_X(t)dt$ $=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt$. Vamos "verificar" que $E\left[g(X)\right]$ $=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx$.
 
-**Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,
-
+> **Caso 1.** $g$ simples com $g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}$, $g_1,\ldots,g_k \in \mathbb{R}_+$ $B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})$. Então,  
 $E\left[g(X)\right]$ $=\displaystyle\int_\Omega g(X)~dP$ 
 $=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{B_i}(X)\right)dP$
 $=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{X^{-1}(B_i)}\right)dP$ 
@@ -446,7 +479,7 @@ $=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f(x)dx$
 $=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f(x)dx$
 $=\displaystyle\int_{\mathbb{R}}g(x)f(x)dx$.
 
-A extensão para funções positivas e para funções reais é análogo ao que foi feito nos exemplos anteriores.
+> A extensão para funções positivas e para funções reais é análogo ao que foi feito nos exemplos anteriores.
 
 $~$ 
 
@@ -466,37 +499,32 @@ $~$
 
 $~$
 
-**Exemplo 1.** Seja $X$ uma v.a. definida em $\mathbb{N}$ com função de probabilidade $P_X(X=x)=\dfrac{e^{-\lambda}\lambda^x}{x!}~\mathbb{I}_{\mathbb{N}}(x)$, para $\lambda>0$ fixado. Dizemos nesse caso que $X \sim \text{Poisson}(\lambda)$. Então, o valor esperado de $X$ é
-
+> **Exemplo 1.** Seja $X$ uma v.a. definida em $\mathbb{N}$ com função de probabilidade $P_X(X=x)=\dfrac{e^{-\lambda}\lambda^x}{x!}~\mathbb{I}_{\mathbb{N}}(x)$, para $\lambda>0$ fixado. Dizemos nesse caso que $X \sim \text{Poisson}(\lambda)$. Então, o valor esperado de $X$ é  
 $E\left[X\right]$ $=\displaystyle\sum_{x=0}^\infty x~P_X(X=x)$ 
 $=\displaystyle\sum_{x=0}^\infty x~\dfrac{e^{-\lambda}\lambda^x}{x!}$ 
 $=\displaystyle\sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^x}{(x-1)!}$ 
 $=\displaystyle\lambda~\sum_{x=1}^\infty \dfrac{e^{-\lambda}\lambda^{x-1}}{(x-1)!}$ 
 $~\overset{t=x-1}{=}~\displaystyle\lambda~\sum_{t=0}^\infty \dfrac{e^{-\lambda}\lambda^{t}}{t!}$
-$\Longrightarrow E\left[X\right] = \lambda$.
-
-Ainda neste exemplo, considere $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = e^t$. Então,
-
+$\Longrightarrow E\left[X\right] = \lambda$.  
+$~$  
+Ainda neste exemplo, considere $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = e^t$. Então,  
 $E\left[g(X)\right]$ $=\displaystyle\sum_{x=0}^\infty g(x)P_X(X=x)$ $=\displaystyle\sum_{x=0}^\infty e^x~\dfrac{e^{-\lambda}\lambda^x}{x!}$ $=\displaystyle e^{-\lambda}\sum_{x=0}^\infty \dfrac{(\lambda e)^x}{x!}$ $=\displaystyle e^{-\lambda}e^{\lambda e}\underbrace{\sum_{x=0}^{\infty} \dfrac{e^{-\lambda e}(\lambda e)^x}{x!}}_{1}$ 
 $=e^{\lambda e-\lambda}$ $=e^{\lambda(e-1)}$.
 
 $~$
 
-**Exemplo 2.** Seja $X$ uma v.a. definida em $[0,1]$ com função densidade de probabilidade $f_X(x)=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}~\mathbb{I}_{[0,1]}(x)$, para $a,b>0$ fixados. Dizemos nesse caso que $X \sim \text{Beta}(a,b)$. Então, o valor esperado de $X$ é
-
+> **Exemplo 2.** Seja $X$ uma v.a. definida em $[0,1]$ com função densidade de probabilidade $f_X(x)=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}~\mathbb{I}_{[0,1]}(x)$, para $a,b>0$ fixados. Dizemos nesse caso que $X \sim \text{Beta}(a,b)$. Então, o valor esperado de $X$ é  
 $E[X]$ $=\displaystyle\int_{-\infty}^\infty x~f_X(x)dx$ 
 $=\displaystyle\int_0^1 x~\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx$ 
 $=\displaystyle\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}\int_0^1\dfrac{\Gamma(a+1+b)}{\Gamma(a+1)\Gamma(b)}~x^{(a+1)-1}(1-x)^{b-1}dx$ 
-$=\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}$.
-
-Considere agora $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = t^c(1-t)^d$, com $c,d>0$ fixados. Então,
-
+$=\dfrac{\Gamma (a+1)}{\Gamma(a+1+b)}\dfrac{\Gamma(a+b)}{\Gamma(a)}$.  
+$~$  
+Considere agora $g:\mathbb{R}\rightarrow\mathbb{R}$ com $g(t) = t^c(1-t)^d$, com $c,d>0$ fixados. Então,  
 $E[g(X)]$ $=\displaystyle\int_{-\infty}^\infty g(x)~f_X(x)dx$ 
 $=\displaystyle\int_0^1 \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a+c-1}(1-x)^{b+d-1}dx$ 
 $=\displaystyle\dfrac{\Gamma (a+c)\Gamma(b+d)}{\Gamma(a+c+b+d)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\int_0^1\dfrac{\Gamma(a+c+b+d)}{\Gamma(a+b)\Gamma(b+d)}~x^{(a+c)-1}(1-x)^{(b+d)-1}dx$ 
 $=\dfrac{\Gamma(a+c)\Gamma(b+d)}{\Gamma(a+c+b+d)}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}$
 $=\dfrac{\beta(a+c,b+d)}{\beta(a,b)}$.
-
 
 <!-- 4. $X \sim Geo(\theta)$  -->
 
@@ -592,9 +620,21 @@ $~$
 
 * Reciprocamente, se $P$ é uma medida de probabilidade em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$ então $F(x)=P\left((-\infty,x]\right)$ é uma f.d. 
 
-* Neste caso, se $g: \mathbb{R}\longrightarrow \mathbb{R}$ é uma função mensurável, não será feita distinção entre $\displaystyle\int g(x)dF(x)=$ $\displaystyle\int g(x)dP(x)$.
+* Neste caso, se $g: \mathbb{R}\longrightarrow \mathbb{R}$ é uma função mensurável, não será feita distinção entre $\displaystyle\int g(x)dF(x)=$ $\displaystyle\int g(x)~dP_X(x)$.
 
 * Se $P$ é uma medida de probabilidade em $(\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))$ então $F(x_1,\ldots,x_k)=$ $P((-\infty,x_1]\times \ldots\times (-\infty,x_k])$ é a *função de distribuição conjunta* do *vector aleatório* $\boldsymbol{X} = (X_1,\ldots,X_K)$.
+
+$~$
+
+**Definição:** Uma função de distribuição é dita 
+
+(i) *Discreta* se existe um conjunto enumerável $B=\{x_1,x_2,\ldots\}\subset \mathbb{R}$ tal que $P_X(B)=1$ e $F_d(x)=\displaystyle\sum_{x_i\leq x} P_X(X=x_i)$. Nesse caso, $f(x_i)=P_X(X=x_i)$ é chamada função de probabilidade de $X$; 
+
+(ii) *Absolutamente Contínua* é contínua se existe $f: \mathbb{R} \rightarrow \mathbb{R}$ tal que $P_X\left((a,b]\right)=F_c(b)-F_c(a) = \displaystyle\int_{a}^{b} f(t)~dt$. A função $f$ é a *função de densidade de probabilidade* de $X$;
+
+(iii) *Singular* se $F_s$ é contínua com $F_s'=0~$ $\lambda$-q.c. ($F_s$ é singular com relação à medida de Lebesgue).
+
+**Resultado:** Seja $F$ uma f.d. Então, $F$ pode ser escrita como $F=\alpha_1F_d+\alpha_2F_c+(1-\alpha_1+\alpha_2)F_s$, com $\alpha_1,\alpha_2\geq 0$ tal que $\alpha_1+\alpha_2\leq 1$. 
 
 $~$
 
@@ -618,49 +658,84 @@ $~$
 $~$
 
 
-**Definição:** $(\Omega, \mathcal{A}, P)$ espaço de probabilidade e $(\mathfrak{X},\mathcal{F},\mathcal{V})$ espaço mensurável. Considere $X: \Omega \longrightarrow \mathfrak{X}$ uma v.a. e $P_X$ a medida induzida por $X$ de $P$, i.e. $P_X(B) = P(X^{-1}(B)).$ Suponha que $P_X << \mathcal{V}$. Então, a derivada de Radon-Nikodin $f_X = \dfrac{d\mu_X}{d\mathcal{V}}$ é a densidade de $X$ com respeito a $\mathcal{V}$.
+**Definição:** $(\Omega, \mathcal{A}, P)$ espaço de probabilidade e $(\mathfrak{X},\mathcal{F},\mu)$ espaço mensurável. Considere $X: \Omega \longrightarrow \mathfrak{X}$ uma v.a. e $P_X$ a medida induzida por $X$ de $P$, i.e. $P_X(B) = P(X^{-1}(B))$. Suponha que $P_X \ll \mu$. Então, a derivada de Radon-Nikodin $f_X = \dfrac{dP_X}{d\mu}$ é chamada *densidade de $X$ com respeito à $\mu$*.
 
-**Proposição:** Se $h: \mathfrak{X}\longrightarrow\mathbb{R}$ é mensurável e $f_X = \dfrac{dP_X}{d\mathcal{V}},$ então $\int h(x)dF_X(x)=$ $\int h(x)f_X(x)d\mathcal{V}.$
+**Proposição:** Se $h: \mathfrak{X}\longrightarrow\mathbb{R}$ é mensurável e $f_X = \dfrac{dP_X}{d\mu}$ é a densidade de $X$ com respeito à $\mu$, então $\displaystyle\int h(x)dF_X(x)$ $=\displaystyle\int h(x)f_X(x)d\mu$.
 
 
 $~$
 
-> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\displaystyle\int f(x) dx = 1$. Defina $\displaystyle\mu(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória absolutamente contínua com função de densidade de probabilidade (f.d.p.) $f$ e $\mu_X = \mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de Lebesgue $(\mu_X \ll \lambda)$ e $\frac{d\mu_X}{d\lambda}=f$.
+> **Exemplo 1:** Seja $\Omega=\mathfrak{X}=\mathbb{R}$ com a $\sigma$-álgebra de Borel e $f$ uma função não negativa tal que $\displaystyle\int f(x) dx = 1$. Defina $\displaystyle P(A)= \int_A f(x) dx$ e $X(\omega)=\omega$. Então, $X$ é uma variável aleatória absolutamente contínua com função de densidade de probabilidade (f.d.p.) $f$ e $P_X = P$. Além disso, $P_X$ é absolutamente contínua com relação à medida de Lebesgue $(P_X \ll \lambda)$ e $\frac{dP_X}{d\lambda}=f$.
+
+```{r FDcontinua, echo=FALSE}
+# f=w*beta(a1,b1)+(1-w)*beta(a2,b2)
+a1=5; b1=12
+a2=10; b2=3 
+k=5; x=2
+w=0.5
+theta = seq(0,1,0.001)
+A =  w*choose(k,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))*
+  (gamma(a1+x)*gamma(b1+k-x))/gamma(a1+b1+k)
+B = (1-w)*choose(k,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))*
+  (gamma(a2+x)*gamma(b2+k-x))/gamma(a2+b2+k)
+w2 = A/(A+B)
+dpost = w2*dbeta(theta,a1+x,b1+k-x)+
+  (1-w2)*dbeta(theta,a2+x,b2+k-x)
+ppost = w2*pbeta(theta,a1+x,b1+k-x)+
+  (1-w2)*pbeta(theta,a2+x,b2+k-x)
+g1=tibble(x=theta,fx=dpost) %>% 
+  ggplot() + theme_bw() +
+  geom_line(aes(x=x,y=fx))
+g2=tibble(x=theta,Fx=ppost) %>% 
+  ggplot() + theme_bw() +
+  geom_line(aes(x=x,y=Fx))
+gridExtra::grid.arrange(g1,g2)
+```
 
 $~$
 
-> **Exemplo 2:** Seja $\Omega=\mathbb{R}$ com a $\sigma$-álgebra de Borel, $\mathfrak{X} = \{x_1,x_2,\ldots\}$ um conjunto enumerável. Seja $f$ uma função não negativa definida em $\mathfrak{X}$ tal que $\displaystyle \sum_{i=1}^{\infty} f(x_i) = 1$. Defina $\displaystyle \mu_X(A) = \sum_{\{i:~x_i \in A\}} f(x_i)$. Então $X$ é uma variável aleatória discreta com função de probabilidade (f.d.p.) $f$ e $\mu_X=\mu$. Além disso, $\mu_X$ é absolutamente contínua com relação à medida de contagem $(\mu_X \ll \nu)$ e $\frac{d\mu_X}{d\nu}=f$.
+> **Exemplo 2:** Seja $\Omega=\mathbb{R}$ com a $\sigma$-álgebra de Borel, $\mathfrak{X} = \{x_1,x_2,\ldots\}$ um conjunto enumerável. Seja $f$ uma função não negativa definida em $\mathfrak{X}$ tal que $\displaystyle \sum_{i=1}^{\infty} f(x_i) = 1$. Defina $\displaystyle P_X(A) = \sum_{\{i:~x_i \in A\}} f(x_i)$. Então $X$ é uma variável aleatória discreta com função de probabilidade (f.d.p.) $f$. Além disso, $P_X$ é absolutamente contínua com relação à medida de contagem $(P_X \ll \nu)$ e $\frac{dP_X}{d\nu}=f$.
 
+```{r FDdiscreta, echo=FALSE}
+# f=w*BetaBin(k,a1,b1)+(1-w)*BetaBin(k,a2,b2)
+a1=15; b1=60
+a2=40; b2=20
+k=10; w=0.7
+theta = seq(0,k)
+dpost = w*extraDistr::dbbinom(theta,k,a1,b1)+
+  (1-w)*extraDistr::dbbinom(theta,k,a2,b2)
+ppost = w*extraDistr::pbbinom(theta,k,a1,b1)+
+  (1-w)*extraDistr::pbbinom(theta,k,a2,b2)
+g1=tibble(x=theta,fx=dpost) %>% 
+  ggplot() + theme_bw() +
+  geom_segment(aes(x=x,y=fx,xend=x,yend=0),size=2) +
+  scale_x_continuous(breaks=c(0,1,2,3,4,5,6,7,8,9,10))
+g2=tibble(x=theta,Fx=ppost) %>% 
+  ggplot() + theme_bw() +
+  geom_segment(aes(x=x,xend=x+1,y=Fx,yend=Fx),size=1.5) +
+  scale_x_continuous(breaks=c(0,1,2,3,4,5,6,7,8,9,10)) + 
+  ylim(0,1)
+gridExtra::grid.arrange(g1,g2)
+```
 
-**Resultado:** $X_1,X_2,\ldots,X_k$ são v.a. independentes com $E(X_i)<\infty,$ $i=1,\ldots,k$
+$~$
 
-Então,
+$~$
 
-$E(X_1*X_2\dots*X_k) =$ $E(X_1)E(X_2)\cdots E(X_k)$
+**Resultado** Sejam $(\Omega,\mathcal{A})$ espaço mensurável, $P_1,P_2: \mathcal{A}\longrightarrow [0,1]$ medidas de probabilidade, $X: \Omega \longrightarrow \mathbb{R}$ v.a. e $P=\alpha P_1+(1-\alpha)P_2$ com $0\leq\alpha\leq1$. Então,$\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$.
 
-**Resultado** $(\Omega,\mathcal{A})$ espaço mensurável. 
+> **Caso 1.** $X$ simples, $X=\displaystyle\sum_{i=1}^kX_i~\mathbb{I}_{A_i}$.  
+$\displaystyle\int_\Omega XdP$ $=\displaystyle\sum_{i=1}^kx_i~P(A_i)$ $=\displaystyle\sum_{i=1}^k x_i[\alpha P(A_i)+(1-\alpha)P_2(A_i)]$ $=\displaystyle\alpha \sum_{i=1}^k x_iP(A_i)+(1-\alpha)\sum_{i=1}^k x_iP_2(A_i)$ $=\displaystyle\alpha \int_\Omega XdP_1+(1-\alpha)\int_\Omega XdP_2$.
 
-$P_1,P_2: \mathcal{A}\longrightarrow [0,1)$ probabilidades.
+> **Caso 2.** $X \geq 0$.  
+Considere a sequência $\left(X_n\right)_{n\geq 1}$ tal que $X_n \uparrow X$, $X_n \geq 0$ simples. Então,  
+$=\displaystyle\int_\Omega XdP$ $=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega X_n dP$ $=\displaystyle\lim_{n\rightarrow\infty}\left\{\alpha\int_\Omega X_ndP_1+(1-\alpha)\int_\Omega X_ndP_2\right\}$ $=\displaystyle\alpha\lim_{n\rightarrow\infty}\int_\Omega X_ndP_1 + (1-\alpha)\lim_{n\rightarrow\infty}\int_\Omega X_n dP_2$ $=\displaystyle\alpha\int XdP_1 + (1-\alpha)\int_\Omega XdP_2$.
 
-$X: \Omega \longrightarrow \mathbb{R}$ v.a.
+> **Caso 3.** $X$ qualquer.  
+Basta escrever $X=X^+-X^-$ e repetir o procedimento anterior.
 
-$\int_\Omega X dP1$ e $\int_\Omega X dP2$ 
+$~$
 
-$P=\alpha P_1 +(1-\alpha)P_2,$ $0<\alpha<1.$
-
-Então; $\int_\Omega XdP =$ $\alpha \int_\Omega XP_1 + (1-\alpha)\int_\Omega XdP_2$
-
-1. $X$ simples
-
-$X=\sum_{i=1}^kX_i~\mathbb{I}_{A_i}$
-
-$\int_\Omega XdP=$ $\sum_{i=1}^kx_iP(A_i)=$ $\sum_{i=1}^k x_i[\alpha P(A_i)+(1-\alpha)P_2(A_i)]=$ $\alpha \sum_{i=1}^k x_iP(A_i)+(1-\alpha)\sum_{i=1}^k x_iP_2(A_i)=$ $\alpha \int_\Omega XdP_1+(1-\alpha)\int_\Omega XdP_2$
-
-2. $X \geq 0$
-
-$X_n \uparrow X,$ $X_n \geq 0,$ simples.
-
-$\int_\Omega XdP=$ $\underset{n\rightarrow\infty}{lim}\int_\Omega X_n dP=$ $\underset{n\rightarrow\infty}{lim}\left\{\alpha\int_\Omega X_ndP_1+(1-\alpha)\int_\Omega X_ndP_2\right\}=$ $\alpha \underset{n\rightarrow\infty}{lim}\int_\Omega X_ndP_1 + (1-\alpha)\int_\Omega X_n dP_2=$ $\alpha \int XdP_1 + (1-\alpha)\int_\Omega XdP_2.$
 
 $P_1(\left\{x_1,x_2,\ldots,\right\})=1$, $P_2$ "possui" função densidade de probabilidade $f_x,$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P(X \in A)=$ $\alpha P_1(X^{-1}(A))+(1-\alpha)P_2(X^{-1}(A))$
 
@@ -685,31 +760,31 @@ $E(X) =$ $\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2=$ $\dfrac{1}{3}\l
 
 $(\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)$
 
-$X(\boldsymbol w)=\left\{\begin{array}{lll}
+$X(\boldsymbol \omega)=\left\{\begin{array}{lll}
 x_1, & w_1 \leq 1/2 & (A_1)\\
 x_2, & w_2 > 1/2 & (A_2)\end{array}\right.$
 
-$Y(\boldsymbol w)=\left\{\begin{array}{lll}
+$Y(\boldsymbol \omega)=\left\{\begin{array}{lll}
 y_1, & w_1 \leq w_2 & (B_1)\\
 y_2, & w_1 > w_2& (B_2)\end{array}\right.$
 
 IMAGEM DAS PARTIÇÕES
 
-$P_X(x_1)=$ $P(X^{-1}(\{x_1\}))=$ $P(\boldsymbol w \in A_1)=$ $\lambda(A_1)=1/2$
+$P_X(x_1)=$ $P(X^{-1}(\{x_1\}))=$ $P(\boldsymbol \omega \in A_1)=$ $\lambda(A_1)=1/2$
 
-$P_Y(y_1)=$ $P(Y^{-1}(\{y_1\}))=$ $P(\boldsymbol w \in B_1)=$ $\lambda(B_1)=1/2$
+$P_Y(y_1)=$ $P(Y^{-1}(\{y_1\}))=$ $P(\boldsymbol \omega \in B_1)=$ $\lambda(B_1)=1/2$
 
 $\sigma_X =$ $\{\phi,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$ (é sub-$\sigma$-álgebra)
 
 $\sigma_Y =$ $\{\phi,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$
 
-Seja $\boldsymbol Z(\boldsymbol w)=$ $(X(\boldsymbol w), Y(\boldsymbol w))=$ $(X,Y)(\boldsymbol w),$ $Z: \Omega\longrightarrow \mathbb{R}^2$ $Z(\boldsymbol w)=$ $\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol w)$ é função simples.
+Seja $\boldsymbol Z(\boldsymbol \omega)=$ $(X(\boldsymbol \omega), Y(\boldsymbol \omega))=$ $(X,Y)(\boldsymbol \omega),$ $Z: \Omega\longrightarrow \mathbb{R}^2$ $Z(\boldsymbol \omega)=$ $\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)$ é função simples.
 
-$Z(\boldsymbol w)=\left\{\begin{array}{ll}
-(x_1,y_1)=z_1, & \boldsymbol w \in A_1 \cap B_1=C_1\\
-(x_1,y_2)=z_2, & \boldsymbol w \in A_1 \cap B_2=C_2\\
-(x_2,y_1)=z_3, & \boldsymbol w \in A_2 \cap B_1=C_3\\
-(x_2,y_2)=z_4, & \boldsymbol w \in A_2 \cap B_2=C_4
+$Z(\boldsymbol \omega)=\left\{\begin{array}{ll}
+(x_1,y_1)=z_1, & \boldsymbol \omega \in A_1 \cap B_1=C_1\\
+(x_1,y_2)=z_2, & \boldsymbol \omega \in A_1 \cap B_2=C_2\\
+(x_2,y_1)=z_3, & \boldsymbol \omega \in A_2 \cap B_1=C_3\\
+(x_2,y_2)=z_4, & \boldsymbol \omega \in A_2 \cap B_2=C_4
 \end{array}\right.$
 
 $P_Z((\underbrace{x_1,y_2}_{z_2}))=$ $P_Z((\underbrace{x_2,y_1}_{z_3}))=$ $\dfrac{1}{8}=$ $\lambda(\underbrace{A_1\cap B_2}_{C_2})=$ $\lambda(\underbrace{A_2\cap B_1}_{C_3})$ 
@@ -728,9 +803,9 @@ Analogamente,
 
 $E[X|Y=2]=$ $1*\dfrac{1}{4}+2*\dfrac{3}{4}=\dfrac{7}{4}$
 
-$E[X|Y](w)=\left\{\begin{array}{ll}
-5/4, & w \in B_1\\
-7/4, & w \in B_2
+$E[X|Y](\omega)=\left\{\begin{array}{ll}
+5/4, & \omega \in B_1\\
+7/4, & \omega \in B_2
 \end{array}\right.$
 
 $E[X|Y]=E[X|\sigma_X].$
