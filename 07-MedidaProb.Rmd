@@ -205,10 +205,10 @@ xlab=c(0,expression(E[0]),"",expression(E[1]),"",expression(E[2]),0.481,expressi
 xcol=c("black","black","black","darkgreen","black","darkred","black","darkgreen","black","black","black")
 fn=c(0,0.5,1,0.5,0)
 ggplot() + theme_bw() +
-  geom_line(data=tibble(w=theta,X=dpost),aes(x=w,y=X)) +
+  geom_line(data=tibble(w=theta,X=dpost),aes(x=w,y=X,colour="0"),size=1.1) +
   geom_segment(aes(x=En[-length(En)],xend=En[-1],y=fn,yend=fn),size=1.5) +
-  geom_segment(aes(x=En[-length(En)],xend=En[-1],y=0,yend=0,colour=as.factor(c(0,1,2,1,0))),size=1.5) +
-  scale_color_manual(values=c("black","green", "red")) +
+  geom_segment(aes(x=En[-length(En)],xend=En[-1],y=0,yend=0,colour=c("1","2","3","2","1")),size=1.5) +
+  scale_color_manual(values=c("#E76BF3","black","green", "red")) +
   theme(legend.position = "none") +
   theme(axis.text.x=element_text(color=xcol)) +
   scale_x_continuous(breaks=xbreak,labels=xlab) +
@@ -628,13 +628,13 @@ $~$
 
 **Definição:** Uma função de distribuição é dita 
 
-(i) *Discreta* se existe um conjunto enumerável $B=\{x_1,x_2,\ldots\}\subset \mathbb{R}$ tal que $P_X(B)=1$ e $F_d(x)=\displaystyle\sum_{x_i\leq x} P_X(X=x_i)$. Nesse caso, $f(x_i)=P_X(X=x_i)$ é chamada função de probabilidade de $X$; 
+(i) *Discreta* se existe um conjunto enumerável $B=\{x_1,x_2,\ldots\}\subset \mathbb{R}$ tal que $P_X(B)=1$ e $F_d(x)=\displaystyle\sum_{x_i\leq x} P_X(X=x_i)$. Nesse caso, $f(x_i)=P_X(X=x_i)$ é chamada *função de probabilidade* de $X$; 
 
 (ii) *Absolutamente Contínua* é contínua se existe $f: \mathbb{R} \rightarrow \mathbb{R}$ tal que $P_X\left((a,b]\right)=F_c(b)-F_c(a) = \displaystyle\int_{a}^{b} f(t)~dt$. A função $f$ é a *função de densidade de probabilidade* de $X$;
 
-(iii) *Singular* se $F_s$ é contínua com $F_s'=0~$ $\lambda$-q.c. ($F_s$ é singular com relação à medida de Lebesgue).
+(iii) *Singular* se $F_s$ é contínua com $F_s'=0~$ $\lambda$-q.c. ($F_s$ é singular com relação à medida de Lebesgue $\lambda$).
 
-**Resultado:** Seja $F$ uma f.d. Então, $F$ pode ser escrita como $F=\alpha_1F_d+\alpha_2F_c+(1-\alpha_1+\alpha_2)F_s$, com $\alpha_1,\alpha_2\geq 0$ tal que $\alpha_1+\alpha_2\leq 1$. 
+**Resultado:** Toda f.d. $F$ pode ser escrita como $F=\alpha_1F_d+\alpha_2F_c+(1-\alpha_1+\alpha_2)F_s$, com $\alpha_1,\alpha_2\geq 0$ tal que $\alpha_1+\alpha_2\leq 1$. 
 
 $~$
 
@@ -737,90 +737,51 @@ Basta escrever $X=X^+-X^-$ e repetir o procedimento anterior.
 $~$
 
 
-$P_1(\left\{x_1,x_2,\ldots,\right\})=1$, $P_2$ "possui" função densidade de probabilidade $f_x,$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P(X \in A)=$ $\alpha P_1(X^{-1}(A))+(1-\alpha)P_2(X^{-1}(A))$
+Seja $P_1$ uma distribuição discreta com $P_1\left(\left\{x_1,x_2,\ldots,\right\}\right)=1$, $P_2$ uma distribuição absolutamente contínua com função densidade de probabilidade $f_x$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P_X(X \in A)=$ $\alpha P_1\left(X^{-1}(A)\right)+(1-\alpha)P_2\left(X^{-1}(A)\right)$. Então,
 
-Então:
+$E(X)$ $=\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$ $=\displaystyle\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx$
 
-$E(X)=$ $\int_\Omega XdP=$ $\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2=$ $\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx$
-
-**Exemplo**
+**Exemplo.** Considere uma v.a. $X$ com f.d. dada por
 
 $F_X(t)=\left\{\begin{array}{ll}
 0, & t<0\\
 \dfrac{1}{15}+\dfrac{2}{3}t, & 0\leq t < 1\\
 1, & t \geq 1\end{array}\right.$
 
-IMAGEM FA F
+```{r FDmistura, echo=FALSE}
+#x=seq(0,1,length.out=1000)
+ggplot() + theme_bw() +
+  geom_segment(aes(x=0,xend=1,y=1/15,yend=11/15),size=1.2) +
+  geom_segment(aes(x=-0.2,xend=0,y=0,yend=0),size=1.2) +
+  geom_segment(aes(x=1,xend=1.2,y=1,yend=1),size=1.2) +
+  geom_point(aes(x=c(0,1),y=c(1/15,1)),size=2) +
+  xlab("x") + ylab(expression(F[X])) +
+  scale_x_continuous(breaks=c(0,0.5,1)) +
+  scale_y_continuous(breaks=c(0,1/15,11/15,1),labels=c("0","1/15","11/15","1"))
+```
 
-$\dfrac{1}{15}=P(X=0)=$ $\underbrace{\alpha}_{1/3} P_1(X=0) \Rightarrow$ $P_1(X=0)=\dfrac{1}{5},$ e portanto, $P_1(X=1)=\dfrac{4}{5}$
+Temos que $P(X=0)=1/15$, $P(X=1)=4/15$ e, assim, $P(0<X<1)=10/15=2/3=1-\alpha$, de modo que
 
-$E(X) =$ $\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2=$ $\dfrac{1}{3}\left\{0*\dfrac{1}{5}+1*\dfrac{4}{5}\right\}+$ $\dfrac{2}{3}\int_{-\infty}^\infty x f_X(x)dx=$ $\dfrac{1}{3}*\dfrac{4}{5}+\dfrac{2}{3}\int_0^1 xdx=$ $\dfrac{4}{15}\dfrac{5}{15}=\dfrac{9}{15}.$
+$\dfrac{1}{15}$ $=P(X=0)$ $=\alpha P_1(X=0)$  $=1/3~P_1(X=0)$ 
+$\Rightarrow P_1(X=0)=\dfrac{1}{5} = 1-P_1(X=1)$.
 
-**Exemplo**
+$E(X)$ $=\displaystyle\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2$ $=\displaystyle\dfrac{1}{3}\left\{0\cdot\dfrac{1}{5}+1\cdot\dfrac{4}{5}\right\}+\dfrac{2}{3}\int_{0}^{1} x~f_X(x)dx$ $=\displaystyle\dfrac{1}{3}\cdot\dfrac{4}{5}+\dfrac{2}{3}\int_0^1 xdx$ $=\dfrac{4}{15}+\dfrac{1}{3}$ $=\dfrac{4}{15}+\dfrac{5}{15}$ $=\dfrac{9}{15}$.
 
-$(\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)$
+$~$
 
-$X(\boldsymbol \omega)=\left\{\begin{array}{lll}
-x_1, & w_1 \leq 1/2 & (A_1)\\
-x_2, & w_2 > 1/2 & (A_2)\end{array}\right.$
-
-$Y(\boldsymbol \omega)=\left\{\begin{array}{lll}
-y_1, & w_1 \leq w_2 & (B_1)\\
-y_2, & w_1 > w_2& (B_2)\end{array}\right.$
-
-IMAGEM DAS PARTIÇÕES
-
-$P_X(x_1)=$ $P(X^{-1}(\{x_1\}))=$ $P(\boldsymbol \omega \in A_1)=$ $\lambda(A_1)=1/2$
-
-$P_Y(y_1)=$ $P(Y^{-1}(\{y_1\}))=$ $P(\boldsymbol \omega \in B_1)=$ $\lambda(B_1)=1/2$
-
-$\sigma_X =$ $\{\phi,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$ (é sub-$\sigma$-álgebra)
-
-$\sigma_Y =$ $\{\phi,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$
-
-Seja $\boldsymbol Z(\boldsymbol \omega)=$ $(X(\boldsymbol \omega), Y(\boldsymbol \omega))=$ $(X,Y)(\boldsymbol \omega),$ $Z: \Omega\longrightarrow \mathbb{R}^2$ $Z(\boldsymbol \omega)=$ $\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)$ é função simples.
-
-$Z(\boldsymbol \omega)=\left\{\begin{array}{ll}
-(x_1,y_1)=z_1, & \boldsymbol \omega \in A_1 \cap B_1=C_1\\
-(x_1,y_2)=z_2, & \boldsymbol \omega \in A_1 \cap B_2=C_2\\
-(x_2,y_1)=z_3, & \boldsymbol \omega \in A_2 \cap B_1=C_3\\
-(x_2,y_2)=z_4, & \boldsymbol \omega \in A_2 \cap B_2=C_4
-\end{array}\right.$
-
-$P_Z((\underbrace{x_1,y_2}_{z_2}))=$ $P_Z((\underbrace{x_2,y_1}_{z_3}))=$ $\dfrac{1}{8}=$ $\lambda(\underbrace{A_1\cap B_2}_{C_2})=$ $\lambda(\underbrace{A_2\cap B_1}_{C_3})$ 
-
-$P_Z((\underbrace{x_1,y_1}_{z_1}))=$ $P_Z((\underbrace{x_2,y_2}_{z_4}))=$ $\dfrac{3}{8}=$ $\lambda(\underbrace{A_1\cap B_1}_{C_1})=$ $\lambda(\underbrace{A_2\cap B_2}_{C_4})$ 
-
-$P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$
-
-$P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}$
-
-Pela aula passada, podeos calcular $E[X|Y=y_1]$ como $E[X|Y=y_1]=$ $\int x dP_{X|Y=y_1}(x)=$ $\sum_{i=1}^2x_i P_{X|Y=y_1}(x_i|y_1)$
-
-Por exemplo, se $x_1=y_1=1,$ $x_2=y_2=2,$ temos $E[X|Y=1]=$ $1*\dfrac{3}{4}+2*\dfrac{1}{4}=\dfrac{5}{4}$
-
-Analogamente,
-
-$E[X|Y=2]=$ $1*\dfrac{1}{4}+2*\dfrac{3}{4}=\dfrac{7}{4}$
-
-$E[X|Y](\omega)=\left\{\begin{array}{ll}
-5/4, & \omega \in B_1\\
-7/4, & \omega \in B_2
-\end{array}\right.$
-
-$E[X|Y]=E[X|\sigma_X].$
+$~$
 
 ## Probabilidade Condicional
 
-**Motivação** 
+**Motivação:** $P(A|B)=$ $\dfrac{P(A\cap B)}{P(B)}$ é bem definido se $P(B)>0.$
 
-$P(A|B)=$ $\dfrac{P(A\cap B)}{P(B)}$ é bem definido se $P(B)>0.$
+$~$
 
-**Exemplo** Seja $X: \Omega \longrightarrow \mathbb{R}$ v.a. e considere um experimento em dois estagios onde seleciona-se $X\sim F_X$ e, dado $X=x,$ $0\leq x\leq 1,$ uma moeda com probabilidade $x$ é lançada $n$ vezes. Nesse caso, é natural definir $Y|X=x\sim Bin(n,x)$ mesmo que $P(X=x)=0,$ $\forall x \in [0,1].$
+Seja $X,Y: \Omega \longrightarrow \mathbb{R}$ v.a. tais que $P_X\left([0,1]\right)=1$ e $P_Y\left(\{0,1\}\right)=1$. Considere um experimento em dois estagios onde seleciona-se $X$ segundo uma distribuição absolutamente contínua $F_X$ e, dado $X=x$, $0\leq x\leq 1$, uma moeda com probabilidade $x$ é lançada $n$ vezes. Nesse caso, é natural definir $Y~\big|~X=x\sim \text{Bin}(n,x)$, mesmo que $P(X=x)=0$, $\forall x \in [0,1]$.
 
-### Teorema da Medida Produto (para medidas de probabilidade)
+$~$
 
-Seja $(\Omega_1, \mathcal{A}_1,P_1)$ um espaço de probabilidade e $(\Omega_2,\mathcal{A}_2)$ um espaço mensurável. Para cada $w_1 \in \Omega_1,$ defina uma medida de probabilidade $\mu(w_1,.)$ em $\mathcal{A}_2.$ Assuma que, para cada $B \in \mathcal{A}_2,$ $\mu(.,B)$ também é $\mathcal{A}_1$-mensurável. Então, existe uma única medida de probabilidade $P$ em $\mathcal{A}=\mathcal{A}_1\times \mathcal{A}_2$ tal que $P(A\times B)=$ $\int_A \mu(w_1,B)dP_1(w_1),$ $\forall A\in \mathcal{A}_1,$ $\forall B\in \mathcal{A}_2.$
+**Teorema da Medida Produto (para medidas de probabilidade)** Seja $(\Omega_1, \mathcal{A}_1,P_1)$ um espaço de probabilidade e $(\Omega_2,\mathcal{A}_2)$ um espaço mensurável. Para cada $w_1 \in \Omega_1,$ defina uma medida de probabilidade $\mu(w_1,.)$ em $\mathcal{A}_2.$ Assuma que, para cada $B \in \mathcal{A}_2,$ $\mu(.,B)$ também é $\mathcal{A}_1$-mensurável. Então, existe uma única medida de probabilidade $P$ em $\mathcal{A}=\mathcal{A}_1\times \mathcal{A}_2$ tal que $P(A\times B)=$ $\int_A \mu(w_1,B)dP_1(w_1),$ $\forall A\in \mathcal{A}_1,$ $\forall B\in \mathcal{A}_2.$
 
 Se $D(w_1)$ denota uma secção de $D$ em $w_1,$ isto é, $D(w_1)=$ $\{w_2\in \Omega_2: (w_1,w_2)\in D\},$ $D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,$ então
 
@@ -905,3 +866,58 @@ $P(\{X \in A\}\cap B)=$ $\underset{\underset{(x,y)\in B}{x\in A}}{\int \int}f(x,
 $\Rightarrow g(x)=P(B|X=x)$
 
 > $P(X\in A,Y \in B)=$ $\int_A \int_Bf(x,y)dxdy=$ $\int_A \int_Bf(y|x)f_1(x)dydx=$ $\int_B \int_Af(x|y)f_2(y)dxdy$
+
+
+**Exemplo**
+
+$(\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)$
+
+$X(\boldsymbol \omega)=\left\{\begin{array}{lll}
+x_1, & w_1 \leq 1/2 & (A_1)\\
+x_2, & w_2 > 1/2 & (A_2)\end{array}\right.$
+
+$Y(\boldsymbol \omega)=\left\{\begin{array}{lll}
+y_1, & w_1 \leq w_2 & (B_1)\\
+y_2, & w_1 > w_2& (B_2)\end{array}\right.$
+
+IMAGEM DAS PARTIÇÕES
+
+$P_X(x_1)=$ $P(X^{-1}(\{x_1\}))=$ $P(\boldsymbol \omega \in A_1)=$ $\lambda(A_1)=1/2$
+
+$P_Y(y_1)=$ $P(Y^{-1}(\{y_1\}))=$ $P(\boldsymbol \omega \in B_1)=$ $\lambda(B_1)=1/2$
+
+$\sigma_X =$ $\{\phi,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$ (é sub-$\sigma$-álgebra)
+
+$\sigma_Y =$ $\{\phi,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$
+
+Seja $\boldsymbol Z(\boldsymbol \omega)=$ $(X(\boldsymbol \omega), Y(\boldsymbol \omega))=$ $(X,Y)(\boldsymbol \omega),$ $Z: \Omega\longrightarrow \mathbb{R}^2$ $Z(\boldsymbol \omega)=$ $\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)$ é função simples.
+
+$Z(\boldsymbol \omega)=\left\{\begin{array}{ll}
+(x_1,y_1)=z_1, & \boldsymbol \omega \in A_1 \cap B_1=C_1\\
+(x_1,y_2)=z_2, & \boldsymbol \omega \in A_1 \cap B_2=C_2\\
+(x_2,y_1)=z_3, & \boldsymbol \omega \in A_2 \cap B_1=C_3\\
+(x_2,y_2)=z_4, & \boldsymbol \omega \in A_2 \cap B_2=C_4
+\end{array}\right.$
+
+$P_Z((\underbrace{x_1,y_2}_{z_2}))=$ $P_Z((\underbrace{x_2,y_1}_{z_3}))=$ $\dfrac{1}{8}=$ $\lambda(\underbrace{A_1\cap B_2}_{C_2})=$ $\lambda(\underbrace{A_2\cap B_1}_{C_3})$ 
+
+$P_Z((\underbrace{x_1,y_1}_{z_1}))=$ $P_Z((\underbrace{x_2,y_2}_{z_4}))=$ $\dfrac{3}{8}=$ $\lambda(\underbrace{A_1\cap B_1}_{C_1})=$ $\lambda(\underbrace{A_2\cap B_2}_{C_4})$ 
+
+$P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$
+
+$P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}$
+
+Pela aula passada, podeos calcular $E[X|Y=y_1]$ como $E[X|Y=y_1]=$ $\int x dP_{X|Y=y_1}(x)=$ $\sum_{i=1}^2x_i P_{X|Y=y_1}(x_i|y_1)$
+
+Por exemplo, se $x_1=y_1=1,$ $x_2=y_2=2,$ temos $E[X|Y=1]=$ $1*\dfrac{3}{4}+2*\dfrac{1}{4}=\dfrac{5}{4}$
+
+Analogamente,
+
+$E[X|Y=2]=$ $1*\dfrac{1}{4}+2*\dfrac{3}{4}=\dfrac{7}{4}$
+
+$E[X|Y](\omega)=\left\{\begin{array}{ll}
+5/4, & \omega \in B_1\\
+7/4, & \omega \in B_2
+\end{array}\right.$
+
+$E[X|Y]=E[X|\sigma_X].$
