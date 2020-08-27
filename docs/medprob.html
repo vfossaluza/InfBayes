@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-08-25" />
+<meta name="date" content="2020-08-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,34 +225,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A} \Longrightarrow \bigcup_{i\geq1} A_i \in \mathcal{A}\)</span>.</li>
 </ol></li>
 <li><p>Os elementos de <span class="math inline">\(\mathcal{A}\)</span> são chamados de <em>eventos</em> e serão denotados por <span class="math inline">\(A, B, C, \ldots, A_1, A_2, \ldots\)</span></p></li>
-<li><p>Uma coleção de eventos <span class="math inline">\(A_1,A_2,\ldots\)</span> forma uma <em>partição</em> de <span class="math inline">\(\Omega\)</span> se <span class="math inline">\(A_i \cap A_j = \emptyset\)</span>, <span class="math inline">\(\forall i \neq j\)</span>, e <span class="math inline">\(\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega\)</span>.</p></li>
+<li><p>Uma coleção de eventos <span class="math inline">\(A_1,A_2,\ldots\)</span> forma uma <em>partição</em> de <span class="math inline">\(\Omega\)</span> se <span class="math inline">\(A_i \cap A_j = \varnothing\)</span>, <span class="math inline">\(\forall i \neq j\)</span>, e <span class="math inline">\(\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega\)</span>.</p></li>
 <li><p><span class="math inline">\((\Omega, \mathcal{A})\)</span>: <em>espaço mensurável</em>.</p></li>
 <li><p>Usualmente, denota-se a <span class="math inline">\(\sigma\)</span>-álgebra gerada por um conjunto <span class="math inline">\(\mathcal{C}\)</span> como <span class="math inline">\(\sigma(\mathcal{C})\)</span>. Por exemplo:</p>
 <ul>
-<li><span class="math inline">\(\sigma(\Omega) = \{\emptyset,\Omega\}~~\)</span> (<span class="math inline">\(\sigma\)</span>-ágebra trivial);</li>
-<li>Para <span class="math inline">\(A \subset \Omega\)</span>, <span class="math inline">\(\sigma(A) = \{\emptyset, A, A^c, \Omega\}\)</span>;</li>
+<li><span class="math inline">\(\sigma(\Omega) = \{\varnothing,\Omega\}~~\)</span> (<span class="math inline">\(\sigma\)</span>-ágebra trivial);</li>
+<li>Para <span class="math inline">\(A \subset \Omega\)</span>, <span class="math inline">\(\sigma(A) = \{\varnothing, A, A^c, \Omega\}\)</span>;</li>
 <li><span class="math inline">\(\sigma(\mathbb{N}) = \mathcal{P}(\mathbb{N})~~\)</span> (partes de <span class="math inline">\(\mathbb{N}\)</span>, todos o subconjuntos de <span class="math inline">\(\mathbb{N}\)</span>);</li>
 <li><span class="math inline">\(\sigma\left(\left\{(-\infty,x): x \in \mathbb{R}\right\}\right) = \mathcal{B}\left(\mathbb{R}\right)~~\)</span> (borelianos de <span class="math inline">\(\mathbb{R}\)</span>)</li>
 </ul></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição:</strong> A função <span class="math inline">\(\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+\)</span> é uma <em>medida</em> se<br />
-1. <span class="math inline">\(\mu(\emptyset) = 0\)</span>;<br />
-2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\forall i \neq j\)</span> , <span class="math inline">\(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\)</span>.</p>
+1. <span class="math inline">\(\mu(\varnothing) = 0\)</span>;<br />
+2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \varnothing\)</span> , <span class="math inline">\(\forall i \neq j\)</span> , <span class="math inline">\(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\)</span>.</p>
 <ul>
 <li><span class="math inline">\((\Omega,\mathcal{A}, \mu)\)</span> é chamado de <em>espaço de medida</em>.</li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 1 (medida de contagem):</strong> Seja <span class="math inline">\(\Omega\)</span> um conjunto não vazio e <span class="math inline">\(A\subseteq \Omega\)</span>. Defina <span class="math inline">\(\nu(A)=|A|\)</span> como o número de elementos (cardinalidade) de <span class="math inline">\(A\)</span>. Assim, <span class="math inline">\(\nu(\Omega) &gt; 0\)</span>, <span class="math inline">\(\nu(\emptyset)=0\)</span> e, se <span class="math inline">\((A_n)_{n \geq 1}\)</span> é uma sequência de eventos disjuntos, então <span class="math inline">\(\nu(\cup A_n) = \sum \nu(A_n)\)</span>. Note que <span class="math inline">\(\nu(A)=\infty\)</span> é possivel se <span class="math inline">\(\Omega\)</span> tem infinitos elementos.</p>
+<p><strong>Exemplo 1 (medida de contagem):</strong> Seja <span class="math inline">\(\Omega\)</span> um conjunto não vazio e <span class="math inline">\(A\subseteq \Omega\)</span>. Defina <span class="math inline">\(\nu(A)=|A|\)</span> como o número de elementos (cardinalidade) de <span class="math inline">\(A\)</span>. Assim, <span class="math inline">\(\nu(\Omega) &gt; 0\)</span>, <span class="math inline">\(\nu(\varnothing)=0\)</span> e, se <span class="math inline">\((A_n)_{n \geq 1}\)</span> é uma sequência de eventos disjuntos, então <span class="math inline">\(\nu(\cup A_n) = \sum \nu(A_n)\)</span>. Note que <span class="math inline">\(\nu(A)=\infty\)</span> é possivel se <span class="math inline">\(\Omega\)</span> tem infinitos elementos.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 2 (medida de Lebesgue):</strong> Seja <span class="math inline">\(\Omega=\mathbb{R}\)</span> e <span class="math inline">\(A\subseteq \Omega\)</span> um intervalo. Se <span class="math inline">\(A\)</span> é limitado, defina <span class="math inline">\(\lambda(A)\)</span> como o comprimento do intervalo <span class="math inline">\(A\)</span>. Se <span class="math inline">\(A\)</span> não é limitado, <span class="math inline">\(\lambda(A)=\infty\)</span>. Note que <span class="math inline">\(\lambda(\mathbb{R})=\infty\)</span>, <span class="math inline">\(\lambda(\emptyset)=0\)</span> e, se <span class="math inline">\(A_1 \cap A_2 = \emptyset\)</span> e <span class="math inline">\(A_1 \cup A_2\)</span> é um intervalo (ou uma união de intervalos disjuntos), então <span class="math inline">\(\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)\)</span>.</p>
+<p><strong>Exemplo 2 (medida de Lebesgue):</strong> Seja <span class="math inline">\(\Omega=\mathbb{R}\)</span> e <span class="math inline">\(A\subseteq \Omega\)</span> um intervalo. Se <span class="math inline">\(A\)</span> é limitado, defina <span class="math inline">\(\lambda(A)\)</span> como o comprimento do intervalo <span class="math inline">\(A\)</span>. Se <span class="math inline">\(A\)</span> não é limitado, <span class="math inline">\(\lambda(A)=\infty\)</span>. Note que <span class="math inline">\(\lambda(\mathbb{R})=\infty\)</span>, <span class="math inline">\(\lambda(\varnothing)=0\)</span> e, se <span class="math inline">\(A_1 \cap A_2 = \varnothing\)</span> e <span class="math inline">\(A_1 \cup A_2\)</span> é um intervalo (ou uma união de intervalos disjuntos), então <span class="math inline">\(\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 3:</strong> Seja <span class="math inline">\(f: \mathbb{R} \longrightarrow \mathbb{R}_+\)</span> uma função contínua e não nula. Para cada intervalo <span class="math inline">\(A\)</span>, defina <span class="math inline">\(\displaystyle \mu(A) = \int_A f(x) dx = \int_{\mathbb{R}} \mathbb{I}_A(x) f(x) dx\)</span>. Então, <span class="math inline">\(\mu(\mathbb{R})&gt;0\)</span>, <span class="math inline">\(\mu(\emptyset)=0\)</span> e, se <span class="math inline">\(A_1 \cap A_2 = \emptyset\)</span> e <span class="math inline">\(A_1 \cup A_2\)</span> é um intervalo (ou uma união de intervalos disjuntos), então <span class="math inline">\(\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)\)</span>.</p>
+<p><strong>Exemplo 3:</strong> Seja <span class="math inline">\(f: \mathbb{R} \longrightarrow \mathbb{R}_+\)</span> uma função contínua e não nula. Para cada intervalo <span class="math inline">\(A\)</span>, defina <span class="math inline">\(\displaystyle \mu(A) = \int_A f(x) dx = \int_{\mathbb{R}} \mathbb{I}_A(x) f(x) dx\)</span>. Então, <span class="math inline">\(\mu(\mathbb{R})&gt;0\)</span>, <span class="math inline">\(\mu(\varnothing)=0\)</span> e, se <span class="math inline">\(A_1 \cap A_2 = \varnothing\)</span> e <span class="math inline">\(A_1 \cup A_2\)</span> é um intervalo (ou uma união de intervalos disjuntos), então <span class="math inline">\(\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição:</strong> <span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> é uma <strong>medida de probabilidade</strong> se<br />
 1. <span class="math inline">\(P(\Omega) = 1\)</span>;<br />
-2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</p>
+2. <span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \varnothing\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</p>
 <ul>
 <li><span class="math inline">\((\Omega, \mathcal{A}, P)\)</span>: espaço de probabilidade</li>
 </ul>
@@ -361,7 +361,7 @@ Se <span class="math inline">\(E,F \in \mathcal{A}\)</span> com <span class="mat
 <p><strong>2.</strong> <span class="math inline">\(\displaystyle\int_\Omega (X+Y)dP =\)</span> <span class="math inline">\(\displaystyle\int_\Omega XdP + \int_\Omega YdP\)</span>.</p>
 <blockquote>
 <p><strong>Demo 1.</strong> Seja <span class="math inline">\(X_n\uparrow X,\)</span> <span class="math inline">\(X_n \geq 0\)</span> simples. Então <span class="math inline">\(cX_n\uparrow cX,\)</span> <span class="math inline">\(cX_n \geq 0,\)</span> simples.<br />
-<span class="math inline">\(\displaystyle\int_\Omega cX dP\)</span> <span class="math inline">\(=\underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\int_\Omega X dP\)</span>.</p>
+<span class="math inline">\(\displaystyle\int_\Omega cX dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega cX_n dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP\)</span> <span class="math inline">\(=\displaystyle c\int_\Omega X dP\)</span>.</p>
 </blockquote>
 <blockquote>
 <p><strong>Demo 2.</strong> Exercício.</p>
@@ -454,29 +454,35 @@ Logo, <span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Suponha agora <span class="math inline">\(X\)</span> v.a. discreta assumindo valores em <span class="math inline">\(\{x_1,x_2,\ldots\}\)</span> com probabilidade <span class="math inline">\(1\)</span>. Nesse caso, <span class="math inline">\(P(X \in A)\)</span> <span class="math inline">\(=\displaystyle\sum_{i:~x_i\in A} P(X=x_i)\)</span>. Vamos “verificar” que <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^\infty g(x_i)P(X=x_i)\)</span>.</p>
+<p>Suponha agora <span class="math inline">\(X\)</span> v.a. discreta assumindo valores em <span class="math inline">\(\{x_1,x_2,\ldots\}\)</span> com probabilidade <span class="math inline">\(1\)</span>. Nesse caso, para <span class="math inline">\(A\subseteq\mathcal{B}(\mathbb{R})\)</span>,</p>
+<p><span class="math inline">\(P_X(A)\)</span> <span class="math inline">\(=P_X(X \in A)\)</span> <span class="math inline">\(=P\left(\{\omega\in\Omega: X(\omega) \in A\}\right)\)</span> <span class="math inline">\(=\displaystyle\sum_{i:~x_i\in A} P_X(X=x_i)\)</span>.</p>
+<p>Vamos “verificar” que <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^\infty g(x_i)P_X(X=x_i)\)</span>.</p>
 <blockquote>
 <p><strong>Caso 1.</strong> <span class="math inline">\(g\)</span> simples com <span class="math inline">\(g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\)</span>, <span class="math inline">\(g_1,\ldots,g_k \in \mathbb{R}_+\)</span> <span class="math inline">\(B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})\)</span>. Então,<br />
 <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\int_\Omega g(X)~dP\)</span>
+<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~P\left(X^{-1}(B_i)\right)\)</span>
 <span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)\)</span>
-<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P(X = x_j)\)</span>
-<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P(X=x_j)\)</span>
-<span class="math inline">\(=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P(X = x_j)\)</span>.</p>
+<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P_X(X = x_j)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P_X(X=x_j)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P_X(X = x_j)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Caso 2.</strong> <span class="math inline">\(g\geq 0,\)</span> <span class="math inline">\(g_n\geq0,\)</span> <span class="math inline">\(g_n\)</span> simples tal que <span class="math inline">\(g_n \uparrow g\)</span><br />
-<span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P(X=x_j)\right\}\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)\)</span></p>
+<span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP\)</span> <span class="math inline">\(=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P_X(X=x_j)\right\}\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X = x_j)\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Caso 3.</strong> Agora para <span class="math inline">\(g: \mathbb{R} \longrightarrow \mathbb{R}\)</span>, temos<br />
-<span class="math inline">\(\displaystyle\int_\Omega g^+(X)dP\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g^+(x_j)P(X = x_j)\)</span> e <span class="math inline">\(\displaystyle\int_\Omega g^-(X)dP\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g^-(x_j)P(X = x_j)\)</span>.<br />
-Logo, <span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)\)</span>.</p>
+<span class="math inline">\(\displaystyle\int_\Omega g^+(X)dP\)</span>
+<span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g^+(x_j)P_X(X = x_j)\)</span> e
+<span class="math inline">\(\displaystyle\int_\Omega g^-(X)dP\)</span>
+<span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g^-(x_j)P_X(X = x_j)\)</span>.<br />
+Logo, <span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X = x_j)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Suponha agora <span class="math inline">\(X\)</span> v.a. absolutamente contínua com função de densidade de probabilidade <span class="math inline">\(f_X\)</span>. Nesse caso, <span class="math inline">\(P_X(X\in A)\)</span> <span class="math inline">\(=\displaystyle\int_Af_X(t)dt\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\)</span>. Vamos “verificar” que <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx\)</span>.</p>
+<p>Suponha agora <span class="math inline">\(X\)</span> v.a. absolutamente contínua com função de densidade de probabilidade <span class="math inline">\(f_X\)</span>, ou seja, pode-se escrever <span class="math inline">\(P_X(X\in A)\)</span> <span class="math inline">\(=\displaystyle\int_Af_X(t)dt\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\)</span>. Vamos “verificar” que <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}} g(x)f_X(x)dx\)</span>.</p>
 <blockquote>
 <p><strong>Caso 1.</strong> <span class="math inline">\(g\)</span> simples com <span class="math inline">\(g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\)</span>, <span class="math inline">\(g_1,\ldots,g_k \in \mathbb{R}_+\)</span> <span class="math inline">\(B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})\)</span>. Então,<br />
 <span class="math inline">\(E\left[g(X)\right]\)</span> <span class="math inline">\(=\displaystyle\int_\Omega g(X)~dP\)</span>
@@ -484,9 +490,9 @@ Logo, <span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span
 <span class="math inline">\(=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{X^{-1}(B_i)}\right)dP\)</span>
 <span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~P(X^{-1}(B_i))\)</span>
 <span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)\)</span>
-<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f(x)dx\)</span>
-<span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f(x)dx\)</span>
-<span class="math inline">\(=\displaystyle\int_{\mathbb{R}}g(x)f(x)dx\)</span>.</p>
+<span class="math inline">\(=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f_X(x)dx\)</span>
+<span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f_X(x)dx\)</span>
+<span class="math inline">\(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\)</span>.</p>
 </blockquote>
 <blockquote>
 <p>A extensão para funções positivas e para funções reais é análogo ao que foi feito nos exemplos anteriores.</p>
@@ -495,7 +501,7 @@ Logo, <span class="math inline">\(\displaystyle\int_\Omega g(X)dP\)</span> <span
 <p><span class="math inline">\(~\)</span></p>
 <p>Assim, em geral, vale que:</p>
 <ul>
-<li><p><span class="math inline">\(X\)</span> discreto: <span class="math inline">\(E[g(X)]\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X=x_j)\)</span>;</p></li>
+<li><p><span class="math inline">\(X\)</span> discreto: <span class="math inline">\(E[g(X)]\)</span> <span class="math inline">\(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X=x_j)\)</span>;</p></li>
 <li><p><span class="math inline">\(X\)</span> (absolutamente) contínuo: <span class="math inline">\(E[g(X)]\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\)</span>.</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
@@ -641,41 +647,53 @@ Basta escrever <span class="math inline">\(X=X^+-X^-\)</span> e repetir o proced
 <p><span class="math inline">\(~\)</span></p>
 <p>Seja <span class="math inline">\(P_1\)</span> uma distribuição discreta com <span class="math inline">\(P_1\left(\left\{x_1,x_2,\ldots,\right\}\right)=1\)</span>, <span class="math inline">\(P_2\)</span> uma distribuição absolutamente contínua com função densidade de probabilidade <span class="math inline">\(f_x\)</span> e <span class="math inline">\(X:\Omega \longrightarrow \mathbb{R}\)</span> tal que <span class="math inline">\(P_X(X \in A)=\)</span> <span class="math inline">\(\alpha P_1\left(X^{-1}(A)\right)+(1-\alpha)P_2\left(X^{-1}(A)\right)\)</span>. Então,</p>
 <p><span class="math inline">\(E(X)\)</span> <span class="math inline">\(=\displaystyle\int_\Omega XdP\)</span> <span class="math inline">\(=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2\)</span> <span class="math inline">\(=\displaystyle\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx\)</span></p>
-<p><strong>Exemplo.</strong> Considere uma v.a. <span class="math inline">\(X\)</span> com f.d. dada por</p>
-<p><span class="math inline">\(F_X(t)=\left\{\begin{array}{ll} 0, &amp; t&lt;0\\ \dfrac{1}{15}+\dfrac{2}{3}t, &amp; 0\leq t &lt; 1\\ 1, &amp; t \geq 1\end{array}\right.\)</span></p>
+<blockquote>
+<p><strong>Exemplo.</strong> Considere uma v.a. <span class="math inline">\(X\)</span> com f.d. dada por<br />
+<span class="math inline">\(F_X(t)=\left\{\begin{array}{ll} 0, &amp; t&lt;0\\ \dfrac{1}{15}+\dfrac{2}{3}t, &amp; 0\leq t &lt; 1\\ 1, &amp; t \geq 1\end{array}\right.\)</span></p>
+</blockquote>
 <p><img src="InfBayes_files/figure-html/FDmistura-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Temos que <span class="math inline">\(P(X=0)=1/15\)</span>, <span class="math inline">\(P(X=1)=4/15\)</span> e, assim, <span class="math inline">\(P(0&lt;X&lt;1)=10/15=2/3=1-\alpha\)</span>, de modo que</p>
-<p><span class="math inline">\(\dfrac{1}{15}\)</span> <span class="math inline">\(=P(X=0)\)</span> <span class="math inline">\(=\alpha P_1(X=0)\)</span> <span class="math inline">\(=1/3~P_1(X=0)\)</span>
-<span class="math inline">\(\Rightarrow P_1(X=0)=\dfrac{1}{5} = 1-P_1(X=1)\)</span>.</p>
-<p><span class="math inline">\(E(X)\)</span> <span class="math inline">\(=\displaystyle\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2\)</span> <span class="math inline">\(=\displaystyle\dfrac{1}{3}\left\{0\cdot\dfrac{1}{5}+1\cdot\dfrac{4}{5}\right\}+\dfrac{2}{3}\int_{0}^{1} x~f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\dfrac{1}{3}\cdot\dfrac{4}{5}+\dfrac{2}{3}\int_0^1 xdx\)</span> <span class="math inline">\(=\dfrac{4}{15}+\dfrac{1}{3}\)</span> <span class="math inline">\(=\dfrac{4}{15}+\dfrac{5}{15}\)</span> <span class="math inline">\(=\dfrac{9}{15}\)</span>.</p>
+<blockquote>
+<p>Temos que <span class="math inline">\(P(X=0)=1/15\)</span>, <span class="math inline">\(P(X=1)=4/15\)</span> e, assim, <span class="math inline">\(P(0&lt;X&lt;1)=10/15=2/3=1-\alpha\)</span>, de modo que<br />
+<span class="math inline">\(\dfrac{1}{15}\)</span> <span class="math inline">\(=P(X=0)\)</span> <span class="math inline">\(=\alpha P_1(X=0)\)</span> <span class="math inline">\(=1/3~P_1(X=0)\)</span>
+<span class="math inline">\(\Rightarrow P_1(X=0)=\dfrac{1}{5} = 1-P_1(X=1)\)</span>.<br />
+<span class="math inline">\(E(X)\)</span> <span class="math inline">\(=\displaystyle\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2\)</span> <span class="math inline">\(=\displaystyle\dfrac{1}{3}\left\{0\cdot\dfrac{1}{5}+1\cdot\dfrac{4}{5}\right\}+\dfrac{2}{3}\int_{0}^{1} x~f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\dfrac{1}{3}\cdot\dfrac{4}{5}+\dfrac{2}{3}\int_0^1 xdx\)</span> <span class="math inline">\(=\dfrac{4}{15}+\dfrac{1}{3}\)</span> <span class="math inline">\(=\dfrac{4}{15}+\dfrac{5}{15}\)</span> <span class="math inline">\(=\dfrac{9}{15}\)</span>.</p>
+</blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="probabilidade-condicional" class="section level2">
 <h2><span class="header-section-number">A.5</span> Probabilidade Condicional</h2>
-<p><strong>Motivação:</strong> <span class="math inline">\(P(A|B)=\)</span> <span class="math inline">\(\dfrac{P(A\cap B)}{P(B)}\)</span> é bem definido se <span class="math inline">\(P(B)&gt;0.\)</span></p>
-<p><span class="math inline">\(~\)</span></p>
+<p><strong>Motivação:</strong> <span class="math inline">\(P(B|A)=\)</span> <span class="math inline">\(\dfrac{P(A\cap B)}{P(A)}\)</span> é bem definido se <span class="math inline">\(P(A)&gt;0.\)</span></p>
 <p>Seja <span class="math inline">\(X,Y: \Omega \longrightarrow \mathbb{R}\)</span> v.a. tais que <span class="math inline">\(P_X\left([0,1]\right)=1\)</span> e <span class="math inline">\(P_Y\left(\{0,1\}\right)=1\)</span>. Considere um experimento em dois estagios onde seleciona-se <span class="math inline">\(X\)</span> segundo uma distribuição absolutamente contínua <span class="math inline">\(F_X\)</span> e, dado <span class="math inline">\(X=x\)</span>, <span class="math inline">\(0\leq x\leq 1\)</span>, uma moeda com probabilidade <span class="math inline">\(x\)</span> é lançada <span class="math inline">\(n\)</span> vezes. Nesse caso, é natural definir <span class="math inline">\(Y~\big|~X=x\sim \text{Bin}(n,x)\)</span>, mesmo que <span class="math inline">\(P(X=x)=0\)</span>, <span class="math inline">\(\forall x \in [0,1]\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Teorema da Medida Produto (para medidas de probabilidade)</strong> Seja <span class="math inline">\((\Omega_1, \mathcal{A}_1,P_1)\)</span> um espaço de probabilidade e <span class="math inline">\((\Omega_2,\mathcal{A}_2)\)</span> um espaço mensurável. Para cada <span class="math inline">\(w_1 \in \Omega_1,\)</span> defina uma medida de probabilidade <span class="math inline">\(\mu(w_1,.)\)</span> em <span class="math inline">\(\mathcal{A}_2.\)</span> Assuma que, para cada <span class="math inline">\(B \in \mathcal{A}_2,\)</span> <span class="math inline">\(\mu(.,B)\)</span> também é <span class="math inline">\(\mathcal{A}_1\)</span>-mensurável. Então, existe uma única medida de probabilidade <span class="math inline">\(P\)</span> em <span class="math inline">\(\mathcal{A}=\mathcal{A}_1\times \mathcal{A}_2\)</span> tal que <span class="math inline">\(P(A\times B)=\)</span> <span class="math inline">\(\int_A \mu(w_1,B)dP_1(w_1),\)</span> <span class="math inline">\(\forall A\in \mathcal{A}_1,\)</span> <span class="math inline">\(\forall B\in \mathcal{A}_2.\)</span></p>
-<p>Se <span class="math inline">\(D(w_1)\)</span> denota uma secção de <span class="math inline">\(D\)</span> em <span class="math inline">\(w_1,\)</span> isto é, <span class="math inline">\(D(w_1)=\)</span> <span class="math inline">\(\{w_2\in \Omega_2: (w_1,w_2)\in D\},\)</span> <span class="math inline">\(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\)</span> então</p>
-<p><span class="math inline">\(P(D)=\)</span> <span class="math inline">\(\int_{\Omega_1} \mu(w_1,D(w_1))dP_1(w_1).\)</span></p>
-<hr />
-<p>Voltando à probabilidade condicional,</p>
-<p>Vamos interpretar (informalmneto por enquanto) <span class="math inline">\(\mu(x,B)\)</span> como <span class="math inline">\(P(Y\in B| X=x).\)</span> Ainda informalmente, vamos pensar no evento <span class="math inline">\(\{X=x\}.\)</span> Intuitivamente, a probabilidade que <span class="math inline">\(X\in (x,x+dx]\)</span> é <span class="math inline">\(dF(x).\)</span></p>
-<p>Então, sabendo que <span class="math inline">\(\{X=x\},\)</span> o evento <span class="math inline">\(\{(X,Y)\in C\}\)</span> ocorre se, e somente, <span class="math inline">\(Y \in C(x)=\)</span> <span class="math inline">\(\{y:(x,y)\in C\}\)</span> e a probabilidade desse evento é <span class="math inline">\(\mu(x,C(x)).\)</span> Pela regra da probabilidade total,</p>
-<p><span class="math inline">\(P(C)=\)</span> <span class="math inline">\(\int_{-\infty}^{\infty}\mu(x,C(x))dF(x).\)</span></p>
-<p>Se <span class="math inline">\(C=\{(x,y): x\in A, y \in B\}=\)</span> <span class="math inline">\(A\times B,\)</span> <span class="math inline">\(C(x)=B\)</span> se <span class="math inline">\(x\in A\)</span> e <span class="math inline">\(C(x)=\phi\)</span> se <span class="math inline">\(x \notin A,\)</span> então</p>
-<p><span class="math inline">\(P(C)=\)</span> <span class="math inline">\(P(A\times B)=\)</span> <span class="math inline">\(\int_A \mu(x,B)dF(x)\)</span></p>
-<p>Se <span class="math inline">\(\mu(x,B)\)</span> é mensurável em <span class="math inline">\(x\)</span> para cada <span class="math inline">\(B\in \mathcal{B}(\mathbb{R}),\)</span> antão pelo Teorema anterior, <span class="math inline">\(P\)</span> é único.</p>
-<p><strong>Exemplo:</strong> Se <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Ben(n,x)\)</span> <span class="math inline">\((\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X),\)</span> onde</p>
-<p><span class="math inline">\(P_X(A)=\)</span> <span class="math inline">\(\int_A dF_X(x)=\)</span> <span class="math inline">\(\int_A f_X(x)dx=\)</span> <span class="math inline">\(\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx\)</span></p>
-<p>para <span class="math inline">\(A \in \mathcal{A}_1.\)</span> Além disso, considere <span class="math inline">\(\Omega_2=\{0,1,\ldots,n\},\)</span> <span class="math inline">\(\mathcal{A}_2=\mathcal{P}(\Omega_2)\)</span> e, para cada <span class="math inline">\(x \in [0,1],\)</span></p>
-<p><span class="math inline">\(\mu(x,B)=\)</span> <span class="math inline">\(P(Y \in B| X=x).\)</span> Então, pra <span class="math inline">\(k=0,1,\ldots,n;\)</span> <span class="math inline">\(\mu(x,B)=\)</span> <span class="math inline">\(P(Y\in B| X=x)=\)</span> <span class="math inline">\(\binom{n}{k}x^k(1-x)^{n-k}\)</span> (que é mensurável em <span class="math inline">\(x\)</span>).</p>
-<p>Tomando <span class="math inline">\(\Omega=\Omega_1 \times \Omega_2,\)</span> <span class="math inline">\(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,\)</span> <span class="math inline">\(P\)</span> é a única medida de probabilidade determinada por <span class="math inline">\(P_X (ou \; F_X)\)</span> e <span class="math inline">\(\mu(x,.).\)</span></p>
-<p><span class="math inline">\(P(C)=\)</span> <span class="math inline">\(\int_{\Omega_1}\mu(x,C(x))dP_X=\)</span> <span class="math inline">\(\int_0^1 \mu(x,C(x))dF_X(x)=\)</span> <span class="math inline">\(\int_0^1 \mu(x,C(x))f_X(x)dx,\)</span> <span class="math inline">\(C \in\mathcal{A}.\)</span></p>
+<p><strong>Teorema da Medida Produto (para medidas de probabilidade)</strong><br />
+Seja <span class="math inline">\((\Omega_1, \mathcal{A}_1,P_1)\)</span> um espaço de probabilidade e <span class="math inline">\((\Omega_2,\mathcal{A}_2)\)</span> um espaço mensurável. Para cada <span class="math inline">\(\omega_1 \in \Omega_1,\)</span> defina uma medida de probabilidade <span class="math inline">\(\mu(\omega_1,.)\)</span> em <span class="math inline">\(\mathcal{A}_2.\)</span> Assuma também que, para cada <span class="math inline">\(B \in \mathcal{A}_2,\)</span> <span class="math inline">\(\mu(.,B)\)</span> é <span class="math inline">\(\mathcal{A}_1\)</span>-mensurável. Então, existe uma única medida de probabilidade <span class="math inline">\(P\)</span> em <span class="math inline">\(\mathcal{A}= \mathcal{A}_1\times\mathcal{A}_2\)</span> tal que</p>
+<p><span class="math inline">\(P(A\times B)\)</span> <span class="math inline">\(=\displaystyle\int_A \mu(\omega_1,B)dP_1(\omega_1)~,~\)</span> <span class="math inline">\(\forall A\in \mathcal{A}_1,\)</span> <span class="math inline">\(\forall B\in \mathcal{A}_2.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Se <span class="math inline">\(D(\omega_1)\)</span> denota uma secção de <span class="math inline">\(D\)</span> em <span class="math inline">\(\omega_1,\)</span> isto é, <span class="math inline">\(D(\omega_1)=\)</span> <span class="math inline">\(\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},\)</span> <span class="math inline">\(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\)</span> então</p>
+<p><span class="math inline">\(P(D)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1} \mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Voltando à probabilidade condicional, interprete (informalmente, por enquanto) a medida <span class="math inline">\(\mu(x,B)\)</span> do teorema anterior como <span class="math inline">\(P(Y\in B| X=x).\)</span> Ainda informalmente, considere o evento <span class="math inline">\(\{X=x\}\)</span>. Intuitivamente, a probabilidade que <span class="math inline">\(X\in (x,x+dx]\)</span> é <span class="math inline">\(dF_X(x).\)</span>
+Então, sabendo que <span class="math inline">\(X=x\)</span> ocorreu, o evento <span class="math inline">\(\left\{(X,Y)\in C\right\}\)</span> ocorre se, e somente, <span class="math inline">\(Y \in C(x)\)</span> <span class="math inline">\(=\{y:(x,y)\in C\}\)</span> e a probabilidade desse evento é <span class="math inline">\(\mu(x,C(x)).\)</span> Pela regra da probabilidade total,</p>
+<p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=P\left(\left\{(X,Y)\in C\right\}\right)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mu\left(x,C(x)\right)dF(x).\)</span></p>
+<p>Se <span class="math inline">\(C=\{(x,y):~ x\in A, y \in B\}\)</span> <span class="math inline">\(=A\times B~,\)</span> <span class="math inline">\(C(x)=B\)</span> se <span class="math inline">\(x\in A\)</span> e <span class="math inline">\(C(x)=\varnothing\)</span> se <span class="math inline">\(x \notin A~,\)</span> então</p>
+<p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=P(A\times B)\)</span> <span class="math inline">\(=\displaystyle\int_A \mu(x,B)dF(x)\)</span></p>
+<p>Se <span class="math inline">\(\mu(x,B)\)</span> é mensurável em <span class="math inline">\(x\)</span> para cada <span class="math inline">\(B\in \mathcal{B}(\mathbb{R}),\)</span> então, pelo Teorema anterior, <span class="math inline">\(P\)</span> é única.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Exemplo:</strong> Se <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Bin(n,x)\)</span></p>
+<p><span class="math inline">\(\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),\)</span> onde</p>
+<p><span class="math inline">\(P_X(A)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_A f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx\)</span></p>
+<p>para <span class="math inline">\(A \in \mathcal{A}_1.\)</span></p>
+<p>Além disso, considere <span class="math inline">\(\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)\)</span> e, para cada <span class="math inline">\(x \in [0,1],\)</span> <span class="math inline">\(\mu(x,B)=P(Y \in B| X=x).\)</span> Então, pra <span class="math inline">\(k=0,1,\ldots,n,\)</span></p>
+<p><span class="math inline">\(\mu(x,B)\)</span> <span class="math inline">\(=P(Y\in B| X=x)\)</span> <span class="math inline">\(=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~\)</span> (que é mensurável em <span class="math inline">\(x\)</span>).</p>
+<p>Tomando <span class="math inline">\(\Omega=\Omega_1 \times \Omega_2,\)</span> <span class="math inline">\(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,\)</span> <span class="math inline">\(P\)</span> é a única medida de probabilidade determinada por <span class="math inline">\(P_X\)</span> (ou <span class="math inline">\(F_X\)</span>) e <span class="math inline">\(\mu(x,\cdot)~.\)</span></p>
+<p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx,\)</span> <span class="math inline">\(C \in \mathcal{A}.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 <p>Por exemplo, se <span class="math inline">\(C=\Omega_1 \times \{k\},\)</span> temos</p>
-<p><span class="math inline">\(P(Y=k)=\)</span> <span class="math inline">\(P(\Omega_1 \times \{k\})=\)</span> <span class="math inline">\(\int_0^1P(Y=k|X=x)dF(x)=\)</span> <span class="math inline">\(\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}\)</span> <span class="math inline">\(\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=\)</span> <span class="math inline">\(\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}\)</span> <span class="math inline">\(\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}\)</span> <span class="math inline">\(x^{a+k-1}(1-x)^{b+n-k-1}dx=\)</span> <span class="math inline">\(\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.\)</span></p>
+<p><span class="math inline">\(P_Y\left(Y=k\right)\)</span> <span class="math inline">\(=P\left(\Omega_1 \times \{k\}\right)\)</span>
+<span class="math inline">\(=P\left(\left\{X\in[0,1]\right\}~,~\{Y=k\}\right)\)</span>
+<span class="math inline">\(\int_0^1P(Y=k|X=x)dF(x)=\)</span> <span class="math inline">\(\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}\)</span> <span class="math inline">\(\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=\)</span> <span class="math inline">\(\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}\)</span> <span class="math inline">\(\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}\)</span> <span class="math inline">\(x^{a+k-1}(1-x)^{b+n-k-1}dx=\)</span> <span class="math inline">\(\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.\)</span></p>
 <p><span class="math inline">\((Y \sim Beta Bin (n,a,b))\)</span></p>
 <p><strong>Teorema</strong> <span class="math inline">\(X: (\Omega,\mathcal{A}) \longrightarrow (\mathfrak{X},\mathcal{F})\)</span> em <span class="math inline">\((\Omega,\mathcal{A},P)\)</span> e <span class="math inline">\(B \in \mathcal{A}.\)</span> Então <span class="math inline">\(\exists g:\mathfrak{X} \longrightarrow \mathbb{R}\)</span> tal que, para cada <span class="math inline">\(A \in \mathcal{F},\)</span> <span class="math inline">\(P(\{x\in A\}\cap B)=\)</span> <span class="math inline">\(\int_Ag(x)dP_X(x).\)</span></p>
 <p>Além disso, <span class="math inline">\(g\)</span> é única <span class="math inline">\(P_X\)</span>-q.c.</p>
@@ -704,13 +722,13 @@ Basta escrever <span class="math inline">\(X=X^+-X^-\)</span> e repetir o proced
 </blockquote>
 <p><strong>Exemplo</strong></p>
 <p><span class="math inline">\((\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)\)</span></p>
-<p><span class="math inline">\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, &amp; w_1 \leq 1/2 &amp; (A_1)\\ x_2, &amp; w_2 &gt; 1/2 &amp; (A_2)\end{array}\right.\)</span></p>
-<p><span class="math inline">\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_1, &amp; w_1 \leq w_2 &amp; (B_1)\\ y_2, &amp; w_1 &gt; w_2&amp; (B_2)\end{array}\right.\)</span></p>
+<p><span class="math inline">\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, &amp; \omega_1 \leq 1/2 &amp; (A_1)\\ x_2, &amp; \omega_2 &gt; 1/2 &amp; (A_2)\end{array}\right.\)</span></p>
+<p><span class="math inline">\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_1, &amp; \omega_1 \leq \omega_2 &amp; (B_1)\\ y_2, &amp; \omega_1 &gt; \omega_2&amp; (B_2)\end{array}\right.\)</span></p>
 <p>IMAGEM DAS PARTIÇÕES</p>
 <p><span class="math inline">\(P_X(x_1)=\)</span> <span class="math inline">\(P(X^{-1}(\{x_1\}))=\)</span> <span class="math inline">\(P(\boldsymbol \omega \in A_1)=\)</span> <span class="math inline">\(\lambda(A_1)=1/2\)</span></p>
 <p><span class="math inline">\(P_Y(y_1)=\)</span> <span class="math inline">\(P(Y^{-1}(\{y_1\}))=\)</span> <span class="math inline">\(P(\boldsymbol \omega \in B_1)=\)</span> <span class="math inline">\(\lambda(B_1)=1/2\)</span></p>
-<p><span class="math inline">\(\sigma_X =\)</span> <span class="math inline">\(\{\phi,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span> (é sub-<span class="math inline">\(\sigma\)</span>-álgebra)</p>
-<p><span class="math inline">\(\sigma_Y =\)</span> <span class="math inline">\(\{\phi,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span></p>
+<p><span class="math inline">\(\sigma_X =\)</span> <span class="math inline">\(\{\varnothing,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span> (é sub-<span class="math inline">\(\sigma\)</span>-álgebra)</p>
+<p><span class="math inline">\(\sigma_Y =\)</span> <span class="math inline">\(\{\varnothing,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span></p>
 <p>Seja <span class="math inline">\(\boldsymbol Z(\boldsymbol \omega)=\)</span> <span class="math inline">\((X(\boldsymbol \omega), Y(\boldsymbol \omega))=\)</span> <span class="math inline">\((X,Y)(\boldsymbol \omega),\)</span> <span class="math inline">\(Z: \Omega\longrightarrow \mathbb{R}^2\)</span> <span class="math inline">\(Z(\boldsymbol \omega)=\)</span> <span class="math inline">\(\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)\)</span> é função simples.</p>
 <p><span class="math inline">\(Z(\boldsymbol \omega)=\left\{\begin{array}{ll} (x_1,y_1)=z_1, &amp; \boldsymbol \omega \in A_1 \cap B_1=C_1\\ (x_1,y_2)=z_2, &amp; \boldsymbol \omega \in A_1 \cap B_2=C_2\\ (x_2,y_1)=z_3, &amp; \boldsymbol \omega \in A_2 \cap B_1=C_3\\ (x_2,y_2)=z_4, &amp; \boldsymbol \omega \in A_2 \cap B_2=C_4 \end{array}\right.\)</span></p>
 <p><span class="math inline">\(P_Z((\underbrace{x_1,y_2}_{z_2}))=\)</span> <span class="math inline">\(P_Z((\underbrace{x_2,y_1}_{z_3}))=\)</span> <span class="math inline">\(\dfrac{1}{8}=\)</span> <span class="math inline">\(\lambda(\underbrace{A_1\cap B_2}_{C_2})=\)</span> <span class="math inline">\(\lambda(\underbrace{A_2\cap B_1}_{C_3})\)</span></p>

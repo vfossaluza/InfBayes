@@ -116,7 +116,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-08-25}
+\date{2020-08-27}
 
 \begin{document}
 \maketitle
@@ -2635,7 +2635,7 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
 \item
   Os elementos de \(\mathcal{A}\) são chamados de \emph{eventos} e serão denotados por \(A, B, C, \ldots, A_1, A_2, \ldots\)
 \item
-  Uma coleção de eventos \(A_1,A_2,\ldots\) forma uma \emph{partição} de \(\Omega\) se \(A_i \cap A_j = \emptyset\), \(\forall i \neq j\), e \(\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega\).
+  Uma coleção de eventos \(A_1,A_2,\ldots\) forma uma \emph{partição} de \(\Omega\) se \(A_i \cap A_j = \varnothing\), \(\forall i \neq j\), e \(\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega\).
 \item
   \((\Omega, \mathcal{A})\): \emph{espaço mensurável}.
 \item
@@ -2644,9 +2644,9 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
   \begin{itemize}
   \tightlist
   \item
-    \(\sigma(\Omega) = \{\emptyset,\Omega\}~~\) (\(\sigma\)-ágebra trivial);
+    \(\sigma(\Omega) = \{\varnothing,\Omega\}~~\) (\(\sigma\)-ágebra trivial);
   \item
-    Para \(A \subset \Omega\), \(\sigma(A) = \{\emptyset, A, A^c, \Omega\}\);
+    Para \(A \subset \Omega\), \(\sigma(A) = \{\varnothing, A, A^c, \Omega\}\);
   \item
     \(\sigma(\mathbb{N}) = \mathcal{P}(\mathbb{N})~~\) (partes de \(\mathbb{N}\), todos o subconjuntos de \(\mathbb{N}\));
   \item
@@ -2657,8 +2657,8 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
 \(~\)
 
 \textbf{Definição:} A função \(\mu: \mathcal{A} \longrightarrow \bar{\mathbb{R}}_+\) é uma \emph{medida} se\\
-1. \(\mu(\emptyset) = 0\);\\
-2. \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \emptyset\) , \(\forall i \neq j\) , \(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\).
+1. \(\mu(\varnothing) = 0\);\\
+2. \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \varnothing\) , \(\forall i \neq j\) , \(\displaystyle \mu\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} \mu\left(A_i\right)\).
 
 \begin{itemize}
 \tightlist
@@ -2669,19 +2669,19 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 1 (medida de contagem):} Seja \(\Omega\) um conjunto não vazio e \(A\subseteq \Omega\). Defina \(\nu(A)=|A|\) como o número de elementos (cardinalidade) de \(A\). Assim, \(\nu(\Omega) > 0\), \(\nu(\emptyset)=0\) e, se \((A_n)_{n \geq 1}\) é uma sequência de eventos disjuntos, então \(\nu(\cup A_n) = \sum \nu(A_n)\). Note que \(\nu(A)=\infty\) é possivel se \(\Omega\) tem infinitos elementos.
+\textbf{Exemplo 1 (medida de contagem):} Seja \(\Omega\) um conjunto não vazio e \(A\subseteq \Omega\). Defina \(\nu(A)=|A|\) como o número de elementos (cardinalidade) de \(A\). Assim, \(\nu(\Omega) > 0\), \(\nu(\varnothing)=0\) e, se \((A_n)_{n \geq 1}\) é uma sequência de eventos disjuntos, então \(\nu(\cup A_n) = \sum \nu(A_n)\). Note que \(\nu(A)=\infty\) é possivel se \(\Omega\) tem infinitos elementos.
 \end{quote}
 
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2 (medida de Lebesgue):} Seja \(\Omega=\mathbb{R}\) e \(A\subseteq \Omega\) um intervalo. Se \(A\) é limitado, defina \(\lambda(A)\) como o comprimento do intervalo \(A\). Se \(A\) não é limitado, \(\lambda(A)=\infty\). Note que \(\lambda(\mathbb{R})=\infty\), \(\lambda(\emptyset)=0\) e, se \(A_1 \cap A_2 = \emptyset\) e \(A_1 \cup A_2\) é um intervalo (ou uma união de intervalos disjuntos), então \(\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)\).
+\textbf{Exemplo 2 (medida de Lebesgue):} Seja \(\Omega=\mathbb{R}\) e \(A\subseteq \Omega\) um intervalo. Se \(A\) é limitado, defina \(\lambda(A)\) como o comprimento do intervalo \(A\). Se \(A\) não é limitado, \(\lambda(A)=\infty\). Note que \(\lambda(\mathbb{R})=\infty\), \(\lambda(\varnothing)=0\) e, se \(A_1 \cap A_2 = \varnothing\) e \(A_1 \cup A_2\) é um intervalo (ou uma união de intervalos disjuntos), então \(\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)\).
 \end{quote}
 
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 3:} Seja \(f: \mathbb{R} \longrightarrow \mathbb{R}_+\) uma função contínua e não nula. Para cada intervalo \(A\), defina \(\displaystyle \mu(A) = \int_A f(x) dx = \int_{\mathbb{R}} \mathbb{I}_A(x) f(x) dx\). Então, \(\mu(\mathbb{R})>0\), \(\mu(\emptyset)=0\) e, se \(A_1 \cap A_2 = \emptyset\) e \(A_1 \cup A_2\) é um intervalo (ou uma união de intervalos disjuntos), então \(\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)\).
+\textbf{Exemplo 3:} Seja \(f: \mathbb{R} \longrightarrow \mathbb{R}_+\) uma função contínua e não nula. Para cada intervalo \(A\), defina \(\displaystyle \mu(A) = \int_A f(x) dx = \int_{\mathbb{R}} \mathbb{I}_A(x) f(x) dx\). Então, \(\mu(\mathbb{R})>0\), \(\mu(\varnothing)=0\) e, se \(A_1 \cap A_2 = \varnothing\) e \(A_1 \cup A_2\) é um intervalo (ou uma união de intervalos disjuntos), então \(\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2)\).
 \end{quote}
 
 \(~\)
@@ -2696,7 +2696,7 @@ Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma me
 
 \textbf{Definição:} \(P: \mathcal{A} \longrightarrow [0,1]\) é uma \textbf{medida de probabilidade} se\\
 1. \(P(\Omega) = 1\);\\
-2. \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \emptyset\) , \(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\).
+2. \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \varnothing\) , \(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\).
 
 \begin{itemize}
 \tightlist
@@ -2865,7 +2865,7 @@ Se \(E,F \in \mathcal{A}\) com \(E\subseteq F\), \(\displaystyle\int_E XdP \leq 
 
 \begin{quote}
 \textbf{Demo 1.} Seja \(X_n\uparrow X,\) \(X_n \geq 0\) simples. Então \(cX_n\uparrow cX,\) \(cX_n \geq 0,\) simples.\\
-\(\displaystyle\int_\Omega cX dP\) \(=\underset{n\rightarrow\infty}{lim}\int_\Omega cX_n dP\) \(=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP\) \(=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP\) \(=\displaystyle c\int_\Omega X dP\).
+\(\displaystyle\int_\Omega cX dP\) \(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega cX_n dP\) \(=\displaystyle\lim_{n\rightarrow\infty}c\int_\Omega X_n dP\) \(=\displaystyle c\lim_{n\rightarrow\infty}\int_\Omega X_n dP\) \(=\displaystyle c\int_\Omega X dP\).
 \end{quote}
 
 \begin{quote}
@@ -3002,37 +3002,45 @@ Logo, \(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\int_{\mathbb{R}}g~dP_
 
 \(~\)
 
-Suponha agora \(X\) v.a. discreta assumindo valores em \(\{x_1,x_2,\ldots\}\) com probabilidade \(1\). Nesse caso, \(P(X \in A)\) \(=\displaystyle\sum_{i:~x_i\in A} P(X=x_i)\). Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\sum_{i=1}^\infty g(x_i)P(X=x_i)\).
+Suponha agora \(X\) v.a. discreta assumindo valores em \(\{x_1,x_2,\ldots\}\) com probabilidade \(1\). Nesse caso, para \(A\subseteq\mathcal{B}(\mathbb{R})\),
+
+\(P_X(A)\) \(=P_X(X \in A)\) \(=P\left(\{\omega\in\Omega: X(\omega) \in A\}\right)\) \(=\displaystyle\sum_{i:~x_i\in A} P_X(X=x_i)\).
+
+Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\sum_{i=1}^\infty g(x_i)P_X(X=x_i)\).
 
 \begin{quote}
 \textbf{Caso 1.} \(g\) simples com \(g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\), \(g_1,\ldots,g_k \in \mathbb{R}_+\) \(B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})\). Então,\\
 \(E\left[g(X)\right]\) \(=\displaystyle\int_\Omega g(X)~dP\)
+\(=\displaystyle\sum_{i=1}^k g_i~P\left(X^{-1}(B_i)\right)\)
 \(=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)\)
-\(=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P(X = x_j)\)
-\(=\displaystyle\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P(X=x_j)\)
-\(=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P(X = x_j)\).
+\(=\displaystyle\sum_{i=1}^k g_i \sum_{j:~x_j \in B_i}^k P_X(X = x_j)\)
+\(=\displaystyle\sum_{i=1}^k g_i \sum_{j=1}^\infty \mathbb{I}_{B_i}(x_j)P_X(X=x_j)\)
+\(=\displaystyle\sum_{j=1}^\infty \underbrace{\left(\sum_{i=1}^k g_i ~\mathbb{I}_{B_i}(x_j)\right)}_{g(x_j)}P_X(X = x_j)\).
 \end{quote}
 
 \(~\)
 
 \begin{quote}
 \textbf{Caso 2.} \(g\geq 0,\) \(g_n\geq0,\) \(g_n\) simples tal que \(g_n \uparrow g\)\\
-\(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP\) \(=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P(X=x_j)\right\}\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)\)
+\(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\lim_{n\rightarrow\infty}\int_\Omega g_n(X)dP\) \(=\displaystyle\lim_{n\rightarrow\infty}\left\{\sum_{j=1}^\infty g_n(x_j)P_X(X=x_j)\right\}\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X = x_j)\)
 \end{quote}
 
 \(~\)
 
 \begin{quote}
 \textbf{Caso 3.} Agora para \(g: \mathbb{R} \longrightarrow \mathbb{R}\), temos\\
-\(\displaystyle\int_\Omega g^+(X)dP\) \(=\displaystyle\sum_{j=1}^\infty g^+(x_j)P(X = x_j)\) e \(\displaystyle\int_\Omega g^-(X)dP\) \(=\displaystyle\sum_{j=1}^\infty g^-(x_j)P(X = x_j)\).\\
-Logo, \(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X = x_j)\).
+\(\displaystyle\int_\Omega g^+(X)dP\)
+\(=\displaystyle\sum_{j=1}^\infty g^+(x_j)P_X(X = x_j)\) e
+\(\displaystyle\int_\Omega g^-(X)dP\)
+\(=\displaystyle\sum_{j=1}^\infty g^-(x_j)P_X(X = x_j)\).\\
+Logo, \(\displaystyle\int_\Omega g(X)dP\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X = x_j)\).
 \end{quote}
 
 \(~\)
 
 \(~\)
 
-Suponha agora \(X\) v.a. absolutamente contínua com função de densidade de probabilidade \(f_X\). Nesse caso, \(P_X(X\in A)\) \(=\displaystyle\int_Af_X(t)dt\) \(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\). Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\int_{\mathbb{R}} g(x)f(x)dx\).
+Suponha agora \(X\) v.a. absolutamente contínua com função de densidade de probabilidade \(f_X\), ou seja, pode-se escrever \(P_X(X\in A)\) \(=\displaystyle\int_Af_X(t)dt\) \(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A(t)f_X(t)dt\). Vamos ``verificar'' que \(E\left[g(X)\right]\) \(=\displaystyle\int_{\mathbb{R}} g(x)f_X(x)dx\).
 
 \begin{quote}
 \textbf{Caso 1.} \(g\) simples com \(g = \displaystyle\sum_{i=1}^kg_i~\mathbb{I}_{B_i}\), \(g_1,\ldots,g_k \in \mathbb{R}_+\) \(B_1,\ldots,B_k \in \mathcal{B}(\mathbb{R})\). Então,\\
@@ -3041,9 +3049,9 @@ Suponha agora \(X\) v.a. absolutamente contínua com função de densidade de pr
 \(=\displaystyle\int_\Omega\left(\sum_{i=1}^k g_i~\mathbb{I}_{X^{-1}(B_i)}\right)dP\)
 \(=\displaystyle\sum_{i=1}^k g_i~P(X^{-1}(B_i))\)
 \(=\displaystyle\sum_{i=1}^k g_i~P_X(B_i)\)
-\(=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f(x)dx\)
-\(=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f(x)dx\)
-\(=\displaystyle\int_{\mathbb{R}}g(x)f(x)dx\).
+\(=\displaystyle\sum_{i=1}^k g_i~\int_{\mathbb{R}}\mathbb{I}_{B_i}(x)f_X(x)dx\)
+\(=\displaystyle\int_{\mathbb{R}}\sum_{i=1}^k g_i\mathbb{I}_{B_i}(x)f_X(x)dx\)
+\(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\).
 \end{quote}
 
 \begin{quote}
@@ -3058,7 +3066,7 @@ Assim, em geral, vale que:
 
 \begin{itemize}
 \item
-  \(X\) discreto: \(E[g(X)]\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P(X=x_j)\);
+  \(X\) discreto: \(E[g(X)]\) \(=\displaystyle\sum_{j=1}^\infty g(x_j)P_X(X=x_j)\);
 \item
   \(X\) (absolutamente) contínuo: \(E[g(X)]\) \(=\displaystyle\int_{\mathbb{R}}g(x)f_X(x)dx\).
 \end{itemize}
@@ -3225,18 +3233,19 @@ Seja \(P_1\) uma distribuição discreta com \(P_1\left(\left\{x_1,x_2,\ldots,\r
 
 \(E(X)\) \(=\displaystyle\int_\Omega XdP\) \(=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2\) \(=\displaystyle\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx\)
 
-\textbf{Exemplo.} Considere uma v.a. \(X\) com f.d. dada por
-
+\begin{quote}
+\textbf{Exemplo.} Considere uma v.a. \(X\) com f.d. dada por\\
 \(F_X(t)=\left\{\begin{array}{ll} 0, & t<0\\ \dfrac{1}{15}+\dfrac{2}{3}t, & 0\leq t < 1\\ 1, & t \geq 1\end{array}\right.\)
+\end{quote}
 
 \begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/FDmistura-1} \end{center}
 
-Temos que \(P(X=0)=1/15\), \(P(X=1)=4/15\) e, assim, \(P(0<X<1)=10/15=2/3=1-\alpha\), de modo que
-
+\begin{quote}
+Temos que \(P(X=0)=1/15\), \(P(X=1)=4/15\) e, assim, \(P(0<X<1)=10/15=2/3=1-\alpha\), de modo que\\
 \(\dfrac{1}{15}\) \(=P(X=0)\) \(=\alpha P_1(X=0)\) \(=1/3~P_1(X=0)\)
-\(\Rightarrow P_1(X=0)=\dfrac{1}{5} = 1-P_1(X=1)\).
-
+\(\Rightarrow P_1(X=0)=\dfrac{1}{5} = 1-P_1(X=1)\).\\
 \(E(X)\) \(=\displaystyle\alpha\int_\Omega XdP_1+(1-\alpha)\int_\Omega X dP_2\) \(=\displaystyle\dfrac{1}{3}\left\{0\cdot\dfrac{1}{5}+1\cdot\dfrac{4}{5}\right\}+\dfrac{2}{3}\int_{0}^{1} x~f_X(x)dx\) \(=\displaystyle\dfrac{1}{3}\cdot\dfrac{4}{5}+\dfrac{2}{3}\int_0^1 xdx\) \(=\dfrac{4}{15}+\dfrac{1}{3}\) \(=\dfrac{4}{15}+\dfrac{5}{15}\) \(=\dfrac{9}{15}\).
+\end{quote}
 
 \(~\)
 
@@ -3245,51 +3254,63 @@ Temos que \(P(X=0)=1/15\), \(P(X=1)=4/15\) e, assim, \(P(0<X<1)=10/15=2/3=1-\alp
 \hypertarget{probabilidade-condicional}{%
 \section{Probabilidade Condicional}\label{probabilidade-condicional}}
 
-\textbf{Motivação:} \(P(A|B)=\) \(\dfrac{P(A\cap B)}{P(B)}\) é bem definido se \(P(B)>0.\)
-
-\(~\)
+\textbf{Motivação:} \(P(B|A)=\) \(\dfrac{P(A\cap B)}{P(A)}\) é bem definido se \(P(A)>0.\)
 
 Seja \(X,Y: \Omega \longrightarrow \mathbb{R}\) v.a. tais que \(P_X\left([0,1]\right)=1\) e \(P_Y\left(\{0,1\}\right)=1\). Considere um experimento em dois estagios onde seleciona-se \(X\) segundo uma distribuição absolutamente contínua \(F_X\) e, dado \(X=x\), \(0\leq x\leq 1\), uma moeda com probabilidade \(x\) é lançada \(n\) vezes. Nesse caso, é natural definir \(Y~\big|~X=x\sim \text{Bin}(n,x)\), mesmo que \(P(X=x)=0\), \(\forall x \in [0,1]\).
 
 \(~\)
 
-\textbf{Teorema da Medida Produto (para medidas de probabilidade)} Seja \((\Omega_1, \mathcal{A}_1,P_1)\) um espaço de probabilidade e \((\Omega_2,\mathcal{A}_2)\) um espaço mensurável. Para cada \(w_1 \in \Omega_1,\) defina uma medida de probabilidade \(\mu(w_1,.)\) em \(\mathcal{A}_2.\) Assuma que, para cada \(B \in \mathcal{A}_2,\) \(\mu(.,B)\) também é \(\mathcal{A}_1\)-mensurável. Então, existe uma única medida de probabilidade \(P\) em \(\mathcal{A}=\mathcal{A}_1\times \mathcal{A}_2\) tal que \(P(A\times B)=\) \(\int_A \mu(w_1,B)dP_1(w_1),\) \(\forall A\in \mathcal{A}_1,\) \(\forall B\in \mathcal{A}_2.\)
+\textbf{Teorema da Medida Produto (para medidas de probabilidade)}\\
+Seja \((\Omega_1, \mathcal{A}_1,P_1)\) um espaço de probabilidade e \((\Omega_2,\mathcal{A}_2)\) um espaço mensurável. Para cada \(\omega_1 \in \Omega_1,\) defina uma medida de probabilidade \(\mu(\omega_1,.)\) em \(\mathcal{A}_2.\) Assuma também que, para cada \(B \in \mathcal{A}_2,\) \(\mu(.,B)\) é \(\mathcal{A}_1\)-mensurável. Então, existe uma única medida de probabilidade \(P\) em \(\mathcal{A}= \mathcal{A}_1\times\mathcal{A}_2\) tal que
 
-Se \(D(w_1)\) denota uma secção de \(D\) em \(w_1,\) isto é, \(D(w_1)=\) \(\{w_2\in \Omega_2: (w_1,w_2)\in D\},\) \(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\) então
+\(P(A\times B)\) \(=\displaystyle\int_A \mu(\omega_1,B)dP_1(\omega_1)~,~\) \(\forall A\in \mathcal{A}_1,\) \(\forall B\in \mathcal{A}_2.\)
 
-\(P(D)=\) \(\int_{\Omega_1} \mu(w_1,D(w_1))dP_1(w_1).\)
+\(~\)
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+Se \(D(\omega_1)\) denota uma secção de \(D\) em \(\omega_1,\) isto é, \(D(\omega_1)=\) \(\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},\) \(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\) então
 
-Voltando à probabilidade condicional,
+\(P(D)\) \(=\displaystyle\int_{\Omega_1} \mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).\)
 
-Vamos interpretar (informalmneto por enquanto) \(\mu(x,B)\) como \(P(Y\in B| X=x).\) Ainda informalmente, vamos pensar no evento \(\{X=x\}.\) Intuitivamente, a probabilidade que \(X\in (x,x+dx]\) é \(dF(x).\)
+\(~\)
 
-Então, sabendo que \(\{X=x\},\) o evento \(\{(X,Y)\in C\}\) ocorre se, e somente, \(Y \in C(x)=\) \(\{y:(x,y)\in C\}\) e a probabilidade desse evento é \(\mu(x,C(x)).\) Pela regra da probabilidade total,
+\(~\)
 
-\(P(C)=\) \(\int_{-\infty}^{\infty}\mu(x,C(x))dF(x).\)
+Voltando à probabilidade condicional, interprete (informalmente, por enquanto) a medida \(\mu(x,B)\) do teorema anterior como \(P(Y\in B| X=x).\) Ainda informalmente, considere o evento \(\{X=x\}\). Intuitivamente, a probabilidade que \(X\in (x,x+dx]\) é \(dF_X(x).\)
+Então, sabendo que \(X=x\) ocorreu, o evento \(\left\{(X,Y)\in C\right\}\) ocorre se, e somente, \(Y \in C(x)\) \(=\{y:(x,y)\in C\}\) e a probabilidade desse evento é \(\mu(x,C(x)).\) Pela regra da probabilidade total,
 
-Se \(C=\{(x,y): x\in A, y \in B\}=\) \(A\times B,\) \(C(x)=B\) se \(x\in A\) e \(C(x)=\phi\) se \(x \notin A,\) então
+\(P(C)\) \(=P\left(\left\{(X,Y)\in C\right\}\right)\) \(=\displaystyle\int_{\mathbb{R}}\mu\left(x,C(x)\right)dF(x).\)
 
-\(P(C)=\) \(P(A\times B)=\) \(\int_A \mu(x,B)dF(x)\)
+Se \(C=\{(x,y):~ x\in A, y \in B\}\) \(=A\times B~,\) \(C(x)=B\) se \(x\in A\) e \(C(x)=\varnothing\) se \(x \notin A~,\) então
 
-Se \(\mu(x,B)\) é mensurável em \(x\) para cada \(B\in \mathcal{B}(\mathbb{R}),\) antão pelo Teorema anterior, \(P\) é único.
+\(P(C)\) \(=P(A\times B)\) \(=\displaystyle\int_A \mu(x,B)dF(x)\)
 
-\textbf{Exemplo:} Se \(X \sim Beta(a,b)\) e \(Y|X=x \sim Ben(n,x)\) \((\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X),\) onde
+Se \(\mu(x,B)\) é mensurável em \(x\) para cada \(B\in \mathcal{B}(\mathbb{R}),\) então, pelo Teorema anterior, \(P\) é única.
 
-\(P_X(A)=\) \(\int_A dF_X(x)=\) \(\int_A f_X(x)dx=\) \(\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx\)
+\(~\)
 
-para \(A \in \mathcal{A}_1.\) Além disso, considere \(\Omega_2=\{0,1,\ldots,n\},\) \(\mathcal{A}_2=\mathcal{P}(\Omega_2)\) e, para cada \(x \in [0,1],\)
+\textbf{Exemplo:} Se \(X \sim Beta(a,b)\) e \(Y|X=x \sim Bin(n,x)\)
 
-\(\mu(x,B)=\) \(P(Y \in B| X=x).\) Então, pra \(k=0,1,\ldots,n;\) \(\mu(x,B)=\) \(P(Y\in B| X=x)=\) \(\binom{n}{k}x^k(1-x)^{n-k}\) (que é mensurável em \(x\)).
+\(\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),\) onde
 
-Tomando \(\Omega=\Omega_1 \times \Omega_2,\) \(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,\) \(P\) é a única medida de probabilidade determinada por \(P_X (ou \; F_X)\) e \(\mu(x,.).\)
+\(P_X(A)\) \(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)\) \(=\displaystyle\int_A f_X(x)dx\) \(=\displaystyle\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx\)
 
-\(P(C)=\) \(\int_{\Omega_1}\mu(x,C(x))dP_X=\) \(\int_0^1 \mu(x,C(x))dF_X(x)=\) \(\int_0^1 \mu(x,C(x))f_X(x)dx,\) \(C \in\mathcal{A}.\)
+para \(A \in \mathcal{A}_1.\)
+
+Além disso, considere \(\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)\) e, para cada \(x \in [0,1],\) \(\mu(x,B)=P(Y \in B| X=x).\) Então, pra \(k=0,1,\ldots,n,\)
+
+\(\mu(x,B)\) \(=P(Y\in B| X=x)\) \(=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~\) (que é mensurável em \(x\)).
+
+Tomando \(\Omega=\Omega_1 \times \Omega_2,\) \(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,\) \(P\) é a única medida de probabilidade determinada por \(P_X\) (ou \(F_X\)) e \(\mu(x,\cdot)~.\)
+
+\(P(C)\) \(=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X\) \(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)\) \(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx,\) \(C \in \mathcal{A}.\)
+
+\(~\)
 
 Por exemplo, se \(C=\Omega_1 \times \{k\},\) temos
 
-\(P(Y=k)=\) \(P(\Omega_1 \times \{k\})=\) \(\int_0^1P(Y=k|X=x)dF(x)=\) \(\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}\) \(\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=\) \(\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}\) \(\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}\) \(x^{a+k-1}(1-x)^{b+n-k-1}dx=\) \(\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.\)
+\(P_Y\left(Y=k\right)\) \(=P\left(\Omega_1 \times \{k\}\right)\)
+\(=P\left(\left\{X\in[0,1]\right\}~,~\{Y=k\}\right)\)
+\(\int_0^1P(Y=k|X=x)dF(x)=\) \(\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}\) \(\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=\) \(\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}\) \(\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}\) \(x^{a+k-1}(1-x)^{b+n-k-1}dx=\) \(\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.\)
 
 \((Y \sim Beta Bin (n,a,b))\)
 
@@ -3345,9 +3366,9 @@ Então, se \(A \in \mathcal{B}(\mathbb{R}),\)
 
 \((\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)\)
 
-\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, & w_1 \leq 1/2 & (A_1)\\ x_2, & w_2 > 1/2 & (A_2)\end{array}\right.\)
+\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, & \omega_1 \leq 1/2 & (A_1)\\ x_2, & \omega_2 > 1/2 & (A_2)\end{array}\right.\)
 
-\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_1, & w_1 \leq w_2 & (B_1)\\ y_2, & w_1 > w_2& (B_2)\end{array}\right.\)
+\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_1, & \omega_1 \leq \omega_2 & (B_1)\\ y_2, & \omega_1 > \omega_2& (B_2)\end{array}\right.\)
 
 IMAGEM DAS PARTIÇÕES
 
@@ -3355,9 +3376,9 @@ IMAGEM DAS PARTIÇÕES
 
 \(P_Y(y_1)=\) \(P(Y^{-1}(\{y_1\}))=\) \(P(\boldsymbol \omega \in B_1)=\) \(\lambda(B_1)=1/2\)
 
-\(\sigma_X =\) \(\{\phi,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\) (é sub-\(\sigma\)-álgebra)
+\(\sigma_X =\) \(\{\varnothing,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\) (é sub-\(\sigma\)-álgebra)
 
-\(\sigma_Y =\) \(\{\phi,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)
+\(\sigma_Y =\) \(\{\varnothing,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)
 
 Seja \(\boldsymbol Z(\boldsymbol \omega)=\) \((X(\boldsymbol \omega), Y(\boldsymbol \omega))=\) \((X,Y)(\boldsymbol \omega),\) \(Z: \Omega\longrightarrow \mathbb{R}^2\) \(Z(\boldsymbol \omega)=\) \(\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)\) é função simples.
 
