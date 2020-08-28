@@ -640,7 +640,7 @@ $~$
 
 (ii) *Absolutamente Contínua* é contínua se existe $f: \mathbb{R} \rightarrow \mathbb{R}$ tal que $P_X\left((a,b]\right)=F_c(b)-F_c(a) = \displaystyle\int_{a}^{b} f(t)~dt$. A função $f$ é a *função de densidade de probabilidade* de $X$;
 
-(iii) *Singular* se $F_s$ é contínua com $F_s'=0~$ $\lambda$-q.c. ($F_s$ é singular com relação à medida de Lebesgue $\lambda$).
+(iii) *Singular* se $F_s$ é contínua com $F_s'=0~$ $[\lambda]$ q.c. ($F_s$ é singular com relação à medida de Lebesgue $\lambda$).
 
 **Resultado:** Toda f.d. $F$ pode ser escrita como $F=\alpha_1F_d+\alpha_2F_c+(1-\alpha_1+\alpha_2)F_s$, com $\alpha_1,\alpha_2\geq 0$ tal que $\alpha_1+\alpha_2\leq 1$. 
 
@@ -658,7 +658,7 @@ $~$
 $$\mu_2(A) = \int_A f(x) d\mu_1(x).$$
 Além disso, se $g:\Omega \longrightarrow \mathbb{R}$ é $\mu_2$-integrável, então
 $$\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).$$
-A função $f=\frac{d\mu_2}{d\mu_1}$ é chamada de derivada de Radon-Nikodin da medida $\mu_2$ com relação à medida $\mu_1$ e é única $\mu_1$-q.c. (ou seja, é única em todo conjunto $\Omega$ com eventual excessão de um conjunto $C$ tal que $\mu_1(C)=0$).
+A função $f=\frac{d\mu_2}{d\mu_1}$ é chamada de derivada de Radon-Nikodin da medida $\mu_2$ com relação à medida $\mu_1$ e é única $[\mu_1]$ q.c. (ou seja, é única em todo conjunto $\Omega$ com eventual excessão de um conjunto $C$ tal que $\mu_1(C)=0$).
 
 
 $~$
@@ -791,9 +791,7 @@ $P(A\times B)$ $=\displaystyle\int_A \mu(\omega_1,B)dP_1(\omega_1)~,~$ $\forall 
 
 $~$
 
-Se $D(\omega_1)$ denota uma secção de $D$ em $\omega_1,$ isto é, $D(\omega_1)=$ $\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},$ $D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,$ então
-
-$P(D)$ $=\displaystyle\int_{\Omega_1} \mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).$
+Se $D(\omega_1)$ denota uma secção de $D$ em $\omega_1,$ isto é, $D(\omega_1)=$ $\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},$ $D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,$ então $P(D)$ $=\displaystyle\int_{\Omega_1}\mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).$
 
 $~$
 
@@ -804,7 +802,7 @@ Então, sabendo que $X=x$ ocorreu, o evento $\left\{(X,Y)\in C\right\}$ ocorre s
 
 $P(C)$ $=P\left(\left\{(X,Y)\in C\right\}\right)$ $=\displaystyle\int_{\mathbb{R}}\mu\left(x,C(x)\right)dF(x).$
 
-Se $C=\{(x,y):~ x\in A, y \in B\}$ $=A\times B~,$ $C(x)=B$ se $x\in A$ e $C(x)=\varnothing$ se $x \notin A~,$ então
+Em particular, quando $C=\{(x,y):~ x\in A, y \in B\}$ $=A\times B~,$ $C(x)=B$ se $x\in A$ e $C(x)=\varnothing$ se $x \notin A~,$ então
 
 $P(C)$ $=P(A\times B)$ $=\displaystyle\int_A \mu(x,B)dF(x)$
 
@@ -812,41 +810,41 @@ Se $\mu(x,B)$ é mensurável em $x$ para cada $B\in \mathcal{B}(\mathbb{R}),$ en
 
 $~$
 
-**Exemplo:** Se $X \sim Beta(a,b)$ e $Y|X=x \sim Bin(n,x)$ 
-
-$\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),$ onde
-
-$P_X(A)$  $=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)$ $=\displaystyle\int_A f_X(x)dx$ $=\displaystyle\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx$ 
-
-para $A \in \mathcal{A}_1.$ 
-
-Além disso, considere $\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)$ e, para cada $x \in [0,1],$ $\mu(x,B)=P(Y \in B| X=x).$ Então, pra $k=0,1,\ldots,n,$ 
-
-$\mu(x,B)$ $=P(Y\in B| X=x)$ $=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~$ (que é mensurável em $x$). 
-
-Tomando $\Omega=\Omega_1 \times \Omega_2,$ $\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,$ $P$ é a única medida de probabilidade determinada por $P_X$ (ou $F_X$) e $\mu(x,\cdot)~.$
-
-$P(C)$ $=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X$ $=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)$ $=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx,$ $C \in \mathcal{A}.$
+> **Exemplo:** Seja $X \sim Beta(a,b)$ e $Y|X=x \sim Bin(n,x)$  
+$~$  
+Considere $\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),$ de modo que, para $A \in \mathcal{A}_1~,$    
+$P_X(A)$  $=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)$ $=\displaystyle\int_A f_X(x)dx$ $=\displaystyle\int_A \tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx$.  
+Além disso, considere $\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)$ e, para cada $x \in [0,1]~,$ defina $\mu(x,B)=P(Y \in B~|~ X=x).$ Então, para $k=0,1,\ldots,n,$  
+$\mu\left(x,\{k\}\right)$ $=P(Y=k~|~ X=x)$ $=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~$ (que é mensurável em $x$).  
+Tomando $\Omega=\Omega_1 \times \Omega_2~,~$ $\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2~,~$ $P$ é a única medida de probabilidade determinada por $P_X$ (ou $F_X$) e $\mu(x,\cdot)~.$ Assim, para $C \in \mathcal{A}~,$  
+$P(C)$ $=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X$ $=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)$ $=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx~.$  
+$~$  
+Por exemplo, se $C=\Omega_1 \times \{k\},$ temos  
+$P\left(\Omega_1 \times \{k\}\right)$
+$=P\left(\left\{X\in[0,1]~,~Y=k\right\}\right)$ 
+$=P_Y\left(Y=k\right)$
+$=\displaystyle\int_0^1P(Y=k|X=x)dF_X(x)$ 
+$=\displaystyle\int_0^1P(Y=k|X=x)f_X(x)dx$ 
+$=\displaystyle\int_0^1 \binom{n}{k}x^k(1-x)^{n-k} ~\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx$ 
+$=\displaystyle\binom{n}{k}\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\tfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}\int_0^1\tfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}~x^{(a+k)-1}(1-x)^{(b+n-k)-1}~dx$ 
+$=\displaystyle\binom{n}{k}\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\tfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}$
+$=\displaystyle\binom{n}{k}\dfrac{\beta(a+k,b+n-k)}{\beta(a,b)}~.$  
+$~$  
+Nesse caso, diz-se que $Y \sim \text{Beta-Bin}(n,a,b)$.  
 
 $~$
 
-Por exemplo, se $C=\Omega_1 \times \{k\},$ temos
+$~$
 
-$P_Y\left(Y=k\right)$ $=P\left(\Omega_1 \times \{k\}\right)$ 
-$=P\left(\left\{X\in[0,1]\right\}~,~\{Y=k\}\right)$ 
-$\int_0^1P(Y=k|X=x)dF(x)=$ $\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}$ $\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=$ $\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}$ $\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}$ $x^{a+k-1}(1-x)^{b+n-k-1}dx=$ $\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.$
+**Teorema** Considere $(\Omega,\mathcal{A},P)$ e $X:\Omega \longrightarrow \mathfrak{X}$, $\mathcal{F}$ uma $\sigma$-álgebra de $\mathfrak{X}$ e $B \in \mathcal{A}.$ Então existe $g:\mathfrak{X} \longrightarrow \mathbb{R}$ tal que, para cada $A \in \mathcal{F},$ 
+$P(\{X\in A\}\cap B)$ $=\displaystyle\int_Ag(x)dP_X(x).$  
+Além disso, $g$ é única $[P_X]$ q.c., isto é, $g(x)=P(B|X=x)$ é única $[P_X]$ q.c. para um dado $B\in\mathcal{A}$.
 
-$(Y \sim Beta Bin (n,a,b))$
+> **Demo:** segue diretamente do Teorema de Radon-Nikodin: se $\mu(A)=$ $P(\{x\in A\}\cap B)$ então $\mu$ é medida finita em $\mathcal{F}$ com $\mu << P_X$.
 
-**Teorema** $X: (\Omega,\mathcal{A}) \longrightarrow (\mathfrak{X},\mathcal{F})$ em $(\Omega,\mathcal{A},P)$ e $B \in \mathcal{A}.$ Então $\exists g:\mathfrak{X} \longrightarrow \mathbb{R}$ tal que, para cada $A \in \mathcal{F},$ $P(\{x\in A\}\cap B)=$ $\int_Ag(x)dP_X(x).$
+$~$ 
 
-Além disso, $g$ é única $P_X$-q.c.
-
-($g(x)=P(B|X=x)$ é única $P_X$-q.c. para um dado $B$)
-
-**Demo:** segue diretamente do Teorema de Radom-Nikodim (se $\mu(A)=$ $P(\{x\in A\}\cap B)$ então $\lambda$ é medida finita em $\mathcal{F}$ com $\lambda << P_X$)
-
-**Exemplo1:** $\mathfrak{X}\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Defina 
+**Exemplo 1.** Seja $\mathfrak{X}=\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Defina 
 
 $g(x_i)=$ $P(B|X=x_i)=$ $\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},$ $i=1,2,\ldots$
 

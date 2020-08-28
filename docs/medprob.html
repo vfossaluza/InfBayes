@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-08-27" />
+<meta name="date" content="2020-08-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -599,7 +599,7 @@ Considere agora <span class="math inline">\(g:\mathbb{R}\rightarrow\mathbb{R}\)<
 <ol style="list-style-type: lower-roman">
 <li><p><em>Discreta</em> se existe um conjunto enumerável <span class="math inline">\(B=\{x_1,x_2,\ldots\}\subset \mathbb{R}\)</span> tal que <span class="math inline">\(P_X(B)=1\)</span> e <span class="math inline">\(F_d(x)=\displaystyle\sum_{x_i\leq x} P_X(X=x_i)\)</span>. Nesse caso, <span class="math inline">\(f(x_i)=P_X(X=x_i)\)</span> é chamada <em>função de probabilidade</em> de <span class="math inline">\(X\)</span>;</p></li>
 <li><p><em>Absolutamente Contínua</em> é contínua se existe <span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span> tal que <span class="math inline">\(P_X\left((a,b]\right)=F_c(b)-F_c(a) = \displaystyle\int_{a}^{b} f(t)~dt\)</span>. A função <span class="math inline">\(f\)</span> é a <em>função de densidade de probabilidade</em> de <span class="math inline">\(X\)</span>;</p></li>
-<li><p><em>Singular</em> se <span class="math inline">\(F_s\)</span> é contínua com <span class="math inline">\(F_s&#39;=0~\)</span> <span class="math inline">\(\lambda\)</span>-q.c. (<span class="math inline">\(F_s\)</span> é singular com relação à medida de Lebesgue <span class="math inline">\(\lambda\)</span>).</p></li>
+<li><p><em>Singular</em> se <span class="math inline">\(F_s\)</span> é contínua com <span class="math inline">\(F_s&#39;=0~\)</span> <span class="math inline">\([\lambda]\)</span> q.c. (<span class="math inline">\(F_s\)</span> é singular com relação à medida de Lebesgue <span class="math inline">\(\lambda\)</span>).</p></li>
 </ol>
 <p><strong>Resultado:</strong> Toda f.d. <span class="math inline">\(F\)</span> pode ser escrita como <span class="math inline">\(F=\alpha_1F_d+\alpha_2F_c+(1-\alpha_1+\alpha_2)F_s\)</span>, com <span class="math inline">\(\alpha_1,\alpha_2\geq 0\)</span> tal que <span class="math inline">\(\alpha_1+\alpha_2\leq 1\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -613,7 +613,7 @@ Considere agora <span class="math inline">\(g:\mathbb{R}\rightarrow\mathbb{R}\)<
 <span class="math display">\[\mu_2(A) = \int_A f(x) d\mu_1(x).\]</span>
 Além disso, se <span class="math inline">\(g:\Omega \longrightarrow \mathbb{R}\)</span> é <span class="math inline">\(\mu_2\)</span>-integrável, então
 <span class="math display">\[\int g(x) d\mu_2(x) = \int g(x) f(x) d\mu_1(x).\]</span>
-A função <span class="math inline">\(f=\frac{d\mu_2}{d\mu_1}\)</span> é chamada de derivada de Radon-Nikodin da medida <span class="math inline">\(\mu_2\)</span> com relação à medida <span class="math inline">\(\mu_1\)</span> e é única <span class="math inline">\(\mu_1\)</span>-q.c. (ou seja, é única em todo conjunto <span class="math inline">\(\Omega\)</span> com eventual excessão de um conjunto <span class="math inline">\(C\)</span> tal que <span class="math inline">\(\mu_1(C)=0\)</span>).</p>
+A função <span class="math inline">\(f=\frac{d\mu_2}{d\mu_1}\)</span> é chamada de derivada de Radon-Nikodin da medida <span class="math inline">\(\mu_2\)</span> com relação à medida <span class="math inline">\(\mu_1\)</span> e é única <span class="math inline">\([\mu_1]\)</span> q.c. (ou seja, é única em todo conjunto <span class="math inline">\(\Omega\)</span> com eventual excessão de um conjunto <span class="math inline">\(C\)</span> tal que <span class="math inline">\(\mu_1(C)=0\)</span>).</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição:</strong> <span class="math inline">\((\Omega, \mathcal{A}, P)\)</span> espaço de probabilidade e <span class="math inline">\((\mathfrak{X},\mathcal{F},\mu)\)</span> espaço mensurável. Considere <span class="math inline">\(X: \Omega \longrightarrow \mathfrak{X}\)</span> uma v.a. e <span class="math inline">\(P_X\)</span> a medida induzida por <span class="math inline">\(X\)</span> de <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(P_X(B) = P(X^{-1}(B))\)</span>. Suponha que <span class="math inline">\(P_X \ll \mu\)</span>. Então, a derivada de Radon-Nikodin <span class="math inline">\(f_X = \dfrac{dP_X}{d\mu}\)</span> é chamada <em>densidade de <span class="math inline">\(X\)</span> com respeito à <span class="math inline">\(\mu\)</span></em>.</p>
@@ -670,36 +670,49 @@ Basta escrever <span class="math inline">\(X=X^+-X^-\)</span> e repetir o proced
 Seja <span class="math inline">\((\Omega_1, \mathcal{A}_1,P_1)\)</span> um espaço de probabilidade e <span class="math inline">\((\Omega_2,\mathcal{A}_2)\)</span> um espaço mensurável. Para cada <span class="math inline">\(\omega_1 \in \Omega_1,\)</span> defina uma medida de probabilidade <span class="math inline">\(\mu(\omega_1,.)\)</span> em <span class="math inline">\(\mathcal{A}_2.\)</span> Assuma também que, para cada <span class="math inline">\(B \in \mathcal{A}_2,\)</span> <span class="math inline">\(\mu(.,B)\)</span> é <span class="math inline">\(\mathcal{A}_1\)</span>-mensurável. Então, existe uma única medida de probabilidade <span class="math inline">\(P\)</span> em <span class="math inline">\(\mathcal{A}= \mathcal{A}_1\times\mathcal{A}_2\)</span> tal que</p>
 <p><span class="math inline">\(P(A\times B)\)</span> <span class="math inline">\(=\displaystyle\int_A \mu(\omega_1,B)dP_1(\omega_1)~,~\)</span> <span class="math inline">\(\forall A\in \mathcal{A}_1,\)</span> <span class="math inline">\(\forall B\in \mathcal{A}_2.\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Se <span class="math inline">\(D(\omega_1)\)</span> denota uma secção de <span class="math inline">\(D\)</span> em <span class="math inline">\(\omega_1,\)</span> isto é, <span class="math inline">\(D(\omega_1)=\)</span> <span class="math inline">\(\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},\)</span> <span class="math inline">\(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\)</span> então</p>
-<p><span class="math inline">\(P(D)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1} \mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).\)</span></p>
+<p>Se <span class="math inline">\(D(\omega_1)\)</span> denota uma secção de <span class="math inline">\(D\)</span> em <span class="math inline">\(\omega_1,\)</span> isto é, <span class="math inline">\(D(\omega_1)=\)</span> <span class="math inline">\(\{\omega_2\in \Omega_2: (\omega_1,\omega_2)\in D\},\)</span> <span class="math inline">\(D\in \mathcal{A}=\mathcal{A}_1\times\mathcal{A}_2,\)</span> então <span class="math inline">\(P(D)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1}\mu\left(\omega_1,D(\omega_1)\right)dP_1(\omega_1).\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Voltando à probabilidade condicional, interprete (informalmente, por enquanto) a medida <span class="math inline">\(\mu(x,B)\)</span> do teorema anterior como <span class="math inline">\(P(Y\in B| X=x).\)</span> Ainda informalmente, considere o evento <span class="math inline">\(\{X=x\}\)</span>. Intuitivamente, a probabilidade que <span class="math inline">\(X\in (x,x+dx]\)</span> é <span class="math inline">\(dF_X(x).\)</span>
 Então, sabendo que <span class="math inline">\(X=x\)</span> ocorreu, o evento <span class="math inline">\(\left\{(X,Y)\in C\right\}\)</span> ocorre se, e somente, <span class="math inline">\(Y \in C(x)\)</span> <span class="math inline">\(=\{y:(x,y)\in C\}\)</span> e a probabilidade desse evento é <span class="math inline">\(\mu(x,C(x)).\)</span> Pela regra da probabilidade total,</p>
 <p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=P\left(\left\{(X,Y)\in C\right\}\right)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mu\left(x,C(x)\right)dF(x).\)</span></p>
-<p>Se <span class="math inline">\(C=\{(x,y):~ x\in A, y \in B\}\)</span> <span class="math inline">\(=A\times B~,\)</span> <span class="math inline">\(C(x)=B\)</span> se <span class="math inline">\(x\in A\)</span> e <span class="math inline">\(C(x)=\varnothing\)</span> se <span class="math inline">\(x \notin A~,\)</span> então</p>
+<p>Em particular, quando <span class="math inline">\(C=\{(x,y):~ x\in A, y \in B\}\)</span> <span class="math inline">\(=A\times B~,\)</span> <span class="math inline">\(C(x)=B\)</span> se <span class="math inline">\(x\in A\)</span> e <span class="math inline">\(C(x)=\varnothing\)</span> se <span class="math inline">\(x \notin A~,\)</span> então</p>
 <p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=P(A\times B)\)</span> <span class="math inline">\(=\displaystyle\int_A \mu(x,B)dF(x)\)</span></p>
 <p>Se <span class="math inline">\(\mu(x,B)\)</span> é mensurável em <span class="math inline">\(x\)</span> para cada <span class="math inline">\(B\in \mathcal{B}(\mathbb{R}),\)</span> então, pelo Teorema anterior, <span class="math inline">\(P\)</span> é única.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Exemplo:</strong> Se <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Bin(n,x)\)</span></p>
-<p><span class="math inline">\(\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),\)</span> onde</p>
-<p><span class="math inline">\(P_X(A)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_A f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\int_A \dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx\)</span></p>
-<p>para <span class="math inline">\(A \in \mathcal{A}_1.\)</span></p>
-<p>Além disso, considere <span class="math inline">\(\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)\)</span> e, para cada <span class="math inline">\(x \in [0,1],\)</span> <span class="math inline">\(\mu(x,B)=P(Y \in B| X=x).\)</span> Então, pra <span class="math inline">\(k=0,1,\ldots,n,\)</span></p>
-<p><span class="math inline">\(\mu(x,B)\)</span> <span class="math inline">\(=P(Y\in B| X=x)\)</span> <span class="math inline">\(=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~\)</span> (que é mensurável em <span class="math inline">\(x\)</span>).</p>
-<p>Tomando <span class="math inline">\(\Omega=\Omega_1 \times \Omega_2,\)</span> <span class="math inline">\(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2,\)</span> <span class="math inline">\(P\)</span> é a única medida de probabilidade determinada por <span class="math inline">\(P_X\)</span> (ou <span class="math inline">\(F_X\)</span>) e <span class="math inline">\(\mu(x,\cdot)~.\)</span></p>
-<p><span class="math inline">\(P(C)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx,\)</span> <span class="math inline">\(C \in \mathcal{A}.\)</span></p>
+<blockquote>
+<p><strong>Exemplo:</strong> Seja <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Bin(n,x)\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Considere <span class="math inline">\(\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),\)</span> de modo que, para <span class="math inline">\(A \in \mathcal{A}_1~,\)</span><br />
+<span class="math inline">\(P_X(A)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_A f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\int_A \tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx\)</span>.<br />
+Além disso, considere <span class="math inline">\(\left(\Omega_2=\{0,1,\ldots,n\}, \mathcal{A}_2=\mathcal{P}(\Omega_2)\right)\)</span> e, para cada <span class="math inline">\(x \in [0,1]~,\)</span> defina <span class="math inline">\(\mu(x,B)=P(Y \in B~|~ X=x).\)</span> Então, para <span class="math inline">\(k=0,1,\ldots,n,\)</span><br />
+<span class="math inline">\(\mu\left(x,\{k\}\right)\)</span> <span class="math inline">\(=P(Y=k~|~ X=x)\)</span> <span class="math inline">\(=\displaystyle\binom{n}{k}x^k(1-x)^{n-k}~\)</span> (que é mensurável em <span class="math inline">\(x\)</span>).<br />
+Tomando <span class="math inline">\(\Omega=\Omega_1 \times \Omega_2~,~\)</span> <span class="math inline">\(\mathcal{A}=\mathcal{A}_1 \times \mathcal{A}_2~,~\)</span> <span class="math inline">\(P\)</span> é a única medida de probabilidade determinada por <span class="math inline">\(P_X\)</span> (ou <span class="math inline">\(F_X\)</span>) e <span class="math inline">\(\mu(x,\cdot)~.\)</span> Assim, para <span class="math inline">\(C \in \mathcal{A}~,\)</span><br />
+<span class="math inline">\(P(C)\)</span> <span class="math inline">\(=\displaystyle\int_{\Omega_1}\mu\left(x,C(x)\right)dP_X\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_0^1 \mu\left(x,C(x)\right)f_X(x)dx~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Por exemplo, se <span class="math inline">\(C=\Omega_1 \times \{k\},\)</span> temos<br />
+<span class="math inline">\(P\left(\Omega_1 \times \{k\}\right)\)</span>
+<span class="math inline">\(=P\left(\left\{X\in[0,1]~,~Y=k\right\}\right)\)</span>
+<span class="math inline">\(=P_Y\left(Y=k\right)\)</span>
+<span class="math inline">\(=\displaystyle\int_0^1P(Y=k|X=x)dF_X(x)\)</span>
+<span class="math inline">\(=\displaystyle\int_0^1P(Y=k|X=x)f_X(x)dx\)</span>
+<span class="math inline">\(=\displaystyle\int_0^1 \binom{n}{k}x^k(1-x)^{n-k} ~\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx\)</span>
+<span class="math inline">\(=\displaystyle\binom{n}{k}\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\tfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}\int_0^1\tfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}~x^{(a+k)-1}(1-x)^{(b+n-k)-1}~dx\)</span>
+<span class="math inline">\(=\displaystyle\binom{n}{k}\tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\tfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}\)</span>
+<span class="math inline">\(=\displaystyle\binom{n}{k}\dfrac{\beta(a+k,b+n-k)}{\beta(a,b)}~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Nesse caso, diz-se que <span class="math inline">\(Y \sim \text{Beta-Bin}(n,a,b)\)</span>.</p>
+</blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p>Por exemplo, se <span class="math inline">\(C=\Omega_1 \times \{k\},\)</span> temos</p>
-<p><span class="math inline">\(P_Y\left(Y=k\right)\)</span> <span class="math inline">\(=P\left(\Omega_1 \times \{k\}\right)\)</span>
-<span class="math inline">\(=P\left(\left\{X\in[0,1]\right\}~,~\{Y=k\}\right)\)</span>
-<span class="math inline">\(\int_0^1P(Y=k|X=x)dF(x)=\)</span> <span class="math inline">\(\int_0^1 \binom{n}{k}x^k(1-x)^{n-k}\)</span> <span class="math inline">\(\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1}dx=\)</span> <span class="math inline">\(\dfrac{\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}}{\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}}\)</span> <span class="math inline">\(\int_0^1\dfrac{\Gamma(a+b+n)}{\Gamma(a+k)\Gamma(b+n-k)}\)</span> <span class="math inline">\(x^{a+k-1}(1-x)^{b+n-k-1}dx=\)</span> <span class="math inline">\(\binom{n}{k}\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{\Gamma(a+k)\Gamma(b+n-k)}{\Gamma(a+b+n)}.\)</span></p>
-<p><span class="math inline">\((Y \sim Beta Bin (n,a,b))\)</span></p>
-<p><strong>Teorema</strong> <span class="math inline">\(X: (\Omega,\mathcal{A}) \longrightarrow (\mathfrak{X},\mathcal{F})\)</span> em <span class="math inline">\((\Omega,\mathcal{A},P)\)</span> e <span class="math inline">\(B \in \mathcal{A}.\)</span> Então <span class="math inline">\(\exists g:\mathfrak{X} \longrightarrow \mathbb{R}\)</span> tal que, para cada <span class="math inline">\(A \in \mathcal{F},\)</span> <span class="math inline">\(P(\{x\in A\}\cap B)=\)</span> <span class="math inline">\(\int_Ag(x)dP_X(x).\)</span></p>
-<p>Além disso, <span class="math inline">\(g\)</span> é única <span class="math inline">\(P_X\)</span>-q.c.</p>
-<p>(<span class="math inline">\(g(x)=P(B|X=x)\)</span> é única <span class="math inline">\(P_X\)</span>-q.c. para um dado <span class="math inline">\(B\)</span>)</p>
-<p><strong>Demo:</strong> segue diretamente do Teorema de Radom-Nikodim (se <span class="math inline">\(\mu(A)=\)</span> <span class="math inline">\(P(\{x\in A\}\cap B)\)</span> então <span class="math inline">\(\lambda\)</span> é medida finita em <span class="math inline">\(\mathcal{F}\)</span> com <span class="math inline">\(\lambda &lt;&lt; P_X\)</span>)</p>
-<p><strong>Exemplo1:</strong> <span class="math inline">\(\mathfrak{X}\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Defina</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Teorema</strong> Considere <span class="math inline">\((\Omega,\mathcal{A},P)\)</span> e <span class="math inline">\(X:\Omega \longrightarrow \mathfrak{X}\)</span>, <span class="math inline">\(\mathcal{F}\)</span> uma <span class="math inline">\(\sigma\)</span>-álgebra de <span class="math inline">\(\mathfrak{X}\)</span> e <span class="math inline">\(B \in \mathcal{A}.\)</span> Então existe <span class="math inline">\(g:\mathfrak{X} \longrightarrow \mathbb{R}\)</span> tal que, para cada <span class="math inline">\(A \in \mathcal{F},\)</span>
+<span class="math inline">\(P(\{X\in A\}\cap B)\)</span> <span class="math inline">\(=\displaystyle\int_Ag(x)dP_X(x).\)</span><br />
+Além disso, <span class="math inline">\(g\)</span> é única <span class="math inline">\([P_X]\)</span> q.c., isto é, <span class="math inline">\(g(x)=P(B|X=x)\)</span> é única <span class="math inline">\([P_X]\)</span> q.c. para um dado <span class="math inline">\(B\in\mathcal{A}\)</span>.</p>
+<blockquote>
+<p><strong>Demo:</strong> segue diretamente do Teorema de Radon-Nikodin: se <span class="math inline">\(\mu(A)=\)</span> <span class="math inline">\(P(\{x\in A\}\cap B)\)</span> então <span class="math inline">\(\mu\)</span> é medida finita em <span class="math inline">\(\mathcal{F}\)</span> com <span class="math inline">\(\mu &lt;&lt; P_X\)</span>.</p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Exemplo 1.</strong> Seja <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Defina</p>
 <p><span class="math inline">\(g(x_i)=\)</span> <span class="math inline">\(P(B|X=x_i)=\)</span> <span class="math inline">\(\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},\)</span> <span class="math inline">\(i=1,2,\ldots\)</span></p>
 <p>(<span class="math inline">\(g\)</span> é uma “proposta” para <span class="math inline">\(P(B|\{X=x_i\})\)</span>)</p>
 <p>Se <span class="math inline">\(A \in \mathcal{F}=\)</span> <span class="math inline">\(\mathcal{P}(\mathfrak{X}),\)</span></p>
