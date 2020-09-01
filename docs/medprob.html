@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-08-28" />
+<meta name="date" content="2020-08-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -709,30 +709,46 @@ Nesse caso, diz-se que <span class="math inline">\(Y \sim \text{Beta-Bin}(n,a,b)
 <span class="math inline">\(P(\{X\in A\}\cap B)\)</span> <span class="math inline">\(=\displaystyle\int_Ag(x)dP_X(x).\)</span><br />
 Além disso, <span class="math inline">\(g\)</span> é única <span class="math inline">\([P_X]\)</span> q.c., isto é, <span class="math inline">\(g(x)=P(B|X=x)\)</span> é única <span class="math inline">\([P_X]\)</span> q.c. para um dado <span class="math inline">\(B\in\mathcal{A}\)</span>.</p>
 <blockquote>
-<p><strong>Demo:</strong> segue diretamente do Teorema de Radon-Nikodin: se <span class="math inline">\(\mu(A)=\)</span> <span class="math inline">\(P(\{x\in A\}\cap B)\)</span> então <span class="math inline">\(\mu\)</span> é medida finita em <span class="math inline">\(\mathcal{F}\)</span> com <span class="math inline">\(\mu &lt;&lt; P_X\)</span>.</p>
+<p><strong>Demo:</strong> segue diretamente do Teorema de Radon-Nikodin: se <span class="math inline">\(\mu(A)=\)</span> <span class="math inline">\(P(\{X\in A\}\cap B)\)</span> então <span class="math inline">\(\mu\)</span> é medida finita em <span class="math inline">\(\mathcal{F}\)</span> com <span class="math inline">\(\mu &lt;&lt; P_X\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Exemplo 1.</strong> Seja <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Defina</p>
-<p><span class="math inline">\(g(x_i)=\)</span> <span class="math inline">\(P(B|X=x_i)=\)</span> <span class="math inline">\(\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},\)</span> <span class="math inline">\(i=1,2,\ldots\)</span></p>
-<p>(<span class="math inline">\(g\)</span> é uma “proposta” para <span class="math inline">\(P(B|\{X=x_i\})\)</span>)</p>
-<p>Se <span class="math inline">\(A \in \mathcal{F}=\)</span> <span class="math inline">\(\mathcal{P}(\mathfrak{X}),\)</span></p>
-<p><span class="math inline">\(\int_A g(x)dP_X(x)=\)</span> <span class="math inline">\(\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)=\)</span> <span class="math inline">\(\sum_{i=1}^\infty g(x_i)~\mathbb{I}_A(x_i)P_X(\{x_i\})=\)</span> <span class="math inline">\(\sum_{x_i \in A}g(x_i)P(\{X=x_i\})=\)</span> <span class="math inline">\(\sum_{x_i \in A}P(B \cap \{X=x_i\})=\)</span> <span class="math inline">\(P(\{X\in A\}\cap B).\)</span></p>
-<p><strong>Exemplo 2</strong> <span class="math inline">\(\Omega=\mathbb{R}^2,\)</span> <span class="math inline">\(\mathcal{A}= \mathcal{B}(\mathbb{R}^2),\)</span> <span class="math inline">\(X(x,y)=x,\)</span> <span class="math inline">\(Y(x,y)=y\)</span> <span class="math inline">\((X,Y)\)</span> v.a. com densidade <span class="math inline">\(f\)</span> (<span class="math inline">\(P(A)=\int \int_A f(x,y)dxdy,\)</span> <span class="math inline">\(A \in \mathcal{A}\)</span>).</p>
-<p>Nesse caso <span class="math inline">\(P(\{X=x\})=0, \forall x.\)</span></p>
-<p>Seja <span class="math inline">\(f_1(x)=\int_{-\infty}^{\infty} f(x,y)dy\)</span> a densidade de <span class="math inline">\(X\)</span>.</p>
-<p>Defina <span class="math inline">\(f(y|x)=\dfrac{f(x,y)}{f_1(x)}\)</span> como a densidade condicional de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X=x.\)</span></p>
-<p>Note que <span class="math inline">\(f(y|x)\)</span> só está definido quando <span class="math inline">\(f_1(x) \neq 0.\)</span></p>
-<p>Contudo, se <span class="math inline">\(S=\{(x,y): f_1(x)=0\}\)</span> então <span class="math inline">\(P(\{(X,Y)\in S\})=0\)</span></p>
-<p><span class="math inline">\(P(\{(X,Y)\in S\})=\)</span> <span class="math inline">\(\int \int_S f(x,y)dxdy=\)</span> <span class="math inline">\(\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx=\)</span> <span class="math inline">\(\int_{\{x:f_1(x)=0\}} f_1(x)dx=0.\)</span></p>
-<p>de modo que podemos ignorar o conjunto onde <span class="math inline">\(f(y|x)\)</span> não está definida.</p>
-<p>Se <span class="math inline">\(X=x,\)</span> <span class="math inline">\(\forall B \in \mathcal{A},\)</span> <span class="math inline">\(B\)</span> ocorre se e soente se <span class="math inline">\(Y \in B(x)=\)</span> <span class="math inline">\(\{y:(x,y) \in B\}.\)</span> Assim, vamos propor</p>
-<p><span class="math inline">\(g(x)=\)</span> <span class="math inline">\(P(\{Y \in B(x)|X=x\})=\)</span> <span class="math inline">\(\int_{B(x)}f(y|x)dy=\)</span> <span class="math inline">\(\int_{-\infty}^\infty \mathbb{I}_B(x,y)f(y|x)dy,\)</span></p>
-<p>Então, se <span class="math inline">\(A \in \mathcal{B}(\mathbb{R}),\)</span></p>
-<p><span class="math inline">\(P(\{X \in A\}\cap B)=\)</span> <span class="math inline">\(\underset{\underset{(x,y)\in B}{x\in A}}{\int \int}f(x,y)dxdy=\)</span> <span class="math inline">\(\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}\mathbb{I}_B(x,y)f(y|x)dy\right]~\mathbb{I}_A(x)f_1(x)dx=\)</span> <span class="math inline">\(\int_Af_1(x)dx\underbrace{\int_Bf(y|x)dy}_{g(x)}dx=\)</span> <span class="math inline">\(\int_Ag(x)f_1(x)dx=\)</span> <span class="math inline">\(\int_Ag(x)dP_X(x)\)</span></p>
-<p><span class="math inline">\(\Rightarrow g(x)=P(B|X=x)\)</span></p>
 <blockquote>
-<p><span class="math inline">\(P(X\in A,Y \in B)=\)</span> <span class="math inline">\(\int_A \int_Bf(x,y)dxdy=\)</span> <span class="math inline">\(\int_A \int_Bf(y|x)f_1(x)dydx=\)</span> <span class="math inline">\(\int_B \int_Af(x|y)f_2(y)dxdy\)</span></p>
+<p><strong>Exemplo 1.</strong> Seja <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Para <span class="math inline">\(i=1,2,\ldots\)</span>, considere a função <span class="math inline">\(g\)</span>, uma “proposta” para <span class="math inline">\(P\left(B|\{X=x_i\}\right)\)</span>, definida por <span class="math inline">\(g(x_i)\)</span> <span class="math inline">\(=P\left(B|\{X=x_i\}\right)\)</span> <span class="math inline">\(=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.\)</span><br />
+Seja <span class="math inline">\(A \in \mathcal{F}=\mathcal{P}(\mathfrak{X}),\)</span> então<br />
+<span class="math inline">\(\displaystyle\int_A g(x)~dP_X(x)\)</span>
+<span class="math inline">\(=\displaystyle\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{i=1}^\infty g(x_i)~\mathbb{I}_A(x_i)P_X(X=x_i)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{x_i \in A}g(x_i)P\left(\{X=x_i\}\right)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{x_i \in A}\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}P\left(\{X=x_i\}\right)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{x_i \in A}P\left(B \cap \{X=x_i\}\right)\)</span>
+<span class="math inline">\(=P\left(\{X\in A\}\cap B\right).\)</span></p>
 </blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 2.</strong> Considere agora <span class="math inline">\(\Omega=\mathbb{R}^2,\)</span> <span class="math inline">\(\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),\)</span> <span class="math inline">\(X(x,y)=x,\)</span> <span class="math inline">\(Y(x,y)=y~.\)</span> e <span class="math inline">\(\left(X,Y\right)\)</span> vetor aleatório (absolutamente) contínuo com <em>densidade conjunta</em> <span class="math inline">\(f\)</span>, isto é, <span class="math inline">\(P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~\)</span> <span class="math inline">\(A \in \mathcal{A}~.\)</span> Nesse caso <span class="math inline">\(P\left(\{X=x\}\right)=0~,~~ \forall x~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Seja <span class="math inline">\(f_1(x)=\displaystyle\int_{-\infty}^{\infty} f(x,y)~dy\)</span> a <em>densidade marginal</em> de <span class="math inline">\(X\)</span> e defina <span class="math inline">\(f(y|x)=\dfrac{f(x,y)}{f_1(x)}\)</span> como a <em>densidade condicional</em> de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X=x.\)</span><br />
+Note que <span class="math inline">\(f(y|x)\)</span> só está definido quando <span class="math inline">\(f_1(x) \neq 0.\)</span> Contudo, se <span class="math inline">\(S=\{(x,y): f_1(x)=0\}\)</span> então<br />
+<span class="math inline">\(P\left(\{(X,Y)\in S\}\right)\)</span>
+<span class="math inline">\(=\displaystyle\int \int_S f(x,y)dxdy\)</span> <span class="math inline">\(=\displaystyle\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx\)</span>
+<span class="math inline">\(=\displaystyle\int_{\{x:f_1(x)=0\}} f_1(x)dx=0~,\)</span>
+de modo que <span class="math inline">\(P\left(\{(X,Y)\in S\}\right)=0\)</span> e podemos “ignorar” o conjunto onde <span class="math inline">\(f(y|x)\)</span> não está definida.<br />
+<span class="math inline">\(~\)</span><br />
+Se <span class="math inline">\(X=x,\)</span> <span class="math inline">\(\forall~ B \in \mathcal{A},\)</span> <span class="math inline">\(B\)</span> ocorre se, e somente se, <span class="math inline">\(Y \in B(x)=\left\{y:(x,y) \in B\right\}.\)</span> Assim, considere a “proposta”<br />
+<span class="math inline">\(g(x)\)</span> <span class="math inline">\(=P\left(\left\{Y \in B(x)|X=x\right\}\right)\)</span>
+<span class="math inline">\(=\displaystyle\int_{B(x)}f(y|x)dy\)</span>
+<span class="math inline">\(=\displaystyle\int_{-\infty}^\infty \mathbb{I}_B(x,y)f(y|x)dy~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Então, se <span class="math inline">\(A \in \mathcal{B}(\mathbb{R}),\)</span><br />
+<span class="math inline">\(P\left(\{X \in A\}\cap B\right)\)</span>
+<span class="math inline">\(=\displaystyle\underset{\left\{x\in A~;~(x,y)\in B\right\}}{\int\int} f(x,y)dxdy\)</span>
+<span class="math inline">\(=\displaystyle\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}\mathbb{I}_B(x,y)f(y|x)dy\right]~\mathbb{I}_A(x)f_1(x)dx\)</span>
+<span class="math inline">\(=\displaystyle\int_Af_1(x)dx\underbrace{\int_{B(x)}f(y|x)dy}_{g(x)}dx\)</span>
+<span class="math inline">\(=\displaystyle\int_Ag(x)f_1(x)dx\)</span>
+<span class="math inline">\(=\displaystyle\int_Ag(x)dP_X(x)~.\)</span><br />
+Portanto, <span class="math inline">\(g(x)=P(B|X=x)~.\)</span></p>
+</blockquote>
+<p><span class="math inline">\(P(X\in A,Y \in B)=\)</span> <span class="math inline">\(\int_A \int_Bf(x,y)dxdy=\)</span> <span class="math inline">\(\int_A \int_Bf(y|x)f_1(x)dydx=\)</span> <span class="math inline">\(\int_B \int_Af(x|y)f_2(y)dxdy\)</span></p>
 <p><strong>Exemplo</strong></p>
 <p><span class="math inline">\((\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)\)</span></p>
 <p><span class="math inline">\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, &amp; \omega_1 \leq 1/2 &amp; (A_1)\\ x_2, &amp; \omega_2 &gt; 1/2 &amp; (A_2)\end{array}\right.\)</span></p>

@@ -840,47 +840,47 @@ $~$
 $P(\{X\in A\}\cap B)$ $=\displaystyle\int_Ag(x)dP_X(x).$  
 Além disso, $g$ é única $[P_X]$ q.c., isto é, $g(x)=P(B|X=x)$ é única $[P_X]$ q.c. para um dado $B\in\mathcal{A}$.
 
-> **Demo:** segue diretamente do Teorema de Radon-Nikodin: se $\mu(A)=$ $P(\{x\in A\}\cap B)$ então $\mu$ é medida finita em $\mathcal{F}$ com $\mu << P_X$.
+> **Demo:** segue diretamente do Teorema de Radon-Nikodin: se $\mu(A)=$ $P(\{X\in A\}\cap B)$ então $\mu$ é medida finita em $\mathcal{F}$ com $\mu << P_X$.
 
 $~$ 
 
-**Exemplo 1.** Seja $\mathfrak{X}=\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Defina 
+> **Exemplo 1.** Seja $\mathfrak{X}=\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Para $i=1,2,\ldots$, considere a função $g$, uma "proposta" para $P\left(B|\{X=x_i\}\right)$, definida por $g(x_i)$ $=P\left(B|\{X=x_i\}\right)$ $=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.$  
+Seja $A \in \mathcal{F}=\mathcal{P}(\mathfrak{X}),$ então  
+$\displaystyle\int_A g(x)~dP_X(x)$ 
+$=\displaystyle\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)$ 
+$=\displaystyle\sum_{i=1}^\infty g(x_i)~\mathbb{I}_A(x_i)P_X(X=x_i)$ 
+$=\displaystyle\sum_{x_i \in A}g(x_i)P\left(\{X=x_i\}\right)$ 
+$=\displaystyle\sum_{x_i \in A}\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}P\left(\{X=x_i\}\right)$ 
+$=\displaystyle\sum_{x_i \in A}P\left(B \cap \{X=x_i\}\right)$ 
+$=P\left(\{X\in A\}\cap B\right).$
 
-$g(x_i)=$ $P(B|X=x_i)=$ $\dfrac{P(B\cap \{X=x_i\})}{P(\{X=x_i\})},$ $i=1,2,\ldots$
+$~$
 
-($g$ é uma "proposta" para $P(B|\{X=x_i\})$)
+>**Exemplo 2.** Considere agora $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),$ $X(x,y)=x,$ $Y(x,y)=y~.$ e $\left(X,Y\right)$ vetor aleatório (absolutamente) contínuo com *densidade conjunta* $f$, isto é, $P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~$ $A \in \mathcal{A}~.$ Nesse caso $P\left(\{X=x\}\right)=0~,~~ \forall x~.$  
+$~$  
+Seja $f_1(x)=\displaystyle\int_{-\infty}^{\infty} f(x,y)~dy$ a *densidade marginal* de $X$ e defina $f(y|x)=\dfrac{f(x,y)}{f_1(x)}$ como a *densidade condicional* de $Y$ dado $X=x.$  
+Note que $f(y|x)$ só está definido quando $f_1(x) \neq 0.$  Contudo, se $S=\{(x,y): f_1(x)=0\}$ então  
+$P\left(\{(X,Y)\in S\}\right)$ 
+$=\displaystyle\int \int_S f(x,y)dxdy$ $=\displaystyle\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx$ 
+$=\displaystyle\int_{\{x:f_1(x)=0\}} f_1(x)dx=0~,$
+de modo que $P\left(\{(X,Y)\in S\}\right)=0$ e podemos "ignorar" o conjunto onde $f(y|x)$ não está definida.  
+$~$  
+Se $X=x,$ $\forall~ B \in \mathcal{A},$ $B$ ocorre se, e somente se, $Y \in B(x)=\left\{y:(x,y) \in B\right\}.$ Assim, considere a "proposta"  
+$g(x)$ $=P\left(\left\{Y \in B(x)|X=x\right\}\right)$ 
+$=\displaystyle\int_{B(x)}f(y|x)dy$ 
+$=\displaystyle\int_{-\infty}^\infty \mathbb{I}_B(x,y)f(y|x)dy~.$   
+$~$  
+Então, se $A \in \mathcal{B}(\mathbb{R}),$  
+$P\left(\{X \in A\}\cap B\right)$ 
+$=\displaystyle\underset{\left\{x\in A~;~(x,y)\in B\right\}}{\int\int} f(x,y)dxdy$ 
+$=\displaystyle\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}\mathbb{I}_B(x,y)f(y|x)dy\right]~\mathbb{I}_A(x)f_1(x)dx$ 
+$=\displaystyle\int_Af_1(x)dx\underbrace{\int_{B(x)}f(y|x)dy}_{g(x)}dx$ 
+$=\displaystyle\int_Ag(x)f_1(x)dx$ 
+$=\displaystyle\int_Ag(x)dP_X(x)~.$   
+Portanto, $g(x)=P(B|X=x)~.$
 
-Se $A \in \mathcal{F}=$ $\mathcal{P}(\mathfrak{X}),$
 
-$\int_A g(x)dP_X(x)=$ $\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)=$ $\sum_{i=1}^\infty g(x_i)~\mathbb{I}_A(x_i)P_X(\{x_i\})=$ $\sum_{x_i \in A}g(x_i)P(\{X=x_i\})=$ $\sum_{x_i \in A}P(B \cap \{X=x_i\})=$ $P(\{X\in A\}\cap B).$
-
-**Exemplo 2** $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}(\mathbb{R}^2),$ $X(x,y)=x,$ $Y(x,y)=y$ $(X,Y)$ v.a. com densidade $f$ ($P(A)=\int \int_A f(x,y)dxdy,$ $A \in \mathcal{A}$).
-
-Nesse caso $P(\{X=x\})=0, \forall x.$
-
-Seja $f_1(x)=\int_{-\infty}^{\infty} f(x,y)dy$ a densidade de $X$.
-
-Defina $f(y|x)=\dfrac{f(x,y)}{f_1(x)}$ como a densidade condicional de $Y$ dado $X=x.$
-
-Note que $f(y|x)$ só está definido quando $f_1(x) \neq 0.$
-
-Contudo, se $S=\{(x,y): f_1(x)=0\}$ então $P(\{(X,Y)\in S\})=0$
- 
-$P(\{(X,Y)\in S\})=$ $\int \int_S f(x,y)dxdy=$ $\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx=$ $\int_{\{x:f_1(x)=0\}} f_1(x)dx=0.$
-
-de modo que podemos ignorar o conjunto onde $f(y|x)$ não está definida.
-
-Se $X=x,$ $\forall B \in \mathcal{A},$ $B$ ocorre se e soente se $Y \in B(x)=$ $\{y:(x,y) \in B\}.$ Assim, vamos propor 
-
-$g(x)=$ $P(\{Y \in B(x)|X=x\})=$ $\int_{B(x)}f(y|x)dy=$ $\int_{-\infty}^\infty \mathbb{I}_B(x,y)f(y|x)dy,$ 
-
-Então, se $A \in \mathcal{B}(\mathbb{R}),$ 
-
-$P(\{X \in A\}\cap B)=$ $\underset{\underset{(x,y)\in B}{x\in A}}{\int \int}f(x,y)dxdy=$ $\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}\mathbb{I}_B(x,y)f(y|x)dy\right]~\mathbb{I}_A(x)f_1(x)dx=$ $\int_Af_1(x)dx\underbrace{\int_Bf(y|x)dy}_{g(x)}dx=$ $\int_Ag(x)f_1(x)dx=$ $\int_Ag(x)dP_X(x)$
-
-$\Rightarrow g(x)=P(B|X=x)$
-
-> $P(X\in A,Y \in B)=$ $\int_A \int_Bf(x,y)dxdy=$ $\int_A \int_Bf(y|x)f_1(x)dydx=$ $\int_B \int_Af(x|y)f_2(y)dxdy$
+$P(X\in A,Y \in B)=$ $\int_A \int_Bf(x,y)dxdy=$ $\int_A \int_Bf(y|x)f_1(x)dydx=$ $\int_B \int_Af(x|y)f_2(y)dxdy$
 
 
 **Exemplo**

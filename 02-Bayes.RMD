@@ -40,7 +40,7 @@ $~$
 
 * **Teorema de Bayes:**
 
-$$\underbrace{f(\theta| \boldsymbol x)}_{dist. posteriori}=\dfrac{f(\theta)f(\boldsymbol x|\theta)}{\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta} \propto~ \underbrace{f(\theta)}_{priori}\overbrace{f(\boldsymbol x|\theta).}^{verossimilhança}$$
+$$\underbrace{f(\theta| \boldsymbol x)}_{dist. posteriori}=~~\dfrac{f(\theta)f(\boldsymbol x|\theta)}{\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta} ~\propto~ \underbrace{f(\theta)}_{priori}\overbrace{f(\boldsymbol x|\theta)}^{verossimilhança}.$$
 
 <!-- $$\underbrace{f(\theta| \boldsymbol x)}_{dist. posteriori} = \dfrac{f(\boldsymbol{x}| \theta)}{\int_{\Theta}f(\boldsymbol x|\theta)dP_\theta} \propto f(\boldsymbol x|\theta).$$ -->
 
