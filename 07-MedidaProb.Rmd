@@ -730,10 +730,11 @@ $~$
 
 $~$
 
-**Resultado** Sejam $(\Omega,\mathcal{A})$ espaço mensurável, $P_1,P_2: \mathcal{A}\longrightarrow [0,1]$ medidas de probabilidade, $X: \Omega \longrightarrow \mathbb{R}$ v.a. e $P=\alpha P_1+(1-\alpha)P_2$ com $0\leq\alpha\leq1$. Então,$\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$.
+**Resultado** Sejam $(\Omega,\mathcal{A})$ espaço mensurável, $P_1,P_2: \mathcal{A}\longrightarrow [0,1]$ medidas de probabilidade, $X: \Omega \longrightarrow \mathbb{R}$ v.a. e $P=\alpha P_1+(1-\alpha)P_2$ com $0\leq\alpha\leq1$. Então,  
+$\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$.
 
 > **Caso 1.** $X$ simples, $X=\displaystyle\sum_{i=1}^kX_i~\mathbb{I}_{A_i}$.  
-$\displaystyle\int_\Omega XdP$ $=\displaystyle\sum_{i=1}^kx_i~P(A_i)$ $=\displaystyle\sum_{i=1}^k x_i[\alpha P(A_i)+(1-\alpha)P_2(A_i)]$ $=\displaystyle\alpha \sum_{i=1}^k x_iP(A_i)+(1-\alpha)\sum_{i=1}^k x_iP_2(A_i)$ $=\displaystyle\alpha \int_\Omega XdP_1+(1-\alpha)\int_\Omega XdP_2$.
+$\displaystyle\int_\Omega XdP$ $=\displaystyle\sum_{i=1}^kx_i~P(A_i)$ $=\displaystyle\sum_{i=1}^k x_i[\alpha P_1(A_i)+(1-\alpha)P_2(A_i)]$ $=\displaystyle\alpha \sum_{i=1}^k x_iP_1(A_i)+(1-\alpha)\sum_{i=1}^k x_iP_2(A_i)$ $=\displaystyle\alpha \int_\Omega XdP_1+(1-\alpha)\int_\Omega XdP_2$.
 
 > **Caso 2.** $X \geq 0$.  
 Considere a sequência $\left(X_n\right)_{n\geq 1}$ tal que $X_n \uparrow X$, $X_n \geq 0$ simples. Então,  
@@ -745,9 +746,9 @@ Basta escrever $X=X^+-X^-$ e repetir o procedimento anterior.
 $~$
 
 
-Seja $P_1$ uma distribuição discreta com $P_1\left(\left\{x_1,x_2,\ldots,\right\}\right)=1$, $P_2$ uma distribuição absolutamente contínua com função densidade de probabilidade $f_x$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P_X(X \in A)=$ $\alpha P_1\left(X^{-1}(A)\right)+(1-\alpha)P_2\left(X^{-1}(A)\right)$. Então,
+Seja $P_1$ uma distribuição discreta com $P_1\left(\left\{x_1,x_2,\ldots\right\}\right)=1$, $P_2$ uma distribuição absolutamente contínua com função densidade de probabilidade $f_x$ e $X:\Omega \longrightarrow \mathbb{R}$ tal que $P_X(X \in A)=$ $\alpha P_1\left(X^{-1}(A)\right)+(1-\alpha)P_2\left(X^{-1}(A)\right)$. Então,
 
-$E(X)$ $=\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$ $=\displaystyle\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx$
+$E(X)$ $=\displaystyle\int_\Omega XdP$ $=\displaystyle\alpha \int_\Omega XdP_1 + (1-\alpha)\int_\Omega XdP_2$ $=\displaystyle\alpha \sum_{i=1}^\infty x_iP_1(X=x_i)+(1-\alpha)\int_{-\infty}^\infty x f_X(x)dx~.$
 
 > **Exemplo.** Considere uma v.a. $X$ com f.d. dada por  
 $F_X(t)=\left\{\begin{array}{ll}
@@ -856,7 +857,7 @@ $=P\left(\{X\in A\}\cap B\right).$
 
 $~$
 
->**Exemplo 3.** Considere agora $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),$ $X(x,y)=x,$ $Y(x,y)=y~.$ e $\left(X,Y\right)$ vetor aleatório (absolutamente) contínuo com *densidade conjunta* $f$, isto é, $P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~$ $A \in \mathcal{A}~.$ Nesse caso $P\left(\{X=x\}\right)=0~,~~ \forall x~.$  
+>**Exemplo 3.** Considere agora $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),$ $X(x,y)=x,$ $Y(x,y)=y$ e $\left(X,Y\right)$ vetor aleatório (absolutamente) contínuo com *densidade conjunta* $f$, isto é, $P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~$ $A \in \mathcal{A}~.$ Nesse caso $P\left(\{X=x\}\right)=0~,~~ \forall x~.$  
 $~$  
 Seja $f_1(x)=\displaystyle\int_{-\infty}^{\infty} f(x,y)~dy$ a *densidade marginal* de $X$ e defina $f(y|x)=\dfrac{f(x,y)}{f_1(x)}$ como a *densidade condicional* de $Y$ dado $X=x.$  
 $~$  
@@ -947,9 +948,10 @@ Considere, por exemplo, $x_1=y_1=1$ e $x_2=y_2=2$. Então,
 $E[Y|X=1]$ $=1\cdot\dfrac{1}{4}+2\cdot\dfrac{3}{4}$ $=\dfrac{7}{4}~,$  
 $E[Y|X=2]$ $=1\cdot\dfrac{3}{4}+2\cdot\dfrac{1}{4}$ $=\dfrac{5}{4}~.$  
 $~$  
-Deste modo, podemos definir  
-$E[Y|X](\omega)=\left\{\begin{array}{ll} 5/4, & \omega \in A\\ 7/4, & \omega \in A^c \end{array}\right.$  
+Deste modo, podemos definir uma nova v.a.  
+$E[Y|X](\boldsymbol\omega)=\left\{\begin{array}{ll} 5/4~, & \left\{\boldsymbol\omega:X(\boldsymbol\omega)=x_2\right\}=\{\boldsymbol\omega \in A\}\\ 7/4~, & \left\{\boldsymbol\omega:X(\boldsymbol\omega)=x_1\right\}=\{\boldsymbol\omega \in A^c\} \end{array}\right.~.$  
 $~$  
+Note que a $\sigma$-álgebra gerada pela v.a. $E[Y|X]$ coincide com a gerada por $X$, $\sigma_X$. Dessa forma, podemos definir, de forma equivalente para esse caso, o *valor esperado de $Y$ condicional à $\sigma_X$* por  
 $E[Y|X]=E[Y|\sigma_X]~.$
 
 <!-- $P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$ -->
