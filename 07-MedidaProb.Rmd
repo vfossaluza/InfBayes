@@ -810,7 +810,7 @@ Se $\mu(x,B)$ é mensurável em $x$ para cada $B\in \mathcal{B}(\mathbb{R}),$ en
 
 $~$
 
-> **Exemplo:** Seja $X \sim Beta(a,b)$ e $Y|X=x \sim Bin(n,x)$  
+> **Exemplo 1.** Seja $X \sim Beta(a,b)$ e $Y|X=x \sim Bin(n,x)$  
 $~$  
 Considere $\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),$ de modo que, para $A \in \mathcal{A}_1~,$    
 $P_X(A)$  $=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)$ $=\displaystyle\int_A f_X(x)dx$ $=\displaystyle\int_A \tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx$.  
@@ -844,7 +844,7 @@ Além disso, $g$ é única $[P_X]$ q.c., isto é, $g(x)=P(B|X=x)$ é única $[P_
 
 $~$ 
 
-> **Exemplo 1.** Seja $\mathfrak{X}=\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Para $i=1,2,\ldots$, considere a função $g$, uma "proposta" para $P\left(B|\{X=x_i\}\right)$, definida por $g(x_i)$ $=P\left(B|\{X=x_i\}\right)$ $=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.$  
+> **Exemplo 2.** Seja $\mathfrak{X}=\{x_1,x_2,\ldots\}$ com $p_i=P(\{X=x_i\})>0.$ Para $i=1,2,\ldots$, considere a função $g$, uma "proposta" para $P\left(B|\{X=x_i\}\right)$, definida por $g(x_i)$ $=P\left(B|\{X=x_i\}\right)$ $=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.$  
 Seja $A \in \mathcal{F}=\mathcal{P}(\mathfrak{X}),$ então  
 $\displaystyle\int_A g(x)~dP_X(x)$ 
 $=\displaystyle\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)$ 
@@ -856,9 +856,10 @@ $=P\left(\{X\in A\}\cap B\right).$
 
 $~$
 
->**Exemplo 2.** Considere agora $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),$ $X(x,y)=x,$ $Y(x,y)=y~.$ e $\left(X,Y\right)$ vetor aleatório (absolutamente) contínuo com *densidade conjunta* $f$, isto é, $P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~$ $A \in \mathcal{A}~.$ Nesse caso $P\left(\{X=x\}\right)=0~,~~ \forall x~.$  
+>**Exemplo 3.** Considere agora $\Omega=\mathbb{R}^2,$ $\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),$ $X(x,y)=x,$ $Y(x,y)=y~.$ e $\left(X,Y\right)$ vetor aleatório (absolutamente) contínuo com *densidade conjunta* $f$, isto é, $P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~$ $A \in \mathcal{A}~.$ Nesse caso $P\left(\{X=x\}\right)=0~,~~ \forall x~.$  
 $~$  
 Seja $f_1(x)=\displaystyle\int_{-\infty}^{\infty} f(x,y)~dy$ a *densidade marginal* de $X$ e defina $f(y|x)=\dfrac{f(x,y)}{f_1(x)}$ como a *densidade condicional* de $Y$ dado $X=x.$  
+$~$  
 Note que $f(y|x)$ só está definido quando $f_1(x) \neq 0.$  Contudo, se $S=\{(x,y): f_1(x)=0\}$ então  
 $P\left(\{(X,Y)\in S\}\right)$ 
 $=\displaystyle\int \int_S f(x,y)dxdy$ $=\displaystyle\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx$ 
@@ -879,60 +880,80 @@ $=\displaystyle\int_Ag(x)f_1(x)dx$
 $=\displaystyle\int_Ag(x)dP_X(x)~.$   
 Portanto, $g(x)=P(B|X=x)~.$
 
+$~$
 
-$P(X\in A,Y \in B)=$ $\int_A \int_Bf(x,y)dxdy=$ $\int_A \int_Bf(y|x)f_1(x)dydx=$ $\int_B \int_Af(x|y)f_2(y)dxdy$
+No exemplo anterior, a relações entre as densidades $f(x,y)=f_1(x)f(y|x)$ ou, equivalentemente, $f(x,y)=f_2(y)f(x|y)$, podem ser usadas para obter a probabilidade condicional $\displaystyle P(Y\in C|X=y)=\int_C f(y|x)dy$, $C\in\mathcal{B}(\mathbb{R})$. Além disso, para $A,B\in\mathcal{B}(\mathbb{R})$, existe uma única medida $P$ satisfazendo  
+$P(X\in A,Y \in B)$ 
+$=\displaystyle\int_A P(B|X=x) f_1(x)dxdy$ 
+$=\displaystyle\int_A \int_Bf(y|x)f_1(x)dydx$ 
+$=\displaystyle\int_A \int_B f(x,y)dxdy$ 
+$=\displaystyle\int_B \int_Af(x|y)f_2(y)dxdy~.$
 
+$~$
 
-**Exemplo**
+$~$
 
-$(\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)$
+> **Exemplo 4. Esperança Condicional**  
+Seja $(\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)$ e considere as partições apresentados na figura a seguir.
 
+```{r esperanca, echo=FALSE}
+ggplot() + theme_bw() + 
+  geom_polygon(aes(x=c(1/2,1,1,1/2,1/2),y=c(0,0,1,1,0),fill="A"),alpha=0.6)+
+  geom_polygon(aes(x=c(0,1,0,0),y=c(0,1,1,0),fill="B"),alpha=0.6)+
+  geom_path(aes(x=c(0,1,1,0,0),y=c(0,0,1,1,0)),size=1)+
+  geom_segment(aes(x=c(0.5,0),xend=c(0.5,1),y=c(0,0),yend=c(1,1),colour=c("A","B")),linetype=3)+
+  scale_x_continuous(breaks=c(0,0.5,1)) +
+  scale_y_continuous(breaks=c(0,0.5,1)) +
+  xlab(expression(omega[1])) + ylab(expression(omega[2])) +
+  theme(panel.grid.minor.x=element_blank(),panel.grid.minor.y=element_blank()) +
+  geom_text(aes(x=c(0.05,0.45,0.55,0.95),y=c(0.95,0.05,0.95,0.05),label=c("C3","C1","C4","C2"))) +
+  labs(fill="") +guides(colour=FALSE)
+```
+
+> Defina as v.a. $X$ e $Y$ como  
 $X(\boldsymbol \omega)=\left\{\begin{array}{lll}
-x_1, & \omega_1 \leq 1/2 & (A_1)\\
-x_2, & \omega_2 > 1/2 & (A_2)\end{array}\right.$
-
+x_2, & \omega_1 \geq 1/2 & (A)\\
+x_1, & \omega_2 < 1/2 & (A^c)\end{array}\right.$  
 $Y(\boldsymbol \omega)=\left\{\begin{array}{lll}
-y_1, & \omega_1 \leq \omega_2 & (B_1)\\
-y_2, & \omega_1 > \omega_2& (B_2)\end{array}\right.$
-
-IMAGEM DAS PARTIÇÕES
-
-$P_X(x_1)=$ $P(X^{-1}(\{x_1\}))=$ $P(\boldsymbol \omega \in A_1)=$ $\lambda(A_1)=1/2$
-
-$P_Y(y_1)=$ $P(Y^{-1}(\{y_1\}))=$ $P(\boldsymbol \omega \in B_1)=$ $\lambda(B_1)=1/2$
-
-$\sigma_X =$ $\{\varnothing,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$ (é sub-$\sigma$-álgebra)
-
-$\sigma_Y =$ $\{\varnothing,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)$
-
-Seja $\boldsymbol Z(\boldsymbol \omega)=$ $(X(\boldsymbol \omega), Y(\boldsymbol \omega))=$ $(X,Y)(\boldsymbol \omega),$ $Z: \Omega\longrightarrow \mathbb{R}^2$ $Z(\boldsymbol \omega)=$ $\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)$ é função simples.
-
+y_2, & \omega_1 \leq \omega_2 & (B)\\
+y_1, & \omega_1 > \omega_2& (B^c)\end{array}\right.$  
+$~$  
+$P_X(x_2)$ $=P\left(X^{-1}\left(\{x_2\}\right)\right)$ $=P(\boldsymbol\omega \in A)$ $=\lambda(A)=1/2$  
+$P_Y(y_2)$ $=P\left(Y^{-1}\left(\{y_2\}\right)\right)$ $=P(\boldsymbol\omega \in B)=$ $\lambda(B)=1/2$  
+$~$  
+$\sigma_X$ $=\left\{\varnothing,A,A^c,\Omega\right\} \subseteq \mathcal{B}\left([0,1]^2\right)$ (é sub-$\sigma$-álgebra de $\mathcal{A}$)  
+$\sigma_Y$ $=\left\{\varnothing,B,B^c,\Omega\right\} \subseteq \mathcal{B}\left([0,1]^2\right)$  
+$~$  
+Seja $\boldsymbol Z(\boldsymbol \omega)=$ $\left(X(\boldsymbol \omega), Y(\boldsymbol \omega)\right)$ $=(X,Y)(\boldsymbol \omega)~.$ Então, $Z: \Omega\longrightarrow \mathbb{R}^2$, de modo que $Z(\boldsymbol \omega)$ $=\displaystyle\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)$ é uma função simples com  
 $Z(\boldsymbol \omega)=\left\{\begin{array}{ll}
-(x_1,y_1)=z_1, & \boldsymbol \omega \in A_1 \cap B_1=C_1\\
-(x_1,y_2)=z_2, & \boldsymbol \omega \in A_1 \cap B_2=C_2\\
-(x_2,y_1)=z_3, & \boldsymbol \omega \in A_2 \cap B_1=C_3\\
-(x_2,y_2)=z_4, & \boldsymbol \omega \in A_2 \cap B_2=C_4
-\end{array}\right.$
+\boldsymbol z_1=(x_1,y_1), & \boldsymbol \omega \in A^c \cap B^c=C_1\\
+\boldsymbol z_2=(x_2,y_1), & \boldsymbol \omega \in A \cap B^c=C_2\\
+\boldsymbol z_3=(x_1,y_2), & \boldsymbol \omega \in A^c \cap B=C_3\\
+\boldsymbol z_4=(x_2,y_2), & \boldsymbol \omega \in A \cap B=C_4
+\end{array}\right.~,$  
+onde $C_i=\boldsymbol Z^{-1}\left(\{\boldsymbol z_i\}\right)$ $= \left\{\boldsymbol\omega\in\Omega:\big(X(\boldsymbol\omega),Y(\boldsymbol\omega)\big)=\boldsymbol z_i\right\}~.$ Então,  
+$P_Z(\boldsymbol z_1)$ $=P_Z(\boldsymbol z_4)$ $=P_Z\big((x_1,y_1)\big)$ $=P_Z\big((x_2,y_2)\big)$ $=\dfrac{1}{8}$ $=\lambda(A^c\cap B^c)$ $=\lambda(A\cap B)~,$  
+$P_Z(\boldsymbol z_2)$ $=P_Z(\boldsymbol z_3)$ $=P_Z\big((x_2,y_1)\big)$ $=P_Z\big((x_1,y_2)\big)$ $=\dfrac{3}{8}$ $=\lambda(A\cap B^c)$ $=\lambda(A^c\cap B)~.$  
+$~$  
+Pela que foi visto anteriormente, podemos definir  
+$P_{Y|X=x_i}\left(Y=y_j~|~X=x_i\right)$ 
+$=\dfrac{P\left(\left\{Y=y_j~,~X=x_i\right\}\right)}{P\left(\left\{X=x_i\right\}\right)}$ 
+$=\left\{\begin{array}{ll}\dfrac{1/8}{1/2}=\dfrac{1}{4}~,&i=j\\\dfrac{3/8}{1/2}=\dfrac{3}{4}~,&i\neq j\end{array}\right.~~,$  
+e, assim,  
+$E\left[Y~|~X=x_i\right]$ $=\displaystyle\int y~dP_{Y|x_i}(y)$ 
+$=\displaystyle\sum_{j=1}^{2} y_j~P\left(Y=y_j|X=x_i\right)~.$  
+$~$  
+Considere, por exemplo, $x_1=y_1=1$ e $x_2=y_2=2$. Então,  
+$E[Y|X=1]$ $=1\cdot\dfrac{1}{4}+2\cdot\dfrac{3}{4}$ $=\dfrac{7}{4}~,$  
+$E[Y|X=2]$ $=1\cdot\dfrac{3}{4}+2\cdot\dfrac{1}{4}$ $=\dfrac{5}{4}~.$  
+$~$  
+Deste modo, podemos definir  
+$E[Y|X](\omega)=\left\{\begin{array}{ll} 5/4, & \omega \in A\\ 7/4, & \omega \in A^c \end{array}\right.$  
+$~$  
+$E[Y|X]=E[Y|\sigma_X]~.$
 
-$P_Z((\underbrace{x_1,y_2}_{z_2}))=$ $P_Z((\underbrace{x_2,y_1}_{z_3}))=$ $\dfrac{1}{8}=$ $\lambda(\underbrace{A_1\cap B_2}_{C_2})=$ $\lambda(\underbrace{A_2\cap B_1}_{C_3})$ 
+<!-- $P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$ -->
 
-$P_Z((\underbrace{x_1,y_1}_{z_1}))=$ $P_Z((\underbrace{x_2,y_2}_{z_4}))=$ $\dfrac{3}{8}=$ $\lambda(\underbrace{A_1\cap B_1}_{C_1})=$ $\lambda(\underbrace{A_2\cap B_2}_{C_4})$ 
-
-$P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$
-
-$P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}$
-
-Pela aula passada, podeos calcular $E[X|Y=y_1]$ como $E[X|Y=y_1]=$ $\int x dP_{X|Y=y_1}(x)=$ $\sum_{i=1}^2x_i P_{X|Y=y_1}(x_i|y_1)$
-
-Por exemplo, se $x_1=y_1=1,$ $x_2=y_2=2,$ temos $E[X|Y=1]=$ $1*\dfrac{3}{4}+2*\dfrac{1}{4}=\dfrac{5}{4}$
-
-Analogamente,
-
-$E[X|Y=2]=$ $1*\dfrac{1}{4}+2*\dfrac{3}{4}=\dfrac{7}{4}$
-
-$E[X|Y](\omega)=\left\{\begin{array}{ll}
-5/4, & \omega \in B_1\\
-7/4, & \omega \in B_2
-\end{array}\right.$
-
-$E[X|Y]=E[X|\sigma_X].$
+<!-- $P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}$ -->
+ 
+$~$

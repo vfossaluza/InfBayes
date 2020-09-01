@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-08-31" />
+<meta name="date" content="2020-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,79 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -681,7 +610,7 @@ Então, sabendo que <span class="math inline">\(X=x\)</span> ocorreu, o evento <
 <p>Se <span class="math inline">\(\mu(x,B)\)</span> é mensurável em <span class="math inline">\(x\)</span> para cada <span class="math inline">\(B\in \mathcal{B}(\mathbb{R}),\)</span> então, pelo Teorema anterior, <span class="math inline">\(P\)</span> é única.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo:</strong> Seja <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Bin(n,x)\)</span><br />
+<p><strong>Exemplo 1.</strong> Seja <span class="math inline">\(X \sim Beta(a,b)\)</span> e <span class="math inline">\(Y|X=x \sim Bin(n,x)\)</span><br />
 <span class="math inline">\(~\)</span><br />
 Considere <span class="math inline">\(\left(\Omega_1=[0,1],\mathcal{A}_1=\mathcal{B}([0,1]),P_X\right),\)</span> de modo que, para <span class="math inline">\(A \in \mathcal{A}_1~,\)</span><br />
 <span class="math inline">\(P_X(A)\)</span> <span class="math inline">\(=\displaystyle\int_{\mathbb{R}}\mathbb{I}_A dF_X(x)\)</span> <span class="math inline">\(=\displaystyle\int_A f_X(x)dx\)</span> <span class="math inline">\(=\displaystyle\int_A \tfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}~x^{a-1}(1-x)^{b-1}dx\)</span>.<br />
@@ -713,7 +642,7 @@ Além disso, <span class="math inline">\(g\)</span> é única <span class="math 
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 1.</strong> Seja <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Para <span class="math inline">\(i=1,2,\ldots\)</span>, considere a função <span class="math inline">\(g\)</span>, uma “proposta” para <span class="math inline">\(P\left(B|\{X=x_i\}\right)\)</span>, definida por <span class="math inline">\(g(x_i)\)</span> <span class="math inline">\(=P\left(B|\{X=x_i\}\right)\)</span> <span class="math inline">\(=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.\)</span><br />
+<p><strong>Exemplo 2.</strong> Seja <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots\}\)</span> com <span class="math inline">\(p_i=P(\{X=x_i\})&gt;0.\)</span> Para <span class="math inline">\(i=1,2,\ldots\)</span>, considere a função <span class="math inline">\(g\)</span>, uma “proposta” para <span class="math inline">\(P\left(B|\{X=x_i\}\right)\)</span>, definida por <span class="math inline">\(g(x_i)\)</span> <span class="math inline">\(=P\left(B|\{X=x_i\}\right)\)</span> <span class="math inline">\(=\dfrac{P\left(B\cap \{X=x_i\}\right)}{P\left(\{X=x_i\}\right)}~.\)</span><br />
 Seja <span class="math inline">\(A \in \mathcal{F}=\mathcal{P}(\mathfrak{X}),\)</span> então<br />
 <span class="math inline">\(\displaystyle\int_A g(x)~dP_X(x)\)</span>
 <span class="math inline">\(=\displaystyle\int_{\mathfrak{X}}g(x)~\mathbb{I}_A(x)dP_X(x)\)</span>
@@ -725,9 +654,10 @@ Seja <span class="math inline">\(A \in \mathcal{F}=\mathcal{P}(\mathfrak{X}),\)<
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 2.</strong> Considere agora <span class="math inline">\(\Omega=\mathbb{R}^2,\)</span> <span class="math inline">\(\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),\)</span> <span class="math inline">\(X(x,y)=x,\)</span> <span class="math inline">\(Y(x,y)=y~.\)</span> e <span class="math inline">\(\left(X,Y\right)\)</span> vetor aleatório (absolutamente) contínuo com <em>densidade conjunta</em> <span class="math inline">\(f\)</span>, isto é, <span class="math inline">\(P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~\)</span> <span class="math inline">\(A \in \mathcal{A}~.\)</span> Nesse caso <span class="math inline">\(P\left(\{X=x\}\right)=0~,~~ \forall x~.\)</span><br />
+<p><strong>Exemplo 3.</strong> Considere agora <span class="math inline">\(\Omega=\mathbb{R}^2,\)</span> <span class="math inline">\(\mathcal{A}= \mathcal{B}\left(\mathbb{R}^2\right),\)</span> <span class="math inline">\(X(x,y)=x,\)</span> <span class="math inline">\(Y(x,y)=y~.\)</span> e <span class="math inline">\(\left(X,Y\right)\)</span> vetor aleatório (absolutamente) contínuo com <em>densidade conjunta</em> <span class="math inline">\(f\)</span>, isto é, <span class="math inline">\(P(A)=\displaystyle\int \int_A f(x,y)~dxdy~,~~\)</span> <span class="math inline">\(A \in \mathcal{A}~.\)</span> Nesse caso <span class="math inline">\(P\left(\{X=x\}\right)=0~,~~ \forall x~.\)</span><br />
 <span class="math inline">\(~\)</span><br />
 Seja <span class="math inline">\(f_1(x)=\displaystyle\int_{-\infty}^{\infty} f(x,y)~dy\)</span> a <em>densidade marginal</em> de <span class="math inline">\(X\)</span> e defina <span class="math inline">\(f(y|x)=\dfrac{f(x,y)}{f_1(x)}\)</span> como a <em>densidade condicional</em> de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X=x.\)</span><br />
+<span class="math inline">\(~\)</span><br />
 Note que <span class="math inline">\(f(y|x)\)</span> só está definido quando <span class="math inline">\(f_1(x) \neq 0.\)</span> Contudo, se <span class="math inline">\(S=\{(x,y): f_1(x)=0\}\)</span> então<br />
 <span class="math inline">\(P\left(\{(X,Y)\in S\}\right)\)</span>
 <span class="math inline">\(=\displaystyle\int \int_S f(x,y)dxdy\)</span> <span class="math inline">\(=\displaystyle\int_{\{x:f_1(x)=0\}}\left[\int_{-\infty}^\infty f(x,y)dy\right]dx\)</span>
@@ -748,28 +678,57 @@ Então, se <span class="math inline">\(A \in \mathcal{B}(\mathbb{R}),\)</span><b
 <span class="math inline">\(=\displaystyle\int_Ag(x)dP_X(x)~.\)</span><br />
 Portanto, <span class="math inline">\(g(x)=P(B|X=x)~.\)</span></p>
 </blockquote>
-<p><span class="math inline">\(P(X\in A,Y \in B)=\)</span> <span class="math inline">\(\int_A \int_Bf(x,y)dxdy=\)</span> <span class="math inline">\(\int_A \int_Bf(y|x)f_1(x)dydx=\)</span> <span class="math inline">\(\int_B \int_Af(x|y)f_2(y)dxdy\)</span></p>
-<p><strong>Exemplo</strong></p>
-<p><span class="math inline">\((\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)\)</span></p>
-<p><span class="math inline">\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_1, &amp; \omega_1 \leq 1/2 &amp; (A_1)\\ x_2, &amp; \omega_2 &gt; 1/2 &amp; (A_2)\end{array}\right.\)</span></p>
-<p><span class="math inline">\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_1, &amp; \omega_1 \leq \omega_2 &amp; (B_1)\\ y_2, &amp; \omega_1 &gt; \omega_2&amp; (B_2)\end{array}\right.\)</span></p>
-<p>IMAGEM DAS PARTIÇÕES</p>
-<p><span class="math inline">\(P_X(x_1)=\)</span> <span class="math inline">\(P(X^{-1}(\{x_1\}))=\)</span> <span class="math inline">\(P(\boldsymbol \omega \in A_1)=\)</span> <span class="math inline">\(\lambda(A_1)=1/2\)</span></p>
-<p><span class="math inline">\(P_Y(y_1)=\)</span> <span class="math inline">\(P(Y^{-1}(\{y_1\}))=\)</span> <span class="math inline">\(P(\boldsymbol \omega \in B_1)=\)</span> <span class="math inline">\(\lambda(B_1)=1/2\)</span></p>
-<p><span class="math inline">\(\sigma_X =\)</span> <span class="math inline">\(\{\varnothing,A_1,A_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span> (é sub-<span class="math inline">\(\sigma\)</span>-álgebra)</p>
-<p><span class="math inline">\(\sigma_Y =\)</span> <span class="math inline">\(\{\varnothing,B_1,B_2,\Omega\} \subseteq \mathcal{B}([0,1]^2)\)</span></p>
-<p>Seja <span class="math inline">\(\boldsymbol Z(\boldsymbol \omega)=\)</span> <span class="math inline">\((X(\boldsymbol \omega), Y(\boldsymbol \omega))=\)</span> <span class="math inline">\((X,Y)(\boldsymbol \omega),\)</span> <span class="math inline">\(Z: \Omega\longrightarrow \mathbb{R}^2\)</span> <span class="math inline">\(Z(\boldsymbol \omega)=\)</span> <span class="math inline">\(\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)\)</span> é função simples.</p>
-<p><span class="math inline">\(Z(\boldsymbol \omega)=\left\{\begin{array}{ll} (x_1,y_1)=z_1, &amp; \boldsymbol \omega \in A_1 \cap B_1=C_1\\ (x_1,y_2)=z_2, &amp; \boldsymbol \omega \in A_1 \cap B_2=C_2\\ (x_2,y_1)=z_3, &amp; \boldsymbol \omega \in A_2 \cap B_1=C_3\\ (x_2,y_2)=z_4, &amp; \boldsymbol \omega \in A_2 \cap B_2=C_4 \end{array}\right.\)</span></p>
-<p><span class="math inline">\(P_Z((\underbrace{x_1,y_2}_{z_2}))=\)</span> <span class="math inline">\(P_Z((\underbrace{x_2,y_1}_{z_3}))=\)</span> <span class="math inline">\(\dfrac{1}{8}=\)</span> <span class="math inline">\(\lambda(\underbrace{A_1\cap B_2}_{C_2})=\)</span> <span class="math inline">\(\lambda(\underbrace{A_2\cap B_1}_{C_3})\)</span></p>
-<p><span class="math inline">\(P_Z((\underbrace{x_1,y_1}_{z_1}))=\)</span> <span class="math inline">\(P_Z((\underbrace{x_2,y_2}_{z_4}))=\)</span> <span class="math inline">\(\dfrac{3}{8}=\)</span> <span class="math inline">\(\lambda(\underbrace{A_1\cap B_1}_{C_1})=\)</span> <span class="math inline">\(\lambda(\underbrace{A_2\cap B_2}_{C_4})\)</span></p>
-<p><span class="math inline">\(P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=\)</span> <span class="math inline">\(\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol z_3))}{P_Z(\boldsymbol z_1 \cup \boldsymbol z_3)}=\)</span> <span class="math inline">\(\dfrac{P_Z(\boldsymbol z_1)}{P_Z(\boldsymbol z_1)+P_Z(\boldsymbol z_3)}=\)</span> <span class="math inline">\(\dfrac{3/8}{3/8 + 1/8}=\)</span> <span class="math inline">\(\dfrac{3}{4}=\)</span> <span class="math inline">\(P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=\)</span> <span class="math inline">\(P_{X|Y=y_1}(X=x_1|Y=y_1)=\)</span> <span class="math inline">\(1-P_{X|y_1}(X=x_2|Y=y_1).\)</span></p>
-<p><span class="math inline">\(P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}\)</span></p>
-<p>Pela aula passada, podeos calcular <span class="math inline">\(E[X|Y=y_1]\)</span> como <span class="math inline">\(E[X|Y=y_1]=\)</span> <span class="math inline">\(\int x dP_{X|Y=y_1}(x)=\)</span> <span class="math inline">\(\sum_{i=1}^2x_i P_{X|Y=y_1}(x_i|y_1)\)</span></p>
-<p>Por exemplo, se <span class="math inline">\(x_1=y_1=1,\)</span> <span class="math inline">\(x_2=y_2=2,\)</span> temos <span class="math inline">\(E[X|Y=1]=\)</span> <span class="math inline">\(1*\dfrac{3}{4}+2*\dfrac{1}{4}=\dfrac{5}{4}\)</span></p>
-<p>Analogamente,</p>
-<p><span class="math inline">\(E[X|Y=2]=\)</span> <span class="math inline">\(1*\dfrac{1}{4}+2*\dfrac{3}{4}=\dfrac{7}{4}\)</span></p>
-<p><span class="math inline">\(E[X|Y](\omega)=\left\{\begin{array}{ll} 5/4, &amp; \omega \in B_1\\ 7/4, &amp; \omega \in B_2 \end{array}\right.\)</span></p>
-<p><span class="math inline">\(E[X|Y]=E[X|\sigma_X].\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>No exemplo anterior, a relações entre as densidades <span class="math inline">\(f(x,y)=f_1(x)f(y|x)\)</span> ou, equivalentemente, <span class="math inline">\(f(x,y)=f_2(y)f(x|y)\)</span>, podem ser usadas para obter a probabilidade condicional <span class="math inline">\(\displaystyle P(Y\in C|X=y)=\int_C f(y|x)dy\)</span>, <span class="math inline">\(C\in\mathcal{B}(\mathbb{R})\)</span>. Além disso, para <span class="math inline">\(A,B\in\mathcal{B}(\mathbb{R})\)</span>, existe uma única medida <span class="math inline">\(P\)</span> satisfazendo<br />
+<span class="math inline">\(P(X\in A,Y \in B)\)</span>
+<span class="math inline">\(=\displaystyle\int_A P(B|X=x) f_1(x)dxdy\)</span>
+<span class="math inline">\(=\displaystyle\int_A \int_Bf(y|x)f_1(x)dydx\)</span>
+<span class="math inline">\(=\displaystyle\int_A \int_B f(x,y)dxdy\)</span>
+<span class="math inline">\(=\displaystyle\int_B \int_Af(x|y)f_2(y)dxdy~.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 4. Esperança Condicional</strong><br />
+Seja <span class="math inline">\((\Omega=[0,1]^2, \mathcal{A}=\mathcal{B}([0,1]^2),P=\lambda)\)</span> e considere as partições apresentados na figura a seguir.</p>
+</blockquote>
+<p><img src="InfBayes_files/figure-html/esperanca-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>Defina as v.a. <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> como<br />
+<span class="math inline">\(X(\boldsymbol \omega)=\left\{\begin{array}{lll} x_2, &amp; \omega_1 \geq 1/2 &amp; (A)\\ x_1, &amp; \omega_2 &lt; 1/2 &amp; (A^c)\end{array}\right.\)</span><br />
+<span class="math inline">\(Y(\boldsymbol \omega)=\left\{\begin{array}{lll} y_2, &amp; \omega_1 \leq \omega_2 &amp; (B)\\ y_1, &amp; \omega_1 &gt; \omega_2&amp; (B^c)\end{array}\right.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(P_X(x_2)\)</span> <span class="math inline">\(=P\left(X^{-1}\left(\{x_2\}\right)\right)\)</span> <span class="math inline">\(=P(\boldsymbol\omega \in A)\)</span> <span class="math inline">\(=\lambda(A)=1/2\)</span><br />
+<span class="math inline">\(P_Y(y_2)\)</span> <span class="math inline">\(=P\left(Y^{-1}\left(\{y_2\}\right)\right)\)</span> <span class="math inline">\(=P(\boldsymbol\omega \in B)=\)</span> <span class="math inline">\(\lambda(B)=1/2\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(\sigma_X\)</span> <span class="math inline">\(=\left\{\varnothing,A,A^c,\Omega\right\} \subseteq \mathcal{B}\left([0,1]^2\right)\)</span> (é sub-<span class="math inline">\(\sigma\)</span>-álgebra de <span class="math inline">\(\mathcal{A}\)</span>)<br />
+<span class="math inline">\(\sigma_Y\)</span> <span class="math inline">\(=\left\{\varnothing,B,B^c,\Omega\right\} \subseteq \mathcal{B}\left([0,1]^2\right)\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Seja <span class="math inline">\(\boldsymbol Z(\boldsymbol \omega)=\)</span> <span class="math inline">\(\left(X(\boldsymbol \omega), Y(\boldsymbol \omega)\right)\)</span> <span class="math inline">\(=(X,Y)(\boldsymbol \omega)~.\)</span> Então, <span class="math inline">\(Z: \Omega\longrightarrow \mathbb{R}^2\)</span>, de modo que <span class="math inline">\(Z(\boldsymbol \omega)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^4 \boldsymbol z_i ~\mathbb{I}_{C_i}(\boldsymbol \omega)\)</span> é uma função simples com<br />
+<span class="math inline">\(Z(\boldsymbol \omega)=\left\{\begin{array}{ll} \boldsymbol z_1=(x_1,y_1), &amp; \boldsymbol \omega \in A^c \cap B^c=C_1\\ \boldsymbol z_2=(x_2,y_1), &amp; \boldsymbol \omega \in A \cap B^c=C_2\\ \boldsymbol z_3=(x_1,y_2), &amp; \boldsymbol \omega \in A^c \cap B=C_3\\ \boldsymbol z_4=(x_2,y_2), &amp; \boldsymbol \omega \in A \cap B=C_4 \end{array}\right.~,\)</span><br />
+onde <span class="math inline">\(C_i=\boldsymbol Z^{-1}\left(\{\boldsymbol z_i\}\right)\)</span> <span class="math inline">\(= \left\{\boldsymbol\omega\in\Omega:\big(X(\boldsymbol\omega),Y(\boldsymbol\omega)\big)=\boldsymbol z_i\right\}~.\)</span> Então,<br />
+<span class="math inline">\(P_Z(\boldsymbol z_1)\)</span> <span class="math inline">\(=P_Z(\boldsymbol z_4)\)</span> <span class="math inline">\(=P_Z\big((x_1,y_1)\big)\)</span> <span class="math inline">\(=P_Z\big((x_2,y_2)\big)\)</span> <span class="math inline">\(=\dfrac{1}{8}\)</span> <span class="math inline">\(=\lambda(A^c\cap B^c)\)</span> <span class="math inline">\(=\lambda(A\cap B)~,\)</span><br />
+<span class="math inline">\(P_Z(\boldsymbol z_2)\)</span> <span class="math inline">\(=P_Z(\boldsymbol z_3)\)</span> <span class="math inline">\(=P_Z\big((x_2,y_1)\big)\)</span> <span class="math inline">\(=P_Z\big((x_1,y_2)\big)\)</span> <span class="math inline">\(=\dfrac{3}{8}\)</span> <span class="math inline">\(=\lambda(A\cap B^c)\)</span> <span class="math inline">\(=\lambda(A^c\cap B)~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Pela que foi visto anteriormente, podemos definir<br />
+<span class="math inline">\(P_{Y|X=x_i}\left(Y=y_j~|~X=x_i\right)\)</span>
+<span class="math inline">\(=\dfrac{P\left(\left\{Y=y_j~,~X=x_i\right\}\right)}{P\left(\left\{X=x_i\right\}\right)}\)</span>
+<span class="math inline">\(=\left\{\begin{array}{ll}\dfrac{1/8}{1/2}=\dfrac{1}{4}~,&amp;i=j\\\dfrac{3/8}{1/2}=\dfrac{3}{4}~,&amp;i\neq j\end{array}\right.~~,\)</span><br />
+e, assim,<br />
+<span class="math inline">\(E\left[Y~|~X=x_i\right]\)</span> <span class="math inline">\(=\displaystyle\int y~dP_{Y|x_i}(y)\)</span>
+<span class="math inline">\(=\displaystyle\sum_{j=1}^{2} y_j~P\left(Y=y_j|X=x_i\right)~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Considere, por exemplo, <span class="math inline">\(x_1=y_1=1\)</span> e <span class="math inline">\(x_2=y_2=2\)</span>. Então,<br />
+<span class="math inline">\(E[Y|X=1]\)</span> <span class="math inline">\(=1\cdot\dfrac{1}{4}+2\cdot\dfrac{3}{4}\)</span> <span class="math inline">\(=\dfrac{7}{4}~,\)</span><br />
+<span class="math inline">\(E[Y|X=2]\)</span> <span class="math inline">\(=1\cdot\dfrac{3}{4}+2\cdot\dfrac{1}{4}\)</span> <span class="math inline">\(=\dfrac{5}{4}~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Deste modo, podemos definir<br />
+<span class="math inline">\(E[Y|X](\omega)=\left\{\begin{array}{ll} 5/4, &amp; \omega \in A\\ 7/4, &amp; \omega \in A^c \end{array}\right.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(E[Y|X]=E[Y|\sigma_X]~.\)</span></p>
+</blockquote>
+<!-- $P_Z(\boldsymbol z_1| \boldsymbol z_1 \cap \boldsymbol z_3)=$ $\dfrac{P_Z(\boldsymbol z_1 \cap (\boldsymbol z_1 \cup \boldsymbol  z_3))}{P_Z(\boldsymbol  z_1 \cup \boldsymbol z_3)}=$ $\dfrac{P_Z(\boldsymbol  z_1)}{P_Z(\boldsymbol  z_1)+P_Z(\boldsymbol  z_3)}=$ $\dfrac{3/8}{3/8 + 1/8}=$ $\dfrac{3}{4}=$ $P_Z((X=x_1,Y=y_1)|\overbrace{X \in \{x_1,x_2\}}^{\Omega}, Y=y_1)=$ $P_{X|Y=y_1}(X=x_1|Y=y_1)=$ $1-P_{X|y_1}(X=x_2|Y=y_1).$ -->
+<!-- $P_{X|y_1}(X=x_1|Y=y_2)= \dfrac{1/8}{4/8}=\dfrac{1}{4}$ -->
+<p><span class="math inline">\(~\)</span></p>
 
 </div>
 </div>
