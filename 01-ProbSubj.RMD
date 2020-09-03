@@ -116,18 +116,6 @@ $~$
 
 $~$
 
-**SP5:** Existe uma variável aleatória $X: \Omega \longrightarrow \mathbb{R}$, $\mathcal{A}$-mensurável, tal que $X(\omega) \in [0,1], \forall \omega \in \Omega$ e, se $I_1$ e $I_2$ são intervalos contidos em $[0,1]$,  $\{X \in I_1\} \precsim \{X \in I_2\} \Leftrightarrow \lambda(I_1) \leq \lambda(I_2)~.$
-
-+ Se $I=[a,b] \subseteq [0,1]$, $\lambda(I) = b-a$ é o comprimento do intervalo $I$ (medida de Lebesgue).
-
-+ "Experimento auxiliar" ; $X \sim$ Uniforme[0,1].
-
-+ $\{X \in [a,b]\}$ $\sim \{X \in (a,b]\}$ $\sim \{X \in [a,b)\}$ $\sim \{X \in (a,b)\}$.
-
-
-$~$
-
-
 **Lema 1:** $A, B, D \in \mathcal{A}$ tais que $A \cap D = B \cap D = \emptyset$. Então $$A \precsim B ~\Leftrightarrow~ A \cup D \precsim B \cup D$$
 
 
@@ -174,7 +162,7 @@ $~$
 Se $A_1, \ldots, A_n$ são eventos disjuntos e $B_1, \ldots, B_n$ são também eventos disjuntos tais que $A_i \precsim B_i$, para $i=1,\ldots,n$, então $$\bigcup_{i=1}^{n} A_i \precsim \bigcup_{i=1}^{n} B_i.$$
 Se $A_i \prec B_i$ para algum i, então $\bigcup_{i=1}^{n} A_i \prec \bigcup_{i=1}^{n} B_i.$
 
->**Demo:** Exercício.
+>**Demo:** Basta aplicar SP2 $n-1$ vezes.
 
 $~$
 
@@ -247,11 +235,24 @@ Da primeira parte, temos que $\displaystyle{ \bigcup_{i = n_0+1}^{\infty} A_i \p
 $\displaystyle \bigcup_{i = 1}^{n_0} A_i \cup \bigcup_{i = n_0+1}^{\infty} A_i \prec \bigcup_{i = 1}^{n_0} B_i \cup \bigcup_{i = n_0+1}^{\infty} B_i$  
 provando o resultado.
 
+
 $~$
 
 <!-- Aula 03 -->
 
 ## Medida de Probabilidade que "representa" $\precsim$
+
+$~$
+
+**SP5:** Existe uma variável aleatória $X: \Omega \longrightarrow \mathbb{R}$, $\mathcal{A}$-mensurável, tal que $X(\omega) \in [0,1], \forall \omega \in \Omega$ e, se $I_1$ e $I_2$ são intervalos contidos em $[0,1]$,  $\{X \in I_1\} \precsim \{X \in I_2\} \Leftrightarrow \lambda(I_1) \leq \lambda(I_2)~.$
+
++ Se $I=[a,b] \subseteq [0,1]$, $\lambda(I) = b-a$ é o comprimento do intervalo $I$ (medida de Lebesgue).
+
++ "Experimento auxiliar" ; $X \sim$ Uniforme[0,1].
+
++ $\{X \in [a,b]\}$ $\sim \{X \in (a,b]\}$ $\sim \{X \in [a,b)\}$ $\sim \{X \in (a,b)\}$.
+
+$~$
 
 **Teorema 7:** Seja $A \in \mathcal{A}$. Então $\exists! a^* \in [0,1]$ tal que $A \sim \{X \in [0,a^*]\}$.
 
@@ -303,7 +304,7 @@ $~$
 
 **Corolário 1:** Se $A_1, \ldots, A_n$ são eventos disjuntos, então $P\left(\bigcup_{i=1}^{n} A_i\right) = \sum_{i=1}^{n} P\left(A_i\right)$.
 
-> **Demo:** Indução.
+> **Demo:** Basta repetir o argumento da segunda parte da demonstração anterior $n-1$ vezes.
 
 $~$
 
@@ -316,19 +317,22 @@ Se $b>0$, então $\{X \in [0,b]\} \succ \{X \in [0,b/2]\} \succsim \emptyset$. C
 
 $~$
 
-**Exercício 1:**
-Use o Corolário 1 e o Teorema 10 para conculuir a demonstração do Teorema 9, mostrando que $P$ é $\sigma$-aditiva, isto é, $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \emptyset, \forall i \neq j.$$
+**Teorema 9: (conclusão)**
+Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do Teorema 9, mostrando que $P$ é $\sigma$-aditiva, isto é, $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \emptyset, \forall i \neq j.$$
 
-> **Solução:** Seja $(A_n)_{n \geq 1}$ sequência de eventos disjuntos. Segue do Corolário 1 que  
+> **Demo:** Seja $(A_n)_{n \geq 1}$ sequência de eventos disjuntos. Segue do Corolário 1 que  
 (i) $\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)$, $n=1,2,\ldots$  
 Considere $\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j$, $n \geq 1$, uma sequência decrescente de eventos tais que $\displaystyle \bigcap_{n=1}^{\infty} B_n = \emptyset$. Pelo Teorema 10, segue que $\displaystyle \lim_{n\uparrow \infty} B_n = 0$. Assim, tomando o limite do lado direito de (i), segue que  
 $\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)$ $=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)$ $=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)$.  
 
 $~$
 
-**Teorema 11:** Se a relação de crença $\precsim$ obedece SP1 a SP5 então $\exists !~ P: \mathcal{A} \rightarrow [0,1]$, medida de probabilidade, tal que $P$ representa $\precsim$.
+**Teorema 11:** Se a relação de crença $\precsim$ obedece SP1 a SP5 então $\exists !~ P: \mathcal{A} \rightarrow [0,1]$, medida de probabilidade, tal que $P$ representa $\precsim~.$
 
-> **Demo:** Exercício!
+> **Demo:** 
+Já foi mostrado que $P$ é uma medida de probabilidade $\sigma$-aditiva, de modo que apenas resta mostrar a unicidade de $P$.  
+Considere que existe uma outra medida $P'$ que concorde com a relação $\precsim$. Como $X\sim\text{Unif}(0,1)$, $P'\left(\left\{X\in[0,a]\right\}\right)=a$. Se $A$ é um evento, existe um único $a^*$ tal que $A\sim\{X\in[0,a^*]\}$ e, como $P'$ concorda com a relação $\precsim$,  
+$P'(A)$ $=P'\left(\left\{X\in[0,a^*]\right\}\right)$ $=a^*$ $=P(A)~.$
 
 $~$
 
@@ -343,6 +347,24 @@ $~$
 
 **SP6:** $(A|D) \precsim (B|D) \Leftrightarrow (A \cap D) \precsim (B \cap D)$ $~~\Big( (A \cap D|\Omega) \precsim (B \cap D|\Omega) \Big)$
 
+$~$
+
+**Propriedades decorrentes de SP1 a SP6:**
+
+<!-- 1. $\forall A,B,D$, $(A|D) \precsim (B|D)$.   -->
+
+1. Se $(A|D) \precsim (B|D)$ e $(B|D) \precsim (E|D)$ então $(A|D) \precsim (E|D)$.  
+
+1. $A,B,D,E$ com $A \cap D \cap E \sim B \cap D \cap E \sim \emptyset$. \newline $(A|D) \precsim (B|D)$ $\Leftrightarrow$ $(A \cup E|D) \precsim (B \cup E|D)$.  
+
+1. $(A|D) \precsim (B|D)$ $\Leftrightarrow$ $(A^c|D) \succsim (B^c|D)$.  
+
+1. Seja $B, D$ e $(A_n)_{n \geq 1}$ tal que $A_n \supseteq A_{n+1}$.  
+$(B|D) \precsim (A_n|D)$, $\forall n$, então $\displaystyle (B|D) \precsim \left(\bigcap_{n=1}^{\infty} A_n|D\right)$.  
+
+1. $(A_n)_{n \geq 1}$ e $(B_n)_{n \geq 1}$ tal que $A_i \cap A_j \sim A_k \cap A_l \sim \emptyset$, $i \neq j$, $k \neq l$, e $(A_n|D) \precsim (B_n|D), \forall n$. Então $\displaystyle \left(\bigcup_{n=1}^{\infty} A_n | D \right) \precsim \left(\bigcup_{n=1}^{\infty} B_n | D \right)$
+
+$~$
 
 **Teorema 12:** $\forall A, B, D \in \mathcal{A}$, considere $\precsim$ satisfazendo SP1 a SP6. Então $P: \mathcal{A} \rightarrow [0,1]$ de modo que para cada $A \in \mathcal{A}$ é associada $P(A) \in [0,1]$ tal que $A \sim \left\{X \in \left[0,P(A)\right]\right\}$ é uma medida de probabilidade que representa $\precsim$, isto é, $$(A|\Omega) \precsim (B|\Omega) \Leftrightarrow P(A) \leq P(B).$$ Além disso, se $D \in \mathcal{A}$ é tal que $P(D) \geq 0$, então $$(A|D) \precsim (B|D) \Leftrightarrow P(A|D) \leq P(B|D),$$ onde $P(\cdot|D): \mathcal{A} \rightarrow [0,1]$ é uma medida de probabilidade tal que
 $$P(A|D) = \frac{P(A \cap D)}{P(D)}.$$

@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {1.1}Definição Axiomática}{7}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Interpretações de Probabilidade}{7}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Relação de Crença \(\precsim \)}{8}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Medida de Probabilidade que ``representa'' \(\precsim \)}{12}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Medida de Probabilidade que ``representa'' \(\precsim \)}{11}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Medida de Probabilidade Condicional}{13}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Introdução à Inferência Bayesiana}{15}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Conceitos Básicos}{15}{section.2.1}%
