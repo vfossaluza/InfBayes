@@ -116,7 +116,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-09-02}
+\date{2020-09-15}
 
 \begin{document}
 \maketitle
@@ -170,7 +170,7 @@ A construção de probabilidade subjetiva apresentada aqui pode ser encontrada n
   \item
     \(P(\Omega) = 1\);
   \item
-    \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \emptyset\) , \(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\).
+    \(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\) com \(A_i \bigcap A_j = \varnothing\) , \(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\).
   \end{enumerate}
 \end{itemize}
 
@@ -283,13 +283,13 @@ A construção de probabilidade subjetiva apresentada aqui pode ser encontrada n
 
 \(~\)
 
-\textbf{SP2:} \(A_1, A_2, B_1, B_2 \in \mathcal{A}\) tais que \(A_1 \cap A_2 = B_1 \cap B_2 = \emptyset\) e \(A_i \precsim B_i\), \(i=1,2\). Então
+\textbf{SP2:} \(A_1, A_2, B_1, B_2 \in \mathcal{A}\) tais que \(A_1 \cap A_2 = B_1 \cap B_2 = \varnothing\) e \(A_i \precsim B_i\), \(i=1,2\). Então
 \[A_1 \cup A_2 \precsim B_1 \cup B_2 .\]
 Além disso, se \(A_i \prec B_i\) para algum \(i\), então \(A_1 \cup A_2 \prec B_1 \cup B_2 .\)
 
 \(~\)
 
-\textbf{SP3:} Se \(A\) é um evento, então \(\emptyset \precsim A\). Além disso, \(\emptyset \prec \Omega\).
+\textbf{SP3:} Se \(A\) é um evento, então \(\varnothing \precsim A\). Além disso, \(\varnothing \prec \Omega\).
 
 \(~\)
 
@@ -297,7 +297,7 @@ Além disso, se \(A_i \prec B_i\) para algum \(i\), então \(A_1 \cup A_2 \prec 
 
 \(~\)
 
-\textbf{Lema 1:} \(A, B, D \in \mathcal{A}\) tais que \(A \cap D = B \cap D = \emptyset\). Então \[A \precsim B ~\Leftrightarrow~ A \cup D \precsim B \cup D\]
+\textbf{Lema 1:} \(A, B, D \in \mathcal{A}\) tais que \(A \cap D = B \cap D = \varnothing\). Então \[A \precsim B ~\Leftrightarrow~ A \cup D \precsim B \cup D\]
 
 \begin{quote}
 \textbf{Demo:}\\
@@ -350,7 +350,7 @@ Se \(A \precsim B\) então \(A^c \succsim B^c\).
 \textbf{Resultado:} Para todo evento \(A\), \(A \precsim \Omega\).
 
 \begin{quote}
-\textbf{Demo:} Por SP3, \(\emptyset \precsim A^c\). Tomando \(D=A\) no Lema 1, \(\emptyset \cup A \precsim A^c \cup A \Rightarrow A \precsim \Omega\).
+\textbf{Demo:} Por SP3, \(\varnothing \precsim A^c\). Tomando \(D=A\) no Lema 1, \(\varnothing \cup A \precsim A^c \cup A \Rightarrow A \precsim \Omega\).
 \end{quote}
 
 \(~\)
@@ -383,8 +383,8 @@ com \(D = (A_1 \cap B2) \cup (A_2 \cap B1).\)\\
 Como \((B_1 \cup B_2) \cap D^c \subseteq (B_1 \cup B_2)\), vale o SP2.\\
 \(~\)\\
 (SP3)\\
-\(\emptyset \precsim A \Leftrightarrow \omega_0 \in A \cup (\emptyset \cup A)^c\) \(\Leftrightarrow \omega_0 \in A \cup A^c = \Omega.\)\\
-Como \(\Omega\) é não-vazio, \(\exists \omega_0 \in \Omega\) e, portanto, \(\emptyset \prec \Omega\).\\
+\(\varnothing \precsim A \Leftrightarrow \omega_0 \in A \cup (\varnothing \cup A)^c\) \(\Leftrightarrow \omega_0 \in A \cup A^c = \Omega.\)\\
+Como \(\Omega\) é não-vazio, \(\exists \omega_0 \in \Omega\) e, portanto, \(\varnothing \prec \Omega\).\\
 \(~\)\\
 (SP4) Exercício!
 \end{quote}
@@ -404,7 +404,7 @@ Por SP4, \(\bigcap_{n \geq 1} A_n^c \succsim B^c\) \(\Rightarrow \bigcup_{n \geq
 
 \(~\)
 
-\textbf{Teorema 6:} \(\left(A_n\right)_{n \geq 1}\) e \(\left(B_n\right)_{n \geq 1}\) sequências tais que \(A_i \cap A_j = B_k \cap B_l = \emptyset\), \(\forall i \neq j\), \(\forall k \neq l\).
+\textbf{Teorema 6:} \(\left(A_n\right)_{n \geq 1}\) e \(\left(B_n\right)_{n \geq 1}\) sequências tais que \(A_i \cap A_j = B_k \cap B_l = \varnothing\), \(\forall i \neq j\), \(\forall k \neq l\).
 \[A_i \precsim B_i, \forall i ~\Rightarrow~ \bigcup_{n \geq 1} A_n \precsim \bigcup_{n \geq 1} B_n.\]
 Se existe ao menos um \(j\) tal que \(A_j \prec B_j\) então \(\displaystyle{ \bigcup_{n \geq 1} A_n \prec \bigcup_{n \geq 1} B_n }.\)
 
@@ -441,13 +441,13 @@ provando o resultado.
 
 \begin{quote}
 \textbf{Demo:} Seja \(U(A) = \left\{ a \in [0,1] : A \precsim \{X \in [0,a]\} \right\}\).\\
-\(1 \in U(A)\) pois \(\Omega = \{X \in [0,1]\} \succsim A\) \(~\Rightarrow~ U(A) \neq \emptyset\).\\
+\(1 \in U(A)\) pois \(\Omega = \{X \in [0,1]\} \succsim A\) \(~\Rightarrow~ U(A) \neq \varnothing\).\\
 Tome \(a^* = \inf U(A)\).\\
 \(~\)\\
 (i) Considere \((a_n)_{n \geq 1}\), \(a_n \in [0,1], \forall n \geq 1\), tal que \(a_n \geq a_{n+1} \geq a^*\) e \(a_n \downarrow a^*\). Então, \(\forall n \geq 1\) , \(\{X \in [0,a_n]\} \succsim A\).\\
 Por SP4, \(\displaystyle \bigcap_{n=1}^\infty \{X \in [0,a_n]\} \succsim A\) \(~\Rightarrow~ \{X \in [0,a^*]\} \succsim A\)\\
 \(~\)\\
-(ii) Se \(a^*=0\) , \(\{X \in [0,0]\} \sim \emptyset \precsim A\) (por SP3).\\
+(ii) Se \(a^*=0\) , \(\{X \in [0,0]\} \sim \varnothing \precsim A\) (por SP3).\\
 Se \(a^* > 0\) , considere \((a_n)_{n \geq 1}\) com \(a_n \leq a_{n+1} < a^*\) e \(a_n \uparrow a^*\).\\
 \(\{X \in [0,a_n]\} \precsim A, \forall n \geq 1\) e, pelo Teo 5, \(\displaystyle \bigcup_{n=1}^{\infty} \{X \in [0,a_n]\} \precsim A\) \(~\Rightarrow~ \{X \in [0,a^*)\} \sim \{X \in [0,a^*]\} \precsim A\).\\
 \(~\)\\
@@ -474,17 +474,17 @@ De (i) e (ii), temos que \(A \sim \{X \in [0,a^*]\}\).\\
 \textbf{Demo:}
 (i) \(P(A) \geq 0\).\\
 \(\Omega \sim \{X \in [0,1]\}\Rightarrow P(\Omega)=1\).\\
-\(\emptyset \sim \{X \in [0,0]\} \Rightarrow P(\emptyset)=0\)\\
-\(\emptyset \precsim A \Rightarrow 0 \leq P(A)\).\\
+\(\varnothing \sim \{X \in [0,0]\} \Rightarrow P(\varnothing)=0\)\\
+\(\varnothing \precsim A \Rightarrow 0 \leq P(A)\).\\
 \(~\)\\
-(ii) Seja \(A\) e \(B\) tal que \(A \cap B = \emptyset\). Vamos mostrar que \(P(A \cup B) = P(A) + P(B)\).\\
+(ii) Seja \(A\) e \(B\) tal que \(A \cap B = \varnothing\). Vamos mostrar que \(P(A \cup B) = P(A) + P(B)\).\\
 Pelo Teo 8, \(A \sim \{ X \in [0,P(A)]\}\), \(B \sim \{ X \in [0,P(B)]\}\), \(A \cup B \sim \{ X \in [0,P(A \cup B)]\}\).\\
 Como \(A \subseteq A \cup B\) e, por SP3, \(A \precsim A \cup B\), vale que \(P(A) \leq P(A \cup B)\). Vamos verificar que \(B \sim \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\).\\
 Suponha, por absurdo, \(B \prec \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\).\\
 \(A \precsim \{X \in [0,P(A)]\}\) \(~\overset{SP2}{\Longrightarrow}~\)
 \(A \cup B \prec \{X \in [0,P(A)]\} \cup \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\)
 \(~\Rightarrow~ A \cup B \prec \left\{X \in [0,P(A)] \cup \left(P(A),P(A \cup B) \right]\right\}\)
-\(~\Rightarrow~ A \cup B \prec \left\{X \in \left[0,P(A \cup B) \right]\right\}\) \textasciitilde{} (Absurdo!)\\
+\(~\Rightarrow~ A \cup B \prec \left\{X \in \left[0,P(A \cup B) \right]\right\}~\) (Absurdo!)\\
 Analogamente, \(B \succ \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\) é absurdo! Logo, \(B \sim \left\{X \in \left(P(A),P(A \cup B) \right]\right\} \sim \left\{X \in \left[0, P(A \cup B)-P(A) \right]\right\}\).\\
 Como \(B \sim \left\{X \in \left[0,P(B)\right]\right\}\), temos que \(P(A \cup B) = P(A) + P(B)\).
 \end{quote}
@@ -499,24 +499,24 @@ Como \(B \sim \left\{X \in \left[0,P(B)\right]\right\}\), temos que \(P(A \cup B
 
 \(~\)
 
-\textbf{Teorema 10:} Seja \(A_1 \supseteq A_2 \supseteq \ldots\) uma seq. decrescente de eventos tais que \(\bigcap_{i=1}^{n} A_i = \emptyset\). Então \(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\).
+\textbf{Teorema 10:} Seja \(A_1 \supseteq A_2 \supseteq \ldots\) uma seq. decrescente de eventos tais que \(\bigcap_{i=1}^{n} A_i = \varnothing\). Então \(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\).
 
 \begin{quote}
 \textbf{Demo:} \(A_1 \supseteq A_2 \supseteq \ldots\) \(\Rightarrow\) \(P(A_1) \geq P(A)_2 \geq \ldots\).\\
 Além disso, \(\displaystyle \lim_{n \uparrow \infty} P(A_n) = b\). Como \(P(A_n) \geq b\), \(\forall n\), segue que \(A_n \succsim \{X \in [0,b]\}\), \(\forall n\).\\
-Por SP4, \(\emptyset = \bigcap_{i=n}^{\infty} A_i \succsim \{X \in [0,b]\}\).\\
-Se \(b>0\), então \(\{X \in [0,b]\} \succ \{X \in [0,b/2]\} \succsim \emptyset\). Como essa relação contradiz a anterior, temos que \(b\) deve ser igual a \(0\).
+Por SP4, \(\varnothing = \bigcap_{i=n}^{\infty} A_i \succsim \{X \in [0,b]\}\).\\
+Se \(b>0\), então \(\{X \in [0,b]\} \succ \{X \in [0,b/2]\} \succsim \varnothing\). Como essa relação contradiz a anterior, temos que \(b\) deve ser igual a \(0\).
 \end{quote}
 
 \(~\)
 
 \textbf{Teorema 9: (conclusão)}
-Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do Teorema 9, mostrando que \(P\) é \(\sigma\)-aditiva, isto é, \[P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \emptyset, \forall i \neq j.\]
+Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do Teorema 9, mostrando que \(P\) é \(\sigma\)-aditiva, isto é, \[P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \varnothing, \forall i \neq j.\]
 
 \begin{quote}
 \textbf{Demo:} Seja \((A_n)_{n \geq 1}\) sequência de eventos disjuntos. Segue do Corolário 1 que\\
 (i) \(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)\), \(n=1,2,\ldots\)\\
-Considere \(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\), \(n \geq 1\), uma sequência decrescente de eventos tais que \(\displaystyle \bigcap_{n=1}^{\infty} B_n = \emptyset\). Pelo Teorema 10, segue que \(\displaystyle \lim_{n\uparrow \infty} B_n = 0\). Assim, tomando o limite do lado direito de (i), segue que\\
+Considere \(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\), \(n \geq 1\), uma sequência decrescente de eventos tais que \(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\). Pelo Teorema 10, segue que \(\displaystyle \lim_{n\uparrow \infty} B_n = 0\). Assim, tomando o limite do lado direito de (i), segue que\\
 \(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)\) \(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\) \(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\).
 \end{quote}
 
@@ -554,16 +554,18 @@ Considere que existe uma outra medida \(P'\) que concorde com a relação \(\pre
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
+  \(\forall A,B,D\), \((A|D) \precsim (B|D)\) ou \((B|D) \precsim (A|D)\).
+\item
   Se \((A|D) \precsim (B|D)\) e \((B|D) \precsim (E|D)\) então \((A|D) \precsim (E|D)\).
 \item
-  \(A,B,D,E\) com \(A \cap D \cap E \sim B \cap D \cap E \sim \emptyset\). \newline \((A|D) \precsim (B|D)\) \(\Leftrightarrow\) \((A \cup E|D) \precsim (B \cup E|D)\).
+  \(A,B,D,E\) com \(A \cap D \cap E \sim B \cap D \cap E \sim \varnothing\). \newline \((A|D) \precsim (B|D)\) \(\Leftrightarrow\) \((A \cup E|D) \precsim (B \cup E|D)\).
 \item
   \((A|D) \precsim (B|D)\) \(\Leftrightarrow\) \((A^c|D) \succsim (B^c|D)\).
 \item
   Seja \(B, D\) e \((A_n)_{n \geq 1}\) tal que \(A_n \supseteq A_{n+1}\).\\
   \((B|D) \precsim (A_n|D)\), \(\forall n\), então \(\displaystyle (B|D) \precsim \left(\bigcap_{n=1}^{\infty} A_n|D\right)\).
 \item
-  \((A_n)_{n \geq 1}\) e \((B_n)_{n \geq 1}\) tal que \(A_i \cap A_j \sim A_k \cap A_l \sim \emptyset\), \(i \neq j\), \(k \neq l\), e \((A_n|D) \precsim (B_n|D), \forall n\). Então \(\displaystyle \left(\bigcup_{n=1}^{\infty} A_n | D \right) \precsim \left(\bigcup_{n=1}^{\infty} B_n | D \right)\)
+  \((A_n)_{n \geq 1}\) e \((B_n)_{n \geq 1}\) tal que \(A_i \cap A_j \sim A_k \cap A_l \sim \varnothing\), \(i \neq j\), \(k \neq l\), e \((A_n|D) \precsim (B_n|D), \forall n\). Então \(\displaystyle \left(\bigcup_{n=1}^{\infty} A_n | D \right) \precsim \left(\bigcup_{n=1}^{\infty} B_n | D \right)\)
 \end{enumerate}
 
 \(~\)
@@ -1164,10 +1166,66 @@ Agora, suponha que \(n=5\) e foi observado \(x=2\). Novamente, considere a mistu
 
 \(~\)
 
+\(~\)
+
+\hypertarget{prioris-nuxe3o-informativas}{%
+\subsection{Prioris ``Não-Informativas''}\label{prioris-nuxe3o-informativas}}
+
+\hypertarget{priori-de-bayes-laplace}{%
+\subsubsection{Priori de Bayes-Laplace}\label{priori-de-bayes-laplace}}
+
+\textbf{Princípio da Razão Insuficiente.} \emph{Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico \(\Theta\), deve-se adotar equiprobabilidade.}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Se \(\Theta=\left\{\theta_1,\theta_2,\ldots,\theta_k\right\}\) então a priori de Bayes-Laplace é \(f(\theta)=1/k\), \(\theta \in \Theta~.\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2.} Se \(\Theta=\left[a,b\right]\) então a priori de Bayes-Laplace é \(f(\theta)=1/(b-a)\), \(\theta \in \Theta~.\)
+\end{quote}
+
+\(~\)
+
+\(f(\theta|\boldsymbol{x})\)
+\(= \dfrac{f(\theta)f(\boldsymbol{x}|\theta)}{\int_\Theta f(\theta)f(\boldsymbol{x}|\theta)~d\theta}\)
+\(= \dfrac{c~f(\boldsymbol{x}|\theta)}{c~\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}\)
+\(= \dfrac{f(\boldsymbol{x}|\theta)}{\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}\)
+\(\propto f(\boldsymbol{x}|\theta)~.\)
+
+\(~\)
+
+As principais críticas da priori de Bayes-Laplace são
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  A distribuição é \emph{imprópria} quando o espaço paramétrico \(\Theta\) não é finito ou limitado. Por exemplo, \(\Theta=\mathbb{N}\), \(\Theta=\mathbb{Z}\) ou \(\Theta=\mathbb{R}\). Nesses casos, a priori de Bayes-Laplace é \(f(\theta)\propto \mathbb{I}_\Theta(\theta)\), que não é uma distribuição de probabilidade.
+\item
+  Não é \emph{invariante} a reparametrizações. Considere, por exemplo, \(f(theta)\) uma f.d.p. a priori para \(\theta\) e \(g\) uma transformação injetora de \(\theta\) tal que \(\psi=g(\theta)\). A distribuição de \(\psi\) pode ser calculada por \(f(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.\) Assim, se \(g\) é uma transformação não linear e a distribuição a priori para \(\theta\) é uniforme, a distribuição para \(\psi\) não é uniforme, em geral.
+\end{enumerate}
+
+\(~\)
+
+\hypertarget{priori-de-jeffreys}{%
+\subsubsection{Priori de Jeffreys}\label{priori-de-jeffreys}}
+
+\(~\)
+
+\hypertarget{priori-de-muxe1xima-entropia}{%
+\subsubsection{Priori de Máxima Entropia}\label{priori-de-muxe1xima-entropia}}
+
+\(~\)
+
+\(~\)
+
 \hypertarget{TeoDec}{%
 \chapter{Introdução à Teoría da Decisão}\label{TeoDec}}
 
-A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma \emph{função de perda} (ou \emph{função de utilidade}) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de ``preferência'' é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro \emph{Optimal Statistical Decisions} (DeGroot,M.H.).
+A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma \emph{função de perda} (ou \emph{função de utilidade}) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de ``preferência'' é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro \emph{Optimal Statistical Decisions} \citep{DeGroot70}.
 
 \(~\)
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>2.3.1</b> Método do Histograma</a></li>
 <li class="chapter" data-level="2.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>2.3.2</b> Elicitação de Hiperparâmetros</a></li>
 <li class="chapter" data-level="2.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>2.3.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>2.3.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>3</b> Introdução à Teoría da Decisão</a><ul>
@@ -599,7 +600,46 @@ Então<br />
 <span id="cb7-36"><a href="Bayes.html#cb7-36"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(w)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-14-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+</div>
+<div id="prioris-não-informativas" class="section level3">
+<h3><span class="header-section-number">2.3.4</span> Prioris “Não-Informativas”</h3>
+<div id="priori-de-bayes-laplace" class="section level4">
+<h4><span class="header-section-number">2.3.4.1</span> Priori de Bayes-Laplace</h4>
+<p><strong>Princípio da Razão Insuficiente.</strong> <em>Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico <span class="math inline">\(\Theta\)</span>, deve-se adotar equiprobabilidade.</em></p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 1.</strong> Se <span class="math inline">\(\Theta=\left\{\theta_1,\theta_2,\ldots,\theta_k\right\}\)</span> então a priori de Bayes-Laplace é <span class="math inline">\(f(\theta)=1/k\)</span>, <span class="math inline">\(\theta \in \Theta~.\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 2.</strong> Se <span class="math inline">\(\Theta=\left[a,b\right]\)</span> então a priori de Bayes-Laplace é <span class="math inline">\(f(\theta)=1/(b-a)\)</span>, <span class="math inline">\(\theta \in \Theta~.\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(f(\theta|\boldsymbol{x})\)</span>
+<span class="math inline">\(= \dfrac{f(\theta)f(\boldsymbol{x}|\theta)}{\int_\Theta f(\theta)f(\boldsymbol{x}|\theta)~d\theta}\)</span>
+<span class="math inline">\(= \dfrac{c~f(\boldsymbol{x}|\theta)}{c~\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}\)</span>
+<span class="math inline">\(= \dfrac{f(\boldsymbol{x}|\theta)}{\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}\)</span>
+<span class="math inline">\(\propto f(\boldsymbol{x}|\theta)~.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>As principais críticas da priori de Bayes-Laplace são</p>
+<ol style="list-style-type: decimal">
+<li><p>A distribuição é <em>imprópria</em> quando o espaço paramétrico <span class="math inline">\(\Theta\)</span> não é finito ou limitado. Por exemplo, <span class="math inline">\(\Theta=\mathbb{N}\)</span>, <span class="math inline">\(\Theta=\mathbb{Z}\)</span> ou <span class="math inline">\(\Theta=\mathbb{R}\)</span>. Nesses casos, a priori de Bayes-Laplace é <span class="math inline">\(f(\theta)\propto \mathbb{I}_\Theta(\theta)\)</span>, que não é uma distribuição de probabilidade.</p></li>
+<li><p>Não é <em>invariante</em> a reparametrizações. Considere, por exemplo, <span class="math inline">\(f(theta)\)</span> uma f.d.p. a priori para <span class="math inline">\(\theta\)</span> e <span class="math inline">\(g\)</span> uma transformação injetora de <span class="math inline">\(\theta\)</span> tal que <span class="math inline">\(\psi=g(\theta)\)</span>. A distribuição de <span class="math inline">\(\psi\)</span> pode ser calculada por <span class="math inline">\(f(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.\)</span> Assim, se <span class="math inline">\(g\)</span> é uma transformação não linear e a distribuição a priori para <span class="math inline">\(\theta\)</span> é uniforme, a distribuição para <span class="math inline">\(\psi\)</span> não é uniforme, em geral.</p></li>
+</ol>
+<p><span class="math inline">\(~\)</span></p>
+</div>
+<div id="priori-de-jeffreys" class="section level4">
+<h4><span class="header-section-number">2.3.4.2</span> Priori de Jeffreys</h4>
+<!-- Seja $g$ uma transformação -->
+<p><span class="math inline">\(~\)</span></p>
+</div>
+<div id="priori-de-máxima-entropia" class="section level4">
+<h4><span class="header-section-number">2.3.4.3</span> Priori de Máxima Entropia</h4>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 
+</div>
 </div>
 </div>
 </div>

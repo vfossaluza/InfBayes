@@ -15,6 +15,10 @@
 \contentsline {subsection}{\numberline {2.3.1}Método do Histograma}{21}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Elicitação de Hiperparâmetros}{23}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Prioris Conjugadas}{24}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Prioris ``Não-Informativas''}{29}{subsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.4.1}Priori de Bayes-Laplace}{29}{subsubsection.2.3.4.1}%
+\contentsline {subsubsection}{\numberline {2.3.4.2}Priori de Jeffreys}{30}{subsubsection.2.3.4.2}%
+\contentsline {subsubsection}{\numberline {2.3.4.3}Priori de Máxima Entropia}{30}{subsubsection.2.3.4.3}%
 \contentsline {chapter}{\numberline {3}Introdução à Teoría da Decisão}{31}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Conceitos Básicos}{31}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Aleatorização e Decisões Mistas}{33}{section.3.2}%

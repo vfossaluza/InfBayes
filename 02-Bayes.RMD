@@ -626,3 +626,51 @@ tibble(w=as.factor(rep(w,each=length(theta))),
 
 $~$
 
+$~$
+
+### Prioris "Não-Informativas"
+
+#### Priori de Bayes-Laplace
+
+**Princípio da Razão Insuficiente.** *Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico $\Theta$, deve-se adotar equiprobabilidade.*
+
+$~$
+
+> **Exemplo 1.** Se $\Theta=\left\{\theta_1,\theta_2,\ldots,\theta_k\right\}$ então a priori de Bayes-Laplace é $f(\theta)=1/k$, $\theta \in \Theta~.$
+
+$~$
+
+> **Exemplo 2.** Se $\Theta=\left[a,b\right]$ então a priori de Bayes-Laplace é $f(\theta)=1/(b-a)$, $\theta \in \Theta~.$
+
+$~$
+
+$f(\theta|\boldsymbol{x})$ 
+$= \dfrac{f(\theta)f(\boldsymbol{x}|\theta)}{\int_\Theta f(\theta)f(\boldsymbol{x}|\theta)~d\theta}$ 
+$= \dfrac{c~f(\boldsymbol{x}|\theta)}{c~\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}$ 
+$= \dfrac{f(\boldsymbol{x}|\theta)}{\int_\Theta f(\boldsymbol{x}|\theta)~d\theta}$ 
+$\propto f(\boldsymbol{x}|\theta)~.$
+
+$~$
+
+As principais críticas da priori de Bayes-Laplace são
+
+1. A distribuição é *imprópria* quando o espaço paramétrico $\Theta$ não é finito ou limitado. Por exemplo, $\Theta=\mathbb{N}$, $\Theta=\mathbb{Z}$ ou $\Theta=\mathbb{R}$. Nesses casos, a priori de Bayes-Laplace é $f(\theta)\propto \mathbb{I}_\Theta(\theta)$, que não é uma distribuição de probabilidade.
+
+1. Não é *invariante* a reparametrizações. Considere, por exemplo, $f(theta)$ uma f.d.p. a priori para $\theta$ e $g$ uma transformação injetora de $\theta$ tal que $\psi=g(\theta)$. A distribuição de $\psi$ pode ser calculada por $f(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.$ Assim, se $g$ é uma transformação não linear e a distribuição a priori para $\theta$ é uniforme, a distribuição para $\psi$ não é uniforme, em geral.
+
+$~$
+
+#### Priori de Jeffreys
+
+<!-- Seja $g$ uma transformação -->
+
+$~$
+
+#### Priori de Máxima Entropia
+
+
+
+
+$~$
+
+$~$

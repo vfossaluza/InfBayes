@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-09-02" />
+<meta name="date" content="2020-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>2.3.1</b> Método do Histograma</a></li>
 <li class="chapter" data-level="2.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>2.3.2</b> Elicitação de Hiperparâmetros</a></li>
 <li class="chapter" data-level="2.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>2.3.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="2.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>2.3.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>3</b> Introdução à Teoría da Decisão</a><ul>
@@ -231,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> é uma <em>medida de probabilidade</em> se
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(P(\Omega) = 1\)</span>;</li>
-<li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \emptyset\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A}\)</span> com <span class="math inline">\(A_i \bigcap A_j = \varnothing\)</span> , <span class="math inline">\(\displaystyle P\left(\bigcup_{i \geq 1} A_i\right) = \sum_{i \geq 1} P\left(A_i\right)\)</span>.</li>
 </ol></li>
 </ul>
 </div>
@@ -293,15 +294,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>SP1:</strong> Para <span class="math inline">\(A, B \in \mathcal{A}\)</span>, exatamente uma das afirmações a seguir deve valer:<br />
 <span class="math display">\[A \prec B ~,~ B \prec A ~\textrm{ou}~ A \sim B.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>SP2:</strong> <span class="math inline">\(A_1, A_2, B_1, B_2 \in \mathcal{A}\)</span> tais que <span class="math inline">\(A_1 \cap A_2 = B_1 \cap B_2 = \emptyset\)</span> e <span class="math inline">\(A_i \precsim B_i\)</span>, <span class="math inline">\(i=1,2\)</span>. Então
+<p><strong>SP2:</strong> <span class="math inline">\(A_1, A_2, B_1, B_2 \in \mathcal{A}\)</span> tais que <span class="math inline">\(A_1 \cap A_2 = B_1 \cap B_2 = \varnothing\)</span> e <span class="math inline">\(A_i \precsim B_i\)</span>, <span class="math inline">\(i=1,2\)</span>. Então
 <span class="math display">\[A_1 \cup A_2 \precsim B_1 \cup B_2 .\]</span>
 Além disso, se <span class="math inline">\(A_i \prec B_i\)</span> para algum <span class="math inline">\(i\)</span>, então <span class="math inline">\(A_1 \cup A_2 \prec B_1 \cup B_2 .\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>SP3:</strong> Se <span class="math inline">\(A\)</span> é um evento, então <span class="math inline">\(\emptyset \precsim A\)</span>. Além disso, <span class="math inline">\(\emptyset \prec \Omega\)</span>.</p>
+<p><strong>SP3:</strong> Se <span class="math inline">\(A\)</span> é um evento, então <span class="math inline">\(\varnothing \precsim A\)</span>. Além disso, <span class="math inline">\(\varnothing \prec \Omega\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>SP4:</strong> Se <span class="math inline">\(A_1, A_2, \ldots\)</span> uma sequência decrescente de eventos, isto é, <span class="math inline">\(A_n \supseteq A_{n+1}, \forall n\)</span>, e <span class="math inline">\(B\)</span> tal que <span class="math inline">\(B \precsim A_n, \forall n\)</span> então <span class="math display">\[B \precsim \bigcap_{n \geq 1} A_n.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Lema 1:</strong> <span class="math inline">\(A, B, D \in \mathcal{A}\)</span> tais que <span class="math inline">\(A \cap D = B \cap D = \emptyset\)</span>. Então <span class="math display">\[A \precsim B ~\Leftrightarrow~ A \cup D \precsim B \cup D\]</span></p>
+<p><strong>Lema 1:</strong> <span class="math inline">\(A, B, D \in \mathcal{A}\)</span> tais que <span class="math inline">\(A \cap D = B \cap D = \varnothing\)</span>. Então <span class="math display">\[A \precsim B ~\Leftrightarrow~ A \cup D \precsim B \cup D\]</span></p>
 <blockquote>
 <p><strong>Demo:</strong><br />
 (<span class="math inline">\(\Rightarrow\)</span>) <span class="math inline">\(A \precsim B \Rightarrow A \cup D \precsim B \cup D\)</span> (SP2)<br />
@@ -333,7 +334,7 @@ Se <span class="math inline">\(A \precsim B\)</span> então <span class="math in
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Resultado:</strong> Para todo evento <span class="math inline">\(A\)</span>, <span class="math inline">\(A \precsim \Omega\)</span>.</p>
 <blockquote>
-<p><strong>Demo:</strong> Por SP3, <span class="math inline">\(\emptyset \precsim A^c\)</span>. Tomando <span class="math inline">\(D=A\)</span> no Lema 1, <span class="math inline">\(\emptyset \cup A \precsim A^c \cup A \Rightarrow A \precsim \Omega\)</span>.</p>
+<p><strong>Demo:</strong> Por SP3, <span class="math inline">\(\varnothing \precsim A^c\)</span>. Tomando <span class="math inline">\(D=A\)</span> no Lema 1, <span class="math inline">\(\varnothing \cup A \precsim A^c \cup A \Rightarrow A \precsim \Omega\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema 4:</strong>
@@ -360,8 +361,8 @@ com <span class="math inline">\(D = (A_1 \cap B2) \cup (A_2 \cap B1).\)</span><b
 Como <span class="math inline">\((B_1 \cup B_2) \cap D^c \subseteq (B_1 \cup B_2)\)</span>, vale o SP2.<br />
 <span class="math inline">\(~\)</span><br />
 (SP3)<br />
-<span class="math inline">\(\emptyset \precsim A \Leftrightarrow \omega_0 \in A \cup (\emptyset \cup A)^c\)</span> <span class="math inline">\(\Leftrightarrow \omega_0 \in A \cup A^c = \Omega.\)</span><br />
-Como <span class="math inline">\(\Omega\)</span> é não-vazio, <span class="math inline">\(\exists \omega_0 \in \Omega\)</span> e, portanto, <span class="math inline">\(\emptyset \prec \Omega\)</span>.<br />
+<span class="math inline">\(\varnothing \precsim A \Leftrightarrow \omega_0 \in A \cup (\varnothing \cup A)^c\)</span> <span class="math inline">\(\Leftrightarrow \omega_0 \in A \cup A^c = \Omega.\)</span><br />
+Como <span class="math inline">\(\Omega\)</span> é não-vazio, <span class="math inline">\(\exists \omega_0 \in \Omega\)</span> e, portanto, <span class="math inline">\(\varnothing \prec \Omega\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
 (SP4) Exercício!</p>
 </blockquote>
@@ -374,7 +375,7 @@ Como <span class="math inline">\(\Omega\)</span> é não-vazio, <span class="mat
 Por SP4, <span class="math inline">\(\bigcap_{n \geq 1} A_n^c \succsim B^c\)</span> <span class="math inline">\(\Rightarrow \bigcup_{n \geq 1} A_n \precsim B.\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Teorema 6:</strong> <span class="math inline">\(\left(A_n\right)_{n \geq 1}\)</span> e <span class="math inline">\(\left(B_n\right)_{n \geq 1}\)</span> sequências tais que <span class="math inline">\(A_i \cap A_j = B_k \cap B_l = \emptyset\)</span>, <span class="math inline">\(\forall i \neq j\)</span>, <span class="math inline">\(\forall k \neq l\)</span>.
+<p><strong>Teorema 6:</strong> <span class="math inline">\(\left(A_n\right)_{n \geq 1}\)</span> e <span class="math inline">\(\left(B_n\right)_{n \geq 1}\)</span> sequências tais que <span class="math inline">\(A_i \cap A_j = B_k \cap B_l = \varnothing\)</span>, <span class="math inline">\(\forall i \neq j\)</span>, <span class="math inline">\(\forall k \neq l\)</span>.
 <span class="math display">\[A_i \precsim B_i, \forall i ~\Rightarrow~ \bigcup_{n \geq 1} A_n \precsim \bigcup_{n \geq 1} B_n.\]</span>
 Se existe ao menos um <span class="math inline">\(j\)</span> tal que <span class="math inline">\(A_j \prec B_j\)</span> então <span class="math inline">\(\displaystyle{ \bigcup_{n \geq 1} A_n \prec \bigcup_{n \geq 1} B_n }.\)</span></p>
 <blockquote>
@@ -401,13 +402,13 @@ provando o resultado.</p>
 <p><strong>Teorema 7:</strong> Seja <span class="math inline">\(A \in \mathcal{A}\)</span>. Então <span class="math inline">\(\exists! a^* \in [0,1]\)</span> tal que <span class="math inline">\(A \sim \{X \in [0,a^*]\}\)</span>.</p>
 <blockquote>
 <p><strong>Demo:</strong> Seja <span class="math inline">\(U(A) = \left\{ a \in [0,1] : A \precsim \{X \in [0,a]\} \right\}\)</span>.<br />
-<span class="math inline">\(1 \in U(A)\)</span> pois <span class="math inline">\(\Omega = \{X \in [0,1]\} \succsim A\)</span> <span class="math inline">\(~\Rightarrow~ U(A) \neq \emptyset\)</span>.<br />
+<span class="math inline">\(1 \in U(A)\)</span> pois <span class="math inline">\(\Omega = \{X \in [0,1]\} \succsim A\)</span> <span class="math inline">\(~\Rightarrow~ U(A) \neq \varnothing\)</span>.<br />
 Tome <span class="math inline">\(a^* = \inf U(A)\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
 (i) Considere <span class="math inline">\((a_n)_{n \geq 1}\)</span>, <span class="math inline">\(a_n \in [0,1], \forall n \geq 1\)</span>, tal que <span class="math inline">\(a_n \geq a_{n+1} \geq a^*\)</span> e <span class="math inline">\(a_n \downarrow a^*\)</span>. Então, <span class="math inline">\(\forall n \geq 1\)</span> , <span class="math inline">\(\{X \in [0,a_n]\} \succsim A\)</span>.<br />
 Por SP4, <span class="math inline">\(\displaystyle \bigcap_{n=1}^\infty \{X \in [0,a_n]\} \succsim A\)</span> <span class="math inline">\(~\Rightarrow~ \{X \in [0,a^*]\} \succsim A\)</span><br />
 <span class="math inline">\(~\)</span><br />
-(ii) Se <span class="math inline">\(a^*=0\)</span> , <span class="math inline">\(\{X \in [0,0]\} \sim \emptyset \precsim A\)</span> (por SP3).<br />
+(ii) Se <span class="math inline">\(a^*=0\)</span> , <span class="math inline">\(\{X \in [0,0]\} \sim \varnothing \precsim A\)</span> (por SP3).<br />
 Se <span class="math inline">\(a^* &gt; 0\)</span> , considere <span class="math inline">\((a_n)_{n \geq 1}\)</span> com <span class="math inline">\(a_n \leq a_{n+1} &lt; a^*\)</span> e <span class="math inline">\(a_n \uparrow a^*\)</span>.<br />
 <span class="math inline">\(\{X \in [0,a_n]\} \precsim A, \forall n \geq 1\)</span> e, pelo Teo 5, <span class="math inline">\(\displaystyle \bigcup_{n=1}^{\infty} \{X \in [0,a_n]\} \precsim A\)</span> <span class="math inline">\(~\Rightarrow~ \{X \in [0,a^*)\} \sim \{X \in [0,a^*]\} \precsim A\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
@@ -428,17 +429,17 @@ De (i) e (ii), temos que <span class="math inline">\(A \sim \{X \in [0,a^*]\}\)<
 <p><strong>Demo:</strong>
 (i) <span class="math inline">\(P(A) \geq 0\)</span>.<br />
 <span class="math inline">\(\Omega \sim \{X \in [0,1]\}\Rightarrow P(\Omega)=1\)</span>.<br />
-<span class="math inline">\(\emptyset \sim \{X \in [0,0]\} \Rightarrow P(\emptyset)=0\)</span><br />
-<span class="math inline">\(\emptyset \precsim A \Rightarrow 0 \leq P(A)\)</span>.<br />
+<span class="math inline">\(\varnothing \sim \{X \in [0,0]\} \Rightarrow P(\varnothing)=0\)</span><br />
+<span class="math inline">\(\varnothing \precsim A \Rightarrow 0 \leq P(A)\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
-(ii) Seja <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> tal que <span class="math inline">\(A \cap B = \emptyset\)</span>. Vamos mostrar que <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>.<br />
+(ii) Seja <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> tal que <span class="math inline">\(A \cap B = \varnothing\)</span>. Vamos mostrar que <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>.<br />
 Pelo Teo 8, <span class="math inline">\(A \sim \{ X \in [0,P(A)]\}\)</span>, <span class="math inline">\(B \sim \{ X \in [0,P(B)]\}\)</span>, <span class="math inline">\(A \cup B \sim \{ X \in [0,P(A \cup B)]\}\)</span>.<br />
 Como <span class="math inline">\(A \subseteq A \cup B\)</span> e, por SP3, <span class="math inline">\(A \precsim A \cup B\)</span>, vale que <span class="math inline">\(P(A) \leq P(A \cup B)\)</span>. Vamos verificar que <span class="math inline">\(B \sim \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\)</span>.<br />
 Suponha, por absurdo, <span class="math inline">\(B \prec \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\)</span>.<br />
 <span class="math inline">\(A \precsim \{X \in [0,P(A)]\}\)</span> <span class="math inline">\(~\overset{SP2}{\Longrightarrow}~\)</span>
 <span class="math inline">\(A \cup B \prec \{X \in [0,P(A)]\} \cup \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\)</span>
 <span class="math inline">\(~\Rightarrow~ A \cup B \prec \left\{X \in [0,P(A)] \cup \left(P(A),P(A \cup B) \right]\right\}\)</span>
-<span class="math inline">\(~\Rightarrow~ A \cup B \prec \left\{X \in \left[0,P(A \cup B) \right]\right\}\)</span> ~ (Absurdo!)<br />
+<span class="math inline">\(~\Rightarrow~ A \cup B \prec \left\{X \in \left[0,P(A \cup B) \right]\right\}~\)</span> (Absurdo!)<br />
 Analogamente, <span class="math inline">\(B \succ \left\{X \in \left(P(A),P(A \cup B) \right]\right\}\)</span> é absurdo! Logo, <span class="math inline">\(B \sim \left\{X \in \left(P(A),P(A \cup B) \right]\right\} \sim \left\{X \in \left[0, P(A \cup B)-P(A) \right]\right\}\)</span>.<br />
 Como <span class="math inline">\(B \sim \left\{X \in \left[0,P(B)\right]\right\}\)</span>, temos que <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span>.</p>
 </blockquote>
@@ -448,20 +449,20 @@ Como <span class="math inline">\(B \sim \left\{X \in \left[0,P(B)\right]\right\}
 <p><strong>Demo:</strong> Basta repetir o argumento da segunda parte da demonstração anterior <span class="math inline">\(n-1\)</span> vezes.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Teorema 10:</strong> Seja <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> uma seq. decrescente de eventos tais que <span class="math inline">\(\bigcap_{i=1}^{n} A_i = \emptyset\)</span>. Então <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\)</span>.</p>
+<p><strong>Teorema 10:</strong> Seja <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> uma seq. decrescente de eventos tais que <span class="math inline">\(\bigcap_{i=1}^{n} A_i = \varnothing\)</span>. Então <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\)</span>.</p>
 <blockquote>
 <p><strong>Demo:</strong> <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(P(A_1) \geq P(A)_2 \geq \ldots\)</span>.<br />
 Além disso, <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = b\)</span>. Como <span class="math inline">\(P(A_n) \geq b\)</span>, <span class="math inline">\(\forall n\)</span>, segue que <span class="math inline">\(A_n \succsim \{X \in [0,b]\}\)</span>, <span class="math inline">\(\forall n\)</span>.<br />
-Por SP4, <span class="math inline">\(\emptyset = \bigcap_{i=n}^{\infty} A_i \succsim \{X \in [0,b]\}\)</span>.<br />
-Se <span class="math inline">\(b&gt;0\)</span>, então <span class="math inline">\(\{X \in [0,b]\} \succ \{X \in [0,b/2]\} \succsim \emptyset\)</span>. Como essa relação contradiz a anterior, temos que <span class="math inline">\(b\)</span> deve ser igual a <span class="math inline">\(0\)</span>.</p>
+Por SP4, <span class="math inline">\(\varnothing = \bigcap_{i=n}^{\infty} A_i \succsim \{X \in [0,b]\}\)</span>.<br />
+Se <span class="math inline">\(b&gt;0\)</span>, então <span class="math inline">\(\{X \in [0,b]\} \succ \{X \in [0,b/2]\} \succsim \varnothing\)</span>. Como essa relação contradiz a anterior, temos que <span class="math inline">\(b\)</span> deve ser igual a <span class="math inline">\(0\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema 9: (conclusão)</strong>
-Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do Teorema 9, mostrando que <span class="math inline">\(P\)</span> é <span class="math inline">\(\sigma\)</span>-aditiva, isto é, <span class="math display">\[P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \emptyset, \forall i \neq j.\]</span></p>
+Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do Teorema 9, mostrando que <span class="math inline">\(P\)</span> é <span class="math inline">\(\sigma\)</span>-aditiva, isto é, <span class="math display">\[P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P\left(A_i\right) ~,~~ A_i \cap A_j = \varnothing, \forall i \neq j.\]</span></p>
 <blockquote>
 <p><strong>Demo:</strong> Seja <span class="math inline">\((A_n)_{n \geq 1}\)</span> sequência de eventos disjuntos. Segue do Corolário 1 que<br />
 (i) <span class="math inline">\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)\)</span>, <span class="math inline">\(n=1,2,\ldots\)</span><br />
-Considere <span class="math inline">\(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\)</span>, <span class="math inline">\(n \geq 1\)</span>, uma sequência decrescente de eventos tais que <span class="math inline">\(\displaystyle \bigcap_{n=1}^{\infty} B_n = \emptyset\)</span>. Pelo Teorema 10, segue que <span class="math inline">\(\displaystyle \lim_{n\uparrow \infty} B_n = 0\)</span>. Assim, tomando o limite do lado direito de (i), segue que<br />
+Considere <span class="math inline">\(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\)</span>, <span class="math inline">\(n \geq 1\)</span>, uma sequência decrescente de eventos tais que <span class="math inline">\(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\)</span>. Pelo Teorema 10, segue que <span class="math inline">\(\displaystyle \lim_{n\uparrow \infty} B_n = 0\)</span>. Assim, tomando o limite do lado direito de (i), segue que<br />
 <span class="math inline">\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)\)</span> <span class="math inline">\(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\)</span> <span class="math inline">\(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
@@ -484,14 +485,14 @@ Considere que existe uma outra medida <span class="math inline">\(P&#39;\)</span
 <p><strong>SP6:</strong> <span class="math inline">\((A|D) \precsim (B|D) \Leftrightarrow (A \cap D) \precsim (B \cap D)\)</span> <span class="math inline">\(~~\Big( (A \cap D|\Omega) \precsim (B \cap D|\Omega) \Big)\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Propriedades decorrentes de SP1 a SP6:</strong></p>
-<!-- 1. $\forall A,B,D$, $(A|D) \precsim (B|D)$.   -->
 <ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\forall A,B,D\)</span>, <span class="math inline">\((A|D) \precsim (B|D)\)</span> ou <span class="math inline">\((B|D) \precsim (A|D)\)</span>.</p></li>
 <li><p>Se <span class="math inline">\((A|D) \precsim (B|D)\)</span> e <span class="math inline">\((B|D) \precsim (E|D)\)</span> então <span class="math inline">\((A|D) \precsim (E|D)\)</span>.</p></li>
-<li><p><span class="math inline">\(A,B,D,E\)</span> com <span class="math inline">\(A \cap D \cap E \sim B \cap D \cap E \sim \emptyset\)</span>. <span class="math inline">\((A|D) \precsim (B|D)\)</span> <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\((A \cup E|D) \precsim (B \cup E|D)\)</span>.</p></li>
+<li><p><span class="math inline">\(A,B,D,E\)</span> com <span class="math inline">\(A \cap D \cap E \sim B \cap D \cap E \sim \varnothing\)</span>. <span class="math inline">\((A|D) \precsim (B|D)\)</span> <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\((A \cup E|D) \precsim (B \cup E|D)\)</span>.</p></li>
 <li><p><span class="math inline">\((A|D) \precsim (B|D)\)</span> <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\((A^c|D) \succsim (B^c|D)\)</span>.</p></li>
 <li><p>Seja <span class="math inline">\(B, D\)</span> e <span class="math inline">\((A_n)_{n \geq 1}\)</span> tal que <span class="math inline">\(A_n \supseteq A_{n+1}\)</span>.<br />
 <span class="math inline">\((B|D) \precsim (A_n|D)\)</span>, <span class="math inline">\(\forall n\)</span>, então <span class="math inline">\(\displaystyle (B|D) \precsim \left(\bigcap_{n=1}^{\infty} A_n|D\right)\)</span>.</p></li>
-<li><p><span class="math inline">\((A_n)_{n \geq 1}\)</span> e <span class="math inline">\((B_n)_{n \geq 1}\)</span> tal que <span class="math inline">\(A_i \cap A_j \sim A_k \cap A_l \sim \emptyset\)</span>, <span class="math inline">\(i \neq j\)</span>, <span class="math inline">\(k \neq l\)</span>, e <span class="math inline">\((A_n|D) \precsim (B_n|D), \forall n\)</span>. Então <span class="math inline">\(\displaystyle \left(\bigcup_{n=1}^{\infty} A_n | D \right) \precsim \left(\bigcup_{n=1}^{\infty} B_n | D \right)\)</span></p></li>
+<li><p><span class="math inline">\((A_n)_{n \geq 1}\)</span> e <span class="math inline">\((B_n)_{n \geq 1}\)</span> tal que <span class="math inline">\(A_i \cap A_j \sim A_k \cap A_l \sim \varnothing\)</span>, <span class="math inline">\(i \neq j\)</span>, <span class="math inline">\(k \neq l\)</span>, e <span class="math inline">\((A_n|D) \precsim (B_n|D), \forall n\)</span>. Então <span class="math inline">\(\displaystyle \left(\bigcup_{n=1}^{\infty} A_n | D \right) \precsim \left(\bigcup_{n=1}^{\infty} B_n | D \right)\)</span></p></li>
 </ol>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema 12:</strong> <span class="math inline">\(\forall A, B, D \in \mathcal{A}\)</span>, considere <span class="math inline">\(\precsim\)</span> satisfazendo SP1 a SP6. Então <span class="math inline">\(P: \mathcal{A} \rightarrow [0,1]\)</span> de modo que para cada <span class="math inline">\(A \in \mathcal{A}\)</span> é associada <span class="math inline">\(P(A) \in [0,1]\)</span> tal que <span class="math inline">\(A \sim \left\{X \in \left[0,P(A)\right]\right\}\)</span> é uma medida de probabilidade que representa <span class="math inline">\(\precsim\)</span>, isto é, <span class="math display">\[(A|\Omega) \precsim (B|\Omega) \Leftrightarrow P(A) \leq P(B).\]</span> Além disso, se <span class="math inline">\(D \in \mathcal{A}\)</span> é tal que <span class="math inline">\(P(D) \geq 0\)</span>, então <span class="math display">\[(A|D) \precsim (B|D) \Leftrightarrow P(A|D) \leq P(B|D),\]</span> onde <span class="math inline">\(P(\cdot|D): \mathcal{A} \rightarrow [0,1]\)</span> é uma medida de probabilidade tal que
