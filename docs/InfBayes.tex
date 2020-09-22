@@ -116,7 +116,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-09-15}
+\date{2020-09-22}
 
 \begin{document}
 \maketitle
@@ -499,7 +499,7 @@ Como \(B \sim \left\{X \in \left[0,P(B)\right]\right\}\), temos que \(P(A \cup B
 
 \(~\)
 
-\textbf{Teorema 10:} Seja \(A_1 \supseteq A_2 \supseteq \ldots\) uma seq. decrescente de eventos tais que \(\bigcap_{i=1}^{n} A_i = \varnothing\). Então \(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\).
+\textbf{Teorema 10:} Seja \(A_1 \supseteq A_2 \supseteq \ldots\) uma seq. decrescente de eventos tais que \(\bigcap_{i=1}^{\infty} A_i = \varnothing\). Então \(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\).
 
 \begin{quote}
 \textbf{Demo:} \(A_1 \supseteq A_2 \supseteq \ldots\) \(\Rightarrow\) \(P(A_1) \geq P(A)_2 \geq \ldots\).\\
@@ -516,8 +516,8 @@ Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do T
 \begin{quote}
 \textbf{Demo:} Seja \((A_n)_{n \geq 1}\) sequência de eventos disjuntos. Segue do Corolário 1 que\\
 (i) \(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)\), \(n=1,2,\ldots\)\\
-Considere \(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\), \(n \geq 1\), uma sequência decrescente de eventos tais que \(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\). Pelo Teorema 10, segue que \(\displaystyle \lim_{n\uparrow \infty} B_n = 0\). Assim, tomando o limite do lado direito de (i), segue que\\
-\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)\) \(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\) \(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\).
+Considere \(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\), \(n \geq 1\), uma sequência decrescente de eventos tais que \(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\). Pelo Teorema 10, segue que \(\displaystyle \lim_{n\uparrow \infty} P(B_n) = 0\). Assim, tomando o limite do lado direito de (i), segue que\\
+\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_i\right)\) \(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\) \(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\).
 \end{quote}
 
 \(~\)
@@ -597,7 +597,7 @@ Considere que existe uma outra medida \(P'\) que concorde com a relação \(\pre
 \item
   \((\mathfrak{X},\mathcal{F},\mathcal{P})\) : modelo estatístico (clássico).
 \item
-  \(V_X(\theta)=f(\boldsymbol x |\theta)\) : função de verossimilhança.
+  \(V_x(\theta)=f(\boldsymbol x |\theta)\) : função de verossimilhança.
 \end{itemize}
 
 \(~\)
@@ -1205,7 +1205,7 @@ As principais críticas da priori de Bayes-Laplace são
 \item
   A distribuição é \emph{imprópria} quando o espaço paramétrico \(\Theta\) não é finito ou limitado. Por exemplo, \(\Theta=\mathbb{N}\), \(\Theta=\mathbb{Z}\) ou \(\Theta=\mathbb{R}\). Nesses casos, a priori de Bayes-Laplace é \(f(\theta)\propto \mathbb{I}_\Theta(\theta)\), que não é uma distribuição de probabilidade.
 \item
-  Não é \emph{invariante} a reparametrizações. Considere, por exemplo, \(f(theta)\) uma f.d.p. a priori para \(\theta\) e \(g\) uma transformação injetora de \(\theta\) tal que \(\psi=g(\theta)\). A distribuição de \(\psi\) pode ser calculada por \(f(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.\) Assim, se \(g\) é uma transformação não linear e a distribuição a priori para \(\theta\) é uniforme, a distribuição para \(\psi\) não é uniforme, em geral.
+  Não é \emph{invariante} a reparametrizações. Considere, por exemplo, \(f(\theta)\) uma f.d.p. a priori para \(\theta\) e \(g\) uma transformação um-a-um (injetora) de \(\theta\) tal que \(\psi=g(\theta)\). A distribuição de \(\psi\) pode ser calculada por \(f_\psi(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.\) Assim, se \(g\) é uma transformação não linear e a distribuição a priori para \(\theta\) é uniforme, a distribuição para \(\psi\) não é uniforme, em geral.
 \end{enumerate}
 
 \(~\)
@@ -1213,10 +1213,137 @@ As principais críticas da priori de Bayes-Laplace são
 \hypertarget{priori-de-jeffreys}{%
 \subsubsection{Priori de Jeffreys}\label{priori-de-jeffreys}}
 
+Seja \(g\) uma transformação um-a-um do parâmetro \(\theta\) e defina \(\psi=g(\theta)\). Considere uma função \(h:\mathfrak{X}\times\Theta\longrightarrow\mathbb{R}\). Uma classe de distribuições a priori invariantes pode ser definida por
+\[f(\theta) \propto \left(\text{Var}_{X|\theta}\left[\dfrac{\partial h(\boldsymbol X | \theta)}{\partial\theta}~\bigg|~\theta\right]\right)^{1/2}~.\]
+
+\begin{quote}
+\textbf{Demo.} Para mostrar a invariância do método, considere o caso contínuo em que
+\[f_\psi(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right|~.\]
+Seja \(h^*(x,\psi)=h\left(x,g^{-1}(\psi)\right)\). Então\\
+\(\dfrac{\partial h^*(x,\psi)}{\partial\psi}\)
+\(=\dfrac{\partial h\left(x,g^{-1}(\psi)\right)}{\partial\psi}\)
+\(=\left.\dfrac{\partial h(x,\theta)}{\partial\theta}\right|_{\theta=g^{-1}(\psi)}\cdot\dfrac{\partial g^{-1}(\psi)}{\partial\psi}~,\)\\
+e, portanto,\\
+\(\text{Var}\left[\dfrac{\partial h^*(\boldsymbol{X},\psi)}{\partial\psi}~\bigg|~\theta=g^{-1}(\psi)\right]\)
+\(=\text{Var}\left[\dfrac{\partial h(\boldsymbol{X},\theta)}{\partial\theta}~\bigg|~\theta=g^{-1}(\psi)\right]\cdot\left[\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right]^2\)
+\(=\left[f\left(g^{-1}(\psi)\right)\left(\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right)\right]^2~,\)\\
+de modo que\\
+\(f_\psi(\psi)\) \(=f\left(g^{-1}(\psi)\right)\left|\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right|\)
+\(=\text{Var}\left[\dfrac{\partial h^*(\boldsymbol{X},\psi)}{\partial\psi}~\bigg|~\theta=g^{-1}(\psi)\right]^{1/2}~.\)
+\end{quote}
+
+\(~\)
+
+A escolha mais usual para \(h\) é \(h(\boldsymbol{x},\theta)=\log f(\boldsymbol{x}|\theta)~.\) Assim, como \(E\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]=0\), temos\\
+\(f(\theta)\)
+\(\propto\text{Var}\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]^{1/2}\)
+\(=\text{E}\left[\left(\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]^{1/2}\)
+\(=\left[\mathcal{I}(\theta)\right]^{1/2}~,\)\\
+onde \(\mathcal{I}(\theta)\) é a \emph{Informação de Fisher} de \(\theta\). Neste caso, \(f(\theta)\propto\left[\mathcal{I}(\theta)\right]^{1/2}\) é chamada \textbf{priori de Jeffreys}.
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Considere novamente o experimento de lançar uma moeda \(n\) vezes e contar o número de caras, isto é, \(X|\theta \sim \text{Bin}(n,\theta)\). Então,\\
+\(f(x|\theta)=\displaystyle\binom{n}{x}\theta^x(1-\theta)^{n-x}\)
+\(\Longrightarrow~ \log f(x|\theta)=\log\binom{n}{x}+x\log\theta+(n-x)\log(1-\theta)\)\\
+\(~\)\\
+\(\dfrac{\partial\log f(x|\theta)}{\partial\theta}\)
+\(=\dfrac{x}{\theta}-\dfrac{n-x}{1-\theta}\)
+\(=\dfrac{x-n\theta}{\theta(1-\theta)}~.\)\\
+\(~\)\\
+Como \(E\left[X|\theta\right]=n\theta\) e \(Var(X|\theta)\) \(=E\left[\left(X-E\left[X|\theta\right]\right)^2~\Big|~\theta\right]\) \(=E\left[\left(X-n\theta\right)^2~\Big|~\theta\right]\) \(=n\theta(1-\theta)\), a informação de Fisher neste caso é\\
+\(\mathcal{I}_x(\theta)\) \(=\text{E}\left[\left(\dfrac{\partial\log f(x|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]\) \(=\text{E}\left[\left(\dfrac{X-n\theta}{\theta(1-\theta)}\right)^2~\bigg|~\theta\right]\)
+\(=\dfrac{1}{\theta^2(1-\theta)^2}~\text{E}\left[\left(X-n\theta\right)^2~|~\theta\right]\)
+\(=\dfrac{1}{\theta^2(1-\theta)^2}~\text{Var}\left(X~|~\theta\right)\)
+\(=\dfrac{n~\theta(1-\theta)}{\theta^2(1-\theta)^2}\)
+\(=\dfrac{n}{\theta(1-\theta)}\) \(=n\theta^{-1}(1-\theta)^{-1}~,\)\\
+\(~\)\\
+de modo que a priori de Jeffreys é\\
+\(f(\theta)\) \(\propto\left[\mathcal{I}_x(\theta)\right]^{1/2}\)
+\(\propto\theta^{-1/2}(1-\theta)^{-1/2}~.\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2.} Considere agora que a mesma moeda é lançada e anota-se o número de caras \(Y\) até que sejam observadas \(r\) coroas, isto é, \(Y|\theta \sim \text{BinNeg}(r,\theta)\). Então,
+\(f(y|\theta)=\displaystyle\binom{y+r-1}{y}\theta^y(1-\theta)^{r}\)
+\(\Longrightarrow~ \log f(y|\theta)=\log\binom{y+k-1}{y}+y\log\theta+r\log(1-\theta)\)\\
+\(~\)\\
+\(\dfrac{\partial\log f(y|\theta)}{\partial\theta}\)
+\(=\dfrac{y}{\theta}-\dfrac{r}{1-\theta}\)
+\(=\dfrac{1}{\theta}\left[y-\dfrac{r~\theta}{1-\theta}\right]~.\)\\
+\(~\)\\
+Como \(E\left[X|\theta\right]=\dfrac{r~\theta}{1-\theta}\) e \(Var(X|\theta)=\dfrac{r~\theta}{(1-\theta)^2}\), a informação de Fisher neste caso é\\
+\(\mathcal{I}_y(\theta)\) \(=\text{E}\left[\dfrac{1}{\theta^2}\left(y-\dfrac{r~\theta}{1-\theta}\right)^2~\bigg|~\theta\right]\)
+\(=\dfrac{1}{\theta^2}~\text{Var}\left(Y~|~\theta\right)\)
+\(=\dfrac{r}{\theta(1-\theta)^2}\) \(=r\theta^{-1}(1-\theta)^{-2}~,\)\\
+\(~\)\\
+de modo que a priori de Jeffreys é\\
+\(f(\theta)\) \(\propto\left[\mathcal{I}_y(\theta)\right]^{1/2}\)
+\(\propto\theta^{-1/2}(1-\theta)^{-1}~.\)
+\end{quote}
+
+\(~\)
+
+Note que nos exemplos apresentados, a priori depende da \emph{regra de parada}, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos.
+
 \(~\)
 
 \hypertarget{priori-de-muxe1xima-entropia}{%
 \subsubsection{Priori de Máxima Entropia}\label{priori-de-muxe1xima-entropia}}
+
+\textbf{Entropia} é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O \emph{princípio da máxima entropia} afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
+
+\textbf{Caso Discreto.} Considere um espaço paramétrico enumerável \(\Theta = \{\theta_1,\theta_2,...\}\). A \emph{entropia} da distribuição \(h\) é dada por\\
+\[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Considere o espaço paramétrico \(\Theta=\{\theta_1,...,\theta_k\}\) e \(h(\theta_i)=p_i\) uma distribuição discreta para \(\theta\). A \emph{distribuição da máxima entropia} para \(\theta\) é a função \(h\) que maximiza \(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\) com a restrição \(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)\\
+Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana\\
+\(\mathcal{E}^*(h)=\displaystyle-\sum_{i=1}^k p_i\log(p_i)+\lambda\left(\sum_{i=1}^k p_i-1\right)\)\\
+\(\dfrac{\partial\mathcal{E}^*(h)}{\partial p_i}=-\left[p_i~\dfrac{1}{p_i}+\log(p_i)\right]+\lambda=0\) \(\Longleftrightarrow p_i = e^{\lambda-1}~~,~~~i=1,\ldots,k~.\)\\
+Assim, como \(p_i\) deve ser constante e \(\sum p_i=1\), conclui-se que \(p_i=1/k\), para \(i=1,\ldots,k~.\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2:} Considere agora \(\Theta = \{\theta_1,\theta_2,...\}\) e suponha que há \(m\) informações parciais a respeito do parâmetro \(\theta\) que podem ser escritas como \(\text{E}[g_j(\theta)]=\mu_j~,~\) \(j=1,...,m~.\)\\
+Usando novamente o método de Lagrange, deve-se maximizar\\
+\(\mathcal{E}^*(h)\) \(=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)\)\\
+\(\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0\)
+\(\Longleftrightarrow p_i \propto e^{\lambda-1+\sum_{j=1}^m \lambda_j~g_j(\theta_i)}\) \(\propto e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}~~,~~~i=1,\ldots,k~.\)\\
+Como \(\sum p_i=1\), \(p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}~\) e \(\lambda_j\) é obtido por meio das restrições.
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2a:} Seja \(\Theta = \{0,1,2,...\}\) e suponha que \(\text{E}[\theta]=\mu.\)\\
+Usando o resultado do exemplo anterior com \(g(\theta)=\theta\) e \(\theta_i=i\), \(i=0,1,2,\ldots~,\)\\
+\(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
+\(=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~\)
+\(\overset{\left|e^\lambda\right|<1}{=}~\dfrac{e^{\lambda~i}}{1/\left(1-e^\lambda\right)}\)
+\(=\left(e^\lambda\right)^i\left(1-e^\lambda\right)\)
+\(\Longrightarrow \theta \sim \text{Geo}\left(1-e^\lambda\right)~.\)\\
+Como \(\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\mu\), tem-se que \(\lambda=\log\dfrac{\mu}{1+\mu}~.\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2b:} Considere que \(\Theta = \{1,2,...,k\}\) e suponha que \(\text{Med}(\theta)=m~.\)\\
+Nesse caso, \(g(\theta)=\mathbb{I}\left(\theta\leq m\right)\) e \(\theta_i=i\), \(i=1,2,\ldots,k~,\) de modo que\\
+\(\text{E}\left[g(\theta)\right]\) \(=\text{E}\left[\mathbb{I}(\theta\leq m)\right]\) \(=\text{P}\left(\theta\leq m\right)=1/2\) e, portanto, \(\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.\)
+\(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
+\(=\left\{\begin{array}{lll} \dfrac{e^\lambda}{\sum_{i\leq m} e^\lambda}&,& i\leq m \\ \dfrac{1}{\sum_{i\leq m} 1}&,& i> m\end{array}\right.\)
+\(=\left\{\begin{array}{lll} \dfrac{1}{2m}&,& i\leq m \\ \dfrac{1}{2(k-m)}&,& i> m\end{array}\right.\)\\
+(A distribuição de \(\theta\) é uniforme por blocos.)
+\end{quote}
 
 \(~\)
 

@@ -18,7 +18,7 @@
 
 * $(\mathfrak{X},\mathcal{F},\mathcal{P})$ : modelo estatístico (clássico).
 
-* $V_X(\theta)=f(\boldsymbol x |\theta)$ : função de verossimilhança.
+* $V_x(\theta)=f(\boldsymbol x |\theta)$ : função de verossimilhança.
 
 $~$ 
 
@@ -656,20 +656,189 @@ As principais críticas da priori de Bayes-Laplace são
 
 1. A distribuição é *imprópria* quando o espaço paramétrico $\Theta$ não é finito ou limitado. Por exemplo, $\Theta=\mathbb{N}$, $\Theta=\mathbb{Z}$ ou $\Theta=\mathbb{R}$. Nesses casos, a priori de Bayes-Laplace é $f(\theta)\propto \mathbb{I}_\Theta(\theta)$, que não é uma distribuição de probabilidade.
 
-1. Não é *invariante* a reparametrizações. Considere, por exemplo, $f(theta)$ uma f.d.p. a priori para $\theta$ e $g$ uma transformação injetora de $\theta$ tal que $\psi=g(\theta)$. A distribuição de $\psi$ pode ser calculada por $f(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.$ Assim, se $g$ é uma transformação não linear e a distribuição a priori para $\theta$ é uniforme, a distribuição para $\psi$ não é uniforme, em geral.
+1. Não é *invariante* a reparametrizações. Considere, por exemplo, $f(\theta)$ uma f.d.p. a priori para $\theta$ e $g$ uma transformação um-a-um (injetora) de $\theta$ tal que $\psi=g(\theta)$. A distribuição de $\psi$ pode ser calculada por $f_\psi(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{dg^{-1}(\psi)}{d\psi}\right|~.$ Assim, se $g$ é uma transformação não linear e a distribuição a priori para $\theta$ é uniforme, a distribuição para $\psi$ não é uniforme, em geral.
 
 $~$
 
 #### Priori de Jeffreys
 
-<!-- Seja $g$ uma transformação -->
+Seja $g$ uma transformação um-a-um do parâmetro $\theta$ e defina $\psi=g(\theta)$. Considere uma função $h:\mathfrak{X}\times\Theta\longrightarrow\mathbb{R}$. Uma classe de distribuições a priori invariantes pode ser definida por
+$$f(\theta) \propto \left(\text{Var}_{X|\theta}\left[\dfrac{\partial h(\boldsymbol X | \theta)}{\partial\theta}~\bigg|~\theta\right]\right)^{1/2}~.$$
+
+>**Demo.** Para mostrar a invariância do método, considere o caso contínuo em que
+$$f_\psi(\psi) = f\left(g^{-1}(\psi)\right)\left|\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right|~.$$
+Seja $h^*(x,\psi)=h\left(x,g^{-1}(\psi)\right)$. Então  
+$\dfrac{\partial h^*(x,\psi)}{\partial\psi}$ 
+$=\dfrac{\partial h\left(x,g^{-1}(\psi)\right)}{\partial\psi}$ 
+$=\left.\dfrac{\partial h(x,\theta)}{\partial\theta}\right|_{\theta=g^{-1}(\psi)}\cdot\dfrac{\partial g^{-1}(\psi)}{\partial\psi}~,$  
+e, portanto,  
+$\text{Var}\left[\dfrac{\partial h^*(\boldsymbol{X},\psi)}{\partial\psi}~\bigg|~\theta=g^{-1}(\psi)\right]$ 
+$=\text{Var}\left[\dfrac{\partial h(\boldsymbol{X},\theta)}{\partial\theta}~\bigg|~\theta=g^{-1}(\psi)\right]\cdot\left[\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right]^2$ 
+$=\left[f\left(g^{-1}(\psi)\right)\left(\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right)\right]^2~,$  
+de modo que  
+$f_\psi(\psi)$ $=f\left(g^{-1}(\psi)\right)\left|\dfrac{\partial g^{-1}(\psi)}{\partial\psi}\right|$ 
+$=\text{Var}\left[\dfrac{\partial h^*(\boldsymbol{X},\psi)}{\partial\psi}~\bigg|~\theta=g^{-1}(\psi)\right]^{1/2}~.$
 
 $~$
 
+A escolha mais usual para $h$ é $h(\boldsymbol{x},\theta)=\log f(\boldsymbol{x}|\theta)~.$ Assim, como $E\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]=0$, temos  
+$f(\theta)$ 
+$\propto\text{Var}\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]^{1/2}$ 
+$=\text{E}\left[\left(\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]^{1/2}$ 
+$=\left[\mathcal{I}(\theta)\right]^{1/2}~,$  
+onde $\mathcal{I}(\theta)$ é a *Informação de Fisher* de $\theta$. Neste caso, $f(\theta)\propto\left[\mathcal{I}(\theta)\right]^{1/2}$ é chamada **priori de Jeffreys**.
+
+$~$
+
+>**Exemplo 1.** Considere novamente o experimento de lançar uma moeda $n$ vezes e contar o número de caras, isto é, $X|\theta \sim \text{Bin}(n,\theta)$. Então,  
+$f(x|\theta)=\displaystyle\binom{n}{x}\theta^x(1-\theta)^{n-x}$ 
+$\Longrightarrow~ \log f(x|\theta)=\log\binom{n}{x}+x\log\theta+(n-x)\log(1-\theta)$  
+$~$  
+$\dfrac{\partial\log f(x|\theta)}{\partial\theta}$ 
+$=\dfrac{x}{\theta}-\dfrac{n-x}{1-\theta}$ 
+$=\dfrac{x-n\theta}{\theta(1-\theta)}~.$  
+$~$  
+Como $E\left[X|\theta\right]=n\theta$ e $Var(X|\theta)$ $=E\left[\left(X-E\left[X|\theta\right]\right)^2~\Big|~\theta\right]$ $=E\left[\left(X-n\theta\right)^2~\Big|~\theta\right]$ $=n\theta(1-\theta)$, a informação de Fisher neste caso é  
+$\mathcal{I}_x(\theta)$ $=\text{E}\left[\left(\dfrac{\partial\log f(x|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]$ $=\text{E}\left[\left(\dfrac{X-n\theta}{\theta(1-\theta)}\right)^2~\bigg|~\theta\right]$ 
+$=\dfrac{1}{\theta^2(1-\theta)^2}~\text{E}\left[\left(X-n\theta\right)^2~|~\theta\right]$
+$=\dfrac{1}{\theta^2(1-\theta)^2}~\text{Var}\left(X~|~\theta\right)$ 
+$=\dfrac{n~\theta(1-\theta)}{\theta^2(1-\theta)^2}$ 
+$=\dfrac{n}{\theta(1-\theta)}$ $=n\theta^{-1}(1-\theta)^{-1}~,$  
+$~$  
+de modo que a priori de Jeffreys é  
+$f(\theta)$ $\propto\left[\mathcal{I}_x(\theta)\right]^{1/2}$ 
+$\propto\theta^{-1/2}(1-\theta)^{-1/2}~.$
+
+$~$
+
+> **Exemplo 2.** Considere agora que a mesma moeda é lançada e anota-se o número de caras $Y$ até que sejam observadas $r$ coroas, isto é, $Y|\theta \sim \text{BinNeg}(r,\theta)$. Então,
+$f(y|\theta)=\displaystyle\binom{y+r-1}{y}\theta^y(1-\theta)^{r}$ 
+$\Longrightarrow~ \log f(y|\theta)=\log\binom{y+k-1}{y}+y\log\theta+r\log(1-\theta)$  
+$~$  
+$\dfrac{\partial\log f(y|\theta)}{\partial\theta}$ 
+$=\dfrac{y}{\theta}-\dfrac{r}{1-\theta}$ 
+$=\dfrac{1}{\theta}\left[y-\dfrac{r~\theta}{1-\theta}\right]~.$  
+$~$  
+Como $E\left[X|\theta\right]=\dfrac{r~\theta}{1-\theta}$ e $Var(X|\theta)=\dfrac{r~\theta}{(1-\theta)^2}$, a informação de Fisher neste caso é  
+$\mathcal{I}_y(\theta)$ $=\text{E}\left[\dfrac{1}{\theta^2}\left(y-\dfrac{r~\theta}{1-\theta}\right)^2~\bigg|~\theta\right]$ 
+$=\dfrac{1}{\theta^2}~\text{Var}\left(Y~|~\theta\right)$ 
+$=\dfrac{r}{\theta(1-\theta)^2}$ $=r\theta^{-1}(1-\theta)^{-2}~,$  
+$~$  
+de modo que a priori de Jeffreys é  
+$f(\theta)$ $\propto\left[\mathcal{I}_y(\theta)\right]^{1/2}$ 
+$\propto\theta^{-1/2}(1-\theta)^{-1}~.$
+
+$~$
+
+Note que nos exemplos apresentados, a priori depende da *regra de parada*, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos.
+
+$~$  
+
 #### Priori de Máxima Entropia
 
+**Entropia** é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O *princípio da máxima entropia* afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
 
 
+**Caso Discreto.** Considere um espaço paramétrico enumerável $\Theta = \{\theta_1,\theta_2,...\}$. A *entropia* da distribuição $h$ é dada por  
+$$\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.$$
+
+$~$  
+
+> **Exemplo 1.** Considere o espaço paramétrico $\Theta=\{\theta_1,...,\theta_k\}$ e $h(\theta_i)=p_i$ uma distribuição discreta para $\theta$. A *distribuição da máxima entropia* para $\theta$ é a função $h$ que maximiza $\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)$ com a restrição $\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.$  
+Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana  
+$\mathcal{E}^*(h)=\displaystyle-\sum_{i=1}^k p_i\log(p_i)+\lambda\left(\sum_{i=1}^k p_i-1\right)$  
+$\dfrac{\partial\mathcal{E}^*(h)}{\partial p_i}=-\left[p_i~\dfrac{1}{p_i}+\log(p_i)\right]+\lambda=0$ $\Longleftrightarrow p_i = e^{\lambda-1}~~,~~~i=1,\ldots,k~.$  
+Assim, como $p_i$ deve ser constante e $\sum p_i=1$, conclui-se que $p_i=1/k$, para $i=1,\ldots,k~.$
+
+$~$
+
+> **Exemplo 2:** Considere agora $\Theta = \{\theta_1,\theta_2,...\}$ e suponha que há $m$ informações parciais a respeito do parâmetro $\theta$ que podem ser escritas como $\text{E}[g_j(\theta)]=\mu_j~,~$ $j=1,...,m~.$  
+Usando novamente o método de Lagrange, deve-se maximizar  
+$\mathcal{E}^*(h)$ $=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)$  
+$\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0$ 
+$\Longleftrightarrow p_i \propto e^{\lambda-1+\sum_{j=1}^m \lambda_j~g_j(\theta_i)}$ $\propto e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}~~,~~~i=1,\ldots,k~.$  
+Como $\sum p_i=1$, $p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}~$ e $\lambda_j$ é obtido por meio das restrições.
+
+$~$
+
+> **Exemplo 2a:** Seja $\Theta = \{0,1,2,...\}$ e suponha que $\text{E}[\theta]=\mu.$  
+Usando o resultado do exemplo anterior com $g(\theta)=\theta$ e $\theta_i=i$, $i=0,1,2,\ldots~,$  
+$p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
+$=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~$
+$\overset{\left|e^\lambda\right|<1}{=}~\dfrac{e^{\lambda~i}}{1/\left(1-e^\lambda\right)}$ 
+$=\left(e^\lambda\right)^i\left(1-e^\lambda\right)$ 
+$\Longrightarrow \theta \sim \text{Geo}\left(1-e^\lambda\right)~.$  
+Como $\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\mu$, tem-se que $\lambda=\log\dfrac{\mu}{1+\mu}~.$
+
+$~$
+
+> **Exemplo 2b:** Considere que $\Theta = \{1,2,...,k\}$ e suponha que $\text{Med}(\theta)=m~.$  
+Nesse caso, $g(\theta)=\mathbb{I}\left(\theta\leq m\right)$ e $\theta_i=i$, $i=1,2,\ldots,k~,$ de modo que  
+$\text{E}\left[g(\theta)\right]$ $=\text{E}\left[\mathbb{I}(\theta\leq m)\right]$ $=\text{P}\left(\theta\leq m\right)=1/2$ e, portanto, $\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.$
+$p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
+$=\left\{\begin{array}{lll} \dfrac{e^\lambda}{\sum_{i\leq m} e^\lambda}&,& i\leq m \\ \dfrac{1}{\sum_{i\leq m} 1}&,& i> m\end{array}\right.$ 
+$=\left\{\begin{array}{lll} \dfrac{1}{2m}&,& i\leq m \\ \dfrac{1}{2(k-m)}&,& i> m\end{array}\right.$  
+(A distribuição de $\theta$ é uniforme por blocos.)
+
+$~$
+
+$~$
+
+<!-- $\mathcal{E}(\boldsymbol p)=$ $\sum_{i=1}^kp_iln(p_i),$ $\boldsymbol p = (p_1,...,p_k),\; \sum p_i=1$ -->
+
+<!-- $~$ -->
+
+<!-- **Divergência de Kullbach-Leibler** -->
+
+<!-- $\boldsymbol p = (p_1,...,p_k);\;\boldsymbol q = (q_1,...,q_k),$ -->
+
+<!-- $D(\boldsymbol{p,q})=\sum p_iln\left(\dfrac{p_i}{q_i}\right)$ -->
+
+<!-- Suponha $g=(1/k,...,1/k)$ -->
+
+<!-- $D(\boldsymbol{p,q})=\sum_{i=1}^{k}p_i[ln(p_i)-ln(1/k)]$ $=\sum_{i=1}^kp_i ln(pi)+ln(k)\underbrace{\sum_{i=1}^k p_i}_{1}$ $=ln(k)-\mathcal{E}(\boldsymbol p)$ -->
+
+<!-- $\Rightarrow \mathcal{E}(\boldsymbol p)$ está associado com quanto a distribuição $\boldsymbol p$ "difer" da distribuição uniforme (priori de referência na ausência total de informação) -->
+
+<!-- $~$ -->
+
+<!-- **Jaynes** redefiniu entropia (no caso contínuo) por  -->
+
+<!-- $\mathcal{E}(h)=-\int_\Theta h(\theta)ln\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta$ -->
+
+<!-- $~$ -->
+
+<!-- **Observação:** Caso Geral $\mathcal{E}(H)=-\int_\Theta ln\left(\dfrac{dH(\theta)}{dH_0(\theta)}\right)dH(\theta)$ onde $H$ e $H_0$ são medidas de probabilidade para $\theta$ e $\dfrac{dH}{dH_0}$ é derivada de Radom-Nikodim. -->
+
+<!-- $~$ -->
+
+<!-- Assim como no caso discreto, se temos $m$ restrições $E[g_i(\theta)]=\mu_i,$ a densidade de máxima entropia é -->
+
+<!-- $h(\theta)\propto h_0(\theta)exp\{\sum_{j=1}^m\lambda_j g_j(\theta)\}$ e os $\lambda_j,\;j=1,...,m$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer  -->
+
+<!-- $\mu = \int_\Theta \theta c h_0(\theta)exp\{\lambda\theta\}d\theta$ com $c^{-1}=\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta$. -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 1:** $\Theta = \mathbb{R}_+$ e $E[\theta]=\mu$, -->
+
+<!-- $h_0(\theta) \propto 1\mathbb{I}_{\mathbb{R}_+}(\theta)$ $\Rightarrow h(\theta )\propto exp\{\lambda\theta\}\mathbb{I}_{\mathbb{R}_+}(\theta)$ -->
+
+<!-- $h(\theta)=-\lambda exp\{\lambda\theta\}\mathbb{I}_{\mathbb{R}_+}(\theta)\mathbb{I}_{\mathbb{R}_-}(\lambda)$ -->
+
+<!-- $E[\theta]=-1/\lambda =\mu$ $\Rightarrow \lambda= -1/\mu$ -->
+
+<!-- $h(\theta)=\dfrac{1}{\mu}e^{-\frac{1}{\mu}\theta},\; \mu>0$ -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 2** $\Theta = \mathbb{R}$ e $E[\theta]=\mu$ e $Var[\theta]=\sigma^2=E[(\theta-\mu)^2]$ -->
+
+<!-- $h(\theta)\propto exp\{\lambda_1\mu+\lambda_2(\theta-\mu)^2\}$ $\propto exp\left\{\lambda_2\left[\theta-\left(\mu-\dfrac{\lambda_1}{2\lambda_2}\right)\right]^2\right\}+\left[\lambda_1\mu+\dfrac{\lambda_1^2}{4\lambda_2}\right]$ -->
+
+<!-- Parecido a uma $X\sim N(\mu_x,\sigma_X^2)$ onde $f(x)=\dfrac{1}{\sqrt{2\pi}\sigma_X}exp\left\{-\dfrac{1}{2\sigma_X^2})(x-\mu)^2\right\}$ $\propto exp\left\{-\dfrac{1}{2\sigma_X^2}(x-\mu)^2\right\}$ -->
+
+<!-- $\mu-\dfrac{\lambda_1}{2\lambda_2}=\mu$ $\Rightarrow\; \lambda_1=0;\; \lambda_2=-\dfrac{1}{2\sigma_X^2}$ $\Rightarrow \theta \sim N(\mu,\sigma^2)$ -->
 
 $~$
 

@@ -308,7 +308,7 @@ $~$
 
 $~$
 
-**Teorema 10:** Seja $A_1 \supseteq A_2 \supseteq \ldots$ uma seq. decrescente de eventos tais que $\bigcap_{i=1}^{n} A_i = \varnothing$. Então $\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0$.
+**Teorema 10:** Seja $A_1 \supseteq A_2 \supseteq \ldots$ uma seq. decrescente de eventos tais que $\bigcap_{i=1}^{\infty} A_i = \varnothing$. Então $\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0$.
 
 > **Demo:** $A_1 \supseteq A_2 \supseteq \ldots$ $\Rightarrow$ $P(A_1) \geq P(A)_2 \geq \ldots$.   
 Além disso, $\displaystyle \lim_{n \uparrow \infty} P(A_n) = b$. Como $P(A_n) \geq b$, $\forall n$, segue que $A_n \succsim \{X \in [0,b]\}$, $\forall n$.  
@@ -322,8 +322,8 @@ Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do T
 
 > **Demo:** Seja $(A_n)_{n \geq 1}$ sequência de eventos disjuntos. Segue do Corolário 1 que  
 (i) $\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)$, $n=1,2,\ldots$  
-Considere $\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j$, $n \geq 1$, uma sequência decrescente de eventos tais que $\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing$. Pelo Teorema 10, segue que $\displaystyle \lim_{n\uparrow \infty} B_n = 0$. Assim, tomando o limite do lado direito de (i), segue que  
-$\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)$ $=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)$ $=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)$.  
+Considere $\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j$, $n \geq 1$, uma sequência decrescente de eventos tais que $\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing$. Pelo Teorema 10, segue que $\displaystyle \lim_{n\uparrow \infty} P(B_n) = 0$. Assim, tomando o limite do lado direito de (i), segue que  
+$\displaystyle P\left(\bigcup_{i=1}^{\infty} A_i\right)$ $=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)$ $=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)$.  
 
 $~$
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-09-15" />
+<meta name="date" content="2020-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -449,7 +449,7 @@ Como <span class="math inline">\(B \sim \left\{X \in \left[0,P(B)\right]\right\}
 <p><strong>Demo:</strong> Basta repetir o argumento da segunda parte da demonstração anterior <span class="math inline">\(n-1\)</span> vezes.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Teorema 10:</strong> Seja <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> uma seq. decrescente de eventos tais que <span class="math inline">\(\bigcap_{i=1}^{n} A_i = \varnothing\)</span>. Então <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\)</span>.</p>
+<p><strong>Teorema 10:</strong> Seja <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> uma seq. decrescente de eventos tais que <span class="math inline">\(\bigcap_{i=1}^{\infty} A_i = \varnothing\)</span>. Então <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = 0\)</span>.</p>
 <blockquote>
 <p><strong>Demo:</strong> <span class="math inline">\(A_1 \supseteq A_2 \supseteq \ldots\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(P(A_1) \geq P(A)_2 \geq \ldots\)</span>.<br />
 Além disso, <span class="math inline">\(\displaystyle \lim_{n \uparrow \infty} P(A_n) = b\)</span>. Como <span class="math inline">\(P(A_n) \geq b\)</span>, <span class="math inline">\(\forall n\)</span>, segue que <span class="math inline">\(A_n \succsim \{X \in [0,b]\}\)</span>, <span class="math inline">\(\forall n\)</span>.<br />
@@ -462,8 +462,8 @@ Usando o Corolário 1 e o Teorema 10 é possível concluir a demonstração do T
 <blockquote>
 <p><strong>Demo:</strong> Seja <span class="math inline">\((A_n)_{n \geq 1}\)</span> sequência de eventos disjuntos. Segue do Corolário 1 que<br />
 (i) <span class="math inline">\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right) = \sum_{i=1}^{n} P\left(A_i\right) + P\left(\bigcup_{j=n+1}^{\infty} A_j\right)\)</span>, <span class="math inline">\(n=1,2,\ldots\)</span><br />
-Considere <span class="math inline">\(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\)</span>, <span class="math inline">\(n \geq 1\)</span>, uma sequência decrescente de eventos tais que <span class="math inline">\(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\)</span>. Pelo Teorema 10, segue que <span class="math inline">\(\displaystyle \lim_{n\uparrow \infty} B_n = 0\)</span>. Assim, tomando o limite do lado direito de (i), segue que<br />
-<span class="math inline">\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_n\right)\)</span> <span class="math inline">\(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\)</span> <span class="math inline">\(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\)</span>.</p>
+Considere <span class="math inline">\(\displaystyle B_n=\bigcup_{j=n+1}^{\infty} A_j\)</span>, <span class="math inline">\(n \geq 1\)</span>, uma sequência decrescente de eventos tais que <span class="math inline">\(\displaystyle \bigcap_{n=1}^{\infty} B_n = \varnothing\)</span>. Pelo Teorema 10, segue que <span class="math inline">\(\displaystyle \lim_{n\uparrow \infty} P(B_n) = 0\)</span>. Assim, tomando o limite do lado direito de (i), segue que<br />
+<span class="math inline">\(\displaystyle P\left(\bigcup_{i=1}^{\infty} A_i\right)\)</span> <span class="math inline">\(=\displaystyle \lim_{n\uparrow \infty} \sum_{i=1}^{n} P\left(A_i\right) + \lim_{n\uparrow \infty} P\left(B_n\right)\)</span> <span class="math inline">\(=\displaystyle \sum_{i=1}^{\infty} P\left(A_i\right)\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema 11:</strong> Se a relação de crença <span class="math inline">\(\precsim\)</span> obedece SP1 a SP5 então <span class="math inline">\(\exists !~ P: \mathcal{A} \rightarrow [0,1]\)</span>, medida de probabilidade, tal que <span class="math inline">\(P\)</span> representa <span class="math inline">\(\precsim~.\)</span></p>
