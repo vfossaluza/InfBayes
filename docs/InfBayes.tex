@@ -116,7 +116,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-09-22}
+\date{2020-09-29}
 
 \begin{document}
 \maketitle
@@ -611,7 +611,7 @@ Considere que existe uma outra medida \(P'\) que concorde com a relação \(\pre
 \item
   Baseia-se no " princípio" da amostragem repetida (interpretação frequentista de probabilidade), isto é, supõe que é possivel realizar infinitas vezes o experimento. Assim, o \(\boldsymbol x\) é apenas um dos possiveis resultados (hipóteticos) do experimento.
 \item
-  Probabilidade somente é definida em (uma \(\sigma-álgebra\) de) \(\mathfrak{X}\).
+  Probabilidade somente é definida em (uma \(\sigma\)-álgebra de) \(\mathfrak{X}\).
 \end{itemize}
 
 \hypertarget{inferuxeancia-bayesiana}{%
@@ -648,7 +648,7 @@ Considere que existe uma outra medida \(P'\) que concorde com a relação \(\pre
 
 \(~\)
 
-\textbf{Exemplo 1.a:} Suponha que existem duas moedas, uma delas tem \(\theta =1/2\) (honesta) e a outra \(\theta=3/4\) (viesada). Uma moeda é escolhida e é feito um lançamento da moeda selecionada. Nesse experimento, tem-se \(X|\theta \sim Ber(\theta)\), com \(\Theta=\{1/2,3/4\}\) e \(\mathfrak{X}=\{0,1\}\). Como ``chutar'' o valor de \(\theta\)?
+\textbf{Exemplo 1a.} Suponha que existem duas moedas, uma delas tem \(\theta =1/2\) (honesta) e a outra \(\theta=3/4\) (viesada). Uma moeda é escolhida e é feito um lançamento da moeda selecionada. Nesse experimento, tem-se \(X|\theta \sim Ber(\theta)\), com \(\Theta=\{1/2,3/4\}\) e \(\mathfrak{X}=\{0,1\}\). Como ``chutar'' o valor de \(\theta\)?
 
 Considere que não existe razão para você acreditar que há algum tipo de preferência na escolha de uma ou outra moeda, isto é, considere que a priori \(f(\theta=1/2)\) \(=f(\theta=3/4)\) \(=1/2\). Suponha que o lançamento resultou em cara (\(x=1\)). Então
 
@@ -664,7 +664,7 @@ Assim, se sua decisão for escolher o valor mais provável de \(\theta\) após o
 
 \(~\)
 
-\textbf{Exemplo 1.b:} Considere agora que serão realizados \(n\) lançamentos da moeda, de modo que agora tem-se \(X|\theta \sim Bin(n,\theta)\), \(\theta \in \{1/2,3/4\}\), \(x \in \{0,1,\ldots,n\}\). Suponha que observa-se \(X=x\).
+\textbf{Exemplo 1b.} Considere agora que serão realizados \(n\) lançamentos da moeda, de modo que agora tem-se \(X|\theta \sim Bin(n,\theta)\), \(\theta \in \{1/2,3/4\}\), \(x \in \{0,1,\ldots,n\}\). Suponha que observa-se \(X=x\).
 
 \(f(\theta=3/4|X=x)\) \(=\dfrac{f(x|\theta=3/4)f(\theta=3/4)}{\displaystyle \sum_{\theta\in \{1/2,3/4\}}f(x|\theta)f(\theta)}\) \(=\dfrac{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}}{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}+\displaystyle\binom{n}{x}\left(\dfrac{1}{2}\right)^x\left(\dfrac{1}{2}\right)^{n-x}\dfrac{1}{2}}\) \(=\dfrac{1}{1+\left(\dfrac{2^n}{3^x}\right)}\) \(=\dfrac{3^x}{3^x + 2^n}\).
 
@@ -690,59 +690,78 @@ Assim, se sua decisão for escolher o valor mais provável de \(\theta\) após o
 
 \(~\)
 
-Note que o Exemplo 1.a é um caso particular desse exemplo com \(n=1\). Se novamente sua decisão é baseada no valor mais provável de \(\theta\), temos
+Note que o Exemplo 1.a é um caso particular desse exemplo com \(n=1\). Se novamente sua decisão é baseada no valor mais provável de \(\theta\), deve-se escolher \(\theta=3/4\) se
 
-\(f(\theta=3/4|X=x) > \dfrac{1}{2}\) \(\Longleftrightarrow \dfrac{3^x}{3^x + 2^n} > \dfrac{1}{2}\) \(\Longleftrightarrow {3^x} > {2^n}\) \(\Longleftrightarrow \dfrac{x}{n} = \bar{x} > \log_3{2}\approx 0,63\).
-
-\(~\)
-
-\textbf{Exemplo 1.c:} Considere que uma moeda será lançada \(n\) vezes mas que \(\theta\) é desconhecido, de modo que \(\Theta = [0,1]\). Para simplificar, vamos assumir \(f(\theta)=\mathbb{I}_{[0,1]}(\theta)\), isto é, \(\theta \sim Unif(0,1)\sim Beta(1,1)\). Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para \(\theta\) são igualmente ``prováveis'', assim como nos exemplos anteriores. Novamente, \(X|\theta \sim Bin(n,\theta)\)
-
-\(f(\theta|x)=\) \(\dfrac{f(x|\theta)f(\theta)}{\int_0^1 f(x|\theta)f(\theta)d\theta}=\) \(\dfrac{\binom{n}{x}\theta^x(1-\theta)^{n-x} ~~\mathbb{I}_{[0,1]}(\theta)}{\int_0^1\binom{n}{x}\theta^x(1-\theta)^{n-x}d\theta}=\) \(\dfrac{\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)}{\underbrace{\displaystyle \int_0^1\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}d\theta}_{1}}\) \(=\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)\).
+\(f(\theta=3/4|X=x) > f(\theta=1/2|X=x)\) \(\Longleftrightarrow f(\theta=3/4|X=x) > \dfrac{1}{2}\) \(\Longleftrightarrow \dfrac{3^x}{3^x + 2^n} > \dfrac{1}{2}\) \(\Longleftrightarrow {3^x} > {2^n}\) \(\Longleftrightarrow \dfrac{x}{n} = \bar{x} > \log_3{2}\approx 0,63\).
 
 \(~\)
 
-Logo \(\theta|x \sim Beta(1+x,1+n-x)\). Nesse exemplo, o valor ``mais provável'' (com maior densidade a posteriori) para \(\theta\) é a moda da distribuição, \(Moda(\theta|x)\) \(= \dfrac{(1+x)-1}{(1+x)+(1+n-x)-2}\) \(= \dfrac{x}{n}\) \(=\bar{x}\).
+\textbf{Exemplo 1c.} Considere que uma moeda será lançada \(n\) vezes mas que \(\theta\) é desconhecido, de modo que \(\Theta = [0,1]\). Para simplificar, vamos assumir \(f(\theta)=\mathbb{I}_{[0,1]}(\theta)\), isto é, \(\theta \sim Unif(0,1)\sim Beta(1,1)\). Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para \(\theta\) são igualmente ``prováveis'', assim como nos exemplos anteriores. Novamente, \(X|\theta \sim Bin(n,\theta)\)
+
+\(f(\theta|x)\)
+\(=\dfrac{f(x|\theta)f(\theta)}{\displaystyle\int_0^1 f(x|\theta)f(\theta)d\theta}\)
+\(=\dfrac{\displaystyle\binom{n}{x}~\theta^x(1-\theta)^{n-x} ~~\mathbb{I}_{[0,1]}(\theta)}{\displaystyle\int_0^1\binom{n}{x}~\theta^x(1-\theta)^{n-x}d\theta}=\) \(\dfrac{\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)}{\underbrace{\displaystyle \int_0^1\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}d\theta}_{1}}\)
+\(=\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)\).
+
+Logo \(\theta|x \sim Beta(1+x,1+n-x)\). Nesse exemplo, o valor ``mais provável'' (com maior densidade a posteriori) para \(\theta\) é a moda da distribuição, \(Moda(\theta|x)\) \(= \dfrac{(1+x)-1}{(1+x)+(1+n-x)-2}\) \(= \dfrac{x}{n}\) \(=\bar{x}\). Suponha que foi observado \(n=5\) e \(x=2\), a posteriori é \(\theta|x=2 \sim Beta(3,4)\) e a moda é \(Moda(\theta|x)\) \(=\frac{1+x-1}{1+1+n-2}\) \(=\frac{2}{5}\) \(=0,4\);
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+Algumas medidas resumo da distribuição posterior para esse exemplo são
+
+\begin{itemize}
+\item
+  \(Moda(\theta|x)\) \(=\dfrac{1+x-1}{1+1+n-2}\) \(=\dfrac{2}{5}\) \(=0,4\);
+\item
+  \(E[\theta|x]\) \(=\dfrac{1+x}{1+1+n}\) \(=\dfrac{3}{7}\) \(=0,43\);
+\item
+  \(Med(\theta|x)\) \(\approx \dfrac{1+x-1/3}{1+1+n-2/3}\) \(=\dfrac{8/3}{19/3}\) \(\approx 0,42\);
+\item
+  \(Var(\theta|x)\) \(=\dfrac{(1+x)(1+n-x)}{(1+1+n)^2(1+1+n+1)}\) \(=\dfrac{12}{392}\) \(\approx 0,031\).
+\end{itemize}
 
 \(~\)
 
-\textbf{Exemplo 1.d} Por fim, suponha que no exemplo anterior, sua opinião a priori é representada por uma distribuição beta qualquer com parâmetros \(a\) e \(b\), \(a,b > 0\). Desta forma, \(X|\theta \sim Bin(n,\theta)\) e \(\theta\sim Beta(a,b)\). Calculando a distribuição a posteriori de forma similar ao exemplo anterior, temos que \(\theta|X=x \sim Beta(a+x,b+n-x)\).
+\textbf{Exemplo 1d.} Por fim, suponha que no exemplo anterior, sua opinião a priori é representada por uma distribuição beta qualquer com parâmetros \(a\) e \(b\), \(a,b > 0\). Desta forma, \(X|\theta \sim Bin(n,\theta)\) e \(\theta\sim Beta(a,b)\). Calculando a distribuição a posteriori de forma similar ao exemplo anterior, temos que \(\theta|X=x \sim Beta(a+x,b+n-x)\). Note que o exemplo anterior é o caso particular em que \(a=b=1~.\)
 
 \(~\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{theta =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\FloatTok{0.01}\NormalTok{)}
-\NormalTok{a=}\DecValTok{1}\NormalTok{; b=}\DecValTok{1}\NormalTok{;}
+\NormalTok{a=}\DecValTok{2}\NormalTok{; b=}\DecValTok{2}\NormalTok{;}
 \NormalTok{n=}\DecValTok{5}
+\NormalTok{vero1 =}\StringTok{ }\KeywordTok{as.vector}\NormalTok{(}\KeywordTok{apply}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,n)),}\DecValTok{1}\NormalTok{,}
+            \ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{dbeta}\NormalTok{(theta,}\DecValTok{1}\OperatorTok{+}\NormalTok{x,}\DecValTok{1}\OperatorTok{+}\NormalTok{n}\OperatorTok{-}\NormalTok{x)\}))}
 \NormalTok{post1 =}\StringTok{ }\KeywordTok{as.vector}\NormalTok{(}\KeywordTok{apply}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,n)),}\DecValTok{1}\NormalTok{,}
             \ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{dbeta}\NormalTok{(theta,a}\OperatorTok{+}\NormalTok{x,b}\OperatorTok{+}\NormalTok{n}\OperatorTok{-}\NormalTok{x)\}))}
 \KeywordTok{tibble}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{as.factor}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,n),}\DataTypeTok{each=}\KeywordTok{length}\NormalTok{(theta))),}
-    \DataTypeTok{theta=}\KeywordTok{rep}\NormalTok{(theta,(n}\OperatorTok{+}\DecValTok{1}\NormalTok{)),}\DataTypeTok{post=}\NormalTok{post1) }\OperatorTok{%>%}\StringTok{ }
+    \DataTypeTok{theta=}\KeywordTok{rep}\NormalTok{(theta,(n}\OperatorTok{+}\DecValTok{1}\NormalTok{)),}\DataTypeTok{post=}\NormalTok{post1,}\DataTypeTok{vero=}\NormalTok{vero1) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{theta,}\DataTypeTok{y=}\NormalTok{post, }\DataTypeTok{colour=}\NormalTok{x),}\DataTypeTok{lwd=}\FloatTok{1.5}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{theta,}\DataTypeTok{y=}\KeywordTok{dbeta}\NormalTok{(theta,a,b),}\DataTypeTok{colour=}\StringTok{"Prior"}\NormalTok{),}\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{theta,}\DataTypeTok{y=}\KeywordTok{dbeta}\NormalTok{(theta,a,b),}\DataTypeTok{linetype=}\StringTok{"Prior"}\NormalTok{,}\DataTypeTok{colour=}\StringTok{"Prior"}\NormalTok{),}\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{theta,}\DataTypeTok{y=}\NormalTok{post,}\DataTypeTok{linetype=}\StringTok{"Posterior"}\NormalTok{,}\DataTypeTok{colour=}\NormalTok{x),}\DataTypeTok{lwd=}\FloatTok{1.3}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{theta,}\DataTypeTok{y=}\NormalTok{vero,}\DataTypeTok{linetype=}\StringTok{"Verossimilhança"}\NormalTok{,}\DataTypeTok{colour=}\NormalTok{x),}\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(theta)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"f("}\NormalTok{,theta,}\StringTok{"|x)"}\NormalTok{))) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}\OperatorTok{+}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{linetype=}\StringTok{""}\NormalTok{)}\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{x)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 \(~\)
 
-Suponha que \(a=b=1\) (como no exemplo anterior), \(n=5\) e \(x=2\), de modo que \(\theta|x=2 \sim Beta(3,4)\). Algumas medidas resumo da distribuição posterior para esse exemplo são
+Suponha agora que \(a=b=2\), \(n=5\) e \(x=2\), de modo que \(\theta|x=2 \sim Beta(4,5)\). Algumas medidas resumo da distribuição posterior para esse exemplo são
 
 \begin{itemize}
 \item
-  \(Moda(\theta|x)\) \(=\dfrac{a+x-1}{a+b+n-2}\) \(=\dfrac{2}{5}\) \(=0,4\);
+  \(Moda(\theta|x)\) \(=\dfrac{a+x-1}{a+b+n-2}\) \(=\dfrac{3}{7}\) \(\approx 0,428\);
 \item
-  \(E[\theta|x]\) \(=\dfrac{a+x}{a+b+n}\) \(=\dfrac{3}{7}\) \(=0,43\);
+  \(E[\theta|x]\) \(=\dfrac{a+x}{a+b+n}\) \(=\dfrac{4}{9}\) \(\approx 0,444\);
 \item
-  \(Med(\theta|x)\) \(\approx \dfrac{a+x-1/3}{a+b+n-2/3}\) \(=\dfrac{8/3}{19/3}\) \(\approx 0,42\);
+  \(Med(\theta|x)\) \(\approx \dfrac{a+x-1/3}{a+b+n-2/3}\) \(=\dfrac{11/3}{25/3}\) \(\approx 0,440\);
 \item
-  \(Var(\theta|x)\) \(=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}\) \(=\dfrac{12}{392}\) \(\approx 0,031\).
+  \(Var(\theta|x)\) \(=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}\) \(=\dfrac{20}{810}\) \(\approx 0,0247\).
 \end{itemize}
 
 \(~\)
@@ -754,7 +773,7 @@ Muitas vezes, a quantidade de dados é muito grande e desejamos ``resumir'' a in
 
 \(~\)
 
-\textbf{Definição:} Dizemos que uma função da amostra \(T:\mathfrak{X} \rightarrow \mathbb{R}^p\) é uma \emph{estatística suficiente} (do ponto de vista \emph{frequentista}) se \(f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)\).
+\textbf{Definição.} Dizemos que uma função da amostra \(T:\mathfrak{X} \rightarrow \mathbb{R}^p\) é uma \emph{estatística suficiente} (do ponto de vista \emph{frequentista}) se \(f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)\).
 
 \(~\)
 
@@ -762,19 +781,17 @@ Em palavras, conhecendo o valor da estatística suficiente, a distribuição da 
 
 \(~\)
 
-\textbf{Teorema:} A estatística \(T:\mathfrak{X} \rightarrow \mathbb{R}^p\) é suficiente para a família de distribuições \(\left\{f(\cdot|\theta):\theta \in \Theta\right\}\) se, e somente se, para todo \(x \in \mathfrak{X}\) e para todo \(\theta \in \Theta\), podemos escrever \(f\left(\boldsymbol x | \theta\right)\) \(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\), onde \(u\) é uma função positiva que não depende de \(\theta\) e \(v\) é uma função não-negativa e depende de \(\boldsymbol x\) somente através de \(T(\boldsymbol x)\).
+\textbf{Teorema.} A estatística \(T:\mathfrak{X} \rightarrow \mathbb{R}^p\) é suficiente para a família de distribuições \(\left\{f(\cdot|\theta):\theta \in \Theta\right\}\) se, e somente se, para todo \(x \in \mathfrak{X}\) e para todo \(\theta \in \Theta\), podemos escrever \(f\left(\boldsymbol x | \theta\right)\) \(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\), onde \(u\) é uma função positiva que não depende de \(\theta\) e \(v\) é uma função não-negativa e depende de \(\boldsymbol x\) somente através de \(T(\boldsymbol x)\).
 
 \(~\)
 
-\textbf{Exemplo:} Seja \(X_1,\ldots,X_n\) v.a. tais que, condicional ao conhecimento de \(\theta\), são c.i.i.d. com \(X_1|\theta \sim Exp(\theta)\). Então,
-
-\(f(\boldsymbol x|\theta)\) \(=\prod f(x_i|\theta)\) \(=\prod \theta e^{-\theta x_i} ~\mathbb{I}_{\mathbb{R+}}(x_i)\) \(=\theta^n e^{-\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)\) \(= v\left(\sum x_i, \theta\right) u(\boldsymbol x)\).
-
-Portanto, \(T(\boldsymbol x) = \sum x_i\) é estatística suficiente para \(\theta\). De fato, como \(T(\boldsymbol X)\) \(= \sum X_i | \theta\) \(\sim Gama(n,\theta)\) e \(\left\{X_1=x_1,\ldots,X_n=x_n\right\}\) \(\subseteq \left\{T(\boldsymbol X) = \sum X_i = \sum x_i = t\right\}\),
-
-\(f\left(\boldsymbol x| T(\boldsymbol x),\theta\right)\) \(=\dfrac{f\left(\boldsymbol{x},T(\boldsymbol{x})|\theta\right)}{f\left(T(\boldsymbol{x})|\theta\right)}\) \(=\dfrac{f\left(\boldsymbol{x}|\theta\right)}{f\left(\sum{X_i}|\theta\right)}\) \(=\dfrac{\theta^n e^{\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}{\frac{\theta^n}{\Gamma(n)}t^{n-1} e^{\theta t} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}\) \(= \dfrac{\Gamma(n)}{t^{n-1}} ~\mathbb{I}_{\mathbb{R}_+}\left(t\right)\),
-
+\begin{quote}
+\textbf{Exemplo.} Seja \(X_1,\ldots,X_n\) v.a. tais que, condicional ao conhecimento de \(\theta\), são c.i.i.d. com \(X_1|\theta \sim Exp(\theta)\). Então,\\
+\(f(\boldsymbol x|\theta)\) \(=\prod f(x_i|\theta)\) \(=\prod \theta e^{-\theta x_i} ~\mathbb{I}_{\mathbb{R+}}(x_i)\) \(=\theta^n e^{-\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)\) \(= v\left(\sum x_i, \theta\right) u(\boldsymbol x)\).\\
+Portanto, \(T(\boldsymbol x) = \sum x_i\) é estatística suficiente para \(\theta\). De fato, como \(T(\boldsymbol X)\) \(= \sum X_i | \theta\) \(\sim Gama(n,\theta)\) e \(\left\{X_1=x_1,\ldots,X_n=x_n\right\}\) \(\subseteq \left\{T(\boldsymbol X) = \sum X_i = \sum x_i = t\right\}~,\)\\
+\(f\left(\boldsymbol x| T(\boldsymbol x),\theta\right)\) \(=\dfrac{f\left(\boldsymbol{x},T(\boldsymbol{x})|\theta\right)}{f\left(T(\boldsymbol{x})|\theta\right)}\) \(=\dfrac{f\left(\boldsymbol{x}|\theta\right)}{f\left(t|\theta\right)}\) \(=\dfrac{\theta^n e^{\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}{\frac{\theta^n}{\Gamma(n)}t^{n-1} e^{\theta t} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}\) \(= \dfrac{\Gamma(n)}{t^{n-1}} ~\mathbb{I}_{\mathbb{R}_+}\left(t\right)~,\)\\
 que não depende de \(\theta\).
+\end{quote}
 
 \(~\)
 
@@ -784,23 +801,17 @@ Sob o enfoque bayesiano, a definição de suficiência é um pouco mais intuitiv
 
 \(~\)
 
-Voltando ao exemplo, suponha agora que, a priori, \(\theta \sim Gama(a,b)\). Então,
-
-\(f(\theta| \boldsymbol x)\) \(\propto f(\boldsymbol x|\theta)f(\theta)\) \(\propto \theta^n e^{-\theta \sum x_i} ~~\theta^{a-1}e^{-b\theta}\) \(\propto \theta^{a+n-1} e^{-(b+\sum x_i)\theta}\)
-
-Seja \(T = T(\boldsymbol X) = \sum X_i\), temos que \(T|\theta\sim Gamma(n,\theta)\), de modo que
-
-\(f\left(\theta| T(\boldsymbol x)=t\right)\) \(\propto f(t|\theta)f(\theta)\) \(\propto \theta^n t^{n-1} e^{\theta t} ~~\theta^{a-1}e^{-b\theta}\) \(\propto \theta^{a+n-1} e^{-(b+t)\theta}\) , com \(t=\sum x_i\).
-
+\begin{quote}
+\textbf{Voltando ao exemplo}, suponha agora que, a priori, \(\theta \sim Gama(a,b)\). Então,\\
+\(f(\theta| \boldsymbol x)\) \(\propto f(\boldsymbol x|\theta)f(\theta)\) \(\propto \theta^n e^{-\theta \sum x_i} ~~\theta^{a-1}e^{-b\theta}\) \(\propto \theta^{a+n-1} e^{-(b+\sum x_i)\theta}\)\\
+Seja \(T = T(\boldsymbol X) = \sum X_i\), temos que \(T|\theta\sim Gamma(n,\theta)\), de modo que\\
+\(f\left(\theta| T(\boldsymbol x)=t\right)\) \(\propto f(t|\theta)f(\theta)\) \(\propto \theta^n t^{n-1} e^{\theta t} ~~\theta^{a-1}e^{-b\theta}\) \(\propto \theta^{a+n-1} e^{-(b+t)\theta}\) , com \(t=\sum x_i\).\\
 Assim, \(\theta|\boldsymbol x\) \(\sim \theta|T(\boldsymbol x)\) \(\sim Gamma\left(a+n,b+\sum x_i\right)\) e, portanto, \(T(\boldsymbol X) = \sum X_i\) é estatística suficiente para \(\theta\).
+\end{quote}
 
 \(~\)
 
-Para os casos mais comuns, as definições são equivalentes \citep{Schervish12}. Pelo teorema da fatoração, temos que \(f\left(\boldsymbol x | \theta\right)\) \(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\) e, portanto
-
-\(f(\theta|\boldsymbol x)\) \(\propto f(\theta) f\left(\boldsymbol x | \theta\right)\) \(\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)\)
-
-que só depende de \(\boldsymbol x\) por meio de \(T(\boldsymbol x)\).
+Pelo teorema da fatoração, temos que \(f\left(\boldsymbol x | \theta\right)\) \(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\) e, portanto \(f(\theta|\boldsymbol x)\) \(\propto f(\theta) f\left(\boldsymbol x | \theta\right)\) \(\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)~,\) que só depende de \(\boldsymbol x\) por meio de \(T(\boldsymbol x)\). Para os casos mais comuns, as definições são equivalentes \citep{Schervish12}.
 
 \(~\)
 
@@ -824,7 +835,7 @@ Um dos princípios de inferência estatística é o \emph{princípio da suficiê
     Do mesmo modo, suponha que dois indivíduos que consideram que a distribuição do parêmetro é simétrica, com mesmas suposições sobre média e variância. O primeiro pode optar por representar sua distribuição usando uma distribuição Normal, enquanto o segundo pode utilizar uma distribuição T ou Cauchy.\\
   \end{itemize}
 \item
-  Não existe ``opinião errada'', existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo.\\
+  Não existe ``opinião errada'', existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo. Contudo, algumas ``boas práticas'' devem ser consideradas como, por exemplo, tomar cuidado para não atribuir probabilidade nula a pontos ``possíveis'' do espaço paramétrico.\\
 \item
   A priori deve ser sua opinião apenas sobre o parâmetro \(\theta\) e não deve depender de fatores como o desenho do experimento ou o objetivo do estudo.
 \end{itemize}
@@ -861,7 +872,7 @@ Um dos princípios de inferência estatística é o \emph{princípio da suficiê
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-8-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -886,7 +897,7 @@ Um dos princípios de inferência estatística é o \emph{princípio da suficiê
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \(~\)
 
@@ -949,7 +960,7 @@ Assim, no nosso exemplo, teríamos uma \(Beta(3,6.7)\). Além disso, já vimos q
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \(~\)
 
@@ -1116,7 +1127,7 @@ Primeiramente, suponha que \(n=5\), e temos uma mistura das distribuições \(Be
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \(~\)
 
@@ -1162,7 +1173,7 @@ Agora, suponha que \(n=5\) e foi observado \(x=2\). Novamente, considere a mistu
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 \(~\)
 
@@ -1296,8 +1307,13 @@ Note que nos exemplos apresentados, a priori depende da \emph{regra de parada}, 
 
 \textbf{Entropia} é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O \emph{princípio da máxima entropia} afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
 
-\textbf{Caso Discreto.} Considere um espaço paramétrico enumerável \(\Theta = \{\theta_1,\theta_2,...\}\). A \emph{entropia} da distribuição \(h\) é dada por\\
+\textbf{Caso Discreto.} Considere um espaço paramétrico enumerável \(\Theta = \{\theta_1,\theta_2,...\}\). A \emph{entropia} da distribuição \(h\) \citep{Shannon48} é dada por
+
 \[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]
+
+\(~\)
+
+\textbf{Definição.} Considere um espaço paramétrico \(\Theta\) e \(h\) uma f.d.p. para \(\theta\). A \emph{distribuição da máxima entropia} para \(\theta\) é a função \(h\) que maximiza \(\mathcal{E}(h)\) \citep{Jaynes03}
 
 \(~\)
 
@@ -1312,7 +1328,7 @@ Assim, como \(p_i\) deve ser constante e \(\sum p_i=1\), conclui-se que \(p_i=1/
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2:} Considere agora \(\Theta = \{\theta_1,\theta_2,...\}\) e suponha que há \(m\) informações parciais a respeito do parâmetro \(\theta\) que podem ser escritas como \(\text{E}[g_j(\theta)]=\mu_j~,~\) \(j=1,...,m~.\)\\
+\textbf{Exemplo 2.} Considere agora \(\Theta = \{\theta_1,\theta_2,...\}\) e suponha que há \(m\) informações parciais a respeito do parâmetro \(\theta\) que podem ser escritas como \(\text{E}[g_j(\theta)]=\mu_j~,~\) \(j=1,...,m~.\)\\
 Usando novamente o método de Lagrange, deve-se maximizar\\
 \(\mathcal{E}^*(h)\) \(=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)\)\\
 \(\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0\)
@@ -1323,7 +1339,7 @@ Como \(\sum p_i=1\), \(p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\s
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2a:} Seja \(\Theta = \{0,1,2,...\}\) e suponha que \(\text{E}[\theta]=\mu.\)\\
+\textbf{Exemplo 2a.} Seja \(\Theta = \{0,1,2,...\}\) e suponha que \(\text{E}[\theta]=\mu.\)\\
 Usando o resultado do exemplo anterior com \(g(\theta)=\theta\) e \(\theta_i=i\), \(i=0,1,2,\ldots~,\)\\
 \(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
 \(=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~\)
@@ -1336,13 +1352,79 @@ Como \(\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2b:} Considere que \(\Theta = \{1,2,...,k\}\) e suponha que \(\text{Med}(\theta)=m~.\)\\
+\textbf{Exemplo 2b.} Considere que \(\Theta = \{1,2,...,k\}\) e suponha que \(\text{Med}(\theta)=m~.\)\\
 Nesse caso, \(g(\theta)=\mathbb{I}\left(\theta\leq m\right)\) e \(\theta_i=i\), \(i=1,2,\ldots,k~,\) de modo que\\
 \(\text{E}\left[g(\theta)\right]\) \(=\text{E}\left[\mathbb{I}(\theta\leq m)\right]\) \(=\text{P}\left(\theta\leq m\right)=1/2\) e, portanto, \(\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.\)
 \(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
 \(=\left\{\begin{array}{lll} \dfrac{e^\lambda}{\sum_{i\leq m} e^\lambda}&,& i\leq m \\ \dfrac{1}{\sum_{i\leq m} 1}&,& i> m\end{array}\right.\)
 \(=\left\{\begin{array}{lll} \dfrac{1}{2m}&,& i\leq m \\ \dfrac{1}{2(k-m)}&,& i> m\end{array}\right.\)\\
 (A distribuição de \(\theta\) é uniforme por blocos.)
+\end{quote}
+
+\(~\)
+
+\(~\)
+
+\textbf{Divergência de Kullbach-Leibler.} Considere duas distribuições discretas \(\boldsymbol{p} = (p_1,...,p_k)\) e \(\boldsymbol{q} = (q_1,...,q_k)~,\) tal que \(p_i,q_i>0~,\) \(i=1,\ldots,k~,\) e \(\sum p_i=\sum q_i=1\). A \emph{divergência de Kullbach-Leibler} entre \(\boldsymbol{p}\) e \(\boldsymbol{q}\) \citep{Kullback51} é dada por\\
+\[D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.\]
+
+\(~\)
+
+Suponha que \(g=(1/k,...,1/k)\)
+
+\(D(\boldsymbol{p}~||~\boldsymbol{q})\)
+\(=\displaystyle\sum_{i=1}^{k} p_i\log\left(\dfrac{p_i}{1/k}\right)\)
+\(=\displaystyle\sum_{i=1}^{k}p_i\left[ln(p_i)-ln(1/k)\right]\)
+\(=\displaystyle\sum_{i=1}^kp_i ln(pi)+ln(k)\sum_{i=1}^k p_i\) \(=ln(k)-\mathcal{E}(\boldsymbol p)\)
+
+Assim, exceto por uma constante, \(\mathcal{E}(\boldsymbol p)\) está associado com quanto a distribuição \(\boldsymbol p\) ``diverge'' da distribuição uniforme (priori de referência na ausência total de informação).
+
+\(~\)
+
+\textbf{Observação:} No caso geral, se \(H\) e \(H_0\) são duas medidas definidas em \(\Theta\) tais que \(H\) é absolutamente contínua com relação à \(H_0\) \((H\ll H_0)\), a divergência de Kullbach-Leibler é definida como\\
+\[D(H~||~H_0)=\displaystyle\int_\Theta \log\left(\dfrac{dH}{dH_0}\right)dH~,\]
+em que \(\dfrac{dH}{dH_0}\) é derivada de Radon-Nikodym. Se \(H\) e \(H_0\) são medidas de probabilidade absolutamente contínuas com relação a medida de Lebesgue \(\lambda\) com f.d.p. \(\dfrac{dH}{d\lambda}=h\) e \(\dfrac{dH_0}{d\lambda}=h_0\), temos que,
+
+\(D(H~||~H_0)\) \(=\displaystyle\int_\Theta \log\left(\dfrac{dH/d\lambda}{dH_0/d\lambda}\right)\dfrac{dH}{d\lambda}d\lambda\)
+\(=\displaystyle\int_\Theta \log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)h(\theta)~d\theta\)
+
+\(~\)
+
+\(~\)
+
+Como a definição anterior de entropia vale apenas para o caso discreto, \citet{Jaynes03} sugere que no caso contínuo seja utilizada a \textbf{entropia relativa}, dada por
+\[\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=D(h~||~h_0)~,\]
+onde \(h_0\) é uma priori de referência na ausência total de informação, preferivelmente invariante.
+
+\(~\)
+
+Assim como no caso discreto, se temos \(m\) restrições \(E[g_i(\theta)]=\mu_i,\) a densidade de máxima entropia é
+
+\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\) e os \(\lambda_j~,\) \(j=1,...,m~,\) são obtidos das restrições. Por exemplo, se \(E[\theta]=\mu,\) basta fazer
+
+\(\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta\) com \(c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta\).
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1:} \(\Theta = \mathbb{R}_+\) e \(\text{E}[\theta]=\mu~.\)\\
+Tomando \(h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)\) (f.d.p. imprópria), temos\\
+\(h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)\) \(\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.\)\\
+Como \(\text{E}[\theta]=-1/\lambda =\mu~,\) tem-se que \(\lambda= -1/\mu\), isto é, \(\theta\sim\text{Exp}(1/\mu)~.\)\\
+\(h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~~,~~~ \mu>0~.\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2} \(\Theta = \mathbb{R}\) e \(\text{E}[\theta]=\mu\) e \(\text{Var}(\theta)=\text{E}[(\theta-\mu)^2]=\sigma^2~.\)\\
+Tomando \(g_1(\theta)=\theta\) e \(g_2(\theta)=(\theta-\mu)^2\), tem-se pelo resultado anterior que\\
+\(h(\theta) \propto \exp\left\{\lambda_1\theta+\lambda_2(\theta-\mu)^2\right\}\)
+\(\propto \exp\left\{\lambda_1\theta+\lambda_2(\theta^2-2\theta\mu+\mu^2)\right\}\)
+\(\propto \exp\left\{\lambda_2\left[\theta^2-\left(2\mu-\dfrac{\lambda_1}{\lambda_2}\right)\theta\right]\right\}\)
+\(\propto \exp\left\{\lambda_2\left[\theta-\left(\mu-\dfrac{\lambda_1}{2\lambda_2}\right)\right]^2\right\}~.\)\\
+Considere que \(\theta\sim N(\mu,\sigma^2)\), isto é, \(f(\theta)=\dfrac{1}{\sqrt{2\pi}~\sigma}~\exp\left\{-\dfrac{1}{2\sigma^2}(x-\mu)^2\right\}\) \(\propto \exp\left\{-\dfrac{1}{2\sigma^2}(x-\mu)^2\right\}~.\)\\
+Assim, para concluir que a distribuição de máxima entropia nesse caso é a Normal anterior, basta tomar \(\mu-\dfrac{\lambda_1}{2\lambda_2}=\mu\) para ver que \(\lambda_1=0\) e \(\lambda_2=-\dfrac{1}{2\sigma^2}~.\)
 \end{quote}
 
 \(~\)
@@ -1423,7 +1505,7 @@ No exemplo, temos
 
 Deste modo, as perdas esperadas associadas a cada decisão dependem da probabilidade de chuva \(p\). Assim, para cada possível valor de \(p\), deve-se tomar a decisão que tem menor perda esperada. Por exemplo, se a probabilidade de chuva é \(p=0.1\), temos que as perdas esperadas para as decisões de levar ou não o guarda-chuva são, respectivamente, \(E\left[L(G,\theta)\right]=1.1\) e \(E\left[L(G^c,\theta)\right]=0.3\). Assim, sob essa abordagem, sua decisão seria de não levar o guarda-chuva nesse caso. Por outro lado, se a probabilidade de chuva for \(p=0.9\), suas perdas esperadas seriam respectivamente \(E\left[L(G,\theta)\right]=1.9\) e \(E\left[L(G^c,\theta)\right]=2.7\), de modo que a decisão ótima seria levar o guarda-chuva. O gráfico a seguir apresenta as perdas para cada decisão \(d\) e para cada valor de \(p\). É possível notar que a decisão ótima é levar o guarda-chuva quando \(p>0.5\) e não levá-lo caso contrário.
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 \(~\)
 
@@ -1694,7 +1776,7 @@ O risco \(r_{\boldsymbol{x}}(d)\) é mínimo quando a probabilidade \(P(d-\varep
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-16-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 Como comentado no resultado anterior, quando \(\varepsilon \downarrow 0\), temos que \({\delta}^*(\boldsymbol x)=Moda(\theta|\boldsymbol x)\) \(= \displaystyle\sup_{\theta} f(\theta|\boldsymbol x)\).
 
@@ -1752,7 +1834,7 @@ Em um problema de estimação por regiões (ou estimação intervalar, no caso u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-20-1} \end{center}
 
 \(~\)
 
@@ -1787,7 +1869,7 @@ Em um problema de estimação por regiões (ou estimação intervalar, no caso u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-19-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 Note que, nesse exemplo, as regiões que tem mais densidade a posteriori foram excluídas do intervalo. Isso não faz muito sentido pois essas regiões têm maior chance de conter o \(\theta\) que quaquer outra região de mesmo tamanho.
 
@@ -1859,7 +1941,7 @@ Assim, a decisão de Bayes contra essa função de perda consiste em escolher um
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
 Note que na solução anterior, o comprimento do intervalo era \(\sqrt{1-\alpha}\), enquanto que o comprimento do HPD é \(1-\sqrt{\alpha}\). Tomando, por exemplo, \(\alpha=0.1\) temos que \(\sqrt{1-\alpha} \approx 0.95\) enquanto \(1-\sqrt{\alpha}\approx 0.68\). Por conter apenas os pontos com maior densidade, o HPD sempre terá comprimento menor ou igual a qualquer intervalo com mesma probabilidade.
 
@@ -1895,7 +1977,7 @@ e o intervalo HPD coincide com o I.C. frequentista
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-21-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-23-1} \end{center}
 
 \(~\)
 
@@ -1933,7 +2015,7 @@ de modo que o extremo superior do intervalo pode ser obtido fazendo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-24-1} \end{center}
 
 \(~\)
 
@@ -2008,7 +2090,7 @@ A seguir é apresentado um gráfico desse risco para alguns valores de \(n\) e �
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-23-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-25-1} \end{center}
 
 \(~\)
 
@@ -2059,7 +2141,7 @@ A solução usual é fixar um nível de significância \(\alpha\) e considerar a
 
 \textbf{Exemplo.} Considere que \(\Theta=[0,1]\) e deseja-se testar \(H_0: \theta \leq 0.5\) contra \(H_1: \theta > 0.5\). O gráfico a seguir ilustra as funções poder dos quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que \(\alpha=0.5\), temos que o teste UMP de nível \(\alpha\) é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível \(\alpha\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-24-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 \(~\)
 
@@ -2380,7 +2462,7 @@ e, a priori, \(P(\theta \in \Theta_0)\) \(=P(\theta \leq \theta_0)\) \(= \Phi\le
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-28-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-30-1} \end{center}
 
 Nesse exemplo, é possível ver que tanto o Fator de Bayes quanto a probabilidade posterior da hipótese nula ``ordenam'' o espaço amostral, representado aqui pela estatística suficiente, \(\bar{X}\). Deste modo, quanto menores os valores dessas estatísticas de teste, mais desfavorável é o ponto amostral para a hipótese nula. Como visto anteriormente, as regras de decisão baseadas nessas estatísticas são equivalentes e, portanto, a ordenação do espaço amostral é a mesma.
 
@@ -2419,7 +2501,7 @@ O teste de Jeffreys (1961?) consiste em atribuir uma probabilidade positiva para
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-29-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-31-1} \end{center}
 
 \textbf{Exercício.} Calcule \(P(\theta=0|\boldsymbol X=\boldsymbol x)\).
 
@@ -2441,7 +2523,7 @@ A distribuição marginal de \(X\) é chamada \textbf{distribuição preditiva a
 
 Suponha agora que deseja-se testar \(H_0: \theta=\theta_0\) contra \(H_1:\theta\neq \theta_0\), com \(\theta_0=1/2\), utilizando o teste de Jeffreys. Desta forma, considere \(p_0=P(\theta=1/2)=1/2\) e sua \emph{priori de Jeffreys} é \(f_J(\theta)=p_0~\mathbb{I}(\theta=\theta_0) +(1-p_0)f_\beta(\theta)~\mathbb{I}(\theta\neq\theta_0)\), onde \(f_\beta\) é a densidade da \(Beta(a,b)\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-30-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-32-1} \end{center}
 
 A distribuição preditiva com relação a priori \(f_J\) é
 
@@ -2565,7 +2647,7 @@ Essa solução foi apresentada por Pereira e Stern em 1999. Suponha que o objeti
 
 Sem perda de generalidade, suponha que \(M_x \geq \theta_0\). Então, como a normal é simétrica em torno de \(M_x\), a região tangente é da forma \(T_x=[\theta_0,2M_x-\theta_0]\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-32-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-34-1} \end{center}
 
 Note que quanto mais próximo \(M_x\) está de \(\theta_0\), menor a região \(T_x\) e, portanto, maior o valor da evidência em favor de \(H_0\). O valor da evidência pode ser calculado por
 
@@ -2586,7 +2668,7 @@ de modo que, nesse exemplo, podemos escrever
 
 A seguir, são apresentados gráficos do \emph{e-value} e do \emph{p-value} como função de \(\bar{x}\) e do \emph{e-value} como função do \emph{p-value} usando da relação anterior.
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-33-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-35-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2612,7 +2694,7 @@ A seguir, são apresentados gráficos do \emph{e-value} e do \emph{p-value} como
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-34-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 Suponha que um estatístico frequentista decida rejeitar \(H_0\) se o \emph{p-value} for menor que \emph{0.05}. Para que a decisão baseada no \emph{e-value} concorde com o resultado frequentista (para esse particular exemplo), deve-se rejeitar a hipótese se o \emph{e-value} for menor que \emph{0.2}, aproximadamente. Quando a variância da priori ou o tamanho amostral aumentam, os valores dessas duas medidas se aproximam.
 
@@ -2714,7 +2796,7 @@ Recentemente, o \emph{p-value} e a utilização do famoso nível \(\alpha=0.05\)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-35-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 Note que todas as medidas de suporte da hipótese tendem a zero conforme aumenta o tamanho amostral. Isso indica que se \(|\bar{x}_n-\theta_0|=\varepsilon\) e for fixado um valor de corte para essas medidas que não dependa do tamanho amostral (por exemplo, o \(\alpha=0.05\) para o \emph{p-value}), existe um \(n^*\) tal que \(H_0\) será rejeitado para todo \(n\geq n^*\). No gráfico, a linha vertical tracejada indica o valor \(n^*\) para o \emph{p-value} considerando o corte \(\alpha=0.05\).
 
@@ -2809,7 +2891,7 @@ Supondo novamente que foi observado \(\bar{x}=0.55\), o gráfico abaixo apresent
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-36-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 \(~\)
 

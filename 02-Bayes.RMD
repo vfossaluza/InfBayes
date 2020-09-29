@@ -28,7 +28,7 @@ $~$
 
 * Baseia-se no " princípio" da amostragem repetida (interpretação frequentista de probabilidade), isto é, supõe que é possivel realizar infinitas vezes o experimento. Assim, o $\boldsymbol x$ é apenas um dos possiveis resultados (hipóteticos) do experimento.
 
-* Probabilidade somente é definida em (uma $\sigma-álgebra$ de) $\mathfrak{X}$.
+* Probabilidade somente é definida em (uma $\sigma$-álgebra de) $\mathfrak{X}$.
 
 ### Inferência Bayesiana 
 
@@ -54,7 +54,7 @@ $~$
 
 $~$
 
-**Exemplo 1.a:** Suponha que existem duas moedas, uma delas tem $\theta =1/2$ (honesta) e a outra $\theta=3/4$ (viesada). Uma moeda é escolhida e é feito um lançamento da moeda selecionada. Nesse experimento, tem-se $X|\theta \sim Ber(\theta)$, com $\Theta=\{1/2,3/4\}$ e $\mathfrak{X}=\{0,1\}$. Como "chutar" o valor de $\theta$?  
+**Exemplo 1a.** Suponha que existem duas moedas, uma delas tem $\theta =1/2$ (honesta) e a outra $\theta=3/4$ (viesada). Uma moeda é escolhida e é feito um lançamento da moeda selecionada. Nesse experimento, tem-se $X|\theta \sim Ber(\theta)$, com $\Theta=\{1/2,3/4\}$ e $\mathfrak{X}=\{0,1\}$. Como "chutar" o valor de $\theta$?  
 
 Considere que não existe razão para você acreditar que há algum tipo de preferência na escolha de uma ou outra moeda, isto é, considere que a priori $f(\theta=1/2)$ $=f(\theta=3/4)$ $=1/2$. Suponha que o lançamento resultou em cara ($x=1$). Então  
 
@@ -99,7 +99,7 @@ Assim, se sua decisão for escolher o valor mais provável de $\theta$ após obs
 
 $~$ 
 
-**Exemplo 1.b:** Considere agora que serão realizados $n$ lançamentos da moeda, de modo que agora tem-se $X|\theta \sim Bin(n,\theta)$, $\theta \in \{1/2,3/4\}$, $x \in \{0,1,\ldots,n\}$. Suponha que observa-se $X=x$.
+**Exemplo 1b.** Considere agora que serão realizados $n$ lançamentos da moeda, de modo que agora tem-se $X|\theta \sim Bin(n,\theta)$, $\theta \in \{1/2,3/4\}$, $x \in \{0,1,\ldots,n\}$. Suponha que observa-se $X=x$.
 
 $f(\theta=3/4|X=x)$ $=\dfrac{f(x|\theta=3/4)f(\theta=3/4)}{\displaystyle \sum_{\theta\in \{1/2,3/4\}}f(x|\theta)f(\theta)}$ $=\dfrac{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}}{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}+\displaystyle\binom{n}{x}\left(\dfrac{1}{2}\right)^x\left(\dfrac{1}{2}\right)^{n-x}\dfrac{1}{2}}$ $=\dfrac{1}{1+\left(\dfrac{2^n}{3^x}\right)}$ $=\dfrac{3^x}{3^x + 2^n}$.
 
@@ -138,27 +138,22 @@ tibble(x=as.factor(rep(seq(0,n),each=length(theta))),
 
 $~$ 
 
-Note que o Exemplo 1.a é um caso particular desse exemplo com $n=1$. Se novamente sua decisão é baseada no valor mais provável de $\theta$, temos
+Note que o Exemplo 1.a é um caso particular desse exemplo com $n=1$. Se novamente sua decisão é baseada no valor mais provável de $\theta$, deve-se escolher $\theta=3/4$ se 
 
-$f(\theta=3/4|X=x) > \dfrac{1}{2}$ $\Longleftrightarrow \dfrac{3^x}{3^x + 2^n} > \dfrac{1}{2}$ $\Longleftrightarrow {3^x} > {2^n}$ $\Longleftrightarrow \dfrac{x}{n} = \bar{x} > \log_3{2}\approx 0,63$.
-
-$~$ 
-
-**Exemplo 1.c:** Considere que uma moeda será lançada $n$ vezes mas que $\theta$ é desconhecido, de modo que $\Theta = [0,1]$. Para simplificar, vamos assumir $f(\theta)=\mathbb{I}_{[0,1]}(\theta)$, isto é, $\theta \sim Unif(0,1)\sim Beta(1,1)$. Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para $\theta$ são igualmente "prováveis", assim como nos exemplos anteriores. Novamente, $X|\theta \sim Bin(n,\theta)$
-
-$f(\theta|x)=$ $\dfrac{f(x|\theta)f(\theta)}{\int_0^1 f(x|\theta)f(\theta)d\theta}=$ $\dfrac{\binom{n}{x}\theta^x(1-\theta)^{n-x} ~~\mathbb{I}_{[0,1]}(\theta)}{\int_0^1\binom{n}{x}\theta^x(1-\theta)^{n-x}d\theta}=$ $\dfrac{\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)}{\underbrace{\displaystyle \int_0^1\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}d\theta}_{1}}$ $=\dfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)$.
+$f(\theta=3/4|X=x) > f(\theta=1/2|X=x)$ $\Longleftrightarrow f(\theta=3/4|X=x) > \dfrac{1}{2}$ $\Longleftrightarrow \dfrac{3^x}{3^x + 2^n} > \dfrac{1}{2}$ $\Longleftrightarrow {3^x} > {2^n}$ $\Longleftrightarrow \dfrac{x}{n} = \bar{x} > \log_3{2}\approx 0,63$.
 
 $~$ 
 
-Logo $\theta|x \sim Beta(1+x,1+n-x)$. Nesse exemplo, o valor "mais provável" (com maior densidade a posteriori) para $\theta$ é a moda da distribuição, $Moda(\theta|x)$ $= \dfrac{(1+x)-1}{(1+x)+(1+n-x)-2}$ $= \dfrac{x}{n}$ $=\bar{x}$.
+**Exemplo 1c.** Considere que uma moeda será lançada $n$ vezes mas que $\theta$ é desconhecido, de modo que $\Theta = [0,1]$. Para simplificar, vamos assumir $f(\theta)=\mathbb{I}_{[0,1]}(\theta)$, isto é, $\theta \sim Unif(0,1)\sim Beta(1,1)$. Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para $\theta$ são igualmente "prováveis", assim como nos exemplos anteriores. Novamente, $X|\theta \sim Bin(n,\theta)$
 
-$~$
+$f(\theta|x)$ 
+$=\dfrac{f(x|\theta)f(\theta)}{\displaystyle\int_0^1 f(x|\theta)f(\theta)d\theta}$ 
+$=\dfrac{\displaystyle\binom{n}{x}~\theta^x(1-\theta)^{n-x} ~~\mathbb{I}_{[0,1]}(\theta)}{\displaystyle\int_0^1\binom{n}{x}~\theta^x(1-\theta)^{n-x}d\theta}=$ $\dfrac{\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)}{\underbrace{\displaystyle \int_0^1\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}d\theta}_{1}}$ 
+$=\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)$.
 
-**Exemplo 1.d** Por fim, suponha que no exemplo anterior, sua opinião a priori é representada por uma distribuição beta qualquer com parâmetros $a$ e $b$, $a,b > 0$. Desta forma, $X|\theta \sim Bin(n,\theta)$ e $\theta\sim Beta(a,b)$. Calculando a distribuição a posteriori de forma similar ao exemplo anterior, temos que $\theta|X=x \sim Beta(a+x,b+n-x)$.
+Logo $\theta|x \sim Beta(1+x,1+n-x)$. Nesse exemplo, o valor "mais provável" (com maior densidade a posteriori) para $\theta$ é a moda da distribuição, $Moda(\theta|x)$ $= \dfrac{(1+x)-1}{(1+x)+(1+n-x)-2}$ $= \dfrac{x}{n}$ $=\bar{x}$. Suponha que foi observado $n=5$ e $x=2$, a posteriori é $\theta|x=2 \sim Beta(3,4)$ e a moda é $Moda(\theta|x)$ $=\frac{1+x-1}{1+1+n-2}$ $=\frac{2}{5}$ $=0,4$;
 
-$~$ 
-
-```{r, include=knitr::is_latex_output()}  
+```{r, include=knitr::is_latex_output(), echo=FALSE}  
 theta = seq(0,1,0.01)
 a=1; b=1;
 n=5
@@ -174,7 +169,7 @@ tibble(x=as.factor(rep(seq(0,n),each=length(theta))),
   facet_wrap(~x)
 ```
 
-```{r, include=!knitr::is_latex_output()}    
+```{r, include=!knitr::is_latex_output(), echo=FALSE}    
 require(transformr)
 theta = seq(0,1,0.01)
 a=1; b=1;
@@ -191,17 +186,72 @@ tibble(x=as.factor(rep(seq(0,n),each=length(theta))),
   gganimate::transition_states(x)
 ```
 
+Algumas medidas resumo da distribuição posterior para esse exemplo são
+
++ $Moda(\theta|x)$ $=\dfrac{1+x-1}{1+1+n-2}$ $=\dfrac{2}{5}$ $=0,4$;  
+
++ $E[\theta|x]$ $=\dfrac{1+x}{1+1+n}$ $=\dfrac{3}{7}$ $=0,43$;  
+
++ $Med(\theta|x)$ $\approx \dfrac{1+x-1/3}{1+1+n-2/3}$ $=\dfrac{8/3}{19/3}$ $\approx 0,42$;  
+
++ $Var(\theta|x)$ $=\dfrac{(1+x)(1+n-x)}{(1+1+n)^2(1+1+n+1)}$ $=\dfrac{12}{392}$ $\approx 0,031$. 
+
+$~$
+
+**Exemplo 1d.** Por fim, suponha que no exemplo anterior, sua opinião a priori é representada por uma distribuição beta qualquer com parâmetros $a$ e $b$, $a,b > 0$. Desta forma, $X|\theta \sim Bin(n,\theta)$ e $\theta\sim Beta(a,b)$. Calculando a distribuição a posteriori de forma similar ao exemplo anterior, temos que $\theta|X=x \sim Beta(a+x,b+n-x)$. Note que o exemplo anterior é o caso particular em que $a=b=1~.$
+
 $~$ 
 
-Suponha que $a=b=1$ (como no exemplo anterior), $n=5$ e $x=2$, de modo que $\theta|x=2 \sim Beta(3,4)$. Algumas medidas resumo da distribuição posterior para esse exemplo são
+```{r, include=knitr::is_latex_output()}  
+theta = seq(0,1,0.01)
+a=2; b=2;
+n=5
+vero1 = as.vector(apply(matrix(seq(0,n)),1,
+            function(x){dbeta(theta,1+x,1+n-x)}))
+post1 = as.vector(apply(matrix(seq(0,n)),1,
+            function(x){dbeta(theta,a+x,b+n-x)}))
+tibble(x=as.factor(rep(seq(0,n),each=length(theta))),
+    theta=rep(theta,(n+1)),post=post1,vero=vero1) %>% 
+  ggplot() + 
+  geom_line(aes(x=theta,y=dbeta(theta,a,b),linetype="Prior",colour="Prior"),lwd=1) +
+  geom_line(aes(x=theta,y=post,linetype="Posterior",colour=x),lwd=1.3) +
+  geom_line(aes(x=theta,y=vero,linetype="Verossimilhança",colour=x),lwd=1) + 
+  xlab(expression(theta)) + ylab(expression(paste("f(",theta,"|x)"))) +
+  theme_bw()+labs(linetype="")+
+  facet_wrap(~x)
+```
 
-+ $Moda(\theta|x)$ $=\dfrac{a+x-1}{a+b+n-2}$ $=\dfrac{2}{5}$ $=0,4$;  
+```{r, include=!knitr::is_latex_output()}    
+require(transformr)
+theta = seq(0,1,0.01)
+a=2; b=2;
+n=5
+vero1 = as.vector(apply(matrix(seq(0,n)),1,
+            function(x){dbeta(theta,1+x,1+n-x)}))
+post1 = as.vector(apply(matrix(seq(0,n)),1,
+            function(x){dbeta(theta,a+x,b+n-x)}))
+tibble(x=as.factor(rep(seq(0,n),each=length(theta))),
+    theta=rep(theta,(n+1)),post=post1,vero=vero1) %>% 
+  ggplot() + 
+  geom_line(aes(x=theta,y=dbeta(theta,a,b),linetype="Prior",colour="Prior"),lwd=1) +
+  geom_line(aes(x=theta,y=post,linetype="Posterior",colour=x),lwd=1.3) +
+  geom_line(aes(x=theta,y=vero,linetype="Verossimilhança",colour=x),lwd=1) + 
+  xlab(expression(theta)) + ylab(expression(paste("f(",theta,"|x)"))) +
+  theme_bw()+labs(linetype="")+
+  gganimate::transition_states(x)
+```
 
-+ $E[\theta|x]$ $=\dfrac{a+x}{a+b+n}$ $=\dfrac{3}{7}$ $=0,43$;  
+$~$ 
 
-+ $Med(\theta|x)$ $\approx \dfrac{a+x-1/3}{a+b+n-2/3}$ $=\dfrac{8/3}{19/3}$ $\approx 0,42$;  
+Suponha agora que $a=b=2$, $n=5$ e $x=2$, de modo que $\theta|x=2 \sim Beta(4,5)$. Algumas medidas resumo da distribuição posterior para esse exemplo são
 
-+ $Var(\theta|x)$ $=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}$ $=\dfrac{12}{392}$ $\approx 0,031$.  
++ $Moda(\theta|x)$ $=\dfrac{a+x-1}{a+b+n-2}$ $=\dfrac{3}{7}$ $\approx 0,428$;  
+
++ $E[\theta|x]$ $=\dfrac{a+x}{a+b+n}$ $=\dfrac{4}{9}$ $\approx 0,444$;  
+
++ $Med(\theta|x)$ $\approx \dfrac{a+x-1/3}{a+b+n-2/3}$ $=\dfrac{11/3}{25/3}$ $\approx 0,440$;  
+
++ $Var(\theta|x)$ $=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}$ $=\dfrac{20}{810}$ $\approx 0,0247$.  
 
 $~$ 
 
@@ -211,7 +261,7 @@ Muitas vezes, a quantidade de dados é muito grande e desejamos "resumir" a info
 
 $~$
 
-**Definição:** Dizemos que uma função da amostra $T:\mathfrak{X} \rightarrow \mathbb{R}^p$ é uma *estatística suficiente* (do ponto de vista *frequentista*) se $f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)$. 
+**Definição.** Dizemos que uma função da amostra $T:\mathfrak{X} \rightarrow \mathbb{R}^p$ é uma *estatística suficiente* (do ponto de vista *frequentista*) se $f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)$. 
 
 $~$
 
@@ -219,18 +269,14 @@ Em palavras, conhecendo o valor da estatística suficiente, a distribuição da 
 
 $~$
 
-**Teorema:** A estatística $T:\mathfrak{X} \rightarrow \mathbb{R}^p$ é suficiente para a família de distribuições $\left\{f(\cdot|\theta):\theta \in \Theta\right\}$ se, e somente se, para todo $x \in \mathfrak{X}$ e para todo $\theta \in \Theta$, podemos escrever $f\left(\boldsymbol x | \theta\right)$ $= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)$, onde $u$ é uma função positiva que não depende de $\theta$ e $v$ é uma função não-negativa e depende de $\boldsymbol x$ somente através de $T(\boldsymbol x)$.
+**Teorema.** A estatística $T:\mathfrak{X} \rightarrow \mathbb{R}^p$ é suficiente para a família de distribuições $\left\{f(\cdot|\theta):\theta \in \Theta\right\}$ se, e somente se, para todo $x \in \mathfrak{X}$ e para todo $\theta \in \Theta$, podemos escrever $f\left(\boldsymbol x | \theta\right)$ $= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)$, onde $u$ é uma função positiva que não depende de $\theta$ e $v$ é uma função não-negativa e depende de $\boldsymbol x$ somente através de $T(\boldsymbol x)$.
 
 $~$
 
-**Exemplo:** Seja $X_1,\ldots,X_n$ v.a. tais que, condicional ao conhecimento de $\theta$, são c.i.i.d. com $X_1|\theta \sim Exp(\theta)$. Então,
-
-$f(\boldsymbol x|\theta)$ $=\prod f(x_i|\theta)$ $=\prod \theta e^{-\theta x_i} ~\mathbb{I}_{\mathbb{R+}}(x_i)$ $=\theta^n e^{-\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)$ $= v\left(\sum x_i, \theta\right) u(\boldsymbol x)$.
-
-Portanto, $T(\boldsymbol x) = \sum x_i$ é estatística suficiente para $\theta$. De fato, como $T(\boldsymbol X)$ $= \sum X_i | \theta$ $\sim Gama(n,\theta)$ e $\left\{X_1=x_1,\ldots,X_n=x_n\right\}$ $\subseteq \left\{T(\boldsymbol X) = \sum X_i = \sum x_i = t\right\}$,
-
-$f\left(\boldsymbol x| T(\boldsymbol x),\theta\right)$ $=\dfrac{f\left(\boldsymbol{x},T(\boldsymbol{x})|\theta\right)}{f\left(T(\boldsymbol{x})|\theta\right)}$ $=\dfrac{f\left(\boldsymbol{x}|\theta\right)}{f\left(\sum{X_i}|\theta\right)}$ $=\dfrac{\theta^n e^{\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}{\frac{\theta^n}{\Gamma(n)}t^{n-1} e^{\theta t} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}$ $= \dfrac{\Gamma(n)}{t^{n-1}} ~\mathbb{I}_{\mathbb{R}_+}\left(t\right)$, 
-
+> **Exemplo.** Seja $X_1,\ldots,X_n$ v.a. tais que, condicional ao conhecimento de $\theta$, são c.i.i.d. com $X_1|\theta \sim Exp(\theta)$. Então,  
+$f(\boldsymbol x|\theta)$ $=\prod f(x_i|\theta)$ $=\prod \theta e^{-\theta x_i} ~\mathbb{I}_{\mathbb{R+}}(x_i)$ $=\theta^n e^{-\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)$ $= v\left(\sum x_i, \theta\right) u(\boldsymbol x)$.  
+Portanto, $T(\boldsymbol x) = \sum x_i$ é estatística suficiente para $\theta$. De fato, como $T(\boldsymbol X)$ $= \sum X_i | \theta$ $\sim Gama(n,\theta)$ e $\left\{X_1=x_1,\ldots,X_n=x_n\right\}$ $\subseteq \left\{T(\boldsymbol X) = \sum X_i = \sum x_i = t\right\}~,$  
+$f\left(\boldsymbol x| T(\boldsymbol x),\theta\right)$ $=\dfrac{f\left(\boldsymbol{x},T(\boldsymbol{x})|\theta\right)}{f\left(T(\boldsymbol{x})|\theta\right)}$ $=\dfrac{f\left(\boldsymbol{x}|\theta\right)}{f\left(t|\theta\right)}$ $=\dfrac{\theta^n e^{\theta \sum x_i} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}{\frac{\theta^n}{\Gamma(n)}t^{n-1} e^{\theta t} ~\prod ~\mathbb{I}_{\mathbb{R+}}(x_i)}$ $= \dfrac{\Gamma(n)}{t^{n-1}} ~\mathbb{I}_{\mathbb{R}_+}\left(t\right)~,$  
 que não depende de $\theta$.
 
 $~$
@@ -241,23 +287,15 @@ Sob o enfoque bayesiano, a definição de suficiência é um pouco mais intuitiv
 
 $~$
 
-Voltando ao exemplo, suponha agora que, a priori, $\theta \sim Gama(a,b)$. Então,
-
-$f(\theta| \boldsymbol x)$ $\propto f(\boldsymbol x|\theta)f(\theta)$  $\propto \theta^n e^{-\theta \sum x_i} ~~\theta^{a-1}e^{-b\theta}$ $\propto \theta^{a+n-1} e^{-(b+\sum x_i)\theta}$
-
-Seja $T = T(\boldsymbol X) = \sum X_i$, temos que $T|\theta\sim Gamma(n,\theta)$, de modo que
-
-$f\left(\theta| T(\boldsymbol x)=t\right)$ $\propto f(t|\theta)f(\theta)$  $\propto \theta^n t^{n-1} e^{\theta t} ~~\theta^{a-1}e^{-b\theta}$ $\propto \theta^{a+n-1} e^{-(b+t)\theta}$ , com $t=\sum x_i$.
-
+> **Voltando ao exemplo**, suponha agora que, a priori, $\theta \sim Gama(a,b)$. Então,  
+$f(\theta| \boldsymbol x)$ $\propto f(\boldsymbol x|\theta)f(\theta)$  $\propto \theta^n e^{-\theta \sum x_i} ~~\theta^{a-1}e^{-b\theta}$ $\propto \theta^{a+n-1} e^{-(b+\sum x_i)\theta}$  
+Seja $T = T(\boldsymbol X) = \sum X_i$, temos que $T|\theta\sim Gamma(n,\theta)$, de modo que  
+$f\left(\theta| T(\boldsymbol x)=t\right)$ $\propto f(t|\theta)f(\theta)$  $\propto \theta^n t^{n-1} e^{\theta t} ~~\theta^{a-1}e^{-b\theta}$ $\propto \theta^{a+n-1} e^{-(b+t)\theta}$ , com $t=\sum x_i$.  
 Assim, $\theta|\boldsymbol x$ $\sim \theta|T(\boldsymbol x)$ $\sim Gamma\left(a+n,b+\sum x_i\right)$ e, portanto, $T(\boldsymbol X) = \sum X_i$ é estatística suficiente para $\theta$.
 
 $~$
 
-Para os casos mais comuns, as definições são equivalentes [@Schervish12]. Pelo teorema da fatoração, temos que $f\left(\boldsymbol x | \theta\right)$ $= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)$ e, portanto
-
-$f(\theta|\boldsymbol x)$ $\propto f(\theta) f\left(\boldsymbol x | \theta\right)$ $\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)$
-
-que só depende de $\boldsymbol x$ por meio de $T(\boldsymbol x)$.
+Pelo teorema da fatoração, temos que $f\left(\boldsymbol x | \theta\right)$ $= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)$ e, portanto $f(\theta|\boldsymbol x)$ $\propto f(\theta) f\left(\boldsymbol x | \theta\right)$ $\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)~,$ que só depende de $\boldsymbol x$ por meio de $T(\boldsymbol x)$. Para os casos mais comuns, as definições são equivalentes [@Schervish12]. 
 
 $~$
 
@@ -273,7 +311,7 @@ $~$
 + A priori é sempre subjetiva (assim como a escolha do modelo estatístico)!  
   * Por exemplo, dizer que os dados seguem uma distribuição normal, é uma escolha subjetiva, muitas vezes baseadas nas facilidades matemáticas que essa distribuição proporciona.  
   * Do mesmo modo, suponha que dois indivíduos que consideram que a distribuição do parêmetro é simétrica, com mesmas suposições sobre média e variância. O primeiro pode optar por representar sua distribuição usando uma distribuição Normal, enquanto o segundo pode utilizar uma distribuição T ou Cauchy.  
-+  Não existe "opinião errada", existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo.  
++  Não existe "opinião errada", existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo. Contudo, algumas "boas práticas" devem ser consideradas como, por exemplo, tomar cuidado para não atribuir probabilidade nula a pontos "possíveis" do espaço paramétrico.  
 + A priori deve ser sua opinião apenas sobre o parâmetro $\theta$ e não deve depender de fatores como o desenho do experimento ou o objetivo do estudo.
 
 
@@ -739,10 +777,15 @@ $~$
 **Entropia** é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O *princípio da máxima entropia* afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
 
 
-**Caso Discreto.** Considere um espaço paramétrico enumerável $\Theta = \{\theta_1,\theta_2,...\}$. A *entropia* da distribuição $h$ é dada por  
+**Caso Discreto.** Considere um espaço paramétrico enumerável $\Theta = \{\theta_1,\theta_2,...\}$. A *entropia* da distribuição $h$ [@Shannon48] é dada por  
+
 $$\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.$$
 
 $~$  
+
+**Definição.** Considere um espaço paramétrico $\Theta$ e $h$ uma f.d.p. para $\theta$. A *distribuição da máxima entropia* para $\theta$ é a função $h$ que maximiza $\mathcal{E}(h)$ [@Jaynes03]  
+
+$~$
 
 > **Exemplo 1.** Considere o espaço paramétrico $\Theta=\{\theta_1,...,\theta_k\}$ e $h(\theta_i)=p_i$ uma distribuição discreta para $\theta$. A *distribuição da máxima entropia* para $\theta$ é a função $h$ que maximiza $\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)$ com a restrição $\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.$  
 Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana  
@@ -752,7 +795,7 @@ Assim, como $p_i$ deve ser constante e $\sum p_i=1$, conclui-se que $p_i=1/k$, p
 
 $~$
 
-> **Exemplo 2:** Considere agora $\Theta = \{\theta_1,\theta_2,...\}$ e suponha que há $m$ informações parciais a respeito do parâmetro $\theta$ que podem ser escritas como $\text{E}[g_j(\theta)]=\mu_j~,~$ $j=1,...,m~.$  
+> **Exemplo 2.** Considere agora $\Theta = \{\theta_1,\theta_2,...\}$ e suponha que há $m$ informações parciais a respeito do parâmetro $\theta$ que podem ser escritas como $\text{E}[g_j(\theta)]=\mu_j~,~$ $j=1,...,m~.$  
 Usando novamente o método de Lagrange, deve-se maximizar  
 $\mathcal{E}^*(h)$ $=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)$  
 $\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0$ 
@@ -761,7 +804,7 @@ Como $\sum p_i=1$, $p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_
 
 $~$
 
-> **Exemplo 2a:** Seja $\Theta = \{0,1,2,...\}$ e suponha que $\text{E}[\theta]=\mu.$  
+> **Exemplo 2a.** Seja $\Theta = \{0,1,2,...\}$ e suponha que $\text{E}[\theta]=\mu.$  
 Usando o resultado do exemplo anterior com $g(\theta)=\theta$ e $\theta_i=i$, $i=0,1,2,\ldots~,$  
 $p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
 $=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~$
@@ -772,7 +815,7 @@ Como $\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\m
 
 $~$
 
-> **Exemplo 2b:** Considere que $\Theta = \{1,2,...,k\}$ e suponha que $\text{Med}(\theta)=m~.$  
+> **Exemplo 2b.** Considere que $\Theta = \{1,2,...,k\}$ e suponha que $\text{Med}(\theta)=m~.$  
 Nesse caso, $g(\theta)=\mathbb{I}\left(\theta\leq m\right)$ e $\theta_i=i$, $i=1,2,\ldots,k~,$ de modo que  
 $\text{E}\left[g(\theta)\right]$ $=\text{E}\left[\mathbb{I}(\theta\leq m)\right]$ $=\text{P}\left(\theta\leq m\right)=1/2$ e, portanto, $\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.$
 $p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
@@ -784,62 +827,364 @@ $~$
 
 $~$
 
-<!-- $\mathcal{E}(\boldsymbol p)=$ $\sum_{i=1}^kp_iln(p_i),$ $\boldsymbol p = (p_1,...,p_k),\; \sum p_i=1$ -->
+**Divergência de Kullbach-Leibler.** Considere duas distribuições discretas $\boldsymbol{p} = (p_1,...,p_k)$ e $\boldsymbol{q} = (q_1,...,q_k)~,$ tal que $p_i,q_i>0~,$ $i=1,\ldots,k~,$ e $\sum p_i=\sum q_i=1$. A *divergência de Kullbach-Leibler* entre $\boldsymbol{p}$ e $\boldsymbol{q}$ [@Kullback51] é dada por  
+$$D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.$$
 
-<!-- $~$ -->
+$~$
 
-<!-- **Divergência de Kullbach-Leibler** -->
+Suponha que $g=(1/k,...,1/k)$
 
-<!-- $\boldsymbol p = (p_1,...,p_k);\;\boldsymbol q = (q_1,...,q_k),$ -->
+$D(\boldsymbol{p}~||~\boldsymbol{q})$ 
+$=\displaystyle\sum_{i=1}^{k} p_i\log\left(\dfrac{p_i}{1/k}\right)$
+$=\displaystyle\sum_{i=1}^{k}p_i\left[ln(p_i)-ln(1/k)\right]$ 
+$=\displaystyle\sum_{i=1}^kp_i ln(pi)+ln(k)\sum_{i=1}^k p_i$ $=ln(k)-\mathcal{E}(\boldsymbol p)$
 
-<!-- $D(\boldsymbol{p,q})=\sum p_iln\left(\dfrac{p_i}{q_i}\right)$ -->
+Assim, exceto por uma constante, $\mathcal{E}(\boldsymbol p)$ está associado com quanto a distribuição $\boldsymbol p$ "diverge" da distribuição uniforme (priori de referência na ausência total de informação).
 
-<!-- Suponha $g=(1/k,...,1/k)$ -->
+$~$
 
-<!-- $D(\boldsymbol{p,q})=\sum_{i=1}^{k}p_i[ln(p_i)-ln(1/k)]$ $=\sum_{i=1}^kp_i ln(pi)+ln(k)\underbrace{\sum_{i=1}^k p_i}_{1}$ $=ln(k)-\mathcal{E}(\boldsymbol p)$ -->
+**Observação:** No caso geral, se $H$ e $H_0$ são duas medidas definidas em $\Theta$ tais que $H$ é absolutamente contínua com relação à $H_0$ $(H\ll H_0)$, a divergência de Kullbach-Leibler é definida como  
+$$D(H~||~H_0)=\displaystyle\int_\Theta \log\left(\dfrac{dH}{dH_0}\right)dH~,$$
+em que $\dfrac{dH}{dH_0}$ é derivada de Radon-Nikodym. Se $H$ e $H_0$ são medidas de probabilidade absolutamente contínuas com relação a medida de Lebesgue $\lambda$ com f.d.p. $\dfrac{dH}{d\lambda}=h$ e $\dfrac{dH_0}{d\lambda}=h_0$, temos que,  
 
-<!-- $\Rightarrow \mathcal{E}(\boldsymbol p)$ está associado com quanto a distribuição $\boldsymbol p$ "difer" da distribuição uniforme (priori de referência na ausência total de informação) -->
-
-<!-- $~$ -->
-
-<!-- **Jaynes** redefiniu entropia (no caso contínuo) por  -->
-
-<!-- $\mathcal{E}(h)=-\int_\Theta h(\theta)ln\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta$ -->
-
-<!-- $~$ -->
-
-<!-- **Observação:** Caso Geral $\mathcal{E}(H)=-\int_\Theta ln\left(\dfrac{dH(\theta)}{dH_0(\theta)}\right)dH(\theta)$ onde $H$ e $H_0$ são medidas de probabilidade para $\theta$ e $\dfrac{dH}{dH_0}$ é derivada de Radom-Nikodim. -->
-
-<!-- $~$ -->
-
-<!-- Assim como no caso discreto, se temos $m$ restrições $E[g_i(\theta)]=\mu_i,$ a densidade de máxima entropia é -->
-
-<!-- $h(\theta)\propto h_0(\theta)exp\{\sum_{j=1}^m\lambda_j g_j(\theta)\}$ e os $\lambda_j,\;j=1,...,m$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer  -->
-
-<!-- $\mu = \int_\Theta \theta c h_0(\theta)exp\{\lambda\theta\}d\theta$ com $c^{-1}=\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta$. -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 1:** $\Theta = \mathbb{R}_+$ e $E[\theta]=\mu$, -->
-
-<!-- $h_0(\theta) \propto 1\mathbb{I}_{\mathbb{R}_+}(\theta)$ $\Rightarrow h(\theta )\propto exp\{\lambda\theta\}\mathbb{I}_{\mathbb{R}_+}(\theta)$ -->
-
-<!-- $h(\theta)=-\lambda exp\{\lambda\theta\}\mathbb{I}_{\mathbb{R}_+}(\theta)\mathbb{I}_{\mathbb{R}_-}(\lambda)$ -->
-
-<!-- $E[\theta]=-1/\lambda =\mu$ $\Rightarrow \lambda= -1/\mu$ -->
-
-<!-- $h(\theta)=\dfrac{1}{\mu}e^{-\frac{1}{\mu}\theta},\; \mu>0$ -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 2** $\Theta = \mathbb{R}$ e $E[\theta]=\mu$ e $Var[\theta]=\sigma^2=E[(\theta-\mu)^2]$ -->
-
-<!-- $h(\theta)\propto exp\{\lambda_1\mu+\lambda_2(\theta-\mu)^2\}$ $\propto exp\left\{\lambda_2\left[\theta-\left(\mu-\dfrac{\lambda_1}{2\lambda_2}\right)\right]^2\right\}+\left[\lambda_1\mu+\dfrac{\lambda_1^2}{4\lambda_2}\right]$ -->
-
-<!-- Parecido a uma $X\sim N(\mu_x,\sigma_X^2)$ onde $f(x)=\dfrac{1}{\sqrt{2\pi}\sigma_X}exp\left\{-\dfrac{1}{2\sigma_X^2})(x-\mu)^2\right\}$ $\propto exp\left\{-\dfrac{1}{2\sigma_X^2}(x-\mu)^2\right\}$ -->
-
-<!-- $\mu-\dfrac{\lambda_1}{2\lambda_2}=\mu$ $\Rightarrow\; \lambda_1=0;\; \lambda_2=-\dfrac{1}{2\sigma_X^2}$ $\Rightarrow \theta \sim N(\mu,\sigma^2)$ -->
+$D(H~||~H_0)$ $=\displaystyle\int_\Theta \log\left(\dfrac{dH/d\lambda}{dH_0/d\lambda}\right)\dfrac{dH}{d\lambda}d\lambda$ 
+$=\displaystyle\int_\Theta \log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)h(\theta)~d\theta$
 
 $~$
 
 $~$
+
+Como a definição anterior de entropia vale apenas para o caso discreto, @Jaynes03 sugere que no caso contínuo seja utilizada a **entropia relativa**, dada por
+$$\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=D(h~||~h_0)~,$$
+onde $h_0$ é uma priori de referência na ausência total de informação, preferivelmente invariante.
+
+$~$
+
+Assim como no caso discreto, se temos $m$ restrições $E[g_i(\theta)]=\mu_i,$ a densidade de máxima entropia é
+
+$h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}$ e os $\lambda_j~,$ $j=1,...,m~,$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer
+
+$\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta$ com $c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta$.
+
+$~$
+
+> **Exemplo 1:** $\Theta = \mathbb{R}_+$ e $\text{E}[\theta]=\mu~.$  
+Tomando $h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)$ (f.d.p. imprópria), temos  
+$h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)$ $\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.$  
+Como $\text{E}[\theta]=-1/\lambda =\mu~,$ tem-se que $\lambda= -1/\mu$, isto é, $\theta\sim\text{Exp}(1/\mu)~.$  
+$h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~~,~~~ \mu>0~.$
+
+$~$
+
+> **Exemplo 2** $\Theta = \mathbb{R}$ e $\text{E}[\theta]=\mu$ e $\text{Var}(\theta)=\text{E}[(\theta-\mu)^2]=\sigma^2~.$  
+Tomando $g_1(\theta)=\theta$ e $g_2(\theta)=(\theta-\mu)^2$, tem-se pelo resultado anterior que  
+$h(\theta) \propto \exp\left\{\lambda_1\theta+\lambda_2(\theta-\mu)^2\right\}$
+$\propto \exp\left\{\lambda_1\theta+\lambda_2(\theta^2-2\theta\mu+\mu^2)\right\}$
+$\propto \exp\left\{\lambda_2\left[\theta^2-\left(2\mu-\dfrac{\lambda_1}{\lambda_2}\right)\theta\right]\right\}$ 
+$\propto \exp\left\{\lambda_2\left[\theta-\left(\mu-\dfrac{\lambda_1}{2\lambda_2}\right)\right]^2\right\}~.$  
+Considere que $\theta\sim N(\mu,\sigma^2)$, isto é, $f(\theta)=\dfrac{1}{\sqrt{2\pi}~\sigma}~\exp\left\{-\dfrac{1}{2\sigma^2}(x-\mu)^2\right\}$ $\propto \exp\left\{-\dfrac{1}{2\sigma^2}(x-\mu)^2\right\}~.$  
+Assim, para concluir que a distribuição de máxima entropia nesse caso é a Normal anterior, basta tomar $\mu-\dfrac{\lambda_1}{2\lambda_2}=\mu$ para ver que $\lambda_1=0$ e $\lambda_2=-\dfrac{1}{2\sigma^2}~.$
+
+$~$
+
+$~$
+
+## Alguns Princípios de Inferência
+
+<!-- **Experimento:** consiste em observar um particular valor $\boldsymbol x,\boldsymbol x\in\mathfrak{X}$, da v.a. $\boldsymbol X$ que, para um dado $\theta\in\Theta$, tem f.d.p $f(\boldsymbol x|\theta)$. -->
+
+<!-- $E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})$ -->
+
+<!-- **$Inf(E,\boldsymbol x)$**: uma *inferência* sobre $\theta$ baseada no resultado $\boldsymbol x$ do experimento $E$. -->
+
+<!-- ### Princípio de Suficiência -->
+
+<!-- **Princípio de Suficiência** considere um experimento $E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})$ e suponha que $T(\boldsymbol X)$ é uma estatśtica suficiente $\theta$. Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontons amostrais que $T(\boldsymbol x_1)=T(\boldsymbol x_2)$ então $Inf(E,\boldsymbol x_1)=Inf(E,\boldsymbol x_2)$ -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 1-a):**  -->
+
+<!-- $X_i\sim Ber(\theta)$, $i=1,...,10$.  -->
+
+<!-- $\boldsymbol x_1=(1,1,1,1,1,1,0,0,0,0)\Rightarrow T(\boldsymbol x_1)=\sum_{i=1}^nx_{1i}=6$ -->
+
+<!-- $\boldsymbol x_2=(1,0,1,0,1,0,1,0,1,1)\Rightarrow T(\boldsymbol x_1)=\sum_{i=1}^nx_{2i}=6$ -->
+
+<!-- $\Rightarrow \boldsymbol{\bar{X}}_1=\boldsymbol{\bar{X}}_2$ -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 1-b):** $\theta \sim Beta(1,1)\Rightarrow\theta|\boldsymbol x_1 \sim$ $\theta|\boldsymbol x_2\sim\theta|T(\boldsymbol  x_1)\sim Beta(1+t,1+n-t)$ -->
+
+<!-- ### Princípio da Condicionalidade -->
+
+<!-- **Princípio da Condicionalidade** Suponha que $E_1=(\boldsymbol X_1,\theta,\{f(\boldsymbol x_1|\theta)\})$ e $E_2=(\boldsymbol X_2,\theta,\{f(\boldsymbol x_2|\theta)\})$ são dois experimentos onde somente o parâmetro $\theta$ precisa ser comum. Considere um experimento misto em que uma v.a. $J$ é observada, com $P(J=1)=P(J=2)=1/2$, independente de $\boldsymbol X_1,\boldsymbol X_2$ e $\theta$, e então o experimento $E_J$ é realizado. -->
+
+<!-- $~$ -->
+
+<!-- Formalmente, o experimento realizado nesse caso é $E^*=(\boldsymbol X^*,\theta,\{f^*(\boldsymbol x^*|\theta)\})$, onde $\boldsymbol X^*=(J,\boldsymbol X_J)$ e $f^*(\boldsymbol x|\theta)=1/2f_J(\boldsymbol x_j|\theta)$ -->
+
+<!-- ### Princípio da Verossimilhança -->
+
+<!-- **Princípio da Verossimilhança** suponha dois experimentos $E_1=(\boldsymbol X_1,\theta,\{f_1(\boldsymbol x_1|\theta)\})$ e $E_2=(\boldsymbol X_2,\theta,\{f_2(\boldsymbol x_2|\theta)\})$, ambos com o mesmo parâmetro $\theta$. Suponha que $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontos amostrais de $E_1$ e $E_2$, respectivamente, tais que, $f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta);\;\forall \theta\in\Theta$. Então, $Inf(E_1,\boldsymbol x_1)=Inf(E_2,\boldsymbol x_2)$. -->
+
+<!-- $~$ -->
+
+<!-- **Teorema de Birnbaum:** (P. Suficiência $\wedge$ P.Condicionalidade) $\Leftrightarrow$ P.Verossimilhança -->
+
+<!-- **Demo:** ($\Rightarrow$) -->
+
+<!-- Seja $\boldsymbol x_1^*,\;\boldsymbol x_2^*,\;E_1,\;E_2$ como no P.Verossimilhança e $E^*$ como no P.Condicionalidade. Então, -->
+
+<!-- $f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)$ -->
+
+<!-- No espaço definido pelo experimento $E^*$ defina -->
+
+<!-- $T(J,\boldsymbol x_j)=\left\{\begin{array} -->
+<!-- ((1,\boldsymbol x_1^*),& \text{se } j=1,\boldsymbol x_1=\boldsymbol x_1^*\\ -->
+<!-- (J,\boldsymbol x_j),&\text{caso contrario}\end{array}\right.$ -->
+
+<!-- Como $f^*(\boldsymbol x^*|\theta)=f^*((J,\boldsymbol x_j)|\theta)=1/2f_J(\boldsymbol x_j|\theta),$ podemos usar o Teorema de Fatoração e concluir que $T(J,\boldsymbol x_j)$ é suficiente para $\theta$ no experimento $E^*$. -->
+
+<!-- Então pelo P.Suficiẽncia $Inf(E^*,(1,\boldsymbol x_1))=Inf(E^*,(2,\boldsymbol x_2))$ e, pelo P.Condicionalidade, $Inf(E^*,(1,\boldsymbol x_1^*))=Inf(E_1,\boldsymbol x_1^*)$ $=Inf(E^*,(2,\boldsymbol x_2))=Inf(E_2,\boldsymbol x_2^*),$ de modo que $Inf(E_1,\boldsymbol x_1^*)=Inf(E_2,\boldsymbol x_2^*)$ por tanto vale o P.Verossimilhança. -->
+
+<!-- ## Aula 17 Continuação -->
+
+<!-- **Teorema de Birnbaum** (P. Suficiência $\wedge$ P.Condicionalidade) $\Leftrightarrow$ P.Verossimilhança -->
+
+<!-- **Demo** ($\Leftarrow$) -->
+
+<!-- Como vale o P.Verossimilhança,  -->
+
+<!-- $Inf(E_1,x_1^*)=Inf(E_2,x_2^*)$ pois -->
+
+<!-- $f_1(x_1^*|\theta)\propto f_2(x_2^*)$. -->
+
+<!-- Além disso, se $x^*=(1,x_1^*)$ (ou $x^*=(2,x_2^*)$)  -->
+
+<!-- $f^*(x^*|\theta)=f^*((1,x_1^*|\theta)=1/2f_1(x_1^*|\theta))\propto f_1(x_1^*|\theta)\propto 1/2f_2(x_2^*|\theta)=f^*((2,x_2^*)|\theta)$, -->
+
+<!-- e, como vale P. Verossimilhança, então -->
+
+<!-- $Inf(E^*,(1,x_1^*))=Inf(E_1,x_1^*)$ [$Inf(E^*,(2,x_2^*))=Inf(E_2,x_2^*)$]  -->
+
+<!-- e vale o P. Condicionalidade. -->
+
+<!-- Pelo Teorema de Fatoração, -->
+
+<!-- $f(\boldsymbol x|\theta)=g(T(\boldsymbol x),\theta)h(\boldsymbol x)\propto g(T(\boldsymbol x),\theta)$. -->
+
+<!-- Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são tais que $T(\boldsymbol x_1)=T(\boldsymbol x_2),$ $f_1(\boldsymbol x_1|\theta)\propto g(T(\boldsymbol x_1),\theta)$ $\propto g(T(\boldsymbol x_2),\theta)\propto f_2(\boldsymbol x_2|\theta)$ -->
+
+<!-- pelo P. Verossimilhança temos que  -->
+
+<!-- $Inf(E_1,\boldsymbol x_1)=Inf(E_2,\boldsymbol x_2)$ e, portanto vale o P. Suficiência. -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 1:** Seja  -->
+
+<!-- $X_1|\theta \sim Bin(n,\theta)$ e  -->
+
+<!-- $X_2|\theta \sim BinNeg(r,\theta)$,  -->
+
+<!-- onde $n$: número total de lanzamentos (fixado) e $r$: número de fracassos (fixado). -->
+
+<!-- $E_1:\left(\boldsymbol X_1,\theta,\left\{\binom{n}{x_1}\theta^{x_1}(1-\theta)^{n-x_1}:\theta\in[0,1]\right\}\right)$ -->
+
+<!-- $E_2:\left(\boldsymbol X_2,\theta,\left\{\binom{r+x_2-1}{x_2}\theta^{x_2}(1-\theta)^{r}:\theta\in[0,1]\right\}\right)$ -->
+
+<!-- *Mesmo $\theta$!* -->
+
+<!-- $~$ -->
+
+<!-- **I.** Estimação pontual usando Estimador Não-Viesado (ENV) para $\theta$, isto é, $\hat{\theta}_i(X_i)$ tal que  -->
+
+<!-- $E\left[\hat{\theta}_i(X_i)|\theta\right]=\theta$, ($Inf(E_i,x_1)=\hat{\theta}_i(x_i),\;i=1,2$). -->
+
+<!-- Então, $\hat{\theta}_1(X_i)=\dfrac{X_1}{n}$ e $\hat{\theta_2}(X_2)=\dfrac{X_2-1}{X_2+r-1}$ são ENV para $\theta$ em $E_1$ e $E_2$, respectivamente. -->
+
+<!-- Suponha que $n=12,r=3$ e $x_1=x_2=9$ -->
+
+<!-- Então, $f_1(x_1|\theta)=\binom{12}{9}\theta^9(1-\theta)^3$ $\propto \binom{11}{9}\theta^9(1-\theta)^3=f_2(x_2|\theta)$ -->
+
+<!-- Contudo, $\hat{\theta}_1(x_1)=\dfrac{9}{12}=0,75$ $\neq\hat{\theta}_2(x_2)=\dfrac{8}{11}\approx0,72\bar{72}$, -->
+
+<!--   e portanto, o ENV viola o P.Verossimilhança. -->
+
+<!-- $~$ -->
+
+<!-- **II.** Estimador de Máxima Verossimilhança (EMV) -->
+
+<!-- $\delta_{MV}$ é o estimador tal que -->
+
+<!-- $\delta_{MV}(\boldsymbol x)=\hat{\theta}_{MV}=arg\;\underset{\theta\in\Theta}{sup}f(\boldsymbol x|\theta)$. -->
+
+<!-- $\delta_{MV}^1(x_1)\dfrac{x_1}{n}=\delta^2_{MV}(x_2)=\dfrac{x_2}{x_2+r}=\dfrac{9}{12}=0,75$ -->
+
+<!-- Por tanto, o EMV não viola o P. Verossimilhança. -->
+
+<!-- $~$ -->
+
+<!-- **III.** Suponha que deseja-se testar -->
+
+<!-- $H_0:\theta\leq 1/2 \; (\Theta_0)$ contra -->
+
+<!-- $H_1:\theta > 1/2 \; (\Theta_1)$; -->
+
+<!-- $\Theta=\Theta_0 \cup \Theta_1$. -->
+
+<!-- $\phi(x)=\left\{\begin{array}{rcl} -->
+<!-- 1,& t(x)\geq c(\alpha)\\ -->
+<!-- 0,& t(x)< c(\alpha) -->
+<!-- \end{array}\right.$ -->
+
+<!-- em que $\alpha=P(\text{Erro do tipo I})$ $=P(\text{Rejeitar } H_0| H_0 \text{ é verdadeira})$. -->
+
+<!-- $RV(x)=\dfrac{\underset{\Theta_0}{sup}f(x|\theta)}{\underset{\Theta}{sup}f(x|\theta)}=-t$ -->
+
+<!-- $*p-value*(x)=\underset{\Theta_0}{sup}P(t(\boldsymbol X)\geq t(\boldsymbol x)|\theta)$. -->
+
+<!-- $\alpha=0.05$ -->
+
+<!-- $p_1(x_1)=P(X_1\geq 9|\theta=1/2)=0.073>0.05\Rightarrow$ Não rejeita $H_0$ -->
+
+<!-- $p_2(x_2)=P(X_2\geq 9|\theta=1/2)=0.0327<0.05\Rightarrow$ Rejeita $H_0$ -->
+
+<!-- Por tanto, esse procedimento viola o P. Verossimilhança. -->
+
+<!-- $~$ -->
+
+<!-- **IV.** Aboragem Bayesiana $\Rightarrow Inf(E_i,x_i)=f_i(\theta|x_i)$ -->
+
+<!-- a) *Bayesiano Subjetivista* -->
+
+<!--     Como o parâmetro $\theta$ é o mesmo nos dois experimentos, a priori deve ser a mesma. -->
+
+<!--     $f(\theta)$ não depende de $\{f_i(\boldsymbol x|\theta):\theta\in\Theta\}$ -->
+
+<!--     $f(\theta|\boldsymbol x)\propto f(\theta)f(x_1|\theta)\propto f(\theta)f(x_2|\theta)$ -->
+
+<!--     e, portanto, satisfaz o P.Verossimilhança. -->
+
+<!-- b) *Bayesiano Objetivista*  (p.e. usando priori de Jeffreys) -->
+
+<!-- Para $E_1$, $f_1(\theta)\propto |I_F(\theta)|^{1/2}\propto$ $\theta^{-1/2}(1-\theta)^{-1/2}\sim Beta (1/2,1/2)$ -->
+
+<!-- Para $E_2$, $f_2(\theta)\propto$ $\theta^{-1}(1-\theta)^{-1/2}\sim Beta (0,1/2)$ distribuição imprópria. -->
+
+<!-- Número de sucessos: $x=x_1=x_2$ é número de fracassos: $y=n-x_1=r$, temos que -->
+
+<!-- $\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)$ -->
+
+<!-- $\theta|X_2=x_2\sim Beta(x,y+1/2)$ -->
+
+<!-- Pois $f_1(x_1|\theta)\propto f_2(x_2|\theta)$ mas $f_1(\theta)\neq f_2(\theta)$ de modos que $f(\theta|x_1)\neq f(\theta|x_2)$ e, portanto, viola o P.Verossimilhança. -->
+
+
+<!-- ## Aula 18 -->
+
+<!-- **Definição:** Uma colet finita $X_1,X_2,...,X_n$ de quantidades aleatórias é dita $permutável$ se a distribuição de $(X_{\pi_1},...,X_{\pi_n})$ -->
+<!--  é a mesma para toda permutação $\pi=(\pi_1,...,\pi_n)$ dos índices $(1,...,n)$. Ua coleção infinita é *permutável* se toda subcoleção é permutável. -->
+
+<!-- * Segue da definição que $X_1,...,X_n$ tem a mesma distribuição marginal. Além disso $(X_1,X_2)$ tem mesma distribuição que $(X_3,X_5)$ e assim por diante. -->
+
+<!-- $~$ -->
+
+<!-- **Proposição:** Uma coleção $C$ de variáveis aleatórias é permitável se, e somente se, para todo $n$ finito manor ou igual ao tamanho da coleção $C$, toda $n$-upla (sequencia ordenada de $n$ elementos) de elementos distintos de $C$ tem a mesma distribuição que toda $n$-upla. -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 1:** Considere uma coleção $X_1,...$ (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d), claramente , $(X_{i_1},...,X_{i_n})$ tem a mesma distribuição de $(X_{j_1},...,X_{j_n})$ se $i_1\neq...\neq i_n$ e $j_1\neq...\neq j_n$. Então, toda coleção de v.a. i.i.d é permutável. (basta notar que $f(x_1,...,x_n)=\prod_{i=1}^nf(x_i)$). -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 2:**  -->
+
+<!-- * i.i.d $\Rightarrow$ permutavilidade.  -->
+
+<!-- * indep $\Rightarrow$ correlação $\rho=0$ -->
+
+<!-- * i.d. e $\rho=0\Rightarrow$ permutavilidade.  -->
+
+<!-- $~$ -->
+
+<!-- |$X_1:X_2$|-1|0|1|$f(x_1)$| -->
+<!-- |:-:|:-:|:-:|:-:|:-:| -->
+<!-- |-1|0,10|0,05|0,15|0,3| -->
+<!-- |0|0,15|0,20|0,05|0,4| -->
+<!-- |1|0,05|0,15|0,10|0,3| -->
+<!-- |$f(x_2)$|0,3|0,4|0,3| -->
+
+
+<!-- $~$ -->
+
+<!-- $cor(X_1,X_2)=\dfrac{E[(X_1-E(X_1))(X_2-E(X_2))]}{\sqrt{Var(X_1)Var(X_2)}}$  -->
+
+<!-- $E(X_1)=E(X_2)=0$ -->
+
+<!-- $E(X_1X_2)=(-1)(0,20)+1(0,20)=0$ $\Rightarrow cor=0$ -->
+
+<!-- $P((X_1,X_2)=(1,-1))\neq P((X_2,X_1)=(1,-1))$ -->
+
+<!-- * Expresar crenças de simetria sobre $X_1,X_2,...$ de maneira mais "fraca". -->
+
+<!-- * Não é necesário supor independênciaou que o limite de frequência relativa existe. -->
+
+<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 3:** Suponha que $X_1,X_2,...$ são condicionalmente i.i.d. dado $Y=y$ com densidade $f(x_i|y),\;i=1,2,...$ e $Y$ tem densidade $g(y)$. Então $X_1,X_2,...$ são permutaveis. -->
+
+<!-- $f_{X_{i_1},...,X_{i_n}}(x_1,...,x_n)=$ $\int\prod_{j=1}^nf(x_j|y)g(y)dy,$ para qualquer $X_{i_1},...,X_{i_n}$ $n$-upla. Note que o lado direito não depende dos rótulos $i_1,...,i_n$. -->
+
+<!-- $~$ -->
+
+<!-- ### **Teorema de Representação de Finetti** (para v.a. Bernoulli) -->
+
+<!-- Uma sequência infinita $\{X_n\}_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que , condicional a $\theta$, $\{X_i\}_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta$ -->
+
+<!-- $P(X_1=x_1,...,X_n=x_n)=$ $\int_0^1\theta^{\sum_ix_i}(1-\theta)^{n-\sum_ix_i}dF(\theta)=$ $\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}f(\theta)d\theta$ -->
+
+<!-- $F(\theta)=\underset{n\uparrow\infty}{lim}P\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)$ -->
+
+<!-- $~$ -->
+
+<!-- **Exemplo 4:** (1.19/1.20 - Shervish)  -->
+
+<!-- Seja $\{X_n\}_{n\geq 1}$ v.a. Bernoulli e $x=\sum_{i=1}x_i$. -->
+
+<!-- _Estatístico 1_ -->
+
+<!-- $P_1(X_1=x_1,...,X_n=x_n)=$ $\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}$ -->
+
+<!-- $P_1(X_1=1)=\dfrac{12}{3}\dfrac{3!2!}{5!}$ $=\dfrac{4}{10}=0,4.$ -->
+
+<!-- _Estatístico 2_ -->
+
+<!-- $P_2(X_1=x_1,...,X_n=x_n)=$ $\dfrac{1}{(n+1)\binom{n}{x}}$ -->
+
+<!-- $P_2(X_1=1)=\dfrac{1}{2}=0,5$ -->
+
+<!-- Contudo, pelo Teorema de Finetti, ambos acreditam que $\theta=\underset{n\uparrow\infty}{lim}\frac{1}{n}\sum_{i=1}^nX_i$ e que $P(X_1=1|\theta)=\theta$, mas não tem opiniões diferentes sobre $\theta$. -->
+
+<!-- Suponha agora que foi observado $\mathbf X=\mathbf x=(x_1,...,x_n)$ com $x=\sum_{i=1}^{20}x_i=14$. Vamos calcular  -->
+
+<!-- $P_i(X_{21}=1|X_1=x_1,...,X_{20}=x_{20})$ $=\dfrac{P_i(X_1=x_1,...,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,...,X_{20}=x_{20})}$  -->
+
+<!-- então, -->
+
+<!-- $P_1(X_{21}=1|\mathbf X=\mathbf x)=$ $\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}$ $=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}$ $=\dfrac{16}{17}\dfrac{17}{25}$ $=\dfrac{16}{25}=0,64$ -->
+
+<!-- $P_2(X_{21}=1|\mathbf X=\mathbf x)$ $=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}$ $=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}$ $=\dfrac{21}{22}\dfrac{15}{21}$ $=\dfrac{15}{22}=0,68$ -->
+
+<!-- ### Teorema de Representação de Finetti -->
+
+<!-- Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,  -->
+
+<!-- $F_{\mathbf X}(x_1,...,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$. -->
+
+<!-- Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$. -->
+
