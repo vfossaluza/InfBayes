@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana</title>
+  <title>3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
+  <meta property="og:title" content="3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
+  <meta name="twitter:title" content="3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
   
   <meta name="twitter:description" content="Notas de aula de Infência Bayesiana." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-09-29" />
+<meta name="date" content="2020-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,7 +51,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -141,47 +141,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Notas de Aula de Inferência Bayesiana</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
-<li class="chapter" data-level="1" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>1</b> Probabilidade Subjetiva</a><ul>
-<li class="chapter" data-level="1.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>1.1</b> Definição Axiomática</a></li>
-<li class="chapter" data-level="1.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>1.2</b> Interpretações de Probabilidade</a></li>
-<li class="chapter" data-level="1.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>1.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
-<li class="chapter" data-level="1.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>1.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
-<li class="chapter" data-level="1.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>1.5</b> Medida de Probabilidade Condicional</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a><ul>
+<li class="chapter" data-level="2.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>2.1</b> Definição Axiomática</a></li>
+<li class="chapter" data-level="2.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>2.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
+<li class="chapter" data-level="2.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>2.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
+<li class="chapter" data-level="2.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>2.5</b> Medida de Probabilidade Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>2</b> Introdução à Inferência Bayesiana</a><ul>
-<li class="chapter" data-level="2.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>2.1</b> Conceitos Básicos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>2.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
-<li class="chapter" data-level="2.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>2.1.2</b> Inferência Bayesiana</a></li>
+<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>2.2</b> Suficiência</a></li>
-<li class="chapter" data-level="2.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>2.3</b> Distribuição a Priori</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>2.3.1</b> Método do Histograma</a></li>
-<li class="chapter" data-level="2.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>2.3.2</b> Elicitação de Hiperparâmetros</a></li>
-<li class="chapter" data-level="2.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>2.3.3</b> Prioris Conjugadas</a></li>
-<li class="chapter" data-level="2.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>2.3.4</b> Prioris “Não-Informativas”</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.2</b> Suficiência</a></li>
+<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.3</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.3.1</b> Método do Histograma</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.3.2</b> Elicitação de Hiperparâmetros</a></li>
+<li class="chapter" data-level="3.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.3.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="3.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.3.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.4</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>3</b> Introdução à Teoría da Decisão</a><ul>
-<li class="chapter" data-level="3.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a></li>
-<li class="chapter" data-level="3.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>3.2</b> Aleatorização e Decisões Mistas</a></li>
-<li class="chapter" data-level="3.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>3.3</b> Problemas com Dados</a></li>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
+<li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
+<li class="chapter" data-level="4.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>4.3</b> Problemas com Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>4</b> Estimação</a><ul>
-<li class="chapter" data-level="4.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>4.1</b> Estimação Pontual</a></li>
-<li class="chapter" data-level="4.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>4.2</b> Estimação por Regiões</a></li>
-<li class="chapter" data-level="4.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>4.3</b> Custo das Observações</a></li>
+<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a><ul>
+<li class="chapter" data-level="5.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>5.1</b> Estimação Pontual</a></li>
+<li class="chapter" data-level="5.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>5.2</b> Estimação por Regiões</a></li>
+<li class="chapter" data-level="5.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>5.3</b> Custo das Observações</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>5</b> Testes de Hipóteses</a><ul>
-<li class="chapter" data-level="5.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>5.1</b> Conceitos Básicos</a></li>
-<li class="chapter" data-level="5.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>5.2</b> Revisão: Abordagem Frequentista</a></li>
-<li class="chapter" data-level="5.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>5.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
-<li class="chapter" data-level="5.4" data-path="Test.html"><a href="Test.html#probabilidade-posterior-de-h_0"><i class="fa fa-check"></i><b>5.4</b> Probabilidade Posterior de <span class="math inline">\(H_0\)</span></a></li>
-<li class="chapter" data-level="5.5" data-path="Test.html"><a href="Test.html#fator-de-bayes"><i class="fa fa-check"></i><b>5.5</b> Fator de Bayes</a></li>
-<li class="chapter" data-level="5.6" data-path="Test.html"><a href="Test.html#teste-de-jeffreys"><i class="fa fa-check"></i><b>5.6</b> Teste de Jeffreys</a></li>
-<li class="chapter" data-level="5.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>5.7</b> Hipóteses Precisas</a></li>
-<li class="chapter" data-level="5.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>5.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
-<li class="chapter" data-level="5.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>5.9</b> P-value - Nivel de Significância Adaptativo</a></li>
+<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a><ul>
+<li class="chapter" data-level="6.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>6.1</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="6.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>6.2</b> Revisão: Abordagem Frequentista</a></li>
+<li class="chapter" data-level="6.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>6.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
+<li class="chapter" data-level="6.4" data-path="Test.html"><a href="Test.html#probabilidade-posterior-de-h_0"><i class="fa fa-check"></i><b>6.4</b> Probabilidade Posterior de <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="6.5" data-path="Test.html"><a href="Test.html#fator-de-bayes"><i class="fa fa-check"></i><b>6.5</b> Fator de Bayes</a></li>
+<li class="chapter" data-level="6.6" data-path="Test.html"><a href="Test.html#teste-de-jeffreys"><i class="fa fa-check"></i><b>6.6</b> Teste de Jeffreys</a></li>
+<li class="chapter" data-level="6.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>6.7</b> Hipóteses Precisas</a></li>
+<li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
+<li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
@@ -213,9 +214,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="Bayes" class="section level1">
-<h1><span class="header-section-number">2</span> Introdução à Inferência Bayesiana</h1>
+<h1><span class="header-section-number">3</span> Introdução à Inferência Bayesiana</h1>
 <div id="BasBayes" class="section level2">
-<h2><span class="header-section-number">2.1</span> Conceitos Básicos</h2>
+<h2><span class="header-section-number">3.1</span> Conceitos Básicos</h2>
 <ul>
 <li><p><strong>Inferência Estatística:</strong> fazer afirmações sobre quantidades não observáveis em um determinado contexto.</p></li>
 <li><p><span class="math inline">\(\theta\)</span> : <strong>parâmetro</strong> - quantidade desconhecida de interesse (não-observável em determinado contexto).</p></li>
@@ -229,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <div id="inferência-frequentista-ou-clássica" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Inferência Frequentista (ou Clássica)</h3>
+<h3><span class="header-section-number">3.1.1</span> Inferência Frequentista (ou Clássica)</h3>
 <ul>
 <li><p><span class="math inline">\(\theta\)</span> é considerado fixo (apesar de desconhecido) e, portanto, não recebe uma distribuição de probabilidade.</p></li>
 <li><p>Baseia-se no " princípio" da amostragem repetida (interpretação frequentista de probabilidade), isto é, supõe que é possivel realizar infinitas vezes o experimento. Assim, o <span class="math inline">\(\boldsymbol x\)</span> é apenas um dos possiveis resultados (hipóteticos) do experimento.</p></li>
@@ -237,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="inferência-bayesiana" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Inferência Bayesiana</h3>
+<h3><span class="header-section-number">3.1.2</span> Inferência Bayesiana</h3>
 <ul>
 <li><p>Baseia-se na interpretação subjetivista de probabilidade, de modo que a <em>SUA</em> incerteza sobre algo desconhecido deve ser quantificada (traduzida) em termos de probabilidade.</p></li>
 <li><p>Assim, <em>SUA</em> incerteza sobre o parâmetro (desconhecido) é representada por uma distribuição de probabilidade, <span class="math inline">\(\theta\)</span> é tratado como uma variável aleatória (v.a.) e <em>SUA</em> distribuição para <span class="math inline">\(\theta\)</span> antes da realização do experimento, <span class="math inline">\(f(\theta),\)</span> é chamada de <strong>distribuição a priori</strong>. Note que a atribuição de uma distribuição a prior para <span class="math inline">\(\theta\)</span> independe da natureza do parâmetro, ele pode ser a proporção de indivíduos que avalia positivamente o governo atual (quantidade essa que muda a todo instante) ou ainda a milésima casa do <span class="math inline">\(\pi\)</span> (algum número de 0 a 9, fixo porém desconhecido no momento dessa leitura).</p></li>
@@ -331,7 +332,7 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 </div>
 </div>
 <div id="suficiência" class="section level2">
-<h2><span class="header-section-number">2.2</span> Suficiência</h2>
+<h2><span class="header-section-number">3.2</span> Suficiência</h2>
 <p>Muitas vezes, a quantidade de dados é muito grande e desejamos “resumir” a informação trazida pelos dados. Uma forma de fazê-lo sem perder informação sobre o parâmetro de interesse é usar uma <em>estatística suficiente</em>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição.</strong> Dizemos que uma função da amostra <span class="math inline">\(T:\mathfrak{X} \rightarrow \mathbb{R}^p\)</span> é uma <em>estatística suficiente</em> (do ponto de vista <em>frequentista</em>) se <span class="math inline">\(f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)\)</span>.</p>
@@ -366,7 +367,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <!-- ## Aula 09  -->
 </div>
 <div id="distribuição-a-priori" class="section level2">
-<h2><span class="header-section-number">2.3</span> Distribuição a Priori</h2>
+<h2><span class="header-section-number">3.3</span> Distribuição a Priori</h2>
 <ul>
 <li>A priori é sempre subjetiva (assim como a escolha do modelo estatístico)!
 <ul>
@@ -381,7 +382,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 </ul>
 <!-- ### Prioris Baseada na Opinião de um Especialista -->
 <div id="método-do-histograma" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Método do Histograma</h3>
+<h3><span class="header-section-number">3.3.1</span> Método do Histograma</h3>
 <ul>
 <li><p>Muitas vezes, para “extrair” o conhecimento de um especialista, podemos dividir o espaço paramétrico em regiões e pedir para o especialista “ordenar” esses conjuntos, utilizando “pesos” que refletem a crença que o parâmetro esteja em cada uma daquelas regiões.</p></li>
 <li><p><strong>Exemplo 1.</strong> (<span class="citation">Albert (<a href="#ref-Albert09" role="doc-biblioref">2009</a>)</span>, pág 27)</p>
@@ -419,7 +420,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="elicitação-de-hiperparâmetros" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Elicitação de Hiperparâmetros</h3>
+<h3><span class="header-section-number">3.3.2</span> Elicitação de Hiperparâmetros</h3>
 <ul>
 <li>Nessa abordagem, a priori é obtida da seguinte maneira:
 <ol style="list-style-type: decimal">
@@ -458,7 +459,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="prioris-conjugadas" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> Prioris Conjugadas</h3>
+<h3><span class="header-section-number">3.3.3</span> Prioris Conjugadas</h3>
 <p>Como visto no exemplo da moeda, em que a distribuição a priori era <span class="math inline">\(Beta(a,b)\)</span>, a posteriori era facilmente obtida e também estava na classe das distribuições <span class="math inline">\(Beta\)</span>. Em particular, quando observa-se <span class="math inline">\(x\)</span> sucessos em <span class="math inline">\(n\)</span> realizações de ensaios de Bernoulli, a distribuição a posteriori é <span class="math inline">\(Beta(a+x,b+n-x)\)</span>. Isso ocorre pois essa distribuição pertence à uma classe bastante espefícica de distribuições a priori, chamadas distribuições conjugadas.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição</strong> Seja <span class="math inline">\(\mathcal{P}=\{f(x|\theta):\;\theta \in \Theta\}\)</span> uma família de distribuições (condicionais) para <span class="math inline">\(\boldsymbol{X}\)</span> e considere <span class="math inline">\(\mathcal{C}=\{h(\theta|a):\;a\in A\}\)</span> uma família de distribuições para <span class="math inline">\(\theta\)</span>. Dizemos que (a família) <span class="math inline">\(\mathcal{C}\)</span> é <strong>conjugada</strong> para <span class="math inline">\(\mathcal{P}\)</span> se, <span class="math inline">\(\forall \;h(\theta)\in \mathcal{C},\)</span> <span class="math inline">\(h(\theta|\boldsymbol{x})\propto f(\boldsymbol x|\theta)h(\theta) \in \mathcal{C},\forall \boldsymbol x \in \mathfrak{X}.\)</span></p>
@@ -577,7 +578,7 @@ Então<br />
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-14-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Agora, suponha que <span class="math inline">\(n=5\)</span> e foi observado <span class="math inline">\(x=2\)</span>. Novamente, considere a mistura das distribuições <span class="math inline">\(Beta(5,12)\)</span> e <span class="math inline">\(Beta(10,3)\)</span> mas agora com pesos <span class="math inline">\(w\)</span> variando no conjunto <span class="math inline">\(\left\{0,0.1,\ldots,0.9,1\right\}\)</span>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Bayes.html#cb7-1"></a>x =<span class="st"> </span><span class="dv">2</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Bayes.html#cb7-1"></a>n=<span class="dv">5</span>; x=<span class="dv">2</span></span>
 <span id="cb7-2"><a href="Bayes.html#cb7-2"></a>w =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>)</span>
 <span id="cb7-3"><a href="Bayes.html#cb7-3"></a></span>
 <span id="cb7-4"><a href="Bayes.html#cb7-4"></a>A =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(w),<span class="dv">1</span>,</span>
@@ -618,9 +619,9 @@ Então<br />
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="prioris-não-informativas" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Prioris “Não-Informativas”</h3>
+<h3><span class="header-section-number">3.3.4</span> Prioris “Não-Informativas”</h3>
 <div id="priori-de-bayes-laplace" class="section level4">
-<h4><span class="header-section-number">2.3.4.1</span> Priori de Bayes-Laplace</h4>
+<h4><span class="header-section-number">3.3.4.1</span> Priori de Bayes-Laplace</h4>
 <p><strong>Princípio da Razão Insuficiente.</strong> <em>Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico <span class="math inline">\(\Theta\)</span>, deve-se adotar equiprobabilidade.</em></p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -645,7 +646,7 @@ Então<br />
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="priori-de-jeffreys" class="section level4">
-<h4><span class="header-section-number">2.3.4.2</span> Priori de Jeffreys</h4>
+<h4><span class="header-section-number">3.3.4.2</span> Priori de Jeffreys</h4>
 <p>Seja <span class="math inline">\(g\)</span> uma transformação um-a-um do parâmetro <span class="math inline">\(\theta\)</span> e defina <span class="math inline">\(\psi=g(\theta)\)</span>. Considere uma função <span class="math inline">\(h:\mathfrak{X}\times\Theta\longrightarrow\mathbb{R}\)</span>. Uma classe de distribuições a priori invariantes pode ser definida por
 <span class="math display">\[f(\theta) \propto \left(\text{Var}_{X|\theta}\left[\dfrac{\partial h(\boldsymbol X | \theta)}{\partial\theta}~\bigg|~\theta\right]\right)^{1/2}~.\]</span></p>
 <blockquote>
@@ -715,7 +716,7 @@ de modo que a priori de Jeffreys é<br />
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="priori-de-máxima-entropia" class="section level4">
-<h4><span class="header-section-number">2.3.4.3</span> Priori de Máxima Entropia</h4>
+<h4><span class="header-section-number">3.3.4.3</span> Priori de Máxima Entropia</h4>
 <p><strong>Entropia</strong> é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O <em>princípio da máxima entropia</em> afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.</p>
 <p><strong>Caso Discreto.</strong> Considere um espaço paramétrico enumerável <span class="math inline">\(\Theta = \{\theta_1,\theta_2,...\}\)</span>. A <em>entropia</em> da distribuição <span class="math inline">\(h\)</span> <span class="citation">(Shannon <a href="#ref-Shannon48" role="doc-biblioref">1948</a>)</span> é dada por</p>
 <p><span class="math display">\[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]</span></p>
@@ -788,10 +789,8 @@ onde <span class="math inline">\(h_0\)</span> é uma priori de referência na au
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Exemplo 1:</strong> <span class="math inline">\(\Theta = \mathbb{R}_+\)</span> e <span class="math inline">\(\text{E}[\theta]=\mu~.\)</span><br />
-Tomando <span class="math inline">\(h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)\)</span> (f.d.p. imprópria), temos<br />
-<span class="math inline">\(h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)\)</span> <span class="math inline">\(\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.\)</span><br />
-Como <span class="math inline">\(\text{E}[\theta]=-1/\lambda =\mu~,\)</span> tem-se que <span class="math inline">\(\lambda= -1/\mu\)</span>, isto é, <span class="math inline">\(\theta\sim\text{Exp}(1/\mu)~.\)</span><br />
-<span class="math inline">\(h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~~,~~~ \mu&gt;0~.\)</span></p>
+Tomando <span class="math inline">\(h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)\)</span> (f.d.p. imprópria), tem-se <span class="math inline">\(h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)\)</span> <span class="math inline">\(\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.\)</span><br />
+Como <span class="math inline">\(\text{E}[\theta]=-1/\lambda =\mu~,\)</span> tem-se que <span class="math inline">\(\lambda= -1/\mu\)</span>, isto é, <span class="math inline">\(\theta\sim\text{Exp}(1/\mu)~,\)</span> de modo que <span class="math inline">\(h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~,\)</span> <span class="math inline">\(\mu&gt;0~.\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -805,10 +804,182 @@ Considere que <span class="math inline">\(\theta\sim N(\mu,\sigma^2)\)</span>, i
 Assim, para concluir que a distribuição de máxima entropia nesse caso é a Normal anterior, basta tomar <span class="math inline">\(\mu-\dfrac{\lambda_1}{2\lambda_2}=\mu\)</span> para ver que <span class="math inline">\(\lambda_1=0\)</span> e <span class="math inline">\(\lambda_2=-\dfrac{1}{2\sigma^2}~.\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
+<!-- ```{r} -->
+<!-- a1=5; b1=12 -->
+<!-- a2=10; b2=3 -->
+<!-- n=5; x=2 -->
+<!-- w=0.5 -->
+<!-- t = seq(0,1,length.out = 1000) -->
+<!-- A = w*choose(n,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))* -->
+<!--     (gamma(a1+x)*gamma(b1+n-x))/gamma(a1+b1+n) -->
+<!-- B = (1-w)*choose(n,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))* -->
+<!--     (gamma(a2+x)*gamma(b2+n-x))/gamma(a2+b2+n) -->
+<!-- w2 = A/(A+B) -->
+<!-- BL_MaxEnt=dbeta(t,1,1) -->
+<!-- BL_MaxEnt_Post=dbeta(t,1+x,1+n-x) -->
+<!-- Subj=dbeta(t,2,2) -->
+<!-- Subj_Post=dbeta(t,2+x,2+n-x) -->
+<!-- Mistura = w*dbeta(t,a1,b1)+(1-w)*dbeta(t,a2,b2) -->
+<!-- Mistura_Post = w2*dbeta(t,a1+x,b1+n-x)+(1-w2)*dbeta(t,a2+x,b2+n-x) -->
+<!-- Jeffreys_1=dbeta(t,1/2,1/2) -->
+<!-- Jeffreys_1_Post=dbeta(t,1/2+x,1/2+n-x) -->
+<!-- Jeffreys_2=(t^(-1))*((1-t)^(-1/2))*4/1000 -->
+<!-- Jeffreys_2_Post=dbeta(t,0+x,1/2+n-x) -->
+<!-- dens=c(BL_MaxEnt,BL_MaxEnt_Post,Subj,Subj_Post,Mistura,Mistura_Post,Jeffreys_1,Jeffreys_1_Post,Jeffreys_2,Jeffreys_2_Post) -->
+<!-- dens=ifelse(dens==Inf,NA,dens) -->
+<!-- tibble( theta=rep(t,10),dens,Priori=rep(c("B-L_MaxEnt","Beta(2,2)","Mistura","Jeffreys_Bin","Jeffreys_BinNeg"),each=2*length(t)),Distr=rep(rep(c("Prior","Posterior"),each=length(t)),5) ) %>% -->
+<!--   ggplot() + theme_bw() + -->
+<!--   geom_line(aes(x=theta,y=dens,linetype=Distr,color=Priori)) + -->
+<!--   geom_line(aes(x=t,y=dbinom(x,n,t),color="Verossimilhança")) + -->
+<!--   facet_grid(~Priori) -->
+<!-- ``` -->
 <p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+</div>
+</div>
+</div>
+<div id="alguns-princípios-de-inferência" class="section level2">
+<h2><span class="header-section-number">3.4</span> Alguns Princípios de Inferência</h2>
+<p>Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})\)</span> que consiste em observar um particular valor <span class="math inline">\(\boldsymbol{x}\in\mathfrak{X}\)</span> do v.a. <span class="math inline">\(\boldsymbol{X}\)</span> que, para cada possível valor do parâmetro (desconhecido) <span class="math inline">\(\theta\in\Theta\)</span>, tem f.d.p. <span class="math inline">\(f(\boldsymbol x|\theta)\)</span>. De forma geral, uma <em>inferência</em> sobre <span class="math inline">\(\theta\)</span> baseada no resultado <span class="math inline">\(\boldsymbol x\)</span> do experimento <span class="math inline">\(E\)</span> será denotada por <span class="math inline">\(\text{Inf}(E,\boldsymbol x)~.\)</span></p>
+<p><strong>Princípio de Suficiência.</strong> Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol{x}|\theta)\})\)</span> e suponha que <span class="math inline">\(T(\boldsymbol{X})\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span>. Se <span class="math inline">\(\boldsymbol x_1\)</span> e <span class="math inline">\(\boldsymbol x_2\)</span> são dois pontos amostrais tais que <span class="math inline">\(T(\boldsymbol{x}_1)=T(\boldsymbol{x}_2)\)</span> então <span class="math inline">\(\text{Inf}(E,\boldsymbol{x}_1)=\text{Inf}(E,\boldsymbol{x}_2)~.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 1a.</strong> Seja <span class="math inline">\(X_1,\ldots,X_{n}\)</span> c.i.i.d. tais que <span class="math inline">\(X_1\sim Ber(\theta)~.\)</span><br />
+Considere <span class="math inline">\(n=10\)</span> e os pontos amostrais <span class="math inline">\(\boldsymbol x_1=(1,1,1,1,1,1,0,0,0,0)\)</span> e <span class="math inline">\(\boldsymbol x_2=(1,0,1,0,1,0,1,0,1,1)\)</span> tais que <span class="math inline">\(T(\boldsymbol x_1)=\sum x_{1i}=6\)</span> e <span class="math inline">\(T(\boldsymbol x_2)=\sum x_{2i}=6\)</span>.<br />
+Um possível estimador para <span class="math inline">\(\theta\)</span> nesse exemplo é a média amostral, de modo que <span class="math inline">\(\bar{x}_1=\bar{x}_2=\dfrac{\sum x_i}{n}=0,6~.\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 1b.</strong> Ainda no contexto do exemplo anterior, considere que a priori <span class="math inline">\(\theta \sim \text{Beta}(a,b)~.\)</span> Então, se <span class="math inline">\(T(\boldsymbol x_1)=T(\boldsymbol x_2)=t\)</span>,
+<span class="math display">\[\theta|\boldsymbol x_1\sim\theta|\boldsymbol x_2\sim\theta|T(\boldsymbol  x_1)=t~\sim~ Beta(a+t,b+n-t)~.\]</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Princípio da Condicionalidade.</strong> Suponha que <span class="math inline">\(E_1=\left(\boldsymbol X_1,\theta,\{f(\boldsymbol x_1|\theta)\}\right)\)</span> e <span class="math inline">\(E_2=\left(\boldsymbol X_2,\theta,\{f(\boldsymbol x_2|\theta)\}\right)\)</span> são dois experimentos onde somente o parâmetro <span class="math inline">\(\theta\)</span> precisa ser comum. Considere um experimento misto em que é observada uma v.a. <span class="math inline">\(J\)</span>, com <span class="math inline">\(P(J=1)=P(J=2)=1/2\)</span>, independente de <span class="math inline">\(\boldsymbol X_1,~\boldsymbol X_2\)</span> e <span class="math inline">\(\theta\)</span>, e então o experimento <span class="math inline">\(E_J\)</span> é realizado. Formalmente, o experimento realizado nesse caso é <span class="math inline">\(E^*=(\boldsymbol X^*,\theta,\{f^*(\boldsymbol x^*|\theta)\})\)</span>, onde <span class="math inline">\(\boldsymbol X^*=(J,\boldsymbol X_J)\)</span> e <span class="math inline">\(f^*(\boldsymbol x|\theta)=\dfrac{1}{2}~f_j(\boldsymbol x_j|\theta)~.\)</span> Então, <span class="math inline">\(\text{Inf}\left(E^*,(j,x_j)\right) = \text{Inf}\left(E_j,x_j\right)~.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Princípio da Verossimilhança.</strong> Suponha dois experimentos <span class="math inline">\(E_1=(\boldsymbol X_1,\theta,\{f_1(\boldsymbol x_1|\theta)\})\)</span> e <span class="math inline">\(E_2=(\boldsymbol X_2,\theta,\{f_2(\boldsymbol x_2|\theta)\})\)</span>, ambos com o mesmo parâmetro <span class="math inline">\(\theta\)</span>. Suponha que <span class="math inline">\(\boldsymbol x_1\)</span> e <span class="math inline">\(\boldsymbol x_2\)</span> são pontos amostrais de <span class="math inline">\(E_1\)</span> e <span class="math inline">\(E_2\)</span>, respectivamente, tais que <span class="math inline">\(f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)~,\)</span> <span class="math inline">\(\forall \theta\in\Theta~.\)</span>, então, <span class="math inline">\(\text{Inf}(E_1,\boldsymbol x_1)=\text{Inf}(E_2,\boldsymbol x_2)\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Teorema de Birnbaum.</strong> (<em>P. Suficiência</em> <span class="math inline">\(\wedge\)</span> <em>P. Condicionalidade</em>) <span class="math inline">\(\Longleftrightarrow\)</span> <em>P. Verossimilhança</em>.</p>
+<blockquote>
+<p><strong>Demo:</strong><br />
+<span class="math inline">\((\boldsymbol{\Longrightarrow})\)</span><br />
+Seja <span class="math inline">\(\boldsymbol x_1^*,\;\boldsymbol x_2^*,\;E_1,\;E_2\)</span> como no <em>P. Verossimilhança</em> e <span class="math inline">\(E^*\)</span> como no <em>P. Condicionalidade</em>. Então,<br />
+<span class="math inline">\(f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)~.\)</span><br />
+No espaço do experimento <span class="math inline">\(E^*\)</span>, defina <span class="math inline">\(T(j,\boldsymbol{x}_j)=\left\{\begin{array}{ll}(1,\boldsymbol{x}_1^*), &amp; \text{se } ~j=1,~\boldsymbol{x}_1=\boldsymbol{x}_1^*\\ (j,\boldsymbol{x}_j), &amp; \text{c. c.} \end{array}\right.~.\)</span><br />
+Como <span class="math inline">\(f^*(\boldsymbol x^*|\theta)=f^*\left((j,\boldsymbol x_j)|\theta\right)=1/2~f_j(\boldsymbol x_j|\theta),\)</span> pelo o Teorema da Fatoração é possível concluir que <span class="math inline">\(T(j,\boldsymbol x_j)\)</span> é suficiente para <span class="math inline">\(\theta\)</span> no experimento <span class="math inline">\(E^*\)</span>.<br />
+Então, pelo <em>P. Suficiência</em>, <span class="math inline">\(\text{Inf}\left(E^*,(1,\boldsymbol x_1)\right)=\text{Inf}\left(E^*,(2,\boldsymbol x_2)\right)\)</span> e, pelo <em>P. Condicionalidade</em>,<br />
+<span class="math inline">\(\text{Inf}\left(E^*,(1,\boldsymbol x_1^*)\right)\)</span> <span class="math inline">\(=\text{Inf}\left(E_1,\boldsymbol x_1^*\right)\)</span> <span class="math inline">\(=\text{Inf}\left(E^*,(2,\boldsymbol x_2)\right)\)</span> <span class="math inline">\(=\text{Inf}\left(E_2,\boldsymbol x_2^*\right)~,\)</span><br />
+de modo que <span class="math inline">\(\text{Inf}\left(E_1,\boldsymbol x_1^*\right)=\text{Inf}\left(E_2,\boldsymbol x_2^*\right)\)</span> e, portanto, vale o <em>P. Verossimilhança</em>.<br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\((\boldsymbol{\Longleftarrow})\)</span><br />
+Como vale o <em>P. Verossimilhança</em>, <span class="math inline">\(f_1(x_1^*|\theta)\propto f_2(x_2^*|\theta)\)</span> e <span class="math inline">\(\text{Inf}(E_1,x_1^*)=\text{Inf}(E_2,x_2^*)~.\)</span><br />
+Além disso, se <span class="math inline">\(x^*=(1,x_1^*)\)</span>,<br />
+<span class="math inline">\(f^*(x^*|\theta)\)</span> <span class="math inline">\(=f^*\left((1,x_1^*)|\theta\right)\)</span> <span class="math inline">\(=1/2~f_1(x_1^*|\theta)\)</span> <span class="math inline">\(\propto f_1(x_1^*|\theta)\)</span> <span class="math inline">\(\propto 1/2~f_2(x_2^*|\theta)\)</span> <span class="math inline">\(=f^*\left((2,x_2^*)|\theta\right)~,\)</span><br />
+e, como vale <em>P. Verossimilhança</em>, então <span class="math inline">\(\text{Inf}\left(E^*,(1,x_1^*)\right)=\text{Inf}(E_1,x_1^*)~.\)</span><br />
+Usando o mesmo argumento, se <span class="math inline">\(x^*=(2,x_2^*)\)</span>, conclui-se que <span class="math inline">\(\text{Inf}\left(E^*,(2,x_2^*)\right)=Inf(E_2,x_2^*)~.\)</span><br />
+Portando, vale o <em>P. Condicionalidade</em>.<br />
+<span class="math inline">\(~\)</span><br />
+Pelo Teorema de Fatoração, <span class="math inline">\(f(\boldsymbol x|\theta)\)</span> <span class="math inline">\(=g\left(T(\boldsymbol x),\theta\right)h(\boldsymbol x)\)</span> <span class="math inline">\(\propto g\left(T(\boldsymbol x),\theta\right)~.\)</span><br />
+Se <span class="math inline">\(\boldsymbol x_1\)</span> e <span class="math inline">\(\boldsymbol x_2\)</span> são pontos amostrais tais que <span class="math inline">\(T(\boldsymbol x_1)=T(\boldsymbol x_2),\)</span> <span class="math inline">\(f_1(\boldsymbol x_1|\theta)\propto g\left(T(\boldsymbol x_1),\theta\right)\)</span> <span class="math inline">\(\propto g(T(\boldsymbol x_2),\theta)\)</span> <span class="math inline">\(\propto f_2(\boldsymbol x_2|\theta)~,\)</span> tem-se, pelo <em>P. Verossimilhança</em>, que <span class="math inline">\(\text{Inf}(E_1,\boldsymbol x_1)=\text{Inf}(E_2,\boldsymbol x_2)\)</span> e, portanto vale o <em>P. Suficiência</em>.</p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo.</strong> Seja <span class="math inline">\(X_1|\theta \sim Bin(n,\theta)\)</span> e <span class="math inline">\(X_2|\theta \sim BinNeg(r,\theta)\)</span>, onde <span class="math inline">\(n\)</span> é número total de lançamentos (fixado) e <span class="math inline">\(r\)</span> é número de fracassos (fixado). Então, <span class="math inline">\(E_1=\left(\boldsymbol X_1,\theta,\left\{\binom{n}{x_1}\theta^{x_1}(1-\theta)^{n-x_1}:\theta\in[0,1]\right\}\right)\)</span> e <span class="math inline">\(E_2=\left(\boldsymbol X_2,\theta,\left\{\binom{r+x_2-1}{x_2}\theta^{x_2}(1-\theta)^{r}:\theta\in[0,1]\right\}\right)~.\)</span> Note que em ambos os experimentos, o parâmetro <span class="math inline">\(\theta\)</span> é o mesmo!<br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<strong>(I)</strong> Estimação pontual usando Estimador Não-Viesado (ENV) para <span class="math inline">\(\theta\)</span>, isto é, <span class="math inline">\(\hat{\theta}_i(X_i)\)</span> tal que <span class="math inline">\(E\left[\hat{\theta}_i(X_i)|\theta\right]=\theta\)</span>. Nesse caso, <span class="math inline">\(\text{Inf}(E_i,x_i)=\hat{\theta}_i(x_i)\)</span> para <span class="math inline">\(i=1,2\)</span>.<br />
+Então, <span class="math inline">\(\hat{\theta}_1(X_i)=\dfrac{X_1}{n}\)</span> e <span class="math inline">\(\hat{\theta_2}(X_2)=\dfrac{X_2-1}{X_2+r-1}\)</span> são ENV para <span class="math inline">\(\theta\)</span> em <span class="math inline">\(E_1\)</span> e <span class="math inline">\(E_2\)</span>, respectivamente.<br />
+Suponha que <span class="math inline">\(n=12,r=3\)</span> e <span class="math inline">\(x_1=x_2=9\)</span>. Então, as funções de verossimilhança são <span class="math inline">\(f_1(x_1|\theta)=\binom{12}{9}\theta^9(1-\theta)^3\)</span> <span class="math inline">\(\propto \binom{11}{9}\theta^9(1-\theta)^3=f_2(x_2|\theta)\)</span>. Contudo, <span class="math inline">\(\hat{\theta}_1(x_1)=\dfrac{9}{12}=0,75\)</span> <span class="math inline">\(\neq\hat{\theta}_2(x_2)=\dfrac{8}{11}\approx0,72\bar{72}\)</span>, e portanto, o ENV <strong>viola</strong> o <em>P. Verossimilhança</em>.<br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<strong>(II)</strong> Estimador de Máxima Verossimilhança (EMV)<br />
+<span class="math inline">\(\delta_{MV}\)</span> é um estimador tal que <span class="math inline">\(\delta_{MV}(\boldsymbol x)=\displaystyle\arg\sup_{\theta\in\Theta} f(\boldsymbol x|\theta)~.\)</span><br />
+<span class="math inline">\(\delta_{MV}^1(x_1)=\dfrac{x_1}{n}\)</span> <span class="math inline">\(=\delta^2_{MV}(x_2)=\dfrac{x_2}{x_2+r}\)</span> <span class="math inline">\(=\dfrac{9}{12}=0,75~.\)</span><br />
+Portanto, o EMV <strong>não viola</strong> o <em>P. Verossimilhança</em>.<br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(~\)</span><br />
+<strong>(III)</strong> Suponha que deseja-se testar <span class="math inline">\(H_0:\theta\leq 1/2 \; (\Theta_0)\)</span> contra <span class="math inline">\(H_1:\theta &gt; 1/2 \; (\Theta_1)~,\)</span> com <span class="math inline">\(\Theta=\Theta_0 \cup \Theta_1~.\)</span><br />
+<span class="math inline">\(\phi(x)=\left\{\begin{array}{ll} 1,&amp; T(x)\leq c(\alpha)\\ 0,&amp; T(x)&gt; c(\alpha)\end{array}\right.\)</span><br />
+em que <span class="math inline">\(T\)</span> é uma estatística de teste (isto é, valores “grandes” de <span class="math inline">\(T(x)\)</span> indicam que <span class="math inline">\(x\)</span> é “favorável” a <span class="math inline">\(H_0\)</span>) e <span class="math inline">\(c(\alpha)\)</span> é tal que <span class="math inline">\(\alpha=\displaystyle\sup_{\theta_0\in\Theta_0}\text{P}(\text{Rejeitar } H_0~|~\theta_0)\)</span> <span class="math inline">\(\displaystyle\sup_{\theta_0\in\Theta_0}\text{P}\left(\left\{x\in\mathfrak{X} : T(x)\leq c(\alpha)\right\}~|~\theta_0\right)~.\)</span><br />
+Considere <span class="math inline">\(T(x)=RV(x)=\dfrac{\underset{\Theta_0}{sup}f(x|\theta)}{\underset{\Theta}{sup}f(x|\theta)}\)</span>, de modo que um <span class="math inline">\(p\)</span><em>-value</em> pode ser calculado por <span class="math inline">\(p(x)=\displaystyle\sup_{\Theta_0} \text{P}\left(T(X)\geq T(x)|\theta\right)\)</span>. Assim, um teste que conduz a uma decisão equivalente ao descrito anteriormente é <em>rejeitar</em> <span class="math inline">\(H_0\)</span> se, e somente se, <span class="math inline">\(p(x)\leq \alpha\)</span>. Considere a escolha usual <span class="math inline">\(\alpha=0.05\)</span>. Então,<br />
+<span class="math inline">\(p_1(x_1)=P(X_1\geq 9|\theta=1/2)=0.073&gt;0.05\Rightarrow\)</span> Não rejeita <span class="math inline">\(H_0~.\)</span><br />
+<span class="math inline">\(p_2(x_2)=P(X_2\geq 9|\theta=1/2)=0.0327&lt;0.05\Rightarrow\)</span> Rejeita <span class="math inline">\(H_0~.\)</span><br />
+Portanto, o Teste da Razão de Verossimilhanças viola o <em>P. Verossimilhança</em>.<br />
+<span class="math inline">\(~\)</span><br />
+<span class="math inline">\(~\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>(IV)</strong> Aboragem Bayesiana <span class="math inline">\(\Rightarrow Inf(E_i,x_i)=f_i(\theta|x_i)\)</span><br />
+a) <em>Bayesiano Subjetivista</em><br />
+Como o parâmetro <span class="math inline">\(\theta\)</span> é o mesmo nos dois experimentos, a priori deve ser a mesma.<br />
+<span class="math inline">\(f(\theta)\)</span> não depende de <span class="math inline">\(\{f_i(\boldsymbol x|\theta):\theta\in\Theta\}\)</span><br />
+<span class="math inline">\(f(\theta|\boldsymbol x)\propto f(\theta)f(x_1|\theta)\propto f(\theta)f(x_2|\theta)\)</span><br />
+e, portanto, satisfaz o <em>P. Verossimilhança</em>.<br />
+<span class="math inline">\(~\)</span><br />
+b) <em>Bayesiano Objetivista</em> (p.e., usando priori de Jeffreys)<br />
+Para <span class="math inline">\(E_1\)</span>, <span class="math inline">\(f_1(\theta)\propto |I_F(\theta)|^{1/2}\propto\)</span> <span class="math inline">\(\theta^{-1/2}(1-\theta)^{-1/2}\sim Beta (1/2,1/2)\)</span><br />
+Para <span class="math inline">\(E_2\)</span>, <span class="math inline">\(f_2(\theta)\propto\)</span> <span class="math inline">\(\theta^{-1}(1-\theta)^{-1/2}\sim Beta (0,1/2)\)</span> (distribuição imprópria).<br />
+Se o número de sucessos é <span class="math inline">\(x=x_1=x_2\)</span> e número de fracassos é <span class="math inline">\(y=n-x_1=r\)</span>, temos que<br />
+<span class="math inline">\(\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)~\)</span> e <span class="math inline">\(~\theta|X_2=x_2\sim Beta(x,y+1/2)~.\)</span><br />
+Como <span class="math inline">\(f_1(x_1|\theta)\propto f_2(x_2|\theta)\)</span> mas <span class="math inline">\(f_1(\theta)\neq f_2(\theta)\)</span>, tem-se que <span class="math inline">\(f_1(\theta|x_1)\neq f_2(\theta|x_2)\)</span> e, portanto, esse procedimento viola o <em>P. Verossimilhança</em>.</p>
+</blockquote>
+<!-- ## Aula 18 -->
+<!-- **Definição:** Uma colet finita $X_1,X_2,...,X_n$ de quantidades aleatórias é dita $permutável$ se a distribuição de $(X_{\pi_1},...,X_{\pi_n})$ -->
+<!--  é a mesma para toda permutação $\pi=(\pi_1,...,\pi_n)$ dos índices $(1,...,n)$. Ua coleção infinita é *permutável* se toda subcoleção é permutável. -->
+<!-- * Segue da definição que $X_1,...,X_n$ tem a mesma distribuição marginal. Além disso $(X_1,X_2)$ tem mesma distribuição que $(X_3,X_5)$ e assim por diante. -->
+<!-- $~$ -->
+<!-- **Proposição:** Uma coleção $C$ de variáveis aleatórias é permitável se, e somente se, para todo $n$ finito manor ou igual ao tamanho da coleção $C$, toda $n$-upla (sequencia ordenada de $n$ elementos) de elementos distintos de $C$ tem a mesma distribuição que toda $n$-upla. -->
+<!-- $~$ -->
+<!-- **Exemplo 1:** Considere uma coleção $X_1,...$ (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d), claramente , $(X_{i_1},...,X_{i_n})$ tem a mesma distribuição de $(X_{j_1},...,X_{j_n})$ se $i_1\neq...\neq i_n$ e $j_1\neq...\neq j_n$. Então, toda coleção de v.a. i.i.d é permutável. (basta notar que $f(x_1,...,x_n)=\prod_{i=1}^nf(x_i)$). -->
+<!-- $~$ -->
+<!-- **Exemplo 2:**  -->
+<!-- * i.i.d $\Rightarrow$ permutavilidade.  -->
+<!-- * indep $\Rightarrow$ correlação $\rho=0$ -->
+<!-- * i.d. e $\rho=0\Rightarrow$ permutavilidade.  -->
+<!-- $~$ -->
+<!-- |$X_1:X_2$|-1|0|1|$f(x_1)$| -->
+<!-- |:-:|:-:|:-:|:-:|:-:| -->
+<!-- |-1|0,10|0,05|0,15|0,3| -->
+<!-- |0|0,15|0,20|0,05|0,4| -->
+<!-- |1|0,05|0,15|0,10|0,3| -->
+<!-- |$f(x_2)$|0,3|0,4|0,3| -->
+<!-- $~$ -->
+<!-- $cor(X_1,X_2)=\dfrac{E[(X_1-E(X_1))(X_2-E(X_2))]}{\sqrt{Var(X_1)Var(X_2)}}$  -->
+<!-- $E(X_1)=E(X_2)=0$ -->
+<!-- $E(X_1X_2)=(-1)(0,20)+1(0,20)=0$ $\Rightarrow cor=0$ -->
+<!-- $P((X_1,X_2)=(1,-1))\neq P((X_2,X_1)=(1,-1))$ -->
+<!-- * Expresar crenças de simetria sobre $X_1,X_2,...$ de maneira mais "fraca". -->
+<!-- * Não é necesário supor independênciaou que o limite de frequência relativa existe. -->
+<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
+<!-- $~$ -->
+<!-- **Exemplo 3:** Suponha que $X_1,X_2,...$ são condicionalmente i.i.d. dado $Y=y$ com densidade $f(x_i|y),\;i=1,2,...$ e $Y$ tem densidade $g(y)$. Então $X_1,X_2,...$ são permutaveis. -->
+<!-- $f_{X_{i_1},...,X_{i_n}}(x_1,...,x_n)=$ $\int\prod_{j=1}^nf(x_j|y)g(y)dy,$ para qualquer $X_{i_1},...,X_{i_n}$ $n$-upla. Note que o lado direito não depende dos rótulos $i_1,...,i_n$. -->
+<!-- $~$ -->
+<!-- ### **Teorema de Representação de Finetti** (para v.a. Bernoulli) -->
+<!-- Uma sequência infinita $\{X_n\}_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que , condicional a $\theta$, $\{X_i\}_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta$ -->
+<!-- $P(X_1=x_1,...,X_n=x_n)=$ $\int_0^1\theta^{\sum_ix_i}(1-\theta)^{n-\sum_ix_i}dF(\theta)=$ $\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}f(\theta)d\theta$ -->
+<!-- $F(\theta)=\underset{n\uparrow\infty}{lim}P\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)$ -->
+<!-- $~$ -->
+<!-- **Exemplo 4:** (1.19/1.20 - Shervish)  -->
+<!-- Seja $\{X_n\}_{n\geq 1}$ v.a. Bernoulli e $x=\sum_{i=1}x_i$. -->
+<!-- _Estatístico 1_ -->
+<!-- $P_1(X_1=x_1,...,X_n=x_n)=$ $\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}$ -->
+<!-- $P_1(X_1=1)=\dfrac{12}{3}\dfrac{3!2!}{5!}$ $=\dfrac{4}{10}=0,4.$ -->
+<!-- _Estatístico 2_ -->
+<!-- $P_2(X_1=x_1,...,X_n=x_n)=$ $\dfrac{1}{(n+1)\binom{n}{x}}$ -->
+<!-- $P_2(X_1=1)=\dfrac{1}{2}=0,5$ -->
+<!-- Contudo, pelo Teorema de Finetti, ambos acreditam que $\theta=\underset{n\uparrow\infty}{lim}\frac{1}{n}\sum_{i=1}^nX_i$ e que $P(X_1=1|\theta)=\theta$, mas não tem opiniões diferentes sobre $\theta$. -->
+<!-- Suponha agora que foi observado $\mathbf X=\mathbf x=(x_1,...,x_n)$ com $x=\sum_{i=1}^{20}x_i=14$. Vamos calcular  -->
+<!-- $P_i(X_{21}=1|X_1=x_1,...,X_{20}=x_{20})$ $=\dfrac{P_i(X_1=x_1,...,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,...,X_{20}=x_{20})}$  -->
+<!-- então, -->
+<!-- $P_1(X_{21}=1|\mathbf X=\mathbf x)=$ $\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}$ $=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}$ $=\dfrac{16}{17}\dfrac{17}{25}$ $=\dfrac{16}{25}=0,64$ -->
+<!-- $P_2(X_{21}=1|\mathbf X=\mathbf x)$ $=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}$ $=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}$ $=\dfrac{21}{22}\dfrac{15}{21}$ $=\dfrac{15}{22}=0,68$ -->
+<!-- ### Teorema de Representação de Finetti -->
+<!-- Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,  -->
+<!-- $F_{\mathbf X}(x_1,...,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$. -->
+<!-- Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$. -->
 
-</div>
-</div>
 </div>
 </div>
 <h3>Referências</h3>

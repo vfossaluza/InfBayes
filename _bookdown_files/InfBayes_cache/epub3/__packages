@@ -8,8 +8,8 @@ purrr
 dplyr
 stringr
 forcats
-futile.logger
-VennDiagram
 transformr
 knitr
 kableExtra
+futile.logger
+VennDiagram

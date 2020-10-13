@@ -585,7 +585,7 @@ $~$
 Agora, suponha que $n=5$ e foi observado $x=2$. Novamente, considere a mistura das distribuições $Beta(5,12)$ e $Beta(10,3)$ mas agora com pesos $w$ variando no conjunto $\left\{0,0.1,\ldots,0.9,1\right\}$.
 
 ```{r, include=knitr::is_latex_output()}
-x = 2
+n=5; x=2
 w = seq(0,1,0.1)
 
 A = as.vector(apply(matrix(w),1,
@@ -623,7 +623,7 @@ tibble(w=as.factor(rep(w,each=length(theta))),
 ```
 
 ```{r, include=!knitr::is_latex_output()}  
-x = 2
+n=5; x=2
 w = seq(0,1,0.1)
 
 A = as.vector(apply(matrix(w),1,
@@ -869,10 +869,8 @@ $\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\th
 $~$
 
 > **Exemplo 1:** $\Theta = \mathbb{R}_+$ e $\text{E}[\theta]=\mu~.$  
-Tomando $h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)$ (f.d.p. imprópria), temos  
-$h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)$ $\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.$  
-Como $\text{E}[\theta]=-1/\lambda =\mu~,$ tem-se que $\lambda= -1/\mu$, isto é, $\theta\sim\text{Exp}(1/\mu)~.$  
-$h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~~,~~~ \mu>0~.$
+Tomando $h_0(\theta) \propto \mathbb{I}_{\mathbb{R}_+}(\theta)$ (f.d.p. imprópria), tem-se $h(\theta )\propto e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)$ $\propto-\lambda e^{\lambda\theta}~\mathbb{I}_{\mathbb{R}_+}(\theta)~\mathbb{I}_{\mathbb{R}_-}(\lambda)~.$  
+Como $\text{E}[\theta]=-1/\lambda =\mu~,$ tem-se que $\lambda= -1/\mu$, isto é, $\theta\sim\text{Exp}(1/\mu)~,$ de modo que $h(\theta)=\dfrac{1}{\mu}e^{-\frac{\theta}{\mu}}~,$ $\mu>0~.$
 
 $~$
 
@@ -887,200 +885,136 @@ Assim, para concluir que a distribuição de máxima entropia nesse caso é a No
 
 $~$
 
+<!-- ```{r} -->
+<!-- a1=5; b1=12 -->
+<!-- a2=10; b2=3 -->
+<!-- n=5; x=2 -->
+<!-- w=0.5 -->
+<!-- t = seq(0,1,length.out = 1000) -->
+<!-- A = w*choose(n,x)*gamma(a1+b1)/(gamma(a1)*gamma(b1))* -->
+<!--     (gamma(a1+x)*gamma(b1+n-x))/gamma(a1+b1+n) -->
+<!-- B = (1-w)*choose(n,x)*gamma(a2+b2)/(gamma(a2)*gamma(b2))* -->
+<!--     (gamma(a2+x)*gamma(b2+n-x))/gamma(a2+b2+n) -->
+<!-- w2 = A/(A+B) -->
+
+<!-- BL_MaxEnt=dbeta(t,1,1) -->
+<!-- BL_MaxEnt_Post=dbeta(t,1+x,1+n-x) -->
+<!-- Subj=dbeta(t,2,2) -->
+<!-- Subj_Post=dbeta(t,2+x,2+n-x) -->
+<!-- Mistura = w*dbeta(t,a1,b1)+(1-w)*dbeta(t,a2,b2) -->
+<!-- Mistura_Post = w2*dbeta(t,a1+x,b1+n-x)+(1-w2)*dbeta(t,a2+x,b2+n-x) -->
+<!-- Jeffreys_1=dbeta(t,1/2,1/2) -->
+<!-- Jeffreys_1_Post=dbeta(t,1/2+x,1/2+n-x) -->
+<!-- Jeffreys_2=(t^(-1))*((1-t)^(-1/2))*4/1000 -->
+<!-- Jeffreys_2_Post=dbeta(t,0+x,1/2+n-x) -->
+<!-- dens=c(BL_MaxEnt,BL_MaxEnt_Post,Subj,Subj_Post,Mistura,Mistura_Post,Jeffreys_1,Jeffreys_1_Post,Jeffreys_2,Jeffreys_2_Post) -->
+<!-- dens=ifelse(dens==Inf,NA,dens) -->
+<!-- tibble( theta=rep(t,10),dens,Priori=rep(c("B-L_MaxEnt","Beta(2,2)","Mistura","Jeffreys_Bin","Jeffreys_BinNeg"),each=2*length(t)),Distr=rep(rep(c("Prior","Posterior"),each=length(t)),5) ) %>% -->
+<!--   ggplot() + theme_bw() + -->
+<!--   geom_line(aes(x=theta,y=dens,linetype=Distr,color=Priori)) + -->
+<!--   geom_line(aes(x=t,y=dbinom(x,n,t),color="Verossimilhança")) + -->
+<!--   facet_grid(~Priori) -->
+<!-- ``` -->
+
+$~$ 
+
 $~$
 
 ## Alguns Princípios de Inferência
 
-<!-- **Experimento:** consiste em observar um particular valor $\boldsymbol x,\boldsymbol x\in\mathfrak{X}$, da v.a. $\boldsymbol X$ que, para um dado $\theta\in\Theta$, tem f.d.p $f(\boldsymbol x|\theta)$. -->
-
-<!-- $E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})$ -->
-
-<!-- **$Inf(E,\boldsymbol x)$**: uma *inferência* sobre $\theta$ baseada no resultado $\boldsymbol x$ do experimento $E$. -->
-
-<!-- ### Princípio de Suficiência -->
-
-<!-- **Princípio de Suficiência** considere um experimento $E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})$ e suponha que $T(\boldsymbol X)$ é uma estatśtica suficiente $\theta$. Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontons amostrais que $T(\boldsymbol x_1)=T(\boldsymbol x_2)$ então $Inf(E,\boldsymbol x_1)=Inf(E,\boldsymbol x_2)$ -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 1-a):**  -->
-
-<!-- $X_i\sim Ber(\theta)$, $i=1,...,10$.  -->
-
-<!-- $\boldsymbol x_1=(1,1,1,1,1,1,0,0,0,0)\Rightarrow T(\boldsymbol x_1)=\sum_{i=1}^nx_{1i}=6$ -->
-
-<!-- $\boldsymbol x_2=(1,0,1,0,1,0,1,0,1,1)\Rightarrow T(\boldsymbol x_1)=\sum_{i=1}^nx_{2i}=6$ -->
-
-<!-- $\Rightarrow \boldsymbol{\bar{X}}_1=\boldsymbol{\bar{X}}_2$ -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 1-b):** $\theta \sim Beta(1,1)\Rightarrow\theta|\boldsymbol x_1 \sim$ $\theta|\boldsymbol x_2\sim\theta|T(\boldsymbol  x_1)\sim Beta(1+t,1+n-t)$ -->
-
-<!-- ### Princípio da Condicionalidade -->
-
-<!-- **Princípio da Condicionalidade** Suponha que $E_1=(\boldsymbol X_1,\theta,\{f(\boldsymbol x_1|\theta)\})$ e $E_2=(\boldsymbol X_2,\theta,\{f(\boldsymbol x_2|\theta)\})$ são dois experimentos onde somente o parâmetro $\theta$ precisa ser comum. Considere um experimento misto em que uma v.a. $J$ é observada, com $P(J=1)=P(J=2)=1/2$, independente de $\boldsymbol X_1,\boldsymbol X_2$ e $\theta$, e então o experimento $E_J$ é realizado. -->
-
-<!-- $~$ -->
-
-<!-- Formalmente, o experimento realizado nesse caso é $E^*=(\boldsymbol X^*,\theta,\{f^*(\boldsymbol x^*|\theta)\})$, onde $\boldsymbol X^*=(J,\boldsymbol X_J)$ e $f^*(\boldsymbol x|\theta)=1/2f_J(\boldsymbol x_j|\theta)$ -->
-
-<!-- ### Princípio da Verossimilhança -->
-
-<!-- **Princípio da Verossimilhança** suponha dois experimentos $E_1=(\boldsymbol X_1,\theta,\{f_1(\boldsymbol x_1|\theta)\})$ e $E_2=(\boldsymbol X_2,\theta,\{f_2(\boldsymbol x_2|\theta)\})$, ambos com o mesmo parâmetro $\theta$. Suponha que $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontos amostrais de $E_1$ e $E_2$, respectivamente, tais que, $f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta);\;\forall \theta\in\Theta$. Então, $Inf(E_1,\boldsymbol x_1)=Inf(E_2,\boldsymbol x_2)$. -->
-
-<!-- $~$ -->
-
-<!-- **Teorema de Birnbaum:** (P. Suficiência $\wedge$ P.Condicionalidade) $\Leftrightarrow$ P.Verossimilhança -->
-
-<!-- **Demo:** ($\Rightarrow$) -->
-
-<!-- Seja $\boldsymbol x_1^*,\;\boldsymbol x_2^*,\;E_1,\;E_2$ como no P.Verossimilhança e $E^*$ como no P.Condicionalidade. Então, -->
-
-<!-- $f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)$ -->
-
-<!-- No espaço definido pelo experimento $E^*$ defina -->
-
-<!-- $T(J,\boldsymbol x_j)=\left\{\begin{array} -->
-<!-- ((1,\boldsymbol x_1^*),& \text{se } j=1,\boldsymbol x_1=\boldsymbol x_1^*\\ -->
-<!-- (J,\boldsymbol x_j),&\text{caso contrario}\end{array}\right.$ -->
-
-<!-- Como $f^*(\boldsymbol x^*|\theta)=f^*((J,\boldsymbol x_j)|\theta)=1/2f_J(\boldsymbol x_j|\theta),$ podemos usar o Teorema de Fatoração e concluir que $T(J,\boldsymbol x_j)$ é suficiente para $\theta$ no experimento $E^*$. -->
-
-<!-- Então pelo P.Suficiẽncia $Inf(E^*,(1,\boldsymbol x_1))=Inf(E^*,(2,\boldsymbol x_2))$ e, pelo P.Condicionalidade, $Inf(E^*,(1,\boldsymbol x_1^*))=Inf(E_1,\boldsymbol x_1^*)$ $=Inf(E^*,(2,\boldsymbol x_2))=Inf(E_2,\boldsymbol x_2^*),$ de modo que $Inf(E_1,\boldsymbol x_1^*)=Inf(E_2,\boldsymbol x_2^*)$ por tanto vale o P.Verossimilhança. -->
-
-<!-- ## Aula 17 Continuação -->
-
-<!-- **Teorema de Birnbaum** (P. Suficiência $\wedge$ P.Condicionalidade) $\Leftrightarrow$ P.Verossimilhança -->
-
-<!-- **Demo** ($\Leftarrow$) -->
-
-<!-- Como vale o P.Verossimilhança,  -->
-
-<!-- $Inf(E_1,x_1^*)=Inf(E_2,x_2^*)$ pois -->
-
-<!-- $f_1(x_1^*|\theta)\propto f_2(x_2^*)$. -->
-
-<!-- Além disso, se $x^*=(1,x_1^*)$ (ou $x^*=(2,x_2^*)$)  -->
-
-<!-- $f^*(x^*|\theta)=f^*((1,x_1^*|\theta)=1/2f_1(x_1^*|\theta))\propto f_1(x_1^*|\theta)\propto 1/2f_2(x_2^*|\theta)=f^*((2,x_2^*)|\theta)$, -->
-
-<!-- e, como vale P. Verossimilhança, então -->
-
-<!-- $Inf(E^*,(1,x_1^*))=Inf(E_1,x_1^*)$ [$Inf(E^*,(2,x_2^*))=Inf(E_2,x_2^*)$]  -->
-
-<!-- e vale o P. Condicionalidade. -->
-
-<!-- Pelo Teorema de Fatoração, -->
-
-<!-- $f(\boldsymbol x|\theta)=g(T(\boldsymbol x),\theta)h(\boldsymbol x)\propto g(T(\boldsymbol x),\theta)$. -->
-
-<!-- Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são tais que $T(\boldsymbol x_1)=T(\boldsymbol x_2),$ $f_1(\boldsymbol x_1|\theta)\propto g(T(\boldsymbol x_1),\theta)$ $\propto g(T(\boldsymbol x_2),\theta)\propto f_2(\boldsymbol x_2|\theta)$ -->
-
-<!-- pelo P. Verossimilhança temos que  -->
-
-<!-- $Inf(E_1,\boldsymbol x_1)=Inf(E_2,\boldsymbol x_2)$ e, portanto vale o P. Suficiência. -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 1:** Seja  -->
-
-<!-- $X_1|\theta \sim Bin(n,\theta)$ e  -->
-
-<!-- $X_2|\theta \sim BinNeg(r,\theta)$,  -->
-
-<!-- onde $n$: número total de lanzamentos (fixado) e $r$: número de fracassos (fixado). -->
-
-<!-- $E_1:\left(\boldsymbol X_1,\theta,\left\{\binom{n}{x_1}\theta^{x_1}(1-\theta)^{n-x_1}:\theta\in[0,1]\right\}\right)$ -->
-
-<!-- $E_2:\left(\boldsymbol X_2,\theta,\left\{\binom{r+x_2-1}{x_2}\theta^{x_2}(1-\theta)^{r}:\theta\in[0,1]\right\}\right)$ -->
-
-<!-- *Mesmo $\theta$!* -->
-
-<!-- $~$ -->
-
-<!-- **I.** Estimação pontual usando Estimador Não-Viesado (ENV) para $\theta$, isto é, $\hat{\theta}_i(X_i)$ tal que  -->
-
-<!-- $E\left[\hat{\theta}_i(X_i)|\theta\right]=\theta$, ($Inf(E_i,x_1)=\hat{\theta}_i(x_i),\;i=1,2$). -->
-
-<!-- Então, $\hat{\theta}_1(X_i)=\dfrac{X_1}{n}$ e $\hat{\theta_2}(X_2)=\dfrac{X_2-1}{X_2+r-1}$ são ENV para $\theta$ em $E_1$ e $E_2$, respectivamente. -->
-
-<!-- Suponha que $n=12,r=3$ e $x_1=x_2=9$ -->
-
-<!-- Então, $f_1(x_1|\theta)=\binom{12}{9}\theta^9(1-\theta)^3$ $\propto \binom{11}{9}\theta^9(1-\theta)^3=f_2(x_2|\theta)$ -->
-
-<!-- Contudo, $\hat{\theta}_1(x_1)=\dfrac{9}{12}=0,75$ $\neq\hat{\theta}_2(x_2)=\dfrac{8}{11}\approx0,72\bar{72}$, -->
-
-<!--   e portanto, o ENV viola o P.Verossimilhança. -->
-
-<!-- $~$ -->
-
-<!-- **II.** Estimador de Máxima Verossimilhança (EMV) -->
-
-<!-- $\delta_{MV}$ é o estimador tal que -->
-
-<!-- $\delta_{MV}(\boldsymbol x)=\hat{\theta}_{MV}=arg\;\underset{\theta\in\Theta}{sup}f(\boldsymbol x|\theta)$. -->
-
-<!-- $\delta_{MV}^1(x_1)\dfrac{x_1}{n}=\delta^2_{MV}(x_2)=\dfrac{x_2}{x_2+r}=\dfrac{9}{12}=0,75$ -->
-
-<!-- Por tanto, o EMV não viola o P. Verossimilhança. -->
-
-<!-- $~$ -->
-
-<!-- **III.** Suponha que deseja-se testar -->
-
-<!-- $H_0:\theta\leq 1/2 \; (\Theta_0)$ contra -->
-
-<!-- $H_1:\theta > 1/2 \; (\Theta_1)$; -->
-
-<!-- $\Theta=\Theta_0 \cup \Theta_1$. -->
-
-<!-- $\phi(x)=\left\{\begin{array}{rcl} -->
-<!-- 1,& t(x)\geq c(\alpha)\\ -->
-<!-- 0,& t(x)< c(\alpha) -->
-<!-- \end{array}\right.$ -->
-
-<!-- em que $\alpha=P(\text{Erro do tipo I})$ $=P(\text{Rejeitar } H_0| H_0 \text{ é verdadeira})$. -->
-
-<!-- $RV(x)=\dfrac{\underset{\Theta_0}{sup}f(x|\theta)}{\underset{\Theta}{sup}f(x|\theta)}=-t$ -->
-
-<!-- $*p-value*(x)=\underset{\Theta_0}{sup}P(t(\boldsymbol X)\geq t(\boldsymbol x)|\theta)$. -->
-
-<!-- $\alpha=0.05$ -->
-
-<!-- $p_1(x_1)=P(X_1\geq 9|\theta=1/2)=0.073>0.05\Rightarrow$ Não rejeita $H_0$ -->
-
-<!-- $p_2(x_2)=P(X_2\geq 9|\theta=1/2)=0.0327<0.05\Rightarrow$ Rejeita $H_0$ -->
-
-<!-- Por tanto, esse procedimento viola o P. Verossimilhança. -->
-
-<!-- $~$ -->
-
-<!-- **IV.** Aboragem Bayesiana $\Rightarrow Inf(E_i,x_i)=f_i(\theta|x_i)$ -->
-
-<!-- a) *Bayesiano Subjetivista* -->
-
-<!--     Como o parâmetro $\theta$ é o mesmo nos dois experimentos, a priori deve ser a mesma. -->
-
-<!--     $f(\theta)$ não depende de $\{f_i(\boldsymbol x|\theta):\theta\in\Theta\}$ -->
-
-<!--     $f(\theta|\boldsymbol x)\propto f(\theta)f(x_1|\theta)\propto f(\theta)f(x_2|\theta)$ -->
-
-<!--     e, portanto, satisfaz o P.Verossimilhança. -->
-
-<!-- b) *Bayesiano Objetivista*  (p.e. usando priori de Jeffreys) -->
-
-<!-- Para $E_1$, $f_1(\theta)\propto |I_F(\theta)|^{1/2}\propto$ $\theta^{-1/2}(1-\theta)^{-1/2}\sim Beta (1/2,1/2)$ -->
-
-<!-- Para $E_2$, $f_2(\theta)\propto$ $\theta^{-1}(1-\theta)^{-1/2}\sim Beta (0,1/2)$ distribuição imprópria. -->
-
-<!-- Número de sucessos: $x=x_1=x_2$ é número de fracassos: $y=n-x_1=r$, temos que -->
-
-<!-- $\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)$ -->
-
-<!-- $\theta|X_2=x_2\sim Beta(x,y+1/2)$ -->
-
-<!-- Pois $f_1(x_1|\theta)\propto f_2(x_2|\theta)$ mas $f_1(\theta)\neq f_2(\theta)$ de modos que $f(\theta|x_1)\neq f(\theta|x_2)$ e, portanto, viola o P.Verossimilhança. -->
+Considere um experimento $E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})$ que consiste em observar um particular valor $\boldsymbol{x}\in\mathfrak{X}$ do v.a. $\boldsymbol{X}$ que, para cada possível valor do parâmetro (desconhecido) $\theta\in\Theta$, tem f.d.p. $f(\boldsymbol x|\theta)$. De forma geral, uma *inferência* sobre $\theta$ baseada no resultado $\boldsymbol x$ do experimento $E$ será denotada por $\text{Inf}(E,\boldsymbol x)~.$
+
+
+**Princípio de Suficiência.** Considere um experimento $E=(\boldsymbol{X},\theta,\{f(\boldsymbol{x}|\theta)\})$ e suponha que $T(\boldsymbol{X})$ é uma estatística suficiente para $\theta$. Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são dois pontos amostrais tais que $T(\boldsymbol{x}_1)=T(\boldsymbol{x}_2)$ então $\text{Inf}(E,\boldsymbol{x}_1)=\text{Inf}(E,\boldsymbol{x}_2)~.$
+
+$~$
+
+> **Exemplo 1a.** Seja $X_1,\ldots,X_{n}$ c.i.i.d. tais que $X_1\sim Ber(\theta)~.$  
+Considere $n=10$ e os pontos amostrais $\boldsymbol x_1=(1,1,1,1,1,1,0,0,0,0)$ e $\boldsymbol x_2=(1,0,1,0,1,0,1,0,1,1)$ tais que $T(\boldsymbol x_1)=\sum x_{1i}=6$ e $T(\boldsymbol x_2)=\sum x_{2i}=6$.  
+Um possível estimador para $\theta$ nesse exemplo é a média amostral, de modo que $\bar{x}_1=\bar{x}_2=\dfrac{\sum x_i}{n}=0,6~.$
+
+$~$
+
+> **Exemplo 1b.** Ainda no contexto do exemplo anterior, considere que a priori $\theta \sim \text{Beta}(a,b)~.$ Então, se $T(\boldsymbol x_1)=T(\boldsymbol x_2)=t$, 
+$$\theta|\boldsymbol x_1\sim\theta|\boldsymbol x_2\sim\theta|T(\boldsymbol  x_1)=t~\sim~ Beta(a+t,b+n-t)~.$$
+
+$~$
+
+**Princípio da Condicionalidade.** Suponha que $E_1=\left(\boldsymbol X_1,\theta,\{f(\boldsymbol x_1|\theta)\}\right)$ e $E_2=\left(\boldsymbol X_2,\theta,\{f(\boldsymbol x_2|\theta)\}\right)$ são dois experimentos onde somente o parâmetro $\theta$ precisa ser comum. Considere um experimento misto em que é observada uma v.a. $J$, com $P(J=1)=P(J=2)=1/2$, independente de $\boldsymbol X_1,~\boldsymbol X_2$ e $\theta$, e então o experimento $E_J$ é realizado. Formalmente, o experimento realizado nesse caso é $E^*=(\boldsymbol X^*,\theta,\{f^*(\boldsymbol x^*|\theta)\})$, onde $\boldsymbol X^*=(J,\boldsymbol X_J)$ e $f^*(\boldsymbol x|\theta)=\dfrac{1}{2}~f_j(\boldsymbol x_j|\theta)~.$ Então, $\text{Inf}\left(E^*,(j,x_j)\right) = \text{Inf}\left(E_j,x_j\right)~.$
+
+$~$
+
+**Princípio da Verossimilhança.** Suponha dois experimentos $E_1=(\boldsymbol X_1,\theta,\{f_1(\boldsymbol x_1|\theta)\})$ e $E_2=(\boldsymbol X_2,\theta,\{f_2(\boldsymbol x_2|\theta)\})$, ambos com o mesmo parâmetro $\theta$. Suponha que $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontos amostrais de $E_1$ e $E_2$, respectivamente, tais que $f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)~,$ $\forall \theta\in\Theta~.$, então, $\text{Inf}(E_1,\boldsymbol x_1)=\text{Inf}(E_2,\boldsymbol x_2)$.
+
+$~$
+
+$~$
+
+**Teorema de Birnbaum.** (*P. Suficiência* $\wedge$ *P. Condicionalidade*) $\Longleftrightarrow$ *P. Verossimilhança*.
+
+> **Demo:**  
+$(\boldsymbol{\Longrightarrow})$  
+Seja $\boldsymbol x_1^*,\;\boldsymbol x_2^*,\;E_1,\;E_2$ como no *P. Verossimilhança* e $E^*$ como no *P. Condicionalidade*. Então,  
+$f_1(\boldsymbol x_1|\theta)\propto c(\boldsymbol x_1,\boldsymbol x_2)f_2(\boldsymbol x_2|\theta)~.$  
+No espaço do experimento $E^*$, defina $T(j,\boldsymbol{x}_j)=\left\{\begin{array}{ll}(1,\boldsymbol{x}_1^*), & \text{se } ~j=1,~\boldsymbol{x}_1=\boldsymbol{x}_1^*\\ (j,\boldsymbol{x}_j), & \text{c. c.} \end{array}\right.~.$  
+Como $f^*(\boldsymbol x^*|\theta)=f^*\left((j,\boldsymbol x_j)|\theta\right)=1/2~f_j(\boldsymbol x_j|\theta),$ pelo o Teorema da Fatoração é possível concluir que $T(j,\boldsymbol x_j)$ é suficiente para $\theta$ no experimento $E^*$.  
+Então, pelo *P. Suficiência*, $\text{Inf}\left(E^*,(1,\boldsymbol x_1)\right)=\text{Inf}\left(E^*,(2,\boldsymbol x_2)\right)$ e, pelo *P. Condicionalidade*,  
+$\text{Inf}\left(E^*,(1,\boldsymbol x_1^*)\right)$ $=\text{Inf}\left(E_1,\boldsymbol x_1^*\right)$ $=\text{Inf}\left(E^*,(2,\boldsymbol x_2)\right)$ $=\text{Inf}\left(E_2,\boldsymbol x_2^*\right)~,$  
+de modo que $\text{Inf}\left(E_1,\boldsymbol x_1^*\right)=\text{Inf}\left(E_2,\boldsymbol x_2^*\right)$ e, portanto, vale o *P. Verossimilhança*.  
+$~$  
+$(\boldsymbol{\Longleftarrow})$  
+Como vale o *P. Verossimilhança*, $f_1(x_1^*|\theta)\propto f_2(x_2^*|\theta)$ e $\text{Inf}(E_1,x_1^*)=\text{Inf}(E_2,x_2^*)~.$  
+Além disso, se $x^*=(1,x_1^*)$,  
+$f^*(x^*|\theta)$ $=f^*\left((1,x_1^*)|\theta\right)$ $=1/2~f_1(x_1^*|\theta)$ $\propto f_1(x_1^*|\theta)$ $\propto 1/2~f_2(x_2^*|\theta)$ $=f^*\left((2,x_2^*)|\theta\right)~,$  
+e, como vale *P. Verossimilhança*, então $\text{Inf}\left(E^*,(1,x_1^*)\right)=\text{Inf}(E_1,x_1^*)~.$  
+Usando o mesmo argumento, se $x^*=(2,x_2^*)$, conclui-se que $\text{Inf}\left(E^*,(2,x_2^*)\right)=Inf(E_2,x_2^*)~.$  
+Portando, vale o *P. Condicionalidade*.  
+$~$  
+Pelo Teorema de Fatoração, $f(\boldsymbol x|\theta)$ $=g\left(T(\boldsymbol x),\theta\right)h(\boldsymbol x)$ $\propto g\left(T(\boldsymbol x),\theta\right)~.$  
+Se $\boldsymbol x_1$ e $\boldsymbol x_2$ são pontos amostrais tais que $T(\boldsymbol x_1)=T(\boldsymbol x_2),$ $f_1(\boldsymbol x_1|\theta)\propto g\left(T(\boldsymbol x_1),\theta\right)$ $\propto g(T(\boldsymbol x_2),\theta)$ $\propto f_2(\boldsymbol x_2|\theta)~,$ tem-se, pelo *P. Verossimilhança*, que $\text{Inf}(E_1,\boldsymbol x_1)=\text{Inf}(E_2,\boldsymbol x_2)$ e, portanto vale o *P. Suficiência*.
+
+$~$
+
+$~$
+
+> **Exemplo.** Seja $X_1|\theta \sim Bin(n,\theta)$ e $X_2|\theta \sim BinNeg(r,\theta)$, onde $n$ é número total de lançamentos (fixado) e $r$ é número de fracassos (fixado). Então, $E_1=\left(\boldsymbol X_1,\theta,\left\{\binom{n}{x_1}\theta^{x_1}(1-\theta)^{n-x_1}:\theta\in[0,1]\right\}\right)$ e $E_2=\left(\boldsymbol X_2,\theta,\left\{\binom{r+x_2-1}{x_2}\theta^{x_2}(1-\theta)^{r}:\theta\in[0,1]\right\}\right)~.$ Note que em ambos os experimentos, o parâmetro $\theta$ é o mesmo!  
+$~$  
+$~$  
+**(I)** Estimação pontual usando Estimador Não-Viesado (ENV) para $\theta$, isto é, $\hat{\theta}_i(X_i)$ tal que $E\left[\hat{\theta}_i(X_i)|\theta\right]=\theta$. Nesse caso, $\text{Inf}(E_i,x_i)=\hat{\theta}_i(x_i)$ para $i=1,2$.  
+Então, $\hat{\theta}_1(X_i)=\dfrac{X_1}{n}$ e $\hat{\theta_2}(X_2)=\dfrac{X_2-1}{X_2+r-1}$ são ENV para $\theta$ em $E_1$ e $E_2$, respectivamente.  
+Suponha que $n=12,r=3$ e $x_1=x_2=9$. Então, as funções de verossimilhança são $f_1(x_1|\theta)=\binom{12}{9}\theta^9(1-\theta)^3$ $\propto \binom{11}{9}\theta^9(1-\theta)^3=f_2(x_2|\theta)$. Contudo, $\hat{\theta}_1(x_1)=\dfrac{9}{12}=0,75$ $\neq\hat{\theta}_2(x_2)=\dfrac{8}{11}\approx0,72\bar{72}$, e portanto, o ENV **viola** o *P. Verossimilhança*.  
+$~$  
+$~$  
+**(II)** Estimador de Máxima Verossimilhança (EMV)  
+$\delta_{MV}$ é um estimador tal que $\delta_{MV}(\boldsymbol x)=\displaystyle\arg\sup_{\theta\in\Theta} f(\boldsymbol x|\theta)~.$  
+$\delta_{MV}^1(x_1)=\dfrac{x_1}{n}$ $=\delta^2_{MV}(x_2)=\dfrac{x_2}{x_2+r}$ $=\dfrac{9}{12}=0,75~.$  
+Portanto, o EMV **não viola** o *P. Verossimilhança*.  
+$~$  
+$~$  
+> **(III)** Suponha que deseja-se testar $H_0:\theta\leq 1/2 \; (\Theta_0)$ contra $H_1:\theta > 1/2 \; (\Theta_1)~,$ com $\Theta=\Theta_0 \cup \Theta_1~.$  
+$\phi(x)=\left\{\begin{array}{ll} 1,& T(x)\leq c(\alpha)\\
+0,& T(x)> c(\alpha)\end{array}\right.$  
+em que $T$ é uma estatística de teste (isto é, valores "grandes" de $T(x)$ indicam que $x$ é "favorável" a $H_0$) e $c(\alpha)$ é tal que $\alpha=\displaystyle\sup_{\theta_0\in\Theta_0}\text{P}(\text{Rejeitar } H_0~|~\theta_0)$ $\displaystyle\sup_{\theta_0\in\Theta_0}\text{P}\left(\left\{x\in\mathfrak{X} : T(x)\leq c(\alpha)\right\}~|~\theta_0\right)~.$  
+Considere $T(x)=RV(x)=\dfrac{\underset{\Theta_0}{sup}f(x|\theta)}{\underset{\Theta}{sup}f(x|\theta)}$, de modo que um $p$*-value* pode ser calculado por $p(x)=\displaystyle\sup_{\Theta_0} \text{P}\left(T(X)\geq T(x)|\theta\right)$. Assim, um teste que conduz a uma decisão equivalente ao descrito anteriormente é *rejeitar* $H_0$ se, e somente se, $p(x)\leq \alpha$. Considere a escolha usual $\alpha=0.05$. Então,  
+$p_1(x_1)=P(X_1\geq 9|\theta=1/2)=0.073>0.05\Rightarrow$ Não rejeita $H_0~.$  
+$p_2(x_2)=P(X_2\geq 9|\theta=1/2)=0.0327<0.05\Rightarrow$ Rejeita $H_0~.$  
+Portanto, o Teste da Razão de Verossimilhanças viola o *P. Verossimilhança*.  
+$~$  
+$~$  
+
+> **(IV)** Aboragem Bayesiana $\Rightarrow Inf(E_i,x_i)=f_i(\theta|x_i)$  
+a) *Bayesiano Subjetivista*  
+    Como o parâmetro $\theta$ é o mesmo nos dois experimentos, a priori deve ser a mesma.  
+    $f(\theta)$ não depende de $\{f_i(\boldsymbol x|\theta):\theta\in\Theta\}$  
+    $f(\theta|\boldsymbol x)\propto f(\theta)f(x_1|\theta)\propto f(\theta)f(x_2|\theta)$  
+    e, portanto, satisfaz o *P. Verossimilhança*.  
+$~$  
+b) *Bayesiano Objetivista*  (p.e., usando priori de Jeffreys)  
+    Para $E_1$, $f_1(\theta)\propto |I_F(\theta)|^{1/2}\propto$ $\theta^{-1/2}(1-\theta)^{-1/2}\sim Beta (1/2,1/2)$  
+    Para $E_2$, $f_2(\theta)\propto$ $\theta^{-1}(1-\theta)^{-1/2}\sim Beta (0,1/2)$ (distribuição imprópria).  
+    Se o número de sucessos é $x=x_1=x_2$ e número de fracassos é $y=n-x_1=r$, temos que  
+    $\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)~$ e $~\theta|X_2=x_2\sim Beta(x,y+1/2)~.$  
+    Como $f_1(x_1|\theta)\propto f_2(x_2|\theta)$ mas $f_1(\theta)\neq f_2(\theta)$, tem-se que $f_1(\theta|x_1)\neq f_2(\theta|x_2)$ e, portanto, esse procedimento viola o *P. Verossimilhança*.
 
 
 <!-- ## Aula 18 -->

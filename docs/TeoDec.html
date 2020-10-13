@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana</title>
+  <title>4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
+  <meta property="og:title" content="4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
+  <meta name="twitter:title" content="4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
   
   <meta name="twitter:description" content="Notas de aula de Infência Bayesiana." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-09-29" />
+<meta name="date" content="2020-10-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,7 +51,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
@@ -141,47 +141,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Notas de Aula de Inferência Bayesiana</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
-<li class="chapter" data-level="1" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>1</b> Probabilidade Subjetiva</a><ul>
-<li class="chapter" data-level="1.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>1.1</b> Definição Axiomática</a></li>
-<li class="chapter" data-level="1.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>1.2</b> Interpretações de Probabilidade</a></li>
-<li class="chapter" data-level="1.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>1.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
-<li class="chapter" data-level="1.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>1.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
-<li class="chapter" data-level="1.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>1.5</b> Medida de Probabilidade Condicional</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
+<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a><ul>
+<li class="chapter" data-level="2.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>2.1</b> Definição Axiomática</a></li>
+<li class="chapter" data-level="2.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>2.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
+<li class="chapter" data-level="2.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>2.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
+<li class="chapter" data-level="2.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>2.5</b> Medida de Probabilidade Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>2</b> Introdução à Inferência Bayesiana</a><ul>
-<li class="chapter" data-level="2.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>2.1</b> Conceitos Básicos</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>2.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
-<li class="chapter" data-level="2.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>2.1.2</b> Inferência Bayesiana</a></li>
+<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>2.2</b> Suficiência</a></li>
-<li class="chapter" data-level="2.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>2.3</b> Distribuição a Priori</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>2.3.1</b> Método do Histograma</a></li>
-<li class="chapter" data-level="2.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>2.3.2</b> Elicitação de Hiperparâmetros</a></li>
-<li class="chapter" data-level="2.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>2.3.3</b> Prioris Conjugadas</a></li>
-<li class="chapter" data-level="2.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>2.3.4</b> Prioris “Não-Informativas”</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.2</b> Suficiência</a></li>
+<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.3</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.3.1</b> Método do Histograma</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.3.2</b> Elicitação de Hiperparâmetros</a></li>
+<li class="chapter" data-level="3.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.3.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="3.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.3.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.4</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>3</b> Introdução à Teoría da Decisão</a><ul>
-<li class="chapter" data-level="3.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a></li>
-<li class="chapter" data-level="3.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>3.2</b> Aleatorização e Decisões Mistas</a></li>
-<li class="chapter" data-level="3.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>3.3</b> Problemas com Dados</a></li>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
+<li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
+<li class="chapter" data-level="4.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>4.3</b> Problemas com Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>4</b> Estimação</a><ul>
-<li class="chapter" data-level="4.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>4.1</b> Estimação Pontual</a></li>
-<li class="chapter" data-level="4.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>4.2</b> Estimação por Regiões</a></li>
-<li class="chapter" data-level="4.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>4.3</b> Custo das Observações</a></li>
+<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a><ul>
+<li class="chapter" data-level="5.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>5.1</b> Estimação Pontual</a></li>
+<li class="chapter" data-level="5.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>5.2</b> Estimação por Regiões</a></li>
+<li class="chapter" data-level="5.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>5.3</b> Custo das Observações</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>5</b> Testes de Hipóteses</a><ul>
-<li class="chapter" data-level="5.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>5.1</b> Conceitos Básicos</a></li>
-<li class="chapter" data-level="5.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>5.2</b> Revisão: Abordagem Frequentista</a></li>
-<li class="chapter" data-level="5.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>5.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
-<li class="chapter" data-level="5.4" data-path="Test.html"><a href="Test.html#probabilidade-posterior-de-h_0"><i class="fa fa-check"></i><b>5.4</b> Probabilidade Posterior de <span class="math inline">\(H_0\)</span></a></li>
-<li class="chapter" data-level="5.5" data-path="Test.html"><a href="Test.html#fator-de-bayes"><i class="fa fa-check"></i><b>5.5</b> Fator de Bayes</a></li>
-<li class="chapter" data-level="5.6" data-path="Test.html"><a href="Test.html#teste-de-jeffreys"><i class="fa fa-check"></i><b>5.6</b> Teste de Jeffreys</a></li>
-<li class="chapter" data-level="5.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>5.7</b> Hipóteses Precisas</a></li>
-<li class="chapter" data-level="5.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>5.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
-<li class="chapter" data-level="5.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>5.9</b> P-value - Nivel de Significância Adaptativo</a></li>
+<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a><ul>
+<li class="chapter" data-level="6.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>6.1</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="6.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>6.2</b> Revisão: Abordagem Frequentista</a></li>
+<li class="chapter" data-level="6.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>6.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
+<li class="chapter" data-level="6.4" data-path="Test.html"><a href="Test.html#probabilidade-posterior-de-h_0"><i class="fa fa-check"></i><b>6.4</b> Probabilidade Posterior de <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="6.5" data-path="Test.html"><a href="Test.html#fator-de-bayes"><i class="fa fa-check"></i><b>6.5</b> Fator de Bayes</a></li>
+<li class="chapter" data-level="6.6" data-path="Test.html"><a href="Test.html#teste-de-jeffreys"><i class="fa fa-check"></i><b>6.6</b> Teste de Jeffreys</a></li>
+<li class="chapter" data-level="6.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>6.7</b> Hipóteses Precisas</a></li>
+<li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
+<li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
@@ -213,11 +214,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="TeoDec" class="section level1">
-<h1><span class="header-section-number">3</span> Introdução à Teoría da Decisão</h1>
+<h1><span class="header-section-number">4</span> Introdução à Teoría da Decisão</h1>
 <p>A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma <em>função de perda</em> (ou <em>função de utilidade</em>) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de “preferência” é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro <em>Optimal Statistical Decisions</em> <span class="citation">(DeGroot <a href="#ref-DeGroot70" role="doc-biblioref">1970</a>)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <div id="BasDec" class="section level2">
-<h2><span class="header-section-number">3.1</span> Conceitos Básicos</h2>
+<h2><span class="header-section-number">4.1</span> Conceitos Básicos</h2>
 <ul>
 <li><p><span class="math inline">\(d \in \mathcal{D}:\)</span> <strong>decisão</strong> - uma particular afirmação, por exemplo, sobre <span class="math inline">\(\theta\)</span>. No contexto inferencial, uma decisão pode ser uma estimativa (pontual ou intervalar) para <span class="math inline">\(\theta\)</span> ou a escolha de uma hipótese específica em um teste de hipóteses.</p></li>
 <li><p><span class="math inline">\(\mathcal{D}:\)</span> <strong>espaço de decisões</strong> - conjunto de todas as possíveis decisões (afirmações).</p></li>
@@ -295,7 +296,7 @@ Suponha que você está saindo de casa pela manhã e precisa tomar uma important
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="aleatorização-e-decisões-mistas" class="section level2">
-<h2><span class="header-section-number">3.2</span> Aleatorização e Decisões Mistas</h2>
+<h2><span class="header-section-number">4.2</span> Aleatorização e Decisões Mistas</h2>
 <p>Seja <span class="math inline">\(D=\left\{d_1,d_2,\ldots\right\}\)</span> um espaço de decisões e considere <span class="math inline">\(\mathcal{M}\)</span> o conjunto de todas as <em>decisões mistas</em> (ou <em>aleatorizadas</em>), isto é, para toda distribuição de probabilidades <span class="math inline">\(Q=\left\{q_1,q_2,\ldots\right\}\)</span>, uma decisão <span class="math inline">\(d\in\mathcal{M}\)</span> se <span class="math inline">\(d\)</span> consiste em escolher a decisão <span class="math inline">\(d_i\)</span> com probabilidade <span class="math inline">\(q_i\)</span>.</p>
 <p>Assim, a perda associada à uma decisão <span class="math inline">\(d\in\mathcal{M}\)</span> é <span class="math inline">\(L(d,\theta) = \sum q_i L(d_i,\theta)\)</span> e o risco dessa decisão é</p>
 <p><span class="math inline">\(\rho(d,P)\)</span> <span class="math inline">\(= \displaystyle \int_\Theta L(d,\theta) dP(\theta)\)</span> <span class="math inline">\(=\displaystyle \int_\Theta \sum q_i L(d_i,\theta) dP(\theta)\)</span> <span class="math inline">\(=\displaystyle \sum q_i \int_\Theta L(d_i,\theta) dP(\theta)\)</span> <span class="math inline">\(=\displaystyle \sum q_i~ \rho(d_i,\theta)\)</span>.</p>
@@ -308,7 +309,7 @@ Suponha que você está saindo de casa pela manhã e precisa tomar uma important
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="problemas-com-dados" class="section level2">
-<h2><span class="header-section-number">3.3</span> Problemas com Dados</h2>
+<h2><span class="header-section-number">4.3</span> Problemas com Dados</h2>
 <p>Suponha que antes de escolher uma decisão <span class="math inline">\(d \in \mathcal{D}\)</span>, é possível observar um v.a. <span class="math inline">\(\boldsymbol X\)</span> que (supostamente) está relacionado com <span class="math inline">\(\theta\)</span> (isto é, <span class="math inline">\(\boldsymbol X\)</span> traz alguma informação sobre <span class="math inline">\(\theta\)</span>).</p>
 <p>Desde modo, considere a família <span class="math inline">\(\mathcal{P}=\left\{ f(\cdot|\theta) : \theta \in \Theta\right\}\)</span> de funções de distribuição condicionais para <span class="math inline">\(\boldsymbol X\)</span>, isto é, para cada <span class="math inline">\(\theta \in \Theta\)</span> é possível determinar a distribuição condicional de <span class="math inline">\(\boldsymbol X|\theta\)</span>. Essa distribuição, juntamente com a distribuição a priori <span class="math inline">\(f(\theta)\)</span>, determina totalmente uma distribuição conjunta <span class="math inline">\(f(\boldsymbol x,\theta) = f(\boldsymbol x|\theta) f(\theta)\)</span>.</p>
 <p>Pode-se definir uma <strong>função de decisão</strong> <span class="math inline">\(\delta: \mathfrak{X} \longrightarrow \mathcal{D}\)</span> que associa a cada resultado experimental <span class="math inline">\(\boldsymbol x \in \mathfrak{X}\)</span> uma decisão <span class="math inline">\(d \in \mathcal{D}\)</span>. Denote o conjunto de todas as possíveis funções de decisão por <span class="math inline">\(\Delta\)</span>.</p>

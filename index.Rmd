@@ -1,4 +1,4 @@
---- 
+---
 title: "Fundamentos de Inferência Bayesiana"
 author: "Victor Fossaluza e Luís Gustavo Esteves"
 date: "`r Sys.Date()`"
@@ -18,9 +18,6 @@ library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE, fig.align="center", out.width="80%", warning=FALSE, message = FALSE)
 ```
 
-
-# Prefácio {-}
+# Prefácio
 
 Esse documento foi criado com base nos cursos de *Inferência Bayesiana* ministrados por nós no Instituto de Matemática e Estatística da Universidade de São Paulo (IME-USP). Essas notas devem ser usadas como um roteiro de estudos e não irão necessariamente apresentar todo o conteúdo dessas disciplinas. Além disso, esta é uma versão preliminar que está bem longe da versão final, de modo que podem haver muitos erros e, assim, correções ou sugestões serão sempre muito bem vindas!
-
-
