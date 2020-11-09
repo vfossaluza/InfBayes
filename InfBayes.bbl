@@ -1,0 +1,49 @@
+\begin{thebibliography}{}
+
+\bibitem[Albert, 2009]{Albert09}
+Albert, J. (2009).
+\newblock {\em Bayesian computation with R}.
+\newblock Springer.
+
+\bibitem[Ash and Doleans-Dade, 2000]{Ash00}
+Ash, R.~B. and Doleans-Dade, C. (2000).
+\newblock {\em Probability and Measure Theory}.
+\newblock Academic Press, California.
+
+\bibitem[Billingsley, 1986]{Billingsley86}
+Billingsley, P. (1986).
+\newblock {\em Probability and Measure}.
+\newblock Wiley Series in Probability and Mathematical Statistics. John Wiley
+  \& Sons, Inc., New York, second edition.
+
+\bibitem[DeGroot, 1970]{DeGroot70}
+DeGroot, M.~H. (1970).
+\newblock {\em Optimal Statistical Decisions}.
+\newblock MacGraw-Hill, New York.
+
+\bibitem[Jaynes, 2003]{Jaynes03}
+Jaynes, E.~T. (2003).
+\newblock {\em Probability Theory: The Logic of Science}.
+\newblock Cambridge Univ. Press.
+
+\bibitem[Kullback and Leibler, 1951]{Kullback51}
+Kullback, S. and Leibler, R.~A. (1951).
+\newblock On information and sufficiency.
+\newblock {\em The annals of mathematical statistics}, 22(1):79--86.
+
+\bibitem[Schervish, 2012]{Schervish12}
+Schervish, M.~J. (2012).
+\newblock {\em Theory of Statistics}.
+\newblock Springer Science \& Business Media.
+
+\bibitem[Shannon, 1948]{Shannon48}
+Shannon, C.~E. (1948).
+\newblock A mathematical theory of communication.
+\newblock {\em The Bell System Technical Journal}, 27(3):379--423.
+
+\bibitem[Shiryaev, 1996]{Shiryaev96}
+Shiryaev, A.~N. (1996).
+\newblock {\em Probability}, volume~95 of {\em Graduate Texts in Mathematics}.
+\newblock Springer-Verlag, New York, second edition.
+
+\end{thebibliography}

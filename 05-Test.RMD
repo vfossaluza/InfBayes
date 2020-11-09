@@ -16,7 +16,7 @@ $~$
  
 O conjunto $\varphi^{-1}(1)=\{\boldsymbol{x} \in \mathfrak{X} :~ \varphi(\boldsymbol{x})=1\}$ recebe o nome de **região de rejeição** (ou **região crítica**). A **função de poder** do teste $\varphi$ é
 ${\pi}_\varphi(\theta)$ $=P\left(\varphi^{-1}(1)|\theta\right)$ 
-$=P\big(\textrm{'Rejeitar $H_0$'} | \theta\big)$.
+$=P\big(\text{'Rejeitar $H_0$'} | \theta\big)$.
 
 $~$
 
@@ -32,7 +32,7 @@ $~$
 
 Um teste de hipótese "ideal" seria aquele que as probabilidades de erros tipo I e tipo II são iguais a zero, isto é, $\pi_\varphi(\theta)=0$, $\forall \theta \in \Theta_0$, e $\pi_\varphi(\theta)=1$, $\forall \theta \in \Theta_1$. Contudo, não é possível obter tais testes em geral. 
 
-A solução usual é fixar um nível de significância $\alpha$ e considerar apenas a classe de teste de nível $\alpha$, isto é, testes tais que $\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha$. Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder ${\pi}_\varphi(\theta)$ para $\theta \in \Theta_1$. Um teste que satisfaz isso é chamado de **Teste Uniformememte Mais Poderoso** (**UMP**) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
+A solução usual é fixar um nível de significância $\alpha$ e considerar apenas a classe de teste de nível $\alpha$, isto é, testes tais que $\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha$. Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder ${\pi}_\varphi(\theta)$ para $\theta \in \Theta_1$. Um teste que satisfaz isso é chamado de **Teste Uniformemente Mais Poderoso** (**UMP**) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
 
 $~$
 
@@ -89,7 +89,7 @@ ${\varphi}_{RV}(\boldsymbol x)=\left\{\begin{array}{rl}
 
 $~$
 
-Novamente, $k$ pode ser escolhido de modo que o teste resultante seja de nível $\alpha$, isto é, $\displaystyle \sup_{\theta \in \Theta_0} P\left(\lambda(\boldsymbol x) \leq k \Big | \theta\right) \leq \alpha$. Do mesmo modo, se foi observado $\boldsymbol X=\boldsymbol x_o$, um *p-value* é $p(\boldsymbol x_o)$ $=\displaystyle \sup_{\theta \in \Theta_0}P\left(\left\{\boldsymbol x: \lambda(\boldsymbol x) \leq \lambda(\boldsymbol x_o)\right\}\big|\theta_0\right)$. Por fim, em casos onde é difícil fazer os cálculos de forma exata e o tamanho amostral $n$ é razoavelmente grande, é possível usar a distribuição assintótica da RVG $~-2\log \lambda(\boldsymbol x)\overset{\mathcal{D}}{~\longrightarrow~}\chi_d^2$, onde $d=\dim(\Theta)-\dim(\Theta_0)$.
+Novamente, $k$ pode ser escolhido de modo que o teste resultante seja de nível $\alpha$, isto é, $\displaystyle \sup_{\theta \in \Theta_0} P\left(\lambda(\boldsymbol x) \leq k \Big | \theta\right) \leq \alpha$. Do mesmo modo, se foi observado $\boldsymbol X=\boldsymbol x_o$, um *p-value* é $p(\boldsymbol x_o)$ $=\displaystyle \sup_{\theta \in \Theta_0}P\left(\left\{\boldsymbol x: \lambda(\boldsymbol x) \leq \lambda(\boldsymbol x_o)\right\}\big|\theta\right)$. Por fim, em casos onde é difícil fazer os cálculos de forma exata e o tamanho amostral $n$ é razoavelmente grande, é possível usar a distribuição assintótica da RVG $~-2\log \lambda(\boldsymbol x)\overset{\mathcal{D}}{~\longrightarrow~}\chi_d^2$, onde $d=\dim(\Theta)-\dim(\Theta_0)$.
 
 $~$
 
@@ -116,7 +116,7 @@ Então, o risco de uma função de decisão $\varphi$ é
 
 $\rho(\varphi,P)$ $=E\left[L(\varphi(\boldsymbol X),\theta)\right]$
 $= \pi~E\left[L(\varphi(\boldsymbol X),\theta)\big|\theta_0)\right] + (1-\pi)E\left[L(\varphi(\boldsymbol X),\theta)\big|\theta_1)\right]$
-$= a~\pi~P\left(\varphi(\boldsymbol x)=1\big|\theta_0\right) + b~(1-\pi)~P\left(\varphi(\boldsymbol x)=0\big|\theta_0\right)$
+$= a~\pi~P\left(\varphi(\boldsymbol x)=1\big|\theta_0\right) + b~(1-\pi)~P\left(\varphi(\boldsymbol x)=0\big|\theta_1\right)$
 $= a~\pi~\alpha_\varphi + b~(1-\pi)~\beta_\varphi$
 
 Como o risco acima é uma combinação linear das probabilidades dos erro tipo I e tipo II, podemos aplicar o Lema de Neyman-Pearson e obter a função de decisão $\varphi^*$ que minimiza o risco
@@ -171,7 +171,7 @@ kableExtra::kable(tab, booktabs=TRUE, escape=FALSE)
 
 O risco posterior de cada uma das decisões é
 
-$r_x(d_0,\theta)$ $=a_0P(\theta\in\Theta_0|x)+b_1P(\Theta_1|x)$  $=a_0P(\theta\in\Theta_0|x)+b_1\left[1- P(\Theta_1|x)\right]$ $=a_0P(\theta\in\Theta_0|x)+b_1-b_1P(\Theta_0|x)$,
+$r_x(d_0,\theta)$ $=a_0P(\theta\in\Theta_0|x)+b_1P(\Theta_1|x)$  $=a_0P(\theta\in\Theta_0|x)+b_1\left[1- P(\Theta_0|x)\right]$ $=a_0P(\theta\in\Theta_0|x)+b_1-b_1P(\Theta_0|x)$,
 
 $r_x(d_1,\theta)$ $=a_1P(\theta\in\Theta_0|x)+b_0-b_0P(\Theta_0|x)$,
 

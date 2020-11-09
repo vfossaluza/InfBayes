@@ -48,9 +48,11 @@ $$\underbrace{f(\theta| \boldsymbol x)}_{dist. posteriori}=~~\dfrac{f(\theta)f(\
 
 $~$
 
-* **Observação:** será utilizada a notação geral para integral (de Lebesgue): $$\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
-= \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&~ (caso~~contínuo)\\
-\displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&~ (caso~~discreto) \end{array}\right.$$  
+* **Observação:** será utilizada a notação geral para integral (de Lebesgue):
+
+$$\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
+= \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&~ \text{(caso abs. contínuo)}\\ \displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&~ \text{(caso discreto)} \end{array}\right.$$  
+
 
 $~$
 
@@ -253,7 +255,110 @@ Suponha agora que $a=b=2$, $n=5$ e $x=2$, de modo que $\theta|x=2 \sim Beta(4,5)
 
 + $Var(\theta|x)$ $=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}$ $=\dfrac{20}{810}$ $\approx 0,0247$.  
 
-$~$ 
+$~$
+
+$~$
+
+## Teorema de De Finetti
+
+**Definição.** Uma coleção finita $X_1,X_2,\ldots,X_n$ de quantidades aleatórias é dita *permutável* se a distribuição de $\left(X_{\pi_1},\ldots,X_{\pi_n}\right)$ é a mesma para toda permutação $\boldsymbol\pi=(\pi_1,\ldots,\pi_n)$ dos índices $(1,\ldots,n)$. Uma coleção infinita de quantidades aleatórias é *permutável* se toda subcoleção é permutável.
+
+$~$
+
+* Segue da definição que cada uma das variáveis $X_1,\ldots,X_n$ tem a mesma distribuição marginal. Além disso, $(X_i,X_j)$ têm mesma distribuição que $(X_k,X_l)$, $\forall i\neq j$ e $k\neq l$, e assim por diante.
+
+$~$
+
+**Proposição.** Uma coleção $C$ de variáveis aleatórias é permitável se, e somente se, para todo $n$ finito menor ou igual ao tamanho da coleção $C$, toda $n$-upla (sequência ordenada de $n$ elementos) de elementos distintos de $C$ têm a mesma distribuição que toda outra $n$-upla.
+
+$~$
+
+> **Exemplo 1.** Considere uma coleção $X_1,X_2,\ldots$ uma sequência (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d). Note que $f(x_1,\ldots,x_n)=\displaystyle\prod_{i=1}^nf(x_i)~,$ $\forall n~,$ de modo que $\left(X_{i_1},\ldots,X_{i_n}\right)$ têm a mesma distribuição de $\left(X_{j_1},\ldots,X_{j_n}\right)$, para $i_1\neq\ldots\neq i_n$ e $j_1\neq\ldots\neq j_n$. Então, toda coleção de v.a. i.i.d é permutável.
+
+$~$
+
+> **Exemplo 2:** Foi visto no exemplo anterior que a suposição que uma sequência de v.a. é i.i.d. implica que tal sequência é também permutável. Sabe-se também que independência implica em correlação nula, $\rho=0$. Será então que v.a. identicamente distribuídas e não correlacionadas são também permutáveis?  
+$~$  
+```{r, echo=FALSE, include=TRUE, results="asis"}
+tab <- data.frame(X1X2 = c("$-1$", "$0$", "$+1$", "$f(x_2)$"), 
+                  c_n1 = c("$0.10$", "$0.15$", "$0.05$", "$0.3$"),
+                  c_0 = c("$0.05$", "$0.20$", "$0.15$", "$0.4$"),
+                  c_p1 = c("$0.15$", "$0.05$", "$0.10$", "$0.3$"),
+                  fx1 = c("$0.3$", "$0.4$", "$0.3$", "$1.0$"))
+colnames(tab) <- c("$X_1~$ / $~X_2$","$-1$","$0$","$+1$","$f(x_1)$")
+kableExtra::kable(tab, booktabs=TRUE, escape=FALSE, align='c')
+```  
+$~$  
+$cor(X_1,X_2)$ 
+$=\frac{\text{Cov}\left(X_1,X_2\right)}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}$ 
+$=\frac{\text{E}\left[\left(X_1-\text{E}[X_1]\right)\left(X_2-\text{E}[X_2]\right)\right]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}$ 
+$=\frac{\text{E}\left[X_1X_2\right]-\text{E}[X_1]\text{E}[X_2]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}$  
+$E(X_1)=E(X_2)=0$  
+$E(X_1X_2)=-1\cdot0,2+0+1\cdot0,2=0$ $\Rightarrow cor(X_1,X_2)=0$  
+$(X_1,X_2)$ são identicamente distribuídas e não correlacionadas mas não são permutáveis pois, por exemplo, $P\big((X_1,X_2)=(1,-1)\big)~\neq~P\big((X_2,X_1)=(1,-1)\big)~.$
+
+$~$
+
+> **Exemplo 3:** Suponha que $X_1,X_2,\ldots$ são condicionalmente i.i.d. dado $Y=y$ com densidade $f(x_i|y),\;i=1,2,\ldots$ e $Y$ tem densidade $h(y)$. Então $X_1,X_2,\ldots$ são permutaveis.  
+$f_{X_{i_1},\ldots,X_{i_n}}(x_1,\ldots,x_n)$ $=\displaystyle\int\prod_{j=1}^nf(x_j|y)h(y)dy,$ para qualquer $n$-upla $X_{i_1},\ldots,X_{i_n}$. Note que o lado direito não depende dos rótulos $i_1,\ldots,i_n$.
+
+$~$
+
+$~$
+
+**Teorema de Representação de De Finetti.** (para v.a. Bernoulli)
+
+Uma sequência infinita $\left(X_n\right)_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que, condicional a $\theta$, $\left(X_i\right)_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\displaystyle\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta~.$
+
+$P(X_1=x_1,\ldots,X_n=x_n)$ $=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)$ $=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta$
+
+$F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.$
+
+<!-- $~$ -->
+
+<!-- $~$ -->
+
+<!-- A suposição de permutabilidade permite -->
+
+<!-- * Expresar crenças de simetria sobre $X_1,X_2,\ldots$ de maneira "mais fraca" que i.i.d. -->
+
+<!-- * Não é necessário supor independência ou que o limite de frequência relativa existe. Em outras palavras, não é necessário que o parâmetro $\theta$ do modelo estatístico exista no sentido físico. -->
+
+<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
+
+$~$
+
+$~$
+
+> **Exemplo 4:** (1.19/1.20 - Schervish)  
+Seja $\left(X_n\right)_{n\geq 1}$ v.a. Bernoulli.   
+$~$  
+Considere que o _Estatístico 1_ acredita que $P_1(X_1=x_1,\ldots,X_n=x_n)$ $=\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}~,$ de modo que $P_1(X_1=1)$ $=\dfrac{12}{3}\dfrac{3!~2!}{5!}$ $=\dfrac{4}{10}$ $=0,4~.$  
+Por outro lado, o _Estatístico 2_ acredita que  $P_2(X_1=x_1,\ldots,X_n=x_n)$ $=\dfrac{1}{(n+1)\binom{n}{x}}$ e, então, $P_2(X_1=1)=\dfrac{1}{2}=0,5~.$  
+$~$  
+Contudo, pelo Teorema de Finetti, ambos acreditam que o limite $\theta=\displaystyle\lim_{n\uparrow\infty}\frac{1}{n}\sum_{i=1}^nX_i$ existe com probabilidade 1 e que $P(X_1=1|\theta)=\theta$, mas não tem opiniões diferentes sobre $\theta$.  
+$~$  
+Suponha agora que foi observado $\boldsymbol{x}=(x_1,\ldots,x_{20})$ com $\displaystyle\sum_{i=1}^{20}x_i=14$. Então,  
+$P_i(X_{21}=1|X_1=x_1,\ldots,X_{20}=x_{20})$ $=\dfrac{P_i(X_1=x_1,\ldots,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,\ldots,X_{20}=x_{20})}$  
+de modo que,  
+$P_1(X_{21}=1|\mathbf X=\mathbf x)=$ $\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}$ $=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}$ $=\dfrac{16}{17}\dfrac{17}{25}$ $=\dfrac{16}{25}=0,64$  
+$P_2(X_{21}=1|\mathbf X=\mathbf x)$ $=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}$ $=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}$ $=\dfrac{21}{22}\dfrac{15}{21}$ $=\dfrac{15}{22}=0,68$
+
+$~$
+
+$~$
+
+**Teorema de Representação de De Finetti**
+
+Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,
+
+$F_{\mathbf X}(x_1,\ldots,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$.
+
+Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$.
+
+$~$
+
+$~$
 
 ## Suficiência
 
@@ -409,8 +514,8 @@ $~$
 $~$ 
 
 + Esse resultado também vale se  
-  1. $X_1,...,X_n$ são v.a.s *condicionalmente independentes e identicamente distribuidas* (c.i.i.d.) com $X_i|\theta \sim Ber(\theta)$  
-  1. $X_i|\theta\sim Geo(\theta),$ $i=1,...,n \; c.i.i.d.$  
+  1. $X_1,\ldots,X_n$ são v.a.s *condicionalmente independentes e identicamente distribuidas* (c.i.i.d.) com $X_i|\theta \sim Ber(\theta)$  
+  1. $X_i|\theta\sim Geo(\theta),$ $i=1,\ldots,n \; c.i.i.d.$  
   1. $X_i|\theta \sim BinNeg(k,\theta)$  
   $\theta\sim Beta(a,b)\Rightarrow$ $\theta|\boldsymbol X=\boldsymbol x \sim Beta(a+s,b+f)$ em que $s$ é o número de sucessos e $f$ é o número de fracassos.
  
@@ -420,16 +525,16 @@ $~$
 
 Seja $\boldsymbol X | \boldsymbol \theta \sim Multinomial(n,\boldsymbol \theta)$, isto é, sua função de probabilidade é dada por
 
-$$f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,...,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}$$
+$$f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,\ldots,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}$$
 
-em que $\theta_i\in [0,1]$ com $\sum_{i=1}^K\theta_i=1$, $x_i \in \{0,1,...,n\}$ com $\sum_{i=1}^nx_i=n$ e $\displaystyle \binom{n}{x_1,x_2,...,x_k}=\dfrac{n!}{x_1!x_2!...x_k!}$.
+em que $\theta_i\in [0,1]$ com $\sum_{i=1}^K\theta_i=1$, $x_i \in \{0,1,\ldots,n\}$ com $\sum_{i=1}^nx_i=n$ e $\displaystyle \binom{n}{x_1,x_2,\ldots,x_k}=\dfrac{n!}{x_1!x_2!\ldots x_k!}$.
 
-Considere que, a priori, $\boldsymbol \theta \sim Dirichlet(a_1,...,a_k),$ $a_i > 0, i=1,...,k$, isto é, a f.d.p. a priori para $\boldsymbol \theta$ é dada por
+Considere que, a priori, $\boldsymbol \theta \sim Dirichlet(a_1,\ldots,a_k),$ $a_i > 0, i=1,\ldots,k$, isto é, a f.d.p. a priori para $\boldsymbol \theta$ é dada por
 
-$$f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)...\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.$$
+$$f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)\ldots\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.$$
 
 Então, a distribuição a posteriori para $\boldsymbol \theta$ é
-$\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,...,a_k+x_k)$.
+$\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,\ldots,a_k+x_k)$.
 
 $~$ 
 
@@ -438,13 +543,13 @@ $f(\boldsymbol\theta|\boldsymbol x)$ $=\dfrac{f(\boldsymbol x| \boldsymbol \thet
 
 $~$
 
-**Resultado 3.** Seja $X_1,...,X_n$ v.a. c.i.i.d tais que $X_i|\theta \sim Unif(0,\theta)$ e considere que, a priori,$\theta \sim Pareto(a,b)$. Então $\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)$.
+**Resultado 3.** Seja $X_1,\ldots,X_n$ v.a. c.i.i.d tais que $X_i|\theta \sim Unif(0,\theta)$ e considere que, a priori,$\theta \sim Pareto(a,b)$. Então $\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)$.
 
 $~$
 
 > **Demo:**  
 $f(\boldsymbol x|\theta)$ $\overset{ci}{=}\prod_{i=1}^nf(x_i|\theta)$ $\overset{id}{=}\prod_{i=1}^n\dfrac{1}{\theta}\mathbb{I}_{[0,\theta]}(x_i)$ $=\dfrac{1}{\theta^n}\mathbb{I}_{[0,\theta]}(x_{(n)})$ $=\dfrac{1}{\theta^n}\mathbb{I}_{[x_{(n)},+\infty)}(\theta)$  
-em que $x_{(n)}=max\{x_1,...,x_n\}$.   
+em que $x_{(n)}=max\{x_1,\ldots,x_n\}$.   
 $~$  
 $f(\theta)=\dfrac{ab^a}{\theta^{a+1}}\mathbb{I}_{[b,+\infty]}(\theta)$.  
 Então  
@@ -454,7 +559,7 @@ $\Rightarrow \theta|\boldsymbol X = \boldsymbol x \sim Pareto(a+n,max\{b,x_{(n)}
 
 $~$
 
-**Resultado 4.** Seja $X_1,...,X_n,Y_1,...,Y_m$ v.a. condicionalmente independentes tais que $X_i|\theta\sim Exp(\theta),i=1,...,n$ e $Y_j|\theta \sim Poisson(\theta),j=1,...,m$. Considere que, a priori, $\theta \sim Gama(a,b)$. Então $\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)$.
+**Resultado 4.** Seja $X_1,\ldots,X_n,Y_1,\ldots,Y_m$ v.a. condicionalmente independentes tais que $X_i|\theta\sim Exp(\theta),i=1,\ldots,n$ e $Y_j|\theta \sim Poisson(\theta),j=1,\ldots,m$. Considere que, a priori, $\theta \sim Gama(a,b)$. Então $\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)$.
 
 > **Demo:**  
 $f(\boldsymbol x, \boldsymbol y|\theta)\overset{ci}{=}f(\boldsymbol x|\theta)f(\boldsymbol y|\theta)\overset{ci}{=}$ $\prod_{i=1}^nf(x_i|\theta)\prod_{j=1}^mf(y_i|\theta)=$ $\prod_{i=1}^n\theta e^{-\theta x_i}\prod_{j=1}^m\dfrac{\theta^{y_j}e^{-\theta}}{y_j!}=$ $\dfrac{1}{\prod_{j=1}^my_j!}\theta^{n+\sum_j y_j}e^{-(m+\sum_ix_i)\theta}$  
@@ -777,7 +882,7 @@ $~$
 **Entropia** é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O *princípio da máxima entropia* afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
 
 
-**Caso Discreto.** Considere um espaço paramétrico enumerável $\Theta = \{\theta_1,\theta_2,...\}$. A *entropia* da distribuição $h$ [@Shannon48] é dada por  
+**Caso Discreto.** Considere um espaço paramétrico enumerável $\Theta = \{\theta_1,\theta_2,\ldots\}$. A *entropia* da distribuição $h$ [@Shannon48] é dada por  
 
 $$\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.$$
 
@@ -787,7 +892,7 @@ $~$
 
 $~$
 
-> **Exemplo 1.** Considere o espaço paramétrico $\Theta=\{\theta_1,...,\theta_k\}$ e $h(\theta_i)=p_i$ uma distribuição discreta para $\theta$. A *distribuição da máxima entropia* para $\theta$ é a função $h$ que maximiza $\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)$ com a restrição $\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.$  
+> **Exemplo 1.** Considere o espaço paramétrico $\Theta=\{\theta_1,\ldots,\theta_k\}$ e $h(\theta_i)=p_i$ uma distribuição discreta para $\theta$. A *distribuição da máxima entropia* para $\theta$ é a função $h$ que maximiza $\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)$ com a restrição $\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.$  
 Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana  
 $\mathcal{E}^*(h)=\displaystyle-\sum_{i=1}^k p_i\log(p_i)+\lambda\left(\sum_{i=1}^k p_i-1\right)$  
 $\dfrac{\partial\mathcal{E}^*(h)}{\partial p_i}=-\left[p_i~\dfrac{1}{p_i}+\log(p_i)\right]+\lambda=0$ $\Longleftrightarrow p_i = e^{\lambda-1}~~,~~~i=1,\ldots,k~.$  
@@ -795,7 +900,7 @@ Assim, como $p_i$ deve ser constante e $\sum p_i=1$, conclui-se que $p_i=1/k$, p
 
 $~$
 
-> **Exemplo 2.** Considere agora $\Theta = \{\theta_1,\theta_2,...\}$ e suponha que há $m$ informações parciais a respeito do parâmetro $\theta$ que podem ser escritas como $\text{E}[g_j(\theta)]=\mu_j~,~$ $j=1,...,m~.$  
+> **Exemplo 2.** Considere agora $\Theta = \{\theta_1,\theta_2,\ldots\}$ e suponha que há $m$ informações parciais a respeito do parâmetro $\theta$ que podem ser escritas como $\text{E}[g_j(\theta)]=\mu_j~,~$ $j=1,\ldots,m~.$  
 Usando novamente o método de Lagrange, deve-se maximizar  
 $\mathcal{E}^*(h)$ $=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)$  
 $\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0$ 
@@ -804,7 +909,7 @@ Como $\sum p_i=1$, $p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_
 
 $~$
 
-> **Exemplo 2a.** Seja $\Theta = \{0,1,2,...\}$ e suponha que $\text{E}[\theta]=\mu.$  
+> **Exemplo 2a.** Seja $\Theta = \{0,1,2,\ldots\}$ e suponha que $\text{E}[\theta]=\mu.$  
 Usando o resultado do exemplo anterior com $g(\theta)=\theta$ e $\theta_i=i$, $i=0,1,2,\ldots~,$  
 $p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
 $=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~$
@@ -815,7 +920,7 @@ Como $\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\m
 
 $~$
 
-> **Exemplo 2b.** Considere que $\Theta = \{1,2,...,k\}$ e suponha que $\text{Med}(\theta)=m~.$  
+> **Exemplo 2b.** Considere que $\Theta = \{1,2,\ldots,k\}$ e suponha que $\text{Med}(\theta)=m~.$  
 Nesse caso, $g(\theta)=\mathbb{I}\left(\theta\leq m\right)$ e $\theta_i=i$, $i=1,2,\ldots,k~,$ de modo que  
 $\text{E}\left[g(\theta)\right]$ $=\text{E}\left[\mathbb{I}(\theta\leq m)\right]$ $=\text{P}\left(\theta\leq m\right)=1/2$ e, portanto, $\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.$
 $p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}$ 
@@ -827,12 +932,12 @@ $~$
 
 $~$
 
-**Divergência de Kullbach-Leibler.** Considere duas distribuições discretas $\boldsymbol{p} = (p_1,...,p_k)$ e $\boldsymbol{q} = (q_1,...,q_k)~,$ tal que $p_i,q_i>0~,$ $i=1,\ldots,k~,$ e $\sum p_i=\sum q_i=1$. A *divergência de Kullbach-Leibler* entre $\boldsymbol{p}$ e $\boldsymbol{q}$ [@Kullback51] é dada por  
+**Divergência de Kullbach-Leibler.** Considere duas distribuições discretas $\boldsymbol{p} = (p_1,\ldots,p_k)$ e $\boldsymbol{q} = (q_1,\ldots,q_k)~,$ tal que $p_i,q_i>0~,$ $i=1,\ldots,k~,$ e $\sum p_i=\sum q_i=1$. A *divergência de Kullbach-Leibler* entre $\boldsymbol{p}$ e $\boldsymbol{q}$ [@Kullback51] é dada por  
 $$D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.$$
 
 $~$
 
-Suponha que $g=(1/k,...,1/k)$
+Suponha que $g=(1/k,\ldots,1/k)$
 
 $D(\boldsymbol{p}~||~\boldsymbol{q})$ 
 $=\displaystyle\sum_{i=1}^{k} p_i\log\left(\dfrac{p_i}{1/k}\right)$
@@ -862,7 +967,7 @@ $~$
 
 Assim como no caso discreto, se temos $m$ restrições $E[g_i(\theta)]=\mu_i,$ a densidade de máxima entropia é
 
-$h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}$ e os $\lambda_j~,$ $j=1,...,m~,$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer
+$h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}$ e os $\lambda_j~,$ $j=1,\ldots,m~,$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer
 
 $\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta$ com $c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta$.
 
@@ -1016,109 +1121,4 @@ b) *Bayesiano Objetivista*  (p.e., usando priori de Jeffreys)
     $\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)~$ e $~\theta|X_2=x_2\sim Beta(x,y+1/2)~.$  
     Como $f_1(x_1|\theta)\propto f_2(x_2|\theta)$ mas $f_1(\theta)\neq f_2(\theta)$, tem-se que $f_1(\theta|x_1)\neq f_2(\theta|x_2)$ e, portanto, esse procedimento viola o *P. Verossimilhança*.
 
-
-<!-- ## Aula 18 -->
-
-<!-- **Definição:** Uma colet finita $X_1,X_2,...,X_n$ de quantidades aleatórias é dita $permutável$ se a distribuição de $(X_{\pi_1},...,X_{\pi_n})$ -->
-<!--  é a mesma para toda permutação $\pi=(\pi_1,...,\pi_n)$ dos índices $(1,...,n)$. Ua coleção infinita é *permutável* se toda subcoleção é permutável. -->
-
-<!-- * Segue da definição que $X_1,...,X_n$ tem a mesma distribuição marginal. Além disso $(X_1,X_2)$ tem mesma distribuição que $(X_3,X_5)$ e assim por diante. -->
-
-<!-- $~$ -->
-
-<!-- **Proposição:** Uma coleção $C$ de variáveis aleatórias é permitável se, e somente se, para todo $n$ finito manor ou igual ao tamanho da coleção $C$, toda $n$-upla (sequencia ordenada de $n$ elementos) de elementos distintos de $C$ tem a mesma distribuição que toda $n$-upla. -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 1:** Considere uma coleção $X_1,...$ (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d), claramente , $(X_{i_1},...,X_{i_n})$ tem a mesma distribuição de $(X_{j_1},...,X_{j_n})$ se $i_1\neq...\neq i_n$ e $j_1\neq...\neq j_n$. Então, toda coleção de v.a. i.i.d é permutável. (basta notar que $f(x_1,...,x_n)=\prod_{i=1}^nf(x_i)$). -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 2:**  -->
-
-<!-- * i.i.d $\Rightarrow$ permutavilidade.  -->
-
-<!-- * indep $\Rightarrow$ correlação $\rho=0$ -->
-
-<!-- * i.d. e $\rho=0\Rightarrow$ permutavilidade.  -->
-
-<!-- $~$ -->
-
-<!-- |$X_1:X_2$|-1|0|1|$f(x_1)$| -->
-<!-- |:-:|:-:|:-:|:-:|:-:| -->
-<!-- |-1|0,10|0,05|0,15|0,3| -->
-<!-- |0|0,15|0,20|0,05|0,4| -->
-<!-- |1|0,05|0,15|0,10|0,3| -->
-<!-- |$f(x_2)$|0,3|0,4|0,3| -->
-
-
-<!-- $~$ -->
-
-<!-- $cor(X_1,X_2)=\dfrac{E[(X_1-E(X_1))(X_2-E(X_2))]}{\sqrt{Var(X_1)Var(X_2)}}$  -->
-
-<!-- $E(X_1)=E(X_2)=0$ -->
-
-<!-- $E(X_1X_2)=(-1)(0,20)+1(0,20)=0$ $\Rightarrow cor=0$ -->
-
-<!-- $P((X_1,X_2)=(1,-1))\neq P((X_2,X_1)=(1,-1))$ -->
-
-<!-- * Expresar crenças de simetria sobre $X_1,X_2,...$ de maneira mais "fraca". -->
-
-<!-- * Não é necesário supor independênciaou que o limite de frequência relativa existe. -->
-
-<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 3:** Suponha que $X_1,X_2,...$ são condicionalmente i.i.d. dado $Y=y$ com densidade $f(x_i|y),\;i=1,2,...$ e $Y$ tem densidade $g(y)$. Então $X_1,X_2,...$ são permutaveis. -->
-
-<!-- $f_{X_{i_1},...,X_{i_n}}(x_1,...,x_n)=$ $\int\prod_{j=1}^nf(x_j|y)g(y)dy,$ para qualquer $X_{i_1},...,X_{i_n}$ $n$-upla. Note que o lado direito não depende dos rótulos $i_1,...,i_n$. -->
-
-<!-- $~$ -->
-
-<!-- ### **Teorema de Representação de Finetti** (para v.a. Bernoulli) -->
-
-<!-- Uma sequência infinita $\{X_n\}_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que , condicional a $\theta$, $\{X_i\}_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta$ -->
-
-<!-- $P(X_1=x_1,...,X_n=x_n)=$ $\int_0^1\theta^{\sum_ix_i}(1-\theta)^{n-\sum_ix_i}dF(\theta)=$ $\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}f(\theta)d\theta$ -->
-
-<!-- $F(\theta)=\underset{n\uparrow\infty}{lim}P\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)$ -->
-
-<!-- $~$ -->
-
-<!-- **Exemplo 4:** (1.19/1.20 - Shervish)  -->
-
-<!-- Seja $\{X_n\}_{n\geq 1}$ v.a. Bernoulli e $x=\sum_{i=1}x_i$. -->
-
-<!-- _Estatístico 1_ -->
-
-<!-- $P_1(X_1=x_1,...,X_n=x_n)=$ $\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}$ -->
-
-<!-- $P_1(X_1=1)=\dfrac{12}{3}\dfrac{3!2!}{5!}$ $=\dfrac{4}{10}=0,4.$ -->
-
-<!-- _Estatístico 2_ -->
-
-<!-- $P_2(X_1=x_1,...,X_n=x_n)=$ $\dfrac{1}{(n+1)\binom{n}{x}}$ -->
-
-<!-- $P_2(X_1=1)=\dfrac{1}{2}=0,5$ -->
-
-<!-- Contudo, pelo Teorema de Finetti, ambos acreditam que $\theta=\underset{n\uparrow\infty}{lim}\frac{1}{n}\sum_{i=1}^nX_i$ e que $P(X_1=1|\theta)=\theta$, mas não tem opiniões diferentes sobre $\theta$. -->
-
-<!-- Suponha agora que foi observado $\mathbf X=\mathbf x=(x_1,...,x_n)$ com $x=\sum_{i=1}^{20}x_i=14$. Vamos calcular  -->
-
-<!-- $P_i(X_{21}=1|X_1=x_1,...,X_{20}=x_{20})$ $=\dfrac{P_i(X_1=x_1,...,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,...,X_{20}=x_{20})}$  -->
-
-<!-- então, -->
-
-<!-- $P_1(X_{21}=1|\mathbf X=\mathbf x)=$ $\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}$ $=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}$ $=\dfrac{16}{17}\dfrac{17}{25}$ $=\dfrac{16}{25}=0,64$ -->
-
-<!-- $P_2(X_{21}=1|\mathbf X=\mathbf x)$ $=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}$ $=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}$ $=\dfrac{21}{22}\dfrac{15}{21}$ $=\dfrac{15}{22}=0,68$ -->
-
-<!-- ### Teorema de Representação de Finetti -->
-
-<!-- Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,  -->
-
-<!-- $F_{\mathbf X}(x_1,...,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$. -->
-
-<!-- Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$. -->
-
+$~$

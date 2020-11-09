@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Estimação | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Estimação | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-10-13" />
+<meta name="date" content="2020-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,14 +154,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.2</b> Suficiência</a></li>
-<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.3</b> Distribuição a Priori</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.3.1</b> Método do Histograma</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.3.2</b> Elicitação de Hiperparâmetros</a></li>
-<li class="chapter" data-level="3.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.3.3</b> Prioris Conjugadas</a></li>
-<li class="chapter" data-level="3.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.3.4</b> Prioris “Não-Informativas”</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
+<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
+<li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="3.4.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.4.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.4</b> Alguns Princípios de Inferência</a></li>
+<li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
@@ -183,6 +184,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>6.7</b> Hipóteses Precisas</a></li>
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
+<li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
+<li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
+<li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
+<li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
+<li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
+<li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
+<li class="chapter" data-level="7.6.4" data-path="Comp.html"><a href="Comp.html#aplicações"><i class="fa fa-check"></i><b>7.6.4</b> Aplicações</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
@@ -294,7 +312,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb8-23"><a href="Estimacao.html#cb8-23"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>))) <span class="op">+</span></span>
 <span id="cb8-24"><a href="Estimacao.html#cb8-24"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">colour =</span> <span class="st">&quot;epsilon&quot;</span>) <span class="op">+</span></span>
 <span id="cb8-25"><a href="Estimacao.html#cb8-25"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(<span class="kw">rev</span>(e))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-19-1.gif" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-20-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p>Como comentado no resultado anterior, quando <span class="math inline">\(\varepsilon \downarrow 0\)</span>, temos que <span class="math inline">\({\delta}^*(\boldsymbol x)=Moda(\theta|\boldsymbol x)\)</span> <span class="math inline">\(= \displaystyle\sup_{\theta} f(\theta|\boldsymbol x)\)</span>.</p>
 <p><span class="math inline">\(\dfrac{\partial f(\theta|\boldsymbol x)}{\partial \theta}\)</span> <span class="math inline">\(=(A_x-B_x\theta)\theta^{A_x-1}e^{-B_x\theta}=0\)</span> <span class="math inline">\(\Leftrightarrow \theta =\dfrac{A_x}{B_x}\)</span></p>
 <p><span class="math inline">\({\delta}^*(\boldsymbol X) = Moda(\theta|\boldsymbol X)\)</span> <span class="math inline">\(=\dfrac{a+\sum X_i-1}{b+n}\)</span> <span class="math inline">\(=\dfrac{b}{b+n}\left(\dfrac{a-1}{b}\right)+\dfrac{n}{b+n}~\bar{X}\)</span>.</p>
@@ -332,7 +350,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb9-16"><a href="Estimacao.html#cb9-16"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">lwd=</span><span class="fl">1.5</span>) <span class="op">+</span></span>
 <span id="cb9-17"><a href="Estimacao.html#cb9-17"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&gt;=</span><span class="st"> </span>l[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>theta <span class="op">&lt;=</span><span class="st"> </span>l[<span class="dv">2</span>]),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
 <span id="cb9-18"><a href="Estimacao.html#cb9-18"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 2.</strong> Por fim, suponha que a distribuição a posteriori é <span class="math inline">\(f(\theta|\boldsymbol{x})=(2-4\theta)~\mathbb{I}_{[0,1/2)}(\theta)+(4\theta-2)~\mathbb{I}_{[1/2,1]}(\theta)\)</span>. Vamos construir um intervalo como no Exemplo anterior.</p>
 <p><span class="math inline">\(F(\theta|\boldsymbol x)\)</span> <span class="math inline">\(=\left\{\begin{array}{lcc} 2\theta(1-\theta) &amp;,&amp; \theta\leq 1/2\\ 2\theta(\theta-1)+1 &amp;,&amp; \theta&gt;1/2\end{array}\right.\)</span></p>
@@ -356,7 +374,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb10-16"><a href="Estimacao.html#cb10-16"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">lwd=</span><span class="fl">1.5</span>) <span class="op">+</span></span>
 <span id="cb10-17"><a href="Estimacao.html#cb10-17"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&gt;=</span><span class="st"> </span>l[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>theta <span class="op">&lt;=</span><span class="st"> </span>l[<span class="dv">2</span>]),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
 <span id="cb10-18"><a href="Estimacao.html#cb10-18"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-22-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Note que, nesse exemplo, as regiões que tem mais densidade a posteriori foram excluídas do intervalo. Isso não faz muito sentido pois essas regiões têm maior chance de conter o <span class="math inline">\(\theta\)</span> que quaquer outra região de mesmo tamanho.</p>
 <p><span class="math inline">\(~\)</span></p>
 <!-- **Exemplo 3.** Suponha que $\Theta = [0,1]$ e a distribuição a posteriori é uma $Beta(2,2)$, ou seja, $f(\theta|\boldsymbol x) = 6\theta(1-\theta)$. -->
@@ -413,7 +431,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb11-18"><a href="Estimacao.html#cb11-18"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&lt;=</span><span class="st"> </span>l[<span class="dv">1</span>]),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span></span>
 <span id="cb11-19"><a href="Estimacao.html#cb11-19"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&gt;=</span><span class="st"> </span>l[<span class="dv">2</span>]),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
 <span id="cb11-20"><a href="Estimacao.html#cb11-20"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-22-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Note que na solução anterior, o comprimento do intervalo era <span class="math inline">\(\sqrt{1-\alpha}\)</span>, enquanto que o comprimento do HPD é <span class="math inline">\(1-\sqrt{\alpha}\)</span>. Tomando, por exemplo, <span class="math inline">\(\alpha=0.1\)</span> temos que <span class="math inline">\(\sqrt{1-\alpha} \approx 0.95\)</span> enquanto <span class="math inline">\(1-\sqrt{\alpha}\approx 0.68\)</span>. Por conter apenas os pontos com maior densidade, o HPD sempre terá comprimento menor ou igual a qualquer intervalo com mesma probabilidade.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 3.</strong> Considere <span class="math inline">\(X_1,...,X_n\)</span> c.i.i.d. tais que <span class="math inline">\(X_i|\theta\sim N(\theta,1/\tau)\)</span> , <span class="math inline">\(\tau=1/\sigma^2\)</span> , com <span class="math inline">\(\tau\)</span> conhecido (fixado). Vimos que se, a priori, <span class="math inline">\(\theta\sim N(m,1/v)\)</span> então <span class="math inline">\(\theta|\boldsymbol x\sim N\left(\underbrace{\dfrac{vm+n\tau\bar x}{v+n\tau}}_{M_x},\underbrace{\dfrac{1}{v+n\tau}}_{V_x}\right)\)</span> e, assim, <span class="math inline">\(Z=\dfrac{\theta-M_x}{\sqrt V_x}~\Bigg|~\boldsymbol x\sim N(0,1)\)</span>.</p>
@@ -434,7 +452,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb12-9"><a href="Estimacao.html#cb12-9"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="kw">dnorm</span>(l[<span class="dv">1</span>],mx,vx), <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;darkgray&quot;</span>) <span class="op">+</span></span>
 <span id="cb12-10"><a href="Estimacao.html#cb12-10"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&gt;=</span><span class="st"> </span>l[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>theta <span class="op">&lt;=</span><span class="st"> </span>l[<span class="dv">2</span>]),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
 <span id="cb12-11"><a href="Estimacao.html#cb12-11"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-23-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-24-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 4:</strong> Considere <span class="math inline">\(X_1,...,X_n\)</span> c.i.i.d. tais que <span class="math inline">\(X_i|\theta\sim Unif(0,\theta)\)</span>. Vimos que se <span class="math inline">\(\theta\sim Pareto(a,b)\)</span>, então <span class="math inline">\(\theta|\boldsymbol x\sim Pareto (a+n,\max\{x_{(n)},b\})\)</span></p>
 <p><span class="math inline">\(f(\theta|\boldsymbol x) =\dfrac{(a+n)[\max\{x_{(n)},b\}]^{a+n}}{\theta^{a+n+1}}~\mathbb I_{[\max\{x_{(n)},b\},\infty)}\)</span></p>
@@ -458,7 +476,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb13-13"><a href="Estimacao.html#cb13-13"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="kw">dpareto</span>(limsup), <span class="dt">lty=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">&quot;darkgray&quot;</span>) <span class="op">+</span></span>
 <span id="cb13-14"><a href="Estimacao.html#cb13-14"></a><span class="st">  </span><span class="kw">geom_area</span>(<span class="dt">data=</span><span class="kw">subset</span>(X, theta <span class="op">&lt;=</span><span class="st"> </span>limsup),<span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>)<span class="op">+</span></span>
 <span id="cb13-15"><a href="Estimacao.html#cb13-15"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-24-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
@@ -504,7 +522,7 @@ Então, <span class="math inline">\(\delta^*(\boldsymbol X)\)</span> é centro d
 <span id="cb14-4"><a href="Estimacao.html#cb14-4"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
 <span id="cb14-5"><a href="Estimacao.html#cb14-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>n,<span class="dt">y=</span>risco)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb14-6"><a href="Estimacao.html#cb14-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>n[<span class="kw">which.min</span>(risco)],<span class="dt">y=</span><span class="kw">min</span>(risco)),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>,<span class="dt">cex=</span><span class="fl">2.5</span>)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-26-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>No exemplo anterior, foi apresentado uma maneira de considerar custos das observações e obter um tamanho amostral ótimo para determinado problema de decisão. Quando o custo está relacionado somente a quantidades monetárias, funções de custo lineares não são as mais adequadas. Para uma discussão bastante didática sobre esse problema, veja o artigo <em>O Paradoxo de São Petersburgo</em> (Peixoto, C. M. e Wechsler, S.) no <a href="https://www.ime.usp.br/~isbra/boletim/boletim_2013_v06_n02.pdf">Boletim da ISBrA, 6(2)</a>.</p>
 <p><span class="math inline">\(~\)</span></p>

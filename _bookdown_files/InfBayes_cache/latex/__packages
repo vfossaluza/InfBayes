@@ -13,3 +13,9 @@ knitr
 kableExtra
 futile.logger
 VennDiagram
+rgl
+LaplacesDemon
+StanHeaders
+rstan
+ggmcmc
+bayesplot

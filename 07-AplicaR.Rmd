@@ -1,0 +1,730 @@
+
+```{r, echo=FALSE}
+# Multiple plot function
+#
+# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
+# - cols:   Number of columns in layout
+# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
+#
+# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+# then plot 1 will go in the upper left, 2 will go in the upper right, and
+# 3 will go all the way across the bottom.
+#
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  numPlots = length(plots)
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  if (numPlots==1) {
+    print(plots[[1]])
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+```
+
+## Bibliotecas de R para Inferência Bayesiana
+
+Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, `LaplacesDemon` e `Stan`, que são bibliotecas utilizadas para simular dados da posteriori. Para isso, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística.
+
+### O Modelo de Regressão Linear
+
+Considere $n$ observações de uma variável aleatória de interesse (chamada de *variável dependente* ou *variável resposta*) e de $p-1$ características associadas a cada uma dessas observações (chamadas de *variáveis dependentes* ou *explicativas* ou *covariáveis*), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
+
+$$\boldsymbol{Y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}$$
+com
+$~\boldsymbol{Y} = \left[\begin{array}{c} Y_1\\ Y_2\\ \vdots\\ Y_n \end{array}\right]~~$;
+$~~~\boldsymbol{X} = \left[\begin{array}{cccc} 1 & x_{11} & \cdots & x_{1,p-1}\\ 1 & x_{21} & \cdots & x_{2,p-1}\\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & \cdots & x_{n,p-1} \end{array}\right]~~$;
+$~~~\boldsymbol{\beta} = \left[\begin{array}{c} \beta_1\\ \beta_2\\ \vdots\\ \beta_p \end{array}\right]~~$;
+$~~~\boldsymbol{\epsilon} = \left[\begin{array}{c} \epsilon_1\\ \epsilon_2\\ \vdots\\ \epsilon_n \end{array}\right]~~$;
+$~~~\boldsymbol{Z} = \left[\boldsymbol{X,Y}\right]~~$,
+
+em que $\boldsymbol{Z}$ é a matriz de dados (observada), $\boldsymbol{\beta}$ é o vetor de parâmetros e $\epsilon_i$ é o *"erro aleatório"* associado a $i$-ésima observação, supostamente c.i.i.d. com distribuição $\textit{Normal}(0,\sigma^2)$.
+
+De forma equivalente, o modelo pode ser escrito como $\boldsymbol{Y}|\boldsymbol{X},\boldsymbol{\beta},\sigma \sim \textit{Normal}_{~n}(\boldsymbol{\mu},\boldsymbol{\Sigma})$ com $\boldsymbol{\mu}=\boldsymbol{X}\boldsymbol{\beta}$ e $\boldsymbol{\Sigma}=\sigma^2\boldsymbol{I}$.
+
+$~$
+
+Na abordagem *frequentista*, se $\boldsymbol{X}'\boldsymbol{X}$ é não singular, os estimadores de máxima verossimilhança para os parâmetros $(\boldsymbol{\beta},\sigma^2)$ são, respectivamente,  $\hat{\boldsymbol{\beta}} = (\boldsymbol{X}'\boldsymbol{X})^{-1}\boldsymbol{X}'\boldsymbol{Y}$ e $s^2 = \dfrac{(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})'(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})}{n-p}$.
+
+$~$
+
+**Exemplo.** Vamos considerar um simples exemplo de regressão linear, com apenas uma covariável. Para isso, considere as variáveis `speed` e `dist` do conjunto de dados `cars`, disponível no R. Um ajuste usando a abordagem frequentista é apresentado a seguir.
+
+```{r}
+# a boring regression
+fit = lm(speed ~ 1 + dist, data = cars)
+coef(summary(fit)) # estimativa dos betas
+(summary(fit)$sigma)**2 # estimativa do sigma^2
+ggplot(cars, aes(y=speed, x=dist)) + theme_bw() +
+  geom_point() + geom_smooth(method=lm)
+```
+
+$~$
+
+$~$
+
+Sob a abordagem *bayesiana*, a distribuição Normal-Inversa Gama (*NIG*) é uma priori conjugada para $\boldsymbol{\theta} = (\boldsymbol{\beta},\sigma^2)$ neste modelo. Assim,
+$$(\boldsymbol{\beta},\sigma^2) \sim \textit{NIG}(\boldsymbol{\beta}_0, \boldsymbol{V}_0, a_0, b_0)~.$$
+
+Isto é,
+
+$\boldsymbol{\beta} | \sigma^2 \sim Normal_p\left(\boldsymbol{\beta}_0,\sigma^2\boldsymbol{V}_0\right)~~$; $~~ \sigma^2 \sim InvGamma\left(a_0,b_0\right)$
+
+ou, equivalentemente,
+
+$\boldsymbol{\beta} \sim T_p\left(2a_0; \boldsymbol{\beta}_0,\frac{b_0 \boldsymbol{V}_0}{a_0}\right)  ~~$; $~~  \sigma^2 | \boldsymbol{\beta} \sim InvGamma\left(a_0 + \frac{p}{2},b_0 + \frac{\left(\boldsymbol{\beta}-\boldsymbol{\beta}_0\right)^T \boldsymbol{V}_0^{-1} \left(\boldsymbol{\beta}-\boldsymbol{\beta}_0\right) }{2}\right)~~$,
+
+com $\boldsymbol{\beta}_0 \in \mathbb{R}^p$, $\boldsymbol{V}_0$ matriz simétrica positiva definida e $a_0, b_0 \in \mathbb{R}_+$.
+
+$~$
+
+Então:
+$$(\boldsymbol{\beta},\sigma^2)|\boldsymbol{Z} \sim \textit{NIG}(\boldsymbol{\beta}_1, \boldsymbol{V}_1, a_1, b_1)$$
+
+com
+$\boldsymbol{\beta}_1 = \boldsymbol{V}_1\left(\boldsymbol{V}_0^{-1}\boldsymbol{\beta}_0 + \boldsymbol{X}^T\boldsymbol{X} \hat{\boldsymbol{\beta}}\right) ~~$; $~~ \boldsymbol{V}_1 = \left(\boldsymbol{V}_0^{-1} + \boldsymbol{X}^T\boldsymbol{X}\right)^{-1}~~$;
+$a_1 = a_0+\frac{n}{2} ~~$; $~~ b_1 = b_0 + \frac{\boldsymbol{\beta}_0^T\boldsymbol{V}_0^{-1}\boldsymbol{\beta}_0 + \boldsymbol{Y}^T\boldsymbol{Y} - \boldsymbol{\beta}_1^T\boldsymbol{V}_1^{-1}\boldsymbol{\beta}_1}{2}$.
+
+$~$
+
+**Observação.** Uma das maneiras de representar falta de informação nesse contexto é utilizar a priori de Jeffreys, $f(\boldsymbol \theta) = \Big|~\mathcal{I}(\boldsymbol \theta)~\Big|^{1/2} \propto 1/\sigma^2$. Nesse caso, distribuição a posteriori é $$(\boldsymbol{\beta},\sigma^2)\Big|\boldsymbol{Z} \sim \textit{NIG}\left(\hat{\boldsymbol{\beta}}, \left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}, \dfrac{n-p}{2}, \dfrac{(n-p)s^2}{2}\right)~.$$
+
+$~$
+
+
+$~$
+
+
+**Exemplo.** Considere que, a priori, $(\boldsymbol{\beta},\sigma^2) \sim \textit{NIG}\left(\boldsymbol{\beta}_0, \boldsymbol{V}_0, a_0, b_0\right)$, com $~\boldsymbol{\beta}_0 = \left[\begin{array}{c} 0\\0\end{array}\right]~$;
+$~\boldsymbol{V}_0 = \left[\begin{array}{cc} 100 & 0\\ 0 & 100\end{array}\right] ~$; $~a_0 = 3~$; $~b_0 = 100~$.
+
+A seguir são apresentadas as distribuições marginais dos parâmetros, a distribuição marginal e as regiões HPD bivariadas do parâmetro $\boldsymbol{\beta}$.
+
+```{r}
+x = cars$dist   # variável resposta
+y = cars$speed  # variável explicativa
+n = length(x)   # n=50
+X = cbind(1,x)  # Matrix de planejamento
+p = ncol(X)     # p=2
+g = n-p         # gl=48
+beta_est = solve(t(X)%*%X)%*%(t(X)%*%y) # (-17.6, 3.9)
+sigma_est =
+  as.double(t(y-X%*%beta_est)%*%(y-X%*%beta_est)/(n-p)) #236.5
+beta0 = c(0,0)                     # média priori betas
+V0 = matrix(c(100,0,0,100),ncol=2) # matriz de escala beta
+a0 = 3                             # priori sigma
+b0 = 100                           # priori sigma
+# parâmetros da posteriori
+V1 = solve(solve(V0) + t(X)%*%X)
+beta1 = V1%*%(solve(V0)%*%beta0 + t(X)%*%X%*%beta_est)
+a1 = a0 + n/2
+b1 = as.double(b0 + (t(beta0)%*%solve(V0)%*%beta0 + t(y)%*%y - t(beta1)%*%solve(V1)%*%beta1)/2)
+V = b1*V1/a1 # Matrix de escala da posteriori marginal de beta
+
+beta1lim=c(beta1[1]-qt(0.9999,2*a1)*sqrt(V[1,1]),beta1[1]+qt(0.9999,2*a1)*sqrt(V[1,1]))
+beta2lim=c(beta1[2]-qt(0.9999,2*a1)*sqrt(V[2,2]),beta1[2]+qt(0.9999,2*a1)*sqrt(V[2,2]))
+sigma2lim=c(extraDistr::qinvgamma(0.0001,a1,b1),extraDistr::qinvgamma(0.9999,a1,b1))
+
+b1plot <- ggplot(data.frame(x=beta1lim), aes(x=x), colour = "0.Posterior") +
+  stat_function(fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
+  theme_bw() + xlab(expression(beta[1])) + ylab("Posterior")
+b2plot <- ggplot(data.frame(x=beta2lim), aes(x=x), colour = "0.Posterior") +
+  stat_function(fun = mnormt::dmt, args = list(mean = beta1[2], S = V[2,2], df=2*a1)) +
+  theme_bw() + xlab(expression(beta[2])) + ylab("Posterior")
+s2plot <- ggplot(data.frame(x=sigma2lim),aes(x=x), colour = "0.Posterior")+
+  stat_function(fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
+  theme_bw() + xlab(expression(sigma^2)) + ylab("Posterior")
+multiplot(b1plot,b2plot,s2plot)
+```
+
+
+```{r}
+# posteriori marginal bivariada dos betas
+posterior <- function(theta0,theta1) { apply(cbind(theta0,theta1),1,function(w){ mnormt::dmt(w, mean=c(beta1), S=V, df=2*a1)  }) }
+# Gráfico da posteriori marginal bivariada dos betas
+grx <- seq(beta1lim[1], beta1lim[2],length.out=200)
+gry <- seq(beta2lim[1], beta2lim[2],length.out=200)
+z1 <- outer(grx,gry,posterior)
+#persp(grx,gry,z1)
+plotly::plot_ly(alpha=0.1) %>%
+  plotly::add_surface(x=grx, y=gry, z=t(z1), colorscale = list(c(0,'#BA52ED'), c(1,'#FCB040')), showscale = FALSE)
+```
+
+
+
+```{r}
+# Curvas de Probabilidade
+l = c(0.1,0.3,0.5,0.8,0.9,0.95,0.99)
+z1v = sort(as.vector(z1),decreasing = TRUE)
+v1 <- z1v/sum(z1v)
+a=0; j=1; l1=NULL
+for(i in 1:length(v1)) {
+  a <- a+v1[i]
+  if(j<=length(l) & a>l[j]) {
+    l1 <- c(l1,z1v[i-1])
+    j <- j+1
+  }
+}
+contour(grx,gry,z1,col=colors()[455],main="Regiões HPD para os Betas",xlab=expression(beta[1]),ylab=expression(beta[2]),levels=l1,labels=l)
+points(beta1[1],beta1[2],col="darkred",pch=16,cex=0.5)
+```
+
+$~$
+
+$~$
+
+
+### Laplace's Demon
+
+LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementados de MCMC, permitindo fazer Inferência Bayesiana aproximada. Os algoritimos de MCMC disponíveis são
+
+1.  Automated Factor Slice Sampler (AFSS)
+1.  Adaptive Directional Metropolis-within-Gibbs (ADMG)
+1.  Adaptive Griddy-Gibbs (AGG)
+1.  Adaptive Hamiltonian Monte Carlo (AHMC)
+1.  Adaptive Metropolis (AM)
+1.  Adaptive Metropolis-within-Gibbs (AMWG)
+1.  Adaptive-Mixture Metropolis (AMM)
+1.  Affine-Invariant Ensemble Sampler (AIES)
+1.  Componentwise Hit-And-Run Metropolis (CHARM)
+1.  Delayed Rejection Adaptive Metropolis (DRAM)
+1.  Delayed Rejection Metropolis (DRM)
+1.  Differential Evolution Markov Chain (DEMC)
+1.  Elliptical Slice Sampler (ESS)
+1.  Gibbs Sampler (Gibbs)
+1.  Griddy-Gibbs (GG)
+1.  Hamiltonian Monte Carlo (HMC)
+1.  Hamiltonian Monte Carlo with Dual-Averaging (HMCDA)
+1.  Hit-And-Run Metropolis (HARM)
+1.  Independence Metropolis (IM)
+1.  Interchain Adaptation (INCA)
+1.  Metropolis-Adjusted Langevin Algorithm (MALA)
+1.  Metropolis-Coupled Markov Chain Monte Carlo (MCMCMC)
+1.  Metropolis-within-Gibbs (MWG)
+1.  Multiple-Try Metropolis (MTM)
+1.  No-U-Turn Sampler (NUTS)
+1.  Oblique Hyperrectangle Slice Sampler (OHSS)
+1.  Preconditioned Crank-Nicolson (pCN)
+1.  Random Dive Metropolis-Hastings (RDMH)
+1.  Random-Walk Metropolis (RWM)
+1.  Reflective Slice Sampler (RSS)
+1.  Refractive Sampler (Refractive)
+1.  Reversible-Jump (RJ)
+1.  Robust Adaptive Metropolis (RAM)
+1.  Sequential Adaptive Metropolis-within-Gibbs (SAMWG)
+1.  Sequential Metropolis-within-Gibbs (SMWG)
+1.  Slice Sampler (Slice)
+1.  Stochastic Gradient Langevin Dynamics (SGLD)
+1.  Tempered Hamiltonian Monte Carlo (THMC)
+1.  t-walk (twalk)
+1.  Univariate Eigenvector Slice Sampler (UESS)
+1.  Updating Sequential Adaptive Metropolis-within-Gibbs (USAMWG)
+1.  Updating Sequential Metropolis-within-Gibbs (USMWG)
+
+https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/BayesianInference.pdf
+
+https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/LaplacesDemonTutorial.pdf
+
+https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/Examples.pdf
+
+https://cran.r-project.org/web/packages/LaplacesDemon/LaplacesDemon.pdf
+
+
+$~$
+
++ Especificação do modelo
+
+```{r}
+require(LaplacesDemon)
+
+parm.names=as.parm.names(list(beta=rep(0,p), sigma2=0))
+pos.beta=grep("beta", parm.names)
+pos.sigma=grep("sigma2", parm.names)
+
+MyData <- list(J=p, X=X, y=y, mon.names="LP",
+  parm.names=parm.names,pos.beta=pos.beta,pos.sigma=pos.sigma)
+
+Model <- function(parm, Data)
+{
+  ### Parameters
+  beta <- parm[Data$pos.beta]
+  sigma2 <- interval(parm[Data$pos.sigma], 1e-100, Inf)
+  parm[Data$pos.sigma] <- sigma2
+  ### Log-Prior
+  sigma.prior <- dinvgamma(sigma2, a0, b0, log=TRUE)
+  beta.prior <- dmvn(beta, beta0, sigma2*V0, log=TRUE)
+  ### Log-Likelihood
+  mu <- tcrossprod(Data$X, t(beta))
+  LL <- sum(dnormv(Data$y, mu, sigma2, log=TRUE))
+  ### Log-Posterior
+  LP <- LL + beta.prior + sigma.prior
+  Modelout <- list(LP=LP, Dev=-2*LL, Monitor=LP,
+                   yhat=rnorm(length(mu), mu, sigma2), parm=parm)
+  return(Modelout)
+}
+
+Initial.Values <- c(beta_est,sigma_est)
+
+burnin <- 2000
+thin <- 3
+N=(2000+burnin)*thin
+```
+
+---
+
++ **Exemplo 1:** Metropolis-within-Gibbs (MWG)
+
+```{r}
+set.seed(666)
+Fit1 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
+  Covar=NULL, Iterations=N, Status=N/5, Thinning=thin,
+  Algorithm="MWG", Specs=NULL)
+#names(Fit1)
+print(Fit1)
+Post1 <- data.frame(Fit1$Posterior1,Algorithm="1.MWG")
+colnames(Post1) <- c("beta1","beta2","sigma2","Algorithm")
+#head(Post1)
+plot(Fit1, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
+#plot(Fit1, BurnIn=burnin, MyData, PDF=FALSE, Parms=NULL)
+```
+
+
+---
+
++ **Exemplo 2:** Adaptative Metropolis-within-Gibbs (MWG)
+
+```{r}
+set.seed(666)
+Fit2 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
+  Covar=NULL, Iterations=N, Status=N/5, Thinning=thin,
+  Algorithm="AMWG", Specs=NULL)
+#names(Fit2)
+#print(Fit2)
+
+Post2 <- data.frame(Fit2$Posterior1,Algorithm="2.AMWG")
+colnames(Post2) <- c("beta1","beta2","sigma2","Algorithm")
+#head(Post2)
+
+#plot(Fit2, BurnIn=burnin, MyData, PDF=FALSE, Parms=NULL)
+plot(Fit2, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
+```
+
+```{r}
+Post <- rbind(Post1,Post2)
+b1plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
+  geom_density(aes(beta1, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[1])) + ylab("Posterior") + labs(colour = "Method")
+b2plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt, args = list(mean = beta1[2], S = V[2,2], df=2*a1)) +
+  geom_density(aes(beta2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[2])) + ylab("Posterior") + labs(colour = "Method")
+s2plot <- ggplot(Post)+
+  stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
+  geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
+multiplot(b1plot,b2plot,s2plot)
+```
+
+---
+
++ **Exemplo 3:** Consort e Automated Factor Slice Sampler (AFSS)
+
+```{r}
+Consort(Fit2)
+Initial.Values <- as.initial.values(Fit2)
+
+set.seed(666)
+Fit3 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
+     Covar=NULL, Iterations=N, Status=N/5, Thinning=thin,
+     Algorithm="AFSS", Specs=list(A=Inf, B=NULL, m=100,n=0, w=1))
+Post3 <- data.frame(Fit3$Posterior1,Algorithm="3.AFSS")
+colnames(Post3) <- c("beta1","beta2","sigma2","Algorithm")
+plot(Fit3, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
+```
+
+```{r}
+Post <- rbind(Post1,Post2,Post3)
+b1plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
+  geom_density(aes(beta1, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[1])) + ylab("Posterior") + labs(colour = "Method")
+b2plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt, args = list(mean = beta1[2], S = V[2,2], df=2*a1)) +
+  geom_density(aes(beta2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[2])) + ylab("Posterior") + labs(colour = "Method")
+s2plot <- ggplot(Post)+
+  stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
+  geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
+multiplot(b1plot,b2plot,s2plot)
+```
+
+
+```{r}
+p.interval(Post3$beta1, HPD=FALSE, MM=FALSE, plot=TRUE)
+
+
+set.seed(666)
+S0 <- as.matrix(extraDistr::rinvgamma(N/thin-burnin,a1,b1))
+M0 <- apply(S0,1,function(s){mnormt::rmnorm(1,mean=beta1,varcov=s*V1)})
+Post0 <- data.frame(t(M0),S0,"0.Posterior")
+colnames(Post0) <- c("beta1","beta2","sigma2","Algorithm")
+Post = rbind(Post0,Post1,Post2,Post3)
+ggplot(Post) + theme_bw() +
+  geom_point(aes(beta1,beta2,colour=Algorithm), shape=1) +
+  facet_wrap(Algorithm ~ .)
+```
+
+---
+
+### Stan
+
+O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A da linguagem utilizada é independente da plataforma e existem bibliotecas para R (`rstan`) e Python.
+
+https://mc-stan.org/
+
+
+$~$
+
+**Voltando ao Exemplo**
+
+```{r}
+library(rstan)
+# Parametros do método
+Initial.Values <- c(beta_est,sigma_est)
+burnin <- 2000
+thin <- 3
+N=(2000+burnin)*thin
+# Conjunto de dados
+stan_data <- list(N = n, J = p, y = y, x = X)
+
+# Especificação do modelo
+rs_code <- '
+  data {
+    int<lower=1> N;
+    int<lower=1> J;
+    matrix[N,J] x;
+    vector[N] y;
+  }
+  parameters {
+    vector[J] beta;
+    real<lower=0> sigma2;
+  }
+  model {
+    sigma2 ~ inv_gamma(3, 100);
+    beta ~ normal(0, sqrt(sigma2*100));
+    y ~ normal(x * beta, sqrt(sigma2));
+}'
+
+stan_mod <- stan(model_code = rs_code, data = stan_data, init=Initial.Values,
+            chains = 1, iter = N, warmup = burnin, thin = thin)
+```
+
+```{r}
+posterior <- extract(stan_mod)
+Post4 <- data.frame(posterior$beta[,1],posterior$beta[,2],posterior$sigma2,Algorithm="4.RStan")
+colnames(Post4) <- c("beta1","beta2","sigma2","Algorithm")
+
+# gráficos posterioris marginais
+Post <- rbind(Post3,Post4) %>%
+  mutate(Algorithm=ifelse(Algorithm=="3.AFSS","1.LaplacesDemons","2.RStan"))
+b1plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
+  geom_density(aes(beta1, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[1])) + ylab("Posterior") + labs(colour = "Method")
+b2plot <- ggplot(Post) +
+  stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt, args = list(mean = beta1[2], S = V[2,2], df=2*a1)) +
+  geom_density(aes(beta2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(beta[2])) + ylab("Posterior") + labs(colour = "Method")
+s2plot <- ggplot(Post)+
+  stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
+  geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
+  xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
+multiplot(b1plot,b2plot,s2plot)
+```
+
+```{r}
+Post = rbind(Post0,Post4) %>%
+  mutate(Algorithm=ifelse(Algorithm=="4.RStan","1.RStan","0.Posterior"))
+ggplot(Post) + theme_bw() +
+  geom_point(aes(beta1,beta2,colour=Algorithm), shape=1) +
+  facet_wrap(Algorithm ~ .)
+```
+
+
+
+$~$
+
+```{r}
+stan_mod2 <- stan(model_code = rs_code, data = stan_data, init=Initial.Values,
+            chains = 2, iter = N, warmup = burnin, thin = thin)
+library(ggmcmc)
+#ggs(stan_mod2) %>% ggmcmc(., file = "ggmcmc.html")
+```
+
+$~$
+
+[**Gráficos ggmcmc**](ggmcmc.html)
+
+$~$
+
+```{r}
+ggs(stan_mod2) %>% ggs_pairs(., lower = list(continuous = "density"))
+```
+
+
+$~$
+
+$~$
+
+<!-- <!-- https://datascienceplus.com/bayesian-regression-with-stan-part-1-normal-regression/ -->
+
+
+### Aplicações
+
+#### MLG
+
+
+O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como *regressão logística*.
+
+Considere $Y_1,\ldots,Y_n$ condicionalmente independentes tais que $Y_i|\theta_i \sim \textit{Ber}(\theta_i)$, em que $\theta_i$ é tal que $\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta$ ou, em outras palavras, $\theta_i = \dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{-\boldsymbol x_i' \boldsymbol\beta}}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}}$ com $\boldsymbol x_i$ as covariáveis da $i$-ésima observação e o vetor de parâmetros $\boldsymbol\beta=(\beta_1,\ldots,\beta_p)$.
+
+$~$
+
+**Exemplo.** Considere as variáveis *vs* (0 = motor em forma de V, 1 = motor reto) e *mpg* (milhas/galão(EUA)) do conjunto de dados `mtcars` do R. Suponha um modelo de regressão logística para a variável resposta *vs* com a covariável *mpg* em que, a priori, $\beta_i \sim \textit{Laplace}(0,b_i)$, $i=1,2$, independentes. Deste modo, a posteriori é dada por
+
+$f(\boldsymbol\beta | \boldsymbol{y},\boldsymbol{x})$
+$\propto f(\boldsymbol{y}|\boldsymbol\beta,\boldsymbol{x})f(\boldsymbol\beta)$
+$\propto \displaystyle\prod_{i=1}^{n} \left(\dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{y_i}\left(\dfrac{e^{\boldsymbol x_i' \boldsymbol\beta}}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{1-y_i} \prod_{j=1}^{p} \dfrac{1}{2b_i} e^{-\frac{|\beta_i|}{b_i}}$.
+
+
+```{r}
+library(rstan)
+
+dados <- as_tibble(mtcars)
+# mpg:	Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)
+dados %>% ggplot(aes(group=as.factor(vs),y=mpg,fill=as.factor(vs))) +
+        geom_boxplot() + scale_fill_discrete(name="vs") + theme_bw()
+
+y <- dados %>% select(vs) %>% pull()
+x <- dados %>% select(mpg) %>% pull()
+n <- length(y)
+X <- as.matrix(cbind(1,x))
+p <- ncol(X)
+
+stan_data <- list(N = n, J = p, y = y, x = X)
+
+rs_code <- '
+  data {
+    int<lower=1> N;
+    int<lower=1> J;
+    int<lower=0,upper=1> y[N];
+    matrix[N,J] x;
+  }
+  parameters {
+    vector[J] beta;
+  }
+  model {
+    beta ~ double_exponential(0, 100);
+    y ~ bernoulli_logit(x * beta);
+  }'
+
+N=2000
+thin=10
+burnin=1000
+
+stan_log <- stan(model_code = rs_code, data = stan_data, init = c(0,0),
+  chains = 1, iter = N*thin, warmup = burnin, thin = thin)
+
+print(stan_log)
+
+library(bayesplot)
+
+post_log <- extract(stan_log, inc_warmup = TRUE, permuted = FALSE)
+
+color_scheme_set("mix-brightblue-gray")
+mcmc_trace(post_log,  pars = c("beta[1]", "beta[2]"), n_warmup = 0,
+                facet_args = list(nrow = 2, labeller = label_parsed))
+
+mcmc_acf(post_log, pars = c("beta[1]", "beta[2]"))
+
+mcmc_areas(post_log,pars = c("beta[1]", "beta[2]"),prob=0.9)
+
+multiplot(mcmc_areas(post_log,pars = c("beta[1]"),prob=0.9),
+          mcmc_areas(post_log,pars = c("beta[2]"),prob=0.9))
+
+library(ggmcmc)
+#ggs(stan_log) %>% ggmcmc(., file = "ggmcmc_log.html")
+ggs(stan_log) %>% ggs_pairs(., lower = list(continuous = "density"))
+```
+<!-- [**Gráficos ggmcmc**](ggmcmc_log.html) -->
+
+
+$~$
+
+* Existe uma biblioteca para modelos lineares bayesianos usando o Stan chamada `rstanarm`. Nesta biblioteca, a função `stan_glm` pode ser utilizada para o ajuste de MLGs sob o ponto de vista bayesiano.
+
+  - https://cran.r-project.org/web/packages/rstanarm/
+
+
+$~$
+
+$~$
+
+
+<!-- ### Biblioteca **walker** para Modelos Dinâmicos -->
+
+<!-- * Bilbioteca do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos). -->
+
+<!-- * Modelo de Regressão Dinâmico Bayesiano -->
+
+<!-- $$y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)$$ -->
+<!-- $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$ -->
+
+<!-- onde -->
+
+<!--   - $y_t$: variável resposta no instante $t$; -->
+
+<!--   - $\boldsymbol x_t$: vetor com $k$ variáveis preditoras no instante $t$; -->
+
+<!--   - $\epsilon_t$ e $\boldsymbol\eta_t$: ruídos brancos; -->
+
+<!--   - $\boldsymbol\beta_t$: vetor dos $k$ coeficientes de regressão no instante $t$; -->
+
+<!--   - $D=\textit{diag}({\sigma}_{\eta_i})$; -->
+
+<!--   - $\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)$: vetor de parâmetros de variância. -->
+
+<!-- As distribuição a piori são dadas por -->
+<!-- $$\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)$$ -->
+<!-- $$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$ -->
+
+<!-- * Sobre a biblioteca `walker`: -->
+<!--   - https://cran.r-project.org/web/packages/walker/vignettes/walker.html -->
+<!--   - https://rdrr.io/cran/walker/man/walker.html -->
+<!-- $~$ -->
+
+<!-- #### Dados de Covid-19 -->
+
+<!-- * Dados de Covid-19: https://brasil.io/ -->
+
+<!-- * Dados de Mobilidade: https://www.google.com/covid19/mobility/ -->
+
+<!-- * Agradeço à *Renata Massami Hirota* pela compilação dos dados! -->
+
+<!-- ```{r} -->
+<!-- dados = read_csv("G:/Meu Drive/Lenovo Ideapad 310/IME - Disciplinas/2020-1_MAE-0524/Aulas_MAE0524-2020/RMD/covid_sp.csv") %>% -->
+<!--   arrange(date) -->
+<!-- #names(dados) -->
+<!-- #[12] "retail_and_recreation_percent_change_from_baseline" -->
+<!-- #[13] "grocery_and_pharmacy_percent_change_from_baseline" -->
+<!-- #[14] "parks_percent_change_from_baseline" -->
+<!-- #[15] "transit_stations_percent_change_from_baseline" -->
+<!-- #[16] "workplaces_percent_change_from_baseline" -->
+<!-- #[17] "residential_percent_change_from_baseline" -->
+<!-- ds =  dados %>% -->
+<!--   mutate(y=confirmed_per_100k_inhabitants/10,x1=retail_and_recreation_percent_change_from_baseline,x2=grocery_and_pharmacy_percent_change_from_baseline,x3=parks_percent_change_from_baseline,x4=dados$transit_stations_percent_change_from_baseline,x5=workplaces_percent_change_from_baseline, x6=residential_percent_change_from_baseline, t=date) %>% -->
+<!--   arrange(date) %>% -->
+<!--   select(t,y,x1,x2,x3,x4,x5,x6) %>% -->
+<!--   filter(t>="2020-03-23") %>% # uma semana após início da quarentena -->
+<!--   mutate(x=x6-x3-x4)          # "taxa de isolamento" (inventei!) -->
+<!-- FS=(max(ds$y)-min(ds$y))/(max(ds$x)-min(ds$x)) # aux para eixo secundário -->
+<!-- ggplot(ds, aes(x = t)) + theme_bw() + -->
+<!--   geom_line(aes(y = y, colour = "Mortes/Milhão Hab.")) + -->
+<!--   geom_line(aes(y = (x-min(x))*FS+min(y), colour = "Taxa de Isolamento")) + -->
+<!--   scale_y_continuous(sec.axis = sec_axis(~./FS-min(ds$y)/FS+min(ds$x), name = "Taxa de Isolamento")) + -->
+<!--   labs(y="Mortes/Milhão Hab.",colour="") + theme(legend.position = "bottom") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- library(walker) -->
+<!-- ds = ds %>% filter(t>="2020-03-23") -->
+<!-- fit1 <- ds %>% mutate(x=x-mean(x),y=y-mean(y)) %>% -->
+<!--   walker(data=., formula = y ~ 1+rw1(~ -1+x,beta=c(0,100), sigma=c(0,100)), -->
+<!--     beta=c(0,100),sigma_y_prior = c(0,100), chain=1) -->
+<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
+
+<!-- multiplot( -->
+<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("beta_fixed"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_rw1"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
+
+<!-- plot_coefs(fit1, scales = "free", alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- pp_check(fit1, alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- new_data <- data.frame(x=seq(-28,0,length.out=10)) -->
+<!-- pred1 <- predict(fit1, new_data) -->
+<!-- plot_predict(pred1, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- new_data <- data.frame(x=seq(-28,-56,length.out=10)) -->
+<!-- pred1 <- predict(fit1, new_data) -->
+<!-- plot_predict(pred1, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!-- ``` -->
+
+<!-- #### Extensões: Efeitos mais suaves e modelos não gaussianos -->
+
+<!-- Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as estimativas posteriores desses coeficientes podem ter grandes variações de curto prazo que podem não ser realistas na prática. Uma maneira de impor mais suavidade às estimativas é alternar dos coeficientes do passeio aleatório para coeficientes de passeio aleatório de segunda ordem integrados: -->
+<!-- $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t$$ -->
+<!-- $$\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$ -->
+
+
+<!-- ```{r} -->
+<!-- fit2 <- ds %>% mutate(x=x-mean(x),y=y-mean(y)) %>% -->
+<!--   walker(data=., formula = y ~ rw2(~ -1+x, beta=c(0,100), sigma=c(0,100), -->
+<!--         nu=c(0,100)), beta=c(0,100),sigma_y_prior=c(0,100), chain=1) -->
+<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
+
+<!-- multiplot( -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("beta_fixed"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw2"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
+
+<!-- plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- pp_check(fit2, alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- new_data <- data.frame(x=seq(-28,0,length.out=10)) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+
+<!-- new_data <- data.frame(x=seq(-28,-56,length.out=10)) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!-- ``` -->
+<!-- $~$ -->
+
+<!-- * A função `walker_glm` estende o pacote para lidar com observações de com distribuição de *Poisson* e *Binomial*, usando a metodologia similar à mencionada acima. -->
+
+<!-- $~$ -->
+
+<!-- $~$ -->

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Breve Resumo de Medida e Probabilidade | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Breve Resumo de Medida e Probabilidade | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-10-13" />
+<meta name="date" content="2020-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Test.html"/>
+<link rel="prev" href="Comp.html"/>
 <link rel="next" href="referências.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -154,14 +154,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.2</b> Suficiência</a></li>
-<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.3</b> Distribuição a Priori</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.3.1</b> Método do Histograma</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.3.2</b> Elicitação de Hiperparâmetros</a></li>
-<li class="chapter" data-level="3.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.3.3</b> Prioris Conjugadas</a></li>
-<li class="chapter" data-level="3.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.3.4</b> Prioris “Não-Informativas”</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
+<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
+<li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="3.4.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.4.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.4</b> Alguns Princípios de Inferência</a></li>
+<li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
@@ -183,6 +184,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>6.7</b> Hipóteses Precisas</a></li>
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
+<li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
+<li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
+<li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
+<li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
+<li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
+<li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
+<li class="chapter" data-level="7.6.4" data-path="Comp.html"><a href="Comp.html#aplicações"><i class="fa fa-check"></i><b>7.6.4</b> Aplicações</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
@@ -827,7 +845,7 @@ Note que a <span class="math inline">\(\sigma\)</span>-álgebra gerada pela v.a.
           </div>
         </div>
       </div>
-<a href="Test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Comp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

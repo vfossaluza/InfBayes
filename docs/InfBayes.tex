@@ -108,12 +108,25 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-10-13}
+\date{2020-11-09}
 
 \begin{document}
 \maketitle
@@ -637,10 +650,11 @@ Considere que existe uma outra medida \(P'\) que concorde com a relação \(\pre
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Observação:} será utilizada a notação geral para integral (de Lebesgue): \[\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
-  = \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&~ (caso~~contínuo)\\
-  \displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&~ (caso~~discreto) \end{array}\right.\]
+  \textbf{Observação:} será utilizada a notação geral para integral (de Lebesgue):
 \end{itemize}
+
+\[\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
+= \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&~ \text{(caso abs. contínuo)}\\ \displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&~ \text{(caso discreto)} \end{array}\right.\]
 
 \(~\)
 
@@ -762,6 +776,113 @@ Suponha agora que \(a=b=2\), \(n=5\) e \(x=2\), de modo que \(\theta|x=2 \sim Be
 
 \(~\)
 
+\(~\)
+
+\hypertarget{teorema-de-de-finetti}{%
+\section{Teorema de De Finetti}\label{teorema-de-de-finetti}}
+
+\textbf{Definição.} Uma coleção finita \(X_1,X_2,\ldots,X_n\) de quantidades aleatórias é dita \emph{permutável} se a distribuição de \(\left(X_{\pi_1},\ldots,X_{\pi_n}\right)\) é a mesma para toda permutação \(\boldsymbol\pi=(\pi_1,\ldots,\pi_n)\) dos índices \((1,\ldots,n)\). Uma coleção infinita de quantidades aleatórias é \emph{permutável} se toda subcoleção é permutável.
+
+\(~\)
+
+\begin{itemize}
+\tightlist
+\item
+  Segue da definição que cada uma das variáveis \(X_1,\ldots,X_n\) tem a mesma distribuição marginal. Além disso, \((X_i,X_j)\) têm mesma distribuição que \((X_k,X_l)\), \(\forall i\neq j\) e \(k\neq l\), e assim por diante.
+\end{itemize}
+
+\(~\)
+
+\textbf{Proposição.} Uma coleção \(C\) de variáveis aleatórias é permitável se, e somente se, para todo \(n\) finito menor ou igual ao tamanho da coleção \(C\), toda \(n\)-upla (sequência ordenada de \(n\) elementos) de elementos distintos de \(C\) têm a mesma distribuição que toda outra \(n\)-upla.
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Considere uma coleção \(X_1,X_2,\ldots\) uma sequência (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d). Note que \(f(x_1,\ldots,x_n)=\displaystyle\prod_{i=1}^nf(x_i)~,\) \(\forall n~,\) de modo que \(\left(X_{i_1},\ldots,X_{i_n}\right)\) têm a mesma distribuição de \(\left(X_{j_1},\ldots,X_{j_n}\right)\), para \(i_1\neq\ldots\neq i_n\) e \(j_1\neq\ldots\neq j_n\). Então, toda coleção de v.a. i.i.d é permutável.
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2:} Foi visto no exemplo anterior que a suposição que uma sequência de v.a. é i.i.d. implica que tal sequência é também permutável. Sabe-se também que independência implica em correlação nula, \(\rho=0\). Será então que v.a. identicamente distribuídas e não correlacionadas são também permutáveis?\\
+\(~\)
+\end{quote}
+
+\begin{tabular}{ccccc}
+\toprule
+$X_1~$ / $~X_2$ & $-1$ & $0$ & $+1$ & $f(x_1)$\\
+\midrule
+$-1$ & $0.10$ & $0.05$ & $0.15$ & $0.3$\\
+$0$ & $0.15$ & $0.20$ & $0.05$ & $0.4$\\
+$+1$ & $0.05$ & $0.15$ & $0.10$ & $0.3$\\
+$f(x_2)$ & $0.3$ & $0.4$ & $0.3$ & $1.0$\\
+\bottomrule
+\end{tabular}
+
+\(~\)\\
+\(cor(X_1,X_2)\)
+\(=\frac{\text{Cov}\left(X_1,X_2\right)}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)
+\(=\frac{\text{E}\left[\left(X_1-\text{E}[X_1]\right)\left(X_2-\text{E}[X_2]\right)\right]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)
+\(=\frac{\text{E}\left[X_1X_2\right]-\text{E}[X_1]\text{E}[X_2]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)\\
+\(E(X_1)=E(X_2)=0\)\\
+\(E(X_1X_2)=-1\cdot0,2+0+1\cdot0,2=0\) \(\Rightarrow cor(X_1,X_2)=0\)\\
+\((X_1,X_2)\) são identicamente distribuídas e não correlacionadas mas não são permutáveis pois, por exemplo, \(P\big((X_1,X_2)=(1,-1)\big)~\neq~P\big((X_2,X_1)=(1,-1)\big)~.\)
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 3:} Suponha que \(X_1,X_2,\ldots\) são condicionalmente i.i.d. dado \(Y=y\) com densidade \(f(x_i|y),\;i=1,2,\ldots\) e \(Y\) tem densidade \(h(y)\). Então \(X_1,X_2,\ldots\) são permutaveis.\\
+\(f_{X_{i_1},\ldots,X_{i_n}}(x_1,\ldots,x_n)\) \(=\displaystyle\int\prod_{j=1}^nf(x_j|y)h(y)dy,\) para qualquer \(n\)-upla \(X_{i_1},\ldots,X_{i_n}\). Note que o lado direito não depende dos rótulos \(i_1,\ldots,i_n\).
+\end{quote}
+
+\(~\)
+
+\(~\)
+
+\textbf{Teorema de Representação de De Finetti.} (para v.a. Bernoulli)
+
+Uma sequência infinita \(\left(X_n\right)_{n\geq 1}\) de v.a. Bernoulli é permutável se, e somente se, existe uma v.a \(\theta\) em \([0,1]\) tal que, condicional a \(\theta\), \(\left(X_i\right)_{n\geq 1}\) são i.i.d. \(Ber(\theta)\). Além disso, se a sequência é permutável, então a distribuição de \(\theta\) é única e \(\displaystyle\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta~.\)
+
+\(P(X_1=x_1,\ldots,X_n=x_n)\) \(=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)\) \(=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta\)
+
+\(F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.\)
+
+\(~\)
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 4:} (1.19/1.20 - Schervish)\\
+Seja \(\left(X_n\right)_{n\geq 1}\) v.a. Bernoulli.\\
+\(~\)\\
+Considere que o \emph{Estatístico 1} acredita que \(P_1(X_1=x_1,\ldots,X_n=x_n)\) \(=\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}~,\) de modo que \(P_1(X_1=1)\) \(=\dfrac{12}{3}\dfrac{3!~2!}{5!}\) \(=\dfrac{4}{10}\) \(=0,4~.\)\\
+Por outro lado, o \emph{Estatístico 2} acredita que \(P_2(X_1=x_1,\ldots,X_n=x_n)\) \(=\dfrac{1}{(n+1)\binom{n}{x}}\) e, então, \(P_2(X_1=1)=\dfrac{1}{2}=0,5~.\)\\
+\(~\)\\
+Contudo, pelo Teorema de Finetti, ambos acreditam que o limite \(\theta=\displaystyle\lim_{n\uparrow\infty}\frac{1}{n}\sum_{i=1}^nX_i\) existe com probabilidade 1 e que \(P(X_1=1|\theta)=\theta\), mas não tem opiniões diferentes sobre \(\theta\).\\
+\(~\)\\
+Suponha agora que foi observado \(\boldsymbol{x}=(x_1,\ldots,x_{20})\) com \(\displaystyle\sum_{i=1}^{20}x_i=14\). Então,\\
+\(P_i(X_{21}=1|X_1=x_1,\ldots,X_{20}=x_{20})\) \(=\dfrac{P_i(X_1=x_1,\ldots,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,\ldots,X_{20}=x_{20})}\)\\
+de modo que,\\
+\(P_1(X_{21}=1|\mathbf X=\mathbf x)=\) \(\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}\) \(=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}\) \(=\dfrac{16}{17}\dfrac{17}{25}\) \(=\dfrac{16}{25}=0,64\)\\
+\(P_2(X_{21}=1|\mathbf X=\mathbf x)\) \(=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}\) \(=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}\) \(=\dfrac{21}{22}\dfrac{15}{21}\) \(=\dfrac{15}{22}=0,68\)
+\end{quote}
+
+\(~\)
+
+\(~\)
+
+\textbf{Teorema de Representação de De Finetti}
+
+Uma sequência de v.a.s \(\{X_n\}_{n\geq 1}\) assumindo valores (em um subconjunto de) \(\mathbb R^K\) é permutável se, e somente se, existe uma medida de probabilidade sobre (uma \(\sigma\)-álgebra do) conjunto de funções de distribuições que ``sorteia'' uma \(F\) e, dada esta \(F\), \(\{X_n\}_{n\geq 1}\) é i.i.d. com distribuição \(F\). Isto é,
+
+\(F_{\mathbf X}(x_1,\ldots,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)\), \(\forall n\).
+
+Alem disso, \(F_n\underset{n\uparrow\infty}{\longrightarrow}F^*\) e a distribuição de \(F^*=\underset{n\uparrow\infty}{lim}F_n\) é única e é \(\mu\).
+
+\(~\)
+
+\(~\)
+
 \hypertarget{suficiuxeancia}{%
 \section{Suficiência}\label{suficiuxeancia}}
 
@@ -868,7 +989,7 @@ Um dos princípios de inferência estatística é o \emph{princípio da suficiê
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -893,7 +1014,7 @@ Um dos princípios de inferência estatística é o \emph{princípio da suficiê
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \(~\)
 
@@ -956,7 +1077,7 @@ Assim, no nosso exemplo, teríamos uma \(Beta(3,6.7)\). Além disso, já vimos q
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \(~\)
 
@@ -984,9 +1105,9 @@ Como visto no exemplo da moeda, em que a distribuição a priori era \(Beta(a,b)
   \def\labelenumi{\arabic{enumi}.}
   \tightlist
   \item
-    \(X_1,...,X_n\) são v.a.s \emph{condicionalmente independentes e identicamente distribuidas} (c.i.i.d.) com \(X_i|\theta \sim Ber(\theta)\)\\
+    \(X_1,\ldots,X_n\) são v.a.s \emph{condicionalmente independentes e identicamente distribuidas} (c.i.i.d.) com \(X_i|\theta \sim Ber(\theta)\)\\
   \item
-    \(X_i|\theta\sim Geo(\theta),\) \(i=1,...,n \; c.i.i.d.\)\\
+    \(X_i|\theta\sim Geo(\theta),\) \(i=1,\ldots,n \; c.i.i.d.\)\\
   \item
     \(X_i|\theta \sim BinNeg(k,\theta)\)\\
     \(\theta\sim Beta(a,b)\Rightarrow\) \(\theta|\boldsymbol X=\boldsymbol x \sim Beta(a+s,b+f)\) em que \(s\) é o número de sucessos e \(f\) é o número de fracassos.
@@ -999,16 +1120,16 @@ Como visto no exemplo da moeda, em que a distribuição a priori era \(Beta(a,b)
 
 Seja \(\boldsymbol X | \boldsymbol \theta \sim Multinomial(n,\boldsymbol \theta)\), isto é, sua função de probabilidade é dada por
 
-\[f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,...,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}\]
+\[f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,\ldots,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}\]
 
-em que \(\theta_i\in [0,1]\) com \(\sum_{i=1}^K\theta_i=1\), \(x_i \in \{0,1,...,n\}\) com \(\sum_{i=1}^nx_i=n\) e \(\displaystyle \binom{n}{x_1,x_2,...,x_k}=\dfrac{n!}{x_1!x_2!...x_k!}\).
+em que \(\theta_i\in [0,1]\) com \(\sum_{i=1}^K\theta_i=1\), \(x_i \in \{0,1,\ldots,n\}\) com \(\sum_{i=1}^nx_i=n\) e \(\displaystyle \binom{n}{x_1,x_2,\ldots,x_k}=\dfrac{n!}{x_1!x_2!\ldots x_k!}\).
 
-Considere que, a priori, \(\boldsymbol \theta \sim Dirichlet(a_1,...,a_k),\) \(a_i > 0, i=1,...,k\), isto é, a f.d.p. a priori para \(\boldsymbol \theta\) é dada por
+Considere que, a priori, \(\boldsymbol \theta \sim Dirichlet(a_1,\ldots,a_k),\) \(a_i > 0, i=1,\ldots,k\), isto é, a f.d.p. a priori para \(\boldsymbol \theta\) é dada por
 
-\[f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)...\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.\]
+\[f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)\ldots\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.\]
 
 Então, a distribuição a posteriori para \(\boldsymbol \theta\) é
-\(\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,...,a_k+x_k)\).
+\(\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,\ldots,a_k+x_k)\).
 
 \(~\)
 
@@ -1019,14 +1140,14 @@ Então, a distribuição a posteriori para \(\boldsymbol \theta\) é
 
 \(~\)
 
-\textbf{Resultado 3.} Seja \(X_1,...,X_n\) v.a. c.i.i.d tais que \(X_i|\theta \sim Unif(0,\theta)\) e considere que, a priori,\(\theta \sim Pareto(a,b)\). Então \(\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)\).
+\textbf{Resultado 3.} Seja \(X_1,\ldots,X_n\) v.a. c.i.i.d tais que \(X_i|\theta \sim Unif(0,\theta)\) e considere que, a priori,\(\theta \sim Pareto(a,b)\). Então \(\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)\).
 
 \(~\)
 
 \begin{quote}
 \textbf{Demo:}\\
 \(f(\boldsymbol x|\theta)\) \(\overset{ci}{=}\prod_{i=1}^nf(x_i|\theta)\) \(\overset{id}{=}\prod_{i=1}^n\dfrac{1}{\theta}\mathbb{I}_{[0,\theta]}(x_i)\) \(=\dfrac{1}{\theta^n}\mathbb{I}_{[0,\theta]}(x_{(n)})\) \(=\dfrac{1}{\theta^n}\mathbb{I}_{[x_{(n)},+\infty)}(\theta)\)\\
-em que \(x_{(n)}=max\{x_1,...,x_n\}\).\\
+em que \(x_{(n)}=max\{x_1,\ldots,x_n\}\).\\
 \(~\)\\
 \(f(\theta)=\dfrac{ab^a}{\theta^{a+1}}\mathbb{I}_{[b,+\infty]}(\theta)\).\\
 Então\\
@@ -1037,7 +1158,7 @@ Então\\
 
 \(~\)
 
-\textbf{Resultado 4.} Seja \(X_1,...,X_n,Y_1,...,Y_m\) v.a. condicionalmente independentes tais que \(X_i|\theta\sim Exp(\theta),i=1,...,n\) e \(Y_j|\theta \sim Poisson(\theta),j=1,...,m\). Considere que, a priori, \(\theta \sim Gama(a,b)\). Então \(\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)\).
+\textbf{Resultado 4.} Seja \(X_1,\ldots,X_n,Y_1,\ldots,Y_m\) v.a. condicionalmente independentes tais que \(X_i|\theta\sim Exp(\theta),i=1,\ldots,n\) e \(Y_j|\theta \sim Poisson(\theta),j=1,\ldots,m\). Considere que, a priori, \(\theta \sim Gama(a,b)\). Então \(\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)\).
 
 \begin{quote}
 \textbf{Demo:}\\
@@ -1123,7 +1244,7 @@ Primeiramente, suponha que \(n=5\), e temos uma mistura das distribuições \(Be
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \(~\)
 
@@ -1169,7 +1290,7 @@ Agora, suponha que \(n=5\) e foi observado \(x=2\). Novamente, considere a mistu
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
 \(~\)
 
@@ -1303,7 +1424,7 @@ Note que nos exemplos apresentados, a priori depende da \emph{regra de parada}, 
 
 \textbf{Entropia} é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O \emph{princípio da máxima entropia} afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.
 
-\textbf{Caso Discreto.} Considere um espaço paramétrico enumerável \(\Theta = \{\theta_1,\theta_2,...\}\). A \emph{entropia} da distribuição \(h\) \citep{Shannon48} é dada por
+\textbf{Caso Discreto.} Considere um espaço paramétrico enumerável \(\Theta = \{\theta_1,\theta_2,\ldots\}\). A \emph{entropia} da distribuição \(h\) \citep{Shannon48} é dada por
 
 \[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]
 
@@ -1314,7 +1435,7 @@ Note que nos exemplos apresentados, a priori depende da \emph{regra de parada}, 
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 1.} Considere o espaço paramétrico \(\Theta=\{\theta_1,...,\theta_k\}\) e \(h(\theta_i)=p_i\) uma distribuição discreta para \(\theta\). A \emph{distribuição da máxima entropia} para \(\theta\) é a função \(h\) que maximiza \(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\) com a restrição \(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)\\
+\textbf{Exemplo 1.} Considere o espaço paramétrico \(\Theta=\{\theta_1,\ldots,\theta_k\}\) e \(h(\theta_i)=p_i\) uma distribuição discreta para \(\theta\). A \emph{distribuição da máxima entropia} para \(\theta\) é a função \(h\) que maximiza \(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\) com a restrição \(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)\\
 Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana\\
 \(\mathcal{E}^*(h)=\displaystyle-\sum_{i=1}^k p_i\log(p_i)+\lambda\left(\sum_{i=1}^k p_i-1\right)\)\\
 \(\dfrac{\partial\mathcal{E}^*(h)}{\partial p_i}=-\left[p_i~\dfrac{1}{p_i}+\log(p_i)\right]+\lambda=0\) \(\Longleftrightarrow p_i = e^{\lambda-1}~~,~~~i=1,\ldots,k~.\)\\
@@ -1324,7 +1445,7 @@ Assim, como \(p_i\) deve ser constante e \(\sum p_i=1\), conclui-se que \(p_i=1/
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2.} Considere agora \(\Theta = \{\theta_1,\theta_2,...\}\) e suponha que há \(m\) informações parciais a respeito do parâmetro \(\theta\) que podem ser escritas como \(\text{E}[g_j(\theta)]=\mu_j~,~\) \(j=1,...,m~.\)\\
+\textbf{Exemplo 2.} Considere agora \(\Theta = \{\theta_1,\theta_2,\ldots\}\) e suponha que há \(m\) informações parciais a respeito do parâmetro \(\theta\) que podem ser escritas como \(\text{E}[g_j(\theta)]=\mu_j~,~\) \(j=1,\ldots,m~.\)\\
 Usando novamente o método de Lagrange, deve-se maximizar\\
 \(\mathcal{E}^*(h)\) \(=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)\)\\
 \(\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0\)
@@ -1335,7 +1456,7 @@ Como \(\sum p_i=1\), \(p_i = \dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\s
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2a.} Seja \(\Theta = \{0,1,2,...\}\) e suponha que \(\text{E}[\theta]=\mu.\)\\
+\textbf{Exemplo 2a.} Seja \(\Theta = \{0,1,2,\ldots\}\) e suponha que \(\text{E}[\theta]=\mu.\)\\
 Usando o resultado do exemplo anterior com \(g(\theta)=\theta\) e \(\theta_i=i\), \(i=0,1,2,\ldots~,\)\\
 \(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
 \(=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~\)
@@ -1348,7 +1469,7 @@ Como \(\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\left(1-e^\lambda\right)}=\
 \(~\)
 
 \begin{quote}
-\textbf{Exemplo 2b.} Considere que \(\Theta = \{1,2,...,k\}\) e suponha que \(\text{Med}(\theta)=m~.\)\\
+\textbf{Exemplo 2b.} Considere que \(\Theta = \{1,2,\ldots,k\}\) e suponha que \(\text{Med}(\theta)=m~.\)\\
 Nesse caso, \(g(\theta)=\mathbb{I}\left(\theta\leq m\right)\) e \(\theta_i=i\), \(i=1,2,\ldots,k~,\) de modo que\\
 \(\text{E}\left[g(\theta)\right]\) \(=\text{E}\left[\mathbb{I}(\theta\leq m)\right]\) \(=\text{P}\left(\theta\leq m\right)=1/2\) e, portanto, \(\displaystyle\sum_{i\leq m}p_i=\sum_{j> m}p_j=1/2~.\)
 \(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)
@@ -1361,12 +1482,12 @@ Nesse caso, \(g(\theta)=\mathbb{I}\left(\theta\leq m\right)\) e \(\theta_i=i\), 
 
 \(~\)
 
-\textbf{Divergência de Kullbach-Leibler.} Considere duas distribuições discretas \(\boldsymbol{p} = (p_1,...,p_k)\) e \(\boldsymbol{q} = (q_1,...,q_k)~,\) tal que \(p_i,q_i>0~,\) \(i=1,\ldots,k~,\) e \(\sum p_i=\sum q_i=1\). A \emph{divergência de Kullbach-Leibler} entre \(\boldsymbol{p}\) e \(\boldsymbol{q}\) \citep{Kullback51} é dada por\\
+\textbf{Divergência de Kullbach-Leibler.} Considere duas distribuições discretas \(\boldsymbol{p} = (p_1,\ldots,p_k)\) e \(\boldsymbol{q} = (q_1,\ldots,q_k)~,\) tal que \(p_i,q_i>0~,\) \(i=1,\ldots,k~,\) e \(\sum p_i=\sum q_i=1\). A \emph{divergência de Kullbach-Leibler} entre \(\boldsymbol{p}\) e \(\boldsymbol{q}\) \citep{Kullback51} é dada por\\
 \[D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.\]
 
 \(~\)
 
-Suponha que \(g=(1/k,...,1/k)\)
+Suponha que \(g=(1/k,\ldots,1/k)\)
 
 \(D(\boldsymbol{p}~||~\boldsymbol{q})\)
 \(=\displaystyle\sum_{i=1}^{k} p_i\log\left(\dfrac{p_i}{1/k}\right)\)
@@ -1396,7 +1517,7 @@ onde \(h_0\) é uma priori de referência na ausência total de informação, pr
 
 Assim como no caso discreto, se temos \(m\) restrições \(E[g_i(\theta)]=\mu_i,\) a densidade de máxima entropia é
 
-\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\) e os \(\lambda_j~,\) \(j=1,...,m~,\) são obtidos das restrições. Por exemplo, se \(E[\theta]=\mu,\) basta fazer
+\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\) e os \(\lambda_j~,\) \(j=1,\ldots,m~,\) são obtidos das restrições. Por exemplo, se \(E[\theta]=\mu,\) basta fazer
 
 \(\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta\) com \(c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta\).
 
@@ -1532,6 +1653,8 @@ Se o número de sucessos é \(x=x_1=x_2\) e número de fracassos é \(y=n-x_1=r\
 Como \(f_1(x_1|\theta)\propto f_2(x_2|\theta)\) mas \(f_1(\theta)\neq f_2(\theta)\), tem-se que \(f_1(\theta|x_1)\neq f_2(\theta|x_2)\) e, portanto, esse procedimento viola o \emph{P. Verossimilhança}.
 \end{quote}
 
+\(~\)
+
 \hypertarget{TeoDec}{%
 \chapter{Introdução à Teoría da Decisão}\label{TeoDec}}
 
@@ -1606,7 +1729,7 @@ No exemplo, temos
 
 Deste modo, as perdas esperadas associadas a cada decisão dependem da probabilidade de chuva \(p\). Assim, para cada possível valor de \(p\), deve-se tomar a decisão que tem menor perda esperada. Por exemplo, se a probabilidade de chuva é \(p=0.1\), temos que as perdas esperadas para as decisões de levar ou não o guarda-chuva são, respectivamente, \(E\left[L(G,\theta)\right]=1.1\) e \(E\left[L(G^c,\theta)\right]=0.3\). Assim, sob essa abordagem, sua decisão seria de não levar o guarda-chuva nesse caso. Por outro lado, se a probabilidade de chuva for \(p=0.9\), suas perdas esperadas seriam respectivamente \(E\left[L(G,\theta)\right]=1.9\) e \(E\left[L(G^c,\theta)\right]=2.7\), de modo que a decisão ótima seria levar o guarda-chuva. O gráfico a seguir apresenta as perdas para cada decisão \(d\) e para cada valor de \(p\). É possível notar que a decisão ótima é levar o guarda-chuva quando \(p>0.5\) e não levá-lo caso contrário.
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-17-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 \(~\)
 
@@ -1877,7 +2000,7 @@ O risco \(r_{\boldsymbol{x}}(d)\) é mínimo quando a probabilidade \(P(d-\varep
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Como comentado no resultado anterior, quando \(\varepsilon \downarrow 0\), temos que \({\delta}^*(\boldsymbol x)=Moda(\theta|\boldsymbol x)\) \(= \displaystyle\sup_{\theta} f(\theta|\boldsymbol x)\).
 
@@ -1935,7 +2058,7 @@ Em um problema de estimação por regiões (ou estimação intervalar, no caso u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-20-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 \(~\)
 
@@ -1970,7 +2093,7 @@ Em um problema de estimação por regiões (ou estimação intervalar, no caso u
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-21-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
 Note que, nesse exemplo, as regiões que tem mais densidade a posteriori foram excluídas do intervalo. Isso não faz muito sentido pois essas regiões têm maior chance de conter o \(\theta\) que quaquer outra região de mesmo tamanho.
 
@@ -2042,7 +2165,7 @@ Assim, a decisão de Bayes contra essa função de perda consiste em escolher um
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-23-1} \end{center}
 
 Note que na solução anterior, o comprimento do intervalo era \(\sqrt{1-\alpha}\), enquanto que o comprimento do HPD é \(1-\sqrt{\alpha}\). Tomando, por exemplo, \(\alpha=0.1\) temos que \(\sqrt{1-\alpha} \approx 0.95\) enquanto \(1-\sqrt{\alpha}\approx 0.68\). Por conter apenas os pontos com maior densidade, o HPD sempre terá comprimento menor ou igual a qualquer intervalo com mesma probabilidade.
 
@@ -2078,7 +2201,7 @@ e o intervalo HPD coincide com o I.C. frequentista
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-23-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-24-1} \end{center}
 
 \(~\)
 
@@ -2116,7 +2239,7 @@ de modo que o extremo superior do intervalo pode ser obtido fazendo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-24-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-25-1} \end{center}
 
 \(~\)
 
@@ -2191,7 +2314,7 @@ A seguir é apresentado um gráfico desse risco para alguns valores de \(n\) e �
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-25-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 \(~\)
 
@@ -2219,7 +2342,7 @@ Se rejeita-se \(H_0\) (aceita-se \(H_1\)) quando \(H_0\) é verdadeira, comete-s
 
 O conjunto \(\varphi^{-1}(1)=\{\boldsymbol{x} \in \mathfrak{X} :~ \varphi(\boldsymbol{x})=1\}\) recebe o nome de \textbf{região de rejeição} (ou \textbf{região crítica}). A \textbf{função de poder} do teste \(\varphi\) é
 \({\pi}_\varphi(\theta)\) \(=P\left(\varphi^{-1}(1)|\theta\right)\)
-\$=P\big(\textrm{'Rejeitar $H_0$'} \textbar{} \theta\big)\$.
+\(=P\big(\text{'Rejeitar $H_0$'} | \theta\big)\).
 
 \(~\)
 
@@ -2236,13 +2359,13 @@ Uma hipótese é dita \textbf{simples} se contém apenas um ponto, \(H:\theta=\t
 
 Um teste de hipótese ``ideal'' seria aquele que as probabilidades de erros tipo I e tipo II são iguais a zero, isto é, \(\pi_\varphi(\theta)=0\), \(\forall \theta \in \Theta_0\), e \(\pi_\varphi(\theta)=1\), \(\forall \theta \in \Theta_1\). Contudo, não é possível obter tais testes em geral.
 
-A solução usual é fixar um nível de significância \(\alpha\) e considerar apenas a classe de teste de nível \(\alpha\), isto é, testes tais que \(\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha\). Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder \({\pi}_\varphi(\theta)\) para \(\theta \in \Theta_1\). Um teste que satisfaz isso é chamado de \textbf{Teste Uniformememte Mais Poderoso} (\textbf{UMP}) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
+A solução usual é fixar um nível de significância \(\alpha\) e considerar apenas a classe de teste de nível \(\alpha\), isto é, testes tais que \(\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha\). Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder \({\pi}_\varphi(\theta)\) para \(\theta \in \Theta_1\). Um teste que satisfaz isso é chamado de \textbf{Teste Uniformemente Mais Poderoso} (\textbf{UMP}) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
 
 \(~\)
 
 \textbf{Exemplo.} Considere que \(\Theta=[0,1]\) e deseja-se testar \(H_0: \theta \leq 0.5\) contra \(H_1: \theta > 0.5\). O gráfico a seguir ilustra as funções poder dos quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que \(\alpha=0.5\), temos que o teste UMP de nível \(\alpha\) é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível \(\alpha\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-26-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 \(~\)
 
@@ -2278,7 +2401,7 @@ Note que \(0\leq \lambda(\boldsymbol x) \leq 1\), \(\forall ~\boldsymbol x \in \
 
 \(~\)
 
-Novamente, \(k\) pode ser escolhido de modo que o teste resultante seja de nível \(\alpha\), isto é, \(\displaystyle \sup_{\theta \in \Theta_0} P\left(\lambda(\boldsymbol x) \leq k \Big | \theta\right) \leq \alpha\). Do mesmo modo, se foi observado \(\boldsymbol X=\boldsymbol x_o\), um \emph{p-value} é \(p(\boldsymbol x_o)\) \(=\displaystyle \sup_{\theta \in \Theta_0}P\left(\left\{\boldsymbol x: \lambda(\boldsymbol x) \leq \lambda(\boldsymbol x_o)\right\}\big|\theta_0\right)\). Por fim, em casos onde é difícil fazer os cálculos de forma exata e o tamanho amostral \(n\) é razoavelmente grande, é possível usar a distribuição assintótica da RVG \(~-2\log \lambda(\boldsymbol x)\overset{\mathcal{D}}{~\longrightarrow~}\chi_d^2\), onde \(d=\dim(\Theta)-\dim(\Theta_0)\).
+Novamente, \(k\) pode ser escolhido de modo que o teste resultante seja de nível \(\alpha\), isto é, \(\displaystyle \sup_{\theta \in \Theta_0} P\left(\lambda(\boldsymbol x) \leq k \Big | \theta\right) \leq \alpha\). Do mesmo modo, se foi observado \(\boldsymbol X=\boldsymbol x_o\), um \emph{p-value} é \(p(\boldsymbol x_o)\) \(=\displaystyle \sup_{\theta \in \Theta_0}P\left(\left\{\boldsymbol x: \lambda(\boldsymbol x) \leq \lambda(\boldsymbol x_o)\right\}\big|\theta\right)\). Por fim, em casos onde é difícil fazer os cálculos de forma exata e o tamanho amostral \(n\) é razoavelmente grande, é possível usar a distribuição assintótica da RVG \(~-2\log \lambda(\boldsymbol x)\overset{\mathcal{D}}{~\longrightarrow~}\chi_d^2\), onde \(d=\dim(\Theta)-\dim(\Theta_0)\).
 
 \(~\)
 
@@ -2315,7 +2438,7 @@ Então, o risco de uma função de decisão \(\varphi\) é
 
 \(\rho(\varphi,P)\) \(=E\left[L(\varphi(\boldsymbol X),\theta)\right]\)
 \(= \pi~E\left[L(\varphi(\boldsymbol X),\theta)\big|\theta_0)\right] + (1-\pi)E\left[L(\varphi(\boldsymbol X),\theta)\big|\theta_1)\right]\)
-\(= a~\pi~P\left(\varphi(\boldsymbol x)=1\big|\theta_0\right) + b~(1-\pi)~P\left(\varphi(\boldsymbol x)=0\big|\theta_0\right)\)
+\(= a~\pi~P\left(\varphi(\boldsymbol x)=1\big|\theta_0\right) + b~(1-\pi)~P\left(\varphi(\boldsymbol x)=0\big|\theta_1\right)\)
 \(= a~\pi~\alpha_\varphi + b~(1-\pi)~\beta_\varphi\)
 
 Como o risco acima é uma combinação linear das probabilidades dos erro tipo I e tipo II, podemos aplicar o Lema de Neyman-Pearson e obter a função de decisão \(\varphi^*\) que minimiza o risco
@@ -2378,7 +2501,7 @@ Considere agora um caso mais geral, onde \(\Theta=\Theta_0 \dot{\cup} \Theta_1\)
 
 O risco posterior de cada uma das decisões é
 
-\(r_x(d_0,\theta)\) \(=a_0P(\theta\in\Theta_0|x)+b_1P(\Theta_1|x)\) \(=a_0P(\theta\in\Theta_0|x)+b_1\left[1- P(\Theta_1|x)\right]\) \(=a_0P(\theta\in\Theta_0|x)+b_1-b_1P(\Theta_0|x)\),
+\(r_x(d_0,\theta)\) \(=a_0P(\theta\in\Theta_0|x)+b_1P(\Theta_1|x)\) \(=a_0P(\theta\in\Theta_0|x)+b_1\left[1- P(\Theta_0|x)\right]\) \(=a_0P(\theta\in\Theta_0|x)+b_1-b_1P(\Theta_0|x)\),
 
 \(r_x(d_1,\theta)\) \(=a_1P(\theta\in\Theta_0|x)+b_0-b_0P(\Theta_0|x)\),
 
@@ -2563,7 +2686,7 @@ e, a priori, \(P(\theta \in \Theta_0)\) \(=P(\theta \leq \theta_0)\) \(= \Phi\le
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-30-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-31-1} \end{center}
 
 Nesse exemplo, é possível ver que tanto o Fator de Bayes quanto a probabilidade posterior da hipótese nula ``ordenam'' o espaço amostral, representado aqui pela estatística suficiente, \(\bar{X}\). Deste modo, quanto menores os valores dessas estatísticas de teste, mais desfavorável é o ponto amostral para a hipótese nula. Como visto anteriormente, as regras de decisão baseadas nessas estatísticas são equivalentes e, portanto, a ordenação do espaço amostral é a mesma.
 
@@ -2602,7 +2725,7 @@ O teste de Jeffreys (1961?) consiste em atribuir uma probabilidade positiva para
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-31-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-32-1} \end{center}
 
 \textbf{Exercício.} Calcule \(P(\theta=0|\boldsymbol X=\boldsymbol x)\).
 
@@ -2624,7 +2747,7 @@ A distribuição marginal de \(X\) é chamada \textbf{distribuição preditiva a
 
 Suponha agora que deseja-se testar \(H_0: \theta=\theta_0\) contra \(H_1:\theta\neq \theta_0\), com \(\theta_0=1/2\), utilizando o teste de Jeffreys. Desta forma, considere \(p_0=P(\theta=1/2)=1/2\) e sua \emph{priori de Jeffreys} é \(f_J(\theta)=p_0~\mathbb{I}(\theta=\theta_0) +(1-p_0)f_\beta(\theta)~\mathbb{I}(\theta\neq\theta_0)\), onde \(f_\beta\) é a densidade da \(Beta(a,b)\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-32-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-33-1} \end{center}
 
 A distribuição preditiva com relação a priori \(f_J\) é
 
@@ -2748,7 +2871,7 @@ Essa solução foi apresentada por Pereira e Stern em 1999. Suponha que o objeti
 
 Sem perda de generalidade, suponha que \(M_x \geq \theta_0\). Então, como a normal é simétrica em torno de \(M_x\), a região tangente é da forma \(T_x=[\theta_0,2M_x-\theta_0]\).
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-34-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-35-1} \end{center}
 
 Note que quanto mais próximo \(M_x\) está de \(\theta_0\), menor a região \(T_x\) e, portanto, maior o valor da evidência em favor de \(H_0\). O valor da evidência pode ser calculado por
 
@@ -2769,7 +2892,7 @@ de modo que, nesse exemplo, podemos escrever
 
 A seguir, são apresentados gráficos do \emph{e-value} e do \emph{p-value} como função de \(\bar{x}\) e do \emph{e-value} como função do \emph{p-value} usando da relação anterior.
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-35-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2795,7 +2918,7 @@ A seguir, são apresentados gráficos do \emph{e-value} e do \emph{p-value} como
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-36-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 Suponha que um estatístico frequentista decida rejeitar \(H_0\) se o \emph{p-value} for menor que \emph{0.05}. Para que a decisão baseada no \emph{e-value} concorde com o resultado frequentista (para esse particular exemplo), deve-se rejeitar a hipótese se o \emph{e-value} for menor que \emph{0.2}, aproximadamente. Quando a variância da priori ou o tamanho amostral aumentam, os valores dessas duas medidas se aproximam.
 
@@ -2897,7 +3020,7 @@ Recentemente, o \emph{p-value} e a utilização do famoso nível \(\alpha=0.05\)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-37-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 Note que todas as medidas de suporte da hipótese tendem a zero conforme aumenta o tamanho amostral. Isso indica que se \(|\bar{x}_n-\theta_0|=\varepsilon\) e for fixado um valor de corte para essas medidas que não dependa do tamanho amostral (por exemplo, o \(\alpha=0.05\) para o \emph{p-value}), existe um \(n^*\) tal que \(H_0\) será rejeitado para todo \(n\geq n^*\). No gráfico, a linha vertical tracejada indica o valor \(n^*\) para o \emph{p-value} considerando o corte \(\alpha=0.05\).
 
@@ -2992,7 +3115,1740 @@ Supondo novamente que foi observado \(\bar{x}=0.55\), o gráfico abaixo apresent
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-38-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-39-1} \end{center}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{Comp}{%
+\chapter{Métodos Computacionais}\label{Comp}}
+
+Como visto, a inferência Bayesiana é baseada na aplicação monótona do teorema de Bayes
+
+\(f(\theta|\boldsymbol x)=\dfrac{f(\boldsymbol x|\theta)f(\theta)}{\displaystyle\int_\Theta f(\boldsymbol x|\theta)f(\theta)d\theta}\) \(= c(\boldsymbol x) f(\boldsymbol x|\theta)f(\theta)\) \(\propto f(\boldsymbol x|\theta)f(\theta)\),
+
+e na obtenção de medidas resumo dessa distribuição, como \(E[\theta|\boldsymbol x]\), regiões HPD ou probabilidades a posteriori.
+
+A maior dificuldade na aplicação de Inferência Bayesiana está justamente no cálculo das integrais envolvidas, tanto no cálculo de \(f(\boldsymbol x)\) para a obtenção da posteriori, quanto na obtenção das medidas resumos citadas anteriormente. Devido a isso, a inferência bayesiana ganhou muito força com o avanço computacional das últimas décadas. A seguir, serão apresentados um breve resumo de alguns recursos que podem ser utilizados na prática Bayesiana.
+
+Muitos dos métodos descritos baseiam-se na \emph{Lei dos Grande Números} (LGN) e são uma bela aplicação de ideias frequentistas em um cenário controlado onde as suposições de \emph{i.i.d.} são satisfeitas.
+
+\(~\)
+
+\textbf{Lei \(\overset{\textbf{(Fraca)}}{\textbf{Forte}}\) dos Grande Números.} Seja \(X_1,X_2...\) uma sequência de v.a. i.i.d com \(E[X_1]=\mu\) e \(Var[X_1]=\sigma^2<\infty\), então
+
+\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n X_i ~~\underset{q.c.}{\overset{P}{\longrightarrow}}~~ E[X_i]=\mu\).
+
+\(~\)
+
+As integrais de interesse aqui serão escritas como o valor esperado de funções de variáveis aleatórias, isto é,
+
+\(\displaystyle \int g(x) dP(x) = E\left[g(x)\right]\).
+
+Deste modo, suponha que \(X_1,X_2...\) é uma sequência de v.a. i.i.d e \(g:\mathbb{R} \longrightarrow\mathbb{R}\) é uma função (mensurável) tal que \(Var\left[g(X_1)\right]<\infty\). Então, pela \emph{LGN},
+
+\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n g(X_i) ~\longrightarrow~ E\left[g(X_i)\right]\)
+
+\(~\)
+
+\hypertarget{muxe9todo-de-monte-carlo}{%
+\section{Método de Monte Carlo}\label{muxe9todo-de-monte-carlo}}
+
+Suponha que deseja-se calcular \(\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta=E\left[g(\theta|\boldsymbol x)\right]\) e é possível simular realizações \(\theta_1,...,\theta_m\) da distribuição de \(\theta |\boldsymbol X=\boldsymbol x\) , \(f(\theta | \boldsymbol x)\).
+
+Então, a integral acima pode ser aproximada por \(\displaystyle \dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\)
+
+\begin{itemize}
+\tightlist
+\item
+  A precisão da aproximação é usualmente estimada pelo erro padrão da estimativa\\
+  \(\displaystyle EP\left[\dfrac{1}{m}\sum_{i=1}^m g(X_i)\right]\)
+  \(\approx \displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[g(\theta_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^mg(\theta_j)\right]^2\right)}\)
+\end{itemize}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Suponha que deseja-se estimar o número \(\pi\) usando o método de Monte Carlo. Considere então que o v.a. \((X,Y)\) tem distribuição uniforme em um quadrado centrado na origem, \(\mathfrak{X}=[-1,1]\times[-1,1]\), e um círculo \(A\) de raio \(1\) inscrito nesse quadrado, \(x^2+y^2\leq 1.\) Como a distribuição é uniforme no quadrado, a probabilidade de escolher um ponto no círculo é\\
+\(P(A)\) \(=\dfrac{\text{área da círculo}}{\text{área do quadrado}}\) \(=\dfrac{\pi}{4}\) \(= \displaystyle\int_A f(x,y) dxdy\) \(= \displaystyle\int_{\mathfrak{X}} \mathbb{I}_A(x,y)~\dfrac{1}{4}~dxdy\) \(=E\left[\mathbb{I}_A(x,y)\right]~.\)\\
+Suponha que é possível gerar uma amostra \(\left\{(x_1,y_1),\ldots,(x_m,y_m)\right\}\) de \((X,Y)\), de modo que podemos aproximar o valor de \(\pi\) por\\
+\(\pi\) \(=4~P(A)\) \(=E\left[4~\mathbb{I}_A(x,y)\right]\) \(\displaystyle \approx \dfrac{1}{m}\sum_{i=1}^m 4~\mathbb{I}_A(x_i,y_i)\),\\
+e, denotando por \(\displaystyle t=\sum_{i=1}^m ~\mathbb{I}_A(x_i,y_i)\), o erro estimado é\\
+\(\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[4~\mathbb{I}(x_i,y_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^m 4~\mathbb{I}(x_i,y_i)\right]^2\right)}\)
+\(=\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{16}{m}~t-\left[\dfrac{4}{m}~t\right]^2\right)}\)
+\(= \displaystyle \sqrt{\dfrac{16}{m} \dfrac{t}{m}\left(1-\dfrac{t}{m}\right)}\)
+\(\leq \displaystyle \sqrt{\dfrac{16}{m}~\dfrac{1}{4}}\)
+\(= \dfrac{2}{\sqrt{m}}~.\)
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{M =}\StringTok{ }\DecValTok{1000} \CommentTok{# número de iterações}
+\NormalTok{df =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{t =} \DecValTok{1}\OperatorTok{:}\NormalTok{M, }\DataTypeTok{x =} \KeywordTok{runif}\NormalTok{(}\KeywordTok{length}\NormalTok{(t), }\DecValTok{-1}\NormalTok{, }\DecValTok{1}\NormalTok{), }
+            \DataTypeTok{y =} \KeywordTok{runif}\NormalTok{(}\KeywordTok{length}\NormalTok{(t), }\DecValTok{-1}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Circ=}\KeywordTok{ifelse}\NormalTok{(x}\OperatorTok{^}\DecValTok{2}\OperatorTok{+}\NormalTok{y}\OperatorTok{^}\DecValTok{2}\OperatorTok{<=}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }
+         \DataTypeTok{pi_est=}\KeywordTok{round}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\KeywordTok{cumsum}\NormalTok{(Circ)}\OperatorTok{/}\NormalTok{t,}\DecValTok{4}\NormalTok{),}
+         \DataTypeTok{erro=}\KeywordTok{round}\NormalTok{(}\KeywordTok{abs}\NormalTok{(pi}\OperatorTok{-}\NormalTok{pi_est),}\DecValTok{4}\NormalTok{),}
+         \DataTypeTok{erro_est=}\KeywordTok{round}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{((}\KeywordTok{cumsum}\NormalTok{(}\DecValTok{16}\OperatorTok{*}\NormalTok{Circ)}\OperatorTok{/}\NormalTok{t}\OperatorTok{-}\NormalTok{pi_est}\OperatorTok{^}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\NormalTok{t),}\DecValTok{4}\NormalTok{))}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.grid.major =} \KeywordTok{element_blank}\NormalTok{(),}
+            \DataTypeTok{panel.grid.minor =} \KeywordTok{element_blank}\NormalTok{(),}
+            \DataTypeTok{panel.border =} \KeywordTok{element_blank}\NormalTok{(),}
+            \DataTypeTok{panel.background =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{        }\NormalTok{ggforce}\OperatorTok{::}\KeywordTok{geom_circle}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{r =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_rect}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{xmin =} \DecValTok{-1}\NormalTok{, }\DataTypeTok{ymin =} \DecValTok{-1}\NormalTok{, }\DataTypeTok{xmax =} \DecValTok{1}\NormalTok{, }\DataTypeTok{ymax =} \DecValTok{1}\NormalTok{), }
+                  \DataTypeTok{color =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{        }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{color =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{colour =}\NormalTok{ Circ), }\DataTypeTok{size =} \DecValTok{3}\NormalTok{)}
+\NormalTok{p}\OperatorTok{+}\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Método de Monte-Carlo para a estimação do "}\NormalTok{,pi)), }\DataTypeTok{subtitle =} \KeywordTok{paste}\NormalTok{(}\StringTok{"m = "}\NormalTok{,df}\OperatorTok{$}\NormalTok{t[M],}\StringTok{"  ;   pi_est = 4*("}\NormalTok{,}\KeywordTok{cumsum}\NormalTok{(df}\OperatorTok{$}\NormalTok{Circ)[M],}\StringTok{"/"}\NormalTok{,df}\OperatorTok{$}\NormalTok{t[M],}\StringTok{") = "}\NormalTok{,df}\OperatorTok{$}\NormalTok{pi_est[M],}\StringTok{"  ;   erro = "}\NormalTok{,df}\OperatorTok{$}\NormalTok{erro[M],}\StringTok{"  ;   erro_est = "}\NormalTok{,df}\OperatorTok{$}\NormalTok{erro_est[M]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-40-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-42-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-44-1} \end{center}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 2.} Suponha que você não sabe que
+\[\displaystyle \int_0^1 x^3(1-x)^5e^xdx = 74046 - 27240e\approx0.0029928\]
+e deseja estimar o resultado usando o método de Monte Carlo. Assim, considere as duas propostas a seguir\\
+1. \(U \sim Unif (0,1)\) e a integral pode ser escrita como \(E\left[U^3(1-U)^5e^U\right]\);\\
+2. \(Y \sim Beta(4,6)\) de modo que\\
+\(\displaystyle \int_0^1 y^3(1-y)^5e^y dx\) \(=\beta(4,6)\displaystyle \int_0^1 e^y~~\frac{y^{4-1}(1-x)^{6-1}}{\beta(4,6)}~dx\) \(=\beta(4,6)E\left[e^Y\right]\).
+\end{quote}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-46-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-48-1} \end{center}
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 3. Região HPD} Suponha que \(\boldsymbol \theta=(\mu,\sigma^2) \sim \textit{Normal-Inv.Gama}(m,v,a,b)\) e deseja-se obter estimativas pontuais e por região para \(\boldsymbol \theta\).\\
+\(~\)\\
+Se não houver um simulador da distribuição Normal-Inv.Gamma diretamente, é possível gerar um ponto \(\boldsymbol \theta_i=(\mu_i,\sigma_i)\) tomando \({\sigma}_i^2 \sim \textit{Inv.Gama}(a,b)\) (ou \(\tau_i \sim \textit{Gama}(a,b)\) e fazer \({\sigma}_i^2=1/\tau_i\)) e \(\mu_i \sim \textit{Normal}(m,{\sigma}_i^2/v)\). Nesse exemplo é fácil simular uma amostra da distribuição posterior e é possível obter estimativas pontuais simplesmente obtendo estatística resumo da amostra simulada, como média, moda, mediana, variância e desvio padrão.\\
+\(~\)\\
+Para construir a região HPD, primeiramente note que\\
+\(R=\left\{\theta\in\Theta :~f(\theta | \boldsymbol x)\geq h)\right\}=\left\{\theta\in\Theta:~f(\boldsymbol x|\theta)f(\theta)\geq h^*=c\cdot h\right\}\),\\
+de modo que não é necessário conhecer a constante \(c=f(\boldsymbol x)\) para realizar essa tarefa. Como nesse exemplo a distribuição a posteriori é conhecida e fácil de ser simulada, considere o algorítmo a seguir para estimar a região HPD de probabilidade \(\gamma\).\\
+\(~\)\\
+1. Simular \(\theta_1,...,\theta_m\) de \(f(\theta|\boldsymbol x)\);\\
+2. Encontrar \(h\) tal que \(\displaystyle \dfrac{1}{m}\sum_{i=1}^m\mathbb{I}_{R}(\theta_i)=\dfrac{1}{m}\sum_{i=1}^m\mathbb{I}(f(\theta_i|\boldsymbol x)\geq h)\approx \gamma\)\\
+\(~~~\) i. Calcule \(f(\boldsymbol \theta_i|\boldsymbol x)\), \(i=1,\ldots,m\);\\
+\(~~~\) ii. Ordene esses valores e tome \(h\) como o percentil de ordem \(\gamma\);\\
+3. Fazer o gráfico da curva de nível \(f(\boldsymbol\theta |\boldsymbol x)=h\).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{a=}\DecValTok{7}\NormalTok{; b=}\DecValTok{7}\NormalTok{; m=}\DecValTok{0}\NormalTok{; v=}\FloatTok{0.5} \CommentTok{# parametros da posteriori}
+\NormalTok{M=}\DecValTok{10000} \CommentTok{# No. de simulações}
+\NormalTok{dpost=}\KeywordTok{Vectorize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(t1,t2)\{ }\CommentTok{#densidade posterior}
+\NormalTok{  extraDistr}\OperatorTok{::}\KeywordTok{dinvgamma}\NormalTok{(t2,a,b)}\OperatorTok{*}\KeywordTok{dnorm}\NormalTok{(t1,m,}\KeywordTok{sqrt}\NormalTok{(t2}\OperatorTok{/}\NormalTok{v))\})}
+\CommentTok{# simulações}
+\NormalTok{df =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{sigma2=}\NormalTok{extraDistr}\OperatorTok{::}\KeywordTok{rinvgamma}\NormalTok{(M,a,b)) }\OperatorTok{%>%}\StringTok{  }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{mu=}\KeywordTok{rnorm}\NormalTok{(M,m,}\KeywordTok{sqrt}\NormalTok{(sigma2}\OperatorTok{/}\NormalTok{v)))}
+\CommentTok{#summarytools::dfSummary(df, graph.magnif = 0.75, valid.col = FALSE, na.col = FALSE)}
+\NormalTok{summarytools}\OperatorTok{::}\KeywordTok{dfSummary}\NormalTok{(df, }\DataTypeTok{plain.ascii =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{style =} \StringTok{"grid"}\NormalTok{, }
+          \DataTypeTok{graph.magnif =} \FloatTok{0.75}\NormalTok{, }\DataTypeTok{valid.col =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{na.col =} \OtherTok{FALSE}\NormalTok{, }
+          \DataTypeTok{varnumbers =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{headings =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{tmp.img.dir =} \StringTok{"./tmp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.12\columnwidth}\raggedright
+Variable\strut
+\end{minipage} & \begin{minipage}[b]{0.26\columnwidth}\raggedright
+Stats / Values\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+Freqs (\% of Valid)\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+Graph\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.12\columnwidth}\raggedright
+sigma2\\
+{[}numeric{]}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+Mean (sd) : 1.2 (0.5)\\
+min \textless{} med \textless{} max:\\
+0.3 \textless{} 1.1 \textless{} 7.3\\
+IQR (CV) : 0.6 (0.4)\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+10000 distinct values\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\includegraphics{./tmp/ds0023.png}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.12\columnwidth}\raggedright
+mu\\
+{[}numeric{]}\strut
+\end{minipage} & \begin{minipage}[t]{0.26\columnwidth}\raggedright
+Mean (sd) : 0 (1.5)\\
+min \textless{} med \textless{} max:\\
+-7.3 \textless{} 0 \textless{} 6.1\\
+IQR (CV) : 2 (-253.7)\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+10000 distinct values\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+\includegraphics{./tmp/ds0024.png}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df =}\StringTok{ }\NormalTok{df }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{post=}\KeywordTok{dpost}\NormalTok{(mu,sigma2))}
+\CommentTok{# variáveis para os gráficos}
+\NormalTok{gama=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.99}\NormalTok{,}\FloatTok{0.95}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.1}\NormalTok{) }\CommentTok{# prob das regiões}
+\NormalTok{l=}\KeywordTok{quantile}\NormalTok{(df}\OperatorTok{$}\NormalTok{post,}\DecValTok{1}\OperatorTok{-}\NormalTok{gama)}
+\NormalTok{d=}\DecValTok{100}
+\NormalTok{x=}\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\OperatorTok{*}\NormalTok{extraDistr}\OperatorTok{::}\KeywordTok{qinvgamma}\NormalTok{(}\FloatTok{0.5}\NormalTok{,a,b)}\OperatorTok{/}\NormalTok{v,}\DecValTok{4}\OperatorTok{*}\NormalTok{extraDistr}\OperatorTok{::}\KeywordTok{qinvgamma}\NormalTok{(}\FloatTok{0.5}\NormalTok{,a,b)}\OperatorTok{/}\NormalTok{v,}\DataTypeTok{length.out =}\NormalTok{ d)}
+\NormalTok{y=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,extraDistr}\OperatorTok{::}\KeywordTok{qinvgamma}\NormalTok{(}\FloatTok{0.996}\NormalTok{,a,b),}\DataTypeTok{length.out =}\NormalTok{ d)}
+\NormalTok{z=}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{apply}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(}\KeywordTok{rep}\NormalTok{(x,d),}\KeywordTok{rep}\NormalTok{(y,}\DataTypeTok{each=}\NormalTok{d)),}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(t)\{}\KeywordTok{dpost}\NormalTok{(t[}\DecValTok{1}\NormalTok{],t[}\DecValTok{2}\NormalTok{])\}),}\DataTypeTok{ncol=}\NormalTok{d)}
+\CommentTok{# gráfico da posteriori}
+\CommentTok{# Create a function interpolating colors in the range of specified colors}
+\NormalTok{jet.colors <-}\StringTok{ }\KeywordTok{colorRampPalette}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{'green'}\NormalTok{,}\StringTok{'yellow'}\NormalTok{,}\StringTok{'orange'}\NormalTok{,}\StringTok{'red'}\NormalTok{,}\StringTok{'darkred'}\NormalTok{))}
+\CommentTok{# Generate the desired number of colors from this palette}
+\NormalTok{nbcol <-}\StringTok{ }\DecValTok{300}
+\NormalTok{cores <-}\StringTok{ }\KeywordTok{jet.colors}\NormalTok{(nbcol)}
+\CommentTok{# Compute the z-value at the facet centres}
+\NormalTok{zfacet <-}\StringTok{ }\NormalTok{z[}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\DecValTok{-1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{z[}\OperatorTok{-}\DecValTok{1}\NormalTok{, }\OperatorTok{-}\KeywordTok{ncol}\NormalTok{(z)] }\OperatorTok{+}\StringTok{ }
+\StringTok{          }\NormalTok{z[}\OperatorTok{-}\KeywordTok{nrow}\NormalTok{(z), }\DecValTok{-1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{z[}\OperatorTok{-}\KeywordTok{nrow}\NormalTok{(z), }\OperatorTok{-}\KeywordTok{ncol}\NormalTok{(z)]}
+\CommentTok{# Recode facet z-values into color indices}
+\NormalTok{facetcol <-}\StringTok{ }\KeywordTok{cut}\NormalTok{(zfacet, nbcol)}
+\KeywordTok{persp}\NormalTok{(x, y, z, }\DataTypeTok{col =}\NormalTok{ cores[facetcol],}\DataTypeTok{theta=}\DecValTok{150}\NormalTok{,}\DataTypeTok{phi=}\DecValTok{30}\NormalTok{,}\DataTypeTok{expand=}\FloatTok{0.75}\NormalTok{,}
+      \DataTypeTok{ticktype=}\StringTok{"simple"}\NormalTok{, }\DataTypeTok{xlab=}\KeywordTok{expression}\NormalTok{(mu), }\DataTypeTok{ylab=}\KeywordTok{expression}\NormalTok{(tau),}
+      \DataTypeTok{zlab=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{f}\NormalTok{(mu,tau)),}\DataTypeTok{axes=}\OtherTok{TRUE}\NormalTok{,}\DataTypeTok{border=}\OtherTok{NA}\NormalTok{,}\DataTypeTok{shade=}\FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-51-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# gráfico das regiões HPD de prob. gama=c(0.99,0.95,0.9,0.8,0.5,0.3,0.1)}
+\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{x1=}\KeywordTok{rep}\NormalTok{(x,d),}\DataTypeTok{y1=}\KeywordTok{rep}\NormalTok{(y,}\DataTypeTok{each=}\NormalTok{d),}\DataTypeTok{z1=}\KeywordTok{as.vector}\NormalTok{(z)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(z1) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{p=}\DecValTok{1}\OperatorTok{-}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(z1)}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(z1))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(x1,y1,}\DataTypeTok{z=}\NormalTok{z1,}\DataTypeTok{fill =}\NormalTok{ p)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_raster}\NormalTok{(}\DataTypeTok{interpolate =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\NormalTok{jcolors}\OperatorTok{::}\KeywordTok{scale_fill_jcolors_contin}\NormalTok{(}\StringTok{"pal3"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\CommentTok{#scale_fill_distiller(palette = "YlOrRd") +}
+\StringTok{  }\KeywordTok{geom_contour}\NormalTok{(}\DataTypeTok{breaks=}\NormalTok{l,}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(mu)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-53-1} \end{center}
+
+\(~\)
+
+\hypertarget{monte-carlo-com-amostragem-de-importuxe2ncia}{%
+\section{Monte Carlo com Amostragem de Importância}\label{monte-carlo-com-amostragem-de-importuxe2ncia}}
+
+Considere \(f(\theta|\boldsymbol x)\propto f(\boldsymbol x| \theta)f(\theta)\) e suponha que não se sabe simular observações desta distribuição mas tem-se interesse na quantidade \(E\left[g(\theta)|\boldsymbol x\right]=\displaystyle\int_\Theta g(\theta)f(\theta| \boldsymbol x)d\theta\).
+
+Suponha também que existe uma distribuição \(h(\theta)\) que seja uma aproximação para \(f(\theta|\boldsymbol x)\) (preferencialmente com caudas mais pesadas) da qual sabe-se simular. Então,
+
+\(E\left[g(\theta)| \boldsymbol x\right]\)
+\(=\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta\)
+\(=\dfrac{\displaystyle \int_\Theta g(\theta)f(\boldsymbol x|\theta)f(\theta)d\theta}{\displaystyle\int_\theta f(\boldsymbol x|\theta)f(\theta)d\theta}\)
+\(=\dfrac{\displaystyle \int g(\theta)\left(\frac{f(\boldsymbol x|\theta)f(\theta)}{h(\theta)}\right)h(\theta)d\theta}{\displaystyle\int\left(\frac{f(\boldsymbol x|\theta)f(\theta)}{h(\theta)}\right)h(\theta)d\theta}\) \(=\dfrac{\displaystyle\int g(\theta)w(\theta)h(\theta)d\theta}{\displaystyle\int w(\theta)h(\theta)d\theta}\)
+\(\approx \displaystyle\sum_{i=1}^m \dfrac{w_i}{\sum_{j=1}^mw_j}~g(\theta_i)\),
+
+onde \(w_i=w(\theta_i)=\dfrac{f(\boldsymbol x|\theta_i)f(\theta_i)}{h(\theta_i)}\).
+
+\(~\)
+
+\hypertarget{muxe9todo-de-rejeiuxe7uxe3o}{%
+\section{Método de Rejeição}\label{muxe9todo-de-rejeiuxe7uxe3o}}
+
+Considere novamente que o objetivo é simular observações de \(f(\theta|\boldsymbol x)\) mas não é possível fazer isso diretamente. Por outro lado, sabe-se simular dados de uma ``distribuição candidata'', \(h(\theta)\), tal que \(f(\theta|\boldsymbol x)\leq Mh(\theta)\), \(\forall \theta \in \Theta\) e para alguma constante \(M\). A ideia do método é rejeitar pontos gerados em regiões em que \(h\) atribui maior probabilidade que \(f\) com probabilidade \(1-\left[f(\theta|\boldsymbol x)~/~Mh(\theta)\right]\). Para que a afirmação anterior faça sentido, \(M\) deve ser tal que \(f(\theta|\boldsymbol x)~/~ Mh(\theta) \leq 1\), \(\forall \theta \in \Theta\), de modo que a melhor escolha para \(M\) é \(M^*=\underset{\Theta}{\sup}\dfrac{f(\theta|\boldsymbol x)}{h(\theta)}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(t)\{}\KeywordTok{dbeta}\NormalTok{(t,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)}\OperatorTok{/}\KeywordTok{dbeta}\NormalTok{(t,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)\}}
+\NormalTok{M =}\StringTok{ }\KeywordTok{optimize}\NormalTok{(r,}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{maximum =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{t =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{f=}\KeywordTok{dbeta}\NormalTok{(t,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{h=}\KeywordTok{dbeta}\NormalTok{(t,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+         \DataTypeTok{Mh=}\NormalTok{M}\OperatorTok{$}\NormalTok{objective}\OperatorTok{*}\KeywordTok{dbeta}\NormalTok{(t,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{f,}\DataTypeTok{colour=}\StringTok{"'Dist. Interesse' f"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{h,}\DataTypeTok{colour=}\StringTok{"'Dist. Candidata' h"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{Mh,}\DataTypeTok{colour=}\StringTok{"M.h"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.5}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.5}\NormalTok{,}\DataTypeTok{y=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{yend=}\NormalTok{M}\OperatorTok{$}\NormalTok{objective}\OperatorTok{*}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{col=}\StringTok{"darkgrey"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.5}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.5}\NormalTok{,}\DataTypeTok{y=}\DecValTok{0}\NormalTok{,}\DataTypeTok{yend=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.25}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.25}\NormalTok{,}\DataTypeTok{y=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.25}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{yend=}\NormalTok{M}\OperatorTok{$}\NormalTok{objective}\OperatorTok{*}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.25}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{col=}\StringTok{"darkgrey"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.25}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.25}\NormalTok{,}\DataTypeTok{y=}\DecValTok{0}\NormalTok{,}\DataTypeTok{yend=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.25}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.75}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.75}\NormalTok{,}\DataTypeTok{y=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.75}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{),}\DataTypeTok{yend=}\NormalTok{M}\OperatorTok{$}\NormalTok{objective}\OperatorTok{*}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.75}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DataTypeTok{col=}\StringTok{"darkgrey"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.75}\NormalTok{,}\DataTypeTok{xend=}\FloatTok{0.75}\NormalTok{,}\DataTypeTok{y=}\DecValTok{0}\NormalTok{,}\DataTypeTok{yend=}\KeywordTok{dbeta}\NormalTok{(}\FloatTok{0.75}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-54-1} \end{center}
+
+No exemplo apresentado no gráfico acima, suponha que foram gerados os ``candidatos'' \(0.25\), \(0.5\) e \(0.75\). É possível notar que o ponto \(0.75\) deve ser aceito, o ponto \(0.5\) dever ser aceito com probabilidade \(0.59\) e o ponto \(0.25\) deve ser aceito com probabilidade \(0.11\). A seguir é apresentado o pseudo-algorítmo do método da rejeição.
+
+\begin{quote}
+\textbf{Para} \(i=1,...,m\)\\
+\(~~~\) \textbf{Repita}\\
+\(~~~~~~\) Simule \(u\sim Unif(0,1)\)\\
+\(~~~~~~\) Simule \(\theta^\prime\) da distribuição candidata \(h(\theta)\)\\
+\(~~~\) \textbf{Até} \(u \leq \frac{f(\theta^\prime|\boldsymbol x)}{Mh(\theta^\prime)}\)\\
+\(~~~\) \(\theta_i=\theta^\prime\)\\
+\textbf{Fim\_Para}.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(t)\{(}\FloatTok{0.4}\OperatorTok{*}\KeywordTok{dnorm}\NormalTok{(t,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{+}\FloatTok{0.6}\OperatorTok{*}\KeywordTok{dt}\NormalTok{(t,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{))}\OperatorTok{/}\KeywordTok{dt}\NormalTok{(t,}\DecValTok{1}\NormalTok{)\}}
+\NormalTok{M =}\StringTok{ }\KeywordTok{optimize}\NormalTok{(r,}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{8}\NormalTok{,}\DecValTok{10}\NormalTok{),}\DataTypeTok{maximum =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{t =} \KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DataTypeTok{length.out =} \DecValTok{1000}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{f=}\NormalTok{(}\FloatTok{0.4}\OperatorTok{*}\KeywordTok{dnorm}\NormalTok{(t,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{+}\FloatTok{0.6}\OperatorTok{*}\KeywordTok{dt}\NormalTok{(t,}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{)), }\DataTypeTok{h=}\KeywordTok{dt}\NormalTok{(t,}\DecValTok{1}\NormalTok{),}
+         \DataTypeTok{Mh=}\NormalTok{M}\OperatorTok{$}\NormalTok{objective}\OperatorTok{*}\KeywordTok{dt}\NormalTok{(t,}\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{f,}\DataTypeTok{colour=}\StringTok{"'Dist. Interesse' f"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{h,}\DataTypeTok{colour=}\StringTok{"'Dist. Candidata' h"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{t,}\DataTypeTok{y=}\NormalTok{Mh,}\DataTypeTok{colour=}\StringTok{"M.h"}\NormalTok{),}\DataTypeTok{lwd=}\FloatTok{1.1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept=}\NormalTok{M}\OperatorTok{$}\NormalTok{maximum,}\DataTypeTok{linetype=}\StringTok{"longdash"}\NormalTok{,}\DataTypeTok{col=}\StringTok{"darkgrey"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour=}\StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-55-1} \end{center}
+
+A linha tracejada representa o ponto na escolha ótima para \(M\). Nesse exemplo é possível notar que na região central, onde é mais ``provável'' gerar observações de \(h\), a razão \(f(\theta|\boldsymbol x)~/~Mh(\theta)\) é menor que \(0.25\), de modo que há uma grande probabilidade de rejeição. Isso justifica a escolha de distribuições candidatas com caudas pesadas. No caso geral, a \emph{probabilidade de aceitação} do método é
+
+\(P\left(\left\{(U,\theta) : U \leq \dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}\right\}\right)\) \(=E_{U,\theta}\left[\mathbb{I}\left(U \leq \dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}\right)\right]\) \(=E_{\theta}\left[{E_{U|\theta}\left[\mathbb{I}\left(U \leq \dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}\right)\right]}\right]\)
+\(=E_{\theta}\left[P\left(U \leq \dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}~\Big|~\theta\right)\right]\)
+\(=E_\theta\left[\dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}\right]\) \(=\displaystyle\int_\Theta\dfrac{f(\theta|\boldsymbol x)}{Mh(\theta)}h(\theta)d\theta\) \(=\dfrac{1}{M}\displaystyle\int_\Theta f(\theta|\boldsymbol x)d\theta=\dfrac{1}{M}\).
+
+\(~\)
+
+No exemplo, a probabilidade de aceitação é \(1/2.434 = 0.41\), ou seja, mais de metade das observações geradas seriam descartadas.
+
+\(~\)
+
+\hypertarget{abc-aproximated-bayesian-computation}{%
+\section{ABC (Aproximated Bayesian Computation)}\label{abc-aproximated-bayesian-computation}}
+
+O método ABC é uma forma bastante simples de gerar pontos da distribuição a posteriori. Para sua utilização é suficiente saber gerar pontos da distribuição dos dados e da priori, de modo que a verossimilhança nem precisa ser analiticamente conhecida, fato esse que faz com que o método seja dito ser ``\emph{likelihood-free}''.
+
+Suponha o caso em que \(\boldsymbol X\) é \textbf{discreto} com função de verossimilhança \(f(\boldsymbol x|\theta)\), a priori é \(f(\theta)\) e foi observado \(\boldsymbol X=\boldsymbol x_o\). Abaixo é apresentado o \emph{pseudo-algorítmo} para simular observaçoes da posteriori \(f(\theta |\boldsymbol x_o)\) usando o método ABC.
+
+\begin{quote}
+\textbf{Algorítmo ABC (\(\boldsymbol X\) discreto)}\\
+\(~\)\\
+\textbf{Para} \(i=1,...,m\)\\
+\(~~~\) \textbf{Repita}\\
+\(~~~~~~\) Gere \(\theta^\prime\) de \(f(\theta)\) (\emph{priori})\\
+\(~~~~~~\) Gere \(\boldsymbol y = (y_1,...,y_n)\) de \(f(\boldsymbol x|\theta^\prime)\) (\emph{verossimilhança})\\
+\(~~~\) \textbf{Até} \(\boldsymbol y =\boldsymbol x_o\)\\
+\(~~~\) \(\theta_i = \theta^\prime\)\\
+\textbf{Fim\_Para}
+\end{quote}
+
+Para verificar que o método funciona no caso discreto, basta ver que
+
+\(f(\theta_i)\) \(=\displaystyle \sum_{y\in \mathfrak{X}}f(\theta_i)f(\boldsymbol y|\theta_i)\mathbb{I}(\boldsymbol y = \boldsymbol x_o)\)
+\(=f(\theta_i)f(\boldsymbol x_o|\theta_i)\)
+\(\propto f(\theta |\boldsymbol x_o)\).
+
+\(~\)
+
+No caso em que \(\boldsymbol X\) é contínuo, a probabilidade de gerar uma nova amostra \(\boldsymbol Y\) exatamente igual ao ponto observado \(\boldsymbol x_o\) é zero, \(P(\boldsymbol Y=\boldsymbol x_o)=0\). Nesse caso, o algorítmo é adaptado de modo que são aceitos pontos gerados com \(\Delta\left(\eta(\boldsymbol y),\eta(\boldsymbol x_o)\right) \leq \varepsilon\), onde \(\Delta\) é uma medida de distância conveniente, \(\eta\) é uma estatística (que pode não ser suficiente para \(\theta\)) e \(\varepsilon\) é uma constante de tolerância. O \emph{pseudo-algorítmo} é apresentado a seguir.
+
+\begin{quote}
+\textbf{Algorítmo ABC (\(\boldsymbol X\) qualquer)}\\
+\(~\)\\
+\textbf{Para} \(i=1,...,m\)\\
+\(~~~\) \textbf{Repita}\\
+\(~~~~~~\) Gere \(\theta^\prime\) de \(f(\theta)\)\\
+\(~~~~~~\) Gere \(\boldsymbol y\) de \(f(\boldsymbol x|\theta^\prime)\)\\
+\(~~~\) \textbf{Até} \(\Delta(\eta(\boldsymbol x),\eta(\boldsymbol y))\leq \varepsilon\)\\
+\(~~~\) \(\theta_i=\theta^\prime\)\\
+\textbf{Fim\_Para}
+\end{quote}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{mcmc---monte-carlo-via-cadeias-de-markov}{%
+\section{MCMC - Monte Carlo via Cadeias de Markov}\label{mcmc---monte-carlo-via-cadeias-de-markov}}
+
+\hypertarget{pequena-introduuxe7uxe3o-uxe0s-cadeias-de-markov}{%
+\subsection{Pequena Introdução às Cadeias de Markov}\label{pequena-introduuxe7uxe3o-uxe0s-cadeias-de-markov}}
+
+\textbf{Definição} Um \emph{processo estocástico} (em tempo discreto) é uma sequência de v.a. \(X_0,X_1,X_2,...\) indexada em \(\mathbb{N}\) (os indices podem indicar, por exemplo, tempo ou espaço ou ?). O conjunto \(E\) onde \(X_i\) toma valores é chamado de \emph{espaço de estados}.
+
+\(~\)
+
+\textbf{Definição} Um processo estocásticos é dito uma \emph{Cadeia de Markov} (em tempo discreto) se, \(\forall n \geq 1\) e \(\forall A \subseteq E\),
+
+\(P(X_{n+1}\in A|X_{n}=x_{n},...,X_1=x_1,X_0=x_0)\) \(=P(X_{n+1}\in A|X_{n}=x_{n})\)
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Suponha uma sequência de v.a. \(\left(X_n\right)_{n\geq 1}\) i.i.d. tais que \(p=P(X_1=1)=1-P(X_1=-1)\). Defina \(S_n=\displaystyle \sum_{i=1}^n X_i\) e \(X_0=c\). O processo estocástico \((S_n)_{n\geq 0}\) é uma Cadeia de Markov. De fato,\\
+\(P\left(S_n=s_n|S_{n-1}=s_{n-1},\ldots,S_0=s_0\right)\)
+\(=\displaystyle P\left(X_n+S_{n-1}=s_{n}|S_{n-1}=s_{n-1},\ldots,S_0=s_0\right)\)\\
+\(=\displaystyle P\left(X_n=s_n-s_{n-1}|S_{n-1}=s_{n-1},\ldots,S_0=s_0\right)\)
+\(=\displaystyle P\left(X_n=s_n-s_{n-1}|S_{n-1}=s_{n-1}\right)\)
+\(=\displaystyle P\left(S_n=s_n|S_{n-1}=s_{n-1}\right)\)
+\end{quote}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-56-1} \end{center}
+
+\(~\)
+
+Uma Cadeia de Markov é caracterizada pela distribuição do \emph{estado inicial} \(X_0\) e pelas \emph{probabilidades de transição} \(Q(x,A)=P(X_n\in A|X_{n-1}=x)\). Se \(Q(x,A)\) não depende de \(n\), dizemos que é \emph{homogênea no tempo}.
+
+\(~\)
+
+Para cada \(n\), a cadeia pode
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Continuar no estado anterior \(x\), ou seja, \(X_{n+1}=x,\) com probabilidade \(r(x),~ 0\leq r<1\), ou
+\item
+  Saltar para um estado \(y\) segundo uma função de densidade de probabilidade \(q(x,y)\), onde \(0<\displaystyle\int_E q(x,y)dy=1-r(x)\leq 1\) (sub-probabilidade). No caso discreto vamos considerar \(q(x,x)=0\).
+\end{enumerate}
+
+Assim, \(Q(x,A)\) \(=P(X_{n+1}\in A|X_{n}=x)\) \(=\displaystyle\int_A q(x,y)dy+r(x)\mathbb{I}_A(x)\).
+
+\(~\)
+
+Suponha que para um dado \(n\), \(X_n\) tem densidade \(\lambda\), isto é, \(P(X_n\in A)=\displaystyle\int_A\lambda(x)dx\). Então, a densidade de \(X_{n+1}\) pode ser obtida por
+
+\(P(X_{n+1}\in A)~\overset{\begin{array}{c} \text{regra da }\\ \text{prob. total}\end{array}}{=}~ \displaystyle\int_E \lambda(x)~Q(x,A)dx\) \(=\displaystyle\int_E\lambda(x)\left[\int_A q(x,y)dy+r(x)\mathbb{I}_A(x)\right]dx\) \(=\displaystyle\int_A\int_E\lambda(x)q(x,y)dxdy+\int_E\lambda(x)r(x)\mathbb{I}_A(x)dx\) \(=\displaystyle\int_A\int_E\lambda(x)q(x,y)dxdy+\int_A\lambda(y)r(y)dy\)
+\(=\displaystyle \int_A\underbrace{\left[\int_E\lambda(x)q(x,y)dx+\lambda(y)r(y)\right]}_{\text{f.d.p. de }X_{n+1}}dy\).
+
+Assim, a f.d.p de \(X_{n+1}\) é \(\lambda Q(y)= \displaystyle\int_E\lambda(x)q(x,y)dx+\lambda(y)r(y)\)
+
+\(~\)
+
+Dizemos que a densidade \(\pi\) é \emph{invariante} (\emph{estacionária}) se as densidades de \(X_{n}\) e \(X_{n+1}\) são iguais (q.c), isto é, \(\pi=\pi Q\) ou \(\int_A \pi(x)dx=\int_E \pi(x)Q(x,A)dx\).
+
+\(~\)
+
+\textbf{Resultado 1.} A afirmação anterior é equivalente a \(\int\pi(x)q(x,y)dx=(1-r(x))\pi(y)\).
+
+\(~\)
+
+\textbf{Resultado 2.} Se a função \(q(x,y)\) satisfaz a condição de \emph{reversibilidade}, isto é, \(\pi(x)q(x,y)=\pi(y)q(y,x)\), então \(\pi\) é uma \emph{medida invariante} da cadeia com função de transição \(Q(x,\cdot)\).
+
+\(~\)
+
+\begin{quote}
+\textbf{Demo 1.}\\
+\(\displaystyle\int_E\pi(x)q(x,y)dx\)
+\(=\displaystyle\int_E\pi(y)q(y,x)dx\) \(=\displaystyle\pi(y)\underbrace{\int_Eq(y,x)dx}_{1-r(y)}\)
+\end{quote}
+
+\(~\)
+
+\begin{quote}
+\textbf{Demo 2.}\\
+\(\displaystyle\int_E \pi(x)Q(x,A)dx\)
+\(=\displaystyle\int_E\pi(x)\left[\int_Aq(x,y)dy\right]dx+\int_E \pi(x) r(x)\mathbb{I}_A(x)dx\) \(=\displaystyle\int_A\left[\int_E\pi(x)q(x,y)dx\right]dy+\int_A\pi(x)r(x)dx\)
+\(=\displaystyle\int_A\left[\int_E\pi(y)q(y,x)dx\right]dy+\int_A\pi(y)r(y)dx\)
+\(=\displaystyle\int_A\pi(y)\left[\int_Eq(y,x)dx\right]dy+\int_A\pi(y)r(y)dy\)
+\(=\displaystyle\int_A\pi(y)\Big[1-r(y)\Big]dy+\int_A\pi(y)r(y)dy\)
+\(=\displaystyle\int_A\pi(y)\Big[1-r(y)+r(y)\Big]dy\)
+\(=\displaystyle\int_A\pi(y)dy\).
+\end{quote}
+
+\(~\)
+
+\hypertarget{o-algoritmo-de-metruxf3polis-hastings}{%
+\subsection{\texorpdfstring{O algoritmo de \textbf{Metrópolis-Hastings}}{O algoritmo de Metrópolis-Hastings}}\label{o-algoritmo-de-metruxf3polis-hastings}}
+
+Suponha que deseja-se gerar observações de \(\pi(\theta)\propto f(\boldsymbol x|\theta)f(\theta)\propto f(\theta|\boldsymbol x)\). Defina uma Cadeia de Markov \((Y_n)_{n\geq 1}\) tal que, no instante \(n\), \(Y_n=y\). No instante \(n+1\), um candidato \(z\) é gerado segundo a densidade \(q(y,z)\) e é aceito com probabilidade \(\alpha(y,z)\). Isto é, se \(Y_n=y\),
+
+\(Y_{n+1}=\left\{\begin{array}{rcl} z,& \text{com probabilidade}& \alpha(y,z)\\ y,& \text{com probabilidade}& 1-\alpha(y,z)\end{array}\right.\),
+
+em que \(\alpha\) é dado por
+
+\(\alpha(y,z)=\left\{\begin{array}{cl} min\left\{ \dfrac{\pi(z)q(z,y)}{\pi(y)q(y,z)}~,~1\right\},& \text{ se }~ \pi(y)q(y,z)>0\\ 1,& \text{c.c.}\end{array}\right.\)
+
+\(~\)
+
+\textbf{Resultado:} O algoritmo de M-H gera uma cadeia reversível com respeito a \(\pi\) e, portanto, tem \(\pi\) como distribuição estacionária.
+
+\(~\)
+
+\begin{quote}
+\textbf{Demo.} Deve-se mostrar que \(\pi(y)\underbrace{q(y,z)\alpha(y,z)}_{p(y,z)}=\pi(z)\underbrace{q(z,y)\alpha(z,y)}_{p(z,y)}~.\)\\
+Suponha \(\pi(z)q(z,y)\geq \pi(y)q(y,z)\) (o caso \(~\leq~\) é análogo)\\
+i) Se \(\pi(z)q(z,y)=0\Rightarrow\pi(y)q(y,z)=0\) e vale a reversibilidade.\\
+ii) \(\pi(z)q(z,y)>0 ~\Rightarrow~ \alpha(y,z)=1\) e \(\alpha(z,y)=\dfrac{\pi(y)q(y,z)}{\pi(z)q(z,y)}\).\\
+Nesse caso, \(\pi(z)q(z,y)\alpha(z,y)=\) \(\pi(z)q(z,y)\dfrac{\pi(y)q(y,z)}{\pi(z)q(z,y)}\) \(=\pi(y)q(y,z)\) \(=\pi(y)q(y,z)\alpha(y,z)\)
+\end{quote}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{amostrador-de-gibbs}{%
+\subsection{Amostrador de Gibbs}\label{amostrador-de-gibbs}}
+
+Suponha que a \(dim(\Theta)>1\) e deseja-se amostrar \(f(\boldsymbol \theta| \boldsymbol x)\) e suponha que é possível obter amostras das distribuições \emph{condicionais completas}, isto é, de \(f(\theta_i| \boldsymbol \theta_{-i},\boldsymbol x)\), onde \(\boldsymbol \theta_{-i}=(\theta_1,...,\theta_{i-1},\theta_{i+1},\theta_k)\). Note que \(f(\theta_i| \boldsymbol \theta_{-i},\boldsymbol x)\propto f(\boldsymbol \theta| \boldsymbol x)=f(\boldsymbol x|\boldsymbol \theta)f(\boldsymbol \theta)\). O método do \emph{Amostrador de Gibbs} é um caso particular do algorítmo de Metrópolis-Hastings em que é gerada uma cadeia \(\left(\boldsymbol \theta^{(n)}\right)_{n\geq 1}\) com \(\alpha(\boldsymbol{y},\boldsymbol{z})=1\) e \(q(\boldsymbol{y},z)=f\left({\theta}_j=\boldsymbol{z}~ \big|~ \boldsymbol{\theta}_{-j}=\boldsymbol{y},~\boldsymbol{x}\right)\), gerada segundo o algorítmo a seguir.
+
+\begin{quote}
+\textbf{Algorítmo - Amostrador de Gibbs}\\
+\(~\)\\
+\(~~~\) Defina uma ``chute inicial'' \(\boldsymbol \theta^{(0)}\) (por exemplo, gerado da priori \(f(\boldsymbol \theta)\) ou fixado)
+\textbf{Para} \(i=1,...,m\)\\
+\(~~~\) Gere \(\theta_1^{(i)}\) de \(f(\theta_1| \boldsymbol \theta_{-1}^{(i-1)},\boldsymbol x)\)\\
+\(~~~\) Gere \(\theta_2^{(i)}\) de \(f(\theta_2| \theta_{1}^{(i)}, \theta_{3}^{(i-1)},\ldots, \theta_{k}^{(i-1)} ,\boldsymbol x)\)\\
+\(~~~\) \(~~~\vdots\)\\
+\(~~~\) Gere \(\theta_{k-1}^{(i)}\) de \(f(\theta_{k-1}| \theta_{1}^{(i)},\ldots, \theta_{k-2}^{(i)}, \theta_{k}^{(i-1)} ,\boldsymbol x)\)\\
+\(~~~\) Gere \(\theta_k^{(i)}\) de \(f(\theta_k| \boldsymbol \theta_{-k}^{(i)} ,\boldsymbol x)\)\\
+\textbf{Fim\_Para}
+\end{quote}
+
+\(~\)
+
+Os métodos de Metropolis-Hastings descritos anteriormente geram observações de cadeias de Markov com distribuição estacionária que coincide com a posteriori. Contudo, deve-se tomar dois cuidados para a utilização de métodos de Monte Carlo usando essas observalções. O primeiro é que é necessário verificar se a cadeia já atingiu a estacionariedade. Essa verificação é feita, em geral, observando os gráficos das cadeias geradas e, em geral, as primeiras \(b\) observações são descartadas (\emph{burn-in}). Outra possibilidade para verificar a estacionariedade da cadeia, bem como a influência do chute inicial, é gerar duas ou mais cadeias iniciando-se de pontos distintos. Outro problema é a dependência entre as observações geradas. Para contornar esse problema, normalmente uma distância \(k\) entre as observações que serão consideradas na amostra final (\emph{thin}) e as observações entre estas são descartadas. Assim, a amostra final é formada pelos pontos \(\boldsymbol \theta_b, \boldsymbol \theta_{b+k}, \boldsymbol \theta_{b+2k},\ldots,\boldsymbol \theta_{M}\).
+
+\(~\)
+
+\begin{quote}
+\textbf{Exemplo 1.} Seja \(X_1,\ldots,X_n\) c.i.i.d. tais que \(X_i~|~\theta_1,\theta_2 \sim \textit{Exp}\left(\theta_1\theta_2\right)\) e considere que a priori \(\theta_i \sim \textit{Gama}\left(a_1,b_i\right)\), \(i=1,2\). Assim,\\
+\(f(\boldsymbol \theta|\boldsymbol x)\)
+\(\propto f(\boldsymbol x|\boldsymbol \theta) f(\theta_1)f(\theta_2)\)
+\(\propto (\theta_1 \theta_2)^n~e^{-\theta_1\theta_2\sum x_i}~~\theta_1^{a_1-1}e^{-b_1\theta_1}~~\theta_2^{a_2-1}e^{-b_2\theta_2}\)
+\(\propto \theta_1^{a_1+n-1}~\theta_2^{a_2+n-1}~~e^{-b_1\theta_1-b_2\theta_2 -\theta_1\theta_2\sum x_i}~.\)\\
+Essa distribuição não é conhecida mas é possível obter as distribuições condicionais completas\\
+\(f(\theta_i|\theta_j,\boldsymbol x) \propto \theta_i^{a_i+n-1}~e^{-\left[b_i \theta_j\sum x_i\right]\theta_i}\) \(\Longrightarrow \theta_i~|~\theta_j,\boldsymbol x \sim \textit{Gama}\left(a_i+n,b_i+\theta_j\sum x_i\right)\),\\
+e, portanto, é possível simular observações da posteriori usando o amostrador de Gibbs.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{a1=}\DecValTok{2}\NormalTok{; b1=}\DecValTok{3}
+\NormalTok{a2=}\DecValTok{3}\NormalTok{; b2=}\DecValTok{2}
+\NormalTok{n=}\DecValTok{8}
+\NormalTok{sumx=}\DecValTok{4}
+\NormalTok{M=}\DecValTok{10000}
+\NormalTok{theta1=}\KeywordTok{vector}\NormalTok{(}\DataTypeTok{length =}\NormalTok{ M)}
+\NormalTok{theta2=}\KeywordTok{vector}\NormalTok{(}\DataTypeTok{length =}\NormalTok{ M)}
+\NormalTok{theta1[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\DecValTok{4}
+\NormalTok{theta2[}\DecValTok{1}\NormalTok{] =}\StringTok{ }\DecValTok{4}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{M)\{}
+\NormalTok{  theta1[i] =}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DecValTok{1}\NormalTok{,a1}\OperatorTok{+}\NormalTok{n,b1}\OperatorTok{+}\NormalTok{theta2[i}\DecValTok{-1}\NormalTok{]}\OperatorTok{*}\NormalTok{sumx)}
+\NormalTok{  theta2[i] =}\StringTok{ }\KeywordTok{rgamma}\NormalTok{(}\DecValTok{1}\NormalTok{,a2}\OperatorTok{+}\NormalTok{n,b2}\OperatorTok{+}\NormalTok{theta1[i]}\OperatorTok{*}\NormalTok{sumx)}
+\NormalTok{\}}
+\NormalTok{m=}\DecValTok{200}\NormalTok{; sel=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,m)}
+\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{theta1=}\NormalTok{theta1[sel],}\DataTypeTok{theta2=}\NormalTok{theta2[sel],}\DataTypeTok{t=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(sel))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_path}\NormalTok{(}\KeywordTok{aes}\NormalTok{(theta1,theta2),}\DataTypeTok{col=}\StringTok{"darkgrey"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(theta1,theta2)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(theta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(theta[}\DecValTok{2}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-57-1} \end{center}
+
+A seguir, são apresentados os gráficos das cadeias geradas e das autocorrelações.
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-59-1} \end{center}
+
+Aparentemente, a cadeia converge rapidamente para a distribuição estacionária mas as autocorrelações entre observações consecutivas é alta. Assim, vamos descartar as 10 primeiras observações e considerar saltos de tamanho 5. Os novo gráficos são apresentados abaixo.
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-60-1} \end{center}
+
+Por fim são apresentadas as estimativas das densidades marginais e as regiões HPD.
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-61-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sel=}\KeywordTok{seq}\NormalTok{(}\DecValTok{10}\NormalTok{,M,}\DecValTok{5}\NormalTok{)}
+\NormalTok{dpost=}\KeywordTok{Vectorize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(t1,t2)\{ }\CommentTok{#densidade posterior}
+  \KeywordTok{exp}\NormalTok{((n}\DecValTok{-1}\NormalTok{)}\OperatorTok{*}\KeywordTok{log}\NormalTok{(t1}\OperatorTok{*}\NormalTok{t2)}\OperatorTok{+}\KeywordTok{dexp}\NormalTok{(sumx,t1}\OperatorTok{*}\NormalTok{t2,}\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{)}\OperatorTok{+}\KeywordTok{dgamma}\NormalTok{(t1,a1,b1,}\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{)}\OperatorTok{+}\KeywordTok{dgamma}\NormalTok{(t2,a2,b2,}\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{))\})}
+\CommentTok{# simulações}
+\NormalTok{df =}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{theta1=}\NormalTok{theta1[sel],}\DataTypeTok{theta2=}\NormalTok{theta2[sel]) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{      }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{post=}\KeywordTok{dpost}\NormalTok{(theta2,theta2))}
+\CommentTok{# variáveis para os gráficos}
+\NormalTok{gama=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.99}\NormalTok{,}\FloatTok{0.95}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.1}\NormalTok{) }\CommentTok{# prob das regiões}
+\NormalTok{l=}\KeywordTok{quantile}\NormalTok{(df}\OperatorTok{$}\NormalTok{post,}\DecValTok{1}\OperatorTok{-}\NormalTok{gama)}
+\NormalTok{d=}\DecValTok{1000}
+\NormalTok{x=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DataTypeTok{length.out =}\NormalTok{ d)}
+\NormalTok{y=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DataTypeTok{length.out =}\NormalTok{ d)}
+\NormalTok{z=}\KeywordTok{apply}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(}\KeywordTok{rep}\NormalTok{(x,d),}\KeywordTok{rep}\NormalTok{(y,}\DataTypeTok{each=}\NormalTok{d)),}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(t)\{}\KeywordTok{dpost}\NormalTok{(t[}\DecValTok{1}\NormalTok{],t[}\DecValTok{2}\NormalTok{])\})}
+\CommentTok{# gráfico das regiões HPD de prob. gama=c(0.99,0.95,0.9,0.8,0.5,0.3,0.1)}
+\KeywordTok{tibble}\NormalTok{(}\DataTypeTok{x1=}\KeywordTok{rep}\NormalTok{(x,d),}\DataTypeTok{y1=}\KeywordTok{rep}\NormalTok{(y,}\DataTypeTok{each=}\NormalTok{d),}\DataTypeTok{z1=}\NormalTok{z) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(z1) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{p=}\DecValTok{1}\OperatorTok{-}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(z1)}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(z1))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(x1,y1,}\DataTypeTok{z=}\NormalTok{z1,}\DataTypeTok{fill =}\NormalTok{ p)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_raster}\NormalTok{(}\DataTypeTok{interpolate =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\NormalTok{jcolors}\OperatorTok{::}\KeywordTok{scale_fill_jcolors_contin}\NormalTok{(}\StringTok{"pal3"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_contour}\NormalTok{(}\DataTypeTok{breaks=}\NormalTok{l,}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(theta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(theta[}\DecValTok{2}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-62-1} \end{center}
+
+\hypertarget{bibliotecas-de-r-para-inferuxeancia-bayesiana}{%
+\section{Bibliotecas de R para Inferência Bayesiana}\label{bibliotecas-de-r-para-inferuxeancia-bayesiana}}
+
+Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, \texttt{LaplacesDemon} e \texttt{Stan}, que são bibliotecas utilizadas para simular dados da posteriori. Para isso, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística.
+
+\hypertarget{o-modelo-de-regressuxe3o-linear}{%
+\subsection{O Modelo de Regressão Linear}\label{o-modelo-de-regressuxe3o-linear}}
+
+Considere \(n\) observações de uma variável aleatória de interesse (chamada de \emph{variável dependente} ou \emph{variável resposta}) e de \(p-1\) características associadas a cada uma dessas observações (chamadas de \emph{variáveis dependentes} ou \emph{explicativas} ou \emph{covariáveis}), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
+
+\[\boldsymbol{Y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}\]
+com
+\(~\boldsymbol{Y} = \left[\begin{array}{c} Y_1\\ Y_2\\ \vdots\\ Y_n \end{array}\right]~~\);
+\(~~~\boldsymbol{X} = \left[\begin{array}{cccc} 1 & x_{11} & \cdots & x_{1,p-1}\\ 1 & x_{21} & \cdots & x_{2,p-1}\\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_{n1} & \cdots & x_{n,p-1} \end{array}\right]~~\);
+\(~~~\boldsymbol{\beta} = \left[\begin{array}{c} \beta_1\\ \beta_2\\ \vdots\\ \beta_p \end{array}\right]~~\);
+\(~~~\boldsymbol{\epsilon} = \left[\begin{array}{c} \epsilon_1\\ \epsilon_2\\ \vdots\\ \epsilon_n \end{array}\right]~~\);
+\(~~~\boldsymbol{Z} = \left[\boldsymbol{X,Y}\right]~~\),
+
+em que \(\boldsymbol{Z}\) é a matriz de dados (observada), \(\boldsymbol{\beta}\) é o vetor de parâmetros e \(\epsilon_i\) é o \emph{``erro aleatório''} associado a \(i\)-ésima observação, supostamente c.i.i.d. com distribuição \(\textit{Normal}(0,\sigma^2)\).
+
+De forma equivalente, o modelo pode ser escrito como \(\boldsymbol{Y}|\boldsymbol{X},\boldsymbol{\beta},\sigma \sim \textit{Normal}_{~n}(\boldsymbol{\mu},\boldsymbol{\Sigma})\) com \(\boldsymbol{\mu}=\boldsymbol{X}\boldsymbol{\beta}\) e \(\boldsymbol{\Sigma}=\sigma^2\boldsymbol{I}\).
+
+\(~\)
+
+Na abordagem \emph{frequentista}, se \(\boldsymbol{X}'\boldsymbol{X}\) é não singular, os estimadores de máxima verossimilhança para os parâmetros \((\boldsymbol{\beta},\sigma^2)\) são, respectivamente, \(\hat{\boldsymbol{\beta}} = (\boldsymbol{X}'\boldsymbol{X})^{-1}\boldsymbol{X}'\boldsymbol{Y}\) e \(s^2 = \dfrac{(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})'(\boldsymbol{Y}-\boldsymbol{X}\hat{\boldsymbol{\beta}})}{n-p}\).
+
+\(~\)
+
+\textbf{Exemplo.} Vamos considerar um simples exemplo de regressão linear, com apenas uma covariável. Para isso, considere as variáveis \texttt{speed} e \texttt{dist} do conjunto de dados \texttt{cars}, disponível no R. Um ajuste usando a abordagem frequentista é apresentado a seguir.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# a boring regression}
+\NormalTok{fit =}\StringTok{ }\KeywordTok{lm}\NormalTok{(speed }\OperatorTok{~}\StringTok{ }\DecValTok{1} \OperatorTok{+}\StringTok{ }\NormalTok{dist, }\DataTypeTok{data =}\NormalTok{ cars)}
+\KeywordTok{coef}\NormalTok{(}\KeywordTok{summary}\NormalTok{(fit)) }\CommentTok{# estimativa dos betas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Estimate Std. Error  t value     Pr(>|t|)
+## (Intercept) 8.2839056 0.87438449 9.473985 1.440974e-12
+## dist        0.1655676 0.01749448 9.463990 1.489836e-12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\KeywordTok{summary}\NormalTok{(fit)}\OperatorTok{$}\NormalTok{sigma)}\OperatorTok{**}\DecValTok{2} \CommentTok{# estimativa do sigma^2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9.958776
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(cars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{speed, }\DataTypeTok{x=}\NormalTok{dist)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\NormalTok{lm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-64-1} \end{center}
+
+\(~\)
+
+\(~\)
+
+Sob a abordagem \emph{bayesiana}, a distribuição Normal-Inversa Gama (\emph{NIG}) é uma priori conjugada para \(\boldsymbol{\theta} = (\boldsymbol{\beta},\sigma^2)\) neste modelo. Assim,
+\[(\boldsymbol{\beta},\sigma^2) \sim \textit{NIG}(\boldsymbol{\beta}_0, \boldsymbol{V}_0, a_0, b_0)~.\]
+
+Isto é,
+
+\(\boldsymbol{\beta} | \sigma^2 \sim Normal_p\left(\boldsymbol{\beta}_0,\sigma^2\boldsymbol{V}_0\right)~~\); \(~~ \sigma^2 \sim InvGamma\left(a_0,b_0\right)\)
+
+ou, equivalentemente,
+
+\(\boldsymbol{\beta} \sim T_p\left(2a_0; \boldsymbol{\beta}_0,\frac{b_0 \boldsymbol{V}_0}{a_0}\right) ~~\); \(~~ \sigma^2 | \boldsymbol{\beta} \sim InvGamma\left(a_0 + \frac{p}{2},b_0 + \frac{\left(\boldsymbol{\beta}-\boldsymbol{\beta}_0\right)^T \boldsymbol{V}_0^{-1} \left(\boldsymbol{\beta}-\boldsymbol{\beta}_0\right) }{2}\right)~~\),
+
+com \(\boldsymbol{\beta}_0 \in \mathbb{R}^p\), \(\boldsymbol{V}_0\) matriz simétrica positiva definida e \(a_0, b_0 \in \mathbb{R}_+\).
+
+\(~\)
+
+Então:
+\[(\boldsymbol{\beta},\sigma^2)|\boldsymbol{Z} \sim \textit{NIG}(\boldsymbol{\beta}_1, \boldsymbol{V}_1, a_1, b_1)\]
+
+com
+\(\boldsymbol{\beta}_1 = \boldsymbol{V}_1\left(\boldsymbol{V}_0^{-1}\boldsymbol{\beta}_0 + \boldsymbol{X}^T\boldsymbol{X} \hat{\boldsymbol{\beta}}\right) ~~\); \(~~ \boldsymbol{V}_1 = \left(\boldsymbol{V}_0^{-1} + \boldsymbol{X}^T\boldsymbol{X}\right)^{-1}~~\);
+\(a_1 = a_0+\frac{n}{2} ~~\); \(~~ b_1 = b_0 + \frac{\boldsymbol{\beta}_0^T\boldsymbol{V}_0^{-1}\boldsymbol{\beta}_0 + \boldsymbol{Y}^T\boldsymbol{Y} - \boldsymbol{\beta}_1^T\boldsymbol{V}_1^{-1}\boldsymbol{\beta}_1}{2}\).
+
+\(~\)
+
+\textbf{Observação.} Uma das maneiras de representar falta de informação nesse contexto é utilizar a priori de Jeffreys, \(f(\boldsymbol \theta) = \Big|~\mathcal{I}(\boldsymbol \theta)~\Big|^{1/2} \propto 1/\sigma^2\). Nesse caso, distribuição a posteriori é \[(\boldsymbol{\beta},\sigma^2)\Big|\boldsymbol{Z} \sim \textit{NIG}\left(\hat{\boldsymbol{\beta}}, \left(\boldsymbol{X}^T\boldsymbol{X}\right)^{-1}, \dfrac{n-p}{2}, \dfrac{(n-p)s^2}{2}\right)~.\]
+
+\(~\)
+
+\(~\)
+
+\textbf{Exemplo.} Considere que, a priori, \((\boldsymbol{\beta},\sigma^2) \sim \textit{NIG}\left(\boldsymbol{\beta}_0, \boldsymbol{V}_0, a_0, b_0\right)\), com \(~\boldsymbol{\beta}_0 = \left[\begin{array}{c} 0\\0\end{array}\right]~\);
+\(~\boldsymbol{V}_0 = \left[\begin{array}{cc} 100 & 0\\ 0 & 100\end{array}\right] ~\); \(~a_0 = 3~\); \(~b_0 = 100~\).
+
+A seguir são apresentadas as distribuições marginais dos parâmetros, a distribuição marginal e as regiões HPD bivariadas do parâmetro \(\boldsymbol{\beta}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{dist   }\CommentTok{# variável resposta}
+\NormalTok{y =}\StringTok{ }\NormalTok{cars}\OperatorTok{$}\NormalTok{speed  }\CommentTok{# variável explicativa}
+\NormalTok{n =}\StringTok{ }\KeywordTok{length}\NormalTok{(x)   }\CommentTok{# n=50}
+\NormalTok{X =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}\DecValTok{1}\NormalTok{,x)  }\CommentTok{# Matrix de planejamento}
+\NormalTok{p =}\StringTok{ }\KeywordTok{ncol}\NormalTok{(X)     }\CommentTok{# p=2}
+\NormalTok{g =}\StringTok{ }\NormalTok{n}\OperatorTok{-}\NormalTok{p         }\CommentTok{# gl=48}
+\NormalTok{beta_est =}\StringTok{ }\KeywordTok{solve}\NormalTok{(}\KeywordTok{t}\NormalTok{(X)}\OperatorTok{%*%}\NormalTok{X)}\OperatorTok{%*%}\NormalTok{(}\KeywordTok{t}\NormalTok{(X)}\OperatorTok{%*%}\NormalTok{y) }\CommentTok{# (-17.6, 3.9)}
+\NormalTok{sigma_est =}
+\StringTok{  }\KeywordTok{as.double}\NormalTok{(}\KeywordTok{t}\NormalTok{(y}\OperatorTok{-}\NormalTok{X}\OperatorTok{%*%}\NormalTok{beta_est)}\OperatorTok{%*%}\NormalTok{(y}\OperatorTok{-}\NormalTok{X}\OperatorTok{%*%}\NormalTok{beta_est)}\OperatorTok{/}\NormalTok{(n}\OperatorTok{-}\NormalTok{p)) }\CommentTok{#236.5}
+\NormalTok{beta0 =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)                     }\CommentTok{# média priori betas}
+\NormalTok{V0 =}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{) }\CommentTok{# matriz de escala beta}
+\NormalTok{a0 =}\StringTok{ }\DecValTok{3}                             \CommentTok{# priori sigma}
+\NormalTok{b0 =}\StringTok{ }\DecValTok{100}                           \CommentTok{# priori sigma}
+\CommentTok{# parâmetros da posteriori}
+\NormalTok{V1 =}\StringTok{ }\KeywordTok{solve}\NormalTok{(}\KeywordTok{solve}\NormalTok{(V0) }\OperatorTok{+}\StringTok{ }\KeywordTok{t}\NormalTok{(X)}\OperatorTok{%*%}\NormalTok{X)}
+\NormalTok{beta1 =}\StringTok{ }\NormalTok{V1}\OperatorTok{%*%}\NormalTok{(}\KeywordTok{solve}\NormalTok{(V0)}\OperatorTok{%*%}\NormalTok{beta0 }\OperatorTok{+}\StringTok{ }\KeywordTok{t}\NormalTok{(X)}\OperatorTok{%*%}\NormalTok{X}\OperatorTok{%*%}\NormalTok{beta_est)}
+\NormalTok{a1 =}\StringTok{ }\NormalTok{a0 }\OperatorTok{+}\StringTok{ }\NormalTok{n}\OperatorTok{/}\DecValTok{2}
+\NormalTok{b1 =}\StringTok{ }\KeywordTok{as.double}\NormalTok{(b0 }\OperatorTok{+}\StringTok{ }\NormalTok{(}\KeywordTok{t}\NormalTok{(beta0)}\OperatorTok{%*%}\KeywordTok{solve}\NormalTok{(V0)}\OperatorTok{%*%}\NormalTok{beta0 }\OperatorTok{+}\StringTok{ }\KeywordTok{t}\NormalTok{(y)}\OperatorTok{%*%}\NormalTok{y }\OperatorTok{-}\StringTok{ }\KeywordTok{t}\NormalTok{(beta1)}\OperatorTok{%*%}\KeywordTok{solve}\NormalTok{(V1)}\OperatorTok{%*%}\NormalTok{beta1)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\NormalTok{V =}\StringTok{ }\NormalTok{b1}\OperatorTok{*}\NormalTok{V1}\OperatorTok{/}\NormalTok{a1 }\CommentTok{# Matrix de escala da posteriori marginal de beta}
+
+\NormalTok{beta1lim=}\KeywordTok{c}\NormalTok{(beta1[}\DecValTok{1}\NormalTok{]}\OperatorTok{-}\KeywordTok{qt}\NormalTok{(}\FloatTok{0.9999}\NormalTok{,}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]),beta1[}\DecValTok{1}\NormalTok{]}\OperatorTok{+}\KeywordTok{qt}\NormalTok{(}\FloatTok{0.9999}\NormalTok{,}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]))}
+\NormalTok{beta2lim=}\KeywordTok{c}\NormalTok{(beta1[}\DecValTok{2}\NormalTok{]}\OperatorTok{-}\KeywordTok{qt}\NormalTok{(}\FloatTok{0.9999}\NormalTok{,}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]),beta1[}\DecValTok{2}\NormalTok{]}\OperatorTok{+}\KeywordTok{qt}\NormalTok{(}\FloatTok{0.9999}\NormalTok{,}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]))}
+\NormalTok{sigma2lim=}\KeywordTok{c}\NormalTok{(extraDistr}\OperatorTok{::}\KeywordTok{qinvgamma}\NormalTok{(}\FloatTok{0.0001}\NormalTok{,a1,b1),extraDistr}\OperatorTok{::}\KeywordTok{qinvgamma}\NormalTok{(}\FloatTok{0.9999}\NormalTok{,a1,b1))}
+
+\NormalTok{b1plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{beta1lim), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x), }\DataTypeTok{colour =} \StringTok{"0.Posterior"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt,}\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{1}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{)}
+\NormalTok{b2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{beta2lim), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x), }\DataTypeTok{colour =} \StringTok{"0.Posterior"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{2}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{)}
+\NormalTok{s2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x=}\NormalTok{sigma2lim),}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{x), }\DataTypeTok{colour =} \StringTok{"0.Posterior"}\NormalTok{)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ extraDistr}\OperatorTok{::}\NormalTok{dinvgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{alpha =}\NormalTok{ a1, }\DataTypeTok{beta =}\NormalTok{ b1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{)}
+\KeywordTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-65-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# posteriori marginal bivariada dos betas}
+\NormalTok{posterior <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(theta0,theta1) \{ }\KeywordTok{apply}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(theta0,theta1),}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(w)\{ mnormt}\OperatorTok{::}\KeywordTok{dmt}\NormalTok{(w, }\DataTypeTok{mean=}\KeywordTok{c}\NormalTok{(beta1), }\DataTypeTok{S=}\NormalTok{V, }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)  \}) \}}
+\CommentTok{# Gráfico da posteriori marginal bivariada dos betas}
+\NormalTok{grx <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(beta1lim[}\DecValTok{1}\NormalTok{], beta1lim[}\DecValTok{2}\NormalTok{],}\DataTypeTok{length.out=}\DecValTok{200}\NormalTok{)}
+\NormalTok{gry <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(beta2lim[}\DecValTok{1}\NormalTok{], beta2lim[}\DecValTok{2}\NormalTok{],}\DataTypeTok{length.out=}\DecValTok{200}\NormalTok{)}
+\NormalTok{z1 <-}\StringTok{ }\KeywordTok{outer}\NormalTok{(grx,gry,posterior)}
+\CommentTok{#persp(grx,gry,z1)}
+\NormalTok{plotly}\OperatorTok{::}\KeywordTok{plot_ly}\NormalTok{(}\DataTypeTok{alpha=}\FloatTok{0.1}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{plotly}\OperatorTok{::}\KeywordTok{add_surface}\NormalTok{(}\DataTypeTok{x=}\NormalTok{grx, }\DataTypeTok{y=}\NormalTok{gry, }\DataTypeTok{z=}\KeywordTok{t}\NormalTok{(z1), }\DataTypeTok{colorscale =} \KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\StringTok{'#BA52ED'}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\StringTok{'#FCB040'}\NormalTok{)), }\DataTypeTok{showscale =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-66-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Curvas de Probabilidade}
+\NormalTok{l =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{0.95}\NormalTok{,}\FloatTok{0.99}\NormalTok{)}
+\NormalTok{z1v =}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{as.vector}\NormalTok{(z1),}\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{v1 <-}\StringTok{ }\NormalTok{z1v}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(z1v)}
+\NormalTok{a=}\DecValTok{0}\NormalTok{; j=}\DecValTok{1}\NormalTok{; l1=}\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(v1)) \{}
+\NormalTok{  a <-}\StringTok{ }\NormalTok{a}\OperatorTok{+}\NormalTok{v1[i]}
+  \ControlFlowTok{if}\NormalTok{(j}\OperatorTok{<=}\KeywordTok{length}\NormalTok{(l) }\OperatorTok{&}\StringTok{ }\NormalTok{a}\OperatorTok{>}\NormalTok{l[j]) \{}
+\NormalTok{    l1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(l1,z1v[i}\DecValTok{-1}\NormalTok{])}
+\NormalTok{    j <-}\StringTok{ }\NormalTok{j}\OperatorTok{+}\DecValTok{1}
+\NormalTok{  \}}
+\NormalTok{\}}
+\KeywordTok{contour}\NormalTok{(grx,gry,z1,}\DataTypeTok{col=}\KeywordTok{colors}\NormalTok{()[}\DecValTok{455}\NormalTok{],}\DataTypeTok{main=}\StringTok{"Regiões HPD para os Betas"}\NormalTok{,}\DataTypeTok{xlab=}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{]),}\DataTypeTok{ylab=}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{]),}\DataTypeTok{levels=}\NormalTok{l1,}\DataTypeTok{labels=}\NormalTok{l)}
+\KeywordTok{points}\NormalTok{(beta1[}\DecValTok{1}\NormalTok{],beta1[}\DecValTok{2}\NormalTok{],}\DataTypeTok{col=}\StringTok{"darkred"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-67-1} \end{center}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{laplaces-demon}{%
+\subsection{Laplace's Demon}\label{laplaces-demon}}
+
+LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementados de MCMC, permitindo fazer Inferência Bayesiana aproximada. Os algoritimos de MCMC disponíveis são
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Automated Factor Slice Sampler (AFSS)
+\item
+  Adaptive Directional Metropolis-within-Gibbs (ADMG)
+\item
+  Adaptive Griddy-Gibbs (AGG)
+\item
+  Adaptive Hamiltonian Monte Carlo (AHMC)
+\item
+  Adaptive Metropolis (AM)
+\item
+  Adaptive Metropolis-within-Gibbs (AMWG)
+\item
+  Adaptive-Mixture Metropolis (AMM)
+\item
+  Affine-Invariant Ensemble Sampler (AIES)
+\item
+  Componentwise Hit-And-Run Metropolis (CHARM)
+\item
+  Delayed Rejection Adaptive Metropolis (DRAM)
+\item
+  Delayed Rejection Metropolis (DRM)
+\item
+  Differential Evolution Markov Chain (DEMC)
+\item
+  Elliptical Slice Sampler (ESS)
+\item
+  Gibbs Sampler (Gibbs)
+\item
+  Griddy-Gibbs (GG)
+\item
+  Hamiltonian Monte Carlo (HMC)
+\item
+  Hamiltonian Monte Carlo with Dual-Averaging (HMCDA)
+\item
+  Hit-And-Run Metropolis (HARM)
+\item
+  Independence Metropolis (IM)
+\item
+  Interchain Adaptation (INCA)
+\item
+  Metropolis-Adjusted Langevin Algorithm (MALA)
+\item
+  Metropolis-Coupled Markov Chain Monte Carlo (MCMCMC)
+\item
+  Metropolis-within-Gibbs (MWG)
+\item
+  Multiple-Try Metropolis (MTM)
+\item
+  No-U-Turn Sampler (NUTS)
+\item
+  Oblique Hyperrectangle Slice Sampler (OHSS)
+\item
+  Preconditioned Crank-Nicolson (pCN)
+\item
+  Random Dive Metropolis-Hastings (RDMH)
+\item
+  Random-Walk Metropolis (RWM)
+\item
+  Reflective Slice Sampler (RSS)
+\item
+  Refractive Sampler (Refractive)
+\item
+  Reversible-Jump (RJ)
+\item
+  Robust Adaptive Metropolis (RAM)
+\item
+  Sequential Adaptive Metropolis-within-Gibbs (SAMWG)
+\item
+  Sequential Metropolis-within-Gibbs (SMWG)
+\item
+  Slice Sampler (Slice)
+\item
+  Stochastic Gradient Langevin Dynamics (SGLD)
+\item
+  Tempered Hamiltonian Monte Carlo (THMC)
+\item
+  t-walk (twalk)
+\item
+  Univariate Eigenvector Slice Sampler (UESS)
+\item
+  Updating Sequential Adaptive Metropolis-within-Gibbs (USAMWG)
+\item
+  Updating Sequential Metropolis-within-Gibbs (USMWG)
+\end{enumerate}
+
+\url{https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/BayesianInference.pdf}
+
+\url{https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/LaplacesDemonTutorial.pdf}
+
+\url{https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/Examples.pdf}
+
+\url{https://cran.r-project.org/web/packages/LaplacesDemon/LaplacesDemon.pdf}
+
+\(~\)
+
+\begin{itemize}
+\tightlist
+\item
+  Especificação do modelo
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(LaplacesDemon)}
+
+\NormalTok{parm.names=}\KeywordTok{as.parm.names}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{beta=}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,p), }\DataTypeTok{sigma2=}\DecValTok{0}\NormalTok{))}
+\NormalTok{pos.beta=}\KeywordTok{grep}\NormalTok{(}\StringTok{"beta"}\NormalTok{, parm.names)}
+\NormalTok{pos.sigma=}\KeywordTok{grep}\NormalTok{(}\StringTok{"sigma2"}\NormalTok{, parm.names)}
+
+\NormalTok{MyData <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{J=}\NormalTok{p, }\DataTypeTok{X=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{y, }\DataTypeTok{mon.names=}\StringTok{"LP"}\NormalTok{,}
+  \DataTypeTok{parm.names=}\NormalTok{parm.names,}\DataTypeTok{pos.beta=}\NormalTok{pos.beta,}\DataTypeTok{pos.sigma=}\NormalTok{pos.sigma)}
+
+\NormalTok{Model <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(parm, Data)}
+\NormalTok{\{}
+  \CommentTok{### Parameters}
+\NormalTok{  beta <-}\StringTok{ }\NormalTok{parm[Data}\OperatorTok{$}\NormalTok{pos.beta]}
+\NormalTok{  sigma2 <-}\StringTok{ }\KeywordTok{interval}\NormalTok{(parm[Data}\OperatorTok{$}\NormalTok{pos.sigma], }\FloatTok{1e-100}\NormalTok{, }\OtherTok{Inf}\NormalTok{)}
+\NormalTok{  parm[Data}\OperatorTok{$}\NormalTok{pos.sigma] <-}\StringTok{ }\NormalTok{sigma2}
+  \CommentTok{### Log-Prior}
+\NormalTok{  sigma.prior <-}\StringTok{ }\KeywordTok{dinvgamma}\NormalTok{(sigma2, a0, b0, }\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  beta.prior <-}\StringTok{ }\KeywordTok{dmvn}\NormalTok{(beta, beta0, sigma2}\OperatorTok{*}\NormalTok{V0, }\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{)}
+  \CommentTok{### Log-Likelihood}
+\NormalTok{  mu <-}\StringTok{ }\KeywordTok{tcrossprod}\NormalTok{(Data}\OperatorTok{$}\NormalTok{X, }\KeywordTok{t}\NormalTok{(beta))}
+\NormalTok{  LL <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{dnormv}\NormalTok{(Data}\OperatorTok{$}\NormalTok{y, mu, sigma2, }\DataTypeTok{log=}\OtherTok{TRUE}\NormalTok{))}
+  \CommentTok{### Log-Posterior}
+\NormalTok{  LP <-}\StringTok{ }\NormalTok{LL }\OperatorTok{+}\StringTok{ }\NormalTok{beta.prior }\OperatorTok{+}\StringTok{ }\NormalTok{sigma.prior}
+\NormalTok{  Modelout <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{LP=}\NormalTok{LP, }\DataTypeTok{Dev=}\OperatorTok{-}\DecValTok{2}\OperatorTok{*}\NormalTok{LL, }\DataTypeTok{Monitor=}\NormalTok{LP,}
+                   \DataTypeTok{yhat=}\KeywordTok{rnorm}\NormalTok{(}\KeywordTok{length}\NormalTok{(mu), mu, sigma2), }\DataTypeTok{parm=}\NormalTok{parm)}
+  \KeywordTok{return}\NormalTok{(Modelout)}
+\NormalTok{\}}
+
+\NormalTok{Initial.Values <-}\StringTok{ }\KeywordTok{c}\NormalTok{(beta_est,sigma_est)}
+
+\NormalTok{burnin <-}\StringTok{ }\DecValTok{2000}
+\NormalTok{thin <-}\StringTok{ }\DecValTok{3}
+\NormalTok{N=(}\DecValTok{2000}\OperatorTok{+}\NormalTok{burnin)}\OperatorTok{*}\NormalTok{thin}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo 1:} Metropolis-within-Gibbs (MWG)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{Fit1 <-}\StringTok{ }\KeywordTok{LaplacesDemon}\NormalTok{(Model, }\DataTypeTok{Data=}\NormalTok{MyData, Initial.Values,}
+  \DataTypeTok{Covar=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{Iterations=}\NormalTok{N, }\DataTypeTok{Status=}\NormalTok{N}\OperatorTok{/}\DecValTok{5}\NormalTok{, }\DataTypeTok{Thinning=}\NormalTok{thin,}
+  \DataTypeTok{Algorithm=}\StringTok{"MWG"}\NormalTok{, }\DataTypeTok{Specs=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Laplace's Demon was called on Tue Nov 03 14:52:16 2020
+## 
+## Performing initial checks...
+## Algorithm: Metropolis-within-Gibbs 
+## 
+## Laplace's Demon is beginning to update...
+## Iteration: 2400,   Proposal: Componentwise,   LP: -146.2
+## Iteration: 4800,   Proposal: Componentwise,   LP: -147.2
+## Iteration: 7200,   Proposal: Componentwise,   LP: -142.7
+## Iteration: 9600,   Proposal: Componentwise,   LP: -143.5
+## Iteration: 12000,   Proposal: Componentwise,   LP: -145.1
+## 
+## Assessing Stationarity
+## Assessing Thinning and ESS
+## Creating Summaries
+## Estimating Log of the Marginal Likelihood
+## Creating Output
+## 
+## Laplace's Demon has finished.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#names(Fit1)}
+\KeywordTok{print}\NormalTok{(Fit1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## LaplacesDemon(Model = Model, Data = MyData, Initial.Values = Initial.Values, 
+##     Covar = NULL, Iterations = N, Status = N/5, Thinning = thin, 
+##     Algorithm = "MWG", Specs = NULL)
+## 
+## Acceptance Rate: 0.35375
+## Algorithm: Metropolis-within-Gibbs
+## Covariance Matrix: (NOT SHOWN HERE; diagonal shown instead)
+##  beta[1]  beta[2]   sigma2 
+## 1.890044 1.890044 1.890044 
+## 
+## Covariance (Diagonal) History: (NOT SHOWN HERE)
+## Deviance Information Criterion (DIC):
+##          All Stationary
+## Dbar 258.781    259.440
+## pD     4.338      4.237
+## DIC  263.119    263.677
+## Initial Values:
+## [1] 8.2839056 0.1655676 9.9587760
+## 
+## Iterations: 12000
+## Log(Marginal Likelihood): -126.8415
+## Minutes of run-time: 0.3
+## Model: (NOT SHOWN HERE)
+## Monitor: (NOT SHOWN HERE)
+## Parameters (Number of): 3
+## Posterior1: (NOT SHOWN HERE)
+## Posterior2: (NOT SHOWN HERE)
+## Recommended Burn-In of Thinned Samples: 3200
+## Recommended Burn-In of Un-thinned Samples: 9600
+## Recommended Thinning: 36
+## Specs: (NOT SHOWN HERE)
+## Status is displayed every 2400 iterations
+## Summary1: (SHOWN BELOW)
+## Summary2: (SHOWN BELOW)
+## Thinned Samples: 4000
+## Thinning: 3
+## 
+## 
+## Summary of All Samples
+##                  Mean         SD        MCSE       ESS           LB
+## beta[1]     8.2478022 0.88164035 0.094717679  24.80187    6.6527588
+## beta[2]     0.1665176 0.01702535 0.003042654  12.48151    0.1240373
+## sigma2     12.5840386 2.48412045 0.125660593 830.27788    8.7682617
+## Deviance  258.7813640 2.94533567 0.202218161 136.68013  255.0038715
+## LP       -143.5465138 1.23958817 0.087107901 109.45812 -146.5361533
+##                Median           UB
+## beta[1]     8.2225293   10.1866171
+## beta[2]     0.1655676    0.1937371
+## sigma2     12.2724404   18.2059419
+## Deviance  258.1752506  265.5673438
+## LP       -143.2451510 -142.1163971
+## 
+## 
+## Summary of Stationary Samples
+##                  Mean         SD        MCSE        ESS           LB
+## beta[1]     8.9659139 1.01640981 0.264577460   6.932756    6.5707408
+## beta[2]     0.1498047 0.02004864 0.007080864   3.675837    0.1240373
+## sigma2     12.4235537 2.25114323 0.223124198 148.522644    8.9164125
+## Deviance  259.4399279 2.91101586 0.562252817  35.086016  255.3738557
+## LP       -143.8933516 1.24169010 0.191055588  27.276956 -146.8229317
+##                Median           UB
+## beta[1]     9.0304813   10.6078726
+## beta[2]     0.1504279    0.1937371
+## sigma2     12.0978375   17.6632608
+## Deviance  258.9769661  265.8590137
+## LP       -143.6581852 -142.1644366
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Post1 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(Fit1}\OperatorTok{$}\NormalTok{Posterior1,}\DataTypeTok{Algorithm=}\StringTok{"1.MWG"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Post1) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
+\CommentTok{#head(Post1)}
+\KeywordTok{plot}\NormalTok{(Fit1, }\DataTypeTok{BurnIn=}\DecValTok{0}\NormalTok{, MyData, }\DataTypeTok{PDF=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{Parms=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#plot(Fit1, BurnIn=burnin, MyData, PDF=FALSE, Parms=NULL)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-2} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo 2:} Adaptative Metropolis-within-Gibbs (MWG)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{Fit2 <-}\StringTok{ }\KeywordTok{LaplacesDemon}\NormalTok{(Model, }\DataTypeTok{Data=}\NormalTok{MyData, Initial.Values,}
+  \DataTypeTok{Covar=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{Iterations=}\NormalTok{N, }\DataTypeTok{Status=}\NormalTok{N}\OperatorTok{/}\DecValTok{5}\NormalTok{, }\DataTypeTok{Thinning=}\NormalTok{thin,}
+  \DataTypeTok{Algorithm=}\StringTok{"AMWG"}\NormalTok{, }\DataTypeTok{Specs=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Laplace's Demon was called on Tue Nov 03 14:52:38 2020
+## 
+## Performing initial checks...
+## Algorithm: Adaptive Metropolis-within-Gibbs 
+## 
+## Laplace's Demon is beginning to update...
+## Iteration: 2400,   Proposal: Componentwise,   LP: -145.3
+## Iteration: 4800,   Proposal: Componentwise,   LP: -143
+## Iteration: 7200,   Proposal: Componentwise,   LP: -144.1
+## Iteration: 9600,   Proposal: Componentwise,   LP: -143.1
+## Iteration: 12000,   Proposal: Componentwise,   LP: -146.2
+## 
+## Assessing Stationarity
+## Assessing Thinning and ESS
+## Creating Summaries
+## Creating Output
+## 
+## Laplace's Demon has finished.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#names(Fit2)}
+\CommentTok{#print(Fit2)}
+
+\NormalTok{Post2 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(Fit2}\OperatorTok{$}\NormalTok{Posterior1,}\DataTypeTok{Algorithm=}\StringTok{"2.AMWG"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Post2) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
+\CommentTok{#head(Post2)}
+
+\CommentTok{#plot(Fit2, BurnIn=burnin, MyData, PDF=FALSE, Parms=NULL)}
+\KeywordTok{plot}\NormalTok{(Fit2, }\DataTypeTok{BurnIn=}\DecValTok{0}\NormalTok{, MyData, }\DataTypeTok{PDF=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{Parms=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Post <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(Post1,Post2)}
+\NormalTok{b1plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt,}\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{1}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta1, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{b2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{2}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{s2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ extraDistr}\OperatorTok{::}\NormalTok{dinvgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{alpha =}\NormalTok{ a1, }\DataTypeTok{beta =}\NormalTok{ b1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(sigma2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\KeywordTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-71-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo 3:} Consort e Automated Factor Slice Sampler (AFSS)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Consort}\NormalTok{(Fit2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## #############################################################
+## # Consort with Laplace's Demon                              #
+## #############################################################
+## Call:
+## LaplacesDemon(Model = Model, Data = MyData, Initial.Values = Initial.Values, 
+##     Covar = NULL, Iterations = N, Status = N/5, Thinning = thin, 
+##     Algorithm = "AMWG", Specs = NULL)
+## 
+## Acceptance Rate: 0.34264
+## Algorithm: Adaptive Metropolis-within-Gibbs
+## Covariance Matrix: (NOT SHOWN HERE; diagonal shown instead)
+##    beta[1]    beta[2]     sigma2 
+## 1.17679178 0.02838563 9.45831955 
+## 
+## Covariance (Diagonal) History: (NOT SHOWN HERE)
+## Deviance Information Criterion (DIC):
+##          All Stationary
+## Dbar 258.957    258.957
+## pD     4.957      4.957
+## DIC  263.915    263.915
+## Initial Values:
+## [1] 8.2839056 0.1655676 9.9587760
+## 
+## Iterations: 12000
+## Log(Marginal Likelihood): NA
+## Minutes of run-time: 0.3
+## Model: (NOT SHOWN HERE)
+## Monitor: (NOT SHOWN HERE)
+## Parameters (Number of): 3
+## Posterior1: (NOT SHOWN HERE)
+## Posterior2: (NOT SHOWN HERE)
+## Recommended Burn-In of Thinned Samples: 0
+## Recommended Burn-In of Un-thinned Samples: 0
+## Recommended Thinning: 105
+## Specs: (NOT SHOWN HERE)
+## Status is displayed every 2400 iterations
+## Summary1: (SHOWN BELOW)
+## Summary2: (SHOWN BELOW)
+## Thinned Samples: 4000
+## Thinning: 3
+## 
+## 
+## Summary of All Samples
+##                  Mean         SD        MCSE       ESS           LB
+## beta[1]     8.2386566 0.97788924 0.085914819  151.0105    6.1651888
+## beta[2]     0.1661183 0.01903241 0.002099194  209.2080    0.1294318
+## sigma2     12.5980978 2.45984860 0.071949821 1784.2000    8.7806779
+## Deviance  258.9573762 3.14870026 0.163068368  595.3985  255.1347857
+## LP       -143.6311506 1.33506450 0.072413145  530.5654 -147.0582460
+##                Median           UB
+## beta[1]     8.2641629   10.1040670
+## beta[2]     0.1655676    0.2078131
+## sigma2     12.3274919   18.1748415
+## Deviance  258.2440979  266.8653177
+## LP       -143.2679823 -142.1324005
+## 
+## 
+## Summary of Stationary Samples
+##                  Mean         SD        MCSE       ESS           LB
+## beta[1]     8.2386566 0.97788924 0.085914819  151.0105    6.1651888
+## beta[2]     0.1661183 0.01903241 0.002099194  209.2080    0.1294318
+## sigma2     12.5980978 2.45984860 0.071949821 1784.2000    8.7806779
+## Deviance  258.9573762 3.14870026 0.163068368  595.3985  255.1347857
+## LP       -143.6311506 1.33506450 0.072413145  530.5654 -147.0582460
+##                Median           UB
+## beta[1]     8.2641629   10.1040670
+## beta[2]     0.1655676    0.2078131
+## sigma2     12.3274919   18.1748415
+## Deviance  258.2440979  266.8653177
+## LP       -143.2679823 -142.1324005
+## 
+## Demonic Suggestion
+## 
+## Due to the combination of the following conditions,
+## 
+## 1. Adaptive Metropolis-within-Gibbs
+## 2. The acceptance rate (0.3426389) is within the interval [0.15,0.5].
+## 3. At least one target MCSE is >= 6.27% of its marginal posterior
+##    standard deviation.
+## 4. Each target distribution has an effective sample size (ESS)
+##    of at least 100.
+## 5. Each target distribution became stationary by
+##    1 iteration.
+## 
+## Quantiles of Absolute Posterior1 Correlation:
+##         0%        25%        50%        75%       100% 
+## 0.02856704 0.03170699 0.85367854 1.00000000 1.00000000 
+## 
+## Possibly excessive posterior correlation for a componentwise algorithm.
+## 
+## WARNING: Diminishing adaptation did not occur.
+##          A new algorithm will be suggested.
+## 
+## Laplace's Demon has not been appeased, and suggests
+## copy/pasting the following R code into the R console,
+## and running it.
+## 
+## Initial.Values <- as.initial.values(Fit2)
+## Fit2 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
+##      Covar=Fit2$Covar, Iterations=420000, Status=40000, Thinning=105,
+##      Algorithm="AFSS", Specs=list(A=Inf, B=NULL, m=100,
+##      n=0, w=1))
+## 
+## Laplace's Demon is finished consorting.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Initial.Values <-}\StringTok{ }\KeywordTok{as.initial.values}\NormalTok{(Fit2)}
+
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{Fit3 <-}\StringTok{ }\KeywordTok{LaplacesDemon}\NormalTok{(Model, }\DataTypeTok{Data=}\NormalTok{MyData, Initial.Values,}
+     \DataTypeTok{Covar=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{Iterations=}\NormalTok{N, }\DataTypeTok{Status=}\NormalTok{N}\OperatorTok{/}\DecValTok{5}\NormalTok{, }\DataTypeTok{Thinning=}\NormalTok{thin,}
+     \DataTypeTok{Algorithm=}\StringTok{"AFSS"}\NormalTok{, }\DataTypeTok{Specs=}\KeywordTok{list}\NormalTok{(}\DataTypeTok{A=}\OtherTok{Inf}\NormalTok{, }\DataTypeTok{B=}\OtherTok{NULL}\NormalTok{, }\DataTypeTok{m=}\DecValTok{100}\NormalTok{,}\DataTypeTok{n=}\DecValTok{0}\NormalTok{, }\DataTypeTok{w=}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Laplace's Demon was called on Tue Nov 03 14:53:24 2020
+## 
+## Performing initial checks...
+## Algorithm: Automated Factor Slice Sampler 
+## 
+## Laplace's Demon is beginning to update...
+## 
+## Eigendecomposition will occur every 120 iterations.
+## 
+## Iteration: 2400,   Proposal: Multivariate,   LP: -142.1
+## Iteration: 4800,   Proposal: Multivariate,   LP: -144.2
+## Iteration: 7200,   Proposal: Multivariate,   LP: -145.2
+## Iteration: 9600,   Proposal: Multivariate,   LP: -144.1
+## Iteration: 12000,   Proposal: Multivariate,   LP: -142.5
+## 
+## Assessing Stationarity
+## Assessing Thinning and ESS
+## Creating Summaries
+## Estimating Log of the Marginal Likelihood
+## Creating Output
+## 
+## Laplace's Demon has finished.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Post3 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(Fit3}\OperatorTok{$}\NormalTok{Posterior1,}\DataTypeTok{Algorithm=}\StringTok{"3.AFSS"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Post3) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(Fit3, }\DataTypeTok{BurnIn=}\DecValTok{0}\NormalTok{, MyData, }\DataTypeTok{PDF=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{Parms=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Post <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(Post1,Post2,Post3)}
+\NormalTok{b1plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt,}\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{1}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta1, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{b2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{2}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{s2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ extraDistr}\OperatorTok{::}\NormalTok{dinvgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{alpha =}\NormalTok{ a1, }\DataTypeTok{beta =}\NormalTok{ b1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(sigma2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\KeywordTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-73-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{p.interval}\NormalTok{(Post3}\OperatorTok{$}\NormalTok{beta1, }\DataTypeTok{HPD=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{MM=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{plot=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-74-1} \end{center}
+
+\begin{verbatim}
+##         Lower  Upper
+## [1,] 6.383021 10.175
+## attr(,"Probability.Interval")
+## [1] 0.95
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{S0 <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(extraDistr}\OperatorTok{::}\KeywordTok{rinvgamma}\NormalTok{(N}\OperatorTok{/}\NormalTok{thin}\OperatorTok{-}\NormalTok{burnin,a1,b1))}
+\NormalTok{M0 <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(S0,}\DecValTok{1}\NormalTok{,}\ControlFlowTok{function}\NormalTok{(s)\{mnormt}\OperatorTok{::}\KeywordTok{rmnorm}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{mean=}\NormalTok{beta1,}\DataTypeTok{varcov=}\NormalTok{s}\OperatorTok{*}\NormalTok{V1)\})}
+\NormalTok{Post0 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{t}\NormalTok{(M0),S0,}\StringTok{"0.Posterior"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Post0) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
+\NormalTok{Post =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(Post0,Post1,Post2,Post3)}
+\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta1,beta2,}\DataTypeTok{colour=}\NormalTok{Algorithm), }\DataTypeTok{shape=}\DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(Algorithm }\OperatorTok{~}\StringTok{ }\NormalTok{.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-74-2} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{stan}{%
+\subsection{Stan}\label{stan}}
+
+O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A da linguagem utilizada é independente da plataforma e existem bibliotecas para R (\texttt{rstan}) e Python.
+
+\url{https://mc-stan.org/}
+
+\(~\)
+
+\textbf{Voltando ao Exemplo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rstan)}
+\CommentTok{# Parametros do método}
+\NormalTok{Initial.Values <-}\StringTok{ }\KeywordTok{c}\NormalTok{(beta_est,sigma_est)}
+\NormalTok{burnin <-}\StringTok{ }\DecValTok{2000}
+\NormalTok{thin <-}\StringTok{ }\DecValTok{3}
+\NormalTok{N=(}\DecValTok{2000}\OperatorTok{+}\NormalTok{burnin)}\OperatorTok{*}\NormalTok{thin}
+\CommentTok{# Conjunto de dados}
+\NormalTok{stan_data <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{N =}\NormalTok{ n, }\DataTypeTok{J =}\NormalTok{ p, }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{x =}\NormalTok{ X)}
+
+\CommentTok{# Especificação do modelo}
+\NormalTok{rs_code <-}\StringTok{ '}
+\StringTok{  data \{}
+\StringTok{    int<lower=1> N;}
+\StringTok{    int<lower=1> J;}
+\StringTok{    matrix[N,J] x;}
+\StringTok{    vector[N] y;}
+\StringTok{  \}}
+\StringTok{  parameters \{}
+\StringTok{    vector[J] beta;}
+\StringTok{    real<lower=0> sigma2;}
+\StringTok{  \}}
+\StringTok{  model \{}
+\StringTok{    sigma2 ~ inv_gamma(3, 100);}
+\StringTok{    beta ~ normal(0, sqrt(sigma2*100));}
+\StringTok{    y ~ normal(x * beta, sqrt(sigma2));}
+\StringTok{\}'}
+
+\NormalTok{stan_mod <-}\StringTok{ }\KeywordTok{stan}\NormalTok{(}\DataTypeTok{model_code =}\NormalTok{ rs_code, }\DataTypeTok{data =}\NormalTok{ stan_data, }\DataTypeTok{init=}\NormalTok{Initial.Values,}
+            \DataTypeTok{chains =} \DecValTok{1}\NormalTok{, }\DataTypeTok{iter =}\NormalTok{ N, }\DataTypeTok{warmup =}\NormalTok{ burnin, }\DataTypeTok{thin =}\NormalTok{ thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL '6b158d2712aa5479f81bd408884c9453' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:     1 / 12000 [  0%]  (Warmup)
+## Chain 1: Iteration:  1200 / 12000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  2001 / 12000 [ 16%]  (Sampling)
+## Chain 1: Iteration:  3200 / 12000 [ 26%]  (Sampling)
+## Chain 1: Iteration:  4400 / 12000 [ 36%]  (Sampling)
+## Chain 1: Iteration:  5600 / 12000 [ 46%]  (Sampling)
+## Chain 1: Iteration:  6800 / 12000 [ 56%]  (Sampling)
+## Chain 1: Iteration:  8000 / 12000 [ 66%]  (Sampling)
+## Chain 1: Iteration:  9200 / 12000 [ 76%]  (Sampling)
+## Chain 1: Iteration: 10400 / 12000 [ 86%]  (Sampling)
+## Chain 1: Iteration: 11600 / 12000 [ 96%]  (Sampling)
+## Chain 1: Iteration: 12000 / 12000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.289 seconds (Warm-up)
+## Chain 1:                1.451 seconds (Sampling)
+## Chain 1:                1.74 seconds (Total)
+## Chain 1:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{posterior <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(stan_mod)}
+\NormalTok{Post4 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(posterior}\OperatorTok{$}\NormalTok{beta[,}\DecValTok{1}\NormalTok{],posterior}\OperatorTok{$}\NormalTok{beta[,}\DecValTok{2}\NormalTok{],posterior}\OperatorTok{$}\NormalTok{sigma2,}\DataTypeTok{Algorithm=}\StringTok{"4.RStan"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Post4) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
+
+\CommentTok{# gráficos posterioris marginais}
+\NormalTok{Post <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(Post3,Post4) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Algorithm=}\KeywordTok{ifelse}\NormalTok{(Algorithm}\OperatorTok{==}\StringTok{"3.AFSS"}\NormalTok{,}\StringTok{"1.LaplacesDemons"}\NormalTok{,}\StringTok{"2.RStan"}\NormalTok{))}
+\NormalTok{b1plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt,}\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{1}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta1, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{b2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ mnormt}\OperatorTok{::}\NormalTok{dmt, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{mean =}\NormalTok{ beta1[}\DecValTok{2}\NormalTok{], }\DataTypeTok{S =}\NormalTok{ V[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{], }\DataTypeTok{df=}\DecValTok{2}\OperatorTok{*}\NormalTok{a1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{])) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\NormalTok{s2plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(Post)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{stat_function}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\DataTypeTok{fun =}\NormalTok{ extraDistr}\OperatorTok{::}\NormalTok{dinvgamma, }\DataTypeTok{args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{alpha =}\NormalTok{ a1, }\DataTypeTok{beta =}\NormalTok{ b1)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(sigma2, }\DataTypeTok{colour =}\NormalTok{ Algorithm)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\KeywordTok{expression}\NormalTok{(sigma}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{colour =} \StringTok{"Method"}\NormalTok{)}
+\KeywordTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-76-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Post =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(Post0,Post4) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Algorithm=}\KeywordTok{ifelse}\NormalTok{(Algorithm}\OperatorTok{==}\StringTok{"4.RStan"}\NormalTok{,}\StringTok{"1.RStan"}\NormalTok{,}\StringTok{"0.Posterior"}\NormalTok{))}
+\KeywordTok{ggplot}\NormalTok{(Post) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(beta1,beta2,}\DataTypeTok{colour=}\NormalTok{Algorithm), }\DataTypeTok{shape=}\DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(Algorithm }\OperatorTok{~}\StringTok{ }\NormalTok{.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-77-1} \end{center}
+
+\(~\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stan_mod2 <-}\StringTok{ }\KeywordTok{stan}\NormalTok{(}\DataTypeTok{model_code =}\NormalTok{ rs_code, }\DataTypeTok{data =}\NormalTok{ stan_data, }\DataTypeTok{init=}\NormalTok{Initial.Values,}
+            \DataTypeTok{chains =} \DecValTok{2}\NormalTok{, }\DataTypeTok{iter =}\NormalTok{ N, }\DataTypeTok{warmup =}\NormalTok{ burnin, }\DataTypeTok{thin =}\NormalTok{ thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL '6b158d2712aa5479f81bd408884c9453' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:     1 / 12000 [  0%]  (Warmup)
+## Chain 1: Iteration:  1200 / 12000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  2001 / 12000 [ 16%]  (Sampling)
+## Chain 1: Iteration:  3200 / 12000 [ 26%]  (Sampling)
+## Chain 1: Iteration:  4400 / 12000 [ 36%]  (Sampling)
+## Chain 1: Iteration:  5600 / 12000 [ 46%]  (Sampling)
+## Chain 1: Iteration:  6800 / 12000 [ 56%]  (Sampling)
+## Chain 1: Iteration:  8000 / 12000 [ 66%]  (Sampling)
+## Chain 1: Iteration:  9200 / 12000 [ 76%]  (Sampling)
+## Chain 1: Iteration: 10400 / 12000 [ 86%]  (Sampling)
+## Chain 1: Iteration: 11600 / 12000 [ 96%]  (Sampling)
+## Chain 1: Iteration: 12000 / 12000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.278 seconds (Warm-up)
+## Chain 1:                0.999 seconds (Sampling)
+## Chain 1:                1.277 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL '6b158d2712aa5479f81bd408884c9453' NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:     1 / 12000 [  0%]  (Warmup)
+## Chain 2: Iteration:  1200 / 12000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  2001 / 12000 [ 16%]  (Sampling)
+## Chain 2: Iteration:  3200 / 12000 [ 26%]  (Sampling)
+## Chain 2: Iteration:  4400 / 12000 [ 36%]  (Sampling)
+## Chain 2: Iteration:  5600 / 12000 [ 46%]  (Sampling)
+## Chain 2: Iteration:  6800 / 12000 [ 56%]  (Sampling)
+## Chain 2: Iteration:  8000 / 12000 [ 66%]  (Sampling)
+## Chain 2: Iteration:  9200 / 12000 [ 76%]  (Sampling)
+## Chain 2: Iteration: 10400 / 12000 [ 86%]  (Sampling)
+## Chain 2: Iteration: 11600 / 12000 [ 96%]  (Sampling)
+## Chain 2: Iteration: 12000 / 12000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 0.235 seconds (Warm-up)
+## Chain 2:                1.011 seconds (Sampling)
+## Chain 2:                1.246 seconds (Total)
+## Chain 2:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggmcmc)}
+\CommentTok{#ggs(stan_mod2) %>% ggmcmc(., file = "ggmcmc.html")}
+\end{Highlighting}
+\end{Shaded}
+
+\(~\)
+
+\href{ggmcmc.html}{\textbf{Gráficos ggmcmc}}
+
+\(~\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_pairs}\NormalTok{(., }\DataTypeTok{lower =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \StringTok{"density"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-79-1} \end{center}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{aplicauxe7uxf5es}{%
+\subsection{Aplicações}\label{aplicauxe7uxf5es}}
+
+\hypertarget{mlg}{%
+\subsubsection{MLG}\label{mlg}}
+
+O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como \emph{regressão logística}.
+
+Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\theta_i \sim \textit{Ber}(\theta_i)\), em que \(\theta_i\) é tal que \(\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta\) ou, em outras palavras, \(\theta_i = \dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{-\boldsymbol x_i' \boldsymbol\beta}}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}}\) com \(\boldsymbol x_i\) as covariáveis da \(i\)-ésima observação e o vetor de parâmetros \(\boldsymbol\beta=(\beta_1,\ldots,\beta_p)\).
+
+\(~\)
+
+\textbf{Exemplo.} Considere as variáveis \emph{vs} (0 = motor em forma de V, 1 = motor reto) e \emph{mpg} (milhas/galão(EUA)) do conjunto de dados \texttt{mtcars} do R. Suponha um modelo de regressão logística para a variável resposta \emph{vs} com a covariável \emph{mpg} em que, a priori, \(\beta_i \sim \textit{Laplace}(0,b_i)\), \(i=1,2\), independentes. Deste modo, a posteriori é dada por
+
+\(f(\boldsymbol\beta | \boldsymbol{y},\boldsymbol{x})\)
+\(\propto f(\boldsymbol{y}|\boldsymbol\beta,\boldsymbol{x})f(\boldsymbol\beta)\)
+\(\propto \displaystyle\prod_{i=1}^{n} \left(\dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{y_i}\left(\dfrac{e^{\boldsymbol x_i' \boldsymbol\beta}}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{1-y_i} \prod_{j=1}^{p} \dfrac{1}{2b_i} e^{-\frac{|\beta_i|}{b_i}}\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rstan)}
+
+\NormalTok{dados <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(mtcars)}
+\CommentTok{# mpg:  Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)}
+\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group=}\KeywordTok{as.factor}\NormalTok{(vs),}\DataTypeTok{y=}\NormalTok{mpg,}\DataTypeTok{fill=}\KeywordTok{as.factor}\NormalTok{(vs))) }\OperatorTok{+}
+\StringTok{        }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_discrete}\NormalTok{(}\DataTypeTok{name=}\StringTok{"vs"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(vs) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{()}
+\NormalTok{x <-}\StringTok{ }\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(mpg) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{pull}\NormalTok{()}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(y)}
+\NormalTok{X <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(}\DecValTok{1}\NormalTok{,x))}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(X)}
+
+\NormalTok{stan_data <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{N =}\NormalTok{ n, }\DataTypeTok{J =}\NormalTok{ p, }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{x =}\NormalTok{ X)}
+
+\NormalTok{rs_code <-}\StringTok{ '}
+\StringTok{  data \{}
+\StringTok{    int<lower=1> N;}
+\StringTok{    int<lower=1> J;}
+\StringTok{    int<lower=0,upper=1> y[N];}
+\StringTok{    matrix[N,J] x;}
+\StringTok{  \}}
+\StringTok{  parameters \{}
+\StringTok{    vector[J] beta;}
+\StringTok{  \}}
+\StringTok{  model \{}
+\StringTok{    beta ~ double_exponential(0, 100);}
+\StringTok{    y ~ bernoulli_logit(x * beta);}
+\StringTok{  \}'}
+
+\NormalTok{N=}\DecValTok{2000}
+\NormalTok{thin=}\DecValTok{10}
+\NormalTok{burnin=}\DecValTok{1000}
+
+\NormalTok{stan_log <-}\StringTok{ }\KeywordTok{stan}\NormalTok{(}\DataTypeTok{model_code =}\NormalTok{ rs_code, }\DataTypeTok{data =}\NormalTok{ stan_data, }\DataTypeTok{init =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}
+  \DataTypeTok{chains =} \DecValTok{1}\NormalTok{, }\DataTypeTok{iter =}\NormalTok{ N}\OperatorTok{*}\NormalTok{thin, }\DataTypeTok{warmup =}\NormalTok{ burnin, }\DataTypeTok{thin =}\NormalTok{ thin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL '6525180a46ff3a51f06bbb110d962a1c' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:     1 / 20000 [  0%]  (Warmup)
+## Chain 1: Iteration:  1001 / 20000 [  5%]  (Sampling)
+## Chain 1: Iteration:  3000 / 20000 [ 15%]  (Sampling)
+## Chain 1: Iteration:  5000 / 20000 [ 25%]  (Sampling)
+## Chain 1: Iteration:  7000 / 20000 [ 35%]  (Sampling)
+## Chain 1: Iteration:  9000 / 20000 [ 45%]  (Sampling)
+## Chain 1: Iteration: 11000 / 20000 [ 55%]  (Sampling)
+## Chain 1: Iteration: 13000 / 20000 [ 65%]  (Sampling)
+## Chain 1: Iteration: 15000 / 20000 [ 75%]  (Sampling)
+## Chain 1: Iteration: 17000 / 20000 [ 85%]  (Sampling)
+## Chain 1: Iteration: 19000 / 20000 [ 95%]  (Sampling)
+## Chain 1: Iteration: 20000 / 20000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 0.178 seconds (Warm-up)
+## Chain 1:                2.186 seconds (Sampling)
+## Chain 1:                2.364 seconds (Total)
+## Chain 1:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(stan_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Inference for Stan model: 6525180a46ff3a51f06bbb110d962a1c.
+## 1 chains, each with iter=20000; warmup=1000; thin=10; 
+## post-warmup draws per chain=1900, total post-warmup draws=1900.
+## 
+##           mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+## beta[1] -10.15    0.08 3.51 -17.92 -12.17  -9.65  -7.61  -4.64  1763    1
+## beta[2]   0.50    0.00 0.17   0.22   0.37   0.47   0.60   0.89  1735    1
+## lp__    -13.89    0.03 1.05 -16.67 -14.31 -13.55 -13.15 -12.88  1733    1
+## 
+## Samples were drawn using NUTS(diag_e) at Mon Nov 09 18:06:24 2020.
+## For each parameter, n_eff is a crude measure of effective sample size,
+## and Rhat is the potential scale reduction factor on split chains (at 
+## convergence, Rhat=1).
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(bayesplot)}
+
+\NormalTok{post_log <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(stan_log, }\DataTypeTok{inc_warmup =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{permuted =} \OtherTok{FALSE}\NormalTok{)}
+
+\KeywordTok{color_scheme_set}\NormalTok{(}\StringTok{"mix-brightblue-gray"}\NormalTok{)}
+\KeywordTok{mcmc_trace}\NormalTok{(post_log,  }\DataTypeTok{pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{, }\StringTok{"beta[2]"}\NormalTok{), }\DataTypeTok{n_warmup =} \DecValTok{0}\NormalTok{,}
+                \DataTypeTok{facet_args =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{labeller =}\NormalTok{ label_parsed))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mcmc_acf}\NormalTok{(post_log, }\DataTypeTok{pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{, }\StringTok{"beta[2]"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-3} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mcmc_areas}\NormalTok{(post_log,}\DataTypeTok{pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{, }\StringTok{"beta[2]"}\NormalTok{),}\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-4} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{multiplot}\NormalTok{(}\KeywordTok{mcmc_areas}\NormalTok{(post_log,}\DataTypeTok{pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{),}\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+          \KeywordTok{mcmc_areas}\NormalTok{(post_log,}\DataTypeTok{pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"beta[2]"}\NormalTok{),}\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-5} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggmcmc)}
+\CommentTok{#ggs(stan_log) %>% ggmcmc(., file = "ggmcmc_log.html")}
+\KeywordTok{ggs}\NormalTok{(stan_log) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_pairs}\NormalTok{(., }\DataTypeTok{lower =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \StringTok{"density"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-6} \end{center}
+
+\(~\)
+
+\begin{itemize}
+\item
+  Existe uma biblioteca para modelos lineares bayesianos usando o Stan chamada \texttt{rstanarm}. Nesta biblioteca, a função \texttt{stan\_glm} pode ser utilizada para o ajuste de MLGs sob o ponto de vista bayesiano.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://cran.r-project.org/web/packages/rstanarm/}
+  \end{itemize}
+\end{itemize}
 
 \(~\)
 

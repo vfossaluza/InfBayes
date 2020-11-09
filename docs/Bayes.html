@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-10-13" />
+<meta name="date" content="2020-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,14 +154,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.2</b> Suficiência</a></li>
-<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.3</b> Distribuição a Priori</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.3.1</b> Método do Histograma</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.3.2</b> Elicitação de Hiperparâmetros</a></li>
-<li class="chapter" data-level="3.3.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.3.3</b> Prioris Conjugadas</a></li>
-<li class="chapter" data-level="3.3.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.3.4</b> Prioris “Não-Informativas”</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
+<li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
+<li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
+<li class="chapter" data-level="3.4.4" data-path="Bayes.html"><a href="Bayes.html#prioris-não-informativas"><i class="fa fa-check"></i><b>3.4.4</b> Prioris “Não-Informativas”</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.4</b> Alguns Princípios de Inferência</a></li>
+<li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
@@ -183,6 +184,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7" data-path="Test.html"><a href="Test.html#hipóteses-precisas"><i class="fa fa-check"></i><b>6.7</b> Hipóteses Precisas</a></li>
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
+<li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
+<li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
+<li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
+<li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
+<li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
+<li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
+<li class="chapter" data-level="7.6.4" data-path="Comp.html"><a href="Comp.html#aplicações"><i class="fa fa-check"></i><b>7.6.4</b> Aplicações</a></li>
+</ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
 <li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
@@ -252,10 +270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
-<li><strong>Observação:</strong> será utilizada a notação geral para integral (de Lebesgue): <span class="math display">\[\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
-= \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&amp;~ (caso~~contínuo)\\
-\displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&amp;~ (caso~~discreto) \end{array}\right.\]</span></li>
+<li><strong>Observação:</strong> será utilizada a notação geral para integral (de Lebesgue):</li>
 </ul>
+<p><span class="math display">\[\displaystyle \int_{\Theta}f(\boldsymbol x|\theta)dP_\theta
+= \left\{ \begin{array}{ll} \displaystyle \int_{\Theta}f(\boldsymbol x|\theta) f(\theta) d\theta ~&amp;~ \text{(caso abs. contínuo)}\\ \displaystyle \sum_{\Theta}f(\boldsymbol x|\theta) f(\theta) ~&amp;~ \text{(caso discreto)} \end{array}\right.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 1a.</strong> Suponha que existem duas moedas, uma delas tem <span class="math inline">\(\theta =1/2\)</span> (honesta) e a outra <span class="math inline">\(\theta=3/4\)</span> (viesada). Uma moeda é escolhida e é feito um lançamento da moeda selecionada. Nesse experimento, tem-se <span class="math inline">\(X|\theta \sim Ber(\theta)\)</span>, com <span class="math inline">\(\Theta=\{1/2,3/4\}\)</span> e <span class="math inline">\(\mathfrak{X}=\{0,1\}\)</span>. Como “chutar” o valor de <span class="math inline">\(\theta\)</span>?</p>
 <p>Considere que não existe razão para você acreditar que há algum tipo de preferência na escolha de uma ou outra moeda, isto é, considere que a priori <span class="math inline">\(f(\theta=1/2)\)</span> <span class="math inline">\(=f(\theta=3/4)\)</span> <span class="math inline">\(=1/2\)</span>. Suponha que o lançamento resultou em cara (<span class="math inline">\(x=1\)</span>). Então</p>
@@ -329,10 +347,172 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <li><p><span class="math inline">\(Var(\theta|x)\)</span> <span class="math inline">\(=\dfrac{(a+x)(b+n-x)}{(a+b+n)^2(a+b+n+1)}\)</span> <span class="math inline">\(=\dfrac{20}{810}\)</span> <span class="math inline">\(\approx 0,0247\)</span>.</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
+</div>
+<div id="teorema-de-de-finetti" class="section level2">
+<h2><span class="header-section-number">3.2</span> Teorema de De Finetti</h2>
+<p><strong>Definição.</strong> Uma coleção finita <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> de quantidades aleatórias é dita <em>permutável</em> se a distribuição de <span class="math inline">\(\left(X_{\pi_1},\ldots,X_{\pi_n}\right)\)</span> é a mesma para toda permutação <span class="math inline">\(\boldsymbol\pi=(\pi_1,\ldots,\pi_n)\)</span> dos índices <span class="math inline">\((1,\ldots,n)\)</span>. Uma coleção infinita de quantidades aleatórias é <em>permutável</em> se toda subcoleção é permutável.</p>
+<p><span class="math inline">\(~\)</span></p>
+<ul>
+<li>Segue da definição que cada uma das variáveis <span class="math inline">\(X_1,\ldots,X_n\)</span> tem a mesma distribuição marginal. Além disso, <span class="math inline">\((X_i,X_j)\)</span> têm mesma distribuição que <span class="math inline">\((X_k,X_l)\)</span>, <span class="math inline">\(\forall i\neq j\)</span> e <span class="math inline">\(k\neq l\)</span>, e assim por diante.</li>
+</ul>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Proposição.</strong> Uma coleção <span class="math inline">\(C\)</span> de variáveis aleatórias é permitável se, e somente se, para todo <span class="math inline">\(n\)</span> finito menor ou igual ao tamanho da coleção <span class="math inline">\(C\)</span>, toda <span class="math inline">\(n\)</span>-upla (sequência ordenada de <span class="math inline">\(n\)</span> elementos) de elementos distintos de <span class="math inline">\(C\)</span> têm a mesma distribuição que toda outra <span class="math inline">\(n\)</span>-upla.</p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 1.</strong> Considere uma coleção <span class="math inline">\(X_1,X_2,\ldots\)</span> uma sequência (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d). Note que <span class="math inline">\(f(x_1,\ldots,x_n)=\displaystyle\prod_{i=1}^nf(x_i)~,\)</span> <span class="math inline">\(\forall n~,\)</span> de modo que <span class="math inline">\(\left(X_{i_1},\ldots,X_{i_n}\right)\)</span> têm a mesma distribuição de <span class="math inline">\(\left(X_{j_1},\ldots,X_{j_n}\right)\)</span>, para <span class="math inline">\(i_1\neq\ldots\neq i_n\)</span> e <span class="math inline">\(j_1\neq\ldots\neq j_n\)</span>. Então, toda coleção de v.a. i.i.d é permutável.</p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<strong>Exemplo 2:</strong> Foi visto no exemplo anterior que a suposição que uma sequência de v.a. é i.i.d. implica que tal sequência é também permutável. Sabe-se também que independência implica em correlação nula, <span class="math inline">\(\rho=0\)</span>. Será então que v.a. identicamente distribuídas e não correlacionadas são também permutáveis?<br />
+<span class="math inline">\(~\)</span><br />
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(X_1~\)</span> / <span class="math inline">\(~X_2\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(-1\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(0\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(+1\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(f(x_1)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(-1\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.10\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.05\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.15\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.3\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(0\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.15\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.20\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.05\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.4\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(+1\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.05\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.15\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.10\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.3\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(f(x_2)\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.3\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.4\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(0.3\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(1.0\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(~\)</span><br />
+<span class="math inline">\(cor(X_1,X_2)\)</span>
+<span class="math inline">\(=\frac{\text{Cov}\left(X_1,X_2\right)}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)</span>
+<span class="math inline">\(=\frac{\text{E}\left[\left(X_1-\text{E}[X_1]\right)\left(X_2-\text{E}[X_2]\right)\right]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)</span>
+<span class="math inline">\(=\frac{\text{E}\left[X_1X_2\right]-\text{E}[X_1]\text{E}[X_2]}{\sqrt{\text{Var}(X_1)\text{Var}(X_2)}}\)</span><br />
+<span class="math inline">\(E(X_1)=E(X_2)=0\)</span><br />
+<span class="math inline">\(E(X_1X_2)=-1\cdot0,2+0+1\cdot0,2=0\)</span> <span class="math inline">\(\Rightarrow cor(X_1,X_2)=0\)</span><br />
+<span class="math inline">\((X_1,X_2)\)</span> são identicamente distribuídas e não correlacionadas mas não são permutáveis pois, por exemplo, <span class="math inline">\(P\big((X_1,X_2)=(1,-1)\big)~\neq~P\big((X_2,X_1)=(1,-1)\big)~.\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 3:</strong> Suponha que <span class="math inline">\(X_1,X_2,\ldots\)</span> são condicionalmente i.i.d. dado <span class="math inline">\(Y=y\)</span> com densidade <span class="math inline">\(f(x_i|y),\;i=1,2,\ldots\)</span> e <span class="math inline">\(Y\)</span> tem densidade <span class="math inline">\(h(y)\)</span>. Então <span class="math inline">\(X_1,X_2,\ldots\)</span> são permutaveis.<br />
+<span class="math inline">\(f_{X_{i_1},\ldots,X_{i_n}}(x_1,\ldots,x_n)\)</span> <span class="math inline">\(=\displaystyle\int\prod_{j=1}^nf(x_j|y)h(y)dy,\)</span> para qualquer <span class="math inline">\(n\)</span>-upla <span class="math inline">\(X_{i_1},\ldots,X_{i_n}\)</span>. Note que o lado direito não depende dos rótulos <span class="math inline">\(i_1,\ldots,i_n\)</span>.</p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Teorema de Representação de De Finetti.</strong> (para v.a. Bernoulli)</p>
+<p>Uma sequência infinita <span class="math inline">\(\left(X_n\right)_{n\geq 1}\)</span> de v.a. Bernoulli é permutável se, e somente se, existe uma v.a <span class="math inline">\(\theta\)</span> em <span class="math inline">\([0,1]\)</span> tal que, condicional a <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\left(X_i\right)_{n\geq 1}\)</span> são i.i.d. <span class="math inline">\(Ber(\theta)\)</span>. Além disso, se a sequência é permutável, então a distribuição de <span class="math inline">\(\theta\)</span> é única e <span class="math inline">\(\displaystyle\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta~.\)</span></p>
+<p><span class="math inline">\(P(X_1=x_1,\ldots,X_n=x_n)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta\)</span></p>
+<p><span class="math inline">\(F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.\)</span></p>
+<!-- $~$ -->
+<!-- $~$ -->
+<!-- A suposição de permutabilidade permite -->
+<!-- * Expresar crenças de simetria sobre $X_1,X_2,\ldots$ de maneira "mais fraca" que i.i.d. -->
+<!-- * Não é necessário supor independência ou que o limite de frequência relativa existe. Em outras palavras, não é necessário que o parâmetro $\theta$ do modelo estatístico exista no sentido físico. -->
+<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<blockquote>
+<p><strong>Exemplo 4:</strong> (1.19/1.20 - Schervish)<br />
+Seja <span class="math inline">\(\left(X_n\right)_{n\geq 1}\)</span> v.a. Bernoulli.<br />
+<span class="math inline">\(~\)</span><br />
+Considere que o <em>Estatístico 1</em> acredita que <span class="math inline">\(P_1(X_1=x_1,\ldots,X_n=x_n)\)</span> <span class="math inline">\(=\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}~,\)</span> de modo que <span class="math inline">\(P_1(X_1=1)\)</span> <span class="math inline">\(=\dfrac{12}{3}\dfrac{3!~2!}{5!}\)</span> <span class="math inline">\(=\dfrac{4}{10}\)</span> <span class="math inline">\(=0,4~.\)</span><br />
+Por outro lado, o <em>Estatístico 2</em> acredita que <span class="math inline">\(P_2(X_1=x_1,\ldots,X_n=x_n)\)</span> <span class="math inline">\(=\dfrac{1}{(n+1)\binom{n}{x}}\)</span> e, então, <span class="math inline">\(P_2(X_1=1)=\dfrac{1}{2}=0,5~.\)</span><br />
+<span class="math inline">\(~\)</span><br />
+Contudo, pelo Teorema de Finetti, ambos acreditam que o limite <span class="math inline">\(\theta=\displaystyle\lim_{n\uparrow\infty}\frac{1}{n}\sum_{i=1}^nX_i\)</span> existe com probabilidade 1 e que <span class="math inline">\(P(X_1=1|\theta)=\theta\)</span>, mas não tem opiniões diferentes sobre <span class="math inline">\(\theta\)</span>.<br />
+<span class="math inline">\(~\)</span><br />
+Suponha agora que foi observado <span class="math inline">\(\boldsymbol{x}=(x_1,\ldots,x_{20})\)</span> com <span class="math inline">\(\displaystyle\sum_{i=1}^{20}x_i=14\)</span>. Então,<br />
+<span class="math inline">\(P_i(X_{21}=1|X_1=x_1,\ldots,X_{20}=x_{20})\)</span> <span class="math inline">\(=\dfrac{P_i(X_1=x_1,\ldots,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,\ldots,X_{20}=x_{20})}\)</span><br />
+de modo que,<br />
+<span class="math inline">\(P_1(X_{21}=1|\mathbf X=\mathbf x)=\)</span> <span class="math inline">\(\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}\)</span> <span class="math inline">\(=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}\)</span> <span class="math inline">\(=\dfrac{16}{17}\dfrac{17}{25}\)</span> <span class="math inline">\(=\dfrac{16}{25}=0,64\)</span><br />
+<span class="math inline">\(P_2(X_{21}=1|\mathbf X=\mathbf x)\)</span> <span class="math inline">\(=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}\)</span> <span class="math inline">\(=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}\)</span> <span class="math inline">\(=\dfrac{21}{22}\dfrac{15}{21}\)</span> <span class="math inline">\(=\dfrac{15}{22}=0,68\)</span></p>
+</blockquote>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Teorema de Representação de De Finetti</strong></p>
+<p>Uma sequência de v.a.s <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> assumindo valores (em um subconjunto de) <span class="math inline">\(\mathbb R^K\)</span> é permutável se, e somente se, existe uma medida de probabilidade sobre (uma <span class="math inline">\(\sigma\)</span>-álgebra do) conjunto de funções de distribuições que “sorteia” uma <span class="math inline">\(F\)</span> e, dada esta <span class="math inline">\(F\)</span>, <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> é i.i.d. com distribuição <span class="math inline">\(F\)</span>. Isto é,</p>
+<p><span class="math inline">\(F_{\mathbf X}(x_1,\ldots,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
+<p>Alem disso, <span class="math inline">\(F_n\underset{n\uparrow\infty}{\longrightarrow}F^*\)</span> e a distribuição de <span class="math inline">\(F^*=\underset{n\uparrow\infty}{lim}F_n\)</span> é única e é <span class="math inline">\(\mu\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="suficiência" class="section level2">
-<h2><span class="header-section-number">3.2</span> Suficiência</h2>
+<h2><span class="header-section-number">3.3</span> Suficiência</h2>
 <p>Muitas vezes, a quantidade de dados é muito grande e desejamos “resumir” a informação trazida pelos dados. Uma forma de fazê-lo sem perder informação sobre o parâmetro de interesse é usar uma <em>estatística suficiente</em>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição.</strong> Dizemos que uma função da amostra <span class="math inline">\(T:\mathfrak{X} \rightarrow \mathbb{R}^p\)</span> é uma <em>estatística suficiente</em> (do ponto de vista <em>frequentista</em>) se <span class="math inline">\(f\left(\boldsymbol x | T(\boldsymbol x),\theta\right) = f\left(\boldsymbol x | T(\boldsymbol x)\right)\)</span>.</p>
@@ -367,7 +547,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <!-- ## Aula 09  -->
 </div>
 <div id="distribuição-a-priori" class="section level2">
-<h2><span class="header-section-number">3.3</span> Distribuição a Priori</h2>
+<h2><span class="header-section-number">3.4</span> Distribuição a Priori</h2>
 <ul>
 <li>A priori é sempre subjetiva (assim como a escolha do modelo estatístico)!
 <ul>
@@ -382,7 +562,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 </ul>
 <!-- ### Prioris Baseada na Opinião de um Especialista -->
 <div id="método-do-histograma" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Método do Histograma</h3>
+<h3><span class="header-section-number">3.4.1</span> Método do Histograma</h3>
 <ul>
 <li><p>Muitas vezes, para “extrair” o conhecimento de um especialista, podemos dividir o espaço paramétrico em regiões e pedir para o especialista “ordenar” esses conjuntos, utilizando “pesos” que refletem a crença que o parâmetro esteja em cada uma daquelas regiões.</p></li>
 <li><p><strong>Exemplo 1.</strong> (<span class="citation">Albert (<a href="#ref-Albert09" role="doc-biblioref">2009</a>)</span>, pág 27)</p>
@@ -400,7 +580,7 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <span id="cb3-3"><a href="Bayes.html#cb3-3"></a><span class="kw">tibble</span>(<span class="dt">theta=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>), prior) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb3-4"><a href="Bayes.html#cb3-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
 <span id="cb3-5"><a href="Bayes.html#cb3-5"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>prior),<span class="dt">direction=</span><span class="st">&quot;vh&quot;</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Voltando ao exemplo da moeda, suponha novamente que foram observados <span class="math inline">\(x=2\)</span> sucessos em <span class="math inline">\(n=5\)</span> lançamentos. A posteriori nesse caso pode ser obtida multiplicando a distribuição a priori pela verossimilhança e “padronizando” a função obtida. Assim:</li>
 </ul>
@@ -416,11 +596,11 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <span id="cb4-10"><a href="Bayes.html#cb4-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
 <span id="cb4-11"><a href="Bayes.html#cb4-11"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>dens,<span class="dt">colour=</span>Dist),<span class="dt">lwd=</span><span class="fl">1.5</span>)</span>
 <span id="cb4-12"><a href="Bayes.html#cb4-12"></a>pH</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="elicitação-de-hiperparâmetros" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Elicitação de Hiperparâmetros</h3>
+<h3><span class="header-section-number">3.4.2</span> Elicitação de Hiperparâmetros</h3>
 <ul>
 <li>Nessa abordagem, a priori é obtida da seguinte maneira:
 <ol style="list-style-type: decimal">
@@ -455,11 +635,11 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <span id="cb5-12"><a href="Bayes.html#cb5-12"></a>    <span class="dt">Dist=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;1.Priori Beta&#39;</span>,<span class="st">&#39;2.Verossimilhança&#39;</span>,<span class="st">&#39;3.Posteriori&#39;</span>,<span class="st">&#39;0.Priori Histograma&#39;</span>),<span class="dt">each=</span><span class="dv">101</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb5-13"><a href="Bayes.html#cb5-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
 <span id="cb5-14"><a href="Bayes.html#cb5-14"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>dens,<span class="dt">colour=</span>Dist),<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="prioris-conjugadas" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Prioris Conjugadas</h3>
+<h3><span class="header-section-number">3.4.3</span> Prioris Conjugadas</h3>
 <p>Como visto no exemplo da moeda, em que a distribuição a priori era <span class="math inline">\(Beta(a,b)\)</span>, a posteriori era facilmente obtida e também estava na classe das distribuições <span class="math inline">\(Beta\)</span>. Em particular, quando observa-se <span class="math inline">\(x\)</span> sucessos em <span class="math inline">\(n\)</span> realizações de ensaios de Bernoulli, a distribuição a posteriori é <span class="math inline">\(Beta(a+x,b+n-x)\)</span>. Isso ocorre pois essa distribuição pertence à uma classe bastante espefícica de distribuições a priori, chamadas distribuições conjugadas.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição</strong> Seja <span class="math inline">\(\mathcal{P}=\{f(x|\theta):\;\theta \in \Theta\}\)</span> uma família de distribuições (condicionais) para <span class="math inline">\(\boldsymbol{X}\)</span> e considere <span class="math inline">\(\mathcal{C}=\{h(\theta|a):\;a\in A\}\)</span> uma família de distribuições para <span class="math inline">\(\theta\)</span>. Dizemos que (a família) <span class="math inline">\(\mathcal{C}\)</span> é <strong>conjugada</strong> para <span class="math inline">\(\mathcal{P}\)</span> se, <span class="math inline">\(\forall \;h(\theta)\in \mathcal{C},\)</span> <span class="math inline">\(h(\theta|\boldsymbol{x})\propto f(\boldsymbol x|\theta)h(\theta) \in \mathcal{C},\forall \boldsymbol x \in \mathfrak{X}.\)</span></p>
@@ -469,9 +649,9 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <ul>
 <li>Esse resultado também vale se
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(X_1,...,X_n\)</span> são v.a.s <em>condicionalmente independentes e identicamente distribuidas</em> (c.i.i.d.) com <span class="math inline">\(X_i|\theta \sim Ber(\theta)\)</span><br />
+<li><span class="math inline">\(X_1,\ldots,X_n\)</span> são v.a.s <em>condicionalmente independentes e identicamente distribuidas</em> (c.i.i.d.) com <span class="math inline">\(X_i|\theta \sim Ber(\theta)\)</span><br />
 </li>
-<li><span class="math inline">\(X_i|\theta\sim Geo(\theta),\)</span> <span class="math inline">\(i=1,...,n \; c.i.i.d.\)</span><br />
+<li><span class="math inline">\(X_i|\theta\sim Geo(\theta),\)</span> <span class="math inline">\(i=1,\ldots,n \; c.i.i.d.\)</span><br />
 </li>
 <li><span class="math inline">\(X_i|\theta \sim BinNeg(k,\theta)\)</span><br />
 <span class="math inline">\(\theta\sim Beta(a,b)\Rightarrow\)</span> <span class="math inline">\(\theta|\boldsymbol X=\boldsymbol x \sim Beta(a+s,b+f)\)</span> em que <span class="math inline">\(s\)</span> é o número de sucessos e <span class="math inline">\(f\)</span> é o número de fracassos.</li>
@@ -480,24 +660,24 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Resultado 2.</strong> (<em>generalização do resultado anterior para o caso em que o número de categorias é maior que 2</em>)</p>
 <p>Seja <span class="math inline">\(\boldsymbol X | \boldsymbol \theta \sim Multinomial(n,\boldsymbol \theta)\)</span>, isto é, sua função de probabilidade é dada por</p>
-<p><span class="math display">\[f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,...,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}\]</span></p>
-<p>em que <span class="math inline">\(\theta_i\in [0,1]\)</span> com <span class="math inline">\(\sum_{i=1}^K\theta_i=1\)</span>, <span class="math inline">\(x_i \in \{0,1,...,n\}\)</span> com <span class="math inline">\(\sum_{i=1}^nx_i=n\)</span> e <span class="math inline">\(\displaystyle \binom{n}{x_1,x_2,...,x_k}=\dfrac{n!}{x_1!x_2!...x_k!}\)</span>.</p>
-<p>Considere que, a priori, <span class="math inline">\(\boldsymbol \theta \sim Dirichlet(a_1,...,a_k),\)</span> <span class="math inline">\(a_i &gt; 0, i=1,...,k\)</span>, isto é, a f.d.p. a priori para <span class="math inline">\(\boldsymbol \theta\)</span> é dada por</p>
-<p><span class="math display">\[f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)...\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.\]</span></p>
+<p><span class="math display">\[f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,\ldots,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}\]</span></p>
+<p>em que <span class="math inline">\(\theta_i\in [0,1]\)</span> com <span class="math inline">\(\sum_{i=1}^K\theta_i=1\)</span>, <span class="math inline">\(x_i \in \{0,1,\ldots,n\}\)</span> com <span class="math inline">\(\sum_{i=1}^nx_i=n\)</span> e <span class="math inline">\(\displaystyle \binom{n}{x_1,x_2,\ldots,x_k}=\dfrac{n!}{x_1!x_2!\ldots x_k!}\)</span>.</p>
+<p>Considere que, a priori, <span class="math inline">\(\boldsymbol \theta \sim Dirichlet(a_1,\ldots,a_k),\)</span> <span class="math inline">\(a_i &gt; 0, i=1,\ldots,k\)</span>, isto é, a f.d.p. a priori para <span class="math inline">\(\boldsymbol \theta\)</span> é dada por</p>
+<p><span class="math display">\[f(\boldsymbol \theta) = \dfrac{\Gamma(\sum_{i=1}^K a_i)}{\Gamma(a_1)\Gamma(a_2)\ldots\Gamma(a_k)}\prod_{i=1}^{k-1}\theta_i^{a_i-1}\bigg(\underbrace{1-\sum_{i=1}^{k-1}\theta_i}_{\theta_k}\bigg)^{a_k-1}.\]</span></p>
 <p>Então, a distribuição a posteriori para <span class="math inline">\(\boldsymbol \theta\)</span> é
-<span class="math inline">\(\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,...,a_k+x_k)\)</span>.</p>
+<span class="math inline">\(\boldsymbol \theta|\boldsymbol X = \boldsymbol x \sim Dirichlet (a_1+x_1,\ldots,a_k+x_k)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Demo:</strong> Para verificar o resultado, basta ver que<br />
 <span class="math inline">\(f(\boldsymbol\theta|\boldsymbol x)\)</span> <span class="math inline">\(=\dfrac{f(\boldsymbol x| \boldsymbol \theta)f(\boldsymbol \theta)}{\int_\Theta f(\boldsymbol x| \boldsymbol \theta)f(\boldsymbol \theta)d\boldsymbol \theta}\)</span> <span class="math inline">\(\propto f(\boldsymbol x| \boldsymbol \theta)f(\boldsymbol \theta)\)</span> <span class="math inline">\(\propto \prod_{i=1}^{k-1}\theta_i^{(a_i+x_i-1)}\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{(a_k+x_k)-1}\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Resultado 3.</strong> Seja <span class="math inline">\(X_1,...,X_n\)</span> v.a. c.i.i.d tais que <span class="math inline">\(X_i|\theta \sim Unif(0,\theta)\)</span> e considere que, a priori,<span class="math inline">\(\theta \sim Pareto(a,b)\)</span>. Então <span class="math inline">\(\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)\)</span>.</p>
+<p><strong>Resultado 3.</strong> Seja <span class="math inline">\(X_1,\ldots,X_n\)</span> v.a. c.i.i.d tais que <span class="math inline">\(X_i|\theta \sim Unif(0,\theta)\)</span> e considere que, a priori,<span class="math inline">\(\theta \sim Pareto(a,b)\)</span>. Então <span class="math inline">\(\theta|\boldsymbol X = \boldsymbol x \sim Pareto\left(a+n,max\{b,x_{(n)}\}\right)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Demo:</strong><br />
 <span class="math inline">\(f(\boldsymbol x|\theta)\)</span> <span class="math inline">\(\overset{ci}{=}\prod_{i=1}^nf(x_i|\theta)\)</span> <span class="math inline">\(\overset{id}{=}\prod_{i=1}^n\dfrac{1}{\theta}\mathbb{I}_{[0,\theta]}(x_i)\)</span> <span class="math inline">\(=\dfrac{1}{\theta^n}\mathbb{I}_{[0,\theta]}(x_{(n)})\)</span> <span class="math inline">\(=\dfrac{1}{\theta^n}\mathbb{I}_{[x_{(n)},+\infty)}(\theta)\)</span><br />
-em que <span class="math inline">\(x_{(n)}=max\{x_1,...,x_n\}\)</span>.<br />
+em que <span class="math inline">\(x_{(n)}=max\{x_1,\ldots,x_n\}\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
 <span class="math inline">\(f(\theta)=\dfrac{ab^a}{\theta^{a+1}}\mathbb{I}_{[b,+\infty]}(\theta)\)</span>.<br />
 Então<br />
@@ -506,7 +686,7 @@ Então<br />
 <span class="math inline">\(\Rightarrow \theta|\boldsymbol X = \boldsymbol x \sim Pareto(a+n,max\{b,x_{(n)}\})\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Resultado 4.</strong> Seja <span class="math inline">\(X_1,...,X_n,Y_1,...,Y_m\)</span> v.a. condicionalmente independentes tais que <span class="math inline">\(X_i|\theta\sim Exp(\theta),i=1,...,n\)</span> e <span class="math inline">\(Y_j|\theta \sim Poisson(\theta),j=1,...,m\)</span>. Considere que, a priori, <span class="math inline">\(\theta \sim Gama(a,b)\)</span>. Então <span class="math inline">\(\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)\)</span>.</p>
+<p><strong>Resultado 4.</strong> Seja <span class="math inline">\(X_1,\ldots,X_n,Y_1,\ldots,Y_m\)</span> v.a. condicionalmente independentes tais que <span class="math inline">\(X_i|\theta\sim Exp(\theta),i=1,\ldots,n\)</span> e <span class="math inline">\(Y_j|\theta \sim Poisson(\theta),j=1,\ldots,m\)</span>. Considere que, a priori, <span class="math inline">\(\theta \sim Gama(a,b)\)</span>. Então <span class="math inline">\(\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)\)</span>.</p>
 <blockquote>
 <p><strong>Demo:</strong><br />
 <span class="math inline">\(f(\boldsymbol x, \boldsymbol y|\theta)\overset{ci}{=}f(\boldsymbol x|\theta)f(\boldsymbol y|\theta)\overset{ci}{=}\)</span> <span class="math inline">\(\prod_{i=1}^nf(x_i|\theta)\prod_{j=1}^mf(y_i|\theta)=\)</span> <span class="math inline">\(\prod_{i=1}^n\theta e^{-\theta x_i}\prod_{j=1}^m\dfrac{\theta^{y_j}e^{-\theta}}{y_j!}=\)</span> <span class="math inline">\(\dfrac{1}{\prod_{j=1}^my_j!}\theta^{n+\sum_j y_j}e^{-(m+\sum_ix_i)\theta}\)</span><br />
@@ -575,7 +755,7 @@ Então<br />
 <span id="cb6-41"><a href="Bayes.html#cb6-41"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="op">+</span></span>
 <span id="cb6-42"><a href="Bayes.html#cb6-42"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb6-43"><a href="Bayes.html#cb6-43"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(x)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-14-1.gif" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-15-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Agora, suponha que <span class="math inline">\(n=5\)</span> e foi observado <span class="math inline">\(x=2\)</span>. Novamente, considere a mistura das distribuições <span class="math inline">\(Beta(5,12)\)</span> e <span class="math inline">\(Beta(10,3)\)</span> mas agora com pesos <span class="math inline">\(w\)</span> variando no conjunto <span class="math inline">\(\left\{0,0.1,\ldots,0.9,1\right\}\)</span>.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Bayes.html#cb7-1"></a>n=<span class="dv">5</span>; x=<span class="dv">2</span></span>
@@ -614,14 +794,14 @@ Então<br />
 <span id="cb7-34"><a href="Bayes.html#cb7-34"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="op">+</span></span>
 <span id="cb7-35"><a href="Bayes.html#cb7-35"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
 <span id="cb7-36"><a href="Bayes.html#cb7-36"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(w)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-16-1.gif" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-17-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="prioris-não-informativas" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Prioris “Não-Informativas”</h3>
+<h3><span class="header-section-number">3.4.4</span> Prioris “Não-Informativas”</h3>
 <div id="priori-de-bayes-laplace" class="section level4">
-<h4><span class="header-section-number">3.3.4.1</span> Priori de Bayes-Laplace</h4>
+<h4><span class="header-section-number">3.4.4.1</span> Priori de Bayes-Laplace</h4>
 <p><strong>Princípio da Razão Insuficiente.</strong> <em>Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico <span class="math inline">\(\Theta\)</span>, deve-se adotar equiprobabilidade.</em></p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -646,7 +826,7 @@ Então<br />
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="priori-de-jeffreys" class="section level4">
-<h4><span class="header-section-number">3.3.4.2</span> Priori de Jeffreys</h4>
+<h4><span class="header-section-number">3.4.4.2</span> Priori de Jeffreys</h4>
 <p>Seja <span class="math inline">\(g\)</span> uma transformação um-a-um do parâmetro <span class="math inline">\(\theta\)</span> e defina <span class="math inline">\(\psi=g(\theta)\)</span>. Considere uma função <span class="math inline">\(h:\mathfrak{X}\times\Theta\longrightarrow\mathbb{R}\)</span>. Uma classe de distribuições a priori invariantes pode ser definida por
 <span class="math display">\[f(\theta) \propto \left(\text{Var}_{X|\theta}\left[\dfrac{\partial h(\boldsymbol X | \theta)}{\partial\theta}~\bigg|~\theta\right]\right)^{1/2}~.\]</span></p>
 <blockquote>
@@ -716,15 +896,15 @@ de modo que a priori de Jeffreys é<br />
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="priori-de-máxima-entropia" class="section level4">
-<h4><span class="header-section-number">3.3.4.3</span> Priori de Máxima Entropia</h4>
+<h4><span class="header-section-number">3.4.4.3</span> Priori de Máxima Entropia</h4>
 <p><strong>Entropia</strong> é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O <em>princípio da máxima entropia</em> afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.</p>
-<p><strong>Caso Discreto.</strong> Considere um espaço paramétrico enumerável <span class="math inline">\(\Theta = \{\theta_1,\theta_2,...\}\)</span>. A <em>entropia</em> da distribuição <span class="math inline">\(h\)</span> <span class="citation">(Shannon <a href="#ref-Shannon48" role="doc-biblioref">1948</a>)</span> é dada por</p>
+<p><strong>Caso Discreto.</strong> Considere um espaço paramétrico enumerável <span class="math inline">\(\Theta = \{\theta_1,\theta_2,\ldots\}\)</span>. A <em>entropia</em> da distribuição <span class="math inline">\(h\)</span> <span class="citation">(Shannon <a href="#ref-Shannon48" role="doc-biblioref">1948</a>)</span> é dada por</p>
 <p><span class="math display">\[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição.</strong> Considere um espaço paramétrico <span class="math inline">\(\Theta\)</span> e <span class="math inline">\(h\)</span> uma f.d.p. para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)\)</span> <span class="citation">(Jaynes <a href="#ref-Jaynes03" role="doc-biblioref">2003</a>)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 1.</strong> Considere o espaço paramétrico <span class="math inline">\(\Theta=\{\theta_1,...,\theta_k\}\)</span> e <span class="math inline">\(h(\theta_i)=p_i\)</span> uma distribuição discreta para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\)</span> com a restrição <span class="math inline">\(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)</span><br />
+<p><strong>Exemplo 1.</strong> Considere o espaço paramétrico <span class="math inline">\(\Theta=\{\theta_1,\ldots,\theta_k\}\)</span> e <span class="math inline">\(h(\theta_i)=p_i\)</span> uma distribuição discreta para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\)</span> com a restrição <span class="math inline">\(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)</span><br />
 Utilizando o método de multiplicadores de Lagrange, deve-se maximizar a função lagrangiana<br />
 <span class="math inline">\(\mathcal{E}^*(h)=\displaystyle-\sum_{i=1}^k p_i\log(p_i)+\lambda\left(\sum_{i=1}^k p_i-1\right)\)</span><br />
 <span class="math inline">\(\dfrac{\partial\mathcal{E}^*(h)}{\partial p_i}=-\left[p_i~\dfrac{1}{p_i}+\log(p_i)\right]+\lambda=0\)</span> <span class="math inline">\(\Longleftrightarrow p_i = e^{\lambda-1}~~,~~~i=1,\ldots,k~.\)</span><br />
@@ -732,7 +912,7 @@ Assim, como <span class="math inline">\(p_i\)</span> deve ser constante e <span 
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 2.</strong> Considere agora <span class="math inline">\(\Theta = \{\theta_1,\theta_2,...\}\)</span> e suponha que há <span class="math inline">\(m\)</span> informações parciais a respeito do parâmetro <span class="math inline">\(\theta\)</span> que podem ser escritas como <span class="math inline">\(\text{E}[g_j(\theta)]=\mu_j~,~\)</span> <span class="math inline">\(j=1,...,m~.\)</span><br />
+<p><strong>Exemplo 2.</strong> Considere agora <span class="math inline">\(\Theta = \{\theta_1,\theta_2,\ldots\}\)</span> e suponha que há <span class="math inline">\(m\)</span> informações parciais a respeito do parâmetro <span class="math inline">\(\theta\)</span> que podem ser escritas como <span class="math inline">\(\text{E}[g_j(\theta)]=\mu_j~,~\)</span> <span class="math inline">\(j=1,\ldots,m~.\)</span><br />
 Usando novamente o método de Lagrange, deve-se maximizar<br />
 <span class="math inline">\(\mathcal{E}^*(h)\)</span> <span class="math inline">\(=\displaystyle\sum_{i=1}^\infty p_i\log(p_i)+\lambda\left(\sum_{i=1}^\infty p_i-1\right)+ \sum_{j=1}^m\lambda_j\left(\sum_{i=1}^\infty p_i~g_j(\theta_i)-\mu_j\right)\)</span><br />
 <span class="math inline">\(\dfrac{\partial \mathcal{E}^*(h)}{\partial p_i}=\displaystyle-\log(p_i)-1+\lambda+\sum_{j=1}^m\lambda_j~g_j(\theta_i)=0\)</span>
@@ -741,7 +921,7 @@ Como <span class="math inline">\(\sum p_i=1\)</span>, <span class="math inline">
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 2a.</strong> Seja <span class="math inline">\(\Theta = \{0,1,2,...\}\)</span> e suponha que <span class="math inline">\(\text{E}[\theta]=\mu.\)</span><br />
+<p><strong>Exemplo 2a.</strong> Seja <span class="math inline">\(\Theta = \{0,1,2,\ldots\}\)</span> e suponha que <span class="math inline">\(\text{E}[\theta]=\mu.\)</span><br />
 Usando o resultado do exemplo anterior com <span class="math inline">\(g(\theta)=\theta\)</span> e <span class="math inline">\(\theta_i=i\)</span>, <span class="math inline">\(i=0,1,2,\ldots~,\)</span><br />
 <span class="math inline">\(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=0}^\infty e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)</span>
 <span class="math inline">\(=\dfrac{e^{\lambda~i}}{\sum_{i=0}^\infty e^{\lambda~i}}~\)</span>
@@ -752,7 +932,7 @@ Como <span class="math inline">\(\text{E}\left[\theta\right]=\dfrac{e^\lambda}{\
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
-<p><strong>Exemplo 2b.</strong> Considere que <span class="math inline">\(\Theta = \{1,2,...,k\}\)</span> e suponha que <span class="math inline">\(\text{Med}(\theta)=m~.\)</span><br />
+<p><strong>Exemplo 2b.</strong> Considere que <span class="math inline">\(\Theta = \{1,2,\ldots,k\}\)</span> e suponha que <span class="math inline">\(\text{Med}(\theta)=m~.\)</span><br />
 Nesse caso, <span class="math inline">\(g(\theta)=\mathbb{I}\left(\theta\leq m\right)\)</span> e <span class="math inline">\(\theta_i=i\)</span>, <span class="math inline">\(i=1,2,\ldots,k~,\)</span> de modo que<br />
 <span class="math inline">\(\text{E}\left[g(\theta)\right]\)</span> <span class="math inline">\(=\text{E}\left[\mathbb{I}(\theta\leq m)\right]\)</span> <span class="math inline">\(=\text{P}\left(\theta\leq m\right)=1/2\)</span> e, portanto, <span class="math inline">\(\displaystyle\sum_{i\leq m}p_i=\sum_{j&gt; m}p_j=1/2~.\)</span>
 <span class="math inline">\(p_i=\dfrac{e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}{\sum_{i=1}^k e^{\sum_{j=1}^m \lambda_j~g_j(\theta_i)}}\)</span>
@@ -762,10 +942,10 @@ Nesse caso, <span class="math inline">\(g(\theta)=\mathbb{I}\left(\theta\leq m\r
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Divergência de Kullbach-Leibler.</strong> Considere duas distribuições discretas <span class="math inline">\(\boldsymbol{p} = (p_1,...,p_k)\)</span> e <span class="math inline">\(\boldsymbol{q} = (q_1,...,q_k)~,\)</span> tal que <span class="math inline">\(p_i,q_i&gt;0~,\)</span> <span class="math inline">\(i=1,\ldots,k~,\)</span> e <span class="math inline">\(\sum p_i=\sum q_i=1\)</span>. A <em>divergência de Kullbach-Leibler</em> entre <span class="math inline">\(\boldsymbol{p}\)</span> e <span class="math inline">\(\boldsymbol{q}\)</span> <span class="citation">(Kullback and Leibler <a href="#ref-Kullback51" role="doc-biblioref">1951</a>)</span> é dada por<br />
+<p><strong>Divergência de Kullbach-Leibler.</strong> Considere duas distribuições discretas <span class="math inline">\(\boldsymbol{p} = (p_1,\ldots,p_k)\)</span> e <span class="math inline">\(\boldsymbol{q} = (q_1,\ldots,q_k)~,\)</span> tal que <span class="math inline">\(p_i,q_i&gt;0~,\)</span> <span class="math inline">\(i=1,\ldots,k~,\)</span> e <span class="math inline">\(\sum p_i=\sum q_i=1\)</span>. A <em>divergência de Kullbach-Leibler</em> entre <span class="math inline">\(\boldsymbol{p}\)</span> e <span class="math inline">\(\boldsymbol{q}\)</span> <span class="citation">(Kullback and Leibler <a href="#ref-Kullback51" role="doc-biblioref">1951</a>)</span> é dada por<br />
 <span class="math display">\[D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Suponha que <span class="math inline">\(g=(1/k,...,1/k)\)</span></p>
+<p>Suponha que <span class="math inline">\(g=(1/k,\ldots,1/k)\)</span></p>
 <p><span class="math inline">\(D(\boldsymbol{p}~||~\boldsymbol{q})\)</span>
 <span class="math inline">\(=\displaystyle\sum_{i=1}^{k} p_i\log\left(\dfrac{p_i}{1/k}\right)\)</span>
 <span class="math inline">\(=\displaystyle\sum_{i=1}^{k}p_i\left[ln(p_i)-ln(1/k)\right]\)</span>
@@ -784,7 +964,7 @@ em que <span class="math inline">\(\dfrac{dH}{dH_0}\)</span> é derivada de Rado
 onde <span class="math inline">\(h_0\)</span> é uma priori de referência na ausência total de informação, preferivelmente invariante.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Assim como no caso discreto, se temos <span class="math inline">\(m\)</span> restrições <span class="math inline">\(E[g_i(\theta)]=\mu_i,\)</span> a densidade de máxima entropia é</p>
-<p><span class="math inline">\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\)</span> e os <span class="math inline">\(\lambda_j~,\)</span> <span class="math inline">\(j=1,...,m~,\)</span> são obtidos das restrições. Por exemplo, se <span class="math inline">\(E[\theta]=\mu,\)</span> basta fazer</p>
+<p><span class="math inline">\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\)</span> e os <span class="math inline">\(\lambda_j~,\)</span> <span class="math inline">\(j=1,\ldots,m~,\)</span> são obtidos das restrições. Por exemplo, se <span class="math inline">\(E[\theta]=\mu,\)</span> basta fazer</p>
 <p><span class="math inline">\(\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta\)</span> com <span class="math inline">\(c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -839,7 +1019,7 @@ Assim, para concluir que a distribuição de máxima entropia nesse caso é a No
 </div>
 </div>
 <div id="alguns-princípios-de-inferência" class="section level2">
-<h2><span class="header-section-number">3.4</span> Alguns Princípios de Inferência</h2>
+<h2><span class="header-section-number">3.5</span> Alguns Princípios de Inferência</h2>
 <p>Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})\)</span> que consiste em observar um particular valor <span class="math inline">\(\boldsymbol{x}\in\mathfrak{X}\)</span> do v.a. <span class="math inline">\(\boldsymbol{X}\)</span> que, para cada possível valor do parâmetro (desconhecido) <span class="math inline">\(\theta\in\Theta\)</span>, tem f.d.p. <span class="math inline">\(f(\boldsymbol x|\theta)\)</span>. De forma geral, uma <em>inferência</em> sobre <span class="math inline">\(\theta\)</span> baseada no resultado <span class="math inline">\(\boldsymbol x\)</span> do experimento <span class="math inline">\(E\)</span> será denotada por <span class="math inline">\(\text{Inf}(E,\boldsymbol x)~.\)</span></p>
 <p><strong>Princípio de Suficiência.</strong> Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol{x}|\theta)\})\)</span> e suponha que <span class="math inline">\(T(\boldsymbol{X})\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span>. Se <span class="math inline">\(\boldsymbol x_1\)</span> e <span class="math inline">\(\boldsymbol x_2\)</span> são dois pontos amostrais tais que <span class="math inline">\(T(\boldsymbol{x}_1)=T(\boldsymbol{x}_2)\)</span> então <span class="math inline">\(\text{Inf}(E,\boldsymbol{x}_1)=\text{Inf}(E,\boldsymbol{x}_2)~.\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
@@ -924,61 +1104,7 @@ Se o número de sucessos é <span class="math inline">\(x=x_1=x_2\)</span> e nú
 <span class="math inline">\(\theta|X_1=x_1\sim Beta(x+1/2,y+1/2)~\)</span> e <span class="math inline">\(~\theta|X_2=x_2\sim Beta(x,y+1/2)~.\)</span><br />
 Como <span class="math inline">\(f_1(x_1|\theta)\propto f_2(x_2|\theta)\)</span> mas <span class="math inline">\(f_1(\theta)\neq f_2(\theta)\)</span>, tem-se que <span class="math inline">\(f_1(\theta|x_1)\neq f_2(\theta|x_2)\)</span> e, portanto, esse procedimento viola o <em>P. Verossimilhança</em>.</p>
 </blockquote>
-<!-- ## Aula 18 -->
-<!-- **Definição:** Uma colet finita $X_1,X_2,...,X_n$ de quantidades aleatórias é dita $permutável$ se a distribuição de $(X_{\pi_1},...,X_{\pi_n})$ -->
-<!--  é a mesma para toda permutação $\pi=(\pi_1,...,\pi_n)$ dos índices $(1,...,n)$. Ua coleção infinita é *permutável* se toda subcoleção é permutável. -->
-<!-- * Segue da definição que $X_1,...,X_n$ tem a mesma distribuição marginal. Além disso $(X_1,X_2)$ tem mesma distribuição que $(X_3,X_5)$ e assim por diante. -->
-<!-- $~$ -->
-<!-- **Proposição:** Uma coleção $C$ de variáveis aleatórias é permitável se, e somente se, para todo $n$ finito manor ou igual ao tamanho da coleção $C$, toda $n$-upla (sequencia ordenada de $n$ elementos) de elementos distintos de $C$ tem a mesma distribuição que toda $n$-upla. -->
-<!-- $~$ -->
-<!-- **Exemplo 1:** Considere uma coleção $X_1,...$ (finita ou infinita) de variáveis aleatórias independentes e identicamente distribuidas (v.a. i.i.d), claramente , $(X_{i_1},...,X_{i_n})$ tem a mesma distribuição de $(X_{j_1},...,X_{j_n})$ se $i_1\neq...\neq i_n$ e $j_1\neq...\neq j_n$. Então, toda coleção de v.a. i.i.d é permutável. (basta notar que $f(x_1,...,x_n)=\prod_{i=1}^nf(x_i)$). -->
-<!-- $~$ -->
-<!-- **Exemplo 2:**  -->
-<!-- * i.i.d $\Rightarrow$ permutavilidade.  -->
-<!-- * indep $\Rightarrow$ correlação $\rho=0$ -->
-<!-- * i.d. e $\rho=0\Rightarrow$ permutavilidade.  -->
-<!-- $~$ -->
-<!-- |$X_1:X_2$|-1|0|1|$f(x_1)$| -->
-<!-- |:-:|:-:|:-:|:-:|:-:| -->
-<!-- |-1|0,10|0,05|0,15|0,3| -->
-<!-- |0|0,15|0,20|0,05|0,4| -->
-<!-- |1|0,05|0,15|0,10|0,3| -->
-<!-- |$f(x_2)$|0,3|0,4|0,3| -->
-<!-- $~$ -->
-<!-- $cor(X_1,X_2)=\dfrac{E[(X_1-E(X_1))(X_2-E(X_2))]}{\sqrt{Var(X_1)Var(X_2)}}$  -->
-<!-- $E(X_1)=E(X_2)=0$ -->
-<!-- $E(X_1X_2)=(-1)(0,20)+1(0,20)=0$ $\Rightarrow cor=0$ -->
-<!-- $P((X_1,X_2)=(1,-1))\neq P((X_2,X_1)=(1,-1))$ -->
-<!-- * Expresar crenças de simetria sobre $X_1,X_2,...$ de maneira mais "fraca". -->
-<!-- * Não é necesário supor independênciaou que o limite de frequência relativa existe. -->
-<!-- * "Rótulo" das variáveis aleatórias é irrelevante. -->
-<!-- $~$ -->
-<!-- **Exemplo 3:** Suponha que $X_1,X_2,...$ são condicionalmente i.i.d. dado $Y=y$ com densidade $f(x_i|y),\;i=1,2,...$ e $Y$ tem densidade $g(y)$. Então $X_1,X_2,...$ são permutaveis. -->
-<!-- $f_{X_{i_1},...,X_{i_n}}(x_1,...,x_n)=$ $\int\prod_{j=1}^nf(x_j|y)g(y)dy,$ para qualquer $X_{i_1},...,X_{i_n}$ $n$-upla. Note que o lado direito não depende dos rótulos $i_1,...,i_n$. -->
-<!-- $~$ -->
-<!-- ### **Teorema de Representação de Finetti** (para v.a. Bernoulli) -->
-<!-- Uma sequência infinita $\{X_n\}_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que , condicional a $\theta$, $\{X_i\}_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta$ -->
-<!-- $P(X_1=x_1,...,X_n=x_n)=$ $\int_0^1\theta^{\sum_ix_i}(1-\theta)^{n-\sum_ix_i}dF(\theta)=$ $\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}f(\theta)d\theta$ -->
-<!-- $F(\theta)=\underset{n\uparrow\infty}{lim}P\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)$ -->
-<!-- $~$ -->
-<!-- **Exemplo 4:** (1.19/1.20 - Shervish)  -->
-<!-- Seja $\{X_n\}_{n\geq 1}$ v.a. Bernoulli e $x=\sum_{i=1}x_i$. -->
-<!-- _Estatístico 1_ -->
-<!-- $P_1(X_1=x_1,...,X_n=x_n)=$ $\dfrac{12}{x+2}\dfrac{1}{\binom{n+4}{x+2}}$ -->
-<!-- $P_1(X_1=1)=\dfrac{12}{3}\dfrac{3!2!}{5!}$ $=\dfrac{4}{10}=0,4.$ -->
-<!-- _Estatístico 2_ -->
-<!-- $P_2(X_1=x_1,...,X_n=x_n)=$ $\dfrac{1}{(n+1)\binom{n}{x}}$ -->
-<!-- $P_2(X_1=1)=\dfrac{1}{2}=0,5$ -->
-<!-- Contudo, pelo Teorema de Finetti, ambos acreditam que $\theta=\underset{n\uparrow\infty}{lim}\frac{1}{n}\sum_{i=1}^nX_i$ e que $P(X_1=1|\theta)=\theta$, mas não tem opiniões diferentes sobre $\theta$. -->
-<!-- Suponha agora que foi observado $\mathbf X=\mathbf x=(x_1,...,x_n)$ com $x=\sum_{i=1}^{20}x_i=14$. Vamos calcular  -->
-<!-- $P_i(X_{21}=1|X_1=x_1,...,X_{20}=x_{20})$ $=\dfrac{P_i(X_1=x_1,...,X_{20}=x_{20},X_{21}=1)}{P_i(X_1=x_1,...,X_{20}=x_{20})}$  -->
-<!-- então, -->
-<!-- $P_1(X_{21}=1|\mathbf X=\mathbf x)=$ $\dfrac{\dfrac{12}{17}\dfrac{1}{\binom{25}{17}}}{\dfrac{12}{16}\dfrac{1}{\binom{24}{16}}}$ $=\dfrac{16}{17}\dfrac{\dfrac{24!}{16!8!}}{\dfrac{25!}{17!8!}}$ $=\dfrac{16}{17}\dfrac{17}{25}$ $=\dfrac{16}{25}=0,64$ -->
-<!-- $P_2(X_{21}=1|\mathbf X=\mathbf x)$ $=\dfrac{\dfrac{1}{22\binom{21}{15}}}{\dfrac{1}{21\binom{20}{14}}}$ $=\dfrac{21}{22}\dfrac{\dfrac{20!}{14!6!}}{\dfrac{21\cdot20!}{15\cdot 14!6!}}$ $=\dfrac{21}{22}\dfrac{15}{21}$ $=\dfrac{15}{22}=0,68$ -->
-<!-- ### Teorema de Representação de Finetti -->
-<!-- Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,  -->
-<!-- $F_{\mathbf X}(x_1,...,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$. -->
-<!-- Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$. -->
+<p><span class="math inline">\(~\)</span></p>
 
 </div>
 </div>
