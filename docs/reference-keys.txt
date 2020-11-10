@@ -51,8 +51,8 @@ bibliotecas-de-r-para-inferência-bayesiana
 o-modelo-de-regressão-linear
 laplaces-demon
 stan
-aplicações
 mlg
+modelos-dinâmicos
 medprob
 basprob
 lebesgue

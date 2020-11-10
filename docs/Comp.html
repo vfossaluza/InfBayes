@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -199,7 +199,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
 <li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
 <li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
-<li class="chapter" data-level="7.6.4" data-path="Comp.html"><a href="Comp.html#aplicações"><i class="fa fa-check"></i><b>7.6.4</b> Aplicações</a></li>
+<li class="chapter" data-level="7.6.4" data-path="Comp.html"><a href="Comp.html#mlg"><i class="fa fa-check"></i><b>7.6.4</b> MLG</a></li>
+<li class="chapter" data-level="7.6.5" data-path="Comp.html"><a href="Comp.html#modelos-dinâmicos"><i class="fa fa-check"></i><b>7.6.5</b> Modelos Dinâmicos</a></li>
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
@@ -1292,7 +1293,7 @@ com
 ## Chain 1:                0.676 seconds (Sampling)
 ## Chain 1:                0.828 seconds (Total)
 ## Chain 1:</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="Comp.html#cb60-1"></a>posterior &lt;-<span class="st"> </span><span class="kw">extract</span>(stan_mod)</span>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="Comp.html#cb60-1"></a>posterior &lt;-<span class="st"> </span>rstan<span class="op">::</span><span class="kw">extract</span>(stan_mod)</span>
 <span id="cb60-2"><a href="Comp.html#cb60-2"></a>Post4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(posterior<span class="op">$</span>beta[,<span class="dv">1</span>],posterior<span class="op">$</span>beta[,<span class="dv">2</span>],posterior<span class="op">$</span>sigma2,<span class="dt">Algorithm=</span><span class="st">&quot;4.RStan&quot;</span>)</span>
 <span id="cb60-3"><a href="Comp.html#cb60-3"></a><span class="kw">colnames</span>(Post4) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;beta1&quot;</span>,<span class="st">&quot;beta2&quot;</span>,<span class="st">&quot;sigma2&quot;</span>,<span class="st">&quot;Algorithm&quot;</span>)</span>
 <span id="cb60-4"><a href="Comp.html#cb60-4"></a></span>
@@ -1377,16 +1378,35 @@ com
 <p><span class="math inline">\(~\)</span></p>
 <p><a href="ggmcmc.html"><strong>Gráficos ggmcmc</strong></a></p>
 <p><span class="math inline">\(~\)</span></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="Comp.html#cb65-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_pairs</span>(., <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-79-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><em>1. Histograma</em> com as cadeias geradas combinadas.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="Comp.html#cb65-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_histogram</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-79-1.png" width="80%" style="display: block; margin: auto;" />
+<em>2. Gráficos das Densidades</em> sobrepostos com cores diferentes por cadeia, permite comparar se as cadeias convergiram para distribuições semelhantes.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="Comp.html#cb66-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_density</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-1.png" width="80%" style="display: block; margin: auto;" />
+<em>3. Séries Temporais</em> das cadeias geradas. É esperado que as cadeias geradas apresentem distribuições semelhantes em torno de uma mesma média, indicando assim que atingiu-se a “estacionariedade”.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="Comp.html#cb67-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_traceplot</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-81-1.png" width="80%" style="display: block; margin: auto;" />
+<em>4. Gráfico de Médias Móveis</em>. É esperado que as curvas das médias das cadeias geradas se aproximem rapidamente de um mesmo valor.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="Comp.html#cb68-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_running</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-82-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><em>5. Densidades parcial e completa sobrepostas</em>. Compara a última parte da cadeia (por padrão, os últimos 10% dos valores, em verde) com a cadeia inteira (em preto). Idealmente, as partes inicial e final da cadeia devem ser amostradas na mesma distribuição alvo, de modo que as densidades sobrepostas devem ser semelhantes.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="Comp.html#cb69-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_compare_partial</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-83-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><em>6. Gráfico de Autocorrelação</em>. Espera-se alta correlação apenas no primeiro lag. Quando há um comportamento diferente do esperado, deve-se aumentar o tamanho dos saltos (<em>thin</em>) entre as observações da cadeia gerada que serão consideradas na amostra final.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="Comp.html#cb70-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_autocorrelation</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-84-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><em>6. Correlação Cruzada</em>. Quando há alta correlação entre os parâmetros é possível que a convergência da cadeia seja mais lenta.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Comp.html#cb71-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_crosscorrelation</span>(.)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-85-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Comp.html#cb72-1"></a><span class="kw">ggs</span>(stan_mod2) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_pairs</span>(., <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-86-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <!-- <!-- https://datascienceplus.com/bayesian-regression-with-stan-part-1-normal-regression/ -->
 </div>
-<div id="aplicações" class="section level3">
-<h3><span class="header-section-number">7.6.4</span> Aplicações</h3>
-<div id="mlg" class="section level4">
-<h4><span class="header-section-number">7.6.4.1</span> MLG</h4>
+<div id="mlg" class="section level3">
+<h3><span class="header-section-number">7.6.4</span> MLG</h3>
 <p>O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como <em>regressão logística</em>.</p>
 <p>Considere <span class="math inline">\(Y_1,\ldots,Y_n\)</span> condicionalmente independentes tais que <span class="math inline">\(Y_i|\theta_i \sim \textit{Ber}(\theta_i)\)</span>, em que <span class="math inline">\(\theta_i\)</span> é tal que <span class="math inline">\(\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i&#39; \boldsymbol\beta\)</span> ou, em outras palavras, <span class="math inline">\(\theta_i = \dfrac{1}{1+e^{\boldsymbol x_i&#39; \boldsymbol\beta}} = \dfrac{e^{-\boldsymbol x_i&#39; \boldsymbol\beta}}{1+e^{-\boldsymbol x_i&#39; \boldsymbol\beta}}\)</span> com <span class="math inline">\(\boldsymbol x_i\)</span> as covariáveis da <span class="math inline">\(i\)</span>-ésima observação e o vetor de parâmetros <span class="math inline">\(\boldsymbol\beta=(\beta_1,\ldots,\beta_p)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -1394,42 +1414,42 @@ com
 <p><span class="math inline">\(f(\boldsymbol\beta | \boldsymbol{y},\boldsymbol{x})\)</span>
 <span class="math inline">\(\propto f(\boldsymbol{y}|\boldsymbol\beta,\boldsymbol{x})f(\boldsymbol\beta)\)</span>
 <span class="math inline">\(\propto \displaystyle\prod_{i=1}^{n} \left(\dfrac{1}{1+e^{\boldsymbol x_i&#39; \boldsymbol\beta}}\right)^{y_i}\left(\dfrac{e^{\boldsymbol x_i&#39; \boldsymbol\beta}}{1+e^{\boldsymbol x_i&#39; \boldsymbol\beta}}\right)^{1-y_i} \prod_{j=1}^{p} \dfrac{1}{2b_i} e^{-\frac{|\beta_i|}{b_i}}\)</span>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="Comp.html#cb66-1"></a><span class="kw">library</span>(rstan)</span>
-<span id="cb66-2"><a href="Comp.html#cb66-2"></a></span>
-<span id="cb66-3"><a href="Comp.html#cb66-3"></a>dados &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
-<span id="cb66-4"><a href="Comp.html#cb66-4"></a><span class="co"># mpg:  Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)</span></span>
-<span id="cb66-5"><a href="Comp.html#cb66-5"></a>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">group=</span><span class="kw">as.factor</span>(vs),<span class="dt">y=</span>mpg,<span class="dt">fill=</span><span class="kw">as.factor</span>(vs))) <span class="op">+</span></span>
-<span id="cb66-6"><a href="Comp.html#cb66-6"></a><span class="st">        </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name=</span><span class="st">&quot;vs&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="Comp.html#cb67-1"></a>y &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(vs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>()</span>
-<span id="cb67-2"><a href="Comp.html#cb67-2"></a>x &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>()</span>
-<span id="cb67-3"><a href="Comp.html#cb67-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(y)</span>
-<span id="cb67-4"><a href="Comp.html#cb67-4"></a>X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="dv">1</span>,x))</span>
-<span id="cb67-5"><a href="Comp.html#cb67-5"></a>p &lt;-<span class="st"> </span><span class="kw">ncol</span>(X)</span>
-<span id="cb67-6"><a href="Comp.html#cb67-6"></a></span>
-<span id="cb67-7"><a href="Comp.html#cb67-7"></a>stan_data &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">N =</span> n, <span class="dt">J =</span> p, <span class="dt">y =</span> y, <span class="dt">x =</span> X)</span>
-<span id="cb67-8"><a href="Comp.html#cb67-8"></a></span>
-<span id="cb67-9"><a href="Comp.html#cb67-9"></a>rs_code &lt;-<span class="st"> &#39;</span></span>
-<span id="cb67-10"><a href="Comp.html#cb67-10"></a><span class="st">  data {</span></span>
-<span id="cb67-11"><a href="Comp.html#cb67-11"></a><span class="st">    int&lt;lower=1&gt; N;</span></span>
-<span id="cb67-12"><a href="Comp.html#cb67-12"></a><span class="st">    int&lt;lower=1&gt; J;</span></span>
-<span id="cb67-13"><a href="Comp.html#cb67-13"></a><span class="st">    int&lt;lower=0,upper=1&gt; y[N];</span></span>
-<span id="cb67-14"><a href="Comp.html#cb67-14"></a><span class="st">    matrix[N,J] x;</span></span>
-<span id="cb67-15"><a href="Comp.html#cb67-15"></a><span class="st">  }</span></span>
-<span id="cb67-16"><a href="Comp.html#cb67-16"></a><span class="st">  parameters {</span></span>
-<span id="cb67-17"><a href="Comp.html#cb67-17"></a><span class="st">    vector[J] beta;</span></span>
-<span id="cb67-18"><a href="Comp.html#cb67-18"></a><span class="st">  }</span></span>
-<span id="cb67-19"><a href="Comp.html#cb67-19"></a><span class="st">  model {</span></span>
-<span id="cb67-20"><a href="Comp.html#cb67-20"></a><span class="st">    beta ~ double_exponential(0, 100);</span></span>
-<span id="cb67-21"><a href="Comp.html#cb67-21"></a><span class="st">    y ~ bernoulli_logit(x * beta);</span></span>
-<span id="cb67-22"><a href="Comp.html#cb67-22"></a><span class="st">  }&#39;</span></span>
-<span id="cb67-23"><a href="Comp.html#cb67-23"></a></span>
-<span id="cb67-24"><a href="Comp.html#cb67-24"></a>N=<span class="dv">2000</span></span>
-<span id="cb67-25"><a href="Comp.html#cb67-25"></a>thin=<span class="dv">10</span></span>
-<span id="cb67-26"><a href="Comp.html#cb67-26"></a>burnin=<span class="dv">1000</span></span>
-<span id="cb67-27"><a href="Comp.html#cb67-27"></a></span>
-<span id="cb67-28"><a href="Comp.html#cb67-28"></a>stan_log &lt;-<span class="st"> </span><span class="kw">stan</span>(<span class="dt">model_code =</span> rs_code, <span class="dt">data =</span> stan_data, <span class="dt">init =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb67-29"><a href="Comp.html#cb67-29"></a>  <span class="dt">chains =</span> <span class="dv">1</span>, <span class="dt">iter =</span> N<span class="op">*</span>thin, <span class="dt">warmup =</span> burnin, <span class="dt">thin =</span> thin)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Comp.html#cb73-1"></a><span class="kw">library</span>(rstan)</span>
+<span id="cb73-2"><a href="Comp.html#cb73-2"></a></span>
+<span id="cb73-3"><a href="Comp.html#cb73-3"></a>dados &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(mtcars)</span>
+<span id="cb73-4"><a href="Comp.html#cb73-4"></a><span class="co"># mpg:  Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)</span></span>
+<span id="cb73-5"><a href="Comp.html#cb73-5"></a>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">group=</span><span class="kw">as.factor</span>(vs),<span class="dt">y=</span>mpg,<span class="dt">fill=</span><span class="kw">as.factor</span>(vs))) <span class="op">+</span></span>
+<span id="cb73-6"><a href="Comp.html#cb73-6"></a><span class="st">        </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name=</span><span class="st">&quot;vs&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Comp.html#cb74-1"></a>y &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(vs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>()</span>
+<span id="cb74-2"><a href="Comp.html#cb74-2"></a>x &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(mpg) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>()</span>
+<span id="cb74-3"><a href="Comp.html#cb74-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(y)</span>
+<span id="cb74-4"><a href="Comp.html#cb74-4"></a>X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">cbind</span>(<span class="dv">1</span>,x))</span>
+<span id="cb74-5"><a href="Comp.html#cb74-5"></a>p &lt;-<span class="st"> </span><span class="kw">ncol</span>(X)</span>
+<span id="cb74-6"><a href="Comp.html#cb74-6"></a></span>
+<span id="cb74-7"><a href="Comp.html#cb74-7"></a>stan_data &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">N =</span> n, <span class="dt">J =</span> p, <span class="dt">y =</span> y, <span class="dt">x =</span> X)</span>
+<span id="cb74-8"><a href="Comp.html#cb74-8"></a></span>
+<span id="cb74-9"><a href="Comp.html#cb74-9"></a>rs_code &lt;-<span class="st"> &#39;</span></span>
+<span id="cb74-10"><a href="Comp.html#cb74-10"></a><span class="st">  data {</span></span>
+<span id="cb74-11"><a href="Comp.html#cb74-11"></a><span class="st">    int&lt;lower=1&gt; N;</span></span>
+<span id="cb74-12"><a href="Comp.html#cb74-12"></a><span class="st">    int&lt;lower=1&gt; J;</span></span>
+<span id="cb74-13"><a href="Comp.html#cb74-13"></a><span class="st">    int&lt;lower=0,upper=1&gt; y[N];</span></span>
+<span id="cb74-14"><a href="Comp.html#cb74-14"></a><span class="st">    matrix[N,J] x;</span></span>
+<span id="cb74-15"><a href="Comp.html#cb74-15"></a><span class="st">  }</span></span>
+<span id="cb74-16"><a href="Comp.html#cb74-16"></a><span class="st">  parameters {</span></span>
+<span id="cb74-17"><a href="Comp.html#cb74-17"></a><span class="st">    vector[J] beta;</span></span>
+<span id="cb74-18"><a href="Comp.html#cb74-18"></a><span class="st">  }</span></span>
+<span id="cb74-19"><a href="Comp.html#cb74-19"></a><span class="st">  model {</span></span>
+<span id="cb74-20"><a href="Comp.html#cb74-20"></a><span class="st">    beta ~ double_exponential(0, 100);</span></span>
+<span id="cb74-21"><a href="Comp.html#cb74-21"></a><span class="st">    y ~ bernoulli_logit(x * beta);</span></span>
+<span id="cb74-22"><a href="Comp.html#cb74-22"></a><span class="st">  }&#39;</span></span>
+<span id="cb74-23"><a href="Comp.html#cb74-23"></a></span>
+<span id="cb74-24"><a href="Comp.html#cb74-24"></a>N=<span class="dv">2000</span></span>
+<span id="cb74-25"><a href="Comp.html#cb74-25"></a>thin=<span class="dv">10</span></span>
+<span id="cb74-26"><a href="Comp.html#cb74-26"></a>burnin=<span class="dv">1000</span></span>
+<span id="cb74-27"><a href="Comp.html#cb74-27"></a></span>
+<span id="cb74-28"><a href="Comp.html#cb74-28"></a>stan_log &lt;-<span class="st"> </span><span class="kw">stan</span>(<span class="dt">model_code =</span> rs_code, <span class="dt">data =</span> stan_data, <span class="dt">init =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb74-29"><a href="Comp.html#cb74-29"></a>  <span class="dt">chains =</span> <span class="dv">1</span>, <span class="dt">iter =</span> N<span class="op">*</span>thin, <span class="dt">warmup =</span> burnin, <span class="dt">thin =</span> thin)</span></code></pre></div>
 <pre><code>## 
 ## SAMPLING FOR MODEL &#39;6525180a46ff3a51f06bbb110d962a1c&#39; NOW (CHAIN 1).
 ## Chain 1: 
@@ -1451,11 +1471,11 @@ com
 ## Chain 1: Iteration: 19000 / 20000 [ 95%]  (Sampling)
 ## Chain 1: Iteration: 20000 / 20000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.179 seconds (Warm-up)
-## Chain 1:                2.222 seconds (Sampling)
-## Chain 1:                2.401 seconds (Total)
+## Chain 1:  Elapsed Time: 0.182 seconds (Warm-up)
+## Chain 1:                2.144 seconds (Sampling)
+## Chain 1:                2.326 seconds (Total)
 ## Chain 1:</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="Comp.html#cb69-1"></a><span class="kw">print</span>(stan_log)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Comp.html#cb76-1"></a><span class="kw">print</span>(stan_log)</span></code></pre></div>
 <pre><code>## Inference for Stan model: 6525180a46ff3a51f06bbb110d962a1c.
 ## 1 chains, each with iter=20000; warmup=1000; thin=10; 
 ## post-warmup draws per chain=1900, total post-warmup draws=1900.
@@ -1465,29 +1485,29 @@ com
 ## beta[2]   0.50    0.00 0.17   0.22   0.37   0.47   0.60   0.89  1735    1
 ## lp__    -13.89    0.03 1.05 -16.67 -14.31 -13.55 -13.15 -12.88  1733    1
 ## 
-## Samples were drawn using NUTS(diag_e) at Mon Nov 09 18:00:47 2020.
+## Samples were drawn using NUTS(diag_e) at Tue Nov 10 14:16:19 2020.
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
 ## convergence, Rhat=1).</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Comp.html#cb71-1"></a><span class="kw">library</span>(bayesplot)</span>
-<span id="cb71-2"><a href="Comp.html#cb71-2"></a></span>
-<span id="cb71-3"><a href="Comp.html#cb71-3"></a>post_log &lt;-<span class="st"> </span><span class="kw">extract</span>(stan_log, <span class="dt">inc_warmup =</span> <span class="ot">TRUE</span>, <span class="dt">permuted =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb71-4"><a href="Comp.html#cb71-4"></a></span>
-<span id="cb71-5"><a href="Comp.html#cb71-5"></a><span class="kw">color_scheme_set</span>(<span class="st">&quot;mix-brightblue-gray&quot;</span>)</span>
-<span id="cb71-6"><a href="Comp.html#cb71-6"></a><span class="kw">mcmc_trace</span>(post_log,  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>), <span class="dt">n_warmup =</span> <span class="dv">0</span>,</span>
-<span id="cb71-7"><a href="Comp.html#cb71-7"></a>                <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">labeller =</span> label_parsed))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-2.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Comp.html#cb72-1"></a><span class="kw">mcmc_acf</span>(post_log, <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-3.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Comp.html#cb73-1"></a><span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>)</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-4.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Comp.html#cb74-1"></a><span class="kw">multiplot</span>(<span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>),</span>
-<span id="cb74-2"><a href="Comp.html#cb74-2"></a>          <span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[2]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-5.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Comp.html#cb75-1"></a><span class="kw">library</span>(ggmcmc)</span>
-<span id="cb75-2"><a href="Comp.html#cb75-2"></a><span class="co">#ggs(stan_log) %&gt;% ggmcmc(., file = &quot;ggmcmc_log.html&quot;)</span></span>
-<span id="cb75-3"><a href="Comp.html#cb75-3"></a><span class="kw">ggs</span>(stan_log) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_pairs</span>(., <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</span></code></pre></div>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-80-6.png" width="80%" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="Comp.html#cb78-1"></a><span class="kw">library</span>(bayesplot)</span>
+<span id="cb78-2"><a href="Comp.html#cb78-2"></a></span>
+<span id="cb78-3"><a href="Comp.html#cb78-3"></a>post_log &lt;-<span class="st"> </span><span class="kw">extract</span>(stan_log, <span class="dt">inc_warmup =</span> <span class="ot">TRUE</span>, <span class="dt">permuted =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb78-4"><a href="Comp.html#cb78-4"></a></span>
+<span id="cb78-5"><a href="Comp.html#cb78-5"></a><span class="kw">color_scheme_set</span>(<span class="st">&quot;mix-brightblue-gray&quot;</span>)</span>
+<span id="cb78-6"><a href="Comp.html#cb78-6"></a><span class="kw">mcmc_trace</span>(post_log,  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>), <span class="dt">n_warmup =</span> <span class="dv">0</span>,</span>
+<span id="cb78-7"><a href="Comp.html#cb78-7"></a>                <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">labeller =</span> label_parsed))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="Comp.html#cb79-1"></a><span class="kw">mcmc_acf</span>(post_log, <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-3.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="Comp.html#cb80-1"></a><span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>, <span class="st">&quot;beta[2]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>)</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-4.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="Comp.html#cb81-1"></a><span class="kw">multiplot</span>(<span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[1]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>),</span>
+<span id="cb81-2"><a href="Comp.html#cb81-2"></a>          <span class="kw">mcmc_areas</span>(post_log,<span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">&quot;beta[2]&quot;</span>),<span class="dt">prob=</span><span class="fl">0.9</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-5.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="Comp.html#cb82-1"></a><span class="kw">library</span>(ggmcmc)</span>
+<span id="cb82-2"><a href="Comp.html#cb82-2"></a><span class="co">#ggs(stan_log) %&gt;% ggmcmc(., file = &quot;ggmcmc_log.html&quot;)</span></span>
+<span id="cb82-3"><a href="Comp.html#cb82-3"></a><span class="kw">ggs</span>(stan_log) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggs_pairs</span>(., <span class="dt">lower =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="st">&quot;density&quot;</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-87-6.png" width="80%" style="display: block; margin: auto;" />
 <!-- [**Gráficos ggmcmc**](ggmcmc_log.html) --></p>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
@@ -1498,25 +1518,39 @@ com
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<!-- ### Biblioteca **walker** para Modelos Dinâmicos -->
-<!-- * Bilbioteca do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos). -->
-<!-- * Modelo de Regressão Dinâmico Bayesiano -->
-<!-- $$y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)$$ -->
-<!-- $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$ -->
-<!-- onde -->
-<!--   - $y_t$: variável resposta no instante $t$; -->
-<!--   - $\boldsymbol x_t$: vetor com $k$ variáveis preditoras no instante $t$; -->
-<!--   - $\epsilon_t$ e $\boldsymbol\eta_t$: ruídos brancos; -->
-<!--   - $\boldsymbol\beta_t$: vetor dos $k$ coeficientes de regressão no instante $t$; -->
-<!--   - $D=\textit{diag}({\sigma}_{\eta_i})$; -->
-<!--   - $\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)$: vetor de parâmetros de variância. -->
-<!-- As distribuição a piori são dadas por -->
-<!-- $$\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)$$ -->
-<!-- $$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$ -->
-<!-- * Sobre a biblioteca `walker`: -->
-<!--   - https://cran.r-project.org/web/packages/walker/vignettes/walker.html -->
-<!--   - https://rdrr.io/cran/walker/man/walker.html -->
-<!-- $~$ -->
+</div>
+<div id="modelos-dinâmicos" class="section level3">
+<h3><span class="header-section-number">7.6.5</span> Modelos Dinâmicos</h3>
+<ul>
+<li><p>A Biblioteca <strong>walker</strong> para do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos).</p></li>
+<li><p>Modelo de Regressão Dinâmico Bayesiano</p></li>
+</ul>
+<p><span class="math display">\[y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)\]</span>
+<span class="math display">\[\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)\]</span></p>
+<p>onde</p>
+<ul>
+<li><p><span class="math inline">\(y_t\)</span>: variável resposta no instante <span class="math inline">\(t\)</span>;</p>
+<ul>
+<li><p><span class="math inline">\(\boldsymbol x_t\)</span>: vetor com <span class="math inline">\(k\)</span> variáveis preditoras no instante <span class="math inline">\(t\)</span>;</p></li>
+<li><p><span class="math inline">\(\epsilon_t\)</span> e <span class="math inline">\(\boldsymbol\eta_t\)</span>: ruídos brancos;</p></li>
+<li><p><span class="math inline">\(\boldsymbol\beta_t\)</span>: vetor dos <span class="math inline">\(k\)</span> coeficientes de regressão no instante <span class="math inline">\(t\)</span>;</p></li>
+<li><p><span class="math inline">\(D=\textit{diag}({\sigma}_{\eta_i})\)</span>;</p></li>
+<li><p><span class="math inline">\(\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)\)</span>: vetor de parâmetros de variância.</p></li>
+</ul></li>
+</ul>
+<p>As distribuição a piori são dadas por
+<span class="math display">\[\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)\]</span>
+<span class="math display">\[\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)\]</span></p>
+<ul>
+<li>Sobre a biblioteca <code>walker</code>:
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/walker/vignettes/walker.html" class="uri">https://cran.r-project.org/web/packages/walker/vignettes/walker.html</a></li>
+<li><a href="https://rdrr.io/cran/walker/man/walker.html" class="uri">https://rdrr.io/cran/walker/man/walker.html</a></li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(~\)</span></p>
+<!-- #### Dados de  -->
+<p><span class="math inline">\(~\)</span></p>
 <!-- #### Dados de Covid-19 -->
 <!-- * Dados de Covid-19: https://brasil.io/ -->
 <!-- * Dados de Mobilidade: https://www.google.com/covid19/mobility/ -->
@@ -1599,7 +1633,6 @@ com
 <!-- $~$ -->
 <!-- $~$ -->
 
-</div>
 </div>
 </div>
 </div>

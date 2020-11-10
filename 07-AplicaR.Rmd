@@ -442,7 +442,7 @@ stan_mod <- stan(model_code = rs_code, data = stan_data, init=Initial.Values,
 ```
 
 ```{r}
-posterior <- extract(stan_mod)
+posterior <- rstan::extract(stan_mod)
 Post4 <- data.frame(posterior$beta[,1],posterior$beta[,2],posterior$sigma2,Algorithm="4.RStan")
 colnames(Post4) <- c("beta1","beta2","sigma2","Algorithm")
 
@@ -489,6 +489,45 @@ $~$
 
 $~$
 
+*1. Histograma* com as cadeias geradas combinadas.
+
+```{r}
+ggs(stan_mod2) %>% ggs_histogram(.)
+```
+*2. Gráficos das Densidades* sobrepostos com cores diferentes por cadeia, permite comparar se as cadeias convergiram para distribuições semelhantes.
+
+```{r}
+ggs(stan_mod2) %>% ggs_density(.)
+```
+*3. Séries Temporais* das cadeias geradas. É esperado que as cadeias geradas apresentem distribuições semelhantes em torno de uma mesma média, indicando assim que atingiu-se a "estacionariedade".
+
+```{r}
+ggs(stan_mod2) %>% ggs_traceplot(.)
+```
+*4. Gráfico de Médias Móveis*. É esperado que as curvas das médias das cadeias geradas se aproximem rapidamente de um mesmo valor.
+
+```{r}
+ggs(stan_mod2) %>% ggs_running(.)
+```
+
+*5. Densidades parcial e completa sobrepostas*. Compara a última parte da cadeia (por padrão, os últimos 10% dos valores, em verde) com a cadeia inteira (em preto). Idealmente, as partes inicial e final da cadeia devem ser amostradas na mesma distribuição alvo, de modo que as densidades sobrepostas devem ser semelhantes.
+
+```{r}
+ggs(stan_mod2) %>% ggs_compare_partial(.)
+```
+
+*6. Gráfico de Autocorrelação*. Espera-se alta correlação apenas no primeiro lag. Quando há um comportamento diferente do esperado, deve-se aumentar o tamanho dos saltos (*thin*) entre as observações da cadeia gerada que serão consideradas na amostra final.
+
+```{r}
+ggs(stan_mod2) %>% ggs_autocorrelation(.)
+```
+
+*6. Correlação Cruzada*. Quando há alta correlação entre os parâmetros é possível que a convergência da cadeia seja mais lenta.
+
+```{r}
+ggs(stan_mod2) %>% ggs_crosscorrelation(.)
+```
+
 ```{r}
 ggs(stan_mod2) %>% ggs_pairs(., lower = list(continuous = "density"))
 ```
@@ -501,9 +540,7 @@ $~$
 <!-- <!-- https://datascienceplus.com/bayesian-regression-with-stan-part-1-normal-regression/ -->
 
 
-### Aplicações
-
-#### MLG
+### MLG
 
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como *regressão logística*.
@@ -593,37 +630,44 @@ $~$
 $~$
 
 
-<!-- ### Biblioteca **walker** para Modelos Dinâmicos -->
+### Modelos Dinâmicos
 
-<!-- * Bilbioteca do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos). -->
+* A Biblioteca **walker** para do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos).
 
-<!-- * Modelo de Regressão Dinâmico Bayesiano -->
+* Modelo de Regressão Dinâmico Bayesiano
 
-<!-- $$y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)$$ -->
-<!-- $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$ -->
+$$y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)$$
+$$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$
 
-<!-- onde -->
+onde
 
-<!--   - $y_t$: variável resposta no instante $t$; -->
+  - $y_t$: variável resposta no instante $t$;
 
-<!--   - $\boldsymbol x_t$: vetor com $k$ variáveis preditoras no instante $t$; -->
+  - $\boldsymbol x_t$: vetor com $k$ variáveis preditoras no instante $t$;
 
-<!--   - $\epsilon_t$ e $\boldsymbol\eta_t$: ruídos brancos; -->
+  - $\epsilon_t$ e $\boldsymbol\eta_t$: ruídos brancos;
 
-<!--   - $\boldsymbol\beta_t$: vetor dos $k$ coeficientes de regressão no instante $t$; -->
+  - $\boldsymbol\beta_t$: vetor dos $k$ coeficientes de regressão no instante $t$;
 
-<!--   - $D=\textit{diag}({\sigma}_{\eta_i})$; -->
+  - $D=\textit{diag}({\sigma}_{\eta_i})$;
 
-<!--   - $\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)$: vetor de parâmetros de variância. -->
+  - $\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)$: vetor de parâmetros de variância.
 
-<!-- As distribuição a piori são dadas por -->
-<!-- $$\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)$$ -->
-<!-- $$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$ -->
+As distribuição a piori são dadas por
+$$\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)$$
+$$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$
 
-<!-- * Sobre a biblioteca `walker`: -->
-<!--   - https://cran.r-project.org/web/packages/walker/vignettes/walker.html -->
-<!--   - https://rdrr.io/cran/walker/man/walker.html -->
-<!-- $~$ -->
+* Sobre a biblioteca `walker`:
+  - https://cran.r-project.org/web/packages/walker/vignettes/walker.html
+  - https://rdrr.io/cran/walker/man/walker.html
+
+$~$
+
+<!-- #### Dados de  -->
+
+
+
+$~$
 
 <!-- #### Dados de Covid-19 -->
 

@@ -126,7 +126,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-11-09}
+\date{2020-11-10}
 
 \begin{document}
 \maketitle
@@ -4549,7 +4549,7 @@ O Stan é uma plataforma de modelagem estatística de alto desempenho. Em partic
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{posterior <-}\StringTok{ }\KeywordTok{extract}\NormalTok{(stan_mod)}
+\NormalTok{posterior <-}\StringTok{ }\NormalTok{rstan}\OperatorTok{::}\KeywordTok{extract}\NormalTok{(stan_mod)}
 \NormalTok{Post4 <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(posterior}\OperatorTok{$}\NormalTok{beta[,}\DecValTok{1}\NormalTok{],posterior}\OperatorTok{$}\NormalTok{beta[,}\DecValTok{2}\NormalTok{],posterior}\OperatorTok{$}\NormalTok{sigma2,}\DataTypeTok{Algorithm=}\StringTok{"4.RStan"}\NormalTok{)}
 \KeywordTok{colnames}\NormalTok{(Post4) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"beta1"}\NormalTok{,}\StringTok{"beta2"}\NormalTok{,}\StringTok{"sigma2"}\NormalTok{,}\StringTok{"Algorithm"}\NormalTok{)}
 
@@ -4661,23 +4661,90 @@ O Stan é uma plataforma de modelagem estatística de alto desempenho. Em partic
 
 \(~\)
 
+\emph{1. Histograma} com as cadeias geradas combinadas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_histogram}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-79-1} \end{center}
+
+\emph{2. Gráficos das Densidades} sobrepostos com cores diferentes por cadeia, permite comparar se as cadeias convergiram para distribuições semelhantes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_density}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-1} \end{center}
+
+\emph{3. Séries Temporais} das cadeias geradas. É esperado que as cadeias geradas apresentem distribuições semelhantes em torno de uma mesma média, indicando assim que atingiu-se a ``estacionariedade''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_traceplot}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-81-1} \end{center}
+
+\emph{4. Gráfico de Médias Móveis}. É esperado que as curvas das médias das cadeias geradas se aproximem rapidamente de um mesmo valor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_running}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-82-1} \end{center}
+
+\emph{5. Densidades parcial e completa sobrepostas}. Compara a última parte da cadeia (por padrão, os últimos 10\% dos valores, em verde) com a cadeia inteira (em preto). Idealmente, as partes inicial e final da cadeia devem ser amostradas na mesma distribuição alvo, de modo que as densidades sobrepostas devem ser semelhantes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_compare_partial}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-83-1} \end{center}
+
+\emph{6. Gráfico de Autocorrelação}. Espera-se alta correlação apenas no primeiro lag. Quando há um comportamento diferente do esperado, deve-se aumentar o tamanho dos saltos (\emph{thin}) entre as observações da cadeia gerada que serão consideradas na amostra final.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_autocorrelation}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-84-1} \end{center}
+
+\emph{6. Correlação Cruzada}. Quando há alta correlação entre os parâmetros é possível que a convergência da cadeia seja mais lenta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_crosscorrelation}\NormalTok{(.)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-85-1} \end{center}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{ggs}\NormalTok{(stan_mod2) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggs_pairs}\NormalTok{(., }\DataTypeTok{lower =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \StringTok{"density"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-86-1} \end{center}
 
 \(~\)
 
 \(~\)
-
-\hypertarget{aplicauxe7uxf5es}{%
-\subsection{Aplicações}\label{aplicauxe7uxf5es}}
 
 \hypertarget{mlg}{%
-\subsubsection{MLG}\label{mlg}}
+\subsection{MLG}\label{mlg}}
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como \emph{regressão logística}.
 
@@ -4702,7 +4769,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4760,9 +4827,9 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## Chain 1: Iteration: 19000 / 20000 [ 95%]  (Sampling)
 ## Chain 1: Iteration: 20000 / 20000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.178 seconds (Warm-up)
-## Chain 1:                2.186 seconds (Sampling)
-## Chain 1:                2.364 seconds (Total)
+## Chain 1:  Elapsed Time: 0.232 seconds (Warm-up)
+## Chain 1:                3.101 seconds (Sampling)
+## Chain 1:                3.333 seconds (Total)
 ## Chain 1:
 \end{verbatim}
 
@@ -4782,7 +4849,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## beta[2]   0.50    0.00 0.17   0.22   0.37   0.47   0.60   0.89  1735    1
 ## lp__    -13.89    0.03 1.05 -16.67 -14.31 -13.55 -13.15 -12.88  1733    1
 ## 
-## Samples were drawn using NUTS(diag_e) at Mon Nov 09 18:06:24 2020.
+## Samples were drawn using NUTS(diag_e) at Tue Nov 10 14:23:37 2020.
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
 ## convergence, Rhat=1).
@@ -4800,7 +4867,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-2} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4808,7 +4875,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-3} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-3} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4816,7 +4883,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-4} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-4} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4825,7 +4892,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-5} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-5} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4835,7 +4902,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-80-6} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-87-6} \end{center}
 
 \(~\)
 
@@ -4847,6 +4914,61 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
   \tightlist
   \item
     \url{https://cran.r-project.org/web/packages/rstanarm/}
+  \end{itemize}
+\end{itemize}
+
+\(~\)
+
+\(~\)
+
+\hypertarget{modelos-dinuxe2micos}{%
+\subsection{Modelos Dinâmicos}\label{modelos-dinuxe2micos}}
+
+\begin{itemize}
+\item
+  A Biblioteca \textbf{walker} para do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos).
+\item
+  Modelo de Regressão Dinâmico Bayesiano
+\end{itemize}
+
+\[y_t = \boldsymbol x_t~\boldsymbol\beta_t + \epsilon_t ~,~~ \epsilon_t \sim \textit{Normal}(0,\sigma_y^2)\]
+\[\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)\]
+
+onde
+
+\begin{itemize}
+\item
+  \(y_t\): variável resposta no instante \(t\);
+
+  \begin{itemize}
+  \item
+    \(\boldsymbol x_t\): vetor com \(k\) variáveis preditoras no instante \(t\);
+  \item
+    \(\epsilon_t\) e \(\boldsymbol\eta_t\): ruídos brancos;
+  \item
+    \(\boldsymbol\beta_t\): vetor dos \(k\) coeficientes de regressão no instante \(t\);
+  \item
+    \(D=\textit{diag}({\sigma}_{\eta_i})\);
+  \item
+    \(\boldsymbol\sigma=\left(\sigma_y,{\sigma}_{\eta_1},\ldots,{\sigma}_{\eta_k}\right)\): vetor de parâmetros de variância.
+  \end{itemize}
+\end{itemize}
+
+As distribuição a piori são dadas por
+\[\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)\]
+\[\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)\]
+
+\begin{itemize}
+\tightlist
+\item
+  Sobre a biblioteca \texttt{walker}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{https://cran.r-project.org/web/packages/walker/vignettes/walker.html}
+  \item
+    \url{https://rdrr.io/cran/walker/man/walker.html}
   \end{itemize}
 \end{itemize}
 

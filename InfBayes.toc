@@ -51,11 +51,11 @@
 \contentsline {subsection}{\numberline {7.6.1}O Modelo de Regressão Linear}{115}{subsection.7.6.1}%
 \contentsline {subsection}{\numberline {7.6.2}Laplace's Demon}{121}{subsection.7.6.2}%
 \contentsline {subsection}{\numberline {7.6.3}Stan}{135}{subsection.7.6.3}%
-\contentsline {subsection}{\numberline {7.6.4}Aplicações}{140}{subsection.7.6.4}%
-\contentsline {subsubsection}{\numberline {7.6.4.1}MLG}{140}{subsubsection.7.6.4.1}%
-\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{147}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Conceitos Básicos}{147}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{149}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{156}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Função de Distribuição}{160}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{165}{section.A.5}%
+\contentsline {subsection}{\numberline {7.6.4}MLG}{144}{subsection.7.6.4}%
+\contentsline {subsection}{\numberline {7.6.5}Modelos Dinâmicos}{150}{subsection.7.6.5}%
+\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{151}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Conceitos Básicos}{151}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{153}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{160}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Função de Distribuição}{164}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{169}{section.A.5}%
