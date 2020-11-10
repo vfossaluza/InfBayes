@@ -241,12 +241,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Muitos dos métodos descritos baseiam-se na <em>Lei dos Grande Números</em> (LGN) e são uma bela aplicação de ideias frequentistas em um cenário controlado onde as suposições de <em>i.i.d.</em> são satisfeitas.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Lei <span class="math inline">\(\overset{\textbf{(Fraca)}}{\textbf{Forte}}\)</span> dos Grande Números.</strong> Seja <span class="math inline">\(X_1,X_2...\)</span> uma sequência de v.a. i.i.d com <span class="math inline">\(E[X_1]=\mu\)</span> e <span class="math inline">\(Var[X_1]=\sigma^2&lt;\infty\)</span>, então</p>
-<p><span class="math inline">\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n X_i ~~\underset{q.c.}{\overset{P}{\longrightarrow}}~~ E[X_i]=\mu\)</span>.</p>
+<p><span class="math inline">\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n X_i ~~\underset{q.c.}{\overset{P}{\longrightarrow}}~~ E[X_1]=\mu\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>As integrais de interesse aqui serão escritas como o valor esperado de funções de variáveis aleatórias, isto é,</p>
-<p><span class="math inline">\(\displaystyle \int g(x) dP(x) = E\left[g(x)\right]\)</span>.</p>
+<p><span class="math inline">\(\displaystyle \int g(x) dP(x) = E\left[g(X)\right]\)</span>.</p>
 <p>Deste modo, suponha que <span class="math inline">\(X_1,X_2...\)</span> é uma sequência de v.a. i.i.d e <span class="math inline">\(g:\mathbb{R} \longrightarrow\mathbb{R}\)</span> é uma função (mensurável) tal que <span class="math inline">\(Var\left[g(X_1)\right]&lt;\infty\)</span>. Então, pela <em>LGN</em>,</p>
-<p><span class="math inline">\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n g(X_i) ~\longrightarrow~ E\left[g(X_i)\right]\)</span></p>
+<p><span class="math inline">\(\dfrac{1}{n}\displaystyle \sum_{i=1}^n g(X_i) ~\longrightarrow~ E\left[g(X_1)\right]\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <div id="método-de-monte-carlo" class="section level2">
 <h2><span class="header-section-number">7.1</span> Método de Monte Carlo</h2>
@@ -254,15 +254,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Então, a integral acima pode ser aproximada por <span class="math inline">\(\displaystyle \dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\)</span></p>
 <ul>
 <li>A precisão da aproximação é usualmente estimada pelo erro padrão da estimativa<br />
-<span class="math inline">\(\displaystyle EP\left[\dfrac{1}{m}\sum_{i=1}^m g(X_i)\right]\)</span>
+<span class="math inline">\(\displaystyle EP\left[\dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\right]\)</span>
 <span class="math inline">\(\approx \displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[g(\theta_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^mg(\theta_j)\right]^2\right)}\)</span></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Exemplo 1.</strong> Suponha que deseja-se estimar o número <span class="math inline">\(\pi\)</span> usando o método de Monte Carlo. Considere então que o v.a. <span class="math inline">\((X,Y)\)</span> tem distribuição uniforme em um quadrado centrado na origem, <span class="math inline">\(\mathfrak{X}=[-1,1]\times[-1,1]\)</span>, e um círculo <span class="math inline">\(A\)</span> de raio <span class="math inline">\(1\)</span> inscrito nesse quadrado, <span class="math inline">\(x^2+y^2\leq 1.\)</span> Como a distribuição é uniforme no quadrado, a probabilidade de escolher um ponto no círculo é<br />
-<span class="math inline">\(P(A)\)</span> <span class="math inline">\(=\dfrac{\text{área da círculo}}{\text{área do quadrado}}\)</span> <span class="math inline">\(=\dfrac{\pi}{4}\)</span> <span class="math inline">\(= \displaystyle\int_A f(x,y) dxdy\)</span> <span class="math inline">\(= \displaystyle\int_{\mathfrak{X}} \mathbb{I}_A(x,y)~\dfrac{1}{4}~dxdy\)</span> <span class="math inline">\(=E\left[\mathbb{I}_A(x,y)\right]~.\)</span><br />
+<span class="math inline">\(P(A)\)</span> <span class="math inline">\(=\dfrac{\text{área da círculo}}{\text{área do quadrado}}\)</span> <span class="math inline">\(=\dfrac{\pi}{4}\)</span> <span class="math inline">\(= \displaystyle\int_A f(x,y) dxdy\)</span> <span class="math inline">\(= \displaystyle\int_{\mathfrak{X}} \mathbb{I}_A(x,y)~\dfrac{1}{4}~dxdy\)</span> <span class="math inline">\(=E\left[\mathbb{I}_A(X,Y)\right]~.\)</span><br />
 Suponha que é possível gerar uma amostra <span class="math inline">\(\left\{(x_1,y_1),\ldots,(x_m,y_m)\right\}\)</span> de <span class="math inline">\((X,Y)\)</span>, de modo que podemos aproximar o valor de <span class="math inline">\(\pi\)</span> por<br />
-<span class="math inline">\(\pi\)</span> <span class="math inline">\(=4~P(A)\)</span> <span class="math inline">\(=E\left[4~\mathbb{I}_A(x,y)\right]\)</span> <span class="math inline">\(\displaystyle \approx \dfrac{1}{m}\sum_{i=1}^m 4~\mathbb{I}_A(x_i,y_i)\)</span>,<br />
+<span class="math inline">\(\pi\)</span> <span class="math inline">\(=4~P(A)\)</span> <span class="math inline">\(=E\left[4~\mathbb{I}_A(X,Y)\right]\)</span> <span class="math inline">\(\displaystyle \approx \dfrac{1}{m}\sum_{i=1}^m 4~\mathbb{I}_A(x_i,y_i)\)</span>,<br />
 e, denotando por <span class="math inline">\(\displaystyle t=\sum_{i=1}^m ~\mathbb{I}_A(x_i,y_i)\)</span>, o erro estimado é<br />
 <span class="math inline">\(\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[4~\mathbb{I}(x_i,y_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^m 4~\mathbb{I}(x_i,y_i)\right]^2\right)}\)</span>
 <span class="math inline">\(=\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{16}{m}~t-\left[\dfrac{4}{m}~t\right]^2\right)}\)</span>
@@ -300,7 +300,7 @@ e, denotando por <span class="math inline">\(\displaystyle t=\sum_{i=1}^m ~\math
 e deseja estimar o resultado usando o método de Monte Carlo. Assim, considere as duas propostas a seguir<br />
 1. <span class="math inline">\(U \sim Unif (0,1)\)</span> e a integral pode ser escrita como <span class="math inline">\(E\left[U^3(1-U)^5e^U\right]\)</span>;<br />
 2. <span class="math inline">\(Y \sim Beta(4,6)\)</span> de modo que<br />
-<span class="math inline">\(\displaystyle \int_0^1 y^3(1-y)^5e^y dx\)</span> <span class="math inline">\(=\beta(4,6)\displaystyle \int_0^1 e^y~~\frac{y^{4-1}(1-x)^{6-1}}{\beta(4,6)}~dx\)</span> <span class="math inline">\(=\beta(4,6)E\left[e^Y\right]\)</span>.</p>
+<span class="math inline">\(\displaystyle \int_0^1 y^3(1-y)^5e^y dy\)</span> <span class="math inline">\(=\beta(4,6)\displaystyle \int_0^1 e^y~~\frac{y^{4-1}(1-y)^{6-1}}{\beta(4,6)}~dy\)</span> <span class="math inline">\(=\beta(4,6)E\left[e^Y\right]\)</span>.</p>
 </blockquote>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-47-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-49-1.gif" width="80%" style="display: block; margin: auto;" /></p>
@@ -311,14 +311,14 @@ e deseja estimar o resultado usando o método de Monte Carlo. Assim, considere a
 Se não houver um simulador da distribuição Normal-Inv.Gamma diretamente, é possível gerar um ponto <span class="math inline">\(\boldsymbol \theta_i=(\mu_i,\sigma_i)\)</span> tomando <span class="math inline">\({\sigma}_i^2 \sim \textit{Inv.Gama}(a,b)\)</span> (ou <span class="math inline">\(\tau_i \sim \textit{Gama}(a,b)\)</span> e fazer <span class="math inline">\({\sigma}_i^2=1/\tau_i\)</span>) e <span class="math inline">\(\mu_i \sim \textit{Normal}(m,{\sigma}_i^2/v)\)</span>. Nesse exemplo é fácil simular uma amostra da distribuição posterior e é possível obter estimativas pontuais simplesmente obtendo estatística resumo da amostra simulada, como média, moda, mediana, variância e desvio padrão.<br />
 <span class="math inline">\(~\)</span><br />
 Para construir a região HPD, primeiramente note que<br />
-<span class="math inline">\(R=\left\{\theta\in\Theta :~f(\theta | \boldsymbol x)\geq h)\right\}=\left\{\theta\in\Theta:~f(\boldsymbol x|\theta)f(\theta)\geq h^*=c\cdot h\right\}\)</span>,<br />
-de modo que não é necessário conhecer a constante <span class="math inline">\(c=f(\boldsymbol x)\)</span> para realizar essa tarefa. Como nesse exemplo a distribuição a posteriori é conhecida e fácil de ser simulada, considere o algorítmo a seguir para estimar a região HPD de probabilidade <span class="math inline">\(\gamma\)</span>.<br />
+<span class="math inline">\(R=\left\{\boldsymbol{\theta}\in\Theta :~f(\boldsymbol{\theta} | \boldsymbol{x})\geq h)\right\}=\left\{\boldsymbol{\theta}\in\Theta:~f(\boldsymbol x|\boldsymbol{\theta})f(\boldsymbol{\theta})\geq h^*=c\cdot h\right\}\)</span>,<br />
+de modo que não é necessário conhecer a constante <span class="math inline">\(c=f(\boldsymbol{x})\)</span> para realizar essa tarefa. Como nesse exemplo a distribuição a posteriori é conhecida e fácil de ser simulada, considere o algorítmo a seguir para estimar a região HPD de probabilidade <span class="math inline">\(\gamma\)</span>.<br />
 <span class="math inline">\(~\)</span><br />
-1. Simular <span class="math inline">\(\theta_1,...,\theta_m\)</span> de <span class="math inline">\(f(\theta|\boldsymbol x)\)</span>;<br />
-2. Encontrar <span class="math inline">\(h\)</span> tal que <span class="math inline">\(\displaystyle \dfrac{1}{m}\sum_{i=1}^m\mathbb{I}_{R}(\theta_i)=\dfrac{1}{m}\sum_{i=1}^m\mathbb{I}(f(\theta_i|\boldsymbol x)\geq h)\approx \gamma\)</span><br />
-<span class="math inline">\(~~~\)</span> i. Calcule <span class="math inline">\(f(\boldsymbol \theta_i|\boldsymbol x)\)</span>, <span class="math inline">\(i=1,\ldots,m\)</span>;<br />
+1. Simular <span class="math inline">\(\boldsymbol{\theta}_1,...,\boldsymbol{\theta}_m\)</span> de <span class="math inline">\(f(\boldsymbol{\theta}|\boldsymbol{x})\)</span>;<br />
+2. Encontrar <span class="math inline">\(h\)</span> tal que <span class="math inline">\(\displaystyle \dfrac{1}{m}\sum_{i=1}^m\mathbb{I}_{R}(\boldsymbol{\theta}_i)=\dfrac{1}{m}\sum_{i=1}^m\mathbb{I}(f(\boldsymbol{\theta}_i|\boldsymbol{x})\geq h)\approx \gamma\)</span><br />
+<span class="math inline">\(~~~\)</span> i. Calcule <span class="math inline">\(f(\boldsymbol{\theta}_i|\boldsymbol{x})\)</span>, <span class="math inline">\(i=1,\ldots,m\)</span>;<br />
 <span class="math inline">\(~~~\)</span> ii. Ordene esses valores e tome <span class="math inline">\(h\)</span> como o percentil de ordem <span class="math inline">\(\gamma\)</span>;<br />
-3. Fazer o gráfico da curva de nível <span class="math inline">\(f(\boldsymbol\theta |\boldsymbol x)=h\)</span>.</p>
+3. Fazer o gráfico da curva de nível <span class="math inline">\(f(\boldsymbol{\theta}|\boldsymbol{x})=h\)</span>.</p>
 </blockquote>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Comp.html#cb22-1"></a><span class="kw">set.seed</span>(<span class="dv">666</span>)</span>
 <span id="cb22-2"><a href="Comp.html#cb22-2"></a>a=<span class="dv">7</span>; b=<span class="dv">7</span>; m=<span class="dv">0</span>; v=<span class="fl">0.5</span> <span class="co"># parametros da posteriori</span></span>

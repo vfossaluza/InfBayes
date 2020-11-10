@@ -14,17 +14,17 @@ $~$
 
 **Lei $\overset{\textbf{(Fraca)}}{\textbf{Forte}}$ dos Grande Números.** Seja $X_1,X_2...$ uma sequência de v.a. i.i.d com $E[X_1]=\mu$ e $Var[X_1]=\sigma^2<\infty$, então 
 
-$\dfrac{1}{n}\displaystyle \sum_{i=1}^n X_i ~~\underset{q.c.}{\overset{P}{\longrightarrow}}~~ E[X_i]=\mu$.
+$\dfrac{1}{n}\displaystyle \sum_{i=1}^n X_i ~~\underset{q.c.}{\overset{P}{\longrightarrow}}~~ E[X_1]=\mu$.
 
 $~$
 
 As integrais de interesse aqui serão escritas como o valor esperado de funções de variáveis aleatórias, isto é,
 
-$\displaystyle \int g(x) dP(x) = E\left[g(x)\right]$. 
+$\displaystyle \int g(x) dP(x) = E\left[g(X)\right]$. 
 
 Deste modo, suponha que $X_1,X_2...$ é uma sequência de v.a. i.i.d e $g:\mathbb{R} \longrightarrow\mathbb{R}$ é uma função (mensurável) tal que $Var\left[g(X_1)\right]<\infty$. Então, pela *LGN*,
 
-$\dfrac{1}{n}\displaystyle \sum_{i=1}^n g(X_i) ~\longrightarrow~ E\left[g(X_i)\right]$
+$\dfrac{1}{n}\displaystyle \sum_{i=1}^n g(X_i) ~\longrightarrow~ E\left[g(X_1)\right]$
 
 $~$
 
@@ -36,15 +36,15 @@ Suponha que deseja-se calcular $\displaystyle\int_\Theta g(\theta)f(\theta|\bold
 Então, a integral acima pode ser aproximada por $\displaystyle \dfrac{1}{m}\sum_{i=1}^m g(\theta_i)$
 
 * A precisão da aproximação é usualmente estimada pelo erro padrão da estimativa  
-$\displaystyle EP\left[\dfrac{1}{m}\sum_{i=1}^m g(X_i)\right]$ 
+$\displaystyle EP\left[\dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\right]$ 
 $\approx \displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[g(\theta_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^mg(\theta_j)\right]^2\right)}$
 
 $~$
 
 > **Exemplo 1.** Suponha que deseja-se estimar o número $\pi$ usando o método de Monte Carlo. Considere então que o v.a. $(X,Y)$ tem distribuição uniforme em um quadrado centrado na origem, $\mathfrak{X}=[-1,1]\times[-1,1]$, e um círculo $A$ de raio $1$ inscrito nesse quadrado, $x^2+y^2\leq 1.$ Como a distribuição é uniforme no quadrado, a probabilidade de escolher um ponto no círculo é  
-$P(A)$ $=\dfrac{\text{área da círculo}}{\text{área do quadrado}}$ $=\dfrac{\pi}{4}$ $= \displaystyle\int_A f(x,y) dxdy$ $= \displaystyle\int_{\mathfrak{X}} \mathbb{I}_A(x,y)~\dfrac{1}{4}~dxdy$ $=E\left[\mathbb{I}_A(x,y)\right]~.$  
+$P(A)$ $=\dfrac{\text{área da círculo}}{\text{área do quadrado}}$ $=\dfrac{\pi}{4}$ $= \displaystyle\int_A f(x,y) dxdy$ $= \displaystyle\int_{\mathfrak{X}} \mathbb{I}_A(x,y)~\dfrac{1}{4}~dxdy$ $=E\left[\mathbb{I}_A(X,Y)\right]~.$  
 Suponha que é possível gerar uma amostra $\left\{(x_1,y_1),\ldots,(x_m,y_m)\right\}$ de $(X,Y)$, de modo que podemos aproximar o valor de $\pi$ por  
-$\pi$ $=4~P(A)$ $=E\left[4~\mathbb{I}_A(x,y)\right]$ $\displaystyle \approx \dfrac{1}{m}\sum_{i=1}^m 4~\mathbb{I}_A(x_i,y_i)$,  
+$\pi$ $=4~P(A)$ $=E\left[4~\mathbb{I}_A(X,Y)\right]$ $\displaystyle \approx \dfrac{1}{m}\sum_{i=1}^m 4~\mathbb{I}_A(x_i,y_i)$,  
 e, denotando por $\displaystyle t=\sum_{i=1}^m ~\mathbb{I}_A(x_i,y_i)$, o erro estimado é  
 $\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{1}{m}\sum_{i=1}^m\Big[4~\mathbb{I}(x_i,y_i)\Big]^2-\left[\dfrac{1}{m}\sum_{j=1}^m 4~\mathbb{I}(x_i,y_i)\right]^2\right)}$
 $=\displaystyle \sqrt{\dfrac{1}{m}\left(\dfrac{16}{m}~t-\left[\dfrac{4}{m}~t\right]^2\right)}$
@@ -142,7 +142,7 @@ $$\displaystyle \int_0^1 x^3(1-x)^5e^xdx = 74046 - 27240e\approx0.0029928$$
 e deseja estimar o resultado usando o método de Monte Carlo. Assim, considere as duas propostas a seguir   
 1. $U \sim Unif (0,1)$ e a integral pode ser escrita como $E\left[U^3(1-U)^5e^U\right]$;  
 2. $Y \sim Beta(4,6)$ de modo que  
-$\displaystyle \int_0^1 y^3(1-y)^5e^y dx$ $=\beta(4,6)\displaystyle \int_0^1 e^y~~\frac{y^{4-1}(1-x)^{6-1}}{\beta(4,6)}~dx$ $=\beta(4,6)E\left[e^Y\right]$.  
+$\displaystyle \int_0^1 y^3(1-y)^5e^y dy$ $=\beta(4,6)\displaystyle \int_0^1 e^y~~\frac{y^{4-1}(1-y)^{6-1}}{\beta(4,6)}~dy$ $=\beta(4,6)E\left[e^Y\right]$.  
 ```{r, echo=FALSE, include=knitr::is_latex_output()}
 set.seed(666)
 M = 1000 # número de iterações
@@ -219,14 +219,14 @@ $~$
 Se não houver um simulador da distribuição Normal-Inv.Gamma diretamente, é possível gerar um ponto $\boldsymbol \theta_i=(\mu_i,\sigma_i)$ tomando ${\sigma}_i^2 \sim \textit{Inv.Gama}(a,b)$ (ou $\tau_i \sim \textit{Gama}(a,b)$ e fazer ${\sigma}_i^2=1/\tau_i$) e $\mu_i \sim \textit{Normal}(m,{\sigma}_i^2/v)$. Nesse exemplo é fácil simular uma amostra da distribuição posterior e é possível obter estimativas pontuais simplesmente obtendo estatística resumo da amostra simulada, como média, moda, mediana, variância e desvio padrão.  
 $~$  
 Para construir a região HPD, primeiramente note que  
-$R=\left\{\theta\in\Theta :~f(\theta | \boldsymbol x)\geq h)\right\}=\left\{\theta\in\Theta:~f(\boldsymbol x|\theta)f(\theta)\geq h^*=c\cdot h\right\}$,  
-de modo que não é necessário conhecer a constante $c=f(\boldsymbol x)$ para realizar essa tarefa. Como nesse exemplo a distribuição a posteriori é conhecida e fácil de ser simulada, considere o algorítmo a seguir para estimar a região HPD de probabilidade $\gamma$.  
+$R=\left\{\boldsymbol{\theta}\in\Theta :~f(\boldsymbol{\theta} | \boldsymbol{x})\geq h)\right\}=\left\{\boldsymbol{\theta}\in\Theta:~f(\boldsymbol x|\boldsymbol{\theta})f(\boldsymbol{\theta})\geq h^*=c\cdot h\right\}$,  
+de modo que não é necessário conhecer a constante $c=f(\boldsymbol{x})$ para realizar essa tarefa. Como nesse exemplo a distribuição a posteriori é conhecida e fácil de ser simulada, considere o algorítmo a seguir para estimar a região HPD de probabilidade $\gamma$.  
 $~$  
-1. Simular $\theta_1,...,\theta_m$ de $f(\theta|\boldsymbol x)$;  
-2. Encontrar $h$ tal que $\displaystyle \dfrac{1}{m}\sum_{i=1}^m\mathbb{I}_{R}(\theta_i)=\dfrac{1}{m}\sum_{i=1}^m\mathbb{I}(f(\theta_i|\boldsymbol x)\geq h)\approx \gamma$  
-$~~~$ i. Calcule $f(\boldsymbol \theta_i|\boldsymbol x)$, $i=1,\ldots,m$;  
+1. Simular $\boldsymbol{\theta}_1,...,\boldsymbol{\theta}_m$ de $f(\boldsymbol{\theta}|\boldsymbol{x})$;  
+2. Encontrar $h$ tal que $\displaystyle \dfrac{1}{m}\sum_{i=1}^m\mathbb{I}_{R}(\boldsymbol{\theta}_i)=\dfrac{1}{m}\sum_{i=1}^m\mathbb{I}(f(\boldsymbol{\theta}_i|\boldsymbol{x})\geq h)\approx \gamma$  
+$~~~$ i. Calcule $f(\boldsymbol{\theta}_i|\boldsymbol{x})$, $i=1,\ldots,m$;  
 $~~~$ ii. Ordene esses valores e tome $h$ como o percentil de ordem $\gamma$;  
-3. Fazer o gráfico da curva de nível $f(\boldsymbol\theta |\boldsymbol x)=h$.  
+3. Fazer o gráfico da curva de nível $f(\boldsymbol{\theta}|\boldsymbol{x})=h$.  
 ```{r, results ='asis'}
 set.seed(666)
 a=7; b=7; m=0; v=0.5 # parametros da posteriori
