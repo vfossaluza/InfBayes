@@ -53,6 +53,8 @@ laplaces-demon
 stan
 mlg
 modelos-dinâmicos
+dados-de-amoxicilina-fonte-cea
+extensões-efeitos-mais-suaves-e-modelos-não-gaussianos
 medprob
 basprob
 lebesgue

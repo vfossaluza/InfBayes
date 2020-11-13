@@ -53,9 +53,11 @@
 \contentsline {subsection}{\numberline {7.6.3}Stan}{135}{subsection.7.6.3}%
 \contentsline {subsection}{\numberline {7.6.4}MLG}{144}{subsection.7.6.4}%
 \contentsline {subsection}{\numberline {7.6.5}Modelos Dinâmicos}{150}{subsection.7.6.5}%
-\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{151}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Conceitos Básicos}{151}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{153}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{160}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Função de Distribuição}{164}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{169}{section.A.5}%
+\contentsline {subsubsection}{\numberline {7.6.5.1}Dados de Amoxicilina (fonte: CEA)}{151}{subsubsection.7.6.5.1}%
+\contentsline {subsubsection}{\numberline {7.6.5.2}Extensões: Efeitos mais suaves e modelos não gaussianos}{156}{subsubsection.7.6.5.2}%
+\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{161}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Conceitos Básicos}{161}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{163}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{170}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Função de Distribuição}{174}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{179}{section.A.5}%

@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-11-10" />
+<meta name="date" content="2020-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -699,10 +699,10 @@ Por fim são apresentadas as estimativas das densidades marginais e as regiões 
 </div>
 <div id="bibliotecas-de-r-para-inferência-bayesiana" class="section level2">
 <h2><span class="header-section-number">7.6</span> Bibliotecas de R para Inferência Bayesiana</h2>
-<p>Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, <code>LaplacesDemon</code> e <code>Stan</code>, que são bibliotecas utilizadas para simular dados da posteriori. Para isso, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística.</p>
+<p>Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, <code>LaplacesDemon</code> e <code>Stan</code>, que são bibliotecas utilizadas para simular dados da posteriori. Alguns dos gráficos apresentados nessa seção serão construídos com bibliotecas específicas para avaliar amostras da posteriori, <code>ggmcmc</code> e <code>bayesplot</code>.</p>
 <div id="o-modelo-de-regressão-linear" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> O Modelo de Regressão Linear</h3>
-<p>Considere <span class="math inline">\(n\)</span> observações de uma variável aleatória de interesse (chamada de <em>variável dependente</em> ou <em>variável resposta</em>) e de <span class="math inline">\(p-1\)</span> características associadas a cada uma dessas observações (chamadas de <em>variáveis dependentes</em> ou <em>explicativas</em> ou <em>covariáveis</em>), supostamente fixadas. Um modelo de regressão linear pode ser escrito como</p>
+<p>Inicialmente, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística. Considere <span class="math inline">\(n\)</span> observações de uma variável aleatória de interesse (chamada de <em>variável dependente</em> ou <em>variável resposta</em>) e de <span class="math inline">\(p-1\)</span> características associadas a cada uma dessas observações (chamadas de <em>variáveis dependentes</em> ou <em>explicativas</em> ou <em>covariáveis</em>), supostamente fixadas. Um modelo de regressão linear pode ser escrito como</p>
 <p><span class="math display">\[\boldsymbol{Y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}\]</span>
 com
 <span class="math inline">\(~\boldsymbol{Y} = \left[\begin{array}{c} Y_1\\ Y_2\\ \vdots\\ Y_n \end{array}\right]~~\)</span>;
@@ -1549,7 +1549,236 @@ com
 </ul></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
-<!-- #### Dados de  -->
+<div id="dados-de-amoxicilina-fonte-cea" class="section level4">
+<h4><span class="header-section-number">7.6.5.1</span> Dados de Amoxicilina (fonte: CEA)</h4>
+<ul>
+<li><p>Dados mensais de venda de Amoxicilina e resistência da bacteria <em>E. coli</em> no período de 01/2008 à 12/2016.</p></li>
+<li><p>A venda de Amoxicilina foi avaliada pela média mensal das doses diárias definidas por 1000 habitantes-dia (DDD/1000hab/dia), que indica a quantidade média de determinado antibiótico que uma dada população consome diariamente (<em>IMS Health Brazil/Pfizer</em>).</p></li>
+<li><p>Para avaliar a resistência da bactéria <em>E. coli</em> à Amoxicilina foram utilizados dados obtidos a partir de amostras da rede de apoio do laboratório DASA, que atende principalmente a rede privada de assistência à saúde mas também inclui hospitais que atendem pacientes pelo Sistema Único de Saúde (SUS). Foram
+incluídas amostras resultantes de exames de sangue e urina positivas, avaliando a proporção de cepas isoladas resistentes à amoxicilina.</p></li>
+<li><p><strong>Objetivo.</strong> Avaliar o impacto da regulamentação RDC 44 da ANVISA que
+obriga a retenção da prescrição médica para a venda de antimicrobianos, implementada em 26 de Outubro de 2010.</p></li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="Comp.html#cb83-1"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb83-2"><a href="Comp.html#cb83-2"></a>dados =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Amoxicillin.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb83-3"><a href="Comp.html#cb83-3"></a><span class="st">  </span><span class="kw">select</span>(Perí<span class="dt">odo=</span>Periodo,<span class="dt">Vendas=</span>DDD1000hab_dia,Resistência=Resistencia_Amoxicilina.Clavulanato.k)</span>
+<span id="cb83-4"><a href="Comp.html#cb83-4"></a>dados<span class="op">$</span>Vendas[<span class="dv">61</span><span class="op">:</span><span class="dv">62</span>]=<span class="kw">mean</span>(<span class="kw">c</span>(<span class="fl">2.073005</span>,<span class="fl">2.173923</span>))</span>
+<span id="cb83-5"><a href="Comp.html#cb83-5"></a>mV=<span class="kw">mean</span>(dados<span class="op">$</span>Vendas); sdV=<span class="kw">sd</span>(dados<span class="op">$</span>Vendas)</span>
+<span id="cb83-6"><a href="Comp.html#cb83-6"></a>mR=<span class="kw">mean</span>(dados<span class="op">$</span>Resistência); <span class="dt">sdR=</span><span class="kw">sd</span>(dados<span class="op">$</span>Resistência)</span>
+<span id="cb83-7"><a href="Comp.html#cb83-7"></a>Tr &lt;-<span class="st"> </span>sdV<span class="op">/</span>sdR <span class="co"># var. aux. para transformação dos eixos</span></span>
+<span id="cb83-8"><a href="Comp.html#cb83-8"></a>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Período)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb83-9"><a href="Comp.html#cb83-9"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y=</span>Vendas,<span class="dt">colour=</span><span class="st">&quot;Vendas&quot;</span>),<span class="dt">lwd=</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>) <span class="op">+</span></span>
+<span id="cb83-10"><a href="Comp.html#cb83-10"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Período,<span class="dt">y=</span>((Resistência-mR)<span class="op">*</span>Tr<span class="op">+</span>mV),<span class="dt">colour=</span><span class="st">&quot;Resistência&quot;),lwd=1)+</span></span>
+<span id="cb83-11"><a href="Comp.html#cb83-11"></a><span class="st">  labs(y=&quot;</span>Vendas de <span class="kw">Amoxicilina</span> (DDD<span class="op">/</span><span class="dv">1000</span> hab.<span class="op">/</span>dia)<span class="st">&quot;,colour=&quot;&quot;) + </span></span>
+<span id="cb83-12"><a href="Comp.html#cb83-12"></a><span class="st">  scale_y_continuous(sec.axis = sec_axis(~./Tr+(mR-mV/Tr), name = &quot;</span>Prop. de Amostras de E.Colli Resistentes<span class="st">&quot;))</span></span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-88-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Para verificar se o efeito da venda de antimicrobianos influencia na resistência
+bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.</p>
+<p><span class="math display">\[(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)\]</span><br />
+<span class="math display">\[\beta_{t+1} = \beta_t + W_t ~,~~ W_t \sim Normal(0,\sigma_r^2)\]</span>
+<span class="math display">\[\sigma_y^2 \sim Half-Normal(100)\]</span><br />
+<span class="math display">\[\beta_t \sim Normal(0,100)\]</span><br />
+<span class="math display">\[\sigma_r^2 \sim Half-Normal(100)\]</span><br />
+* <span class="math inline">\(Y_t\)</span>: proporção de testes de resistência positiva do microbiano <em>E. coli</em> no instante <span class="math inline">\(t\)</span>;<br />
+* <span class="math inline">\(X_t\)</span>: quantidade de doses consumidas de Amoxicilina (DDD/1000hab/dia) no instante <span class="math inline">\(t\)</span>;<br />
+* <span class="math inline">\(\beta_t\)</span>: parâmetro que representa o efeito da venda do antimicrobiano na resistência bacteriana no instante <span class="math inline">\(t\)</span>;<br />
+* <span class="math inline">\(\epsilon_t\)</span> e <span class="math inline">\(W_t\)</span>: ruídos brancos.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="Comp.html#cb84-1"></a><span class="kw">library</span>(walker)</span>
+<span id="cb84-2"><a href="Comp.html#cb84-2"></a><span class="kw">set.seed</span>(<span class="dv">666</span>)</span>
+<span id="cb84-3"><a href="Comp.html#cb84-3"></a><span class="co"># resistência média e venda média do período anterior a RDC 44</span></span>
+<span id="cb84-4"><a href="Comp.html#cb84-4"></a>mAntes =<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">year</span>(Período)<span class="op">&lt;</span><span class="dv">2011</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb84-5"><a href="Comp.html#cb84-5"></a><span class="st">        </span><span class="kw">summarise</span>(<span class="kw">mean</span>(Vendas),<span class="kw">mean</span>(Resistência)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t</span>()</span>
+<span id="cb84-6"><a href="Comp.html#cb84-6"></a>fit1 &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb84-7"><a href="Comp.html#cb84-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Vendas=</span>Vendas<span class="op">-</span>mAntes[<span class="dv">1</span>],Resistência=Resistência-mAntes[<span class="dv">2</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb84-8"><a href="Comp.html#cb84-8"></a><span class="st">  </span><span class="kw">walker</span>(<span class="dt">data=</span>., <span class="dt">formula =</span> Resistência <span class="op">~</span><span class="st"> </span><span class="dv">-1</span><span class="op">+</span><span class="kw">rw1</span>(<span class="op">~</span><span class="st"> </span><span class="dv">-1</span><span class="op">+</span>Vendas,<span class="dt">beta=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb84-9"><a href="Comp.html#cb84-9"></a>    <span class="dt">sigma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)),<span class="dt">sigma_y_prior =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">chain=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 
+## SAMPLING FOR MODEL &#39;walker_lm&#39; NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.002 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 8.376 seconds (Warm-up)
+## Chain 1:                7.431 seconds (Sampling)
+## Chain 1:                15.807 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL &#39;walker_lm&#39; NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0.001 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 6.577 seconds (Warm-up)
+## Chain 2:                6.288 seconds (Sampling)
+## Chain 2:                12.865 seconds (Total)
+## Chain 2:</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="Comp.html#cb86-1"></a>        <span class="co">#Default: chain=4, iter=2000, warmup=1000, thin=1</span></span>
+<span id="cb86-2"><a href="Comp.html#cb86-2"></a></span>
+<span id="cb86-3"><a href="Comp.html#cb86-3"></a><span class="kw">multiplot</span>(</span>
+<span id="cb86-4"><a href="Comp.html#cb86-4"></a>  <span class="co">#mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c(&quot;beta_fixed&quot;), prob=0.9),</span></span>
+<span id="cb86-5"><a href="Comp.html#cb86-5"></a>  <span class="kw">mcmc_areas</span>(<span class="kw">as.matrix</span>(fit1<span class="op">$</span>stanfit), <span class="dt">regex_pars =</span> <span class="kw">c</span>(<span class="st">&quot;sigma_rw1&quot;</span>), <span class="dt">prob=</span><span class="fl">0.9</span>),</span>
+<span id="cb86-6"><a href="Comp.html#cb86-6"></a>  <span class="kw">mcmc_areas</span>(<span class="kw">as.matrix</span>(fit1<span class="op">$</span>stanfit), <span class="dt">regex_pars =</span> <span class="kw">c</span>(<span class="st">&quot;sigma_y&quot;</span>), <span class="dt">prob=</span><span class="fl">0.9</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-89-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="Comp.html#cb87-1"></a><span class="kw">plot_coefs</span>(fit1, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb87-2"><a href="Comp.html#cb87-2"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-90-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="Comp.html#cb88-1"></a><span class="kw">pp_check</span>(fit1, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb88-2"><a href="Comp.html#cb88-2"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-91-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="Comp.html#cb89-1"></a>new_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Vendas=</span><span class="kw">seq</span>(dados<span class="op">$</span>Vendas[<span class="dv">108</span>]<span class="op">-</span>mAntes[<span class="dv">1</span>],<span class="op">-</span><span class="fl">0.4</span>,<span class="dt">length.out=</span><span class="dv">12</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rnorm</span>(<span class="dv">11</span>,<span class="dv">0</span>,<span class="fl">0.08</span>)))</span>
+<span id="cb89-2"><a href="Comp.html#cb89-2"></a>pred1 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1, new_data)</span>
+<span id="cb89-3"><a href="Comp.html#cb89-3"></a><span class="kw">plot_predict</span>(pred1, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb89-4"><a href="Comp.html#cb89-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-92-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="Comp.html#cb90-1"></a>new_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Vendas=</span><span class="kw">seq</span>(dados<span class="op">$</span>Vendas[<span class="dv">108</span>]<span class="op">-</span>mAntes[<span class="dv">1</span>],<span class="op">-</span><span class="fl">1.1</span>,<span class="dt">length.out=</span><span class="dv">12</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rnorm</span>(<span class="dv">11</span>,<span class="dv">0</span>,<span class="fl">0.08</span>)))</span>
+<span id="cb90-2"><a href="Comp.html#cb90-2"></a>pred1 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1, new_data)</span>
+<span id="cb90-3"><a href="Comp.html#cb90-3"></a><span class="kw">plot_predict</span>(pred1, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb90-4"><a href="Comp.html#cb90-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-93-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<!-- ```{r} -->
+<!-- set.seed(666) -->
+<!-- # resistência média e venda média do período anterior a RDC 44 -->
+<!-- mAntes = dados %>% filter(year(Período)<2011) %>%  -->
+<!--         summarise(mean(Vendas),mean(Resistência)) %>% t() -->
+<!-- fit2 <- dados %>%  -->
+<!--   mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>% -->
+<!--   walker(data=., formula = Resistência ~ -1+rw1(~ Vendas,beta=c(0,100), -->
+<!--     sigma=c(0,100)),sigma_y_prior = c(0,100), chain=2) -->
+<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
+<!-- multiplot( -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw1"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
+<!-- plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+<!-- pp_check(fit2, alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-0.4,length.out=12)+c(0,rnorm(11,0,0.1))) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-1,length.out=12)+c(0,rnorm(11,0,0.1))) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+<!-- ``` -->
+</div>
+<div id="extensões-efeitos-mais-suaves-e-modelos-não-gaussianos" class="section level4">
+<h4><span class="header-section-number">7.6.5.2</span> Extensões: Efeitos mais suaves e modelos não gaussianos</h4>
+<p>Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as estimativas posteriores desses coeficientes podem ter grandes variações de curto prazo que podem não ser realistas na prática. Uma maneira de impor mais suavidade às estimativas é alternar dos coeficientes do passeio aleatório para coeficientes de passeio aleatório de segunda ordem integrados:
+<span class="math display">\[\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t\]</span>
+<span class="math display">\[\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)\]</span></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Comp.html#cb91-1"></a><span class="kw">library</span>(walker)</span>
+<span id="cb91-2"><a href="Comp.html#cb91-2"></a><span class="kw">set.seed</span>(<span class="dv">666</span>)</span>
+<span id="cb91-3"><a href="Comp.html#cb91-3"></a>fit2 &lt;-<span class="st"> </span>dados <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb91-4"><a href="Comp.html#cb91-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Vendas=</span>Vendas<span class="op">-</span>mAntes[<span class="dv">1</span>],Resistência=Resistência-mAntes[<span class="dv">2</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb91-5"><a href="Comp.html#cb91-5"></a><span class="st">  </span><span class="kw">walker</span>(<span class="dt">data=</span>., <span class="dt">formula =</span> Resistência <span class="op">~</span><span class="st"> </span><span class="dv">-1</span><span class="op">+</span><span class="kw">rw2</span>(<span class="op">~</span><span class="st"> </span><span class="dv">-1</span><span class="op">+</span>Vendas, <span class="dt">beta=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb91-6"><a href="Comp.html#cb91-6"></a>        <span class="dt">sigma=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),<span class="dt">nu=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)),<span class="dt">sigma_y_prior=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">chain=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## 
+## SAMPLING FOR MODEL &#39;walker_lm&#39; NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.002 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 8.426 seconds (Warm-up)
+## Chain 1:                8.302 seconds (Sampling)
+## Chain 1:                16.728 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL &#39;walker_lm&#39; NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0.001 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 8.87 seconds (Warm-up)
+## Chain 2:                7.111 seconds (Sampling)
+## Chain 2:                15.981 seconds (Total)
+## Chain 2:</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="Comp.html#cb93-1"></a>        <span class="co">#Default: chain=4, iter=2000, warmup=1000, thin=1</span></span>
+<span id="cb93-2"><a href="Comp.html#cb93-2"></a></span>
+<span id="cb93-3"><a href="Comp.html#cb93-3"></a><span class="kw">multiplot</span>(</span>
+<span id="cb93-4"><a href="Comp.html#cb93-4"></a>  <span class="kw">mcmc_areas</span>(<span class="kw">as.matrix</span>(fit2<span class="op">$</span>stanfit), <span class="dt">regex_pars =</span> <span class="kw">c</span>(<span class="st">&quot;sigma_rw2&quot;</span>), <span class="dt">prob=</span><span class="fl">0.9</span>),</span>
+<span id="cb93-5"><a href="Comp.html#cb93-5"></a>  <span class="kw">mcmc_areas</span>(<span class="kw">as.matrix</span>(fit2<span class="op">$</span>stanfit), <span class="dt">regex_pars =</span> <span class="kw">c</span>(<span class="st">&quot;sigma_y&quot;</span>), <span class="dt">prob=</span><span class="fl">0.9</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-94-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="Comp.html#cb94-1"></a><span class="kw">plot_coefs</span>(fit2, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb94-2"><a href="Comp.html#cb94-2"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-95-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="Comp.html#cb95-1"></a><span class="kw">pp_check</span>(fit2, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb95-2"><a href="Comp.html#cb95-2"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-96-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="Comp.html#cb96-1"></a>new_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Vendas=</span><span class="kw">seq</span>(dados<span class="op">$</span>Vendas[<span class="dv">108</span>]<span class="op">-</span>mAntes[<span class="dv">1</span>],<span class="op">-</span><span class="fl">0.4</span>,<span class="dt">length.out=</span><span class="dv">12</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rnorm</span>(<span class="dv">11</span>,<span class="dv">0</span>,<span class="fl">0.08</span>)))</span>
+<span id="cb96-2"><a href="Comp.html#cb96-2"></a>pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit2, new_data)</span>
+<span id="cb96-3"><a href="Comp.html#cb96-3"></a><span class="kw">plot_predict</span>(pred2, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb96-4"><a href="Comp.html#cb96-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-97-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="Comp.html#cb97-1"></a>new_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Vendas=</span><span class="kw">seq</span>(dados<span class="op">$</span>Vendas[<span class="dv">108</span>]<span class="op">-</span>mAntes[<span class="dv">1</span>],<span class="op">-</span><span class="fl">1.1</span>,<span class="dt">length.out=</span><span class="dv">12</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="kw">rnorm</span>(<span class="dv">11</span>,<span class="dv">0</span>,<span class="fl">0.08</span>)))</span>
+<span id="cb97-2"><a href="Comp.html#cb97-2"></a>pred2 &lt;-<span class="st"> </span><span class="kw">predict</span>(fit2, new_data)</span>
+<span id="cb97-3"><a href="Comp.html#cb97-3"></a><span class="kw">plot_predict</span>(pred2, <span class="dt">alpha=</span><span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb97-4"><a href="Comp.html#cb97-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="kw">length</span>(dados<span class="op">$</span>Período)<span class="op">+</span><span class="dv">1</span>,<span class="dv">12</span>),<span class="dt">labels=</span><span class="kw">c</span>(<span class="kw">unique</span>(<span class="kw">year</span>(dados<span class="op">$</span>Período)),<span class="dv">2017</span>))</span></code></pre></div>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-98-1.png" width="80%" style="display: block; margin: auto;" />
+<span class="math inline">\(~\)</span></p>
+<ul>
+<li>A função <code>walker_glm</code> estende o pacote para lidar com observações de com distribuição de <em>Poisson</em> e <em>Binomial</em>, usando a metodologia similar à mencionada acima.</li>
+</ul>
 <p><span class="math inline">\(~\)</span></p>
 <!-- #### Dados de Covid-19 -->
 <!-- * Dados de Covid-19: https://brasil.io/ -->
@@ -1633,6 +1862,7 @@ com
 <!-- $~$ -->
 <!-- $~$ -->
 
+</div>
 </div>
 </div>
 </div>

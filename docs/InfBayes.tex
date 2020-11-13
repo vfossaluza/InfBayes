@@ -126,7 +126,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2020-11-10}
+\date{2020-11-13}
 
 \begin{document}
 \maketitle
@@ -3706,12 +3706,12 @@ Por fim são apresentadas as estimativas das densidades marginais e as regiões 
 \hypertarget{bibliotecas-de-r-para-inferuxeancia-bayesiana}{%
 \section{Bibliotecas de R para Inferência Bayesiana}\label{bibliotecas-de-r-para-inferuxeancia-bayesiana}}
 
-Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, \texttt{LaplacesDemon} e \texttt{Stan}, que são bibliotecas utilizadas para simular dados da posteriori. Para isso, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística.
+Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, \texttt{LaplacesDemon} e \texttt{Stan}, que são bibliotecas utilizadas para simular dados da posteriori. Alguns dos gráficos apresentados nessa seção serão construídos com bibliotecas específicas para avaliar amostras da posteriori, \texttt{ggmcmc} e \texttt{bayesplot}.
 
 \hypertarget{o-modelo-de-regressuxe3o-linear}{%
 \subsection{O Modelo de Regressão Linear}\label{o-modelo-de-regressuxe3o-linear}}
 
-Considere \(n\) observações de uma variável aleatória de interesse (chamada de \emph{variável dependente} ou \emph{variável resposta}) e de \(p-1\) características associadas a cada uma dessas observações (chamadas de \emph{variáveis dependentes} ou \emph{explicativas} ou \emph{covariáveis}), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
+Inicialmente, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística. Considere \(n\) observações de uma variável aleatória de interesse (chamada de \emph{variável dependente} ou \emph{variável resposta}) e de \(p-1\) características associadas a cada uma dessas observações (chamadas de \emph{variáveis dependentes} ou \emph{explicativas} ou \emph{covariáveis}), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
 
 \[\boldsymbol{Y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}\]
 com
@@ -4973,6 +4973,305 @@ As distribuição a piori são dadas por
 \end{itemize}
 
 \(~\)
+
+\hypertarget{dados-de-amoxicilina-fonte-cea}{%
+\subsubsection{Dados de Amoxicilina (fonte: CEA)}\label{dados-de-amoxicilina-fonte-cea}}
+
+\begin{itemize}
+\item
+  Dados mensais de venda de Amoxicilina e resistência da bacteria \emph{E. coli} no período de 01/2008 à 12/2016.
+\item
+  A venda de Amoxicilina foi avaliada pela média mensal das doses diárias definidas por 1000 habitantes-dia (DDD/1000hab/dia), que indica a quantidade média de determinado antibiótico que uma dada população consome diariamente (\emph{IMS Health Brazil/Pfizer}).
+\item
+  Para avaliar a resistência da bactéria \emph{E. coli} à Amoxicilina foram utilizados dados obtidos a partir de amostras da rede de apoio do laboratório DASA, que atende principalmente a rede privada de assistência à saúde mas também inclui hospitais que atendem pacientes pelo Sistema Único de Saúde (SUS). Foram
+  incluídas amostras resultantes de exames de sangue e urina positivas, avaliando a proporção de cepas isoladas resistentes à amoxicilina.
+\item
+  \textbf{Objetivo.} Avaliar o impacto da regulamentação RDC 44 da ANVISA que
+  obriga a retenção da prescrição médica para a venda de antimicrobianos, implementada em 26 de Outubro de 2010.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\NormalTok{dados =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"Amoxicillin.csv"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Perí}\DataTypeTok{odo=}\NormalTok{Periodo,}\DataTypeTok{Vendas=}\NormalTok{DDD1000hab_dia,Resistência=Resistencia_Amoxicilina.Clavulanato.k)}
+\NormalTok{dados}\OperatorTok{$}\NormalTok{Vendas[}\DecValTok{61}\OperatorTok{:}\DecValTok{62}\NormalTok{]=}\KeywordTok{mean}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{2.073005}\NormalTok{,}\FloatTok{2.173923}\NormalTok{))}
+\NormalTok{mV=}\KeywordTok{mean}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas); sdV=}\KeywordTok{sd}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas)}
+\NormalTok{mR=}\KeywordTok{mean}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Resistência); }\DataTypeTok{sdR=}\KeywordTok{sd}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Resistência)}
+\NormalTok{Tr <-}\StringTok{ }\NormalTok{sdV}\OperatorTok{/}\NormalTok{sdR }\CommentTok{# var. aux. para transformação dos eixos}
+\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Período)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{Vendas,}\DataTypeTok{colour=}\StringTok{"Vendas"}\NormalTok{),}\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{"bottom"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Período,}\DataTypeTok{y=}\NormalTok{((Resistência-mR)}\OperatorTok{*}\NormalTok{Tr}\OperatorTok{+}\NormalTok{mV),}\DataTypeTok{colour=}\StringTok{"Resistência"),lwd=1)+}
+\StringTok{  labs(y="}\NormalTok{Vendas de }\KeywordTok{Amoxicilina}\NormalTok{ (DDD}\OperatorTok{/}\DecValTok{1000}\NormalTok{ hab.}\OperatorTok{/}\NormalTok{dia)}\StringTok{",colour="") + }
+\StringTok{  scale_y_continuous(sec.axis = sec_axis(~./Tr+(mR-mV/Tr), name = "}\NormalTok{Prop. de Amostras de E.Colli Resistentes}\StringTok{"))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-88-1} \end{center}
+
+Para verificar se o efeito da venda de antimicrobianos influencia na resistência
+bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.
+
+\[(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)\]\\
+\[\beta_{t+1} = \beta_t + W_t ~,~~ W_t \sim Normal(0,\sigma_r^2)\]
+\[\sigma_y^2 \sim Half-Normal(100)\]\\
+\[\beta_t \sim Normal(0,100)\]\\
+\[\sigma_r^2 \sim Half-Normal(100)\]\\
+* \(Y_t\): proporção de testes de resistência positiva do microbiano \emph{E. coli} no instante \(t\);\\
+* \(X_t\): quantidade de doses consumidas de Amoxicilina (DDD/1000hab/dia) no instante \(t\);\\
+* \(\beta_t\): parâmetro que representa o efeito da venda do antimicrobiano na resistência bacteriana no instante \(t\);\\
+* \(\epsilon_t\) e \(W_t\): ruídos brancos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(walker)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\CommentTok{# resistência média e venda média do período anterior a RDC 44}
+\NormalTok{mAntes =}\StringTok{ }\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(}\KeywordTok{year}\NormalTok{(Período)}\OperatorTok{<}\DecValTok{2011}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{        }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{mean}\NormalTok{(Vendas),}\KeywordTok{mean}\NormalTok{(Resistência)) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{t}\NormalTok{()}
+\NormalTok{fit1 <-}\StringTok{ }\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Vendas=}\NormalTok{Vendas}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],Resistência=Resistência-mAntes[}\DecValTok{2}\NormalTok{]) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{walker}\NormalTok{(}\DataTypeTok{data=}\NormalTok{., }\DataTypeTok{formula =}\NormalTok{ Resistência }\OperatorTok{~}\StringTok{ }\DecValTok{-1}\OperatorTok{+}\KeywordTok{rw1}\NormalTok{(}\OperatorTok{~}\StringTok{ }\DecValTok{-1}\OperatorTok{+}\NormalTok{Vendas,}\DataTypeTok{beta=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+    \DataTypeTok{sigma=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{)),}\DataTypeTok{sigma_y_prior =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{), }\DataTypeTok{chain=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.001 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 7.369 seconds (Warm-up)
+## Chain 1:                8.175 seconds (Sampling)
+## Chain 1:                15.544 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0.001 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 7.61 seconds (Warm-up)
+## Chain 2:                7.921 seconds (Sampling)
+## Chain 2:                15.531 seconds (Total)
+## Chain 2:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+        \CommentTok{#Default: chain=4, iter=2000, warmup=1000, thin=1}
+
+\KeywordTok{multiplot}\NormalTok{(}
+  \CommentTok{#mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("beta_fixed"), prob=0.9),}
+  \KeywordTok{mcmc_areas}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(fit1}\OperatorTok{$}\NormalTok{stanfit), }\DataTypeTok{regex_pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"sigma_rw1"}\NormalTok{), }\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \KeywordTok{mcmc_areas}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(fit1}\OperatorTok{$}\NormalTok{stanfit), }\DataTypeTok{regex_pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"sigma_y"}\NormalTok{), }\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-89-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_coefs}\NormalTok{(fit1, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-90-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pp_check}\NormalTok{(fit1, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-91-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Vendas=}\KeywordTok{seq}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\OperatorTok{-}\FloatTok{0.4}\NormalTok{,}\DataTypeTok{length.out=}\DecValTok{12}\NormalTok{)}\OperatorTok{+}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\NormalTok{pred1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit1, new_data)}
+\KeywordTok{plot_predict}\NormalTok{(pred1, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-92-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Vendas=}\KeywordTok{seq}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\OperatorTok{-}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{length.out=}\DecValTok{12}\NormalTok{)}\OperatorTok{+}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\NormalTok{pred1 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit1, new_data)}
+\KeywordTok{plot_predict}\NormalTok{(pred1, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-93-1} \end{center}
+
+\hypertarget{extensuxf5es-efeitos-mais-suaves-e-modelos-nuxe3o-gaussianos}{%
+\subsubsection{Extensões: Efeitos mais suaves e modelos não gaussianos}\label{extensuxf5es-efeitos-mais-suaves-e-modelos-nuxe3o-gaussianos}}
+
+Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as estimativas posteriores desses coeficientes podem ter grandes variações de curto prazo que podem não ser realistas na prática. Uma maneira de impor mais suavidade às estimativas é alternar dos coeficientes do passeio aleatório para coeficientes de passeio aleatório de segunda ordem integrados:
+\[\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t\]
+\[\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(walker)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{fit2 <-}\StringTok{ }\NormalTok{dados }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Vendas=}\NormalTok{Vendas}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],Resistência=Resistência-mAntes[}\DecValTok{2}\NormalTok{]) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{walker}\NormalTok{(}\DataTypeTok{data=}\NormalTok{., }\DataTypeTok{formula =}\NormalTok{ Resistência }\OperatorTok{~}\StringTok{ }\DecValTok{-1}\OperatorTok{+}\KeywordTok{rw2}\NormalTok{(}\OperatorTok{~}\StringTok{ }\DecValTok{-1}\OperatorTok{+}\NormalTok{Vendas, }\DataTypeTok{beta=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+        \DataTypeTok{sigma=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}\DataTypeTok{nu=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{)),}\DataTypeTok{sigma_y_prior=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{), }\DataTypeTok{chain=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.001 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 8.569 seconds (Warm-up)
+## Chain 1:                8.853 seconds (Sampling)
+## Chain 1:                17.422 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0.002 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 8.753 seconds (Warm-up)
+## Chain 2:                6.997 seconds (Sampling)
+## Chain 2:                15.75 seconds (Total)
+## Chain 2:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+        \CommentTok{#Default: chain=4, iter=2000, warmup=1000, thin=1}
+
+\KeywordTok{multiplot}\NormalTok{(}
+  \KeywordTok{mcmc_areas}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(fit2}\OperatorTok{$}\NormalTok{stanfit), }\DataTypeTok{regex_pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"sigma_rw2"}\NormalTok{), }\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \KeywordTok{mcmc_areas}\NormalTok{(}\KeywordTok{as.matrix}\NormalTok{(fit2}\OperatorTok{$}\NormalTok{stanfit), }\DataTypeTok{regex_pars =} \KeywordTok{c}\NormalTok{(}\StringTok{"sigma_y"}\NormalTok{), }\DataTypeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-94-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot_coefs}\NormalTok{(fit2, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-95-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pp_check}\NormalTok{(fit2, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-96-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Vendas=}\KeywordTok{seq}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\OperatorTok{-}\FloatTok{0.4}\NormalTok{,}\DataTypeTok{length.out=}\DecValTok{12}\NormalTok{)}\OperatorTok{+}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\NormalTok{pred2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit2, new_data)}
+\KeywordTok{plot_predict}\NormalTok{(pred2, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-97-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new_data <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Vendas=}\KeywordTok{seq}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\OperatorTok{-}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\OperatorTok{-}\FloatTok{1.1}\NormalTok{,}\DataTypeTok{length.out=}\DecValTok{12}\NormalTok{)}\OperatorTok{+}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\NormalTok{pred2 <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(fit2, new_data)}
+\KeywordTok{plot_predict}\NormalTok{(pred2, }\DataTypeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{length}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)}\OperatorTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{year}\NormalTok{(dados}\OperatorTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-98-1} \end{center}
+
+\(~\)
+
+\begin{itemize}
+\tightlist
+\item
+  A função \texttt{walker\_glm} estende o pacote para lidar com observações de com distribuição de \emph{Poisson} e \emph{Binomial}, usando a metodologia similar à mencionada acima.
+\end{itemize}
 
 \(~\)
 

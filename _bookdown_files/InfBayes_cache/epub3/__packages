@@ -19,3 +19,6 @@ StanHeaders
 rstan
 ggmcmc
 bayesplot
+lubridate
+Rcpp
+walker

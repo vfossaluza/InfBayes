@@ -44,11 +44,11 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 
 ## Bibliotecas de R para Inferência Bayesiana
 
-Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, `LaplacesDemon` e `Stan`, que são bibliotecas utilizadas para simular dados da posteriori. Para isso, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística.
+Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, `LaplacesDemon` e `Stan`, que são bibliotecas utilizadas para simular dados da posteriori. Alguns dos gráficos apresentados nessa seção serão construídos com bibliotecas específicas para avaliar amostras da posteriori, `ggmcmc` e `bayesplot`. 
 
 ### O Modelo de Regressão Linear
 
-Considere $n$ observações de uma variável aleatória de interesse (chamada de *variável dependente* ou *variável resposta*) e de $p-1$ características associadas a cada uma dessas observações (chamadas de *variáveis dependentes* ou *explicativas* ou *covariáveis*), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
+Inicialmente, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística. Considere $n$ observações de uma variável aleatória de interesse (chamada de *variável dependente* ou *variável resposta*) e de $p-1$ características associadas a cada uma dessas observações (chamadas de *variáveis dependentes* ou *explicativas* ou *covariáveis*), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
 
 $$\boldsymbol{Y} = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}$$
 com
@@ -663,7 +663,177 @@ $$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$
 
 $~$
 
-<!-- #### Dados de  -->
+#### Dados de Amoxicilina (fonte: CEA)
+
+* Dados mensais de venda de Amoxicilina e resistência da bacteria *E. coli* no período de 01/2008 à 12/2016. 
+
+* A venda de Amoxicilina foi avaliada pela média mensal das doses diárias definidas por 1000 habitantes-dia (DDD/1000hab/dia), que indica a quantidade média de determinado antibiótico que uma dada população consome diariamente (*IMS Health Brazil/Pfizer*).
+
+* Para avaliar a resistência da bactéria *E. coli*  à Amoxicilina foram utilizados dados obtidos a partir de amostras da rede de apoio do laboratório DASA, que atende principalmente a rede privada de assistência à saúde mas também inclui hospitais que atendem pacientes pelo Sistema Único de Saúde (SUS). Foram
+incluídas amostras resultantes de exames de sangue e urina positivas, avaliando a proporção de cepas isoladas resistentes à amoxicilina.
+
+* **Objetivo.** Avaliar o impacto da regulamentação RDC 44 da ANVISA que
+obriga a retenção da prescrição médica para a venda de antimicrobianos, implementada em 26 de Outubro de 2010.
+
+```{r}
+library(lubridate)
+dados = read_csv("Amoxicillin.csv") %>% 
+  select(Período=Periodo,Vendas=DDD1000hab_dia,Resistência=Resistencia_Amoxicilina.Clavulanato.k)
+dados$Vendas[61:62]=mean(c(2.073005,2.173923))
+mV=mean(dados$Vendas); sdV=sd(dados$Vendas)
+mR=mean(dados$Resistência); sdR=sd(dados$Resistência)
+Tr <- sdV/sdR # var. aux. para transformação dos eixos
+dados %>% ggplot(aes(x=Período)) + theme_bw() + 
+  geom_line(aes(y=Vendas,colour="Vendas"),lwd=1) + theme(legend.position="bottom") +
+  geom_line(aes(x=Período,y=((Resistência-mR)*Tr+mV),colour="Resistência"),lwd=1)+
+  labs(y="Vendas de Amoxicilina (DDD/1000 hab./dia)",colour="") + 
+  scale_y_continuous(sec.axis = sec_axis(~./Tr+(mR-mV/Tr), name = "Prop. de Amostras de E.Colli Resistentes"))
+```
+
+Para verificar se o efeito da venda de antimicrobianos influencia na resistência
+bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.
+
+$$(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)$$  
+$$\beta_{t+1} = \beta_t + W_t ~,~~ W_t \sim Normal(0,\sigma_r^2)$$
+$$\sigma_y^2 \sim Half-Normal(100)$$  
+$$\beta_t \sim Normal(0,100)$$  
+$$\sigma_r^2 \sim Half-Normal(100)$$   
+* $Y_t$: proporção de testes de resistência positiva do microbiano *E. coli* no instante $t$;  
+* $X_t$: quantidade de doses consumidas de Amoxicilina (DDD/1000hab/dia) no instante $t$;  
+* $\beta_t$: parâmetro que representa o efeito da venda do antimicrobiano na resistência bacteriana no instante $t$;  
+* $\epsilon_t$ e $W_t$: ruídos brancos.  
+
+
+```{r}
+library(walker)
+set.seed(666)
+# resistência média e venda média do período anterior a RDC 44
+mAntes = dados %>% filter(year(Período)<2011) %>% 
+        summarise(mean(Vendas),mean(Resistência)) %>% t()
+fit1 <- dados %>% 
+  mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>%
+  walker(data=., formula = Resistência ~ -1+rw1(~ -1+Vendas,beta=c(0,100),
+    sigma=c(0,100)),sigma_y_prior = c(0,100), chain=2)
+        #Default: chain=4, iter=2000, warmup=1000, thin=1
+
+multiplot(
+  #mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("beta_fixed"), prob=0.9),
+  mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_rw1"), prob=0.9),
+  mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_y"), prob=0.9))
+```
+
+
+```{r}
+plot_coefs(fit1, scales = "free", alpha=0.8) + theme_bw() +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+
+```{r}
+pp_check(fit1, alpha=0.8) + theme_bw() +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+
+```{r}
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.4,length.out=12)+c(0,rnorm(11,0,0.08)))
+pred1 <- predict(fit1, new_data)
+plot_predict(pred1, alpha=0.8) +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+
+```{r}
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1.1,length.out=12)+c(0,rnorm(11,0,0.08)))
+pred1 <- predict(fit1, new_data)
+plot_predict(pred1, alpha=0.8) +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+
+<!-- ```{r} -->
+<!-- set.seed(666) -->
+<!-- # resistência média e venda média do período anterior a RDC 44 -->
+<!-- mAntes = dados %>% filter(year(Período)<2011) %>%  -->
+<!--         summarise(mean(Vendas),mean(Resistência)) %>% t() -->
+<!-- fit2 <- dados %>%  -->
+<!--   mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>% -->
+<!--   walker(data=., formula = Resistência ~ -1+rw1(~ Vendas,beta=c(0,100), -->
+<!--     sigma=c(0,100)),sigma_y_prior = c(0,100), chain=2) -->
+<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
+
+<!-- multiplot( -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw1"), prob=0.9), -->
+<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
+
+<!-- plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+
+<!-- pp_check(fit2, alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+
+<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-0.4,length.out=12)+c(0,rnorm(11,0,0.1))) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+
+<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-1,length.out=12)+c(0,rnorm(11,0,0.1))) -->
+<!-- pred2 <- predict(fit2, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8) + -->
+<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
+<!-- ``` -->
+
+
+#### Extensões: Efeitos mais suaves e modelos não gaussianos
+
+Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as estimativas posteriores desses coeficientes podem ter grandes variações de curto prazo que podem não ser realistas na prática. Uma maneira de impor mais suavidade às estimativas é alternar dos coeficientes do passeio aleatório para coeficientes de passeio aleatório de segunda ordem integrados:
+$$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t$$
+$$\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$
+
+
+```{r}
+library(walker)
+set.seed(666)
+fit2 <- dados %>% 
+  mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>%
+  walker(data=., formula = Resistência ~ -1+rw2(~ -1+Vendas, beta=c(0,100),
+        sigma=c(0,100),nu=c(0,100)),sigma_y_prior=c(0,100), chain=2)
+        #Default: chain=4, iter=2000, warmup=1000, thin=1
+
+multiplot(
+  mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw2"), prob=0.9),
+  mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9))
+```
+
+
+```{r}
+plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+```{r}
+pp_check(fit2, alpha=0.8) + theme_bw() +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+```{r}
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.4,length.out=12)+c(0,rnorm(11,0,0.08)))
+pred2 <- predict(fit2, new_data)
+plot_predict(pred2, alpha=0.8) +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+
+
+```{r}
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1.1,length.out=12)+c(0,rnorm(11,0,0.08)))
+pred2 <- predict(fit2, new_data)
+plot_predict(pred2, alpha=0.8) +
+  scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
+```
+$~$
+
+* A função `walker_glm` estende o pacote para lidar com observações de com distribuição de *Poisson* e *Binomial*, usando a metodologia similar à mencionada acima.
+
 
 
 
