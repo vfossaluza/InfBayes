@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Probabilidade Subjetiva | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Probabilidade Subjetiva | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-11-13" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="Bayes.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -61,18 +63,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -92,7 +94,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +127,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -142,21 +167,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
-<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a><ul>
+<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>2.1</b> Definição Axiomática</a></li>
 <li class="chapter" data-level="2.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2</b> Interpretações de Probabilidade</a></li>
 <li class="chapter" data-level="2.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>2.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>2.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>2.5</b> Medida de Probabilidade Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a><ul>
-<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
 <li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
 <li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
 <li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
@@ -164,17 +193,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
 <li class="chapter" data-level="4.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>4.3</b> Problemas com Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a><ul>
+<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>5.1</b> Estimação Pontual</a></li>
 <li class="chapter" data-level="5.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>5.2</b> Estimação por Regiões</a></li>
 <li class="chapter" data-level="5.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>5.3</b> Custo das Observações</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a><ul>
+<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>6.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="6.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>6.2</b> Revisão: Abordagem Frequentista</a></li>
 <li class="chapter" data-level="6.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>6.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
@@ -185,17 +217,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
 <li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
 <li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
 <li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
-<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
 <li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
 <li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
 <li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
 <li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
@@ -204,7 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
+<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="medprob.html"><a href="medprob.html#basprob"><i class="fa fa-check"></i><b>A.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="A.2" data-path="medprob.html"><a href="medprob.html#lebesgue"><i class="fa fa-check"></i><b>A.2</b> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</a></li>
 <li class="chapter" data-level="A.3" data-path="medprob.html"><a href="medprob.html#funções-de-variáveis-aleatórias"><i class="fa fa-check"></i><b>A.3</b> Funções de Variáveis Aleatórias</a></li>
@@ -232,21 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ProbSubj" class="section level1">
+<div id="ProbSubj" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Probabilidade Subjetiva</h1>
-<p>A construção de probabilidade subjetiva apresentada aqui pode ser encontrada no livro <em>Optimal Statistical Decisions</em> <span class="citation">(DeGroot <a href="#ref-DeGroot70" role="doc-biblioref">1970</a>)</span>.</p>
+<p>A construção de probabilidade subjetiva apresentada aqui pode ser encontrada no livro <em>Optimal Statistical Decisions</em> <span class="citation">(<a href="#ref-DeGroot70" role="doc-biblioref">DeGroot 1970</a>)</span>.</p>
 <!-- Aula 1 -->
 <ul>
 <li><p><span class="math inline">\(\Omega\)</span>: <em>espaço amostral</em>, conjunto não vazio.</p></li>
 <li><p><span class="math inline">\(\mathcal{A}\)</span>: <em><span class="math inline">\(\sigma\)</span>-álgebra de subconjuntos</em> de <span class="math inline">\(\Omega\)</span>, isto é,</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\Theta \in \mathcal{A}\)</span>;</li>
+<li><span class="math inline">\(\Omega \in \mathcal{A}\)</span>;</li>
 <li><span class="math inline">\(A \in \mathcal{A} \Longrightarrow A^{c} \in \mathcal{A}\)</span>;</li>
 <li><span class="math inline">\(\displaystyle A_1, A_2, \ldots \in \mathcal{A} \Longrightarrow \bigcup_{i\geq1} A_i \in \mathcal{A}\)</span>.</li>
 </ol></li>
 <li><p>Os elementos de <span class="math inline">\(\mathcal{A}\)</span> são chamados de <em>eventos</em> e serão denotados por <span class="math inline">\(A, B, C, \ldots, A_1, A_2, \ldots\)</span></p></li>
 </ul>
-<div id="definição-axiomática" class="section level2">
+<div id="definição-axiomática" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Definição Axiomática</h2>
 <ul>
 <li><span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> é uma <em>medida de probabilidade</em> se
@@ -256,14 +292,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 </ul>
 </div>
-<div id="interpretações-de-probabilidade" class="section level2">
+<div id="interpretações-de-probabilidade" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Interpretações de Probabilidade</h2>
 <ul>
 <li><strong>Interpretação Clássica</strong> (De Moivre, Laplace)
 <ul>
 <li>baseia-se na equiprobabilidade dos resultados;</li>
 <li><span class="math inline">\(P(A) = \frac{|A|}{|\Omega|}\)</span>.</li>
-<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara”, <span class="math inline">\(P(A) = \frac{1}{2}\)</span>.</li>
+<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara,” <span class="math inline">\(P(A) = \frac{1}{2}\)</span>.</li>
 </ul></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
@@ -274,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>baseia-se na regularidade das frequências relativas (lei dos grandes números);</li>
 <li><span class="math inline">\(P(A) = lim \frac{A_n}{n}\)</span>, onde <span class="math inline">\(A_n\)</span> é o número de ocorrências de <span class="math inline">\(A\)</span> em <span class="math inline">\(n\)</span> realizações <em>idênticas e independentes</em> do experimento;</li>
 <li>Supõe que é possível repetir indefinidamente o experimento nas mesmas circustâncias.</li>
-<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara”.</li>
+<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara.”</li>
 </ul></li>
 </ul>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-1-1.gif" width="80%" style="display: block; margin: auto;" /></p>
@@ -284,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>medida de “vínculo parcial” entre uma evidência e uma hipótese;</li>
 <li>baseia-se em relações objetivas entre proposições.</li>
-<li><strong>Exemplo:</strong> considere duas proposições: “até agora todos os lançamentos resultaram em cara” e “será realizado um novo lançamento”. Pode-se afirmar que “provavelmente o resultado do novo lançamento será cara”.</li>
+<li><strong>Exemplo:</strong> considere duas proposições: “até agora todos os lançamentos resultaram em cara” e “será realizado um novo lançamento.” Pode-se afirmar que “provavelmente o resultado do novo lançamento será cara.”</li>
 </ul></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
@@ -299,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(~\)</span></p>
 <!-- Aula 02  -->
 </div>
-<div id="relação-de-crença-precsim" class="section level2">
+<div id="relação-de-crença-precsim" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Relação de Crença <span class="math inline">\(\precsim\)</span></h2>
 <p><span class="math inline">\(\precsim\)</span> : relação de “crença” em <span class="math inline">\(\mathcal{A}\times\mathcal{A}\)</span></p>
 <ul>
@@ -363,7 +399,7 @@ Se <span class="math inline">\(A \subseteq B\)</span> então <span class="math i
 <p><strong>Demo:</strong> Suponha, <span class="math inline">\(B \prec A\)</span>. Tomando <span class="math inline">\(D=B^c\)</span> no Lema 1, <span class="math inline">\(B \cup B^c \prec A \cup B^c \Rightarrow \Omega \prec A \cup B^c\)</span>. Absurdo!</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Exemplo 1:</strong> <span class="math inline">\(\omega_0 \in \Omega\)</span>. <span class="math inline">\(A \precsim B \Leftrightarrow \{\omega_0 \in B\)</span> <strong>ou</strong> <span class="math inline">\(\omega_0 \notin (A \cup B)\}\)</span>. Mostre que <span class="math inline">\(\precsim\)</span> obedece a SP1 a SP4.</p>
+<p><strong>Exemplo 1:</strong> <span class="math inline">\(\omega_0 \in \Omega\)</span>. <span class="math inline">\(A \precsim B \Leftrightarrow \{\omega_0 \in B\)</span> <strong>ou</strong> <span class="math inline">\(\omega_0 \notin (A \cup B)\}\)</span>. Mostre que <span class="math inline">\(\precsim\)</span> obedece às SP1 a SP4.</p>
 <blockquote>
 <p>(SP1)<br />
 <span class="math inline">\(A \precsim B \Leftrightarrow \omega_0 \in B \cup (A \cup B)^c\)</span>
@@ -376,7 +412,7 @@ Analogamente, <span class="math inline">\(A \prec B \Leftrightarrow \omega_0 \in
 <span class="math inline">\(~\)</span><br />
 (SP2)<br />
 <span class="math inline">\(A_i \precsim B_i , i=1,2 \Leftrightarrow\)</span> <span class="math inline">\(\omega_0 \in [B_1 \cup (A_1 \cup B_1)^c] \cap [B_2 \cup (A_2 \cup B_2)^c]\)</span> <span class="math inline">\(\Leftrightarrow \omega_0 \in [(B_1 \cup B_2) \cap D^c] \cup (A_1 \cup B_1 \cup A_2 \cup B_2)^c,\)</span><br />
-com <span class="math inline">\(D = (A_1 \cap B2) \cup (A_2 \cap B1).\)</span><br />
+com <span class="math inline">\(D = (A_1 \cap B_2) \cup (A_2 \cap B_1).\)</span><br />
 <span class="math inline">\(A_1 \cup A_2 \precsim B_1 \cup B_2 \Leftrightarrow\)</span> <span class="math inline">\(\omega_0 \in (B_1 \cup B_2) \cup (A_1 \cup A_2 \cup B_1 \cup B_2)^c\)</span><br />
 Como <span class="math inline">\((B_1 \cup B_2) \cap D^c \subseteq (B_1 \cup B_2)\)</span>, vale o SP2.<br />
 <span class="math inline">\(~\)</span><br />
@@ -409,7 +445,7 @@ provando o resultado.</p>
 <p><span class="math inline">\(~\)</span></p>
 <!-- Aula 03 -->
 </div>
-<div id="medida-de-probabilidade-que-representa-precsim" class="section level2">
+<div id="medida-de-probabilidade-que-representa-precsim" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></h2>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>SP5:</strong> Existe uma variável aleatória <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span>, <span class="math inline">\(\mathcal{A}\)</span>-mensurável, tal que <span class="math inline">\(X(\omega) \in [0,1], \forall \omega \in \Omega\)</span> e, se <span class="math inline">\(I_1\)</span> e <span class="math inline">\(I_2\)</span> são intervalos contidos em <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(\{X \in I_1\} \precsim \{X \in I_2\} \Leftrightarrow \lambda(I_1) \leq \lambda(I_2)~.\)</span></p>
@@ -441,7 +477,7 @@ De (i) e (ii), temos que <span class="math inline">\(A \sim \{X \in [0,a^*]\}\)<
 <span class="math display">\[A \precsim B ~\Leftrightarrow~ P(A) \leq P(B).\]</span></p>
 <blockquote>
 <p><strong>Demo:</strong> Do Teo 7, <span class="math inline">\(A \sim \left\{X \in \left[0,P(A)\right]\right\}\)</span> e <span class="math inline">\(B \sim \left\{X \in \left[0,P(B)\right]\right\}\)</span>.<br />
-<span class="math inline">\(A \precsim B\)</span> <span class="math inline">\(~\Leftrightarrow~ \left\{X \in \left[0,P(A)\right]\right\} \precsim \left\{X \in \left[0,P(B)\right]\right\}\)</span> <span class="math inline">\(~\Leftrightarrow~ \lambda \left([0,P(A)]\right) \precsim \lambda \left([0,P(B)]\right)\)</span> <span class="math inline">\(~\Leftrightarrow~ P(A) \leq P(B).\)</span></p>
+<span class="math inline">\(A \precsim B\)</span> <span class="math inline">\(~\Leftrightarrow~ \left\{X \in \left[0,P(A)\right]\right\} \precsim \left\{X \in \left[0,P(B)\right]\right\}\)</span> <span class="math inline">\(~\Leftrightarrow~ \lambda \left([0,P(A)]\right) \leq \lambda \left([0,P(B)]\right)\)</span> <span class="math inline">\(~\Leftrightarrow~ P(A) \leq P(B).\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema 9:</strong> A função <span class="math inline">\(P: \mathcal{A} \longrightarrow [0,1]\)</span> que, para cada <span class="math inline">\(A \in \mathcal{A}\)</span>, associa <span class="math inline">\(P(A)\)</span> tal que <span class="math inline">\(A \sim \left\{X \in \left[0,P(A)\right]\right\}\)</span> é uma medida de probabilidade (no sentido <span class="math inline">\(\sigma\)</span>-aditiva).</p>
@@ -495,7 +531,7 @@ Considere que existe uma outra medida <span class="math inline">\(P&#39;\)</span
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="medida-de-probabilidade-condicional" class="section level2">
+<div id="medida-de-probabilidade-condicional" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Medida de Probabilidade Condicional</h2>
 <p><strong>Nova Relação:</strong> <span class="math inline">\((A|D) \precsim (B|D)\)</span> (Sabendo que <span class="math inline">\(D\)</span> ocorreu, <span class="math inline">\(B\)</span> é preferível a <span class="math inline">\(A\)</span>).</p>
 <ul>
@@ -521,9 +557,9 @@ Considere que existe uma outra medida <span class="math inline">\(P&#39;\)</span
 </div>
 </div>
 <h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-DeGroot70">
-<p>DeGroot, M. H. 1970. <em>Optimal Statistical Decisions</em>. New York: MacGraw-Hill.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-DeGroot70" class="csl-entry">
+DeGroot, M. H. 1970. <em>Optimal Statistical Decisions</em>. New York: MacGraw-Hill.
 </div>
 </div>
             </section>
@@ -555,6 +591,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

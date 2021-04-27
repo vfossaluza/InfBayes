@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Introdução à Inferência Bayesiana | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-11-13" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="ProbSubj.html"/>
 <link rel="next" href="TeoDec.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -61,18 +63,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -92,7 +94,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +127,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -142,21 +167,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
-<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a><ul>
+<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>2.1</b> Definição Axiomática</a></li>
 <li class="chapter" data-level="2.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2</b> Interpretações de Probabilidade</a></li>
 <li class="chapter" data-level="2.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>2.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>2.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>2.5</b> Medida de Probabilidade Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a><ul>
-<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
 <li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
 <li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
 <li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
@@ -164,17 +193,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
 <li class="chapter" data-level="4.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>4.3</b> Problemas com Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a><ul>
+<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>5.1</b> Estimação Pontual</a></li>
 <li class="chapter" data-level="5.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>5.2</b> Estimação por Regiões</a></li>
 <li class="chapter" data-level="5.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>5.3</b> Custo das Observações</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a><ul>
+<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>6.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="6.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>6.2</b> Revisão: Abordagem Frequentista</a></li>
 <li class="chapter" data-level="6.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>6.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
@@ -185,17 +217,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
 <li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
 <li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
 <li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
-<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
 <li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
 <li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
 <li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
 <li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
@@ -204,7 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
+<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="medprob.html"><a href="medprob.html#basprob"><i class="fa fa-check"></i><b>A.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="A.2" data-path="medprob.html"><a href="medprob.html#lebesgue"><i class="fa fa-check"></i><b>A.2</b> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</a></li>
 <li class="chapter" data-level="A.3" data-path="medprob.html"><a href="medprob.html#funções-de-variáveis-aleatórias"><i class="fa fa-check"></i><b>A.3</b> Funções de Variáveis Aleatórias</a></li>
@@ -232,9 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Bayes" class="section level1">
+<div id="Bayes" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Introdução à Inferência Bayesiana</h1>
-<div id="BasBayes" class="section level2">
+<div id="BasBayes" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Conceitos Básicos</h2>
 <ul>
 <li><p><strong>Inferência Estatística:</strong> fazer afirmações sobre quantidades não observáveis em um determinado contexto.</p></li>
@@ -248,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><span class="math inline">\(V_x(\theta)=f(\boldsymbol x |\theta)\)</span> : função de verossimilhança.</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
-<div id="inferência-frequentista-ou-clássica" class="section level3">
+<div id="inferência-frequentista-ou-clássica" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Inferência Frequentista (ou Clássica)</h3>
 <ul>
 <li><p><span class="math inline">\(\theta\)</span> é considerado fixo (apesar de desconhecido) e, portanto, não recebe uma distribuição de probabilidade.</p></li>
@@ -256,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Probabilidade somente é definida em (uma <span class="math inline">\(\sigma\)</span>-álgebra de) <span class="math inline">\(\mathfrak{X}\)</span>.</p></li>
 </ul>
 </div>
-<div id="inferência-bayesiana" class="section level3">
+<div id="inferência-bayesiana" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Inferência Bayesiana</h3>
 <ul>
 <li><p>Baseia-se na interpretação subjetivista de probabilidade, de modo que a <em>SUA</em> incerteza sobre algo desconhecido deve ser quantificada (traduzida) em termos de probabilidade.</p></li>
@@ -286,25 +322,25 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 1b.</strong> Considere agora que serão realizados <span class="math inline">\(n\)</span> lançamentos da moeda, de modo que agora tem-se <span class="math inline">\(X|\theta \sim Bin(n,\theta)\)</span>, <span class="math inline">\(\theta \in \{1/2,3/4\}\)</span>, <span class="math inline">\(x \in \{0,1,\ldots,n\}\)</span>. Suponha que observa-se <span class="math inline">\(X=x\)</span>.</p>
 <p><span class="math inline">\(f(\theta=3/4|X=x)\)</span> <span class="math inline">\(=\dfrac{f(x|\theta=3/4)f(\theta=3/4)}{\displaystyle \sum_{\theta\in \{1/2,3/4\}}f(x|\theta)f(\theta)}\)</span> <span class="math inline">\(=\dfrac{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}}{\displaystyle \binom{n}{x}\left(\dfrac{3}{4}\right)^x\left(\dfrac{1}{4}\right)^{n-x}\dfrac{1}{2}+\displaystyle\binom{n}{x}\left(\dfrac{1}{2}\right)^x\left(\dfrac{1}{2}\right)^{n-x}\dfrac{1}{2}}\)</span> <span class="math inline">\(=\dfrac{1}{1+\left(\dfrac{2^n}{3^x}\right)}\)</span> <span class="math inline">\(=\dfrac{3^x}{3^x + 2^n}\)</span>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Bayes.html#cb1-1"></a>theta =<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.75</span>)</span>
-<span id="cb1-2"><a href="Bayes.html#cb1-2"></a>prior=<span class="fl">0.5</span> <span class="co"># priori P(theta[1]) = 1-P(theta[2])</span></span>
-<span id="cb1-3"><a href="Bayes.html#cb1-3"></a>n=<span class="dv">5</span>;</span>
-<span id="cb1-4"><a href="Bayes.html#cb1-4"></a>post =<span class="st"> </span><span class="cf">function</span>(x){ </span>
-<span id="cb1-5"><a href="Bayes.html#cb1-5"></a>  (prior<span class="op">*</span><span class="kw">dbinom</span>(x,n,theta)) <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(prior <span class="op">*</span><span class="st"> </span><span class="kw">dbinom</span>(x,n,theta)) }</span>
-<span id="cb1-6"><a href="Bayes.html#cb1-6"></a><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw">as.factor</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n),<span class="dt">each=</span><span class="kw">length</span>(theta))),</span>
-<span id="cb1-7"><a href="Bayes.html#cb1-7"></a>    <span class="dt">x1=</span><span class="kw">rep</span>(theta,(n<span class="op">+</span><span class="dv">1</span>)),<span class="dt">x2=</span><span class="kw">rep</span>(theta,(n<span class="op">+</span><span class="dv">1</span>)),<span class="dt">y1=</span><span class="dv">0</span>,</span>
-<span id="cb1-8"><a href="Bayes.html#cb1-8"></a>    <span class="dt">y2=</span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,post))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb1-9"><a href="Bayes.html#cb1-9"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="fl">0.5</span>,<span class="dt">col=</span><span class="st">&quot;darkgrey&quot;</span>,<span class="dt">lty=</span><span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb1-10"><a href="Bayes.html#cb1-10"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x1, <span class="dt">xend=</span>x2, <span class="dt">y=</span>y1,<span class="dt">yend=</span>y2,<span class="dt">colour=</span>x),<span class="dt">lwd=</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb1-11"><a href="Bayes.html#cb1-11"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;P(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>))) <span class="op">+</span><span class="st">   </span></span>
-<span id="cb1-12"><a href="Bayes.html#cb1-12"></a><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span></span>
-<span id="cb1-13"><a href="Bayes.html#cb1-13"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Bayes.html#cb1-1" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.75</span>)</span>
+<span id="cb1-2"><a href="Bayes.html#cb1-2" aria-hidden="true" tabindex="-1"></a>prior<span class="ot">=</span><span class="fl">0.5</span> <span class="co"># priori P(theta[1]) = 1-P(theta[2])</span></span>
+<span id="cb1-3"><a href="Bayes.html#cb1-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span>;</span>
+<span id="cb1-4"><a href="Bayes.html#cb1-4" aria-hidden="true" tabindex="-1"></a>post <span class="ot">=</span> <span class="cf">function</span>(x){ </span>
+<span id="cb1-5"><a href="Bayes.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  (prior<span class="sc">*</span><span class="fu">dbinom</span>(x,n,theta)) <span class="sc">/</span> <span class="fu">sum</span>(prior <span class="sc">*</span> <span class="fu">dbinom</span>(x,n,theta)) }</span>
+<span id="cb1-6"><a href="Bayes.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">each=</span><span class="fu">length</span>(theta))),</span>
+<span id="cb1-7"><a href="Bayes.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x1=</span><span class="fu">rep</span>(theta,(n<span class="sc">+</span><span class="dv">1</span>)),<span class="at">x2=</span><span class="fu">rep</span>(theta,(n<span class="sc">+</span><span class="dv">1</span>)),<span class="at">y1=</span><span class="dv">0</span>,</span>
+<span id="cb1-8"><a href="Bayes.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y2=</span><span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,post))) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-9"><a href="Bayes.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.5</span>,<span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>,<span class="at">lty=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="Bayes.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span>x1, <span class="at">xend=</span>x2, <span class="at">y=</span>y1,<span class="at">yend=</span>y2,<span class="at">colour=</span>x),<span class="at">lwd=</span><span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb1-11"><a href="Bayes.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(theta)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;P(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>))) <span class="sc">+</span>   </span>
+<span id="cb1-12"><a href="Bayes.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb1-13"><a href="Bayes.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(x)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-5-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Note que o Exemplo 1.a é um caso particular desse exemplo com <span class="math inline">\(n=1\)</span>. Se novamente sua decisão é baseada no valor mais provável de <span class="math inline">\(\theta\)</span>, deve-se escolher <span class="math inline">\(\theta=3/4\)</span> se</p>
 <p><span class="math inline">\(f(\theta=3/4|X=x) &gt; f(\theta=1/2|X=x)\)</span> <span class="math inline">\(\Longleftrightarrow f(\theta=3/4|X=x) &gt; \dfrac{1}{2}\)</span> <span class="math inline">\(\Longleftrightarrow \dfrac{3^x}{3^x + 2^n} &gt; \dfrac{1}{2}\)</span> <span class="math inline">\(\Longleftrightarrow {3^x} &gt; {2^n}\)</span> <span class="math inline">\(\Longleftrightarrow \dfrac{x}{n} = \bar{x} &gt; \log_3{2}\approx 0,63\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Exemplo 1c.</strong> Considere que uma moeda será lançada <span class="math inline">\(n\)</span> vezes mas que <span class="math inline">\(\theta\)</span> é desconhecido, de modo que <span class="math inline">\(\Theta = [0,1]\)</span>. Para simplificar, vamos assumir <span class="math inline">\(f(\theta)=\mathbb{I}_{[0,1]}(\theta)\)</span>, isto é, <span class="math inline">\(\theta \sim Unif(0,1)\sim Beta(1,1)\)</span>. Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para <span class="math inline">\(\theta\)</span> são igualmente “prováveis”, assim como nos exemplos anteriores. Novamente, <span class="math inline">\(X|\theta \sim Bin(n,\theta)\)</span></p>
+<p><strong>Exemplo 1c.</strong> Considere que uma moeda será lançada <span class="math inline">\(n\)</span> vezes mas que <span class="math inline">\(\theta\)</span> é desconhecido, de modo que <span class="math inline">\(\Theta = [0,1]\)</span>. Para simplificar, vamos assumir <span class="math inline">\(f(\theta)=\mathbb{I}_{[0,1]}(\theta)\)</span>, isto é, <span class="math inline">\(\theta \sim Unif(0,1)\sim Beta(1,1)\)</span>. Essa priori corresponde ao caso em que você acredita que todos os valores possíveis para <span class="math inline">\(\theta\)</span> são igualmente “prováveis,” assim como nos exemplos anteriores. Novamente, <span class="math inline">\(X|\theta \sim Bin(n,\theta)\)</span></p>
 <p><span class="math inline">\(f(\theta|x)\)</span>
 <span class="math inline">\(=\dfrac{f(x|\theta)f(\theta)}{\displaystyle\int_0^1 f(x|\theta)f(\theta)d\theta}\)</span>
 <span class="math inline">\(=\dfrac{\displaystyle\binom{n}{x}~\theta^x(1-\theta)^{n-x} ~~\mathbb{I}_{[0,1]}(\theta)}{\displaystyle\int_0^1\binom{n}{x}~\theta^x(1-\theta)^{n-x}d\theta}=\)</span> <span class="math inline">\(\dfrac{\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}~~\mathbb{I}_{[0,1]}(\theta)}{\underbrace{\displaystyle \int_0^1\tfrac{\Gamma(1+x+1+n-x)}{\Gamma(1+x)\Gamma(1+n-x)}~~\theta^x(1-\theta)^{n-x}d\theta}_{1}}\)</span>
@@ -321,23 +357,23 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 1d.</strong> Por fim, suponha que no exemplo anterior, sua opinião a priori é representada por uma distribuição beta qualquer com parâmetros <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, <span class="math inline">\(a,b &gt; 0\)</span>. Desta forma, <span class="math inline">\(X|\theta \sim Bin(n,\theta)\)</span> e <span class="math inline">\(\theta\sim Beta(a,b)\)</span>. Calculando a distribuição a posteriori de forma similar ao exemplo anterior, temos que <span class="math inline">\(\theta|X=x \sim Beta(a+x,b+n-x)\)</span>. Note que o exemplo anterior é o caso particular em que <span class="math inline">\(a=b=1~.\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Bayes.html#cb2-1"></a><span class="kw">require</span>(transformr)</span>
-<span id="cb2-2"><a href="Bayes.html#cb2-2"></a>theta =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
-<span id="cb2-3"><a href="Bayes.html#cb2-3"></a>a=<span class="dv">2</span>; b=<span class="dv">2</span>;</span>
-<span id="cb2-4"><a href="Bayes.html#cb2-4"></a>n=<span class="dv">5</span></span>
-<span id="cb2-5"><a href="Bayes.html#cb2-5"></a>vero1 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb2-6"><a href="Bayes.html#cb2-6"></a>            <span class="cf">function</span>(x){<span class="kw">dbeta</span>(theta,<span class="dv">1</span><span class="op">+</span>x,<span class="dv">1</span><span class="op">+</span>n<span class="op">-</span>x)}))</span>
-<span id="cb2-7"><a href="Bayes.html#cb2-7"></a>post1 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb2-8"><a href="Bayes.html#cb2-8"></a>            <span class="cf">function</span>(x){<span class="kw">dbeta</span>(theta,a<span class="op">+</span>x,b<span class="op">+</span>n<span class="op">-</span>x)}))</span>
-<span id="cb2-9"><a href="Bayes.html#cb2-9"></a><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw">as.factor</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n),<span class="dt">each=</span><span class="kw">length</span>(theta))),</span>
-<span id="cb2-10"><a href="Bayes.html#cb2-10"></a>    <span class="dt">theta=</span><span class="kw">rep</span>(theta,(n<span class="op">+</span><span class="dv">1</span>)),<span class="dt">post=</span>post1,<span class="dt">vero=</span>vero1) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-11"><a href="Bayes.html#cb2-11"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb2-12"><a href="Bayes.html#cb2-12"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span><span class="kw">dbeta</span>(theta,a,b),<span class="dt">linetype=</span><span class="st">&quot;Prior&quot;</span>,<span class="dt">colour=</span><span class="st">&quot;Prior&quot;</span>),<span class="dt">lwd=</span><span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb2-13"><a href="Bayes.html#cb2-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>post,<span class="dt">linetype=</span><span class="st">&quot;Posterior&quot;</span>,<span class="dt">colour=</span>x),<span class="dt">lwd=</span><span class="fl">1.3</span>) <span class="op">+</span></span>
-<span id="cb2-14"><a href="Bayes.html#cb2-14"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>vero,<span class="dt">linetype=</span><span class="st">&quot;Verossimilhança&quot;</span>,<span class="dt">colour=</span>x),<span class="dt">lwd=</span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb2-15"><a href="Bayes.html#cb2-15"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>))) <span class="op">+</span></span>
-<span id="cb2-16"><a href="Bayes.html#cb2-16"></a><span class="st">  </span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">labs</span>(<span class="dt">linetype=</span><span class="st">&quot;&quot;</span>)<span class="op">+</span></span>
-<span id="cb2-17"><a href="Bayes.html#cb2-17"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="Bayes.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(transformr)</span>
+<span id="cb2-2"><a href="Bayes.html#cb2-2" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb2-3"><a href="Bayes.html#cb2-3" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="dv">2</span>; b<span class="ot">=</span><span class="dv">2</span>;</span>
+<span id="cb2-4"><a href="Bayes.html#cb2-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb2-5"><a href="Bayes.html#cb2-5" aria-hidden="true" tabindex="-1"></a>vero1 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb2-6"><a href="Bayes.html#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">function</span>(x){<span class="fu">dbeta</span>(theta,<span class="dv">1</span><span class="sc">+</span>x,<span class="dv">1</span><span class="sc">+</span>n<span class="sc">-</span>x)}))</span>
+<span id="cb2-7"><a href="Bayes.html#cb2-7" aria-hidden="true" tabindex="-1"></a>post1 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb2-8"><a href="Bayes.html#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">function</span>(x){<span class="fu">dbeta</span>(theta,a<span class="sc">+</span>x,b<span class="sc">+</span>n<span class="sc">-</span>x)}))</span>
+<span id="cb2-9"><a href="Bayes.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">each=</span><span class="fu">length</span>(theta))),</span>
+<span id="cb2-10"><a href="Bayes.html#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta=</span><span class="fu">rep</span>(theta,(n<span class="sc">+</span><span class="dv">1</span>)),<span class="at">post=</span>post1,<span class="at">vero=</span>vero1) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-11"><a href="Bayes.html#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb2-12"><a href="Bayes.html#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span><span class="fu">dbeta</span>(theta,a,b),<span class="at">linetype=</span><span class="st">&quot;Prior&quot;</span>,<span class="at">colour=</span><span class="st">&quot;Prior&quot;</span>),<span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="Bayes.html#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>post,<span class="at">linetype=</span><span class="st">&quot;Posterior&quot;</span>,<span class="at">colour=</span>x),<span class="at">lwd=</span><span class="fl">1.3</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="Bayes.html#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>vero,<span class="at">linetype=</span><span class="st">&quot;Verossimilhança&quot;</span>,<span class="at">colour=</span>x),<span class="at">lwd=</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb2-15"><a href="Bayes.html#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(theta)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="Bayes.html#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">linetype=</span><span class="st">&quot;&quot;</span>)<span class="sc">+</span></span>
+<span id="cb2-17"><a href="Bayes.html#cb2-17" aria-hidden="true" tabindex="-1"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(x)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-9-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Suponha agora que <span class="math inline">\(a=b=2\)</span>, <span class="math inline">\(n=5\)</span> e <span class="math inline">\(x=2\)</span>, de modo que <span class="math inline">\(\theta|x=2 \sim Beta(4,5)\)</span>. Algumas medidas resumo da distribuição posterior para esse exemplo são</p>
@@ -351,7 +387,7 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
-<div id="teorema-de-de-finetti" class="section level2">
+<div id="teorema-de-de-finetti" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Teorema de De Finetti</h2>
 <p><strong>Definição.</strong> Uma coleção finita <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> de quantidades aleatórias é dita <em>permutável</em> se a distribuição de <span class="math inline">\(\left(X_{\pi_1},\ldots,X_{\pi_n}\right)\)</span> é a mesma para toda permutação <span class="math inline">\(\boldsymbol\pi=(\pi_1,\ldots,\pi_n)\)</span> dos índices <span class="math inline">\((1,\ldots,n)\)</span>. Uma coleção infinita de quantidades aleatórias é <em>permutável</em> se toda subcoleção é permutável.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -512,7 +548,7 @@ de modo que,<br />
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="suficiência" class="section level2">
+<div id="suficiência" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Suficiência</h2>
 <p>Muitas vezes, a quantidade de dados é muito grande e desejamos “resumir” a informação trazida pelos dados. Uma forma de fazê-lo sem perder informação sobre o parâmetro de interesse é usar uma <em>estatística suficiente</em>.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -541,13 +577,13 @@ Seja <span class="math inline">\(T = T(\boldsymbol X) = \sum X_i\)</span>, temos
 Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="math inline">\(\sim \theta|T(\boldsymbol x)\)</span> <span class="math inline">\(\sim Gamma\left(a+n,b+\sum x_i\right)\)</span> e, portanto, <span class="math inline">\(T(\boldsymbol X) = \sum X_i\)</span> é estatística suficiente para <span class="math inline">\(\theta\)</span>.</p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p>Pelo teorema da fatoração, temos que <span class="math inline">\(f\left(\boldsymbol x | \theta\right)\)</span> <span class="math inline">\(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\)</span> e, portanto <span class="math inline">\(f(\theta|\boldsymbol x)\)</span> <span class="math inline">\(\propto f(\theta) f\left(\boldsymbol x | \theta\right)\)</span> <span class="math inline">\(\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)~,\)</span> que só depende de <span class="math inline">\(\boldsymbol x\)</span> por meio de <span class="math inline">\(T(\boldsymbol x)\)</span>. Para os casos mais comuns, as definições são equivalentes <span class="citation">(Schervish <a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>.</p>
+<p>Pelo teorema da fatoração, temos que <span class="math inline">\(f\left(\boldsymbol x | \theta\right)\)</span> <span class="math inline">\(= u(\boldsymbol x) v\left(T(\boldsymbol x),\theta\right)\)</span> e, portanto <span class="math inline">\(f(\theta|\boldsymbol x)\)</span> <span class="math inline">\(\propto f(\theta) f\left(\boldsymbol x | \theta\right)\)</span> <span class="math inline">\(\propto f(\theta) v\left(T(\boldsymbol x),\theta\right)~,\)</span> que só depende de <span class="math inline">\(\boldsymbol x\)</span> por meio de <span class="math inline">\(T(\boldsymbol x)\)</span>. Para os casos mais comuns, as definições são equivalentes <span class="citation">(<a href="#ref-Schervish12" role="doc-biblioref">Schervish 2012</a>)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Um dos princípios de inferência estatística é o <em>princípio da suficiência</em>. Segundo este, se <span class="math inline">\(T\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span> e se dois pontos amostrais <span class="math inline">\(\boldsymbol x, \boldsymbol y \in \mathfrak{X}\)</span> são tais que <span class="math inline">\(T(\boldsymbol x)=T(\boldsymbol y)\)</span> então as inferências baseadas nesses pontos devem ser as mesmas. Adiante, retomaremos esse princípio de forma mais formal.</p>
 <p><span class="math inline">\(~\)</span></p>
 <!-- ## Aula 09  -->
 </div>
-<div id="distribuição-a-priori" class="section level2">
+<div id="distribuição-a-priori" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Distribuição a Priori</h2>
 <ul>
 <li>A priori é sempre subjetiva (assim como a escolha do modelo estatístico)!
@@ -557,16 +593,16 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <li>Do mesmo modo, suponha que dois indivíduos que consideram que a distribuição do parêmetro é simétrica, com mesmas suposições sobre média e variância. O primeiro pode optar por representar sua distribuição usando uma distribuição Normal, enquanto o segundo pode utilizar uma distribuição T ou Cauchy.<br />
 </li>
 </ul></li>
-<li>Não existe “opinião errada”, existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo. Contudo, algumas “boas práticas” devem ser consideradas como, por exemplo, tomar cuidado para não atribuir probabilidade nula a pontos “possíveis” do espaço paramétrico.<br />
+<li>Não existe “opinião errada,” existem opiniões diferentes, dado o nível de conhecimento e as experiências prévias do indivíduo. Contudo, algumas “boas práticas” devem ser consideradas como, por exemplo, tomar cuidado para não atribuir probabilidade nula a pontos “possíveis” do espaço paramétrico.<br />
 </li>
 <li>A priori deve ser sua opinião apenas sobre o parâmetro <span class="math inline">\(\theta\)</span> e não deve depender de fatores como o desenho do experimento ou o objetivo do estudo.</li>
 </ul>
 <!-- ### Prioris Baseada na Opinião de um Especialista -->
-<div id="método-do-histograma" class="section level3">
+<div id="método-do-histograma" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Método do Histograma</h3>
 <ul>
 <li><p>Muitas vezes, para “extrair” o conhecimento de um especialista, podemos dividir o espaço paramétrico em regiões e pedir para o especialista “ordenar” esses conjuntos, utilizando “pesos” que refletem a crença que o parâmetro esteja em cada uma daquelas regiões.</p></li>
-<li><p><strong>Exemplo 1.</strong> (<span class="citation">Albert (<a href="#ref-Albert09" role="doc-biblioref">2009</a>)</span>, pág 27)</p>
+<li><p><strong>Exemplo 1.</strong> (<span class="citation"><a href="#ref-Albert09" role="doc-biblioref">Albert</a> (<a href="#ref-Albert09" role="doc-biblioref">2009</a>)</span>, pág 27)</p>
 <ul>
 <li>Seja <span class="math inline">\(\theta\)</span> uma proporção desconhecida <span class="math inline">\((\Theta=[0,1])\)</span>;<br />
 </li>
@@ -576,31 +612,31 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 <li>A piori, nesse caso, é o histograma apresentado a seguir.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Bayes.html#cb3-1"></a>p=<span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb3-2"><a href="Bayes.html#cb3-2"></a>prior =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,p<span class="op">/</span>(<span class="kw">sum</span>(p)))</span>
-<span id="cb3-3"><a href="Bayes.html#cb3-3"></a><span class="kw">tibble</span>(<span class="dt">theta=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>), prior) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-4"><a href="Bayes.html#cb3-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
-<span id="cb3-5"><a href="Bayes.html#cb3-5"></a><span class="st">  </span><span class="kw">geom_step</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>prior),<span class="dt">direction=</span><span class="st">&quot;vh&quot;</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>,<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Bayes.html#cb3-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb3-2"><a href="Bayes.html#cb3-2" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,p<span class="sc">/</span>(<span class="fu">sum</span>(p)))</span>
+<span id="cb3-3"><a href="Bayes.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">theta=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>), prior) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="Bayes.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>.) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="Bayes.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_step</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>prior),<span class="at">direction=</span><span class="st">&quot;vh&quot;</span>,<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Voltando ao exemplo da moeda, suponha novamente que foram observados <span class="math inline">\(x=2\)</span> sucessos em <span class="math inline">\(n=5\)</span> lançamentos. A posteriori nesse caso pode ser obtida multiplicando a distribuição a priori pela verossimilhança e “padronizando” a função obtida. Assim:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Bayes.html#cb4-1"></a>n=<span class="dv">5</span></span>
-<span id="cb4-2"><a href="Bayes.html#cb4-2"></a>x=<span class="dv">2</span></span>
-<span id="cb4-3"><a href="Bayes.html#cb4-3"></a>p =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb4-4"><a href="Bayes.html#cb4-4"></a>p =<span class="st"> </span>p<span class="op">/</span>(<span class="kw">sum</span>(p))</span>
-<span id="cb4-5"><a href="Bayes.html#cb4-5"></a>theta =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
-<span id="cb4-6"><a href="Bayes.html#cb4-6"></a>prior =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(p,<span class="dt">each=</span><span class="dv">10</span>),<span class="dv">0</span>)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">c</span>(<span class="kw">rep</span>(p,<span class="dt">each=</span><span class="dv">10</span>),<span class="dv">0</span>))</span>
-<span id="cb4-7"><a href="Bayes.html#cb4-7"></a>vero =<span class="st"> </span><span class="kw">dbinom</span>(x,n,theta)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">dbinom</span>(x,n,theta))</span>
-<span id="cb4-8"><a href="Bayes.html#cb4-8"></a>post =<span class="st"> </span>(prior <span class="op">*</span><span class="st"> </span>vero)<span class="op">/</span><span class="kw">sum</span>(prior <span class="op">*</span><span class="st"> </span>vero)</span>
-<span id="cb4-9"><a href="Bayes.html#cb4-9"></a>pH =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">theta=</span><span class="kw">rep</span>(theta,<span class="dv">3</span>),<span class="dt">dens=</span><span class="kw">c</span>(prior,vero,post),<span class="dt">Dist=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;1.priori&#39;</span>,<span class="st">&#39;2.verossimilhança&#39;</span>,<span class="st">&#39;3.posteriori&#39;</span>),<span class="dt">each=</span><span class="dv">101</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-10"><a href="Bayes.html#cb4-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
-<span id="cb4-11"><a href="Bayes.html#cb4-11"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>dens,<span class="dt">colour=</span>Dist),<span class="dt">lwd=</span><span class="fl">1.5</span>)</span>
-<span id="cb4-12"><a href="Bayes.html#cb4-12"></a>pH</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Bayes.html#cb4-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb4-2"><a href="Bayes.html#cb4-2" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb4-3"><a href="Bayes.html#cb4-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="Bayes.html#cb4-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> p<span class="sc">/</span>(<span class="fu">sum</span>(p))</span>
+<span id="cb4-5"><a href="Bayes.html#cb4-5" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb4-6"><a href="Bayes.html#cb4-6" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(p,<span class="at">each=</span><span class="dv">10</span>),<span class="dv">0</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">c</span>(<span class="fu">rep</span>(p,<span class="at">each=</span><span class="dv">10</span>),<span class="dv">0</span>))</span>
+<span id="cb4-7"><a href="Bayes.html#cb4-7" aria-hidden="true" tabindex="-1"></a>vero <span class="ot">=</span> <span class="fu">dbinom</span>(x,n,theta)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">dbinom</span>(x,n,theta))</span>
+<span id="cb4-8"><a href="Bayes.html#cb4-8" aria-hidden="true" tabindex="-1"></a>post <span class="ot">=</span> (prior <span class="sc">*</span> vero)<span class="sc">/</span><span class="fu">sum</span>(prior <span class="sc">*</span> vero)</span>
+<span id="cb4-9"><a href="Bayes.html#cb4-9" aria-hidden="true" tabindex="-1"></a>pH <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">theta=</span><span class="fu">rep</span>(theta,<span class="dv">3</span>),<span class="at">dens=</span><span class="fu">c</span>(prior,vero,post),<span class="at">Dist=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;1.priori&#39;</span>,<span class="st">&#39;2.verossimilhança&#39;</span>,<span class="st">&#39;3.posteriori&#39;</span>),<span class="at">each=</span><span class="dv">101</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-10"><a href="Bayes.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>.) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="Bayes.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>dens,<span class="at">colour=</span>Dist),<span class="at">lwd=</span><span class="fl">1.5</span>)</span>
+<span id="cb4-12"><a href="Bayes.html#cb4-12" aria-hidden="true" tabindex="-1"></a>pH</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="elicitação-de-hiperparâmetros" class="section level3">
+<div id="elicitação-de-hiperparâmetros" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Elicitação de Hiperparâmetros</h3>
 <ul>
 <li>Nessa abordagem, a priori é obtida da seguinte maneira:
@@ -622,24 +658,24 @@ Assim, <span class="math inline">\(\theta|\boldsymbol x\)</span> <span class="ma
 </ul>
 <p>Resolvendo o sistema temos, de forma geral, que <span class="math inline">\(a=\dfrac{m(m-m^2-v)}{v}\)</span> e <span class="math inline">\(b=\dfrac{(1-m)(m-m^2-v)}{v}\)</span>.</p>
 <p>Assim, no nosso exemplo, teríamos uma <span class="math inline">\(Beta(3,6.7)\)</span>. Além disso, já vimos que, nesse caso, a distribuição a posteriori é <span class="math inline">\(Beta(3+x,6.7+n-x)\)</span>. Considerando novamente <span class="math inline">\(n=5\)</span> e <span class="math inline">\(x=2\)</span>, temos:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Bayes.html#cb5-1"></a>n=<span class="dv">5</span>; x=<span class="dv">2</span></span>
-<span id="cb5-2"><a href="Bayes.html#cb5-2"></a>m=<span class="fl">0.31</span>; v=<span class="fl">0.02</span></span>
-<span id="cb5-3"><a href="Bayes.html#cb5-3"></a>a=m<span class="op">*</span>(m<span class="op">-</span>m<span class="op">^</span><span class="dv">2</span><span class="op">-</span>v)<span class="op">/</span>v; b=(<span class="dv">1</span><span class="op">-</span>m)<span class="op">*</span>(m<span class="op">-</span>m<span class="op">^</span><span class="dv">2</span><span class="op">-</span>v)<span class="op">/</span>v</span>
-<span id="cb5-4"><a href="Bayes.html#cb5-4"></a>p =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb5-5"><a href="Bayes.html#cb5-5"></a>p =<span class="st"> </span>p<span class="op">/</span>(<span class="kw">sum</span>(p))</span>
-<span id="cb5-6"><a href="Bayes.html#cb5-6"></a>theta =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
-<span id="cb5-7"><a href="Bayes.html#cb5-7"></a>prior =<span class="st"> </span><span class="kw">dbeta</span>(theta,a,b)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">dbeta</span>(theta,a,b))</span>
-<span id="cb5-8"><a href="Bayes.html#cb5-8"></a>vero =<span class="st"> </span><span class="kw">dbinom</span>(x,n,theta)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">dbinom</span>(x,n,theta))</span>
-<span id="cb5-9"><a href="Bayes.html#cb5-9"></a>post =<span class="st"> </span><span class="kw">dbeta</span>(theta,a<span class="op">+</span>x,b<span class="op">+</span>n<span class="op">-</span>x)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">dbeta</span>(theta,a<span class="op">+</span>x,b<span class="op">+</span>n<span class="op">-</span>x))</span>
-<span id="cb5-10"><a href="Bayes.html#cb5-10"></a>priorH =<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(p,<span class="dt">each=</span><span class="dv">10</span>),<span class="dv">0</span>)<span class="op">/</span><span class="kw">sum</span>(<span class="kw">c</span>(<span class="kw">rep</span>(p,<span class="dt">each=</span><span class="dv">10</span>),<span class="dv">0</span>))</span>
-<span id="cb5-11"><a href="Bayes.html#cb5-11"></a><span class="kw">tibble</span>(<span class="dt">theta=</span><span class="kw">rep</span>(theta,<span class="dv">4</span>),<span class="dt">dens=</span><span class="kw">c</span>(prior,vero,post,priorH),</span>
-<span id="cb5-12"><a href="Bayes.html#cb5-12"></a>    <span class="dt">Dist=</span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;1.Priori Beta&#39;</span>,<span class="st">&#39;2.Verossimilhança&#39;</span>,<span class="st">&#39;3.Posteriori&#39;</span>,<span class="st">&#39;0.Priori Histograma&#39;</span>),<span class="dt">each=</span><span class="dv">101</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb5-13"><a href="Bayes.html#cb5-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>.) <span class="op">+</span></span>
-<span id="cb5-14"><a href="Bayes.html#cb5-14"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>dens,<span class="dt">colour=</span>Dist),<span class="dt">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Bayes.html#cb5-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span>; x<span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb5-2"><a href="Bayes.html#cb5-2" aria-hidden="true" tabindex="-1"></a>m<span class="ot">=</span><span class="fl">0.31</span>; v<span class="ot">=</span><span class="fl">0.02</span></span>
+<span id="cb5-3"><a href="Bayes.html#cb5-3" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span>m<span class="sc">*</span>(m<span class="sc">-</span>m<span class="sc">^</span><span class="dv">2</span><span class="sc">-</span>v)<span class="sc">/</span>v; b<span class="ot">=</span>(<span class="dv">1</span><span class="sc">-</span>m)<span class="sc">*</span>(m<span class="sc">-</span>m<span class="sc">^</span><span class="dv">2</span><span class="sc">-</span>v)<span class="sc">/</span>v</span>
+<span id="cb5-4"><a href="Bayes.html#cb5-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">5.2</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">4.6</span>, <span class="fl">2.1</span>, <span class="fl">0.7</span>, <span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb5-5"><a href="Bayes.html#cb5-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> p<span class="sc">/</span>(<span class="fu">sum</span>(p))</span>
+<span id="cb5-6"><a href="Bayes.html#cb5-6" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb5-7"><a href="Bayes.html#cb5-7" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">=</span> <span class="fu">dbeta</span>(theta,a,b)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">dbeta</span>(theta,a,b))</span>
+<span id="cb5-8"><a href="Bayes.html#cb5-8" aria-hidden="true" tabindex="-1"></a>vero <span class="ot">=</span> <span class="fu">dbinom</span>(x,n,theta)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">dbinom</span>(x,n,theta))</span>
+<span id="cb5-9"><a href="Bayes.html#cb5-9" aria-hidden="true" tabindex="-1"></a>post <span class="ot">=</span> <span class="fu">dbeta</span>(theta,a<span class="sc">+</span>x,b<span class="sc">+</span>n<span class="sc">-</span>x)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">dbeta</span>(theta,a<span class="sc">+</span>x,b<span class="sc">+</span>n<span class="sc">-</span>x))</span>
+<span id="cb5-10"><a href="Bayes.html#cb5-10" aria-hidden="true" tabindex="-1"></a>priorH <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(p,<span class="at">each=</span><span class="dv">10</span>),<span class="dv">0</span>)<span class="sc">/</span><span class="fu">sum</span>(<span class="fu">c</span>(<span class="fu">rep</span>(p,<span class="at">each=</span><span class="dv">10</span>),<span class="dv">0</span>))</span>
+<span id="cb5-11"><a href="Bayes.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">theta=</span><span class="fu">rep</span>(theta,<span class="dv">4</span>),<span class="at">dens=</span><span class="fu">c</span>(prior,vero,post,priorH),</span>
+<span id="cb5-12"><a href="Bayes.html#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Dist=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;1.Priori Beta&#39;</span>,<span class="st">&#39;2.Verossimilhança&#39;</span>,<span class="st">&#39;3.Posteriori&#39;</span>,<span class="st">&#39;0.Priori Histograma&#39;</span>),<span class="at">each=</span><span class="dv">101</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-13"><a href="Bayes.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data=</span>.) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="Bayes.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>dens,<span class="at">colour=</span>Dist),<span class="at">lwd=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="prioris-conjugadas" class="section level3">
+<div id="prioris-conjugadas" class="section level3" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Prioris Conjugadas</h3>
 <p>Como visto no exemplo da moeda, em que a distribuição a priori era <span class="math inline">\(Beta(a,b)\)</span>, a posteriori era facilmente obtida e também estava na classe das distribuições <span class="math inline">\(Beta\)</span>. Em particular, quando observa-se <span class="math inline">\(x\)</span> sucessos em <span class="math inline">\(n\)</span> realizações de ensaios de Bernoulli, a distribuição a posteriori é <span class="math inline">\(Beta(a+x,b+n-x)\)</span>. Isso ocorre pois essa distribuição pertence à uma classe bastante espefícica de distribuições a priori, chamadas distribuições conjugadas.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -713,95 +749,95 @@ Então<br />
 <p><span class="math inline">\(\propto~\underbrace{\dfrac{A}{A+B}}_{w^*}Beta(a_1+x,b_1+n-x)+\underbrace{\dfrac{B}{A+B}}_{1-w^*}Beta(a_2+x,b_2+n-x)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Primeiramente, suponha que <span class="math inline">\(n=5\)</span>, e temos uma mistura das distribuições <span class="math inline">\(Beta(5,12)\)</span> e <span class="math inline">\(Beta(10,3)\)</span>, com <span class="math inline">\(w=0.5\)</span>. O gráfico a seguir apresenta as distribuições a priori, a verossimilhança e a posteriori para cada possível valor de <span class="math inline">\(x\)</span> em <span class="math inline">\(\left\{0,1,\ldots,5\right\}\)</span>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Bayes.html#cb6-1"></a>a1=<span class="dv">5</span>; b1=<span class="dv">12</span></span>
-<span id="cb6-2"><a href="Bayes.html#cb6-2"></a>a2=<span class="dv">10</span>; b2=<span class="dv">3</span> </span>
-<span id="cb6-3"><a href="Bayes.html#cb6-3"></a>n=<span class="dv">5</span></span>
-<span id="cb6-4"><a href="Bayes.html#cb6-4"></a>w=<span class="fl">0.5</span></span>
-<span id="cb6-5"><a href="Bayes.html#cb6-5"></a></span>
-<span id="cb6-6"><a href="Bayes.html#cb6-6"></a>theta =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
-<span id="cb6-7"><a href="Bayes.html#cb6-7"></a></span>
-<span id="cb6-8"><a href="Bayes.html#cb6-8"></a>A =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb6-9"><a href="Bayes.html#cb6-9"></a>  <span class="cf">function</span>(x){w<span class="op">*</span><span class="kw">choose</span>(n,x)<span class="op">*</span><span class="kw">gamma</span>(a1<span class="op">+</span>b1)<span class="op">/</span>(<span class="kw">gamma</span>(a1)<span class="op">*</span><span class="kw">gamma</span>(b1))<span class="op">*</span></span>
-<span id="cb6-10"><a href="Bayes.html#cb6-10"></a><span class="st">    </span>(<span class="kw">gamma</span>(a1<span class="op">+</span>x)<span class="op">*</span><span class="kw">gamma</span>(b1<span class="op">+</span>n<span class="op">-</span>x))<span class="op">/</span><span class="kw">gamma</span>(a1<span class="op">+</span>b1<span class="op">+</span>n)}))</span>
-<span id="cb6-11"><a href="Bayes.html#cb6-11"></a></span>
-<span id="cb6-12"><a href="Bayes.html#cb6-12"></a>B =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb6-13"><a href="Bayes.html#cb6-13"></a>  <span class="cf">function</span>(x){(<span class="dv">1</span><span class="op">-</span>w)<span class="op">*</span><span class="kw">choose</span>(n,x)<span class="op">*</span><span class="kw">gamma</span>(a2<span class="op">+</span>b2)<span class="op">/</span>(<span class="kw">gamma</span>(a2)<span class="op">*</span><span class="kw">gamma</span>(b2))<span class="op">*</span></span>
-<span id="cb6-14"><a href="Bayes.html#cb6-14"></a><span class="st">    </span>(<span class="kw">gamma</span>(a2<span class="op">+</span>x)<span class="op">*</span><span class="kw">gamma</span>(b2<span class="op">+</span>n<span class="op">-</span>x))<span class="op">/</span><span class="kw">gamma</span>(a2<span class="op">+</span>b2<span class="op">+</span>n)}))</span>
-<span id="cb6-15"><a href="Bayes.html#cb6-15"></a></span>
-<span id="cb6-16"><a href="Bayes.html#cb6-16"></a>w2 =<span class="st"> </span>A<span class="op">/</span>(A<span class="op">+</span>B)</span>
-<span id="cb6-17"><a href="Bayes.html#cb6-17"></a></span>
-<span id="cb6-18"><a href="Bayes.html#cb6-18"></a>prior2 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb6-19"><a href="Bayes.html#cb6-19"></a>  <span class="cf">function</span>(x){w<span class="op">*</span><span class="kw">dbeta</span>(theta,a1,b1)<span class="op">+</span></span>
-<span id="cb6-20"><a href="Bayes.html#cb6-20"></a><span class="st">              </span>(<span class="dv">1</span><span class="op">-</span>w)<span class="op">*</span><span class="kw">dbeta</span>(theta,a2,b2)}))</span>
-<span id="cb6-21"><a href="Bayes.html#cb6-21"></a>                        </span>
-<span id="cb6-22"><a href="Bayes.html#cb6-22"></a>post2 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">as.matrix</span>(<span class="kw">mapply</span>(<span class="cf">function</span>(x,w2){</span>
-<span id="cb6-23"><a href="Bayes.html#cb6-23"></a>  w2<span class="op">*</span><span class="kw">dbeta</span>(theta,a1<span class="op">+</span>x,b1<span class="op">+</span>n<span class="op">-</span>x)<span class="op">+</span></span>
-<span id="cb6-24"><a href="Bayes.html#cb6-24"></a><span class="st">  </span>(<span class="dv">1</span><span class="op">-</span>w2)<span class="op">*</span><span class="kw">dbeta</span>(theta,a2<span class="op">+</span>x,b2<span class="op">+</span>n<span class="op">-</span>x)},<span class="kw">seq</span>(<span class="dv">0</span>,n),w2)))</span>
-<span id="cb6-25"><a href="Bayes.html#cb6-25"></a>   </span>
-<span id="cb6-26"><a href="Bayes.html#cb6-26"></a><span class="co">#vero = as.vector(apply(matrix(seq(0,n)),1,</span></span>
-<span id="cb6-27"><a href="Bayes.html#cb6-27"></a><span class="co"># function(x){dbinom(x,prob=theta,size=n)}))</span></span>
-<span id="cb6-28"><a href="Bayes.html#cb6-28"></a></span>
-<span id="cb6-29"><a href="Bayes.html#cb6-29"></a><span class="co"># Verossimilhança proporcional visualmente melhor</span></span>
-<span id="cb6-30"><a href="Bayes.html#cb6-30"></a>vero =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
-<span id="cb6-31"><a href="Bayes.html#cb6-31"></a>  <span class="cf">function</span>(x){<span class="kw">dbeta</span>(theta,x<span class="op">+</span><span class="dv">1</span>,n<span class="op">-</span>x<span class="op">+</span><span class="dv">1</span>)}))</span>
-<span id="cb6-32"><a href="Bayes.html#cb6-32"></a></span>
-<span id="cb6-33"><a href="Bayes.html#cb6-33"></a><span class="kw">tibble</span>(<span class="dt">x=</span><span class="kw">as.factor</span>(<span class="kw">rep</span>(<span class="kw">seq</span>(<span class="dv">0</span>,n),<span class="dt">each=</span><span class="kw">length</span>(theta))),</span>
-<span id="cb6-34"><a href="Bayes.html#cb6-34"></a>    <span class="dt">w2=</span><span class="kw">rep</span>(w2,<span class="dt">each=</span><span class="kw">length</span>(theta)),</span>
-<span id="cb6-35"><a href="Bayes.html#cb6-35"></a>    <span class="dt">theta=</span><span class="kw">rep</span>(theta,(n<span class="op">+</span><span class="dv">1</span>)),<span class="dt">vero=</span>vero,<span class="dt">prior=</span>prior2,<span class="dt">post=</span>post2) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb6-36"><a href="Bayes.html#cb6-36"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-37"><a href="Bayes.html#cb6-37"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>post, <span class="dt">colour=</span>x),<span class="dt">lwd=</span><span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-38"><a href="Bayes.html#cb6-38"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>prior,<span class="dt">colour=</span><span class="st">&quot;Prior&quot;</span>),<span class="dt">lwd=</span><span class="dv">1</span>,<span class="dt">lty=</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb6-39"><a href="Bayes.html#cb6-39"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>vero,<span class="dt">colour=</span><span class="st">&quot;Verossimilhança&quot;</span>),<span class="dt">lwd=</span><span class="dv">1</span>,<span class="dt">lty=</span><span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb6-40"><a href="Bayes.html#cb6-40"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st">   </span></span>
-<span id="cb6-41"><a href="Bayes.html#cb6-41"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="op">+</span></span>
-<span id="cb6-42"><a href="Bayes.html#cb6-42"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb6-43"><a href="Bayes.html#cb6-43"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Bayes.html#cb6-1" aria-hidden="true" tabindex="-1"></a>a1<span class="ot">=</span><span class="dv">5</span>; b1<span class="ot">=</span><span class="dv">12</span></span>
+<span id="cb6-2"><a href="Bayes.html#cb6-2" aria-hidden="true" tabindex="-1"></a>a2<span class="ot">=</span><span class="dv">10</span>; b2<span class="ot">=</span><span class="dv">3</span> </span>
+<span id="cb6-3"><a href="Bayes.html#cb6-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb6-4"><a href="Bayes.html#cb6-4" aria-hidden="true" tabindex="-1"></a>w<span class="ot">=</span><span class="fl">0.5</span></span>
+<span id="cb6-5"><a href="Bayes.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="Bayes.html#cb6-6" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb6-7"><a href="Bayes.html#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="Bayes.html#cb6-8" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb6-9"><a href="Bayes.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x){w<span class="sc">*</span><span class="fu">choose</span>(n,x)<span class="sc">*</span><span class="fu">gamma</span>(a1<span class="sc">+</span>b1)<span class="sc">/</span>(<span class="fu">gamma</span>(a1)<span class="sc">*</span><span class="fu">gamma</span>(b1))<span class="sc">*</span></span>
+<span id="cb6-10"><a href="Bayes.html#cb6-10" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">gamma</span>(a1<span class="sc">+</span>x)<span class="sc">*</span><span class="fu">gamma</span>(b1<span class="sc">+</span>n<span class="sc">-</span>x))<span class="sc">/</span><span class="fu">gamma</span>(a1<span class="sc">+</span>b1<span class="sc">+</span>n)}))</span>
+<span id="cb6-11"><a href="Bayes.html#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="Bayes.html#cb6-12" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb6-13"><a href="Bayes.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x){(<span class="dv">1</span><span class="sc">-</span>w)<span class="sc">*</span><span class="fu">choose</span>(n,x)<span class="sc">*</span><span class="fu">gamma</span>(a2<span class="sc">+</span>b2)<span class="sc">/</span>(<span class="fu">gamma</span>(a2)<span class="sc">*</span><span class="fu">gamma</span>(b2))<span class="sc">*</span></span>
+<span id="cb6-14"><a href="Bayes.html#cb6-14" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">gamma</span>(a2<span class="sc">+</span>x)<span class="sc">*</span><span class="fu">gamma</span>(b2<span class="sc">+</span>n<span class="sc">-</span>x))<span class="sc">/</span><span class="fu">gamma</span>(a2<span class="sc">+</span>b2<span class="sc">+</span>n)}))</span>
+<span id="cb6-15"><a href="Bayes.html#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="Bayes.html#cb6-16" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">=</span> A<span class="sc">/</span>(A<span class="sc">+</span>B)</span>
+<span id="cb6-17"><a href="Bayes.html#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="Bayes.html#cb6-18" aria-hidden="true" tabindex="-1"></a>prior2 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb6-19"><a href="Bayes.html#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x){w<span class="sc">*</span><span class="fu">dbeta</span>(theta,a1,b1)<span class="sc">+</span></span>
+<span id="cb6-20"><a href="Bayes.html#cb6-20" aria-hidden="true" tabindex="-1"></a>              (<span class="dv">1</span><span class="sc">-</span>w)<span class="sc">*</span><span class="fu">dbeta</span>(theta,a2,b2)}))</span>
+<span id="cb6-21"><a href="Bayes.html#cb6-21" aria-hidden="true" tabindex="-1"></a>                        </span>
+<span id="cb6-22"><a href="Bayes.html#cb6-22" aria-hidden="true" tabindex="-1"></a>post2 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">as.matrix</span>(<span class="fu">mapply</span>(<span class="cf">function</span>(x,w2){</span>
+<span id="cb6-23"><a href="Bayes.html#cb6-23" aria-hidden="true" tabindex="-1"></a>  w2<span class="sc">*</span><span class="fu">dbeta</span>(theta,a1<span class="sc">+</span>x,b1<span class="sc">+</span>n<span class="sc">-</span>x)<span class="sc">+</span></span>
+<span id="cb6-24"><a href="Bayes.html#cb6-24" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">-</span>w2)<span class="sc">*</span><span class="fu">dbeta</span>(theta,a2<span class="sc">+</span>x,b2<span class="sc">+</span>n<span class="sc">-</span>x)},<span class="fu">seq</span>(<span class="dv">0</span>,n),w2)))</span>
+<span id="cb6-25"><a href="Bayes.html#cb6-25" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb6-26"><a href="Bayes.html#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#vero = as.vector(apply(matrix(seq(0,n)),1,</span></span>
+<span id="cb6-27"><a href="Bayes.html#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co"># function(x){dbinom(x,prob=theta,size=n)}))</span></span>
+<span id="cb6-28"><a href="Bayes.html#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="Bayes.html#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Verossimilhança proporcional visualmente melhor</span></span>
+<span id="cb6-30"><a href="Bayes.html#cb6-30" aria-hidden="true" tabindex="-1"></a>vero <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n)),<span class="dv">1</span>,</span>
+<span id="cb6-31"><a href="Bayes.html#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x){<span class="fu">dbeta</span>(theta,x<span class="sc">+</span><span class="dv">1</span>,n<span class="sc">-</span>x<span class="sc">+</span><span class="dv">1</span>)}))</span>
+<span id="cb6-32"><a href="Bayes.html#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="Bayes.html#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x=</span><span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>,n),<span class="at">each=</span><span class="fu">length</span>(theta))),</span>
+<span id="cb6-34"><a href="Bayes.html#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">w2=</span><span class="fu">rep</span>(w2,<span class="at">each=</span><span class="fu">length</span>(theta)),</span>
+<span id="cb6-35"><a href="Bayes.html#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta=</span><span class="fu">rep</span>(theta,(n<span class="sc">+</span><span class="dv">1</span>)),<span class="at">vero=</span>vero,<span class="at">prior=</span>prior2,<span class="at">post=</span>post2) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-36"><a href="Bayes.html#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb6-37"><a href="Bayes.html#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>post, <span class="at">colour=</span>x),<span class="at">lwd=</span><span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb6-38"><a href="Bayes.html#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>prior,<span class="at">colour=</span><span class="st">&quot;Prior&quot;</span>),<span class="at">lwd=</span><span class="dv">1</span>,<span class="at">lty=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-39"><a href="Bayes.html#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>vero,<span class="at">colour=</span><span class="st">&quot;Verossimilhança&quot;</span>),<span class="at">lwd=</span><span class="dv">1</span>,<span class="at">lty=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb6-40"><a href="Bayes.html#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(theta)) <span class="sc">+</span>   </span>
+<span id="cb6-41"><a href="Bayes.html#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb6-42"><a href="Bayes.html#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb6-43"><a href="Bayes.html#cb6-43" aria-hidden="true" tabindex="-1"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(x)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-15-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Agora, suponha que <span class="math inline">\(n=5\)</span> e foi observado <span class="math inline">\(x=2\)</span>. Novamente, considere a mistura das distribuições <span class="math inline">\(Beta(5,12)\)</span> e <span class="math inline">\(Beta(10,3)\)</span> mas agora com pesos <span class="math inline">\(w\)</span> variando no conjunto <span class="math inline">\(\left\{0,0.1,\ldots,0.9,1\right\}\)</span>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Bayes.html#cb7-1"></a>n=<span class="dv">5</span>; x=<span class="dv">2</span></span>
-<span id="cb7-2"><a href="Bayes.html#cb7-2"></a>w =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>)</span>
-<span id="cb7-3"><a href="Bayes.html#cb7-3"></a></span>
-<span id="cb7-4"><a href="Bayes.html#cb7-4"></a>A =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(w),<span class="dv">1</span>,</span>
-<span id="cb7-5"><a href="Bayes.html#cb7-5"></a>  <span class="cf">function</span>(w){w<span class="op">*</span><span class="kw">choose</span>(n,x)<span class="op">*</span><span class="kw">gamma</span>(a1<span class="op">+</span>b1)<span class="op">/</span>(<span class="kw">gamma</span>(a1)<span class="op">*</span></span>
-<span id="cb7-6"><a href="Bayes.html#cb7-6"></a><span class="st">    </span><span class="kw">gamma</span>(b1))<span class="op">*</span>(<span class="kw">gamma</span>(a1<span class="op">+</span>x)<span class="op">*</span><span class="kw">gamma</span>(b1<span class="op">+</span>n<span class="op">-</span>x))<span class="op">/</span><span class="kw">gamma</span>(a1<span class="op">+</span>b1<span class="op">+</span>n)}))</span>
-<span id="cb7-7"><a href="Bayes.html#cb7-7"></a></span>
-<span id="cb7-8"><a href="Bayes.html#cb7-8"></a>B =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(w),<span class="dv">1</span>,</span>
-<span id="cb7-9"><a href="Bayes.html#cb7-9"></a>  <span class="cf">function</span>(w){(<span class="dv">1</span><span class="op">-</span>w)<span class="op">*</span><span class="kw">choose</span>(n,x)<span class="op">*</span><span class="kw">gamma</span>(a2<span class="op">+</span>b2)<span class="op">/</span>(<span class="kw">gamma</span>(a2)<span class="op">*</span></span>
-<span id="cb7-10"><a href="Bayes.html#cb7-10"></a><span class="st">    </span><span class="kw">gamma</span>(b2))<span class="op">*</span>(<span class="kw">gamma</span>(a2<span class="op">+</span>x)<span class="op">*</span><span class="kw">gamma</span>(b2<span class="op">+</span>n<span class="op">-</span>x))<span class="op">/</span><span class="kw">gamma</span>(a2<span class="op">+</span>b2<span class="op">+</span>n)}))</span>
-<span id="cb7-11"><a href="Bayes.html#cb7-11"></a></span>
-<span id="cb7-12"><a href="Bayes.html#cb7-12"></a>w2 =<span class="st"> </span>A<span class="op">/</span>(A<span class="op">+</span>B)</span>
-<span id="cb7-13"><a href="Bayes.html#cb7-13"></a></span>
-<span id="cb7-14"><a href="Bayes.html#cb7-14"></a>prior2 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(w),<span class="dv">1</span>,<span class="cf">function</span>(w){</span>
-<span id="cb7-15"><a href="Bayes.html#cb7-15"></a>  w<span class="op">*</span><span class="kw">dbeta</span>(theta,a1,b1)<span class="op">+</span>(<span class="dv">1</span><span class="op">-</span>w)<span class="op">*</span><span class="kw">dbeta</span>(theta,a2,b2)}))</span>
-<span id="cb7-16"><a href="Bayes.html#cb7-16"></a></span>
-<span id="cb7-17"><a href="Bayes.html#cb7-17"></a>post2 =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">as.matrix</span>(<span class="kw">mapply</span>(<span class="cf">function</span>(w,w2){</span>
-<span id="cb7-18"><a href="Bayes.html#cb7-18"></a>  w2<span class="op">*</span><span class="kw">dbeta</span>(theta,a1<span class="op">+</span>x,b1<span class="op">+</span>n<span class="op">-</span>x)<span class="op">+</span></span>
-<span id="cb7-19"><a href="Bayes.html#cb7-19"></a><span class="st">  </span>(<span class="dv">1</span><span class="op">-</span>w2)<span class="op">*</span><span class="kw">dbeta</span>(theta,a2<span class="op">+</span>x,b2<span class="op">+</span>n<span class="op">-</span>x)},w,w2)))</span>
-<span id="cb7-20"><a href="Bayes.html#cb7-20"></a></span>
-<span id="cb7-21"><a href="Bayes.html#cb7-21"></a>vero =<span class="st"> </span><span class="kw">as.vector</span>(<span class="kw">apply</span>(<span class="kw">matrix</span>(<span class="kw">rep</span>(x,<span class="dv">2</span><span class="op">*</span>n<span class="op">+</span><span class="dv">1</span>)),<span class="dv">1</span>,</span>
-<span id="cb7-22"><a href="Bayes.html#cb7-22"></a>  <span class="cf">function</span>(x){<span class="kw">dbeta</span>(theta,x<span class="op">+</span><span class="dv">1</span>,n<span class="op">-</span>x<span class="op">+</span><span class="dv">1</span>)}))</span>
-<span id="cb7-23"><a href="Bayes.html#cb7-23"></a></span>
-<span id="cb7-24"><a href="Bayes.html#cb7-24"></a>z&lt;-<span class="kw">length</span>(w)</span>
-<span id="cb7-25"><a href="Bayes.html#cb7-25"></a></span>
-<span id="cb7-26"><a href="Bayes.html#cb7-26"></a><span class="kw">tibble</span>(<span class="dt">w=</span><span class="kw">as.factor</span>(<span class="kw">rep</span>(w,<span class="dt">each=</span><span class="kw">length</span>(theta))),</span>
-<span id="cb7-27"><a href="Bayes.html#cb7-27"></a>    <span class="dt">w2=</span><span class="kw">rep</span>(w2,<span class="dt">each=</span><span class="kw">length</span>(theta)),</span>
-<span id="cb7-28"><a href="Bayes.html#cb7-28"></a>    <span class="dt">theta=</span><span class="kw">rep</span>(theta,z), <span class="dt">prior =</span> prior2, </span>
-<span id="cb7-29"><a href="Bayes.html#cb7-29"></a>    <span class="dt">post =</span> post2, <span class="dt">vero =</span> vero) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-30"><a href="Bayes.html#cb7-30"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">colour =</span> w) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-31"><a href="Bayes.html#cb7-31"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>post, <span class="dt">colour=</span>w),<span class="dt">lwd=</span><span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-32"><a href="Bayes.html#cb7-32"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>prior,<span class="dt">colour=</span><span class="st">&quot;Priori&quot;</span>)) <span class="op">+</span></span>
-<span id="cb7-33"><a href="Bayes.html#cb7-33"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>theta,<span class="dt">y=</span>vero,<span class="dt">colour=</span><span class="st">&quot;Verossimilhança&quot;</span>),<span class="dt">lwd=</span><span class="dv">1</span>,<span class="dt">lty=</span><span class="dv">2</span>)<span class="op">+</span></span>
-<span id="cb7-34"><a href="Bayes.html#cb7-34"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="kw">expression</span>(theta)) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="op">+</span></span>
-<span id="cb7-35"><a href="Bayes.html#cb7-35"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb7-36"><a href="Bayes.html#cb7-36"></a><span class="st">  </span>gganimate<span class="op">::</span><span class="kw">transition_states</span>(w)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Bayes.html#cb7-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">5</span>; x<span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb7-2"><a href="Bayes.html#cb7-2" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.1</span>)</span>
+<span id="cb7-3"><a href="Bayes.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="Bayes.html#cb7-4" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(w),<span class="dv">1</span>,</span>
+<span id="cb7-5"><a href="Bayes.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(w){w<span class="sc">*</span><span class="fu">choose</span>(n,x)<span class="sc">*</span><span class="fu">gamma</span>(a1<span class="sc">+</span>b1)<span class="sc">/</span>(<span class="fu">gamma</span>(a1)<span class="sc">*</span></span>
+<span id="cb7-6"><a href="Bayes.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gamma</span>(b1))<span class="sc">*</span>(<span class="fu">gamma</span>(a1<span class="sc">+</span>x)<span class="sc">*</span><span class="fu">gamma</span>(b1<span class="sc">+</span>n<span class="sc">-</span>x))<span class="sc">/</span><span class="fu">gamma</span>(a1<span class="sc">+</span>b1<span class="sc">+</span>n)}))</span>
+<span id="cb7-7"><a href="Bayes.html#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="Bayes.html#cb7-8" aria-hidden="true" tabindex="-1"></a>B <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(w),<span class="dv">1</span>,</span>
+<span id="cb7-9"><a href="Bayes.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(w){(<span class="dv">1</span><span class="sc">-</span>w)<span class="sc">*</span><span class="fu">choose</span>(n,x)<span class="sc">*</span><span class="fu">gamma</span>(a2<span class="sc">+</span>b2)<span class="sc">/</span>(<span class="fu">gamma</span>(a2)<span class="sc">*</span></span>
+<span id="cb7-10"><a href="Bayes.html#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gamma</span>(b2))<span class="sc">*</span>(<span class="fu">gamma</span>(a2<span class="sc">+</span>x)<span class="sc">*</span><span class="fu">gamma</span>(b2<span class="sc">+</span>n<span class="sc">-</span>x))<span class="sc">/</span><span class="fu">gamma</span>(a2<span class="sc">+</span>b2<span class="sc">+</span>n)}))</span>
+<span id="cb7-11"><a href="Bayes.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="Bayes.html#cb7-12" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">=</span> A<span class="sc">/</span>(A<span class="sc">+</span>B)</span>
+<span id="cb7-13"><a href="Bayes.html#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="Bayes.html#cb7-14" aria-hidden="true" tabindex="-1"></a>prior2 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(w),<span class="dv">1</span>,<span class="cf">function</span>(w){</span>
+<span id="cb7-15"><a href="Bayes.html#cb7-15" aria-hidden="true" tabindex="-1"></a>  w<span class="sc">*</span><span class="fu">dbeta</span>(theta,a1,b1)<span class="sc">+</span>(<span class="dv">1</span><span class="sc">-</span>w)<span class="sc">*</span><span class="fu">dbeta</span>(theta,a2,b2)}))</span>
+<span id="cb7-16"><a href="Bayes.html#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="Bayes.html#cb7-17" aria-hidden="true" tabindex="-1"></a>post2 <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">as.matrix</span>(<span class="fu">mapply</span>(<span class="cf">function</span>(w,w2){</span>
+<span id="cb7-18"><a href="Bayes.html#cb7-18" aria-hidden="true" tabindex="-1"></a>  w2<span class="sc">*</span><span class="fu">dbeta</span>(theta,a1<span class="sc">+</span>x,b1<span class="sc">+</span>n<span class="sc">-</span>x)<span class="sc">+</span></span>
+<span id="cb7-19"><a href="Bayes.html#cb7-19" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span><span class="sc">-</span>w2)<span class="sc">*</span><span class="fu">dbeta</span>(theta,a2<span class="sc">+</span>x,b2<span class="sc">+</span>n<span class="sc">-</span>x)},w,w2)))</span>
+<span id="cb7-20"><a href="Bayes.html#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="Bayes.html#cb7-21" aria-hidden="true" tabindex="-1"></a>vero <span class="ot">=</span> <span class="fu">as.vector</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">rep</span>(x,<span class="dv">2</span><span class="sc">*</span>n<span class="sc">+</span><span class="dv">1</span>)),<span class="dv">1</span>,</span>
+<span id="cb7-22"><a href="Bayes.html#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(x){<span class="fu">dbeta</span>(theta,x<span class="sc">+</span><span class="dv">1</span>,n<span class="sc">-</span>x<span class="sc">+</span><span class="dv">1</span>)}))</span>
+<span id="cb7-23"><a href="Bayes.html#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="Bayes.html#cb7-24" aria-hidden="true" tabindex="-1"></a>z<span class="ot">&lt;-</span><span class="fu">length</span>(w)</span>
+<span id="cb7-25"><a href="Bayes.html#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="Bayes.html#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">w=</span><span class="fu">as.factor</span>(<span class="fu">rep</span>(w,<span class="at">each=</span><span class="fu">length</span>(theta))),</span>
+<span id="cb7-27"><a href="Bayes.html#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">w2=</span><span class="fu">rep</span>(w2,<span class="at">each=</span><span class="fu">length</span>(theta)),</span>
+<span id="cb7-28"><a href="Bayes.html#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta=</span><span class="fu">rep</span>(theta,z), <span class="at">prior =</span> prior2, </span>
+<span id="cb7-29"><a href="Bayes.html#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">post =</span> post2, <span class="at">vero =</span> vero) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-30"><a href="Bayes.html#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">colour =</span> w) <span class="sc">+</span> </span>
+<span id="cb7-31"><a href="Bayes.html#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>post, <span class="at">colour=</span>w),<span class="at">lwd=</span><span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb7-32"><a href="Bayes.html#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>prior,<span class="at">colour=</span><span class="st">&quot;Priori&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb7-33"><a href="Bayes.html#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>vero,<span class="at">colour=</span><span class="st">&quot;Verossimilhança&quot;</span>),<span class="at">lwd=</span><span class="dv">1</span>,<span class="at">lty=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb7-34"><a href="Bayes.html#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(theta)) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;f(&quot;</span>,theta,<span class="st">&quot;|x)&quot;</span>)))<span class="sc">+</span></span>
+<span id="cb7-35"><a href="Bayes.html#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-36"><a href="Bayes.html#cb7-36" aria-hidden="true" tabindex="-1"></a>  gganimate<span class="sc">::</span><span class="fu">transition_states</span>(w)</span></code></pre></div>
 <p><img src="InfBayes_files/figure-html/unnamed-chunk-17-1.gif" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="prioris-não-informativas" class="section level3">
+<div id="prioris-não-informativas" class="section level3" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Prioris “Não-Informativas”</h3>
-<div id="priori-de-bayes-laplace" class="section level4">
+<div id="priori-de-bayes-laplace" class="section level4" number="3.4.4.1">
 <h4><span class="header-section-number">3.4.4.1</span> Priori de Bayes-Laplace</h4>
 <p><strong>Princípio da Razão Insuficiente.</strong> <em>Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico <span class="math inline">\(\Theta\)</span>, deve-se adotar equiprobabilidade.</em></p>
 <p><span class="math inline">\(~\)</span></p>
@@ -826,7 +862,7 @@ Então<br />
 </ol>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="priori-de-jeffreys" class="section level4">
+<div id="priori-de-jeffreys" class="section level4" number="3.4.4.2">
 <h4><span class="header-section-number">3.4.4.2</span> Priori de Jeffreys</h4>
 <p>Seja <span class="math inline">\(g\)</span> uma transformação um-a-um do parâmetro <span class="math inline">\(\theta\)</span> e defina <span class="math inline">\(\psi=g(\theta)\)</span>. Considere uma função <span class="math inline">\(h:\mathfrak{X}\times\Theta\longrightarrow\mathbb{R}\)</span>. Uma classe de distribuições a priori invariantes pode ser definida por
 <span class="math display">\[f(\theta) \propto \left(\text{Var}_{X|\theta}\left[\dfrac{\partial h(\boldsymbol X | \theta)}{\partial\theta}~\bigg|~\theta\right]\right)^{1/2}~.\]</span></p>
@@ -896,13 +932,13 @@ de modo que a priori de Jeffreys é<br />
 <p>Note que nos exemplos apresentados, a priori depende da <em>regra de parada</em>, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="priori-de-máxima-entropia" class="section level4">
+<div id="priori-de-máxima-entropia" class="section level4" number="3.4.4.3">
 <h4><span class="header-section-number">3.4.4.3</span> Priori de Máxima Entropia</h4>
 <p><strong>Entropia</strong> é um conceito físico que quantifica a desordem ou imprevisibilidade de um sistema, ou da falta de informação sobre ele. O conceito de entropia desempenha um importante papel na teoria da informação. O <em>princípio da máxima entropia</em> afirma que a distribuição de probabilidade que melhor representa a falta de informação é aquela com a maior entropia.</p>
-<p><strong>Caso Discreto.</strong> Considere um espaço paramétrico enumerável <span class="math inline">\(\Theta = \{\theta_1,\theta_2,\ldots\}\)</span>. A <em>entropia</em> da distribuição <span class="math inline">\(h\)</span> <span class="citation">(Shannon <a href="#ref-Shannon48" role="doc-biblioref">1948</a>)</span> é dada por</p>
+<p><strong>Caso Discreto.</strong> Considere um espaço paramétrico enumerável <span class="math inline">\(\Theta = \{\theta_1,\theta_2,\ldots\}\)</span>. A <em>entropia</em> da distribuição <span class="math inline">\(h\)</span> <span class="citation">(<a href="#ref-Shannon48" role="doc-biblioref">Shannon 1948</a>)</span> é dada por</p>
 <p><span class="math display">\[\mathcal{E}(h)=\text{E}[-\log h(\theta)]=\displaystyle-\sum_{\theta\in\Theta} \log\left[h(\theta)\right]~h(\theta)~.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Definição.</strong> Considere um espaço paramétrico <span class="math inline">\(\Theta\)</span> e <span class="math inline">\(h\)</span> uma f.d.p. para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)\)</span> <span class="citation">(Jaynes <a href="#ref-Jaynes03" role="doc-biblioref">2003</a>)</span></p>
+<p><strong>Definição.</strong> Considere um espaço paramétrico <span class="math inline">\(\Theta\)</span> e <span class="math inline">\(h\)</span> uma f.d.p. para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)\)</span> <span class="citation">(<a href="#ref-Jaynes03" role="doc-biblioref">Jaynes 2003</a>)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Exemplo 1.</strong> Considere o espaço paramétrico <span class="math inline">\(\Theta=\{\theta_1,\ldots,\theta_k\}\)</span> e <span class="math inline">\(h(\theta_i)=p_i\)</span> uma distribuição discreta para <span class="math inline">\(\theta\)</span>. A <em>distribuição da máxima entropia</em> para <span class="math inline">\(\theta\)</span> é a função <span class="math inline">\(h\)</span> que maximiza <span class="math inline">\(\mathcal{E}(h)=-\displaystyle\sum_{i=1}^{k} p_i\log(p_i)\)</span> com a restrição <span class="math inline">\(\displaystyle\sum_{i=1}^k h(\theta_i)=\sum_{i=1}^k p_i=1~.\)</span><br />
@@ -943,7 +979,7 @@ Nesse caso, <span class="math inline">\(g(\theta)=\mathbb{I}\left(\theta\leq m\r
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Divergência de Kullbach-Leibler.</strong> Considere duas distribuições discretas <span class="math inline">\(\boldsymbol{p} = (p_1,\ldots,p_k)\)</span> e <span class="math inline">\(\boldsymbol{q} = (q_1,\ldots,q_k)~,\)</span> tal que <span class="math inline">\(p_i,q_i&gt;0~,\)</span> <span class="math inline">\(i=1,\ldots,k~,\)</span> e <span class="math inline">\(\sum p_i=\sum q_i=1\)</span>. A <em>divergência de Kullbach-Leibler</em> entre <span class="math inline">\(\boldsymbol{p}\)</span> e <span class="math inline">\(\boldsymbol{q}\)</span> <span class="citation">(Kullback and Leibler <a href="#ref-Kullback51" role="doc-biblioref">1951</a>)</span> é dada por<br />
+<p><strong>Divergência de Kullbach-Leibler.</strong> Considere duas distribuições discretas <span class="math inline">\(\boldsymbol{p} = (p_1,\ldots,p_k)\)</span> e <span class="math inline">\(\boldsymbol{q} = (q_1,\ldots,q_k)~,\)</span> tal que <span class="math inline">\(p_i,q_i&gt;0~,\)</span> <span class="math inline">\(i=1,\ldots,k~,\)</span> e <span class="math inline">\(\sum p_i=\sum q_i=1\)</span>. A <em>divergência de Kullbach-Leibler</em> entre <span class="math inline">\(\boldsymbol{p}\)</span> e <span class="math inline">\(\boldsymbol{q}\)</span> <span class="citation">(<a href="#ref-Kullback51" role="doc-biblioref">Kullback and Leibler 1951</a>)</span> é dada por<br />
 <span class="math display">\[D(\boldsymbol{p}~||~\boldsymbol{q})=\sum p_i\log\left(\dfrac{p_i}{q_i}\right)~.\]</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Suponha que <span class="math inline">\(g=(1/k,\ldots,1/k)\)</span></p>
@@ -960,7 +996,7 @@ em que <span class="math inline">\(\dfrac{dH}{dH_0}\)</span> é derivada de Rado
 <span class="math inline">\(=\displaystyle\int_\Theta \log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)h(\theta)~d\theta\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>Como a definição anterior de entropia vale apenas para o caso discreto, <span class="citation">Jaynes (<a href="#ref-Jaynes03" role="doc-biblioref">2003</a>)</span> sugere que no caso contínuo seja utilizada a <strong>entropia relativa</strong>, dada por
+<p>Como a definição anterior de entropia vale apenas para o caso discreto, <span class="citation"><a href="#ref-Jaynes03" role="doc-biblioref">Jaynes</a> (<a href="#ref-Jaynes03" role="doc-biblioref">2003</a>)</span> sugere que no caso contínuo seja utilizada a <strong>entropia relativa</strong>, dada por
 <span class="math display">\[\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=D(h~||~h_0)~,\]</span>
 onde <span class="math inline">\(h_0\)</span> é uma priori de referência na ausência total de informação, preferivelmente invariante.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -1019,7 +1055,7 @@ Assim, para concluir que a distribuição de máxima entropia nesse caso é a No
 </div>
 </div>
 </div>
-<div id="alguns-princípios-de-inferência" class="section level2">
+<div id="alguns-princípios-de-inferência" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Alguns Princípios de Inferência</h2>
 <p>Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol x|\theta)\})\)</span> que consiste em observar um particular valor <span class="math inline">\(\boldsymbol{x}\in\mathfrak{X}\)</span> do v.a. <span class="math inline">\(\boldsymbol{X}\)</span> que, para cada possível valor do parâmetro (desconhecido) <span class="math inline">\(\theta\in\Theta\)</span>, tem f.d.p. <span class="math inline">\(f(\boldsymbol x|\theta)\)</span>. De forma geral, uma <em>inferência</em> sobre <span class="math inline">\(\theta\)</span> baseada no resultado <span class="math inline">\(\boldsymbol x\)</span> do experimento <span class="math inline">\(E\)</span> será denotada por <span class="math inline">\(\text{Inf}(E,\boldsymbol x)~.\)</span></p>
 <p><strong>Princípio de Suficiência.</strong> Considere um experimento <span class="math inline">\(E=(\boldsymbol{X},\theta,\{f(\boldsymbol{x}|\theta)\})\)</span> e suponha que <span class="math inline">\(T(\boldsymbol{X})\)</span> é uma estatística suficiente para <span class="math inline">\(\theta\)</span>. Se <span class="math inline">\(\boldsymbol x_1\)</span> e <span class="math inline">\(\boldsymbol x_2\)</span> são dois pontos amostrais tais que <span class="math inline">\(T(\boldsymbol{x}_1)=T(\boldsymbol{x}_2)\)</span> então <span class="math inline">\(\text{Inf}(E,\boldsymbol{x}_1)=\text{Inf}(E,\boldsymbol{x}_2)~.\)</span></p>
@@ -1110,21 +1146,21 @@ Como <span class="math inline">\(f_1(x_1|\theta)\propto f_2(x_2|\theta)\)</span>
 </div>
 </div>
 <h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-Albert09">
-<p>Albert, Jim. 2009. <em>Bayesian Computation with R</em>. Springer.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Albert09" class="csl-entry">
+Albert, Jim. 2009. <em>Bayesian Computation with r</em>. Springer.
 </div>
-<div id="ref-Jaynes03">
-<p>Jaynes, E. T. 2003. <em>Probability Theory: The Logic of Science</em>. Cambridge Univ. Press.</p>
+<div id="ref-Jaynes03" class="csl-entry">
+Jaynes, E. T. 2003. <em>Probability Theory: The Logic of Science</em>. Cambridge Univ. Press.
 </div>
-<div id="ref-Kullback51">
-<p>Kullback, S., and R. A. Leibler. 1951. “On Information and Sufficiency.” <em>The Annals of Mathematical Statistics</em> 22 (1): 79–86.</p>
+<div id="ref-Kullback51" class="csl-entry">
+Kullback, S., and R. A. Leibler. 1951. <span>“On Information and Sufficiency.”</span> <em>The Annals of Mathematical Statistics</em> 22 (1): 79–86.
 </div>
-<div id="ref-Schervish12">
-<p>Schervish, M. J. 2012. <em>Theory of Statistics</em>. Springer Science &amp; Business Media.</p>
+<div id="ref-Schervish12" class="csl-entry">
+Schervish, M. J. 2012. <em>Theory of Statistics</em>. Springer Science &amp; Business Media.
 </div>
-<div id="ref-Shannon48">
-<p>Shannon, C. E. 1948. “A Mathematical Theory of Communication.” <em>The Bell System Technical Journal</em> 27 (3): 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">https://doi.org/10.1002/j.1538-7305.1948.tb01338.x</a>.</p>
+<div id="ref-Shannon48" class="csl-entry">
+Shannon, C. E. 1948. <span>“A Mathematical Theory of Communication.”</span> <em>The Bell System Technical Journal</em> 27 (3): 379–423. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">https://doi.org/10.1002/j.1538-7305.1948.tb01338.x</a>.
 </div>
 </div>
             </section>
@@ -1156,6 +1192,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

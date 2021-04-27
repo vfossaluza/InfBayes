@@ -7,7 +7,7 @@ A construção de probabilidade subjetiva apresentada aqui pode ser encontrada n
 + $\Omega$: *espaço amostral*, conjunto não vazio.
 
 + $\mathcal{A}$: *$\sigma$-álgebra de subconjuntos* de $\Omega$, isto é,
-    1. $\Theta \in \mathcal{A}$;
+    1. $\Omega \in \mathcal{A}$;
     2. $A \in \mathcal{A} \Longrightarrow A^{c} \in \mathcal{A}$;
     3. $\displaystyle A_1, A_2, \ldots \in \mathcal{A} \Longrightarrow \bigcup_{i\geq1} A_i \in \mathcal{A}$.
 
@@ -187,7 +187,7 @@ Se $A \subseteq B$ então $A \precsim B$.
 
 $~$
 
-**Exemplo 1:** $\omega_0 \in \Omega$. $A \precsim B \Leftrightarrow \{\omega_0 \in B$ **ou** $\omega_0 \notin (A \cup B)\}$. Mostre que $\precsim$ obedece a SP1 a SP4.
+**Exemplo 1:** $\omega_0 \in \Omega$. $A \precsim B \Leftrightarrow \{\omega_0 \in B$ **ou** $\omega_0 \notin (A \cup B)\}$. Mostre que $\precsim$ obedece às SP1 a SP4.
 
 > (SP1)   
 $A \precsim B \Leftrightarrow \omega_0 \in B \cup (A \cup B)^c$ 
@@ -200,7 +200,7 @@ $\Leftrightarrow \omega_0 \in (A \cap B) \cup (A \cup B)^c.$
 $~$  
 (SP2)  
 $A_i \precsim B_i , i=1,2 \Leftrightarrow$ $\omega_0 \in [B_1 \cup (A_1 \cup B_1)^c] \cap [B_2 \cup (A_2 \cup B_2)^c]$  $\Leftrightarrow \omega_0 \in [(B_1 \cup B_2) \cap D^c] \cup (A_1 \cup B_1 \cup A_2 \cup B_2)^c,$   
-com $D = (A_1 \cap B2) \cup (A_2 \cap B1).$  
+com $D = (A_1 \cap B_2) \cup (A_2 \cap B_1).$  
 $A_1 \cup A_2 \precsim B_1 \cup B_2 \Leftrightarrow$ $\omega_0 \in (B_1 \cup B_2)  \cup (A_1 \cup A_2 \cup B_1 \cup B_2)^c$  
 Como $(B_1 \cup B_2) \cap D^c \subseteq (B_1 \cup B_2)$, vale o SP2.  
 $~$  
@@ -277,7 +277,7 @@ $~$
 $$A \precsim B ~\Leftrightarrow~ P(A) \leq P(B).$$
 
 > **Demo:** Do Teo 7, $A \sim \left\{X \in \left[0,P(A)\right]\right\}$ e $B \sim \left\{X \in \left[0,P(B)\right]\right\}$.  
-$A \precsim B$ $~\Leftrightarrow~ \left\{X \in \left[0,P(A)\right]\right\} \precsim \left\{X \in \left[0,P(B)\right]\right\}$ $~\Leftrightarrow~ \lambda \left([0,P(A)]\right) \precsim \lambda \left([0,P(B)]\right)$ $~\Leftrightarrow~  P(A) \leq P(B).$  
+$A \precsim B$ $~\Leftrightarrow~ \left\{X \in \left[0,P(A)\right]\right\} \precsim \left\{X \in \left[0,P(B)\right]\right\}$ $~\Leftrightarrow~ \lambda \left([0,P(A)]\right) \leq \lambda \left([0,P(B)]\right)$ $~\Leftrightarrow~  P(A) \leq P(B).$  
 
 $~$
 

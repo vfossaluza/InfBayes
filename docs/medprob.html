@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Breve Resumo de Medida e Probabilidade | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Breve Resumo de Medida e Probabilidade | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2020-11-13" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="Comp.html"/>
 <link rel="next" href="referências.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -61,18 +63,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -92,7 +94,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -125,6 +127,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -142,21 +167,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prefácio</a></li>
-<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a><ul>
+<li class="chapter" data-level="2" data-path="ProbSubj.html"><a href="ProbSubj.html"><i class="fa fa-check"></i><b>2</b> Probabilidade Subjetiva</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="ProbSubj.html"><a href="ProbSubj.html#definição-axiomática"><i class="fa fa-check"></i><b>2.1</b> Definição Axiomática</a></li>
 <li class="chapter" data-level="2.2" data-path="ProbSubj.html"><a href="ProbSubj.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2</b> Interpretações de Probabilidade</a></li>
 <li class="chapter" data-level="2.3" data-path="ProbSubj.html"><a href="ProbSubj.html#relação-de-crença-precsim"><i class="fa fa-check"></i><b>2.3</b> Relação de Crença <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.4" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-que-representa-precsim"><i class="fa fa-check"></i><b>2.4</b> Medida de Probabilidade que “representa” <span class="math inline">\(\precsim\)</span></a></li>
 <li class="chapter" data-level="2.5" data-path="ProbSubj.html"><a href="ProbSubj.html#medida-de-probabilidade-condicional"><i class="fa fa-check"></i><b>2.5</b> Medida de Probabilidade Condicional</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a><ul>
-<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="3" data-path="Bayes.html"><a href="Bayes.html"><i class="fa fa-check"></i><b>3</b> Introdução à Inferência Bayesiana</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="Bayes.html"><a href="Bayes.html#BasBayes"><i class="fa fa-check"></i><b>3.1</b> Conceitos Básicos</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
 <li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
-<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a><ul>
+<li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="Bayes.html"><a href="Bayes.html#método-do-histograma"><i class="fa fa-check"></i><b>3.4.1</b> Método do Histograma</a></li>
 <li class="chapter" data-level="3.4.2" data-path="Bayes.html"><a href="Bayes.html#elicitação-de-hiperparâmetros"><i class="fa fa-check"></i><b>3.4.2</b> Elicitação de Hiperparâmetros</a></li>
 <li class="chapter" data-level="3.4.3" data-path="Bayes.html"><a href="Bayes.html#prioris-conjugadas"><i class="fa fa-check"></i><b>3.4.3</b> Prioris Conjugadas</a></li>
@@ -164,17 +193,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a><ul>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
 <li class="chapter" data-level="4.3" data-path="TeoDec.html"><a href="TeoDec.html#problemas-com-dados"><i class="fa fa-check"></i><b>4.3</b> Problemas com Dados</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a><ul>
+<li class="chapter" data-level="5" data-path="Estimacao.html"><a href="Estimacao.html"><i class="fa fa-check"></i><b>5</b> Estimação</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="Estimacao.html"><a href="Estimacao.html#estimação-pontual"><i class="fa fa-check"></i><b>5.1</b> Estimação Pontual</a></li>
 <li class="chapter" data-level="5.2" data-path="Estimacao.html"><a href="Estimacao.html#estimação-por-regiões"><i class="fa fa-check"></i><b>5.2</b> Estimação por Regiões</a></li>
 <li class="chapter" data-level="5.3" data-path="Estimacao.html"><a href="Estimacao.html#custo-das-observações"><i class="fa fa-check"></i><b>5.3</b> Custo das Observações</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a><ul>
+<li class="chapter" data-level="6" data-path="Test.html"><a href="Test.html"><i class="fa fa-check"></i><b>6</b> Testes de Hipóteses</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="Test.html"><a href="Test.html#BasTest"><i class="fa fa-check"></i><b>6.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="6.2" data-path="Test.html"><a href="Test.html#revisão-abordagem-frequentista"><i class="fa fa-check"></i><b>6.2</b> Revisão: Abordagem Frequentista</a></li>
 <li class="chapter" data-level="6.3" data-path="Test.html"><a href="Test.html#abordagem-bayesiana-via-teoria-da-decisão"><i class="fa fa-check"></i><b>6.3</b> Abordagem Bayesiana (via Teoria da Decisão)</a></li>
@@ -185,17 +217,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="Test.html"><a href="Test.html#fbst---full-bayesian-significance-test"><i class="fa fa-check"></i><b>6.8</b> FBST - <em>Full Bayesian Significance Test</em></a></li>
 <li class="chapter" data-level="6.9" data-path="Test.html"><a href="Test.html#p-value---nivel-de-significância-adaptativo"><i class="fa fa-check"></i><b>6.9</b> P-value - Nivel de Significância Adaptativo</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a><ul>
+<li class="chapter" data-level="7" data-path="Comp.html"><a href="Comp.html"><i class="fa fa-check"></i><b>7</b> Métodos Computacionais</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="Comp.html"><a href="Comp.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>7.1</b> Método de Monte Carlo</a></li>
 <li class="chapter" data-level="7.2" data-path="Comp.html"><a href="Comp.html#monte-carlo-com-amostragem-de-importância"><i class="fa fa-check"></i><b>7.2</b> Monte Carlo com Amostragem de Importância</a></li>
 <li class="chapter" data-level="7.3" data-path="Comp.html"><a href="Comp.html#método-de-rejeição"><i class="fa fa-check"></i><b>7.3</b> Método de Rejeição</a></li>
 <li class="chapter" data-level="7.4" data-path="Comp.html"><a href="Comp.html#abc-aproximated-bayesian-computation"><i class="fa fa-check"></i><b>7.4</b> ABC (Aproximated Bayesian Computation)</a></li>
-<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a><ul>
+<li class="chapter" data-level="7.5" data-path="Comp.html"><a href="Comp.html#mcmc---monte-carlo-via-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5</b> MCMC - Monte Carlo via Cadeias de Markov</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="Comp.html"><a href="Comp.html#pequena-introdução-às-cadeias-de-markov"><i class="fa fa-check"></i><b>7.5.1</b> Pequena Introdução às Cadeias de Markov</a></li>
 <li class="chapter" data-level="7.5.2" data-path="Comp.html"><a href="Comp.html#o-algoritmo-de-metrópolis-hastings"><i class="fa fa-check"></i><b>7.5.2</b> O algoritmo de <strong>Metrópolis-Hastings</strong></a></li>
 <li class="chapter" data-level="7.5.3" data-path="Comp.html"><a href="Comp.html#amostrador-de-gibbs"><i class="fa fa-check"></i><b>7.5.3</b> Amostrador de Gibbs</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a><ul>
+<li class="chapter" data-level="7.6" data-path="Comp.html"><a href="Comp.html#bibliotecas-de-r-para-inferência-bayesiana"><i class="fa fa-check"></i><b>7.6</b> Bibliotecas de R para Inferência Bayesiana</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="Comp.html"><a href="Comp.html#o-modelo-de-regressão-linear"><i class="fa fa-check"></i><b>7.6.1</b> O Modelo de Regressão Linear</a></li>
 <li class="chapter" data-level="7.6.2" data-path="Comp.html"><a href="Comp.html#laplaces-demon"><i class="fa fa-check"></i><b>7.6.2</b> Laplace’s Demon</a></li>
 <li class="chapter" data-level="7.6.3" data-path="Comp.html"><a href="Comp.html#stan"><i class="fa fa-check"></i><b>7.6.3</b> Stan</a></li>
@@ -204,7 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="appendix"><span><b>Apêndice</b></span></li>
-<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a><ul>
+<li class="chapter" data-level="A" data-path="medprob.html"><a href="medprob.html"><i class="fa fa-check"></i><b>A</b> Breve Resumo de Medida e Probabilidade</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="medprob.html"><a href="medprob.html#basprob"><i class="fa fa-check"></i><b>A.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="A.2" data-path="medprob.html"><a href="medprob.html#lebesgue"><i class="fa fa-check"></i><b>A.2</b> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</a></li>
 <li class="chapter" data-level="A.3" data-path="medprob.html"><a href="medprob.html#funções-de-variáveis-aleatórias"><i class="fa fa-check"></i><b>A.3</b> Funções de Variáveis Aleatórias</a></li>
@@ -232,10 +268,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="medprob" class="section level1">
+<div id="medprob" class="section level1" number="8">
 <h1><span class="header-section-number">A</span> Breve Resumo de Medida e Probabilidade</h1>
-<p>Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma medida e da integral de Lebesgue. Para maiores detalhes, ver <span class="citation">Ash and Doleans-Dade (<a href="#ref-Ash00" role="doc-biblioref">2000</a>)</span>, <span class="citation">Billingsley (<a href="#ref-Billingsley86" role="doc-biblioref">1986</a>)</span>, <span class="citation">Shiryaev (<a href="#ref-Shiryaev96" role="doc-biblioref">1996</a>)</span> ou, para uma versão mais resumida, os Apêndices de <span class="citation">Schervish (<a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>.</p>
-<div id="basprob" class="section level2">
+<p>Essa seção tem o objetivo de apresentar as ideias de probabilidade como uma medida e da integral de Lebesgue. Para maiores detalhes, ver <span class="citation"><a href="#ref-Ash00" role="doc-biblioref">Ash and Doleans-Dade</a> (<a href="#ref-Ash00" role="doc-biblioref">2000</a>)</span>, <span class="citation"><a href="#ref-Billingsley86" role="doc-biblioref">Billingsley</a> (<a href="#ref-Billingsley86" role="doc-biblioref">1986</a>)</span>, <span class="citation"><a href="#ref-Shiryaev96" role="doc-biblioref">Shiryaev</a> (<a href="#ref-Shiryaev96" role="doc-biblioref">1996</a>)</span> ou, para uma versão mais resumida, os Apêndices de <span class="citation"><a href="#ref-Schervish12" role="doc-biblioref">Schervish</a> (<a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>.</p>
+<div id="basprob" class="section level2" number="8.1">
 <h2><span class="header-section-number">A.1</span> Conceitos Básicos</h2>
 <ul>
 <li><p><span class="math inline">\(\Omega\)</span>: espaço amostral (um conjunto não vazio).</p></li>
@@ -297,7 +333,7 @@ Se <span class="math inline">\(\mathfrak{X} = \mathbb{R}\)</span> e <span class=
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="lebesgue" class="section level2">
+<div id="lebesgue" class="section level2" number="8.2">
 <h2><span class="header-section-number">A.2</span> Valor Esperado de <span class="math inline">\(X\)</span> (OU uma ideia da tal Integral de Lebesgue)</h2>
 <p>Por simplicidade, considere o espaço <span class="math inline">\(\Big(\Omega = [0,1]~,~~ \mathcal{A} = \mathcal{B}\left([0,1]\right)~,~~ P=\lambda\Big)\)</span>.</p>
 <p>Seja <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}_+\)</span> uma variável aleatória discreta, assumindo valores não negativos <span class="math inline">\(\mathfrak{X}=\{x_1,x_2,\ldots,x_k\}\)</span> com probabilidades <span class="math inline">\(\{p_1,p_2,\ldots,p_k\}\)</span>. Nos cursos básicos de probabilidade é visto que o <em>valor esperado</em> (ou <em>esperança</em>) de <span class="math inline">\(X\)</span> é <span class="math inline">\(E[X] =\)</span> <span class="math inline">\(\sum x_i P(X=x_i) =\)</span> <span class="math inline">\(\sum x_i p_i\)</span>.</p>
@@ -337,7 +373,7 @@ Para <span class="math inline">\(X\)</span> v.a. temos<br />
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p>A generalização da integral de Lebesgue é feita usando resultados como o <em>Lema de Fatou</em> e os teoremas da <em>convergência monótona</em> e da <em>convergência dominada</em>. Aqui será apresentado apenas uma ideia dessa extensão. Para maiores detalhes, veja as referências citadas anteriormente <span class="citation">(Ash and Doleans-Dade <a href="#ref-Ash00" role="doc-biblioref">2000</a>; Schervish <a href="#ref-Schervish12" role="doc-biblioref">2012</a>; Billingsley <a href="#ref-Billingsley86" role="doc-biblioref">1986</a>; Shiryaev <a href="#ref-Shiryaev96" role="doc-biblioref">1996</a>)</span>.</p>
+<p>A generalização da integral de Lebesgue é feita usando resultados como o <em>Lema de Fatou</em> e os teoremas da <em>convergência monótona</em> e da <em>convergência dominada</em>. Aqui será apresentado apenas uma ideia dessa extensão. Para maiores detalhes, veja as referências citadas anteriormente <span class="citation">(<a href="#ref-Ash00" role="doc-biblioref">Ash and Doleans-Dade 2000</a>; <a href="#ref-Schervish12" role="doc-biblioref">Schervish 2012</a>; <a href="#ref-Billingsley86" role="doc-biblioref">Billingsley 1986</a>; <a href="#ref-Shiryaev96" role="doc-biblioref">Shiryaev 1996</a>)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Definição:</strong> Seja <span class="math inline">\(X:\Omega\longrightarrow \mathbb{R}_+\)</span> uma função mensurável não negativa e considere o conjunto de funções <span class="math inline">\(\mathcal{C}_X\)</span> <span class="math inline">\(= \{ f:\Omega\longrightarrow \mathbb{R}_+~,~~f~~\text{simples}~,~~f \leq X\}\)</span>. O <em>valor esperado de <span class="math inline">\(X\)</span></em> é
@@ -440,7 +476,7 @@ Para <span class="math inline">\(c&lt;0\)</span>,<br />
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="funções-de-variáveis-aleatórias" class="section level2">
+<div id="funções-de-variáveis-aleatórias" class="section level2" number="8.3">
 <h2><span class="header-section-number">A.3</span> Funções de Variáveis Aleatórias</h2>
 <p>Considere agora uma v.a. <span class="math inline">\(X: \Omega \longrightarrow \mathbb{R}\)</span> e uma função real <span class="math inline">\(g: \mathbb{R} \longrightarrow \mathbb{R}\)</span>. Defina <span class="math inline">\(Y = g(X)\)</span>. Então</p>
 <p><span class="math display">\[(\Omega, \mathcal{A},P) \overset{X}{\longrightarrow}(\mathbb{R},\mathcal{B}(\mathbb{R}),P_X)\overset{g}{\longrightarrow}(\mathbb{R},\mathcal{B}(\mathbb{R}),P_Y)\]</span></p>
@@ -599,7 +635,7 @@ Considere agora <span class="math inline">\(g:\mathbb{R}\rightarrow\mathbb{R}\)<
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="função-de-distribuição" class="section level2">
+<div id="função-de-distribuição" class="section level2" number="8.4">
 <h2><span class="header-section-number">A.4</span> Função de Distribuição</h2>
 <p><strong>Definição:</strong> Uma função <span class="math inline">\(F: \mathbb{R} \longrightarrow [0,1]\)</span> é uma <em>função de distribuição</em> (f.d.) se</p>
 <ol style="list-style-type: lower-roman">
@@ -610,7 +646,7 @@ Considere agora <span class="math inline">\(g:\mathbb{R}\rightarrow\mathbb{R}\)<
 <p><strong>Proposição:</strong> Se <span class="math inline">\(X\)</span> é uma v.a., então <span class="math inline">\(F_X(x)=P_X(X\leq x)\)</span> é uma f.d. Recíprocamente, se <span class="math inline">\(F_X\)</span> é uma f.d, então existe uma v.a. <span class="math inline">\(X\)</span> com f.d. <span class="math inline">\(F_X\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
-<li><p>É possível usar uma f.d. <span class="math inline">\(F\)</span> para criar uma medida em <span class="math inline">\((\mathbb{R},\mathcal{B}(\mathbb{R}))\)</span>. Para tal, defina <span class="math inline">\(P\left((a,b]\right)=F(b)-F(a)\)</span> e essa medida pode ser estendida para a <span class="math inline">\(\sigma\)</span>-álgebra usando o Teorema de Extensão de Caratheodory (veja, por exemplo, <span class="citation">Schervish (<a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>, pág. 578).</p></li>
+<li><p>É possível usar uma f.d. <span class="math inline">\(F\)</span> para criar uma medida em <span class="math inline">\((\mathbb{R},\mathcal{B}(\mathbb{R}))\)</span>. Para tal, defina <span class="math inline">\(P\left((a,b]\right)=F(b)-F(a)\)</span> e essa medida pode ser estendida para a <span class="math inline">\(\sigma\)</span>-álgebra usando o Teorema de Extensão de Caratheodory (veja, por exemplo, <span class="citation"><a href="#ref-Schervish12" role="doc-biblioref">Schervish</a> (<a href="#ref-Schervish12" role="doc-biblioref">2012</a>)</span>, pág. 578).</p></li>
 <li><p>Reciprocamente, se <span class="math inline">\(P\)</span> é uma medida de probabilidade em <span class="math inline">\((\mathbb{R},\mathcal{B}(\mathbb{R}))\)</span> então <span class="math inline">\(F(x)=P\left((-\infty,x]\right)\)</span> é uma f.d.</p></li>
 <li><p>Neste caso, se <span class="math inline">\(g: \mathbb{R}\longrightarrow \mathbb{R}\)</span> é uma função mensurável, não será feita distinção entre <span class="math inline">\(\displaystyle\int g(x)dF(x)=\)</span> <span class="math inline">\(\displaystyle\int g(x)~dP_X(x)\)</span>.</p></li>
 <li><p>Se <span class="math inline">\(P\)</span> é uma medida de probabilidade em <span class="math inline">\((\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))\)</span> então <span class="math inline">\(F(x_1,\ldots,x_k)=\)</span> <span class="math inline">\(P((-\infty,x_1]\times \ldots\times (-\infty,x_k])\)</span> é a <em>função de distribuição conjunta</em> do <em>vector aleatório</em> <span class="math inline">\(\boldsymbol{X} = (X_1,\ldots,X_K)\)</span>.</p></li>
@@ -683,7 +719,7 @@ Basta escrever <span class="math inline">\(X=X^+-X^-\)</span> e repetir o proced
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
-<div id="probabilidade-condicional" class="section level2">
+<div id="probabilidade-condicional" class="section level2" number="8.5">
 <h2><span class="header-section-number">A.5</span> Probabilidade Condicional</h2>
 <p><strong>Motivação:</strong> <span class="math inline">\(P(B|A)=\)</span> <span class="math inline">\(\dfrac{P(A\cap B)}{P(A)}\)</span> é bem definido se <span class="math inline">\(P(A)&gt;0.\)</span></p>
 <p>Seja <span class="math inline">\(X,Y: \Omega \longrightarrow \mathbb{R}\)</span> v.a. tais que <span class="math inline">\(P_X\left([0,1]\right)=1\)</span> e <span class="math inline">\(P_Y\left(\{0,1\}\right)=1\)</span>. Considere um experimento em dois estagios onde seleciona-se <span class="math inline">\(X\)</span> segundo uma distribuição absolutamente contínua <span class="math inline">\(F_X\)</span> e, dado <span class="math inline">\(X=x\)</span>, <span class="math inline">\(0\leq x\leq 1\)</span>, uma moeda com probabilidade <span class="math inline">\(x\)</span> é lançada <span class="math inline">\(n\)</span> vezes. Nesse caso, é natural definir <span class="math inline">\(Y~\big|~X=x\sim \text{Bin}(n,x)\)</span>, mesmo que <span class="math inline">\(P(X=x)=0\)</span>, <span class="math inline">\(\forall x \in [0,1]\)</span>.</p>
@@ -827,18 +863,18 @@ Note que a <span class="math inline">\(\sigma\)</span>-álgebra gerada pela v.a.
 </div>
 </div>
 <h3>Referências</h3>
-<div id="refs" class="references">
-<div id="ref-Ash00">
-<p>Ash, R. B., and C. Doleans-Dade. 2000. <em>Probability and Measure Theory</em>. California: Academic Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Ash00" class="csl-entry">
+Ash, R. B., and C. Doleans-Dade. 2000. <em>Probability and Measure Theory</em>. California: Academic Press.
 </div>
-<div id="ref-Billingsley86">
-<p>Billingsley, P. 1986. <em>Probability and Measure</em>. Second. Wiley Series in Probability and Mathematical Statistics. New York: John Wiley &amp; Sons, Inc.</p>
+<div id="ref-Billingsley86" class="csl-entry">
+Billingsley, P. 1986. <em>Probability and Measure</em>. Second. Wiley Series in Probability and Mathematical Statistics. New York: John Wiley &amp; Sons, Inc.
 </div>
-<div id="ref-Schervish12">
-<p>Schervish, M. J. 2012. <em>Theory of Statistics</em>. Springer Science &amp; Business Media.</p>
+<div id="ref-Schervish12" class="csl-entry">
+Schervish, M. J. 2012. <em>Theory of Statistics</em>. Springer Science &amp; Business Media.
 </div>
-<div id="ref-Shiryaev96">
-<p>Shiryaev, A. N. 1996. <em>Probability</em>. Second. Vol. 95. Graduate Texts in Mathematics. New York: Springer-Verlag.</p>
+<div id="ref-Shiryaev96" class="csl-entry">
+Shiryaev, A. N. 1996. <em>Probability</em>. Second. Vol. 95. Graduate Texts in Mathematics. New York: Springer-Verlag.
 </div>
 </div>
             </section>
@@ -870,6 +906,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
