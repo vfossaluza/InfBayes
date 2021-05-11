@@ -308,11 +308,11 @@ $~$
 
 **Teorema de Representação de De Finetti.** (para v.a. Bernoulli)
 
-Uma sequência infinita $\left(X_n\right)_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que, condicional a $\theta$, $\left(X_i\right)_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\displaystyle\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta~.$
+Uma sequência infinita $\left(X_n\right)_{n\geq 1}$ de v.a. Bernoulli é permutável se, e somente se, existe uma v.a $\theta$ em $[0,1]$ tal que, condicional a $\theta$, $\left(X_i\right)_{n\geq 1}$ são i.i.d. $Ber(\theta)$. Além disso, se a sequência é permutável, então a distribuição de $\theta$ é única e $\displaystyle\bar{X}_n = \dfrac{1}{n}\sum_{i=1}^\infty X_i ~\underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}~\theta~.$
 
-$P(X_1=x_1,\ldots,X_n=x_n)$ $=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)$ $=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta$
+$P(X_1=x_1,\ldots,X_n=x_n)$ $=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)$ $=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta~,$
 
-$F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.$
+onde $F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.$
 
 <!-- $~$ -->
 
@@ -348,13 +348,21 @@ $~$
 
 $~$
 
+**Definição.** Seja $X_1,\ldots,X_n$ uma sequência de variáveis aleatórias permutáveis. A *função de distribuição empírica* é definida como
+
+$F_n(x) = \displaystyle\dfrac{1}{n}\sum_{i=1}^{n} \mathbb{I}(x_i\leq x)~.$
+
+$~$ 
+
+$~$
+
 **Teorema de Representação de De Finetti**
 
-Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores (em um subconjunto de) $\mathbb R^K$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, $\{X_n\}_{n\geq 1}$ é i.i.d. com distribuição $F$. Isto é,
+Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores em (um subconjunto de) $\mathbb R$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, os elementos da sequência $\{X_n\}_{n\geq 1}$ são i.i.d. com distribuição $F$. Isto é,
 
-$F_{\mathbf X}(x_1,\ldots,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$.
+$F_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$.
 
-Alem disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F^*$ e a distribuição de $F^*=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$.
+Além disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F$ e a distribuição de $F=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$.
 
 $~$
 
@@ -584,7 +592,7 @@ $~$
 
 $~$
 
-$f(\theta|x)$ $=\dfrac{f(x|\theta)f(\theta)}{\int_0^1f(x|\theta)f(\theta)}$ $=\dfrac{f(x|\theta)[wf_1(\theta)+(1-w)f_2(\theta)]}{w\int_0^1f_1(\theta)f(x|\theta)d\theta+(1-w)\int_0^1f_2(\theta)d\theta}$
+$f(\theta|x)$ $=\dfrac{f(x|\theta)f(\theta)}{\int_0^1f(x|\theta)f(\theta)}$ $=\dfrac{f(x|\theta)[wf_1(\theta)+(1-w)f_2(\theta)]}{w\int_0^1f_1(\theta)f(x|\theta)d\theta+(1-w)\int_0^1f_2(\theta)f(x|\theta)d\theta}$
 
 $\propto\dfrac{w\binom{n}{x}\frac{\Gamma(a_1+b_1)}{\Gamma(a_1)\Gamma(b_1)}\theta^{a_1+x-1}(1-\theta)^{b_1+n-x-1}+(1-w)\binom{n}{x}\frac{\Gamma(a_2+b_2)}{\Gamma(a_2)\Gamma(b_2)}\theta^{a_2+x-1}(1-\theta)^{b_2+n-x-1}}{\underbrace{w\binom{n}{x}\frac{\Gamma(a_1+b_1)}{\Gamma(a_1)\Gamma(b_1)}\frac{\Gamma(a_1+x)\Gamma(b_1+n-x)}{\Gamma(a_1+b_1+n)}}_{A}+\underbrace{(1-w)\binom{n}{x}\frac{\Gamma(a_2+b_2)}{\Gamma(a_2)\Gamma(b_2)}\frac{\Gamma(a_2+x)\Gamma(b_2+n-x)}{\Gamma(a_2+b_2+n)}}_{B}}$
 
@@ -773,6 +781,10 @@ $~$
 
 ### Prioris "Não-Informativas"
 
+Priors não-informativas são tentativas de representar formalmente um estado de ignorância. Contudo, não existe uma forma única de representar ignorância, tampouco uma priori "objetiva". Além disso, é bastante raro um cenário onde não há nenhuma informação a priori. De qualquer modo, serão apresentadas aqui algumas formas de representar falta de informação mas a escolha da priori será sempre subjetiva.
+
+$~$
+
 #### Priori de Bayes-Laplace
 
 **Princípio da Razão Insuficiente.** *Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico $\Theta$, deve-se adotar equiprobabilidade.*
@@ -829,7 +841,10 @@ $f(\theta)$
 $\propto\text{Var}\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]^{1/2}$ 
 $=\text{E}\left[\left(\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]^{1/2}$ 
 $=\left[\mathcal{I}(\theta)\right]^{1/2}~,$  
-onde $\mathcal{I}(\theta)$ é a *Informação de Fisher* de $\theta$. Neste caso, $f(\theta)\propto\left[\mathcal{I}(\theta)\right]^{1/2}$ é chamada **priori de Jeffreys**.
+onde $\mathcal{I}(\theta)$ é a *Informação de Fisher* de $\theta$. Neste caso, $f(\theta)\propto\big|\mathcal{I}(\theta)\big|^{1/2}$ é chamada **priori de Jeffreys**.
+
+Uma motivação para o método de Jeffreys é que a informação de Fisher $\mathcal{I}(\theta)$ é um indicador da quantidade de informação trazida pelo modelo (observações) sobre o parâmetro $\theta$. Favorecer os valores de $\theta$ para o qual $\mathcal{I}(\theta)$ é grande supostamente minimiza a influência da priori. 
+
 
 $~$
 
@@ -850,7 +865,7 @@ $=\dfrac{n}{\theta(1-\theta)}$ $=n\theta^{-1}(1-\theta)^{-1}~,$
 $~$  
 de modo que a priori de Jeffreys é  
 $f(\theta)$ $\propto\left[\mathcal{I}_x(\theta)\right]^{1/2}$ 
-$\propto\theta^{-1/2}(1-\theta)^{-1/2}~.$
+$\propto\theta^{-1/2}(1-\theta)^{-1/2}$ $~\Longrightarrow~ \theta \sim \text{Beta}\left(\frac{1}{2},\frac{1}{2}\right)~.$
 
 $~$
 
@@ -873,7 +888,7 @@ $\propto\theta^{-1/2}(1-\theta)^{-1}~.$
 
 $~$
 
-Note que nos exemplos apresentados, a priori depende da *regra de parada*, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos.
+Note que nos exemplos apresentados, a priori depende da *regra de parada*, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos. Além disso, a priori de Jeffreys pode ser *imprópria*, como ocorre no exemplo anterior.
 
 $~$  
 
@@ -960,14 +975,16 @@ $~$
 $~$
 
 Como a definição anterior de entropia vale apenas para o caso discreto, @Jaynes03 sugere que no caso contínuo seja utilizada a **entropia relativa**, dada por
-$$\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=D(h~||~h_0)~,$$
+$$\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=-D(h~||~h_0)~,$$
 onde $h_0$ é uma priori de referência na ausência total de informação, preferivelmente invariante.
 
 $~$
 
 Assim como no caso discreto, se temos $m$ restrições $E[g_i(\theta)]=\mu_i,$ a densidade de máxima entropia é
 
-$h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}$ e os $\lambda_j~,$ $j=1,\ldots,m~,$ são obtidos das restrições. Por exemplo, se $E[\theta]=\mu,$ basta fazer
+$h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}$ e os $\lambda_j~,$ $j=1,\ldots,m~,$ são obtidos das restrições. 
+
+Por exemplo, se $g(\theta)=\theta$ com $E[\theta]=\mu$, basta fazer
 
 $\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta$ com $c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta$.
 

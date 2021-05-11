@@ -13,51 +13,51 @@
 \contentsline {section}{\numberline {3.3}Suficiência}{27}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Distribuição a Priori}{28}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Método do Histograma}{29}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Elicitação de Hiperparâmetros}{30}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Prioris Conjugadas}{32}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.2}Elicitação de Hiperparâmetros}{31}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Prioris Conjugadas}{33}{subsection.3.4.3}%
 \contentsline {subsection}{\numberline {3.4.4}Prioris ``Não-Informativas''}{38}{subsection.3.4.4}%
-\contentsline {subsubsection}{\numberline {3.4.4.1}Priori de Bayes-Laplace}{38}{subsubsection.3.4.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.4.1}Priori de Bayes-Laplace}{39}{subsubsection.3.4.4.1}%
 \contentsline {subsubsection}{\numberline {3.4.4.2}Priori de Jeffreys}{39}{subsubsection.3.4.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.4.3}Priori de Máxima Entropia}{41}{subsubsection.3.4.4.3}%
-\contentsline {section}{\numberline {3.5}Alguns Princípios de Inferência}{44}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Introdução à Teoría da Decisão}{49}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Conceitos Básicos}{49}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Aleatorização e Decisões Mistas}{53}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Problemas com Dados}{53}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Estimação}{57}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Estimação Pontual}{57}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Estimação por Regiões}{61}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Custo das Observações}{68}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Testes de Hipóteses}{71}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Conceitos Básicos}{71}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Revisão: Abordagem Frequentista}{72}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Abordagem Bayesiana (via Teoria da Decisão)}{74}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Probabilidade Posterior de \(H_0\)}{76}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Fator de Bayes}{78}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Teste de Jeffreys}{81}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Hipóteses Precisas}{85}{section.6.7}%
-\contentsline {section}{\numberline {6.8}FBST - \emph {Full Bayesian Significance Test}}{85}{section.6.8}%
-\contentsline {section}{\numberline {6.9}P-value - Nivel de Significância Adaptativo}{89}{section.6.9}%
-\contentsline {chapter}{\numberline {7}Métodos Computacionais}{95}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Método de Monte Carlo}{96}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Monte Carlo com Amostragem de Importância}{104}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Método de Rejeição}{104}{section.7.3}%
-\contentsline {section}{\numberline {7.4}ABC (Aproximated Bayesian Computation)}{107}{section.7.4}%
-\contentsline {section}{\numberline {7.5}MCMC - Monte Carlo via Cadeias de Markov}{108}{section.7.5}%
-\contentsline {subsection}{\numberline {7.5.1}Pequena Introdução às Cadeias de Markov}{108}{subsection.7.5.1}%
-\contentsline {subsection}{\numberline {7.5.2}O algoritmo de \textbf {Metrópolis-Hastings}}{110}{subsection.7.5.2}%
-\contentsline {subsection}{\numberline {7.5.3}Amostrador de Gibbs}{111}{subsection.7.5.3}%
-\contentsline {section}{\numberline {7.6}Bibliotecas de R para Inferência Bayesiana}{115}{section.7.6}%
-\contentsline {subsection}{\numberline {7.6.1}O Modelo de Regressão Linear}{115}{subsection.7.6.1}%
-\contentsline {subsection}{\numberline {7.6.2}Laplace's Demon}{121}{subsection.7.6.2}%
-\contentsline {subsection}{\numberline {7.6.3}Stan}{135}{subsection.7.6.3}%
-\contentsline {subsection}{\numberline {7.6.4}MLG}{144}{subsection.7.6.4}%
-\contentsline {subsection}{\numberline {7.6.5}Modelos Dinâmicos}{150}{subsection.7.6.5}%
-\contentsline {subsubsection}{\numberline {7.6.5.1}Dados de Amoxicilina (fonte: CEA)}{151}{subsubsection.7.6.5.1}%
-\contentsline {subsubsection}{\numberline {7.6.5.2}Extensões: Efeitos mais suaves e modelos não gaussianos}{156}{subsubsection.7.6.5.2}%
-\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{161}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Conceitos Básicos}{161}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{163}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{170}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Função de Distribuição}{174}{section.A.4}%
-\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{179}{section.A.5}%
+\contentsline {subsubsection}{\numberline {3.4.4.3}Priori de Máxima Entropia}{42}{subsubsection.3.4.4.3}%
+\contentsline {section}{\numberline {3.5}Alguns Princípios de Inferência}{45}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Introdução à Teoría da Decisão}{51}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Conceitos Básicos}{51}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Aleatorização e Decisões Mistas}{55}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Problemas com Dados}{55}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Estimação}{59}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Estimação Pontual}{59}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Estimação por Regiões}{63}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Custo das Observações}{70}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Testes de Hipóteses}{73}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conceitos Básicos}{73}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Revisão: Abordagem Frequentista}{74}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Abordagem Bayesiana (via Teoria da Decisão)}{76}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Probabilidade Posterior de \(H_0\)}{78}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Fator de Bayes}{80}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Teste de Jeffreys}{83}{section.6.6}%
+\contentsline {section}{\numberline {6.7}Hipóteses Precisas}{87}{section.6.7}%
+\contentsline {section}{\numberline {6.8}FBST - \emph {Full Bayesian Significance Test}}{87}{section.6.8}%
+\contentsline {section}{\numberline {6.9}P-value - Nivel de Significância Adaptativo}{91}{section.6.9}%
+\contentsline {chapter}{\numberline {7}Métodos Computacionais}{97}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Método de Monte Carlo}{98}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Monte Carlo com Amostragem de Importância}{106}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Método de Rejeição}{106}{section.7.3}%
+\contentsline {section}{\numberline {7.4}ABC (Aproximated Bayesian Computation)}{109}{section.7.4}%
+\contentsline {section}{\numberline {7.5}MCMC - Monte Carlo via Cadeias de Markov}{110}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Pequena Introdução às Cadeias de Markov}{110}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}O algoritmo de \textbf {Metrópolis-Hastings}}{112}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}Amostrador de Gibbs}{113}{subsection.7.5.3}%
+\contentsline {section}{\numberline {7.6}Bibliotecas de R para Inferência Bayesiana}{117}{section.7.6}%
+\contentsline {subsection}{\numberline {7.6.1}O Modelo de Regressão Linear}{117}{subsection.7.6.1}%
+\contentsline {subsection}{\numberline {7.6.2}Laplace's Demon}{123}{subsection.7.6.2}%
+\contentsline {subsection}{\numberline {7.6.3}Stan}{137}{subsection.7.6.3}%
+\contentsline {subsection}{\numberline {7.6.4}MLG}{146}{subsection.7.6.4}%
+\contentsline {subsection}{\numberline {7.6.5}Modelos Dinâmicos}{152}{subsection.7.6.5}%
+\contentsline {subsubsection}{\numberline {7.6.5.1}Dados de Amoxicilina (fonte: CEA)}{153}{subsubsection.7.6.5.1}%
+\contentsline {subsubsection}{\numberline {7.6.5.2}Extensões: Efeitos mais suaves e modelos não gaussianos}{158}{subsubsection.7.6.5.2}%
+\contentsline {chapter}{\numberline {A}Breve Resumo de Medida e Probabilidade}{163}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Conceitos Básicos}{163}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Valor Esperado de \(X\) (OU uma ideia da tal Integral de Lebesgue)}{165}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Funções de Variáveis Aleatórias}{172}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Função de Distribuição}{176}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Probabilidade Condicional}{181}{section.A.5}%

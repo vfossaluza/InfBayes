@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2021-04-27" />
+<meta name="date" content="2021-05-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -513,9 +513,9 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema de Representação de De Finetti.</strong> (para v.a. Bernoulli)</p>
-<p>Uma sequência infinita <span class="math inline">\(\left(X_n\right)_{n\geq 1}\)</span> de v.a. Bernoulli é permutável se, e somente se, existe uma v.a <span class="math inline">\(\theta\)</span> em <span class="math inline">\([0,1]\)</span> tal que, condicional a <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\left(X_i\right)_{n\geq 1}\)</span> são i.i.d. <span class="math inline">\(Ber(\theta)\)</span>. Além disso, se a sequência é permutável, então a distribuição de <span class="math inline">\(\theta\)</span> é única e <span class="math inline">\(\displaystyle\dfrac{1}{n}\sum_{i=1}^\infty X_i \underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}\theta~.\)</span></p>
-<p><span class="math inline">\(P(X_1=x_1,\ldots,X_n=x_n)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta\)</span></p>
-<p><span class="math inline">\(F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.\)</span></p>
+<p>Uma sequência infinita <span class="math inline">\(\left(X_n\right)_{n\geq 1}\)</span> de v.a. Bernoulli é permutável se, e somente se, existe uma v.a <span class="math inline">\(\theta\)</span> em <span class="math inline">\([0,1]\)</span> tal que, condicional a <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\left(X_i\right)_{n\geq 1}\)</span> são i.i.d. <span class="math inline">\(Ber(\theta)\)</span>. Além disso, se a sequência é permutável, então a distribuição de <span class="math inline">\(\theta\)</span> é única e <span class="math inline">\(\displaystyle\bar{X}_n = \dfrac{1}{n}\sum_{i=1}^\infty X_i ~\underset{n\uparrow\infty}{\overset{q.c.}{\longrightarrow}}~\theta~.\)</span></p>
+<p><span class="math inline">\(P(X_1=x_1,\ldots,X_n=x_n)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\theta^{\sum x_i}(1-\theta)^{n-\sum x_i}~dF(\theta)\)</span> <span class="math inline">\(=\displaystyle\int_0^1\prod_{i=1}^n\underbrace{\theta^{x_i}(1-\theta)^{1-x_i}}_{f(x_i|\theta)}~f(\theta)~d\theta~,\)</span></p>
+<p>onde <span class="math inline">\(F(\theta)=\displaystyle\lim_{n\uparrow\infty}~\text{P}\left(\dfrac{\sum_iX_i}{n}\leq \theta\right)~.\)</span></p>
 <!-- $~$ -->
 <!-- $~$ -->
 <!-- A suposição de permutabilidade permite -->
@@ -541,10 +541,14 @@ de modo que,<br />
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
+<p><strong>Definição.</strong> Seja <span class="math inline">\(X_1,\ldots,X_n\)</span> uma sequência de variáveis aleatórias permutáveis. A <em>função de distribuição empírica</em> é definida como</p>
+<p><span class="math inline">\(F_n(x) = \displaystyle\dfrac{1}{n}\sum_{i=1}^{n} \mathbb{I}(x_i\leq x)~.\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
 <p><strong>Teorema de Representação de De Finetti</strong></p>
-<p>Uma sequência de v.a.s <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> assumindo valores (em um subconjunto de) <span class="math inline">\(\mathbb R^K\)</span> é permutável se, e somente se, existe uma medida de probabilidade sobre (uma <span class="math inline">\(\sigma\)</span>-álgebra do) conjunto de funções de distribuições que “sorteia” uma <span class="math inline">\(F\)</span> e, dada esta <span class="math inline">\(F\)</span>, <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> é i.i.d. com distribuição <span class="math inline">\(F\)</span>. Isto é,</p>
-<p><span class="math inline">\(F_{\mathbf X}(x_1,\ldots,x_n)=\int\prod_{i=1}^n F(x_i)d\mu(F)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
-<p>Alem disso, <span class="math inline">\(F_n\underset{n\uparrow\infty}{\longrightarrow}F^*\)</span> e a distribuição de <span class="math inline">\(F^*=\underset{n\uparrow\infty}{lim}F_n\)</span> é única e é <span class="math inline">\(\mu\)</span>.</p>
+<p>Uma sequência de v.a.s <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> assumindo valores em (um subconjunto de) <span class="math inline">\(\mathbb R\)</span> é permutável se, e somente se, existe uma medida de probabilidade sobre (uma <span class="math inline">\(\sigma\)</span>-álgebra do) conjunto de funções de distribuições que “sorteia” uma <span class="math inline">\(F\)</span> e, dada esta <span class="math inline">\(F\)</span>, os elementos da sequência <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> são i.i.d. com distribuição <span class="math inline">\(F\)</span>. Isto é,</p>
+<p><span class="math inline">\(F_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int\prod_{i=1}^n F(x_i)d\mu(F)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
+<p>Além disso, <span class="math inline">\(F_n\underset{n\uparrow\infty}{\longrightarrow}F\)</span> e a distribuição de <span class="math inline">\(F=\underset{n\uparrow\infty}{lim}F_n\)</span> é única e é <span class="math inline">\(\mu\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
@@ -744,7 +748,7 @@ Então<br />
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo.</strong> Seja <span class="math inline">\(X|\theta \sim Bin(n,\theta)\)</span> e <span class="math inline">\(f(\theta)\)</span> <span class="math inline">\(=wf_1(\theta)+(1-w)f_2(\theta)\)</span>, com <span class="math inline">\(f_1\sim Beta(a_1,b_1)\)</span> e <span class="math inline">\(f_2\sim Beta(a_2,b_2)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
-<p><span class="math inline">\(f(\theta|x)\)</span> <span class="math inline">\(=\dfrac{f(x|\theta)f(\theta)}{\int_0^1f(x|\theta)f(\theta)}\)</span> <span class="math inline">\(=\dfrac{f(x|\theta)[wf_1(\theta)+(1-w)f_2(\theta)]}{w\int_0^1f_1(\theta)f(x|\theta)d\theta+(1-w)\int_0^1f_2(\theta)d\theta}\)</span></p>
+<p><span class="math inline">\(f(\theta|x)\)</span> <span class="math inline">\(=\dfrac{f(x|\theta)f(\theta)}{\int_0^1f(x|\theta)f(\theta)}\)</span> <span class="math inline">\(=\dfrac{f(x|\theta)[wf_1(\theta)+(1-w)f_2(\theta)]}{w\int_0^1f_1(\theta)f(x|\theta)d\theta+(1-w)\int_0^1f_2(\theta)f(x|\theta)d\theta}\)</span></p>
 <p><span class="math inline">\(\propto\dfrac{w\binom{n}{x}\frac{\Gamma(a_1+b_1)}{\Gamma(a_1)\Gamma(b_1)}\theta^{a_1+x-1}(1-\theta)^{b_1+n-x-1}+(1-w)\binom{n}{x}\frac{\Gamma(a_2+b_2)}{\Gamma(a_2)\Gamma(b_2)}\theta^{a_2+x-1}(1-\theta)^{b_2+n-x-1}}{\underbrace{w\binom{n}{x}\frac{\Gamma(a_1+b_1)}{\Gamma(a_1)\Gamma(b_1)}\frac{\Gamma(a_1+x)\Gamma(b_1+n-x)}{\Gamma(a_1+b_1+n)}}_{A}+\underbrace{(1-w)\binom{n}{x}\frac{\Gamma(a_2+b_2)}{\Gamma(a_2)\Gamma(b_2)}\frac{\Gamma(a_2+x)\Gamma(b_2+n-x)}{\Gamma(a_2+b_2+n)}}_{B}}\)</span></p>
 <p><span class="math inline">\(\propto~\underbrace{\dfrac{A}{A+B}}_{w^*}Beta(a_1+x,b_1+n-x)+\underbrace{\dfrac{B}{A+B}}_{1-w^*}Beta(a_2+x,b_2+n-x)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
@@ -837,6 +841,8 @@ Então<br />
 </div>
 <div id="prioris-não-informativas" class="section level3" number="3.4.4">
 <h3><span class="header-section-number">3.4.4</span> Prioris “Não-Informativas”</h3>
+<p>Priors não-informativas são tentativas de representar formalmente um estado de ignorância. Contudo, não existe uma forma única de representar ignorância, tampouco uma priori “objetiva.” Além disso, é bastante raro um cenário onde não há nenhuma informação a priori. De qualquer modo, serão apresentadas aqui algumas formas de representar falta de informação mas a escolha da priori será sempre subjetiva.</p>
+<p><span class="math inline">\(~\)</span></p>
 <div id="priori-de-bayes-laplace" class="section level4" number="3.4.4.1">
 <h4><span class="header-section-number">3.4.4.1</span> Priori de Bayes-Laplace</h4>
 <p><strong>Princípio da Razão Insuficiente.</strong> <em>Quando não existe razão suficiente para acreditar mais em algum subconjunto do espaço paramétrico <span class="math inline">\(\Theta\)</span>, deve-se adotar equiprobabilidade.</em></p>
@@ -887,7 +893,8 @@ de modo que<br />
 <span class="math inline">\(\propto\text{Var}\left[\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}~\bigg|~\theta\right]^{1/2}\)</span>
 <span class="math inline">\(=\text{E}\left[\left(\dfrac{\partial \log f(\boldsymbol{X}|\theta)}{\partial\theta}\right)^2~\bigg|~\theta\right]^{1/2}\)</span>
 <span class="math inline">\(=\left[\mathcal{I}(\theta)\right]^{1/2}~,\)</span><br />
-onde <span class="math inline">\(\mathcal{I}(\theta)\)</span> é a <em>Informação de Fisher</em> de <span class="math inline">\(\theta\)</span>. Neste caso, <span class="math inline">\(f(\theta)\propto\left[\mathcal{I}(\theta)\right]^{1/2}\)</span> é chamada <strong>priori de Jeffreys</strong>.</p>
+onde <span class="math inline">\(\mathcal{I}(\theta)\)</span> é a <em>Informação de Fisher</em> de <span class="math inline">\(\theta\)</span>. Neste caso, <span class="math inline">\(f(\theta)\propto\big|\mathcal{I}(\theta)\big|^{1/2}\)</span> é chamada <strong>priori de Jeffreys</strong>.</p>
+<p>Uma motivação para o método de Jeffreys é que a informação de Fisher <span class="math inline">\(\mathcal{I}(\theta)\)</span> é um indicador da quantidade de informação trazida pelo modelo (observações) sobre o parâmetro <span class="math inline">\(\theta\)</span>. Favorecer os valores de <span class="math inline">\(\theta\)</span> para o qual <span class="math inline">\(\mathcal{I}(\theta)\)</span> é grande supostamente minimiza a influência da priori.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
 <p><strong>Exemplo 1.</strong> Considere novamente o experimento de lançar uma moeda <span class="math inline">\(n\)</span> vezes e contar o número de caras, isto é, <span class="math inline">\(X|\theta \sim \text{Bin}(n,\theta)\)</span>. Então,<br />
@@ -907,7 +914,7 @@ Como <span class="math inline">\(E\left[X|\theta\right]=n\theta\)</span> e <span
 <span class="math inline">\(~\)</span><br />
 de modo que a priori de Jeffreys é<br />
 <span class="math inline">\(f(\theta)\)</span> <span class="math inline">\(\propto\left[\mathcal{I}_x(\theta)\right]^{1/2}\)</span>
-<span class="math inline">\(\propto\theta^{-1/2}(1-\theta)^{-1/2}~.\)</span></p>
+<span class="math inline">\(\propto\theta^{-1/2}(1-\theta)^{-1/2}\)</span> <span class="math inline">\(~\Longrightarrow~ \theta \sim \text{Beta}\left(\frac{1}{2},\frac{1}{2}\right)~.\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
@@ -929,7 +936,7 @@ de modo que a priori de Jeffreys é<br />
 <span class="math inline">\(\propto\theta^{-1/2}(1-\theta)^{-1}~.\)</span></p>
 </blockquote>
 <p><span class="math inline">\(~\)</span></p>
-<p>Note que nos exemplos apresentados, a priori depende da <em>regra de parada</em>, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos.</p>
+<p>Note que nos exemplos apresentados, a priori depende da <em>regra de parada</em>, isto é, a forma como decidimos quando parar de lançar a moeda e que determina se o modelo estatístico é binomial ou binomial negativo. Em outras palavras, a opinião a priori definida dessa forma depende do modelo adotado, mesmo que o parâmetro seja o mesmo nos dois casos. Além disso, a priori de Jeffreys pode ser <em>imprópria</em>, como ocorre no exemplo anterior.</p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
 <div id="priori-de-máxima-entropia" class="section level4" number="3.4.4.3">
@@ -997,11 +1004,12 @@ em que <span class="math inline">\(\dfrac{dH}{dH_0}\)</span> é derivada de Rado
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Como a definição anterior de entropia vale apenas para o caso discreto, <span class="citation"><a href="#ref-Jaynes03" role="doc-biblioref">Jaynes</a> (<a href="#ref-Jaynes03" role="doc-biblioref">2003</a>)</span> sugere que no caso contínuo seja utilizada a <strong>entropia relativa</strong>, dada por
-<span class="math display">\[\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=D(h~||~h_0)~,\]</span>
+<span class="math display">\[\mathcal{E}(h)=-\displaystyle\int_\Theta h(\theta)\log\left(\dfrac{h(\theta)}{h_0(\theta)}\right)d\theta=-D(h~||~h_0)~,\]</span>
 onde <span class="math inline">\(h_0\)</span> é uma priori de referência na ausência total de informação, preferivelmente invariante.</p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Assim como no caso discreto, se temos <span class="math inline">\(m\)</span> restrições <span class="math inline">\(E[g_i(\theta)]=\mu_i,\)</span> a densidade de máxima entropia é</p>
-<p><span class="math inline">\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\)</span> e os <span class="math inline">\(\lambda_j~,\)</span> <span class="math inline">\(j=1,\ldots,m~,\)</span> são obtidos das restrições. Por exemplo, se <span class="math inline">\(E[\theta]=\mu,\)</span> basta fazer</p>
+<p><span class="math inline">\(h(\theta)\propto h_0(\theta)\exp\left\{\displaystyle\sum_{j=1}^m\lambda_j~ g_j(\theta)\right\}\)</span> e os <span class="math inline">\(\lambda_j~,\)</span> <span class="math inline">\(j=1,\ldots,m~,\)</span> são obtidos das restrições.</p>
+<p>Por exemplo, se <span class="math inline">\(g(\theta)=\theta\)</span> com <span class="math inline">\(E[\theta]=\mu\)</span>, basta fazer</p>
 <p><span class="math inline">\(\mu = \displaystyle \int_\Theta \theta~c~ h_0(\theta)\exp\{\lambda\theta\}~d\theta\)</span> com <span class="math inline">\(c^{-1}=\displaystyle\int_\Theta h_0(\theta)exp\{\lambda \theta\}d\theta\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <blockquote>
