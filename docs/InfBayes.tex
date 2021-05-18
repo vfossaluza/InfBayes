@@ -131,7 +131,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2021-05-11}
+\date{2021-05-18}
 
 \begin{document}
 \maketitle
@@ -3176,7 +3176,7 @@ Deste modo, suponha que \(X_1,X_2...\) é uma sequência de v.a. i.i.d e \(g:\ma
 \hypertarget{muxe9todo-de-monte-carlo}{%
 \section{Método de Monte Carlo}\label{muxe9todo-de-monte-carlo}}
 
-Suponha que deseja-se calcular \(\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta=E\left[g(\theta|\boldsymbol x)\right]\) e é possível simular realizações \(\theta_1,...,\theta_m\) da distribuição de \(\theta |\boldsymbol X=\boldsymbol x\) , \(f(\theta | \boldsymbol x)\).
+Suponha que deseja-se calcular \(\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta=E\left[g(\theta)|\boldsymbol x\right]\) e é possível simular realizações \(\theta_1,...,\theta_m\) da distribuição de \(\theta |\boldsymbol X=\boldsymbol x\) , \(f(\theta | \boldsymbol x)\).
 
 Então, a integral acima pode ser aproximada por \(\displaystyle \dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\)
 

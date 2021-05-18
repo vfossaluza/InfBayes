@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2021-05-11" />
+<meta name="date" content="2021-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -286,7 +286,7 @@ div.csl-indent {
 <p><span class="math inline">\(~\)</span></p>
 <div id="método-de-monte-carlo" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Método de Monte Carlo</h2>
-<p>Suponha que deseja-se calcular <span class="math inline">\(\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta=E\left[g(\theta|\boldsymbol x)\right]\)</span> e é possível simular realizações <span class="math inline">\(\theta_1,...,\theta_m\)</span> da distribuição de <span class="math inline">\(\theta |\boldsymbol X=\boldsymbol x\)</span> , <span class="math inline">\(f(\theta | \boldsymbol x)\)</span>.</p>
+<p>Suponha que deseja-se calcular <span class="math inline">\(\displaystyle\int_\Theta g(\theta)f(\theta|\boldsymbol x)d\theta=E\left[g(\theta)|\boldsymbol x\right]\)</span> e é possível simular realizações <span class="math inline">\(\theta_1,...,\theta_m\)</span> da distribuição de <span class="math inline">\(\theta |\boldsymbol X=\boldsymbol x\)</span> , <span class="math inline">\(f(\theta | \boldsymbol x)\)</span>.</p>
 <p>Então, a integral acima pode ser aproximada por <span class="math inline">\(\displaystyle \dfrac{1}{m}\sum_{i=1}^m g(\theta_i)\)</span></p>
 <ul>
 <li>A precisão da aproximação é usualmente estimada pelo erro padrão da estimativa<br />
