@@ -20,7 +20,7 @@
 \contentsline {subsubsection}{\numberline {3.4.4.2}Priori de Jeffreys}{39}{subsubsection.3.4.4.2}%
 \contentsline {subsubsection}{\numberline {3.4.4.3}Priori de Máxima Entropia}{42}{subsubsection.3.4.4.3}%
 \contentsline {section}{\numberline {3.5}Alguns Princípios de Inferência}{45}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Introdução à Teoría da Decisão}{51}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Introdução à Teoria da Decisão}{51}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Conceitos Básicos}{51}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Aleatorização e Decisões Mistas}{55}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Problemas com Dados}{55}{section.4.3}%

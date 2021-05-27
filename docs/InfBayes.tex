@@ -131,7 +131,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2021-05-18}
+\date{2021-05-27}
 
 \begin{document}
 \maketitle
@@ -1677,7 +1677,7 @@ Como \(f_1(x_1|\theta)\propto f_2(x_2|\theta)\) mas \(f_1(\theta)\neq f_2(\theta
 \(~\)
 
 \hypertarget{TeoDec}{%
-\chapter{Introdução à Teoría da Decisão}\label{TeoDec}}
+\chapter{Introdução à Teoria da Decisão}\label{TeoDec}}
 
 A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma \emph{função de perda} (ou \emph{função de utilidade}) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de ``preferência'' é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro \emph{Optimal Statistical Decisions} \citep{DeGroot70}.
 
@@ -1695,6 +1695,8 @@ A teoria da decisão é uma das possíveis formas de embasar a inferência bayes
   \(\theta\): \textbf{estado da natureza} - quantidade desconhecida ou parâmetro, no contexto de inferência estatística.
 \item
   \(\Theta\): \textbf{espaço dos estados da natureza} - espaço paramétrico.
+\item
+  \(L:\mathcal{D}\times\Theta\longrightarrow\mathbb{R}\): \textbf{função de perda} - \(L(d,\theta)\) que representa o prejuízo de uma decisão \(d\) quando o estado da natureza é \(\theta\).
 \end{itemize}
 
 \(~\)

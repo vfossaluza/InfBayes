@@ -1,4 +1,4 @@
-# Introdução à Teoría da Decisão {#TeoDec}
+# Introdução à Teoria da Decisão {#TeoDec}
 
 A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma *função de perda* (ou *função de utilidade*) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de "preferência" é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro *Optimal Statistical Decisions* [@DeGroot70].
 
@@ -13,6 +13,8 @@ $~$
 * $\theta$:  **estado da natureza** - quantidade desconhecida ou parâmetro, no contexto de inferência estatística.
 
 * $\Theta$: **espaço dos estados da natureza** - espaço paramétrico.  
+
+* $L:\mathcal{D}\times\Theta\longrightarrow\mathbb{R}$: **função de perda** - $L(d,\theta)$ que representa o prejuízo de uma decisão $d$ quando o estado da natureza é $\theta$. 
 
 $~$  
 
@@ -88,7 +90,7 @@ $~$
 $~$
 
 
-## Aleatorização e Decisões Mistas
+## Aleatorização e Decisões Mistas {#Aleat}
 
 Seja $D=\left\{d_1,d_2,\ldots\right\}$ um espaço de decisões e considere $\mathcal{M}$ o conjunto de todas as *decisões mistas* (ou *aleatorizadas*), isto é, para toda distribuição de probabilidades $Q=\left\{q_1,q_2,\ldots\right\}$, uma decisão $d\in\mathcal{M}$ se $d$ consiste em escolher a decisão $d_i$ com probabilidade $q_i$.
 
@@ -106,7 +108,7 @@ $\rho(d,P)$ $=\displaystyle \sum q_i~ \rho(d_i,\theta)$ $\geq \displaystyle \sum
 
 $~$
 
-## Problemas com Dados
+## Problemas com Dados {#DecDados}
 
 Suponha que antes de escolher uma decisão $d \in \mathcal{D}$, é possível observar um v.a. $\boldsymbol X$ que (supostamente) está  relacionado com $\theta$ (isto é, $\boldsymbol X$ traz alguma informação sobre $\theta$).
 

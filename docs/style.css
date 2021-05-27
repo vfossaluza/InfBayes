@@ -12,3 +12,8 @@ pre {
 pre code {
   white-space: inherit;
 }
+/*-- Additional custom styles --*/
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}

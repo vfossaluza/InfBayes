@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana</title>
+  <title>4 Introdução à Teoria da Decisão | Fundamentos de Inferência Bayesiana</title>
   <meta name="description" content="Notas de aula de Infência Bayesiana." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
+  <meta property="og:title" content="4 Introdução à Teoria da Decisão | Fundamentos de Inferência Bayesiana" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Introdução à Teoría da Decisão | Fundamentos de Inferência Bayesiana" />
+  <meta name="twitter:title" content="4 Introdução à Teoria da Decisão | Fundamentos de Inferência Bayesiana" />
   
   <meta name="twitter:description" content="Notas de aula de Infência Bayesiana." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2021-05-18" />
+<meta name="date" content="2021-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,7 +193,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Bayes.html"><a href="Bayes.html#alguns-princípios-de-inferência"><i class="fa fa-check"></i><b>3.5</b> Alguns Princípios de Inferência</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoría da Decisão</a>
+<li class="chapter" data-level="4" data-path="TeoDec.html"><a href="TeoDec.html"><i class="fa fa-check"></i><b>4</b> Introdução à Teoria da Decisão</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="TeoDec.html"><a href="TeoDec.html#BasDec"><i class="fa fa-check"></i><b>4.1</b> Conceitos Básicos</a></li>
 <li class="chapter" data-level="4.2" data-path="TeoDec.html"><a href="TeoDec.html#aleatorização-e-decisões-mistas"><i class="fa fa-check"></i><b>4.2</b> Aleatorização e Decisões Mistas</a></li>
@@ -269,7 +269,7 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="TeoDec" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Introdução à Teoría da Decisão</h1>
+<h1><span class="header-section-number">4</span> Introdução à Teoria da Decisão</h1>
 <p>A teoria da decisão é uma das possíveis formas de embasar a inferência bayesiana. Sob essa abordagem, considera-se uma <em>função de perda</em> (ou <em>função de utilidade</em>) que quantifica numericamente as consequências de sua decisão para um dado valor do parâmetro. Essa quantificação de “preferência” é novamente subjetiva e é possível fazer uma construção de função de perda similar ao que fizemos com probabilidade. Ou seja, dado um conjunto de suposições, existe uma função de perda que representa numericamente suas preferências para cada decisão e cada possível valor do parâmetro. Essa construção não será feita aqui mas pode ser encontrada no livro <em>Optimal Statistical Decisions</em> <span class="citation">(<a href="#ref-DeGroot70" role="doc-biblioref">DeGroot 1970</a>)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>
 <div id="BasDec" class="section level2" number="4.1">
@@ -279,6 +279,7 @@ div.csl-indent {
 <li><p><span class="math inline">\(\mathcal{D}:\)</span> <strong>espaço de decisões</strong> - conjunto de todas as possíveis decisões (afirmações).</p></li>
 <li><p><span class="math inline">\(\theta\)</span>: <strong>estado da natureza</strong> - quantidade desconhecida ou parâmetro, no contexto de inferência estatística.</p></li>
 <li><p><span class="math inline">\(\Theta\)</span>: <strong>espaço dos estados da natureza</strong> - espaço paramétrico.</p></li>
+<li><p><span class="math inline">\(L:\mathcal{D}\times\Theta\longrightarrow\mathbb{R}\)</span>: <strong>função de perda</strong> - <span class="math inline">\(L(d,\theta)\)</span> que representa o prejuízo de uma decisão <span class="math inline">\(d\)</span> quando o estado da natureza é <span class="math inline">\(\theta\)</span>.</p></li>
 </ul>
 <p><span class="math inline">\(~\)</span></p>
 <p><strong>Exemplo 1.</strong> <!-- (*Making Decisions*, Lindley,D.V.)   -->
