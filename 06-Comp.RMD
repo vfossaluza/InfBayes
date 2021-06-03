@@ -478,7 +478,7 @@ Dizemos que a densidade $\pi$ é *invariante* (*estacionária*) se as densidades
 
 $~$
 
-**Resultado 1.** A afirmação anterior é equivalente a $\int\pi(x)q(x,y)dx=(1-r(x))\pi(y)$.
+**Resultado 1.** A afirmação anterior é equivalente a $\int\pi(x)q(x,y)dx=(1-r(y))\pi(y)$.
 
 $~$
 
@@ -495,7 +495,7 @@ $~$
 > **Demo 2.**  
 $\displaystyle\int_E \pi(x)Q(x,A)dx$
 $=\displaystyle\int_E\pi(x)\left[\int_Aq(x,y)dy\right]dx+\int_E \pi(x) r(x)\mathbb{I}_A(x)dx$ $=\displaystyle\int_A\left[\int_E\pi(x)q(x,y)dx\right]dy+\int_A\pi(x)r(x)dx$
-$=\displaystyle\int_A\left[\int_E\pi(y)q(y,x)dx\right]dy+\int_A\pi(y)r(y)dx$
+$=\displaystyle\int_A\left[\int_E\pi(y)q(y,x)dx\right]dy+\int_A\pi(y)r(y)dy$
 $=\displaystyle\int_A\pi(y)\left[\int_Eq(y,x)dx\right]dy+\int_A\pi(y)r(y)dy$
 $=\displaystyle\int_A\pi(y)\Big[1-r(y)\Big]dy+\int_A\pi(y)r(y)dy$
 $=\displaystyle\int_A\pi(y)\Big[1-r(y)+r(y)\Big]dy$
