@@ -32,11 +32,11 @@ $~$
 
 Um teste de hipótese "ideal" seria aquele que as probabilidades de erros tipo I e tipo II são iguais a zero, isto é, $\pi_\varphi(\theta)=0$, $\forall \theta \in \Theta_0$, e $\pi_\varphi(\theta)=1$, $\forall \theta \in \Theta_1$. Contudo, não é possível obter tais testes em geral. 
 
-A solução usual é fixar um nível de significância $\alpha$ e considerar apenas a classe de teste de nível $\alpha$, isto é, testes tais que $\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha$. Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder ${\pi}_\varphi(\theta)$ para $\theta \in \Theta_1$. Um teste que satisfaz isso é chamado de **Teste Uniformemente Mais Poderoso** (**UMP**) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
+A solução usual é fixar um nível de significância $\alpha$ e considerar apenas a classe de teste de nível $\alpha$, isto é, testes tais que $\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha$. Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível $\alpha$ que tenha maior função poder ${\pi}_\varphi(\theta)$ para $\theta \in \Theta_1$. Um teste que satisfaz isso é chamado de **Teste Uniformemente Mais Poderoso** (**UMP**) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
 
 $~$
 
-**Exemplo.**  Considere que $\Theta=[0,1]$ e deseja-se testar $H_0: \theta \leq 0.5$ contra $H_1: \theta > 0.5$. O gráfico a seguir ilustra as funções poder dos quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que $\alpha=0.5$, temos que o teste UMP de nível $\alpha$ é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível $\alpha$.
+**Exemplo.**  Considere que $\Theta=[0,1]$ e deseja-se testar $H_0: \theta \leq 0.5$ contra $H_1: \theta > 0.5$. O gráfico a seguir ilustra as funções poder de quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que $\alpha=0.5$, temos que o teste UMP de nível $\alpha$ é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível $\alpha$.
 
 ```{r, echo=FALSE}
 alpha=0.5
@@ -378,7 +378,7 @@ O teste de Jeffreys (1961?) consiste em atribuir uma probabilidade positiva para
 
 $~$
 
-*Exemplo 2.* Suponha que deseja-se testar $H_0: \theta=0$ contra $H_1: \theta\neq 0$. Suponha que sua opinião a priori é $\theta \sim Normal(0,2)$. Contudo, já foi visto que $P(\theta=0|\boldsymbol x)=0$, $\forall \boldsymbol x \in \mathfrak{X}$. Deste modo, você opta por atribuir uma probabilidade positiva $p_0=0.2$ para o ponto $\theta=0$, ou seja, você vai considerar uma distribuição mista $f(\theta)=p_0\mathbb{I}(\theta=0)+(1-p_0)f_N(\theta)$, onde $f_N$ é a densidade da $Normal(0,1)$. Sua função de distribuição a prioi, $F(\theta)=p_0~\mathbb{I}(\theta\geq0)+(1-p_0)~\Phi\left(\theta/\sqrt{2}\right)$, está representada no gráfico a seguir.
+*Exemplo 2.* Suponha que deseja-se testar $H_0: \theta=0$ contra $H_1: \theta\neq 0$. Suponha que sua opinião a priori é $\theta \sim Normal(0,2)$. Contudo, já foi visto que $P(\theta=0|\boldsymbol x)=0$, $\forall \boldsymbol x \in \mathfrak{X}$. Deste modo, você opta por atribuir uma probabilidade positiva $p_0=0.2$ para o ponto $\theta=0$, ou seja, você vai considerar uma distribuição mista $f(\theta)=p_0\mathbb{I}(\theta=0)+(1-p_0)f_N(\theta)$, onde $f_N$ é a densidade da $Normal(0,2)$. Sua função de distribuição a prioi, $F(\theta)=p_0~\mathbb{I}(\theta\geq0)+(1-p_0)~\Phi\left(\theta/\sqrt{2}\right)$, está representada no gráfico a seguir.
 
 ```{r}
 theta=c(seq(-5,-0.001,0.001),seq(0.001,5,0.001))
@@ -655,7 +655,7 @@ $~$
 
 $~$
 
-## P-value - Nivel de Significância Adaptativo
+## P-value - Nível de Significância Adaptativo
 
 Recentemente, o *p-value* e a utilização do famoso nível $\alpha=0.05$ têm sido muito questionados, não apenas na área de testes de hipóteses mas na ciência como um todo. A ideia de fixar um nível de significância é que a probabilidade de *erro tipo I* fica "controlada" e a probabilidade do *erro tipo II* diminui quanto maior o tamanho amostral. Por essa razão, é comum nas áreas de planejamento de experimentos e amostragem, o cálculo do tamanho amostral para um determinado estudo. Infelizmente, na maior parte dos problemas do dia a dia de um estatístico, não há um planejamento cuidadoso ou as amostras disponíveis são "amostras de conveniência". Simultaneamente, com a "revolução da informação", a quantidade de dados disponível é cada vez maior. A consequência disso no cenário de testes de hipóteses é que os testes ficam muito poderosos e há uma tendência maior de rejeitar a hipótese nula.
 

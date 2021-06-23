@@ -131,7 +131,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2021-05-27}
+\date{2021-06-22}
 
 \begin{document}
 \maketitle
@@ -1782,8 +1782,8 @@ Para uma argumentação mais formal sobre a escolha pela decisão que minimiza a
 
 \(~\)
 
-\hypertarget{aleatorizauxe7uxe3o-e-decisuxf5es-mistas}{%
-\section{Aleatorização e Decisões Mistas}\label{aleatorizauxe7uxe3o-e-decisuxf5es-mistas}}
+\hypertarget{Aleat}{%
+\section{Aleatorização e Decisões Mistas}\label{Aleat}}
 
 Seja \(D=\left\{d_1,d_2,\ldots\right\}\) um espaço de decisões e considere \(\mathcal{M}\) o conjunto de todas as \emph{decisões mistas} (ou \emph{aleatorizadas}), isto é, para toda distribuição de probabilidades \(Q=\left\{q_1,q_2,\ldots\right\}\), uma decisão \(d\in\mathcal{M}\) se \(d\) consiste em escolher a decisão \(d_i\) com probabilidade \(q_i\).
 
@@ -1805,8 +1805,8 @@ Então, \(\forall ~d \in \mathcal{M}\),
 
 \(~\)
 
-\hypertarget{problemas-com-dados}{%
-\section{Problemas com Dados}\label{problemas-com-dados}}
+\hypertarget{DecDados}{%
+\section{Problemas com Dados}\label{DecDados}}
 
 Suponha que antes de escolher uma decisão \(d \in \mathcal{D}\), é possível observar um v.a. \(\boldsymbol X\) que (supostamente) está relacionado com \(\theta\) (isto é, \(\boldsymbol X\) traz alguma informação sobre \(\theta\)).
 
@@ -2382,11 +2382,11 @@ Uma hipótese é dita \textbf{simples} se contém apenas um ponto, \(H:\theta=\t
 
 Um teste de hipótese ``ideal'' seria aquele que as probabilidades de erros tipo I e tipo II são iguais a zero, isto é, \(\pi_\varphi(\theta)=0\), \(\forall \theta \in \Theta_0\), e \(\pi_\varphi(\theta)=1\), \(\forall \theta \in \Theta_1\). Contudo, não é possível obter tais testes em geral.
 
-A solução usual é fixar um nível de significância \(\alpha\) e considerar apenas a classe de teste de nível \(\alpha\), isto é, testes tais que \(\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha\). Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível alpha que tenha maior função poder \({\pi}_\varphi(\theta)\) para \(\theta \in \Theta_1\). Um teste que satisfaz isso é chamado de \textbf{Teste Uniformemente Mais Poderoso} (\textbf{UMP}) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
+A solução usual é fixar um nível de significância \(\alpha\) e considerar apenas a classe de teste de nível \(\alpha\), isto é, testes tais que \(\displaystyle\sup_{\theta\in\Theta_0}\pi_\varphi(\theta) \leq \alpha\). Os testes ótimos sob o ponto de vista frequentista são aqueles na classe de testes de nível \(\alpha\) que tenha maior função poder \({\pi}_\varphi(\theta)\) para \(\theta \in \Theta_1\). Um teste que satisfaz isso é chamado de \textbf{Teste Uniformemente Mais Poderoso} (\textbf{UMP}) mas testes com essa propriedade também só podem ser obtidos em casos específicos.
 
 \(~\)
 
-\textbf{Exemplo.} Considere que \(\Theta=[0,1]\) e deseja-se testar \(H_0: \theta \leq 0.5\) contra \(H_1: \theta > 0.5\). O gráfico a seguir ilustra as funções poder dos quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que \(\alpha=0.5\), temos que o teste UMP de nível \(\alpha\) é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível \(\alpha\).
+\textbf{Exemplo.} Considere que \(\Theta=[0,1]\) e deseja-se testar \(H_0: \theta \leq 0.5\) contra \(H_1: \theta > 0.5\). O gráfico a seguir ilustra as funções poder de quatro testes disponíveis para esse problema. Supondo (apenas para fins didáticos) que \(\alpha=0.5\), temos que o teste UMP de nível \(\alpha\) é o teste 2. O teste 4, apesar de ser mais poderoso, não é um teste de nível \(\alpha\).
 
 \begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
@@ -2732,7 +2732,7 @@ O teste de Jeffreys (1961?) consiste em atribuir uma probabilidade positiva para
 
 \(~\)
 
-\emph{Exemplo 2.} Suponha que deseja-se testar \(H_0: \theta=0\) contra \(H_1: \theta\neq 0\). Suponha que sua opinião a priori é \(\theta \sim Normal(0,2)\). Contudo, já foi visto que \(P(\theta=0|\boldsymbol x)=0\), \(\forall \boldsymbol x \in \mathfrak{X}\). Deste modo, você opta por atribuir uma probabilidade positiva \(p_0=0.2\) para o ponto \(\theta=0\), ou seja, você vai considerar uma distribuição mista \(f(\theta)=p_0\mathbb{I}(\theta=0)+(1-p_0)f_N(\theta)\), onde \(f_N\) é a densidade da \(Normal(0,1)\). Sua função de distribuição a prioi, \(F(\theta)=p_0~\mathbb{I}(\theta\geq0)+(1-p_0)~\Phi\left(\theta/\sqrt{2}\right)\), está representada no gráfico a seguir.
+\emph{Exemplo 2.} Suponha que deseja-se testar \(H_0: \theta=0\) contra \(H_1: \theta\neq 0\). Suponha que sua opinião a priori é \(\theta \sim Normal(0,2)\). Contudo, já foi visto que \(P(\theta=0|\boldsymbol x)=0\), \(\forall \boldsymbol x \in \mathfrak{X}\). Deste modo, você opta por atribuir uma probabilidade positiva \(p_0=0.2\) para o ponto \(\theta=0\), ou seja, você vai considerar uma distribuição mista \(f(\theta)=p_0\mathbb{I}(\theta=0)+(1-p_0)f_N(\theta)\), onde \(f_N\) é a densidade da \(Normal(0,2)\). Sua função de distribuição a prioi, \(F(\theta)=p_0~\mathbb{I}(\theta\geq0)+(1-p_0)~\Phi\left(\theta/\sqrt{2}\right)\), está representada no gráfico a seguir.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2987,8 +2987,8 @@ Esse resultado pode não valer em outros contextos. Por exemplo, quando \(dim(\T
 
 \(~\)
 
-\hypertarget{p-value---nivel-de-significuxe2ncia-adaptativo}{%
-\section{P-value - Nivel de Significância Adaptativo}\label{p-value---nivel-de-significuxe2ncia-adaptativo}}
+\hypertarget{p-value---nuxedvel-de-significuxe2ncia-adaptativo}{%
+\section{P-value - Nível de Significância Adaptativo}\label{p-value---nuxedvel-de-significuxe2ncia-adaptativo}}
 
 Recentemente, o \emph{p-value} e a utilização do famoso nível \(\alpha=0.05\) têm sido muito questionados, não apenas na área de testes de hipóteses mas na ciência como um todo. A ideia de fixar um nível de significância é que a probabilidade de \emph{erro tipo I} fica ``controlada'' e a probabilidade do \emph{erro tipo II} diminui quanto maior o tamanho amostral. Por essa razão, é comum nas áreas de planejamento de experimentos e amostragem, o cálculo do tamanho amostral para um determinado estudo. Infelizmente, na maior parte dos problemas do dia a dia de um estatístico, não há um planejamento cuidadoso ou as amostras disponíveis são ``amostras de conveniência''. Simultaneamente, com a ``revolução da informação'', a quantidade de dados disponível é cada vez maior. A consequência disso no cenário de testes de hipóteses é que os testes ficam muito poderosos e há uma tendência maior de rejeitar a hipótese nula.
 
@@ -3698,13 +3698,13 @@ Por fim são apresentadas as estimativas das densidades marginais e as regiões 
 
 \begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
-\hypertarget{bibliotecas-de-r-para-inferuxeancia-bayesiana}{%
-\section{Bibliotecas de R para Inferência Bayesiana}\label{bibliotecas-de-r-para-inferuxeancia-bayesiana}}
+\hypertarget{R}{%
+\chapter{Bibliotecas de R para Inferência Bayesiana}\label{R}}
 
 Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, \texttt{LaplacesDemon} e \texttt{Stan}, que são bibliotecas utilizadas para simular dados da posteriori. Alguns dos gráficos apresentados nessa seção serão construídos com bibliotecas específicas para avaliar amostras da posteriori, \texttt{ggmcmc} e \texttt{bayesplot}.
 
 \hypertarget{o-modelo-de-regressuxe3o-linear}{%
-\subsection{O Modelo de Regressão Linear}\label{o-modelo-de-regressuxe3o-linear}}
+\section{O Modelo de Regressão Linear}\label{o-modelo-de-regressuxe3o-linear}}
 
 Inicialmente, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística. Considere \(n\) observações de uma variável aleatória de interesse (chamada de \emph{variável dependente} ou \emph{variável resposta}) e de \(p-1\) características associadas a cada uma dessas observações (chamadas de \emph{variáveis dependentes} ou \emph{explicativas} ou \emph{covariáveis}), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
 
@@ -3759,7 +3759,7 @@ Na abordagem \emph{frequentista}, se \(\boldsymbol{X}'\boldsymbol{X}\) é não s
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-64-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-63-1} \end{center}
 
 \(~\)
 
@@ -3835,11 +3835,11 @@ A seguir são apresentadas as distribuições marginais dos parâmetros, a distr
 \NormalTok{s2plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x=}\NormalTok{sigma2lim),}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{x), }\AttributeTok{colour =} \StringTok{"0.Posterior"}\NormalTok{)}\SpecialCharTok{+}
   \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ extraDistr}\SpecialCharTok{::}\NormalTok{dinvgamma, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ a1, }\AttributeTok{beta =}\NormalTok{ b1)) }\SpecialCharTok{+}
   \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{)}
-\FunctionTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(b1plot,b2plot,s2plot,}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-64-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3855,7 +3855,7 @@ A seguir são apresentadas as distribuições marginais dos parâmetros, a distr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-66-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-65-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3876,14 +3876,14 @@ A seguir são apresentadas as distribuições marginais dos parâmetros, a distr
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-67-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-66-1} \end{center}
 
 \(~\)
 
 \(~\)
 
 \hypertarget{laplaces-demon}{%
-\subsection{Laplace's Demon}\label{laplaces-demon}}
+\section{Laplace's Demon}\label{laplaces-demon}}
 
 LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementados de MCMC, permitindo fazer Inferência Bayesiana aproximada. Os algoritimos de MCMC disponíveis são
 
@@ -4049,7 +4049,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Nov 03 14:52:16 2020
+## Laplace's Demon was called on Mon Jun 21 18:27:15 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Metropolis-within-Gibbs 
@@ -4100,7 +4100,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 ## 
 ## Iterations: 12000
 ## Log(Marginal Likelihood): -126.8415
-## Minutes of run-time: 0.3
+## Minutes of run-time: 0.32
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 3
@@ -4156,7 +4156,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-68-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4164,7 +4164,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-2} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-68-2} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4185,7 +4185,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Nov 03 14:52:38 2020
+## Laplace's Demon was called on Mon Jun 21 18:27:35 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Adaptive Metropolis-within-Gibbs 
@@ -4219,9 +4219,9 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-1} \end{center}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-2} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4238,11 +4238,12 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
   \FunctionTok{stat\_function}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\AttributeTok{fun =}\NormalTok{ extraDistr}\SpecialCharTok{::}\NormalTok{dinvgamma, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ a1, }\AttributeTok{beta =}\NormalTok{ b1)) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(sigma2, }\AttributeTok{colour =}\NormalTok{ Algorithm)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{xlab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Method"}\NormalTok{)}
-\FunctionTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(b1plot,b2plot,s2plot,}
+                  \AttributeTok{ncol=}\DecValTok{1}\NormalTok{,}\AttributeTok{common.legend=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-71-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4285,7 +4286,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 ## 
 ## Iterations: 12000
 ## Log(Marginal Likelihood): NA
-## Minutes of run-time: 0.3
+## Minutes of run-time: 0.31
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 3
@@ -4359,7 +4360,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 ## 
 ## Initial.Values <- as.initial.values(Fit2)
 ## Fit2 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
-##      Covar=Fit2$Covar, Iterations=420000, Status=40000, Thinning=105,
+##      Covar=Fit2$Covar, Iterations=420000, Status=38709, Thinning=105,
 ##      Algorithm="AFSS", Specs=list(A=Inf, B=NULL, m=100,
 ##      n=0, w=1))
 ## 
@@ -4379,7 +4380,7 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Nov 03 14:53:24 2020
+## Laplace's Demon was called on Mon Jun 21 18:28:00 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Automated Factor Slice Sampler 
@@ -4411,9 +4412,9 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-71-1} \end{center}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-2} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-71-2} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4430,23 +4431,24 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
   \FunctionTok{stat\_function}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\AttributeTok{fun =}\NormalTok{ extraDistr}\SpecialCharTok{::}\NormalTok{dinvgamma, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ a1, }\AttributeTok{beta =}\NormalTok{ b1)) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(sigma2, }\AttributeTok{colour =}\NormalTok{ Algorithm)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{xlab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Method"}\NormalTok{)}
-\FunctionTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(b1plot,b2plot,s2plot,}
+                  \AttributeTok{ncol=}\DecValTok{1}\NormalTok{,}\AttributeTok{common.legend=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{p.interval}\NormalTok{(Post3}\SpecialCharTok{$}\NormalTok{beta2, }\AttributeTok{HPD=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{MM=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-73-1} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{p.interval}\NormalTok{(Post3}\SpecialCharTok{$}\NormalTok{beta1, }\AttributeTok{HPD=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{MM=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{plot=}\ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-74-1} \end{center}
-
 \begin{verbatim}
-##         Lower  Upper
-## [1,] 6.383021 10.175
+##          Lower     Upper
+## [1,] 0.1274793 0.2042041
 ## attr(,"Probability.Interval")
 ## [1] 0.95
 \end{verbatim}
@@ -4461,16 +4463,16 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 \NormalTok{Post }\OtherTok{=} \FunctionTok{rbind}\NormalTok{(Post0,Post1,Post2,Post3)}
 \FunctionTok{ggplot}\NormalTok{(Post) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(beta1,beta2,}\AttributeTok{colour=}\NormalTok{Algorithm), }\AttributeTok{shape=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(Algorithm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .)}
+  \FunctionTok{facet\_wrap}\NormalTok{(Algorithm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .) }\SpecialCharTok{+} \FunctionTok{guides}\NormalTok{(}\AttributeTok{colour =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-74-2} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{stan}{%
-\subsection{Stan}\label{stan}}
+\section{Stan}\label{stan}}
 
 O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A da linguagem utilizada é independente da plataforma e existem bibliotecas para R (\texttt{rstan}) e Python.
 
@@ -4563,7 +4565,8 @@ O Stan é uma plataforma de modelagem estatística de alto desempenho. Em partic
   \FunctionTok{stat\_function}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{colour=}\StringTok{"0.Posterior"}\NormalTok{), }\AttributeTok{fun =}\NormalTok{ extraDistr}\SpecialCharTok{::}\NormalTok{dinvgamma, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ a1, }\AttributeTok{beta =}\NormalTok{ b1)) }\SpecialCharTok{+}
   \FunctionTok{geom\_density}\NormalTok{(}\FunctionTok{aes}\NormalTok{(sigma2, }\AttributeTok{colour =}\NormalTok{ Algorithm)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{xlab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Posterior"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Method"}\NormalTok{)}
-\FunctionTok{multiplot}\NormalTok{(b1plot,b2plot,s2plot)}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(b1plot,b2plot,s2plot,}
+                  \AttributeTok{ncol=}\DecValTok{1}\NormalTok{,}\AttributeTok{common.legend=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4575,7 +4578,7 @@ O Stan é uma plataforma de modelagem estatística de alto desempenho. Em partic
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Algorithm=}\FunctionTok{ifelse}\NormalTok{(Algorithm}\SpecialCharTok{==}\StringTok{"4.RStan"}\NormalTok{,}\StringTok{"1.RStan"}\NormalTok{,}\StringTok{"0.Posterior"}\NormalTok{))}
 \FunctionTok{ggplot}\NormalTok{(Post) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(beta1,beta2,}\AttributeTok{colour=}\NormalTok{Algorithm), }\AttributeTok{shape=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{facet\_wrap}\NormalTok{(Algorithm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .)}
+  \FunctionTok{facet\_wrap}\NormalTok{(Algorithm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .) }\SpecialCharTok{+} \FunctionTok{guides}\NormalTok{(}\AttributeTok{colour =} \StringTok{"none"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4739,7 +4742,7 @@ O Stan é uma plataforma de modelagem estatística de alto desempenho. Em partic
 \(~\)
 
 \hypertarget{mlg}{%
-\subsection{MLG}\label{mlg}}
+\section{MLG}\label{mlg}}
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como \emph{regressão logística}.
 
@@ -4755,7 +4758,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(rstan)}
+\FunctionTok{require}\NormalTok{(rstan)}
 
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(mtcars)}
 \CommentTok{\# mpg:  Miles/(US)gallon ;  vs: Engine(0=V{-}shaped,1=straight)}
@@ -4796,7 +4799,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \NormalTok{burnin}\OtherTok{=}\DecValTok{1000}
 
 \NormalTok{stan\_log }\OtherTok{\textless{}{-}} \FunctionTok{stan}\NormalTok{(}\AttributeTok{model\_code =}\NormalTok{ rs\_code, }\AttributeTok{data =}\NormalTok{ stan\_data, }\AttributeTok{init =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}
-  \AttributeTok{chains =} \DecValTok{1}\NormalTok{, }\AttributeTok{iter =}\NormalTok{ N}\SpecialCharTok{*}\NormalTok{thin, }\AttributeTok{warmup =}\NormalTok{ burnin, }\AttributeTok{thin =}\NormalTok{ thin)}
+  \AttributeTok{chains =} \DecValTok{2}\NormalTok{, }\AttributeTok{iter =}\NormalTok{ N}\SpecialCharTok{*}\NormalTok{thin, }\AttributeTok{warmup =}\NormalTok{ burnin, }\AttributeTok{thin =}\NormalTok{ thin)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4822,10 +4825,35 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## Chain 1: Iteration: 19000 / 20000 [ 95%]  (Sampling)
 ## Chain 1: Iteration: 20000 / 20000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.232 seconds (Warm-up)
-## Chain 1:                3.101 seconds (Sampling)
-## Chain 1:                3.333 seconds (Total)
-## Chain 1:
+## Chain 1:  Elapsed Time: 0.297 seconds (Warm-up)
+## Chain 1:                3.142 seconds (Sampling)
+## Chain 1:                3.439 seconds (Total)
+## Chain 1: 
+## 
+## SAMPLING FOR MODEL '6525180a46ff3a51f06bbb110d962a1c' NOW (CHAIN 2).
+## Chain 2: 
+## Chain 2: Gradient evaluation took 0 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 2: Adjust your expectations accordingly!
+## Chain 2: 
+## Chain 2: 
+## Chain 2: Iteration:     1 / 20000 [  0%]  (Warmup)
+## Chain 2: Iteration:  1001 / 20000 [  5%]  (Sampling)
+## Chain 2: Iteration:  3000 / 20000 [ 15%]  (Sampling)
+## Chain 2: Iteration:  5000 / 20000 [ 25%]  (Sampling)
+## Chain 2: Iteration:  7000 / 20000 [ 35%]  (Sampling)
+## Chain 2: Iteration:  9000 / 20000 [ 45%]  (Sampling)
+## Chain 2: Iteration: 11000 / 20000 [ 55%]  (Sampling)
+## Chain 2: Iteration: 13000 / 20000 [ 65%]  (Sampling)
+## Chain 2: Iteration: 15000 / 20000 [ 75%]  (Sampling)
+## Chain 2: Iteration: 17000 / 20000 [ 85%]  (Sampling)
+## Chain 2: Iteration: 19000 / 20000 [ 95%]  (Sampling)
+## Chain 2: Iteration: 20000 / 20000 [100%]  (Sampling)
+## Chain 2: 
+## Chain 2:  Elapsed Time: 0.281 seconds (Warm-up)
+## Chain 2:                4.023 seconds (Sampling)
+## Chain 2:                4.304 seconds (Total)
+## Chain 2:
 \end{verbatim}
 
 \begin{Shaded}
@@ -4836,15 +4864,15 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{verbatim}
 ## Inference for Stan model: 6525180a46ff3a51f06bbb110d962a1c.
-## 1 chains, each with iter=20000; warmup=1000; thin=10; 
-## post-warmup draws per chain=1900, total post-warmup draws=1900.
+## 2 chains, each with iter=20000; warmup=1000; thin=10; 
+## post-warmup draws per chain=1900, total post-warmup draws=3800.
 ## 
 ##           mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-## beta[1] -10.15    0.08 3.51 -17.92 -12.17  -9.65  -7.61  -4.64  1763    1
-## beta[2]   0.50    0.00 0.17   0.22   0.37   0.47   0.60   0.89  1735    1
-## lp__    -13.89    0.03 1.05 -16.67 -14.31 -13.55 -13.15 -12.88  1733    1
+## beta[1] -10.25    0.06 3.58 -18.64 -12.31  -9.80  -7.66  -4.52  3440    1
+## beta[2]   0.50    0.00 0.18   0.21   0.37   0.48   0.60   0.91  3398    1
+## lp__    -13.91    0.02 1.07 -16.85 -14.33 -13.57 -13.15 -12.89  3478    1
 ## 
-## Samples were drawn using NUTS(diag_e) at Tue Nov 10 14:23:37 2020.
+## Samples were drawn using NUTS(diag_e) at Mon Jun 21 18:31:19 2021.
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
 ## convergence, Rhat=1).
@@ -4852,7 +4880,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(bayesplot)}
+\FunctionTok{require}\NormalTok{(bayesplot)}
 
 \NormalTok{post\_log }\OtherTok{\textless{}{-}} \FunctionTok{extract}\NormalTok{(stan\_log, }\AttributeTok{inc\_warmup =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{permuted =} \ConstantTok{FALSE}\NormalTok{)}
 
@@ -4882,8 +4910,9 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{multiplot}\NormalTok{(}\FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
-          \FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[2]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(}
+  \FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[2]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4891,7 +4920,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggmcmc)}
+\FunctionTok{require}\NormalTok{(ggmcmc)}
 \CommentTok{\#ggs(stan\_log) \%\textgreater{}\% ggmcmc(., file = "ggmcmc\_log.html")}
 \FunctionTok{ggs}\NormalTok{(stan\_log) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggs\_pairs}\NormalTok{(., }\AttributeTok{lower =} \FunctionTok{list}\NormalTok{(}\AttributeTok{continuous =} \StringTok{"density"}\NormalTok{))}
 \end{Highlighting}
@@ -4917,7 +4946,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \(~\)
 
 \hypertarget{modelos-dinuxe2micos}{%
-\subsection{Modelos Dinâmicos}\label{modelos-dinuxe2micos}}
+\section{Modelos Dinâmicos}\label{modelos-dinuxe2micos}}
 
 \begin{itemize}
 \item
@@ -4948,7 +4977,7 @@ onde
 
 As distribuição a piori são dadas por
 \[\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)\]
-\[\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)\]
+\[\sigma_i^2 \sim \textit{Gama}({a}_{\sigma_i},{b}_{\sigma_i})\]
 
 \begin{itemize}
 \tightlist
@@ -4967,7 +4996,7 @@ As distribuição a piori são dadas por
 \(~\)
 
 \hypertarget{dados-de-amoxicilina-fonte-cea}{%
-\subsubsection{Dados de Amoxicilina (fonte: CEA)}\label{dados-de-amoxicilina-fonte-cea}}
+\subsection{Dados de Amoxicilina (fonte: CEA)}\label{dados-de-amoxicilina-fonte-cea}}
 
 \begin{itemize}
 \item
@@ -4985,7 +5014,7 @@ As distribuição a piori são dadas por
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(lubridate)}
-\NormalTok{dados }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"Amoxicillin.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{dados }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./data/Amoxicillin.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(Período}\OtherTok{=}\NormalTok{Periodo,}\AttributeTok{Vendas=}\NormalTok{DDD1000hab\_dia,Resistência}\OtherTok{=}\NormalTok{Resistencia\_Amoxicilina.Clavulanato.k)}
 \NormalTok{dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{61}\SpecialCharTok{:}\DecValTok{62}\NormalTok{]}\OtherTok{=}\FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{2.073005}\NormalTok{,}\FloatTok{2.173923}\NormalTok{))}
 \NormalTok{mV}\OtherTok{=}\FunctionTok{mean}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas); sdV}\OtherTok{=}\FunctionTok{sd}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas)}
@@ -5004,11 +5033,12 @@ As distribuição a piori são dadas por
 Para verificar se o efeito da venda de antimicrobianos influencia na resistência
 bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.
 
-\[(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)\]\\
+\[(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)\]
+
 \[\beta_{t+1} = \beta_t + W_t ~,~~ W_t \sim Normal(0,\sigma_r^2)\]
-\[\sigma_y^2 \sim Half-Normal(100)\]\\
-\[\beta_t \sim Normal(0,100)\]\\
-\[\sigma_r^2 \sim Half-Normal(100)\]\\
+\[\sigma_y^2 \sim Gama(2,0.0001)\]\\
+\[\beta_t \sim Normal(0,100)\]
+\[\sigma_r^2 \sim Gama(2,0.0001)\]\\
 * \(Y_t\): proporção de testes de resistência positiva do microbiano \emph{E. coli} no instante \(t\);\\
 * \(X_t\): quantidade de doses consumidas de Amoxicilina (DDD/1000hab/dia) no instante \(t\);\\
 * \(\beta_t\): parâmetro que representa o efeito da venda do antimicrobiano na resistência bacteriana no instante \(t\);\\
@@ -5016,7 +5046,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(walker)}
+\FunctionTok{require}\NormalTok{(walker)}
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
 \CommentTok{\# resistência média e venda média do período anterior a RDC 44}
 \NormalTok{mAntes }\OtherTok{=}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\FunctionTok{year}\NormalTok{(Período)}\SpecialCharTok{\textless{}}\DecValTok{2011}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
@@ -5024,7 +5054,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \NormalTok{fit1 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Vendas=}\NormalTok{Vendas}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],Resistência}\OtherTok{=}\NormalTok{Resistência}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{walker}\NormalTok{(}\AttributeTok{data=}\NormalTok{., }\AttributeTok{formula =}\NormalTok{ Resistência }\SpecialCharTok{\textasciitilde{}} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{rw1}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{+}\NormalTok{Vendas,}\AttributeTok{beta=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
-    \AttributeTok{sigma=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{)),}\AttributeTok{sigma\_y\_prior =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{), }\AttributeTok{chain=}\DecValTok{2}\NormalTok{)}
+    \AttributeTok{sigma=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{)),}\AttributeTok{sigma\_y\_prior =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{), }\AttributeTok{chain=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5032,8 +5062,8 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.001 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 1: Gradient evaluation took 0 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -5050,15 +5080,15 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 7.369 seconds (Warm-up)
-## Chain 1:                8.175 seconds (Sampling)
-## Chain 1:                15.544 seconds (Total)
+## Chain 1:  Elapsed Time: 7.597 seconds (Warm-up)
+## Chain 1:                7.607 seconds (Sampling)
+## Chain 1:                15.204 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 0.001 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 2: Gradient evaluation took 0 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -5075,9 +5105,9 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.61 seconds (Warm-up)
-## Chain 2:                7.921 seconds (Sampling)
-## Chain 2:                15.531 seconds (Total)
+## Chain 2:  Elapsed Time: 8.994 seconds (Warm-up)
+## Chain 2:                9.315 seconds (Sampling)
+## Chain 2:                18.309 seconds (Total)
 ## Chain 2:
 \end{verbatim}
 
@@ -5085,10 +5115,10 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \begin{Highlighting}[]
         \CommentTok{\#Default: chain=4, iter=2000, warmup=1000, thin=1}
 
-\FunctionTok{multiplot}\NormalTok{(}
-  \CommentTok{\#mcmc\_areas(as.matrix(fit1$stanfit), regex\_pars = c("beta\_fixed"), prob=0.9),}
-  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit), }\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_rw1"}\NormalTok{), }\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
-  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit), }\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_y"}\NormalTok{), }\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(}
+  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit),}\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_rw1"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit),}\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_y"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5114,7 +5144,8 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{0.4}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
 \NormalTok{pred1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit1, new\_data)}
 \FunctionTok{plot\_predict}\NormalTok{(pred1, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{length}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\FunctionTok{unique}\NormalTok{(}\FunctionTok{year}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
@@ -5125,7 +5156,8 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{1.1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
 \NormalTok{pred1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit1, new\_data)}
 \FunctionTok{plot\_predict}\NormalTok{(pred1, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{length}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\FunctionTok{unique}\NormalTok{(}\FunctionTok{year}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
@@ -5143,12 +5175,12 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(walker)}
+\FunctionTok{require}\NormalTok{(walker)}
 \FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
 \NormalTok{fit2 }\OtherTok{\textless{}{-}}\NormalTok{ dados }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Vendas=}\NormalTok{Vendas}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],Resistência}\OtherTok{=}\NormalTok{Resistência}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{walker}\NormalTok{(}\AttributeTok{data=}\NormalTok{., }\AttributeTok{formula =}\NormalTok{ Resistência }\SpecialCharTok{\textasciitilde{}} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{rw2}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{+}\NormalTok{Vendas, }\AttributeTok{beta=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}
-        \AttributeTok{sigma=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{),}\AttributeTok{nu=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{)),}\AttributeTok{sigma\_y\_prior=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{), }\AttributeTok{chain=}\DecValTok{2}\NormalTok{)}
+        \AttributeTok{sigma=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{),}\AttributeTok{nu=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{)),}\AttributeTok{sigma\_y\_prior=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{), }\AttributeTok{chain=}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5156,8 +5188,8 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.001 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
+## Chain 1: Gradient evaluation took 0 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -5174,15 +5206,15 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.569 seconds (Warm-up)
-## Chain 1:                8.853 seconds (Sampling)
-## Chain 1:                17.422 seconds (Total)
+## Chain 1:  Elapsed Time: 9.708 seconds (Warm-up)
+## Chain 1:                8.487 seconds (Sampling)
+## Chain 1:                18.195 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 0.002 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.
+## Chain 2: Gradient evaluation took 0 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -5199,9 +5231,9 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 8.753 seconds (Warm-up)
-## Chain 2:                6.997 seconds (Sampling)
-## Chain 2:                15.75 seconds (Total)
+## Chain 2:  Elapsed Time: 9.145 seconds (Warm-up)
+## Chain 2:                7.489 seconds (Sampling)
+## Chain 2:                16.634 seconds (Total)
 ## Chain 2:
 \end{verbatim}
 
@@ -5209,9 +5241,9 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \begin{Highlighting}[]
         \CommentTok{\#Default: chain=4, iter=2000, warmup=1000, thin=1}
 
-\FunctionTok{multiplot}\NormalTok{(}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(}
   \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit2}\SpecialCharTok{$}\NormalTok{stanfit), }\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_rw2"}\NormalTok{), }\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
-  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit2}\SpecialCharTok{$}\NormalTok{stanfit), }\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_y"}\NormalTok{), }\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{))}
+  \FunctionTok{mcmc\_areas}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(fit2}\SpecialCharTok{$}\NormalTok{stanfit), }\AttributeTok{regex\_pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_y"}\NormalTok{), }\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5237,7 +5269,8 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{0.4}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
 \NormalTok{pred2 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit2, new\_data)}
 \FunctionTok{plot\_predict}\NormalTok{(pred2, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{length}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\FunctionTok{unique}\NormalTok{(}\FunctionTok{year}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
@@ -5248,7 +5281,8 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\FloatTok{1.1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Vendas=}\FunctionTok{seq}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Vendas[}\DecValTok{108}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{mAntes[}\DecValTok{1}\NormalTok{],}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{12}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{11}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.08}\NormalTok{)))}
 \NormalTok{pred2 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit2, new\_data)}
 \FunctionTok{plot\_predict}\NormalTok{(pred2, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{length}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,}\DecValTok{12}\NormalTok{),}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\FunctionTok{unique}\NormalTok{(}\FunctionTok{year}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{Período)),}\DecValTok{2017}\NormalTok{))}
@@ -5266,6 +5300,258 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{itemize}
 
 \(~\)
+
+\hypertarget{dados-de-covid-19}{%
+\subsection{Dados de Covid-19}\label{dados-de-covid-19}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Dados de Covid-19}: \href{https://brasil.io/}{Brasil.io}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Data}: dia/mes/ano.\\
+  \item
+    \emph{Casos Novos}: novos casos registrados no dia.\\
+  \item
+    \emph{Mortes}: mortes registradas no dia.
+  \end{itemize}
+\item
+  \textbf{Dados de Mobilidade}: \href{https://www.google.com/covid19/mobility/}{Google}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{Data}: dia/mes/ano.\\
+  \item
+    \emph{Varejo e Lazer}: Tendências de mobilidade de lugares como restaurantes, cafés, shopping centers, parques temáticos, museus, bibliotecas e cinemas.\\
+  \item
+    \emph{Mercados e Farmácias}: Tendências de mobilidade de lugares como mercados, armazéns de alimentos, feiras, lojas de alimentos gourmet, drogarias e farmácias.\\
+  \item
+    \emph{Parques}: Tendências de mobilidade de lugares como parques nacionais, praias públicas, marinas, parques para cães, praças e jardins públicos.\\
+  \item
+    \emph{Transporte}: Tendências de mobilidade de lugares como terminais de transporte público, por exemplo, estações de metrô, ônibus e trem.\\
+  \item
+    \emph{Trabalho}: Tendências de mobilidade de locais de trabalho.\\
+  \item
+    \emph{Residência}: Tendências de mobilidade de áreas residenciais.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(walker)}
+\NormalTok{dados1 }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./data/covid19{-}Brasil.io{-}SPSP.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(epidemiological\_week,date,order\_for\_place,}
+\NormalTok{         last\_available\_confirmed,new\_confirmed,}
+\NormalTok{         last\_available\_confirmed\_per\_100k\_inhabitants,}
+\NormalTok{         last\_available\_deaths,new\_deaths,}
+\NormalTok{         last\_available\_death\_rate,estimated\_population)}
+\NormalTok{dados2 }\OtherTok{=} \FunctionTok{rbind}\NormalTok{(}\FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./data/2020\_BR\_Region\_Mobility\_Report.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{filter}\NormalTok{(sub\_region\_1}\SpecialCharTok{==}\StringTok{"State of São Paulo"}\NormalTok{,sub\_region\_2}\SpecialCharTok{==}\StringTok{"São Paulo"}\NormalTok{),}
+   \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./data/2021\_BR\_Region\_Mobility\_Report.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{filter}\NormalTok{(sub\_region\_1}\SpecialCharTok{==}\StringTok{"State of São Paulo"}\NormalTok{,sub\_region\_2}\SpecialCharTok{==}\StringTok{"São Paulo"}\NormalTok{))}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(date, retail\_and\_recreation\_percent\_change\_from\_baseline,}
+\NormalTok{               grocery\_and\_pharmacy\_percent\_change\_from\_baseline,}
+\NormalTok{               parks\_percent\_change\_from\_baseline,}
+\NormalTok{               transit\_stations\_percent\_change\_from\_baseline,}
+\NormalTok{               workplaces\_percent\_change\_from\_baseline,}
+\NormalTok{               residential\_percent\_change\_from\_baseline)}
+\NormalTok{dados }\OtherTok{=} \FunctionTok{inner\_join}\NormalTok{(dados1,dados2,}\AttributeTok{by=}\StringTok{"date"}\NormalTok{)}
+
+\CommentTok{\# Faz gráfico de duas séries temporais ajustando os eixos}
+\CommentTok{\# dados é da forma (tempo,série1,série2)}
+\NormalTok{series }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(dados,}\AttributeTok{name1=}\FunctionTok{names}\NormalTok{(dados)[}\DecValTok{2}\NormalTok{],}\AttributeTok{name2=}\FunctionTok{names}\NormalTok{(dados)[}\DecValTok{3}\NormalTok{])\{}
+  \CommentTok{\# aux para eixo secundário}
+\NormalTok{  aux}\OtherTok{=}\NormalTok{(}\FunctionTok{max}\NormalTok{(dados[[}\DecValTok{2}\NormalTok{]])}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{2}\NormalTok{]]))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{max}\NormalTok{(dados[[}\DecValTok{3}\NormalTok{]])}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{3}\NormalTok{]])) }
+\NormalTok{  dados }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ dados[[}\DecValTok{1}\NormalTok{]])) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ dados[[}\DecValTok{2}\NormalTok{]], }\AttributeTok{colour =}\NormalTok{ name1)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ (dados[[}\DecValTok{3}\NormalTok{]]}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{3}\NormalTok{]]))}\SpecialCharTok{*}\NormalTok{aux}\SpecialCharTok{+}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{2}\NormalTok{]]), }\AttributeTok{colour =}\NormalTok{ name2)) }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{sec.axis=}
+      \FunctionTok{sec\_axis}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{.}\SpecialCharTok{/}\NormalTok{aux}\SpecialCharTok{{-}}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{2}\NormalTok{]])}\SpecialCharTok{/}\NormalTok{aux}\SpecialCharTok{+}\FunctionTok{min}\NormalTok{(dados[[}\DecValTok{3}\NormalTok{]]),}\AttributeTok{name=}\NormalTok{name2)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{,}\AttributeTok{y=}\NormalTok{name1,}\AttributeTok{colour=}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{g1}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      retail\_and\_recreation\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Varejo e Lazer"}\NormalTok{)}
+
+\NormalTok{g2}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      grocery\_and\_pharmacy\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Mercados e Farmácias"}\NormalTok{)}
+
+\NormalTok{g3}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      parks\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Parques"}\NormalTok{)}
+
+\NormalTok{g4}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      transit\_stations\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Transporte"}\NormalTok{)}
+
+\NormalTok{g5}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      workplaces\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Trabalho"}\NormalTok{)}
+
+\NormalTok{g6}\OtherTok{=}\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(date}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{select}\NormalTok{(date,new\_confirmed,}
+\NormalTok{      residential\_percent\_change\_from\_baseline) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\StringTok{"Casos Novos"}\NormalTok{,}\StringTok{"Residencia"}\NormalTok{)}
+\NormalTok{g1;g2;g3;g4;g5;g6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-1} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-2} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-3} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-4} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-5} \end{center}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/dados_covid-6} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ds }\OtherTok{=}\NormalTok{  dados }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{y=}\NormalTok{new\_confirmed,}\AttributeTok{x1=}\NormalTok{retail\_and\_recreation\_percent\_change\_from\_baseline,}\AttributeTok{x2=}\NormalTok{grocery\_and\_pharmacy\_percent\_change\_from\_baseline,}\AttributeTok{x3=}\NormalTok{parks\_percent\_change\_from\_baseline,}\AttributeTok{x4=}\NormalTok{dados}\SpecialCharTok{$}\NormalTok{transit\_stations\_percent\_change\_from\_baseline,}\AttributeTok{x5=}\NormalTok{workplaces\_percent\_change\_from\_baseline, }\AttributeTok{x6=}\NormalTok{residential\_percent\_change\_from\_baseline, }\AttributeTok{t=}\NormalTok{date, }\AttributeTok{y2=}\NormalTok{new\_deaths) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(date) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(t,y,x1,x2,x3,x4,x5,x6,y2) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(t}\SpecialCharTok{\textgreater{}=}\StringTok{"2020{-}03{-}23"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# uma semana após início da quarentena}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{x=}\NormalTok{x6}\SpecialCharTok{{-}}\NormalTok{x4)             }\CommentTok{\# "Índice de Mobilidade" (inventei!)}
+  
+\NormalTok{seriesxy}\OtherTok{=}\NormalTok{ds }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(t,y,x) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{series}\NormalTok{(.,}\AttributeTok{name1=}\StringTok{"Casos Novos"}\NormalTok{,}\AttributeTok{name2=}\StringTok{"Índice de Mobilidade"}\NormalTok{)}
+\NormalTok{seriesxy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/plotseriesxy-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{require}\NormalTok{(walker)}
+\NormalTok{fit1 }\OtherTok{\textless{}{-}}\NormalTok{ ds }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#mutate(x=x{-}mean(x),y=y{-}mean(y)) \%\textgreater{}\%}
+  \FunctionTok{walker}\NormalTok{(}\AttributeTok{data=}\NormalTok{., }\AttributeTok{formula =}\NormalTok{ y }\SpecialCharTok{\textasciitilde{}} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{rw1}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\SpecialCharTok{+}\NormalTok{x,}\AttributeTok{beta=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{100}\NormalTok{), }
+    \AttributeTok{sigma=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{)),}\AttributeTok{sigma\_y\_prior =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{0.0001}\NormalTok{), }\AttributeTok{chain=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
+## Chain 1: 
+## Chain 1: Gradient evaluation took 0.016 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 160 seconds.
+## Chain 1: Adjust your expectations accordingly!
+## Chain 1: 
+## Chain 1: 
+## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
+## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
+## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
+## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
+## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
+## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
+## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
+## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
+## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
+## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
+## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
+## Chain 1: 
+## Chain 1:  Elapsed Time: 43.832 seconds (Warm-up)
+## Chain 1:                38.171 seconds (Sampling)
+## Chain 1:                82.003 seconds (Total)
+## Chain 1:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+        \CommentTok{\#Default: chain=4, iter=2000, warmup=1000, thin=1}
+
+\NormalTok{labelx }\OtherTok{=}\NormalTok{ ds }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(t) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{x=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FunctionTok{nrow}\NormalTok{(ds)),}\AttributeTok{dia1=}\NormalTok{lubridate}\SpecialCharTok{::}\FunctionTok{day}\NormalTok{(t),}
+         \AttributeTok{labx=}\NormalTok{lubridate}\SpecialCharTok{::}\FunctionTok{month}\NormalTok{(t, }\AttributeTok{label =} \ConstantTok{TRUE}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(dia1}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(x,labx) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_row}\NormalTok{(}\AttributeTok{x=}\DecValTok{214}\NormalTok{,}\AttributeTok{labx=}\StringTok{"nov"}\NormalTok{,}\AttributeTok{.after=}\DecValTok{7}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_row}\NormalTok{(}\AttributeTok{x=}\DecValTok{267}\NormalTok{,}\AttributeTok{labx=}\StringTok{"jan"}\NormalTok{,}\AttributeTok{.after=}\DecValTok{9}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{add\_row}\NormalTok{(}\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{385}\NormalTok{,}\DecValTok{414}\NormalTok{),}\AttributeTok{labx=}\FunctionTok{c}\NormalTok{(}\StringTok{"mai"}\NormalTok{,}\StringTok{"jun"}\NormalTok{))}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(}
+  \FunctionTok{mcmc\_areas}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_rw1[1]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \FunctionTok{mcmc\_areas}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_rw1[2]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \FunctionTok{mcmc\_areas}\NormalTok{(fit1}\SpecialCharTok{$}\NormalTok{stanfit,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"sigma\_y"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
+  \AttributeTok{ncol=}\DecValTok{1}\NormalTok{,}\AttributeTok{align=}\StringTok{"v"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plotcoef}\OtherTok{=}\FunctionTok{plot\_coefs2}\NormalTok{(fit1,}\AttributeTok{scales=}\StringTok{"free"}\NormalTok{,}\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{,}\AttributeTok{col=}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{x,}\AttributeTok{labels=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{labx)}
+\NormalTok{plotcoef}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(seriesxy,plotcoef,}\AttributeTok{heights=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+          \AttributeTok{ncol =} \DecValTok{1}\NormalTok{, }\AttributeTok{align =} \StringTok{"v"}\NormalTok{,}\AttributeTok{common.legend=}\NormalTok{T,}\AttributeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-3} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pp\_check}\NormalTok{(fit1, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{x,}\AttributeTok{labels=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{labx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-4} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# predição com aumento da taxa de isolamento}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x=}\FunctionTok{seq}\NormalTok{(}\DecValTok{34}\NormalTok{,}\DecValTok{64}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{30}\NormalTok{))}
+\NormalTok{pred1 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit1, new\_data)}
+\FunctionTok{plot\_predict}\NormalTok{(pred1, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{x,}\AttributeTok{labels=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{labx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-5} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#predição com diminuição da taxa de isolamento}
+\NormalTok{new\_data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x=}\FunctionTok{seq}\NormalTok{(}\DecValTok{34}\NormalTok{,}\DecValTok{4}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{30}\NormalTok{))}
+\NormalTok{pred2 }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit1, new\_data)}
+\FunctionTok{plot\_predict}\NormalTok{(pred2, }\AttributeTok{alpha=}\FloatTok{0.8}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{x,}\AttributeTok{labels=}\NormalTok{labelx}\SpecialCharTok{$}\NormalTok{labx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/covid1-6} \end{center}
 
 \hypertarget{appendix-apuxeandice}{%
 \appendix}

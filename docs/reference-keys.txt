@@ -22,8 +22,8 @@ priori-de-máxima-entropia
 alguns-princípios-de-inferência
 TeoDec
 BasDec
-aleatorização-e-decisões-mistas
-problemas-com-dados
+Aleat
+DecDados
 Estimacao
 estimação-pontual
 estimação-por-regiões
@@ -37,7 +37,7 @@ fator-de-bayes
 teste-de-jeffreys
 hipóteses-precisas
 fbst---full-bayesian-significance-test
-p-value---nivel-de-significância-adaptativo
+p-value---nível-de-significância-adaptativo
 Comp
 método-de-monte-carlo
 monte-carlo-com-amostragem-de-importância
@@ -47,7 +47,7 @@ mcmc---monte-carlo-via-cadeias-de-markov
 pequena-introdução-às-cadeias-de-markov
 o-algoritmo-de-metrópolis-hastings
 amostrador-de-gibbs
-bibliotecas-de-r-para-inferência-bayesiana
+R
 o-modelo-de-regressão-linear
 laplaces-demon
 stan
@@ -55,6 +55,7 @@ mlg
 modelos-dinâmicos
 dados-de-amoxicilina-fonte-cea
 extensões-efeitos-mais-suaves-e-modelos-não-gaussianos
+dados-de-covid-19
 medprob
 basprob
 lebesgue

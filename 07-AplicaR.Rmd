@@ -1,52 +1,9 @@
 
-```{r, echo=FALSE}
-# Multiple plot function
-#
-# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
-# - cols:   Number of columns in layout
-# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
-#
-# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
-# then plot 1 will go in the upper left, 2 will go in the upper right, and
-# 3 will go all the way across the bottom.
-#
-multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-  library(grid)
-
-  # Make a list from the ... arguments and plotlist
-  plots <- c(list(...), plotlist)
-  numPlots = length(plots)
-  # If layout is NULL, then use 'cols' to determine layout
-  if (is.null(layout)) {
-    # Make the panel
-    # ncol: Number of columns of plots
-    # nrow: Number of rows needed, calculated from # of cols
-    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
-                     ncol = cols, nrow = ceiling(numPlots/cols))
-  }
-  if (numPlots==1) {
-    print(plots[[1]])
-  } else {
-    # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
-
-    # Make each plot, in the correct location
-    for (i in 1:numPlots) {
-      # Get the i,j matrix positions of the regions that contain this subplot
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
-                                      layout.pos.col = matchidx$col))
-    }
-  }
-}
-```
-
-## Bibliotecas de R para Inferência Bayesiana
+# Bibliotecas de R para Inferência Bayesiana {#R}
 
 Nessa seção serão apresentadas algumas bibliotecas do R para inferência Bayesiana, em especial, `LaplacesDemon` e `Stan`, que são bibliotecas utilizadas para simular dados da posteriori. Alguns dos gráficos apresentados nessa seção serão construídos com bibliotecas específicas para avaliar amostras da posteriori, `ggmcmc` e `bayesplot`. 
 
-### O Modelo de Regressão Linear
+## O Modelo de Regressão Linear
 
 Inicialmente, será apresentado como exemplo o modelo de regressão linear, possivelmente um dos métodos mais usados nas aplicações de inferência estatística. Considere $n$ observações de uma variável aleatória de interesse (chamada de *variável dependente* ou *variável resposta*) e de $p-1$ características associadas a cada uma dessas observações (chamadas de *variáveis dependentes* ou *explicativas* ou *covariáveis*), supostamente fixadas. Um modelo de regressão linear pode ser escrito como
 
@@ -154,7 +111,7 @@ b2plot <- ggplot(data.frame(x=beta2lim), aes(x=x), colour = "0.Posterior") +
 s2plot <- ggplot(data.frame(x=sigma2lim),aes(x=x), colour = "0.Posterior")+
   stat_function(fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
   theme_bw() + xlab(expression(sigma^2)) + ylab("Posterior")
-multiplot(b1plot,b2plot,s2plot)
+ggpubr::ggarrange(b1plot,b2plot,s2plot,ncol=1)
 ```
 
 
@@ -194,7 +151,7 @@ $~$
 $~$
 
 
-### Laplace's Demon
+## Laplace's Demon
 
 LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementados de MCMC, permitindo fazer Inferência Bayesiana aproximada. Os algoritimos de MCMC disponíveis são
 
@@ -343,7 +300,8 @@ s2plot <- ggplot(Post)+
   stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
   geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
   xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
-multiplot(b1plot,b2plot,s2plot)
+ggpubr::ggarrange(b1plot,b2plot,s2plot,
+                  ncol=1,common.legend=TRUE,legend="bottom")
 ```
 
 ---
@@ -377,14 +335,17 @@ s2plot <- ggplot(Post)+
   stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
   geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
   xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
-multiplot(b1plot,b2plot,s2plot)
+ggpubr::ggarrange(b1plot,b2plot,s2plot,
+                  ncol=1,common.legend=TRUE,legend="bottom")
 ```
 
 
 ```{r}
-p.interval(Post3$beta1, HPD=FALSE, MM=FALSE, plot=TRUE)
+p.interval(Post3$beta2, HPD=TRUE, MM=FALSE, plot=TRUE)
+```
 
 
+```{r}
 set.seed(666)
 S0 <- as.matrix(extraDistr::rinvgamma(N/thin-burnin,a1,b1))
 M0 <- apply(S0,1,function(s){mnormt::rmnorm(1,mean=beta1,varcov=s*V1)})
@@ -393,12 +354,12 @@ colnames(Post0) <- c("beta1","beta2","sigma2","Algorithm")
 Post = rbind(Post0,Post1,Post2,Post3)
 ggplot(Post) + theme_bw() +
   geom_point(aes(beta1,beta2,colour=Algorithm), shape=1) +
-  facet_wrap(Algorithm ~ .)
+  facet_wrap(Algorithm ~ .) + guides(colour = "none")
 ```
 
 ---
 
-### Stan
+## Stan
 
 O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A da linguagem utilizada é independente da plataforma e existem bibliotecas para R (`rstan`) e Python.
 
@@ -461,7 +422,8 @@ s2plot <- ggplot(Post)+
   stat_function(aes(colour="0.Posterior"), fun = extraDistr::dinvgamma, args = list(alpha = a1, beta = b1)) +
   geom_density(aes(sigma2, colour = Algorithm)) + theme_bw() +
   xlab(expression(sigma^2)) + ylab("Posterior") + labs(colour = "Method")
-multiplot(b1plot,b2plot,s2plot)
+ggpubr::ggarrange(b1plot,b2plot,s2plot,
+                  ncol=1,common.legend=TRUE,legend="bottom")
 ```
 
 ```{r}
@@ -469,9 +431,8 @@ Post = rbind(Post0,Post4) %>%
   mutate(Algorithm=ifelse(Algorithm=="4.RStan","1.RStan","0.Posterior"))
 ggplot(Post) + theme_bw() +
   geom_point(aes(beta1,beta2,colour=Algorithm), shape=1) +
-  facet_wrap(Algorithm ~ .)
+  facet_wrap(Algorithm ~ .) + guides(colour = "none")
 ```
-
 
 
 $~$
@@ -540,7 +501,7 @@ $~$
 <!-- <!-- https://datascienceplus.com/bayesian-regression-with-stan-part-1-normal-regression/ -->
 
 
-### MLG
+## MLG
 
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como *regressão logística*.
@@ -557,7 +518,7 @@ $\propto \displaystyle\prod_{i=1}^{n} \left(\dfrac{1}{1+e^{\boldsymbol x_i' \bol
 
 
 ```{r}
-library(rstan)
+require(rstan)
 
 dados <- as_tibble(mtcars)
 # mpg:	Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)
@@ -592,11 +553,11 @@ thin=10
 burnin=1000
 
 stan_log <- stan(model_code = rs_code, data = stan_data, init = c(0,0),
-  chains = 1, iter = N*thin, warmup = burnin, thin = thin)
+  chains = 2, iter = N*thin, warmup = burnin, thin = thin)
 
 print(stan_log)
 
-library(bayesplot)
+require(bayesplot)
 
 post_log <- extract(stan_log, inc_warmup = TRUE, permuted = FALSE)
 
@@ -608,10 +569,11 @@ mcmc_acf(post_log, pars = c("beta[1]", "beta[2]"))
 
 mcmc_areas(post_log,pars = c("beta[1]", "beta[2]"),prob=0.9)
 
-multiplot(mcmc_areas(post_log,pars = c("beta[1]"),prob=0.9),
-          mcmc_areas(post_log,pars = c("beta[2]"),prob=0.9))
+ggpubr::ggarrange(
+  mcmc_areas(post_log,pars = c("beta[1]"),prob=0.9),
+  mcmc_areas(post_log,pars = c("beta[2]"),prob=0.9),ncol=1)
 
-library(ggmcmc)
+require(ggmcmc)
 #ggs(stan_log) %>% ggmcmc(., file = "ggmcmc_log.html")
 ggs(stan_log) %>% ggs_pairs(., lower = list(continuous = "density"))
 ```
@@ -630,7 +592,7 @@ $~$
 $~$
 
 
-### Modelos Dinâmicos
+## Modelos Dinâmicos
 
 * A Biblioteca **walker** para do R que usa o RStan para fazer inferência bayesiana em modelos lineares com coeficientes variando no tempo (modelos dinâmicos).
 
@@ -655,7 +617,7 @@ onde
 
 As distribuição a piori são dadas por
 $$\beta_1 \sim \textit{Normal}(m_\beta,{s}_\beta^2)$$
-$$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$
+$$\sigma_i^2 \sim \textit{Gama}({a}_{\sigma_i},{b}_{\sigma_i})$$
 
 * Sobre a biblioteca `walker`:
   - https://cran.r-project.org/web/packages/walker/vignettes/walker.html
@@ -663,7 +625,7 @@ $$\sigma_i^2 \sim \textit{NormalTrunc}({m}_{\sigma_i},{s}_{\sigma_i}^2)$$
 
 $~$
 
-#### Dados de Amoxicilina (fonte: CEA)
+### Dados de Amoxicilina (fonte: CEA)
 
 * Dados mensais de venda de Amoxicilina e resistência da bacteria *E. coli* no período de 01/2008 à 12/2016. 
 
@@ -677,7 +639,7 @@ obriga a retenção da prescrição médica para a venda de antimicrobianos, imp
 
 ```{r}
 library(lubridate)
-dados = read_csv("Amoxicillin.csv") %>% 
+dados = read_csv("./data/Amoxicillin.csv") %>% 
   select(Período=Periodo,Vendas=DDD1000hab_dia,Resistência=Resistencia_Amoxicilina.Clavulanato.k)
 dados$Vendas[61:62]=mean(c(2.073005,2.173923))
 mV=mean(dados$Vendas); sdV=sd(dados$Vendas)
@@ -694,10 +656,11 @@ Para verificar se o efeito da venda de antimicrobianos influencia na resistênci
 bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.
 
 $$(Y_t-\bar{Y_0}) = \beta_t (X_t-\bar{X_0}) + \epsilon_t ~,~~ \epsilon_t \sim Normal(0,\sigma_y^2)$$  
+
 $$\beta_{t+1} = \beta_t + W_t ~,~~ W_t \sim Normal(0,\sigma_r^2)$$
-$$\sigma_y^2 \sim Half-Normal(100)$$  
-$$\beta_t \sim Normal(0,100)$$  
-$$\sigma_r^2 \sim Half-Normal(100)$$   
+$$\sigma_y^2 \sim Gama(2,0.0001)$$  
+$$\beta_t \sim Normal(0,100)$$
+$$\sigma_r^2 \sim Gama(2,0.0001)$$   
 * $Y_t$: proporção de testes de resistência positiva do microbiano *E. coli* no instante $t$;  
 * $X_t$: quantidade de doses consumidas de Amoxicilina (DDD/1000hab/dia) no instante $t$;  
 * $\beta_t$: parâmetro que representa o efeito da venda do antimicrobiano na resistência bacteriana no instante $t$;  
@@ -705,7 +668,7 @@ $$\sigma_r^2 \sim Half-Normal(100)$$
 
 
 ```{r}
-library(walker)
+require(walker)
 set.seed(666)
 # resistência média e venda média do período anterior a RDC 44
 mAntes = dados %>% filter(year(Período)<2011) %>% 
@@ -713,13 +676,13 @@ mAntes = dados %>% filter(year(Período)<2011) %>%
 fit1 <- dados %>% 
   mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>%
   walker(data=., formula = Resistência ~ -1+rw1(~ -1+Vendas,beta=c(0,100),
-    sigma=c(0,100)),sigma_y_prior = c(0,100), chain=2)
+    sigma=c(2,0.0001)),sigma_y_prior = c(2,0.0001), chain=2)
         #Default: chain=4, iter=2000, warmup=1000, thin=1
 
-multiplot(
-  #mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("beta_fixed"), prob=0.9),
-  mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_rw1"), prob=0.9),
-  mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_y"), prob=0.9))
+ggpubr::ggarrange(
+  mcmc_areas(as.matrix(fit1$stanfit),regex_pars = c("sigma_rw1"),prob=0.9),
+  mcmc_areas(as.matrix(fit1$stanfit),regex_pars = c("sigma_y"),prob=0.9),
+  ncol=1)
 ```
 
 
@@ -736,7 +699,8 @@ pp_check(fit1, alpha=0.8) + theme_bw() +
 
 
 ```{r}
-new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.4,length.out=12)+c(0,rnorm(11,0,0.08)))
+set.seed(666)
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.2,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred1 <- predict(fit1, new_data)
 plot_predict(pred1, alpha=0.8) +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
@@ -744,44 +708,12 @@ plot_predict(pred1, alpha=0.8) +
 
 
 ```{r}
-new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1.1,length.out=12)+c(0,rnorm(11,0,0.08)))
+set.seed(666)
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred1 <- predict(fit1, new_data)
 plot_predict(pred1, alpha=0.8) +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
 ```
-
-
-<!-- ```{r} -->
-<!-- set.seed(666) -->
-<!-- # resistência média e venda média do período anterior a RDC 44 -->
-<!-- mAntes = dados %>% filter(year(Período)<2011) %>%  -->
-<!--         summarise(mean(Vendas),mean(Resistência)) %>% t() -->
-<!-- fit2 <- dados %>%  -->
-<!--   mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>% -->
-<!--   walker(data=., formula = Resistência ~ -1+rw1(~ Vendas,beta=c(0,100), -->
-<!--     sigma=c(0,100)),sigma_y_prior = c(0,100), chain=2) -->
-<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
-
-<!-- multiplot( -->
-<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw1"), prob=0.9), -->
-<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
-
-<!-- plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
-
-<!-- pp_check(fit2, alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
-
-<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-0.4,length.out=12)+c(0,rnorm(11,0,0.1))) -->
-<!-- pred2 <- predict(fit2, new_data) -->
-<!-- plot_predict(pred2, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
-
-<!-- new_data <- data.frame(Vendas=seq(-0.81441839,-1,length.out=12)+c(0,rnorm(11,0,0.1))) -->
-<!-- pred2 <- predict(fit2, new_data) -->
-<!-- plot_predict(pred2, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017)) -->
-<!-- ``` -->
 
 
 #### Extensões: Efeitos mais suaves e modelos não gaussianos
@@ -792,17 +724,17 @@ $$\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\e
 
 
 ```{r}
-library(walker)
+require(walker)
 set.seed(666)
 fit2 <- dados %>% 
   mutate(Vendas=Vendas-mAntes[1],Resistência=Resistência-mAntes[2]) %>%
   walker(data=., formula = Resistência ~ -1+rw2(~ -1+Vendas, beta=c(0,100),
-        sigma=c(0,100),nu=c(0,100)),sigma_y_prior=c(0,100), chain=2)
+        sigma=c(2,0.0001),nu=c(0,100)),sigma_y_prior=c(2,0.0001), chain=2)
         #Default: chain=4, iter=2000, warmup=1000, thin=1
 
-multiplot(
+ggpubr::ggarrange(
   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw2"), prob=0.9),
-  mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9))
+  mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9),ncol=1)
 ```
 
 
@@ -817,7 +749,8 @@ pp_check(fit2, alpha=0.8) + theme_bw() +
 ```
 
 ```{r}
-new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.4,length.out=12)+c(0,rnorm(11,0,0.08)))
+set.seed(666)
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.2,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred2 <- predict(fit2, new_data)
 plot_predict(pred2, alpha=0.8) +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
@@ -825,7 +758,8 @@ plot_predict(pred2, alpha=0.8) +
 
 
 ```{r}
-new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1.1,length.out=12)+c(0,rnorm(11,0,0.08)))
+set.seed(666)
+new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred2 <- predict(fit2, new_data)
 plot_predict(pred2, alpha=0.8) +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
@@ -839,106 +773,221 @@ $~$
 
 $~$
 
-<!-- #### Dados de Covid-19 -->
+### Dados de Covid-19
 
-<!-- * Dados de Covid-19: https://brasil.io/ -->
+* **Dados de Covid-19**: [Brasil.io](https://brasil.io/)  
+    + *Data*: dia/mes/ano.  
+    + *Casos Novos*: novos casos registrados no dia.  
+    + *Mortes*: mortes registradas no dia.  
 
-<!-- * Dados de Mobilidade: https://www.google.com/covid19/mobility/ -->
+* **Dados de Mobilidade**: [Google](https://www.google.com/covid19/mobility/)  
+    + *Data*: dia/mes/ano.  
+    + *Varejo e Lazer*: Tendências de mobilidade de lugares como restaurantes, cafés, shopping centers, parques temáticos, museus, bibliotecas e cinemas.  
+    + *Mercados e Farmácias*: Tendências de mobilidade de lugares como mercados, armazéns de alimentos, feiras, lojas de alimentos gourmet, drogarias e farmácias.  
+    + *Parques*: Tendências de mobilidade de lugares como parques nacionais, praias públicas, marinas, parques para cães, praças e jardins públicos.  
+    + *Transporte*: Tendências de mobilidade de lugares como terminais de transporte público, por exemplo, estações de metrô, ônibus e trem.  
+    + *Trabalho*: Tendências de mobilidade de locais de trabalho.  
+    + *Residência*: Tendências de mobilidade de áreas residenciais.  
 
 <!-- * Agradeço à *Renata Massami Hirota* pela compilação dos dados! -->
 
-<!-- ```{r} -->
-<!-- dados = read_csv("G:/Meu Drive/Lenovo Ideapad 310/IME - Disciplinas/2020-1_MAE-0524/Aulas_MAE0524-2020/RMD/covid_sp.csv") %>% -->
-<!--   arrange(date) -->
-<!-- #names(dados) -->
-<!-- #[12] "retail_and_recreation_percent_change_from_baseline" -->
-<!-- #[13] "grocery_and_pharmacy_percent_change_from_baseline" -->
-<!-- #[14] "parks_percent_change_from_baseline" -->
-<!-- #[15] "transit_stations_percent_change_from_baseline" -->
-<!-- #[16] "workplaces_percent_change_from_baseline" -->
-<!-- #[17] "residential_percent_change_from_baseline" -->
-<!-- ds =  dados %>% -->
-<!--   mutate(y=confirmed_per_100k_inhabitants/10,x1=retail_and_recreation_percent_change_from_baseline,x2=grocery_and_pharmacy_percent_change_from_baseline,x3=parks_percent_change_from_baseline,x4=dados$transit_stations_percent_change_from_baseline,x5=workplaces_percent_change_from_baseline, x6=residential_percent_change_from_baseline, t=date) %>% -->
-<!--   arrange(date) %>% -->
-<!--   select(t,y,x1,x2,x3,x4,x5,x6) %>% -->
-<!--   filter(t>="2020-03-23") %>% # uma semana após início da quarentena -->
-<!--   mutate(x=x6-x3-x4)          # "taxa de isolamento" (inventei!) -->
-<!-- FS=(max(ds$y)-min(ds$y))/(max(ds$x)-min(ds$x)) # aux para eixo secundário -->
-<!-- ggplot(ds, aes(x = t)) + theme_bw() + -->
-<!--   geom_line(aes(y = y, colour = "Mortes/Milhão Hab.")) + -->
-<!--   geom_line(aes(y = (x-min(x))*FS+min(y), colour = "Taxa de Isolamento")) + -->
-<!--   scale_y_continuous(sec.axis = sec_axis(~./FS-min(ds$y)/FS+min(ds$x), name = "Taxa de Isolamento")) + -->
-<!--   labs(y="Mortes/Milhão Hab.",colour="") + theme(legend.position = "bottom") -->
-<!-- ``` -->
+```{r dados_covid}
+require(walker)
+# dados1 = read_csv("./data/covid19-Brasil.io-SPSP.csv") %>% 
+#   select(epidemiological_week,date,order_for_place,
+#          last_available_confirmed,new_confirmed,
+#          last_available_confirmed_per_100k_inhabitants,
+#          last_available_deaths,new_deaths,
+#          last_available_death_rate,estimated_population)
+# dados2 = rbind(read_csv("./data/2020_BR_Region_Mobility_Report.csv") %>% 
+#     filter(sub_region_1=="State of São Paulo",sub_region_2=="São Paulo"),
+#    read_csv("./data/2021_BR_Region_Mobility_Report.csv") %>% 
+#     filter(sub_region_1=="State of São Paulo",sub_region_2=="São Paulo"))%>%
+#   select(date, retail_and_recreation_percent_change_from_baseline,
+#                grocery_and_pharmacy_percent_change_from_baseline,
+#                parks_percent_change_from_baseline,
+#                transit_stations_percent_change_from_baseline,
+#                workplaces_percent_change_from_baseline,
+#                residential_percent_change_from_baseline)
+# dados = inner_join(dados1,dados2,by="date")
+# write_csv(dados, file="./data/Covid_SPSP.csv")
 
-<!-- ```{r} -->
-<!-- library(walker) -->
-<!-- ds = ds %>% filter(t>="2020-03-23") -->
-<!-- fit1 <- ds %>% mutate(x=x-mean(x),y=y-mean(y)) %>% -->
-<!--   walker(data=., formula = y ~ 1+rw1(~ -1+x,beta=c(0,100), sigma=c(0,100)), -->
-<!--     beta=c(0,100),sigma_y_prior = c(0,100), chain=1) -->
+dados = read_csv("./data/Covid_SPSP.csv")
+
+# Faz gráfico de duas séries temporais ajustando os eixos
+# dados é da forma (tempo,série1,série2)
+series = function(dados,name1=names(dados)[2],name2=names(dados)[3]){
+  # aux para eixo secundário
+  aux=(max(dados[[2]])-min(dados[[2]]))/(max(dados[[3]])-min(dados[[3]])) 
+  dados %>% ggplot(aes(x = dados[[1]])) + theme_bw() +
+    geom_line(aes(y = dados[[2]], colour = name1)) +
+    geom_line(aes(y = (dados[[3]]-min(dados[[3]]))*aux+min(dados[[2]]), colour = name2)) +
+    scale_y_continuous(sec.axis=
+      sec_axis(~./aux-min(dados[[2]])/aux+min(dados[[3]]),name=name2)) +
+    labs(x="",y=name1,colour="") + theme(legend.position = "bottom")
+}
+
+g1=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      retail_and_recreation_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Varejo e Lazer")
+
+g2=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      grocery_and_pharmacy_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Mercados e Farmácias")
+
+g3=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      parks_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Parques")
+
+g4=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      transit_stations_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Transporte")
+
+g5=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      workplaces_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Trabalho")
+
+g6=dados %>% 
+  filter(date>="2020-03-23") %>% # uma semana após início da quarentena
+  select(date,new_confirmed,
+      residential_percent_change_from_baseline) %>% 
+  series(.,"Casos Novos","Residencia")
+g1;g2;g3;g4;g5;g6
+```
+
+
+```{r plotseriesxy}
+ds =  dados %>%
+  mutate(y=new_confirmed,x1=retail_and_recreation_percent_change_from_baseline,x2=grocery_and_pharmacy_percent_change_from_baseline,x3=parks_percent_change_from_baseline,x4=dados$transit_stations_percent_change_from_baseline,x5=workplaces_percent_change_from_baseline, x6=residential_percent_change_from_baseline, t=date, y2=new_deaths) %>%
+  arrange(date) %>%
+  select(t,y,x1,x2,x3,x4,x5,x6,y2) %>%
+  filter(t>="2020-03-23") %>% # uma semana após início da quarentena
+  mutate(x=x6-x4)             # "Índice de Mobilidade" (inventei!)
+  
+seriesxy=ds %>% select(t,y,x) %>% 
+  series(.,name1="Casos Novos",name2="Índice de Mobilidade")
+seriesxy
+```
+```{r plot_coefs, echo=FALSE}
+plot_coefs2= function(object,level=0.05,alpha=0.33,transform=identity,
+                     scales="fixed",add_zero=TRUE,col=NA){
+    coef_data <- transform(extract(object$stanfit, pars = "beta_rw", 
+        permuted = TRUE)$beta)
+    if (object$distribution != "gaussian") {
+        coef_data <- coef_data[sample(1:nrow(coef_data), size = nrow(coef_data), 
+            replace = TRUE, prob = extract(object$stanfit, pars = "weights", 
+                permuted = TRUE)$weights), , , drop = FALSE]
+    }
+    dimnames(coef_data) <- list(iter = 1:nrow(coef_data), beta = colnames(object$xreg_rw), 
+        time = as.numeric(time(object$y)))
+    coef_data <- as.data.frame(as.table(coef_data))
+    names(coef_data)[4] <- "value"
+    coef_data$time <- as.numeric(levels(coef_data$time))[coef_data$time]
+    quantiles <- summarise(group_by(coef_data, time, beta), lwr = quantile(.data$value, 
+        prob = level), median = quantile(.data$value, prob = 0.5), 
+        upr = quantile(.data$value, prob = 1 - level))
+    p <- ggplot(data = quantiles, mapping = aes(x = .data$time, 
+        y = .data$median, ymin = .data$lwr, ymax = .data$upr)) + 
+        facet_wrap(~beta, scales = scales, ncol=col) + geom_ribbon(aes_(color = "beta", 
+        fill = "beta"), alpha = alpha, linetype = 0) + 
+        geom_line(aes_(color = "beta")) + labs(y = NULL) + 
+        theme(legend.position = "none") + scale_color_manual(name = "", 
+        values = c(beta = color_scheme_get()[[2]])) + scale_fill_manual(name = "", 
+        values = c(beta = color_scheme_get()[[1]]))
+    if (add_zero) 
+        p <- p + geom_hline(yintercept = 0, linetype = "dashed")
+    p
+}
+```
+
+
+
+```{r covid1}
+require(walker)
+fit1 <- ds %>% #mutate(x=x-mean(x),y=y-mean(y)) %>%
+  walker(data=., formula = y ~ -1+rw1(~ 1+x,beta=c(0,100), 
+    sigma=c(2,0.0001)),sigma_y_prior = c(2,0.0001), chain=1)
+        #Default: chain=4, iter=2000, warmup=1000, thin=1
+
+labelx = ds %>% select(t) %>% 
+  mutate(x=seq(1,nrow(ds)),dia1=lubridate::day(t),
+         labx=lubridate::month(t, label = TRUE)) %>% 
+  filter(dia1==1) %>% select(x,labx) %>% 
+  add_row(x=214,labx="nov",.after=7) %>% 
+  add_row(x=267,labx="jan",.after=9) %>% 
+  add_row(x=c(385,414),labx=c("mai","jun"))
+
+ggpubr::ggarrange(
+  mcmc_areas(fit1$stanfit,pars = c("sigma_rw1[1]"),prob=0.9),
+  mcmc_areas(fit1$stanfit,pars = c("sigma_rw1[2]"),prob=0.9),
+  mcmc_areas(fit1$stanfit,pars = c("sigma_y"),prob=0.9),
+  ncol=1,align="v")
+
+plotcoef=plot_coefs2(fit1,scales="free",alpha=0.8,col=1) + theme_bw() +
+  scale_x_continuous(breaks=labelx$x,labels=labelx$labx)
+plotcoef
+
+ggpubr::ggarrange(seriesxy,plotcoef,heights=c(1,2),
+          ncol = 1, align = "v",common.legend=T,legend="bottom")
+
+pp_check(fit1, alpha=0.8) + theme_bw() +
+  scale_x_continuous(breaks=labelx$x,labels=labelx$labx)
+
+# predição com aumento da taxa de isolamento
+new_data <- data.frame(x=seq(34,64,length.out=30))
+pred1 <- predict(fit1, new_data)
+plot_predict(pred1, alpha=0.8) +
+  scale_x_continuous(breaks=labelx$x,labels=labelx$labx)
+
+#predição com diminuição da taxa de isolamento
+new_data <- data.frame(x=seq(34,4,length.out=30))
+pred2 <- predict(fit1, new_data)
+plot_predict(pred2, alpha=0.8) +
+  scale_x_continuous(breaks=labelx$x,labels=labelx$labx)
+```
+
+<!-- ```{r covid_glm} -->
+<!-- require(walker) -->
+<!-- wglm <- ds %>% #mutate(x=x-mean(x),y=y-mean(y)) %>% -->
+<!--   walker_glm(data=., formula = y2 ~ -1+rw1(~ -1+x,beta=c(0,100),  -->
+<!--     sigma=c(2,0.0001)),chain=1,distribution="poisson") -->
 <!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
 
-<!-- multiplot( -->
-<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("beta_fixed"), prob=0.9), -->
-<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_rw1"), prob=0.9), -->
-<!--   mcmc_areas(as.matrix(fit1$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
+<!-- ggpubr::ggarrange( -->
+<!--   #mcmc_areas(wglm$stanfit,pars = c("beta_fixed[1]"),prob=0.9), -->
+<!--   mcmc_areas(wglm$stanfit,pars = c("sigma_rw1[1]"),prob=0.9), -->
+<!--   ncol=1,align="v") -->
 
-<!-- plot_coefs(fit1, scales = "free", alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!-- coef_wglm=plot_coefs(wglm,scales="free",alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=labelx$x,labels=labelx$labx) -->
+<!-- coef_wglm -->
 
-<!-- pp_check(fit1, alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!-- ggpubr::ggarrange(seriesxy,coef_wglm,#heights=c(1,2), -->
+<!--           ncol = 1, align = "v",common.legend=T,legend="bottom") -->
 
-<!-- new_data <- data.frame(x=seq(-28,0,length.out=10)) -->
-<!-- pred1 <- predict(fit1, new_data) -->
+<!-- pp_check(wglm, alpha=0.8) + theme_bw() + -->
+<!--   scale_x_continuous(breaks=labelx$x,labels=labelx$labx) -->
+
+<!-- # predição com aumento da taxa de isolamento -->
+<!-- new_data <- data.frame(x=seq(34,64,length.out=30)) -->
+<!-- pred1 <- predict(wglm, new_data) -->
 <!-- plot_predict(pred1, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!--   scale_x_continuous(breaks=labelx$x,labels=labelx$labx) -->
 
-<!-- new_data <- data.frame(x=seq(-28,-56,length.out=10)) -->
-<!-- pred1 <- predict(fit1, new_data) -->
-<!-- plot_predict(pred1, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
+<!-- #predição com diminuição da taxa de isolamento -->
+<!-- new_data <- data.frame(x=seq(34,4,length.out=30)) -->
+<!-- pred2 <- predict(wglm, new_data) -->
+<!-- plot_predict(pred2, alpha=0.8,level=0.5) + -->
+<!--   scale_x_continuous(breaks=labelx$x,labels=labelx$labx) -->
 <!-- ``` -->
 
-<!-- #### Extensões: Efeitos mais suaves e modelos não gaussianos -->
-
-<!-- Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as estimativas posteriores desses coeficientes podem ter grandes variações de curto prazo que podem não ser realistas na prática. Uma maneira de impor mais suavidade às estimativas é alternar dos coeficientes do passeio aleatório para coeficientes de passeio aleatório de segunda ordem integrados: -->
-<!-- $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t$$ -->
-<!-- $$\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$ -->
-
-
-<!-- ```{r} -->
-<!-- fit2 <- ds %>% mutate(x=x-mean(x),y=y-mean(y)) %>% -->
-<!--   walker(data=., formula = y ~ rw2(~ -1+x, beta=c(0,100), sigma=c(0,100), -->
-<!--         nu=c(0,100)), beta=c(0,100),sigma_y_prior=c(0,100), chain=1) -->
-<!--         #Default: chain=4, iter=2000, warmup=1000, thin=1 -->
-
-<!-- multiplot( -->
-<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("beta_fixed"), prob=0.9), -->
-<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_rw2"), prob=0.9), -->
-<!--   mcmc_areas(as.matrix(fit2$stanfit), regex_pars = c("sigma_y"), prob=0.9)) -->
-
-<!-- plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
-
-<!-- pp_check(fit2, alpha=0.8) + theme_bw() + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
-
-<!-- new_data <- data.frame(x=seq(-28,0,length.out=10)) -->
-<!-- pred2 <- predict(fit2, new_data) -->
-<!-- plot_predict(pred2, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
-
-<!-- new_data <- data.frame(x=seq(-28,-56,length.out=10)) -->
-<!-- pred2 <- predict(fit2, new_data) -->
-<!-- plot_predict(pred2, alpha=0.8) + -->
-<!--   scale_x_continuous(breaks=c(1,16,46,77,107),labels=c("mar","abr","mai","jun","jul")) -->
-<!-- ``` -->
-<!-- $~$ -->
-
-<!-- * A função `walker_glm` estende o pacote para lidar com observações de com distribuição de *Poisson* e *Binomial*, usando a metodologia similar à mencionada acima. -->
-
-<!-- $~$ -->
-
-<!-- $~$ -->

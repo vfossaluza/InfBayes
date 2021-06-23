@@ -12,9 +12,10 @@ description: "Notas de aula de Infência Bayesiana."
 
 ```{r setup, include=FALSE}
 require(tidyverse)
+require(lubridate)
 require(transformr)
-library(knitr)
-library(kableExtra)
+require(knitr)
+require(kableExtra)
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE, fig.align="center", out.width="80%", warning=FALSE, message = FALSE)
 ```
 
