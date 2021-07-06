@@ -27,7 +27,7 @@ $~$
 
 **Exemplo.** Vamos considerar um simples exemplo de regressão linear, com apenas uma covariável. Para isso, considere as variáveis `speed` e `dist` do conjunto de dados `cars`, disponível no R. Um ajuste usando a abordagem frequentista é apresentado a seguir.
 
-```{r}
+```{r boringreg}
 # a boring regression
 fit = lm(speed ~ 1 + dist, data = cars)
 coef(summary(fit)) # estimativa dos betas
@@ -77,7 +77,7 @@ $~\boldsymbol{V}_0 = \left[\begin{array}{cc} 100 & 0\\ 0 & 100\end{array}\right]
 
 A seguir são apresentadas as distribuições marginais dos parâmetros, a distribuição marginal e as regiões HPD bivariadas do parâmetro $\boldsymbol{\beta}$.
 
-```{r}
+```{r reglin_margpost}
 x = cars$dist   # variável resposta
 y = cars$speed  # variável explicativa
 n = length(x)   # n=50
@@ -115,7 +115,7 @@ ggpubr::ggarrange(b1plot,b2plot,s2plot,ncol=1)
 ```
 
 
-```{r}
+```{r reglin_postbi}
 # posteriori marginal bivariada dos betas
 posterior <- function(theta0,theta1) { apply(cbind(theta0,theta1),1,function(w){ mnormt::dmt(w, mean=c(beta1), S=V, df=2*a1)  }) }
 # Gráfico da posteriori marginal bivariada dos betas
@@ -129,7 +129,7 @@ plotly::plot_ly(alpha=0.1) %>%
 
 
 
-```{r}
+```{r reglin_HPDbi}
 # Curvas de Probabilidade
 l = c(0.1,0.3,0.5,0.8,0.9,0.95,0.99)
 z1v = sort(as.vector(z1),decreasing = TRUE)
@@ -198,20 +198,23 @@ LaplacesDemon é uma biblioteca do R que oferece diversos algoritimos implementa
 1.  Updating Sequential Adaptive Metropolis-within-Gibbs (USAMWG)
 1.  Updating Sequential Metropolis-within-Gibbs (USMWG)
 
-https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/BayesianInference.pdf
+$~$
 
-https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/LaplacesDemonTutorial.pdf
+Manuais do [LaplacesDemon](https://cran.r-project.org/web/packages/LaplacesDemon/LaplacesDemon.pdf)
 
-https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/Examples.pdf
+* [Tutorial](https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/LaplacesDemonTutorial.pdf)
 
-https://cran.r-project.org/web/packages/LaplacesDemon/LaplacesDemon.pdf
+* [Inferência Bayesiana](https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/BayesianInference.pdf)
 
+* [Exemplos](https://cran.r-project.org/web/packages/LaplacesDemon/vignettes/Examples.pdf)
 
 $~$
 
+Voltando ao exemplo de regressão linear:
+
 + Especificação do modelo
 
-```{r}
+```{r LaplacesDemon}
 require(LaplacesDemon)
 
 parm.names=as.parm.names(list(beta=rep(0,p), sigma2=0))
@@ -251,7 +254,7 @@ N=(2000+burnin)*thin
 
 + **Exemplo 1:** Metropolis-within-Gibbs (MWG)
 
-```{r}
+```{r LaplacesDemon_MWG}
 set.seed(666)
 Fit1 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
   Covar=NULL, Iterations=N, Status=N/5, Thinning=thin,
@@ -265,12 +268,11 @@ plot(Fit1, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
 #plot(Fit1, BurnIn=burnin, MyData, PDF=FALSE, Parms=NULL)
 ```
 
-
 ---
 
-+ **Exemplo 2:** Adaptative Metropolis-within-Gibbs (MWG)
++ **Exemplo 2:** Adaptative Metropolis-within-Gibbs (AMWG)
 
-```{r}
+```{r LaplacesDemon_AMWG}
 set.seed(666)
 Fit2 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
   Covar=NULL, Iterations=N, Status=N/5, Thinning=thin,
@@ -286,7 +288,7 @@ colnames(Post2) <- c("beta1","beta2","sigma2","Algorithm")
 plot(Fit2, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
 ```
 
-```{r}
+```{r LaplacesDemon_Compar1}
 Post <- rbind(Post1,Post2)
 b1plot <- ggplot(Post) +
   stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
@@ -308,7 +310,7 @@ ggpubr::ggarrange(b1plot,b2plot,s2plot,
 
 + **Exemplo 3:** Consort e Automated Factor Slice Sampler (AFSS)
 
-```{r}
+```{r LaplacesDemon_AFSS}
 Consort(Fit2)
 Initial.Values <- as.initial.values(Fit2)
 
@@ -321,7 +323,7 @@ colnames(Post3) <- c("beta1","beta2","sigma2","Algorithm")
 plot(Fit3, BurnIn=0, MyData, PDF=FALSE, Parms=NULL)
 ```
 
-```{r}
+```{r LaplacesDemon_Compar2}
 Post <- rbind(Post1,Post2,Post3)
 b1plot <- ggplot(Post) +
   stat_function(aes(colour="0.Posterior"), fun = mnormt::dmt,args = list(mean = beta1[1], S = V[1,1], df=2*a1)) +
@@ -340,12 +342,12 @@ ggpubr::ggarrange(b1plot,b2plot,s2plot,
 ```
 
 
-```{r}
+```{r LaplacesDemon_HPDbeta2}
 p.interval(Post3$beta2, HPD=TRUE, MM=FALSE, plot=TRUE)
 ```
 
 
-```{r}
+```{r LaplacesDemon_ComparBi}
 set.seed(666)
 S0 <- as.matrix(extraDistr::rinvgamma(N/thin-burnin,a1,b1))
 M0 <- apply(S0,1,function(s){mnormt::rmnorm(1,mean=beta1,varcov=s*V1)})
@@ -361,16 +363,22 @@ ggplot(Post) + theme_bw() +
 
 ## Stan
 
-O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A da linguagem utilizada é independente da plataforma e existem bibliotecas para R (`rstan`) e Python.
+O Stan é uma plataforma de modelagem estatística de alto desempenho. Em particular, permite fazer inferência bayesiana usando o método de Monte Carlo Hamiltoniano^[Para uma interessante ilustração do método, visite esse [link](https://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html).] (HMC) e a variação No-U-Turn Sampler (NUTS). Esses recursos convergem para distribuições alvo de altas dimensões muito mais rapidamente que métodos mais simples, como o amostrador de Gibbs ou outras variações do método de Metropolis-Hastings. A linguagem utilizada é independente da plataforma e existem bibliotecas para R (`rstan`) e Python.
 
-https://mc-stan.org/
+Principais manuais do [Stan](https://mc-stan.org/):
+
++ [Manual de Referência](https://mc-stan.org/docs/2_27/reference-manual/index.html)
+
++ [Guia do Usuário (com vários Exemplos)](https://mc-stan.org/docs/2_27/stan-users-guide/index.html)
+
++ [Funções e distribuições](https://mc-stan.org/docs/2_27/functions-reference/index.html)
 
 
 $~$
 
 **Voltando ao Exemplo**
 
-```{r}
+```{r stan_LM}
 library(rstan)
 # Parametros do método
 Initial.Values <- c(beta_est,sigma_est)
@@ -402,7 +410,7 @@ stan_mod <- stan(model_code = rs_code, data = stan_data, init=Initial.Values,
             chains = 1, iter = N, warmup = burnin, thin = thin)
 ```
 
-```{r}
+```{r rstan_LM_Compar1}
 posterior <- rstan::extract(stan_mod)
 Post4 <- data.frame(posterior$beta[,1],posterior$beta[,2],posterior$sigma2,Algorithm="4.RStan")
 colnames(Post4) <- c("beta1","beta2","sigma2","Algorithm")
@@ -426,7 +434,7 @@ ggpubr::ggarrange(b1plot,b2plot,s2plot,
                   ncol=1,common.legend=TRUE,legend="bottom")
 ```
 
-```{r}
+```{r rstan_LM_Compar2}
 Post = rbind(Post0,Post4) %>%
   mutate(Algorithm=ifelse(Algorithm=="4.RStan","1.RStan","0.Posterior"))
 ggplot(Post) + theme_bw() +
@@ -437,64 +445,61 @@ ggplot(Post) + theme_bw() +
 
 $~$
 
-```{r}
+```{r rstan_LM_graf}
+library(ggmcmc)
 stan_mod2 <- stan(model_code = rs_code, data = stan_data, init=Initial.Values,
             chains = 2, iter = N, warmup = burnin, thin = thin)
-library(ggmcmc)
-#ggs(stan_mod2) %>% ggmcmc(., file = "ggmcmc.html")
 ```
-
-$~$
-
-[**Gráficos ggmcmc**](ggmcmc.html)
 
 $~$
 
 *1. Histograma* com as cadeias geradas combinadas.
 
-```{r}
+```{r ggmcmc_hist}
 ggs(stan_mod2) %>% ggs_histogram(.)
 ```
 *2. Gráficos das Densidades* sobrepostos com cores diferentes por cadeia, permite comparar se as cadeias convergiram para distribuições semelhantes.
 
-```{r}
+```{r ggmcmc_dens}
 ggs(stan_mod2) %>% ggs_density(.)
 ```
 *3. Séries Temporais* das cadeias geradas. É esperado que as cadeias geradas apresentem distribuições semelhantes em torno de uma mesma média, indicando assim que atingiu-se a "estacionariedade".
 
-```{r}
+```{r ggmcmc_trace}
 ggs(stan_mod2) %>% ggs_traceplot(.)
 ```
 *4. Gráfico de Médias Móveis*. É esperado que as curvas das médias das cadeias geradas se aproximem rapidamente de um mesmo valor.
 
-```{r}
+```{r ggmcmc_run}
 ggs(stan_mod2) %>% ggs_running(.)
 ```
 
 *5. Densidades parcial e completa sobrepostas*. Compara a última parte da cadeia (por padrão, os últimos 10% dos valores, em verde) com a cadeia inteira (em preto). Idealmente, as partes inicial e final da cadeia devem ser amostradas na mesma distribuição alvo, de modo que as densidades sobrepostas devem ser semelhantes.
 
-```{r}
+```{r ggmcmc_part}
 ggs(stan_mod2) %>% ggs_compare_partial(.)
 ```
 
 *6. Gráfico de Autocorrelação*. Espera-se alta correlação apenas no primeiro lag. Quando há um comportamento diferente do esperado, deve-se aumentar o tamanho dos saltos (*thin*) entre as observações da cadeia gerada que serão consideradas na amostra final.
 
-```{r}
+```{r ggmcmc_autocor}
 ggs(stan_mod2) %>% ggs_autocorrelation(.)
 ```
 
 *6. Correlação Cruzada*. Quando há alta correlação entre os parâmetros é possível que a convergência da cadeia seja mais lenta.
 
-```{r}
+```{r ggmcmc_crosscor}
 ggs(stan_mod2) %>% ggs_crosscorrelation(.)
 ```
 
-```{r}
+```{r ggmcmc_pairs}
 ggs(stan_mod2) %>% ggs_pairs(., lower = list(continuous = "density"))
 ```
 
 
 $~$
+
+---
 
 $~$
 
@@ -517,10 +522,11 @@ $\propto f(\boldsymbol{y}|\boldsymbol\beta,\boldsymbol{x})f(\boldsymbol\beta)$
 $\propto \displaystyle\prod_{i=1}^{n} \left(\dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{y_i}\left(\dfrac{e^{\boldsymbol x_i' \boldsymbol\beta}}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\right)^{1-y_i} \prod_{j=1}^{p} \dfrac{1}{2b_i} e^{-\frac{|\beta_i|}{b_i}}$.
 
 
-```{r}
+```{r stan_logreg}
+require(tidyverse)
 require(rstan)
 
-dados <- as_tibble(mtcars)
+dados <- tibble(mtcars)
 # mpg:	Miles/(US)gallon ;  vs: Engine(0=V-shaped,1=straight)
 dados %>% ggplot(aes(group=as.factor(vs),y=mpg,fill=as.factor(vs))) +
         geom_boxplot() + scale_fill_discrete(name="vs") + theme_bw()
@@ -559,7 +565,8 @@ print(stan_log)
 
 require(bayesplot)
 
-post_log <- extract(stan_log, inc_warmup = TRUE, permuted = FALSE)
+post_log <- rstan::extract(stan_log, inc_warmup = TRUE, permuted = FALSE)
+
 
 color_scheme_set("mix-brightblue-gray")
 mcmc_trace(post_log,  pars = c("beta[1]", "beta[2]"), n_warmup = 0,
@@ -588,6 +595,8 @@ $~$
 
 
 $~$
+
+---
 
 $~$
 
@@ -637,7 +646,7 @@ incluídas amostras resultantes de exames de sangue e urina positivas, avaliando
 * **Objetivo.** Avaliar o impacto da regulamentação RDC 44 da ANVISA que
 obriga a retenção da prescrição médica para a venda de antimicrobianos, implementada em 26 de Outubro de 2010.
 
-```{r}
+```{r walker_amox}
 library(lubridate)
 dados = read_csv("./data/Amoxicillin.csv") %>% 
   select(Período=Periodo,Vendas=DDD1000hab_dia,Resistência=Resistencia_Amoxicilina.Clavulanato.k)
@@ -667,7 +676,7 @@ $$\sigma_r^2 \sim Gama(2,0.0001)$$
 * $\epsilon_t$ e $W_t$: ruídos brancos.  
 
 
-```{r}
+```{r walker_amox_fit}
 require(walker)
 set.seed(666)
 # resistência média e venda média do período anterior a RDC 44
@@ -686,19 +695,19 @@ ggpubr::ggarrange(
 ```
 
 
-```{r}
+```{r walker_amox_coefs}
 plot_coefs(fit1, scales = "free", alpha=0.8) + theme_bw() +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
 ```
 
 
-```{r}
+```{r walker_amox_check}
 pp_check(fit1, alpha=0.8) + theme_bw() +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
 ```
 
 
-```{r}
+```{r walker_amox_pred1}
 set.seed(666)
 new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.2,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred1 <- predict(fit1, new_data)
@@ -707,7 +716,7 @@ plot_predict(pred1, alpha=0.8) +
 ```
 
 
-```{r}
+```{r walker_amox_pred2}
 set.seed(666)
 new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred1 <- predict(fit1, new_data)
@@ -723,7 +732,7 @@ $$\boldsymbol\beta_{t+1} = \boldsymbol\beta_t + \boldsymbol\nu_t$$
 $$\boldsymbol\nu_{t+1} = \boldsymbol\nu_t + \boldsymbol\eta_t ~,~~ \boldsymbol\eta_t \sim \textit{Normal}_k(0,D)$$
 
 
-```{r}
+```{r walker_amox_rw2}
 require(walker)
 set.seed(666)
 fit2 <- dados %>% 
@@ -738,17 +747,17 @@ ggpubr::ggarrange(
 ```
 
 
-```{r}
+```{r walker_amox_coefs2}
 plot_coefs(fit2, scales = "free", alpha=0.8) + theme_bw() +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
 ```
 
-```{r}
+```{r walker_amox_check2}
 pp_check(fit2, alpha=0.8) + theme_bw() +
   scale_x_continuous(breaks=seq(1,length(dados$Período)+1,12),labels=c(unique(year(dados$Período)),2017))
 ```
 
-```{r}
+```{r walker_amox_pred21}
 set.seed(666)
 new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-0.2,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred2 <- predict(fit2, new_data)
@@ -757,7 +766,7 @@ plot_predict(pred2, alpha=0.8) +
 ```
 
 
-```{r}
+```{r walker_amox_pred22}
 set.seed(666)
 new_data <- data.frame(Vendas=seq(dados$Vendas[108]-mAntes[1],-1,length.out=12)+c(0,rnorm(11,0,0.08)))
 pred2 <- predict(fit2, new_data)
@@ -878,14 +887,15 @@ seriesxy=ds %>% select(t,y,x) %>%
   series(.,name1="Casos Novos",name2="Índice de Mobilidade")
 seriesxy
 ```
+
 ```{r plot_coefs, echo=FALSE}
 plot_coefs2= function(object,level=0.05,alpha=0.33,transform=identity,
                      scales="fixed",add_zero=TRUE,col=NA){
-    coef_data <- transform(extract(object$stanfit, pars = "beta_rw", 
+    coef_data <- transform(rstan::extract(object$stanfit, pars = "beta_rw", 
         permuted = TRUE)$beta)
     if (object$distribution != "gaussian") {
         coef_data <- coef_data[sample(1:nrow(coef_data), size = nrow(coef_data), 
-            replace = TRUE, prob = extract(object$stanfit, pars = "weights", 
+            replace = TRUE, prob = rstan::extract(object$stanfit, pars = "weights", 
                 permuted = TRUE)$weights), , , drop = FALSE]
     }
     dimnames(coef_data) <- list(iter = 1:nrow(coef_data), beta = colnames(object$xreg_rw), 
