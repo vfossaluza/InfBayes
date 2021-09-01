@@ -131,7 +131,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2021-07-06}
+\date{2021-09-01}
 
 \begin{document}
 \maketitle
@@ -2439,23 +2439,14 @@ Sob a abordagem de teoria da decisão, podemos ver um teste de hipóteses como u
 
 Primeiramente, considere o contexto apresentado no Lema de Neyman-Pearson, onde \(\Theta=\{\theta_0,\theta_1\}\) e deseja-se testar \(H_0: \theta=\theta_0\) contra \(H_1: \theta = \theta_1\). Considere que, a priori, \(f(\theta_0) = \pi\), a função de verossimilhança é \(f(\boldsymbol x |\theta)\) e a função de perda apresentada na tabela a seguir.
 
-\(L(d,\theta)\)
-
-\(\theta_0\)
-
-\(\theta_1\)
-
-\(d_0\)
-
-\(0\)
-
-\(b\)
-
-\(d_1\)
-
-\(a\)
-
-\(0\)
+\begin{tabular}{lll}
+\toprule
+$L(d,\theta)$ & $\theta_0$ & $\theta_1$\\
+\midrule
+$d_0$ & $0$ & $b$\\
+$d_1$ & $a$ & $0$\\
+\bottomrule
+\end{tabular}
 
 Então, o risco de uma função de decisão \(\varphi\) é
 
@@ -2504,23 +2495,14 @@ Assim,
 
 Considere agora um caso mais geral, onde \(\Theta=\Theta_0 \dot{\cup} \Theta_1\) e deseja-se testar \(H_0: \theta \in \Theta_0\) contra \(H_1: \theta \in \Theta_1\). Considere também a função de perda mais geral apresentada a seguir, com \(a_0 \leq a_1\) e \(b_0 \leq b_1\).
 
-\(L(d,\theta)\)
-
-\(\Theta_0\)
-
-\(\Theta_1\)
-
-\(d_0\)
-
-\(a_0\)
-
-\(b_1\)
-
-\(d_1\)
-
-\(a_1\)
-
-\(b_0\)
+\begin{tabular}{lll}
+\toprule
+$L(d,\theta)$ & $\Theta_0$ & $\Theta_1$\\
+\midrule
+$d_0$ & $a_0$ & $b_1$\\
+$d_1$ & $a_1$ & $b_0$\\
+\bottomrule
+\end{tabular}
 
 O risco posterior de cada uma das decisões é
 
@@ -2545,23 +2527,14 @@ Assim, o teste de bayes nesse caso é
 
 \textbf{Resultado.} Seja \(\Theta=\Theta_0 \dot{\cup} \Theta_1\) e suponha que deseja-se testar \(H_0: \theta \in \Theta_0\) contra \(H_1: \theta \in \Theta_1\) considerando a função de perda a seguir, com \(a_0 \leq a_1\) e \(b_0 \leq b_1\).
 
-\(L(d,\theta)\)
-
-\(\Theta_0\)
-
-\(\Theta_1\)
-
-\(d_0\)
-
-\(a_0\)
-
-\(b_1\)
-
-\(d_1\)
-
-\(a_1\)
-
-\(b_0\)
+\begin{tabular}{lll}
+\toprule
+$L(d,\theta)$ & $\Theta_0$ & $\Theta_1$\\
+\midrule
+$d_0$ & $a_0$ & $b_1$\\
+$d_1$ & $a_1$ & $b_0$\\
+\bottomrule
+\end{tabular}
 
 Então, o teste de bayes é
 
@@ -2811,51 +2784,14 @@ Note que, nesse caso, \(BF(x)\) não depende da probabilidade a priori \(p_0\) d
 \end{Highlighting}
 \end{Shaded}
 
-0
-
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-BF
-
-0.1094
-
-0.6562
-
-1.6406
-
-2.1875
-
-1.6406
-
-0.6562
-
-0.1094
-
-PP
-
-0.0986
-
-0.3962
-
-0.6213
-
-0.6863
-
-0.6213
-
-0.3962
-
-0.0986
+\begin{tabular}{lrrrrrrr}
+\toprule
+  & 0 & 1 & 2 & 3 & 4 & 5 & 6\\
+\midrule
+BF & 0.1094 & 0.6562 & 1.6406 & 2.1875 & 1.6406 & 0.6562 & 0.1094\\
+PP & 0.0986 & 0.3962 & 0.6213 & 0.6863 & 0.6213 & 0.3962 & 0.0986\\
+\bottomrule
+\end{tabular}
 
 Na tabela acima, são calculados \(P(\theta=1/2|x)\) e \(BF(x)\) para cada \(x\) com \(n=6\), \(p_0=1/2\) e os parâmetros da Beta sendo \(a=b=1\). Considerando \(a_0=b_0=0\) e \(a_1=b_1=1\), os valores de corte para a probabilidade a posteriori e o \(BF\) são, respectivamente, \(1/2\) e \(1\). Desta forma, rejeita-se a hipótese nula para os valores ``extremos'' \(\left\{0,1,5,6\right\}\).
 
@@ -3294,8 +3230,8 @@ de modo que não é necessário conhecer a constante \(c=f(\boldsymbol{x})\) par
 Variable & Stats / Values & Freqs (\% of Valid) & Graph \\
 \midrule
 \endhead
-\vtop{\hbox{\strut sigma2}\hbox{\strut {[}numeric{]}}} & \vtop{\hbox{\strut Mean (sd) : 1.2 (0.5)}\hbox{\strut min \textless{} med \textless{} max:}\hbox{\strut 0.3 \textless{} 1.1 \textless{} 7.3}\hbox{\strut IQR (CV) : 0.6 (0.4)}} & 10000 distinct values & \includegraphics{./tmp/ds0023.png} \\
-\vtop{\hbox{\strut mu}\hbox{\strut {[}numeric{]}}} & \vtop{\hbox{\strut Mean (sd) : 0 (1.5)}\hbox{\strut min \textless{} med \textless{} max:}\hbox{\strut -7.3 \textless{} 0 \textless{} 6.1}\hbox{\strut IQR (CV) : 2 (-253.7)}} & 10000 distinct values & \includegraphics{./tmp/ds0024.png} \\
+\vtop{\hbox{\strut sigma2}\hbox{\strut {[}numeric{]}}} & \vtop{\hbox{\strut Mean (sd) : 1.2 (0.5)}\hbox{\strut min \textless{} med \textless{} max:}\hbox{\strut 0.3 \textless{} 1.1 \textless{} 7.3}\hbox{\strut IQR (CV) : 0.6 (0.4)}} & 10000 distinct values & \includegraphics{./tmp/ds0029.png} \\
+\vtop{\hbox{\strut mu}\hbox{\strut {[}numeric{]}}} & \vtop{\hbox{\strut Mean (sd) : 0 (1.5)}\hbox{\strut min \textless{} med \textless{} max:}\hbox{\strut -7.3 \textless{} 0 \textless{} 6.1}\hbox{\strut IQR (CV) : 2 (-253.7)}} & 10000 distinct values & \includegraphics{./tmp/ds0030.png} \\
 \bottomrule
 \end{longtable}
 
@@ -4056,7 +3992,7 @@ Voltando ao exemplo de regressão linear:
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Jul 06 10:39:50 2021
+## Laplace's Demon was called on Tue Aug 31 16:11:43 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Metropolis-within-Gibbs 
@@ -4107,7 +4043,7 @@ Voltando ao exemplo de regressão linear:
 ## 
 ## Iterations: 12000
 ## Log(Marginal Likelihood): -126.8415
-## Minutes of run-time: 0.34
+## Minutes of run-time: 1.6
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 3
@@ -4192,7 +4128,7 @@ Voltando ao exemplo de regressão linear:
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Jul 06 10:40:12 2021
+## Laplace's Demon was called on Tue Aug 31 16:13:23 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Adaptive Metropolis-within-Gibbs 
@@ -4293,7 +4229,7 @@ Voltando ao exemplo de regressão linear:
 ## 
 ## Iterations: 12000
 ## Log(Marginal Likelihood): NA
-## Minutes of run-time: 0.35
+## Minutes of run-time: 1.25
 ## Model: (NOT SHOWN HERE)
 ## Monitor: (NOT SHOWN HERE)
 ## Parameters (Number of): 3
@@ -4367,7 +4303,7 @@ Voltando ao exemplo de regressão linear:
 ## 
 ## Initial.Values <- as.initial.values(Fit2)
 ## Fit2 <- LaplacesDemon(Model, Data=MyData, Initial.Values,
-##      Covar=Fit2$Covar, Iterations=420000, Status=34285, Thinning=105,
+##      Covar=Fit2$Covar, Iterations=420000, Status=9600, Thinning=105,
 ##      Algorithm="AFSS", Specs=list(A=Inf, B=NULL, m=100,
 ##      n=0, w=1))
 ## 
@@ -4387,7 +4323,7 @@ Voltando ao exemplo de regressão linear:
 
 \begin{verbatim}
 ## 
-## Laplace's Demon was called on Tue Jul 06 10:40:40 2021
+## Laplace's Demon was called on Tue Aug 31 16:15:08 2021
 ## 
 ## Performing initial checks...
 ## Algorithm: Automated Factor Slice Sampler 
@@ -4554,9 +4490,9 @@ Principais manuais do \href{https://mc-stan.org/}{Stan}:
 ## Chain 1: Iteration: 11600 / 12000 [ 96%]  (Sampling)
 ## Chain 1: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.26 seconds (Warm-up)
-## Chain 1:                1.166 seconds (Sampling)
-## Chain 1:                1.426 seconds (Total)
+## Chain 1:  Elapsed Time: 0.83 seconds (Warm-up)
+## Chain 1:                3.016 seconds (Sampling)
+## Chain 1:                3.846 seconds (Total)
 ## Chain 1:
 \end{verbatim}
 
@@ -4604,6 +4540,7 @@ Principais manuais do \href{https://mc-stan.org/}{Stan}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggmcmc)}
 \NormalTok{stan\_mod2 }\OtherTok{\textless{}{-}} \FunctionTok{stan}\NormalTok{(}\AttributeTok{model\_code =}\NormalTok{ rs\_code, }\AttributeTok{data =}\NormalTok{ stan\_data, }\AttributeTok{init=}\NormalTok{Initial.Values,}
             \AttributeTok{chains =} \DecValTok{2}\NormalTok{, }\AttributeTok{iter =}\NormalTok{ N, }\AttributeTok{warmup =}\NormalTok{ burnin, }\AttributeTok{thin =}\NormalTok{ thin)}
 \end{Highlighting}
@@ -4631,9 +4568,9 @@ Principais manuais do \href{https://mc-stan.org/}{Stan}:
 ## Chain 1: Iteration: 11600 / 12000 [ 96%]  (Sampling)
 ## Chain 1: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.27 seconds (Warm-up)
-## Chain 1:                0.961 seconds (Sampling)
-## Chain 1:                1.231 seconds (Total)
+## Chain 1:  Elapsed Time: 1.422 seconds (Warm-up)
+## Chain 1:                5.458 seconds (Sampling)
+## Chain 1:                6.88 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL '6b158d2712aa5479f81bd408884c9453' NOW (CHAIN 2).
@@ -4656,22 +4593,11 @@ Principais manuais do \href{https://mc-stan.org/}{Stan}:
 ## Chain 2: Iteration: 11600 / 12000 [ 96%]  (Sampling)
 ## Chain 2: Iteration: 12000 / 12000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 0.25 seconds (Warm-up)
-## Chain 2:                1.12 seconds (Sampling)
-## Chain 2:                1.37 seconds (Total)
+## Chain 2:  Elapsed Time: 0.692 seconds (Warm-up)
+## Chain 2:                2.971 seconds (Sampling)
+## Chain 2:                3.663 seconds (Total)
 ## Chain 2:
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggmcmc)}
-\CommentTok{\#ggs(stan\_mod2) \%\textgreater{}\% ggmcmc(., file = "ggmcmc.html")}
-\end{Highlighting}
-\end{Shaded}
-
-\(~\)
-
-\href{ggmcmc.html}{\textbf{Gráficos ggmcmc}}
 
 \(~\)
 
@@ -4764,7 +4690,7 @@ Principais manuais do \href{https://mc-stan.org/}{Stan}:
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como \emph{regressão logística}.
 
-Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\theta_i \sim \textit{Ber}(\theta_i)\), em que \(\theta_i\) é tal que \(\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta\) ou, em outras palavras, \(\theta_i = \dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{-\boldsymbol x_i' \boldsymbol\beta}}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}}\) com \(\boldsymbol x_i\) as covariáveis da \(i\)-ésima observação e o vetor de parâmetros \(\boldsymbol\beta=(\beta_1,\ldots,\beta_p)\).
+Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\theta_i \sim \textit{Ber}(\theta_i)\), em que \(\theta_i\) é tal que \(\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta\) ou, em outras palavras, \(\theta_i = \dfrac{1}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{\boldsymbol x_i' \boldsymbol\beta}}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}\) com \(\boldsymbol x_i\) as covariáveis da \(i\)-ésima observação e o vetor de parâmetros \(\boldsymbol\beta=(\beta_1,\ldots,\beta_p)\).
 
 \(~\)
 
@@ -4796,6 +4722,8 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\DecValTok{1}\NormalTok{,x))}
 \NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ncol}\NormalTok{(X)}
 
+\CommentTok{\# summary(glm(y\textasciitilde{}x,family=binomial))}
+
 \NormalTok{stan\_data }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{N =}\NormalTok{ n, }\AttributeTok{J =}\NormalTok{ p, }\AttributeTok{y =}\NormalTok{ y, }\AttributeTok{x =}\NormalTok{ X)}
 
 \NormalTok{rs\_code }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}}
@@ -4816,6 +4744,7 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \NormalTok{N}\OtherTok{=}\DecValTok{2000}
 \NormalTok{thin}\OtherTok{=}\DecValTok{10}
 \NormalTok{burnin}\OtherTok{=}\DecValTok{1000}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{)}
 
 \NormalTok{stan\_log }\OtherTok{\textless{}{-}} \FunctionTok{stan}\NormalTok{(}\AttributeTok{model\_code =}\NormalTok{ rs\_code, }\AttributeTok{data =}\NormalTok{ stan\_data, }\AttributeTok{init =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}
   \AttributeTok{chains =} \DecValTok{2}\NormalTok{, }\AttributeTok{iter =}\NormalTok{ N}\SpecialCharTok{*}\NormalTok{thin, }\AttributeTok{warmup =}\NormalTok{ burnin, }\AttributeTok{thin =}\NormalTok{ thin)}
@@ -4844,9 +4773,9 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## Chain 1: Iteration: 19000 / 20000 [ 95%]  (Sampling)
 ## Chain 1: Iteration: 20000 / 20000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 0.276 seconds (Warm-up)
-## Chain 1:                3.277 seconds (Sampling)
-## Chain 1:                3.553 seconds (Total)
+## Chain 1:  Elapsed Time: 0.698 seconds (Warm-up)
+## Chain 1:                8.666 seconds (Sampling)
+## Chain 1:                9.364 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL '6525180a46ff3a51f06bbb110d962a1c' NOW (CHAIN 2).
@@ -4869,9 +4798,9 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## Chain 2: Iteration: 19000 / 20000 [ 95%]  (Sampling)
 ## Chain 2: Iteration: 20000 / 20000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 0.333 seconds (Warm-up)
-## Chain 2:                4.071 seconds (Sampling)
-## Chain 2:                4.404 seconds (Total)
+## Chain 2:  Elapsed Time: 0.672 seconds (Warm-up)
+## Chain 2:                9.814 seconds (Sampling)
+## Chain 2:                10.486 seconds (Total)
 ## Chain 2:
 \end{verbatim}
 
@@ -4887,11 +4816,11 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 ## post-warmup draws per chain=1900, total post-warmup draws=3800.
 ## 
 ##           mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-## beta[1] -10.25    0.06 3.58 -18.64 -12.31  -9.80  -7.66  -4.52  3440    1
-## beta[2]   0.50    0.00 0.18   0.21   0.37   0.48   0.60   0.91  3398    1
-## lp__    -13.91    0.02 1.07 -16.85 -14.33 -13.57 -13.15 -12.89  3478    1
+## beta[1] -10.25    0.06 3.50 -18.27 -12.30  -9.91  -7.76  -4.52  3629    1
+## beta[2]   0.50    0.00 0.17   0.21   0.38   0.49   0.60   0.89  3628    1
+## lp__    -13.90    0.02 1.02 -16.61 -14.29 -13.61 -13.17 -12.89  3513    1
 ## 
-## Samples were drawn using NUTS(diag_e) at Tue Jul 06 10:45:42 2021.
+## Samples were drawn using NUTS(diag_e) at Tue Aug 31 16:33:37 2021.
 ## For each parameter, n_eff is a crude measure of effective sample size,
 ## and Rhat is the potential scale reduction factor on split chains (at 
 ## convergence, Rhat=1).
@@ -4922,21 +4851,15 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{, }\StringTok{"beta[2]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\CommentTok{\#mcmc\_areas(post\_log,pars = c("beta[1]", "beta[2]"),prob=0.9)}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg-4} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(}
   \FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[1]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}
   \FunctionTok{mcmc\_areas}\NormalTok{(post\_log,}\AttributeTok{pars =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta[2]"}\NormalTok{),}\AttributeTok{prob=}\FloatTok{0.9}\NormalTok{),}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg-5} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg-4} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4946,7 +4869,77 @@ Considere \(Y_1,\ldots,Y_n\) condicionalmente independentes tais que \(Y_i|\thet
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg-6} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg-5} \end{center}
+
+\(~\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggs}\NormalTok{(stan\_log)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7,600 x 4
+##    Iteration Chain Parameter  value
+##        <dbl> <int> <fct>      <dbl>
+##  1         1     1 beta[1]   -13.5 
+##  2         2     1 beta[1]   -18.3 
+##  3         3     1 beta[1]    -6.63
+##  4         4     1 beta[1]    -5.45
+##  5         5     1 beta[1]   -11.7 
+##  6         6     1 beta[1]    -9.19
+##  7         7     1 beta[1]    -8.40
+##  8         8     1 beta[1]   -13.9 
+##  9         9     1 beta[1]   -13.6 
+## 10        10     1 beta[1]   -16.5 
+## # ... with 7,590 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lpostlog }\OtherTok{=} \FunctionTok{Vectorize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(beta1,beta2)\{}
+\NormalTok{  extraDistr}\SpecialCharTok{::}\FunctionTok{dlaplace}\NormalTok{(beta1,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{,}\AttributeTok{sigma=}\DecValTok{100}\NormalTok{,}\AttributeTok{log=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+\NormalTok{  extraDistr}\SpecialCharTok{::}\FunctionTok{dlaplace}\NormalTok{(beta2,}\AttributeTok{mu=}\DecValTok{0}\NormalTok{,}\AttributeTok{sigma=}\DecValTok{100}\NormalTok{,}\AttributeTok{log=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{sum}\NormalTok{(}\FunctionTok{dbinom}\NormalTok{(y,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\SpecialCharTok{+}\FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{beta1}\SpecialCharTok{{-}}\NormalTok{beta2}\SpecialCharTok{*}\NormalTok{x)),}\AttributeTok{log=}\ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{\})}
+
+\NormalTok{beta1log}\OtherTok{=}\FunctionTok{ggs}\NormalTok{(stan\_log) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Parameter}\SpecialCharTok{==}\StringTok{"beta[1]"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{()}
+\NormalTok{beta2log}\OtherTok{=}\FunctionTok{ggs}\NormalTok{(stan\_log) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Parameter}\SpecialCharTok{==}\StringTok{"beta[2]"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{()}
+\NormalTok{lpostlog\_stan}\OtherTok{=}\FunctionTok{apply}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(beta1log,beta2log),}\DecValTok{1}\NormalTok{,}
+                    \ControlFlowTok{function}\NormalTok{(t)\{}\FunctionTok{lpostlog}\NormalTok{(t[}\DecValTok{1}\NormalTok{],t[}\DecValTok{2}\NormalTok{])\})}
+
+\NormalTok{gama }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.6}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{0.95}\NormalTok{,}\FloatTok{0.99}\NormalTok{)}
+\NormalTok{cortelog }\OtherTok{=} \FunctionTok{exp}\NormalTok{(}\FunctionTok{quantile}\NormalTok{(lpostlog\_stan,}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{gama))}
+
+\NormalTok{plot\_log }\OtherTok{=} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{b1=}\FunctionTok{rep}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{24}\NormalTok{,}\DecValTok{0}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{500}\NormalTok{),}\DecValTok{500}\NormalTok{),}
+                  \AttributeTok{b2=}\FunctionTok{rep}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.2}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{500}\NormalTok{),}\AttributeTok{each=}\DecValTok{500}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+                  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{post=}\FunctionTok{exp}\NormalTok{(}\FunctionTok{lpostlog}\NormalTok{(b1,b2)))}
+
+\NormalTok{plot\_log }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{b1, }\AttributeTok{y=}\NormalTok{b2, }\AttributeTok{z=}\NormalTok{post)) }\SpecialCharTok{+} \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \CommentTok{\#geom\_contour\_filled()+}
+  \FunctionTok{geom\_raster}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ post)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_distiller}\NormalTok{(}\AttributeTok{palette =} \StringTok{"Spectral"}\NormalTok{, }\AttributeTok{direction =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_contour}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{cortelog, }\AttributeTok{colour=}\StringTok{"darkblue"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_contour}\NormalTok{(}\AttributeTok{breaks=}\NormalTok{cortelog[gama}\SpecialCharTok{==}\FloatTok{0.95}\NormalTok{],}\AttributeTok{colour=}\StringTok{"red"}\NormalTok{,}\AttributeTok{size=}\FloatTok{1.5}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{xlab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(beta[}\DecValTok{1}\NormalTok{])) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\FunctionTok{expression}\NormalTok{(beta[}\DecValTok{2}\NormalTok{])) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/stan_logreg_mc-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# H: beta\_2==0}
+\NormalTok{lpostlog\_H }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(beta1)\{}\FunctionTok{lpostlog}\NormalTok{(beta1,}\DecValTok{0}\NormalTok{)\}}
+\NormalTok{suplog\_H }\OtherTok{=} \FunctionTok{optimize}\NormalTok{(}\AttributeTok{f=}\NormalTok{lpostlog\_H,}\AttributeTok{interval=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{100}\NormalTok{,}\DecValTok{100}\NormalTok{),}\AttributeTok{maximum=}\ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{objective}
+\NormalTok{ev\_logH }\OtherTok{=} \FunctionTok{mean}\NormalTok{(}\FunctionTok{I}\NormalTok{(lpostlog\_stan}\SpecialCharTok{\textless{}}\NormalTok{suplog\_H))}
+\end{Highlighting}
+\end{Shaded}
+
+O e-value para testar \(H_0: \beta_2=0\) é 0.
 
 \(~\)
 
@@ -5050,7 +5043,7 @@ As distribuição a piori são dadas por
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-63-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox-1} \end{center}
 
 Para verificar se o efeito da venda de antimicrobianos influencia na resistência
 bacteriana e identificar possíveis mudanças após a implementação da lei, foi considerado um modelo de regressão dinâmico bayesiano, descrito a seguir.
@@ -5084,8 +5077,8 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.01 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 100 seconds.
+## Chain 1: Gradient evaluation took 0.021 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 210 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -5102,15 +5095,15 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 7.82 seconds (Warm-up)
-## Chain 1:                7.47 seconds (Sampling)
-## Chain 1:                15.29 seconds (Total)
+## Chain 1:  Elapsed Time: 22.557 seconds (Warm-up)
+## Chain 1:                15.055 seconds (Sampling)
+## Chain 1:                37.612 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 0 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 2: Gradient evaluation took 0.001 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -5127,9 +5120,9 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 7.861 seconds (Warm-up)
-## Chain 2:                8.286 seconds (Sampling)
-## Chain 2:                16.147 seconds (Total)
+## Chain 2:  Elapsed Time: 17.473 seconds (Warm-up)
+## Chain 2:                17.372 seconds (Sampling)
+## Chain 2:                34.845 seconds (Total)
 ## Chain 2:
 \end{verbatim}
 
@@ -5144,7 +5137,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-64-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_fit-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5153,7 +5146,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_coefs-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5162,7 +5155,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-66-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_check-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5174,7 +5167,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-67-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_pred1-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5186,7 +5179,7 @@ bacteriana e identificar possíveis mudanças após a implementação da lei, fo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-68-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_pred2-1} \end{center}
 
 \hypertarget{extensuxf5es-efeitos-mais-suaves-e-modelos-nuxe3o-gaussianos}{%
 \subsubsection{Extensões: Efeitos mais suaves e modelos não gaussianos}\label{extensuxf5es-efeitos-mais-suaves-e-modelos-nuxe3o-gaussianos}}
@@ -5210,8 +5203,8 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
+## Chain 1: Gradient evaluation took 0.002 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 20 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -5228,15 +5221,15 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 9.27 seconds (Warm-up)
-## Chain 1:                8.678 seconds (Sampling)
-## Chain 1:                17.948 seconds (Total)
+## Chain 1:  Elapsed Time: 47.217 seconds (Warm-up)
+## Chain 1:                23.783 seconds (Sampling)
+## Chain 1:                71 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 2).
 ## Chain 2: 
-## Chain 2: Gradient evaluation took 0.003 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 30 seconds.
+## Chain 2: Gradient evaluation took 0.012 seconds
+## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 120 seconds.
 ## Chain 2: Adjust your expectations accordingly!
 ## Chain 2: 
 ## Chain 2: 
@@ -5253,9 +5246,9 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 8.976 seconds (Warm-up)
-## Chain 2:                7.48 seconds (Sampling)
-## Chain 2:                16.456 seconds (Total)
+## Chain 2:  Elapsed Time: 19.404 seconds (Warm-up)
+## Chain 2:                16.601 seconds (Sampling)
+## Chain 2:                36.005 seconds (Total)
 ## Chain 2:
 \end{verbatim}
 
@@ -5269,7 +5262,7 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_rw2-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5278,7 +5271,7 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-70-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_coefs2-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5287,7 +5280,7 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-71-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_check2-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5299,7 +5292,7 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-72-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_pred21-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5311,7 +5304,7 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/unnamed-chunk-73-1} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{InfBayes_files/figure-latex/walker_amox_pred22-1} \end{center}
 
 \(~\)
 
@@ -5480,8 +5473,8 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## 
 ## SAMPLING FOR MODEL 'walker_lm' NOW (CHAIN 1).
 ## Chain 1: 
-## Chain 1: Gradient evaluation took 0.016 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 160 seconds.
+## Chain 1: Gradient evaluation took 0.018 seconds
+## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 180 seconds.
 ## Chain 1: Adjust your expectations accordingly!
 ## Chain 1: 
 ## Chain 1: 
@@ -5498,9 +5491,9 @@ Ao modelar os coeficientes de regressão como uma passeio aleatório simples, as
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 43.832 seconds (Warm-up)
-## Chain 1:                38.171 seconds (Sampling)
-## Chain 1:                82.003 seconds (Total)
+## Chain 1:  Elapsed Time: 125.772 seconds (Warm-up)
+## Chain 1:                87.687 seconds (Sampling)
+## Chain 1:                213.459 seconds (Total)
 ## Chain 1:
 \end{verbatim}
 

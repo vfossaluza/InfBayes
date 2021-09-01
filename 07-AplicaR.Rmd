@@ -511,7 +511,7 @@ $~$
 
 O modelos lineares generalizados (MLG) são uma extensão natural dos modelos lineares para casos em que a distribuição da variável resposta não é normal. Como exemplo, vamos considerar o particular caso onde a resposta é binária, conhecido como *regressão logística*.
 
-Considere $Y_1,\ldots,Y_n$ condicionalmente independentes tais que $Y_i|\theta_i \sim \textit{Ber}(\theta_i)$, em que $\theta_i$ é tal que $\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta$ ou, em outras palavras, $\theta_i = \dfrac{1}{1+e^{\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{-\boldsymbol x_i' \boldsymbol\beta}}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}}$ com $\boldsymbol x_i$ as covariáveis da $i$-ésima observação e o vetor de parâmetros $\boldsymbol\beta=(\beta_1,\ldots,\beta_p)$.
+Considere $Y_1,\ldots,Y_n$ condicionalmente independentes tais que $Y_i|\theta_i \sim \textit{Ber}(\theta_i)$, em que $\theta_i$ é tal que $\log\left(\dfrac{\theta_i}{1-\theta_i}\right) = \boldsymbol x_i' \boldsymbol\beta$ ou, em outras palavras, $\theta_i = \dfrac{1}{1+e^{-\boldsymbol x_i' \boldsymbol\beta}} = \dfrac{e^{\boldsymbol x_i' \boldsymbol\beta}}{1+e^{\boldsymbol x_i' \boldsymbol\beta}}$ com $\boldsymbol x_i$ as covariáveis da $i$-ésima observação e o vetor de parâmetros $\boldsymbol\beta=(\beta_1,\ldots,\beta_p)$.
 
 $~$
 
@@ -537,6 +537,8 @@ n <- length(y)
 X <- as.matrix(cbind(1,x))
 p <- ncol(X)
 
+# summary(glm(y~x,family=binomial))
+
 stan_data <- list(N = n, J = p, y = y, x = X)
 
 rs_code <- '
@@ -557,6 +559,7 @@ rs_code <- '
 N=2000
 thin=10
 burnin=1000
+set.seed(666)
 
 stan_log <- stan(model_code = rs_code, data = stan_data, init = c(0,0),
   chains = 2, iter = N*thin, warmup = burnin, thin = thin)
@@ -574,7 +577,7 @@ mcmc_trace(post_log,  pars = c("beta[1]", "beta[2]"), n_warmup = 0,
 
 mcmc_acf(post_log, pars = c("beta[1]", "beta[2]"))
 
-mcmc_areas(post_log,pars = c("beta[1]", "beta[2]"),prob=0.9)
+#mcmc_areas(post_log,pars = c("beta[1]", "beta[2]"),prob=0.9)
 
 ggpubr::ggarrange(
   mcmc_areas(post_log,pars = c("beta[1]"),prob=0.9),
@@ -589,10 +592,52 @@ ggs(stan_log) %>% ggs_pairs(., lower = list(continuous = "density"))
 
 $~$
 
+
+```{r stan_logreg_mc}
+ggs(stan_log)
+
+lpostlog = Vectorize(function(beta1,beta2){
+  extraDistr::dlaplace(beta1,mu=0,sigma=100,log=TRUE)+
+  extraDistr::dlaplace(beta2,mu=0,sigma=100,log=TRUE)+
+  sum(dbinom(y,1,1/(1+exp(-beta1-beta2*x)),log=TRUE))
+})
+
+beta1log=ggs(stan_log) %>% filter(Parameter=="beta[1]") %>% pull()
+beta2log=ggs(stan_log) %>% filter(Parameter=="beta[2]") %>% pull()
+lpostlog_stan=apply(cbind(beta1log,beta2log),1,
+                    function(t){lpostlog(t[1],t[2])})
+
+gama = c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99)
+cortelog = exp(quantile(lpostlog_stan,1-gama))
+
+plot_log = tibble(b1=rep(seq(-24,0,length.out=500),500),
+                  b2=rep(seq(0,1.2,length.out=500),each=500)) %>% 
+                  mutate(post=exp(lpostlog(b1,b2)))
+
+plot_log %>% 
+  ggplot(aes(x=b1, y=b2, z=post)) + theme_minimal() +
+  #geom_contour_filled()+
+  geom_raster(aes(fill = post)) +
+  scale_fill_distiller(palette = "Spectral", direction = -1) +
+  geom_contour(breaks=cortelog, colour="darkblue") + 
+  geom_contour(breaks=cortelog[gama==0.95],colour="red",size=1.5)+
+  xlab(expression(beta[1])) + ylab(expression(beta[2])) +
+  theme(legend.position = "none")
+  
+  
+# H: beta_2==0
+lpostlog_H = function(beta1){lpostlog(beta1,0)}
+suplog_H = optimize(f=lpostlog_H,interval=c(-100,100),maximum=TRUE)$objective
+ev_logH = mean(I(lpostlog_stan<suplog_H))
+```
+
+O e-value para testar $H_0: \beta_2=0$ é `r ev_logH`.
+
+$~$
+
 * Existe uma biblioteca para modelos lineares bayesianos usando o Stan chamada `rstanarm`. Nesta biblioteca, a função `stan_glm` pode ser utilizada para o ajuste de MLGs sob o ponto de vista bayesiano.
 
   - https://cran.r-project.org/web/packages/rstanarm/
-
 
 $~$
 

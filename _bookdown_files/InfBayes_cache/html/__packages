@@ -8,6 +8,7 @@ purrr
 dplyr
 stringr
 forcats
+lubridate
 transformr
 knitr
 kableExtra
@@ -20,5 +21,3 @@ ggmcmc
 bayesplot
 Rcpp
 walker
-rgl
-lubridate
