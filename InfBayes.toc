@@ -9,17 +9,17 @@
 \contentsline {section}{\numberline {3.1}Conceitos Básicos}{17}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Inferência Frequentista (ou Clássica)}{18}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Inferência Bayesiana}{18}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Teorema de De Finetti}{24}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Suficiência}{27}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Distribuição a Priori}{28}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Método do Histograma}{29}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Elicitação de Hiperparâmetros}{31}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Prioris Conjugadas}{33}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Prioris ``Não-Informativas''}{38}{subsection.3.4.4}%
-\contentsline {subsubsection}{\numberline {3.4.4.1}Priori de Bayes-Laplace}{39}{subsubsection.3.4.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.4.2}Priori de Jeffreys}{39}{subsubsection.3.4.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.4.3}Priori de Máxima Entropia}{42}{subsubsection.3.4.4.3}%
-\contentsline {section}{\numberline {3.5}Alguns Princípios de Inferência}{45}{section.3.5}%
+\contentsline {section}{\numberline {3.2}Permutabilidade e Teorema de De Finetti}{24}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Suficiência}{28}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Distribuição a Priori}{30}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Método do Histograma}{30}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Elicitação de Hiperparâmetros}{32}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Prioris Conjugadas}{34}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Prioris ``Não-Informativas''}{39}{subsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.4.1}Priori de Bayes-Laplace}{40}{subsubsection.3.4.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.4.2}Priori de Jeffreys}{40}{subsubsection.3.4.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.4.3}Priori de Máxima Entropia}{43}{subsubsection.3.4.4.3}%
+\contentsline {section}{\numberline {3.5}Alguns Princípios de Inferência}{46}{section.3.5}%
 \contentsline {chapter}{\numberline {4}Introdução à Teoria da Decisão}{51}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Conceitos Básicos}{51}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Aleatorização e Decisões Mistas}{55}{section.4.2}%

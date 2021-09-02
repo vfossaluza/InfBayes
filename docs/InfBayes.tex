@@ -131,7 +131,7 @@
 
 \title{Fundamentos de Inferência Bayesiana}
 \author{Victor Fossaluza e Luís Gustavo Esteves}
-\date{2021-09-01}
+\date{2021-09-02}
 
 \begin{document}
 \maketitle
@@ -783,8 +783,8 @@ Suponha agora que \(a=b=2\), \(n=5\) e \(x=2\), de modo que \(\theta|x=2 \sim Be
 
 \(~\)
 
-\hypertarget{teorema-de-de-finetti}{%
-\section{Teorema de De Finetti}\label{teorema-de-de-finetti}}
+\hypertarget{permutabilidade-e-teorema-de-de-finetti}{%
+\section{Permutabilidade e Teorema de De Finetti}\label{permutabilidade-e-teorema-de-de-finetti}}
 
 \textbf{Definição.} Uma coleção finita \(X_1,X_2,\ldots,X_n\) de quantidades aleatórias é dita \emph{permutável} se a distribuição de \(\left(X_{\pi_1},\ldots,X_{\pi_n}\right)\) é a mesma para toda permutação \(\boldsymbol\pi=(\pi_1,\ldots,\pi_n)\) dos índices \((1,\ldots,n)\). Uma coleção infinita de quantidades aleatórias é \emph{permutável} se toda subcoleção é permutável.
 
@@ -884,13 +884,53 @@ de modo que,\\
 
 \(~\)
 
-\textbf{Teorema de Representação de De Finetti}
+Suponha que você irá observar uma amostra \(X_1,\ldots,X_n\) (de v.a. permutáveis) para tentar inferir características de uma população. De modo bastante geral, o que você deseja é fazer afirmações sobre a distribuição \(F\) que gera os dados. Por simplicidade, suponha que as v.a. \(X_i\) tomam valores em \(\mathbb{R}\).
 
-Uma sequência de v.a.s \(\{X_n\}_{n\geq 1}\) assumindo valores em (um subconjunto de) \(\mathbb R\) é permutável se, e somente se, existe uma medida de probabilidade sobre (uma \(\sigma\)-álgebra do) conjunto de funções de distribuições que ``sorteia'' uma \(F\) e, dada esta \(F\), os elementos da sequência \(\{X_n\}_{n\geq 1}\) são i.i.d. com distribuição \(F\). Isto é,
+Se sua população é suposta finita de tamanho \(N\), você pode imaginar que, se fosse possível observar toda a população, a distribuição \(F\) tem a seguinte forma:
+
+\(F(x) = P(X_i \leq x) = \dfrac{1}{N} \sum \mathbb{I}(x_i\leq x)~.\)
+
+Note que, nesse caso hipotético, não há incerteza sobre \(F\) pois você tem toda a informação sobre a população. Além disso, o valor \(F(x)\) pode ser interpretado como a chance de observar um valor menor ou igual a \(x\) quando um indivíduo é selecionado aleatoriamente dessa população. Além disso, \(F\) é uma distribuição discreta, assumindo valores no conjunto \(\left\{x_1,x_2,\ldots,x_N\right\}\). Por exemplo, se \(X_i\) assume valores em \(0-1\), temos que \(\theta=P(X_i=1)=1-P(X_i=0)\) ou, equivalentemente, \(F(x)=(1-\theta)\cdot\mathbb{I}(0\leq x<1)+\theta\cdot\mathbb{I}(x\geq 1)\). Nesse caso, \(\theta\) assume valores no conjunto finito \(\left\{0,\frac{1}{N},\frac{2}{N}, \ldots,\frac{N-1}{N},1\right\}\).
+
+\(~\)
+
+Contudo, na vida real, geralmente é impossível observar toda a população. Por simplicidade, é comum assumir que a população é infinita, de modo que a distribuição \(F\) pode ser uma distribuição contínua ou indexada por um parâmetro assumindo valores em \(\mathbb{R}\). O teorema de De Finetti diz que se \(\left\{X_n\right\}_{n\geq 1}\) é uma sequência de v.a. permutáveis, existe uma \(F\) e que \(F(x)=\displaystyle\lim_{n\uparrow\infty}\dfrac{1}{n}\sum_{i=1}^{n}\mathbb{I}(x_i\leq x)\). Além disso, se você conhecesse essa \(F\), os elementos da sequência \(\left\{X_n\right\}_{n\geq 1}\) seriam i.i.d., ou seja, conhecida \(F\) não há mais o que ``aprender'' com novas observações.
+
+\(~\)
+
+\textbf{Teorema de Representação de De Finetti.} Uma sequência de v.a.s \(\{X_n\}_{n\geq 1}\) assumindo valores em (um subconjunto de) \(\mathbb R\) é permutável se, e somente se, existe uma medida de probabilidade \(\mu\) sobre (uma \(\sigma\)-álgebra do) conjunto de funções de distribuições que ``sorteia'' uma \(F\) e, dada esta \(F\), os elementos da sequência \(\{X_n\}_{n\geq 1}\) são i.i.d. com distribuição \(F\). Isto é,
 
 \(F_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int\prod_{i=1}^n F(x_i)d\mu(F)\), \(\forall n\).
 
-Além disso, \(F_n\underset{n\uparrow\infty}{\longrightarrow}F\) e a distribuição de \(F=\underset{n\uparrow\infty}{lim}F_n\) é única e é \(\mu\).
+\(~\)
+
+\(~\)
+
+Se a distribuição é supostamente indexada por um parâmetro \(\theta\), então
+
+\(f_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int_{\Theta}~\prod_{i=1}^n f(x_i|\theta)~dP(\theta)\), \(\forall n\).
+
+e, se \(\theta\) é abs. contínuo (e, portanto, admite uma f.d.p.),
+
+\(f_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int_\Theta~\prod_{i=1}^n f(x_i|\theta)~f(\theta)~d\theta\), \(\forall n\).
+
+\(~\)
+
+\(~\)
+
+Sob a abordagem frequentista, \(\theta\) é considerado ``fixado'' (apesar de desconhecido) e, portanto, não se admite uma distribuição de probabilidades para \(\theta\). Isto é equivalente a dizer \(\theta\) é uma v.a. degenerada, de modo que existe \(\theta^*\) tal que \(P(\theta=\theta^*)=1\). O Teorema de De Finetti nesse caso diz que
+
+\(f(x_1,\ldots,x_n) = \displaystyle\prod_{i=1}^n f(x_i|\theta=\theta^*)\), \(\forall n\).
+
+Sob esse modelo, temos que a distribuição preditiva de uma nova observação \(X_{n+1}\) é dada por
+
+\(f(x_{n+1}|x_1,\ldots,x_n)\) \(= \dfrac{f(x_{n+1},x_1,\ldots,x_n)}{f(x_1,\ldots,x_n)}\) \(=\dfrac{\displaystyle\prod_{i=1}^{n+1} f(x_i|\theta=\theta^*)}{\displaystyle\prod_{i=1}^{n} f(x_i|\theta=\theta^*)}\) \(= f(x_{n+1}|\theta=\theta^*)\) \(=f(x_{n+1})\),
+
+de modo que \(X_{n+1}\) é independente de \(X_{1},\ldots,X_{n}\). Contudo, sob essa abordagem, é comum estimar a distribuição preditiva como
+
+\(\hat{f}(x_{n+1}|x_1,\ldots,x_n) \equiv f\left(x_{n+1}|\hat{\theta}\left(x_1,\ldots,x_n\right)\right)\),
+
+e isso contradiz a suposição de que \(X_1,\ldots,X_n\) são i.i.d. (e, consequentemente, permutáveis). Mesmo que a suposição de i.i.d. seja condicional a \(\theta\), ainda deve valer o Teorema de De Finetti e a contradição acima se mantém.
 
 \(~\)
 

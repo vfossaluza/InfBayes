@@ -9,7 +9,7 @@ Bayes
 BasBayes
 inferência-frequentista-ou-clássica
 inferência-bayesiana
-teorema-de-de-finetti
+permutabilidade-e-teorema-de-de-finetti
 suficiência
 distribuição-a-priori
 método-do-histograma

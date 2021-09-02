@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2021-09-01" />
+<meta name="date" content="2021-09-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,7 +182,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.1.1" data-path="Bayes.html"><a href="Bayes.html#inferência-frequentista-ou-clássica"><i class="fa fa-check"></i><b>3.1.1</b> Inferência Frequentista (ou Clássica)</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Bayes.html"><a href="Bayes.html#inferência-bayesiana"><i class="fa fa-check"></i><b>3.1.2</b> Inferência Bayesiana</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Teorema de De Finetti</a></li>
+<li class="chapter" data-level="3.2" data-path="Bayes.html"><a href="Bayes.html#permutabilidade-e-teorema-de-de-finetti"><i class="fa fa-check"></i><b>3.2</b> Permutabilidade e Teorema de De Finetti</a></li>
 <li class="chapter" data-level="3.3" data-path="Bayes.html"><a href="Bayes.html#suficiência"><i class="fa fa-check"></i><b>3.3</b> Suficiência</a></li>
 <li class="chapter" data-level="3.4" data-path="Bayes.html"><a href="Bayes.html#distribuição-a-priori"><i class="fa fa-check"></i><b>3.4</b> Distribuição a Priori</a>
 <ul>
@@ -391,8 +391,8 @@ Assim, se sua decisão for escolher o valor mais provável de <span class="math 
 <p><span class="math inline">\(~\)</span></p>
 </div>
 </div>
-<div id="teorema-de-de-finetti" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Teorema de De Finetti</h2>
+<div id="permutabilidade-e-teorema-de-de-finetti" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Permutabilidade e Teorema de De Finetti</h2>
 <p><strong>Definição.</strong> Uma coleção finita <span class="math inline">\(X_1,X_2,\ldots,X_n\)</span> de quantidades aleatórias é dita <em>permutável</em> se a distribuição de <span class="math inline">\(\left(X_{\pi_1},\ldots,X_{\pi_n}\right)\)</span> é a mesma para toda permutação <span class="math inline">\(\boldsymbol\pi=(\pi_1,\ldots,\pi_n)\)</span> dos índices <span class="math inline">\((1,\ldots,n)\)</span>. Uma coleção infinita de quantidades aleatórias é <em>permutável</em> se toda subcoleção é permutável.</p>
 <p><span class="math inline">\(~\)</span></p>
 <ul>
@@ -549,10 +549,34 @@ de modo que,<br />
 <p><span class="math inline">\(F_n(x) = \displaystyle\dfrac{1}{n}\sum_{i=1}^{n} \mathbb{I}(x_i\leq x)~.\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
-<p><strong>Teorema de Representação de De Finetti</strong></p>
-<p>Uma sequência de v.a.s <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> assumindo valores em (um subconjunto de) <span class="math inline">\(\mathbb R\)</span> é permutável se, e somente se, existe uma medida de probabilidade sobre (uma <span class="math inline">\(\sigma\)</span>-álgebra do) conjunto de funções de distribuições que “sorteia” uma <span class="math inline">\(F\)</span> e, dada esta <span class="math inline">\(F\)</span>, os elementos da sequência <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> são i.i.d. com distribuição <span class="math inline">\(F\)</span>. Isto é,</p>
+<p>Suponha que você irá observar uma amostra <span class="math inline">\(X_1,\ldots,X_n\)</span> (de v.a. permutáveis) para tentar inferir características de uma população. De modo bastante geral, o que você deseja é fazer afirmações sobre a distribuição <span class="math inline">\(F\)</span> que gera os dados. Por simplicidade, suponha que as v.a. <span class="math inline">\(X_i\)</span> tomam valores em <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>Se sua população é suposta finita de tamanho <span class="math inline">\(N\)</span>, você pode imaginar que, se fosse possível observar toda a população, a distribuição <span class="math inline">\(F\)</span> tem a seguinte forma:</p>
+<p><span class="math inline">\(F(x) = P(X_i \leq x) = \dfrac{1}{N} \sum \mathbb{I}(x_i\leq x)~.\)</span></p>
+<p>Note que, nesse caso hipotético, não há incerteza sobre <span class="math inline">\(F\)</span> pois você tem toda a informação sobre a população. Além disso, o valor <span class="math inline">\(F(x)\)</span> pode ser interpretado como a chance de observar um valor menor ou igual a <span class="math inline">\(x\)</span> quando um indivíduo é selecionado aleatoriamente dessa população. Além disso, <span class="math inline">\(F\)</span> é uma distribuição discreta, assumindo valores no conjunto <span class="math inline">\(\left\{x_1,x_2,\ldots,x_N\right\}\)</span>. Por exemplo, se <span class="math inline">\(X_i\)</span> assume valores em <span class="math inline">\(0-1\)</span>, temos que <span class="math inline">\(\theta=P(X_i=1)=1-P(X_i=0)\)</span> ou, equivalentemente, <span class="math inline">\(F(x)=(1-\theta)\cdot\mathbb{I}(0\leq x&lt;1)+\theta\cdot\mathbb{I}(x\geq 1)\)</span>. Nesse caso, <span class="math inline">\(\theta\)</span> assume valores no conjunto finito <span class="math inline">\(\left\{0,\frac{1}{N},\frac{2}{N}, \ldots,\frac{N-1}{N},1\right\}\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Contudo, na vida real, geralmente é impossível observar toda a população. Por simplicidade, é comum assumir que a população é infinita, de modo que a distribuição <span class="math inline">\(F\)</span> pode ser uma distribuição contínua ou indexada por um parâmetro assumindo valores em <span class="math inline">\(\mathbb{R}\)</span>. O teorema de De Finetti diz que se <span class="math inline">\(\left\{X_n\right\}_{n\geq 1}\)</span> é uma sequência de v.a. permutáveis, existe uma <span class="math inline">\(F\)</span> e que <span class="math inline">\(F(x)=\displaystyle\lim_{n\uparrow\infty}\dfrac{1}{n}\sum_{i=1}^{n}\mathbb{I}(x_i\leq x)\)</span>. Além disso, se você conhecesse essa <span class="math inline">\(F\)</span>, os elementos da sequência <span class="math inline">\(\left\{X_n\right\}_{n\geq 1}\)</span> seriam i.i.d., ou seja, conhecida <span class="math inline">\(F\)</span> não há mais o que “aprender” com novas observações.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><strong>Teorema de Representação de De Finetti.</strong> Uma sequência de v.a.s <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> assumindo valores em (um subconjunto de) <span class="math inline">\(\mathbb R\)</span> é permutável se, e somente se, existe uma medida de probabilidade <span class="math inline">\(\mu\)</span> sobre (uma <span class="math inline">\(\sigma\)</span>-álgebra do) conjunto de funções de distribuições que “sorteia” uma <span class="math inline">\(F\)</span> e, dada esta <span class="math inline">\(F\)</span>, os elementos da sequência <span class="math inline">\(\{X_n\}_{n\geq 1}\)</span> são i.i.d. com distribuição <span class="math inline">\(F\)</span>. Isto é,</p>
 <p><span class="math inline">\(F_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int\prod_{i=1}^n F(x_i)d\mu(F)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
-<p>Além disso, <span class="math inline">\(F_n\underset{n\uparrow\infty}{\longrightarrow}F\)</span> e a distribuição de <span class="math inline">\(F=\underset{n\uparrow\infty}{lim}F_n\)</span> é única e é <span class="math inline">\(\mu\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Se a distribuição é supostamente indexada por um parâmetro <span class="math inline">\(\theta\)</span>, então</p>
+<p><span class="math inline">\(f_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int_{\Theta}~\prod_{i=1}^n f(x_i|\theta)~dP(\theta)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
+<p>e, se <span class="math inline">\(\theta\)</span> é abs. contínuo (e, portanto, admite uma f.d.p.),</p>
+<p><span class="math inline">\(f_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int_\Theta~\prod_{i=1}^n f(x_i|\theta)~f(\theta)~d\theta\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
+<p><span class="math inline">\(~\)</span></p>
+<p><span class="math inline">\(~\)</span></p>
+<p>Sob a abordagem frequentista, <span class="math inline">\(\theta\)</span> é considerado “fixado” (apesar de desconhecido) e, portanto, não se admite uma distribuição de probabilidades para <span class="math inline">\(\theta\)</span>. Isto é equivalente a dizer <span class="math inline">\(\theta\)</span> é uma v.a. degenerada, de modo que existe <span class="math inline">\(\theta^*\)</span> tal que <span class="math inline">\(P(\theta=\theta^*)=1\)</span>. O Teorema de De Finetti nesse caso diz que</p>
+<p><span class="math inline">\(f(x_1,\ldots,x_n) = \displaystyle\prod_{i=1}^n f(x_i|\theta=\theta^*)\)</span>, <span class="math inline">\(\forall n\)</span>.</p>
+<p>Sob esse modelo, temos que a distribuição preditiva de uma nova observação <span class="math inline">\(X_{n+1}\)</span> é dada por</p>
+<p><span class="math inline">\(f(x_{n+1}|x_1,\ldots,x_n)\)</span> <span class="math inline">\(= \dfrac{f(x_{n+1},x_1,\ldots,x_n)}{f(x_1,\ldots,x_n)}\)</span> <span class="math inline">\(=\dfrac{\displaystyle\prod_{i=1}^{n+1} f(x_i|\theta=\theta^*)}{\displaystyle\prod_{i=1}^{n} f(x_i|\theta=\theta^*)}\)</span> <span class="math inline">\(= f(x_{n+1}|\theta=\theta^*)\)</span> <span class="math inline">\(=f(x_{n+1})\)</span>,</p>
+<p>de modo que <span class="math inline">\(X_{n+1}\)</span> é independente de <span class="math inline">\(X_{1},\ldots,X_{n}\)</span>. Contudo, sob essa abordagem, é comum estimar a distribuição preditiva como</p>
+<p><span class="math inline">\(\hat{f}(x_{n+1}|x_1,\ldots,x_n) \equiv f\left(x_{n+1}|\hat{\theta}\left(x_1,\ldots,x_n\right)\right)\)</span>,</p>
+<p>e isso contradiz a suposição de que <span class="math inline">\(X_1,\ldots,X_n\)</span> são i.i.d. (e, consequentemente, permutáveis). Mesmo que a suposição de i.i.d. seja condicional a <span class="math inline">\(\theta\)</span>, ainda deve valer o Teorema de De Finetti e a contradição acima se mantém.</p>
+<!-- **Teorema de Representação de De Finetti** -->
+<!-- Uma sequência de v.a.s $\{X_n\}_{n\geq 1}$ assumindo valores em (um subconjunto de) $\mathbb R$ é permutável se, e somente se, existe uma medida de probabilidade sobre (uma $\sigma$-álgebra do) conjunto de funções de distribuições que "sorteia" uma $F$ e, dada esta $F$, os elementos da sequência $\{X_n\}_{n\geq 1}$ são i.i.d. com distribuição $F$. Isto é, -->
+<!-- $F_{\mathbf X}(x_1,\ldots,x_n)=\displaystyle\int\prod_{i=1}^n F(x_i)d\mu(F)$, $\forall n$. -->
+<!-- Além disso, $F_n\underset{n\uparrow\infty}{\longrightarrow}F$ e a distribuição de $F=\underset{n\uparrow\infty}{lim}F_n$ é única e é $\mu$. -->
 <p><span class="math inline">\(~\)</span></p>
 <p><span class="math inline">\(~\)</span></p>
 </div>
