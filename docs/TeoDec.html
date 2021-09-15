@@ -24,7 +24,7 @@
 <meta name="author" content="Victor Fossaluza e Luís Gustavo Esteves" />
 
 
-<meta name="date" content="2021-09-02" />
+<meta name="date" content="2021-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,6 +53,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -339,7 +341,7 @@ Suponha que você está saindo de casa pela manhã e precisa tomar uma important
 <li><p><span class="math inline">\(E\left[L(G^c,\theta)\right]\)</span> <span class="math inline">\(=L(G^c,C)P(C) + L(G^c,C^c)P(C^c)\)</span> <span class="math inline">\(=3p+0(1-p)\)</span> <span class="math inline">\(=3p\)</span>.</p></li>
 </ul>
 <p>Deste modo, as perdas esperadas associadas a cada decisão dependem da probabilidade de chuva <span class="math inline">\(p\)</span>. Assim, para cada possível valor de <span class="math inline">\(p\)</span>, deve-se tomar a decisão que tem menor perda esperada. Por exemplo, se a probabilidade de chuva é <span class="math inline">\(p=0.1\)</span>, temos que as perdas esperadas para as decisões de levar ou não o guarda-chuva são, respectivamente, <span class="math inline">\(E\left[L(G,\theta)\right]=1.1\)</span> e <span class="math inline">\(E\left[L(G^c,\theta)\right]=0.3\)</span>. Assim, sob essa abordagem, sua decisão seria de não levar o guarda-chuva nesse caso. Por outro lado, se a probabilidade de chuva for <span class="math inline">\(p=0.9\)</span>, suas perdas esperadas seriam respectivamente <span class="math inline">\(E\left[L(G,\theta)\right]=1.9\)</span> e <span class="math inline">\(E\left[L(G^c,\theta)\right]=2.7\)</span>, de modo que a decisão ótima seria levar o guarda-chuva. O gráfico a seguir apresenta as perdas para cada decisão <span class="math inline">\(d\)</span> e para cada valor de <span class="math inline">\(p\)</span>. É possível notar que a decisão ótima é levar o guarda-chuva quando <span class="math inline">\(p&gt;0.5\)</span> e não levá-lo caso contrário.</p>
-<p><img src="InfBayes_files/figure-html/unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="InfBayes_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(~\)</span></p>
 <p>Vamos denotar por <span class="math inline">\(\rho^*\)</span> o <strong>risco de bayes</strong>, isto é, a perda esperada da <strong>decisão de Bayes</strong> (ou <em>decisão ótima</em>) <span class="math inline">\(d^*\in \mathcal{D}\)</span> tal que <span class="math inline">\(\rho^*(P)\)</span> <span class="math inline">\(=\rho(d^*,P)\)</span> <span class="math inline">\(=\underset{d\in\mathcal{D}}{min}~\rho(d,P)\)</span>.</p>
 <p><span class="math inline">\(~\)</span></p>

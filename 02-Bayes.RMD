@@ -536,7 +536,7 @@ Resolvendo o sistema temos, de forma geral, que $a=\dfrac{m(m-m^2-v)}{v}$ e $b=\
 
 Assim, no nosso exemplo, teríamos uma $Beta(3,6.7)$. Além disso, já vimos que, nesse caso, a distribuição a posteriori é $Beta(3+x,6.7+n-x)$. Considerando novamente $n=5$ e $x=2$, temos:
 
-```{r}
+```{r HiperparPrior}
 n=5; x=2
 m=0.31; v=0.02
 a=m*(m-m^2-v)/v; b=(1-m)*(m-m^2-v)/v
@@ -582,7 +582,7 @@ $~$
 
 Seja $\boldsymbol X | \boldsymbol \theta \sim Multinomial(n,\boldsymbol \theta)$, isto é, sua função de probabilidade é dada por
 
-$$f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,\ldots,x_k}~\prod_{i=1}^{k-1}\theta^i~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}$$
+$$f(\boldsymbol x| \boldsymbol \theta)= \binom{n}{x_1,x_2,\ldots,x_k}~\prod_{i=1}^{k-1}\theta_i^{x_i}~\underbrace{\left(1-\sum_{i=1}^{k-1}\theta_i\right)^{\displaystyle n-\sum_{i=1}^{k-1}x_i}}_{\displaystyle \theta_k^{~~x_k}}$$
 
 em que $\theta_i\in [0,1]$ com $\sum_{i=1}^K\theta_i=1$, $x_i \in \{0,1,\ldots,n\}$ com $\sum_{i=1}^nx_i=n$ e $\displaystyle \binom{n}{x_1,x_2,\ldots,x_k}=\dfrac{n!}{x_1!x_2!\ldots x_k!}$.
 
@@ -616,10 +616,27 @@ $\Rightarrow \theta|\boldsymbol X = \boldsymbol x \sim Pareto(a+n,max\{b,x_{(n)}
 
 $~$
 
+**Exemplo.** No gráfico a seguir, a distribuição a priori é uma $\text{Pareto}(2,1)$ e foi observada uma amostra de tamanho $5$ com $x_{(n)}=2$, de modo que a posteriori é $\text{Pareto}(7,2)$.
+
+```{r ParetoConjugatePrior}
+a=2;b=1
+n=5; xn=2
+t = seq(0,5,length.out=1000)
+prior = extraDistr::dpareto(t,a,b)
+vero = ((n-1)*xn^(n-1)) * I(t>=2)/(t^n)
+post = extraDistr::dpareto(t,a+n,max(b,xn))
+tibble(theta=rep(t,3),dens=c(prior,vero,post),
+    Dist=rep(c('1.Priori Pareto(2,1)','2.Verossimilhança','3.Posteriori'),each=length(t))) %>%
+  ggplot(data=.) +
+  geom_line(aes(x=theta,y=dens,colour=Dist),lwd=1.2)
+```
+
+$~$
+
 **Resultado 4.** Seja $X_1,\ldots,X_n,Y_1,\ldots,Y_m$ v.a. condicionalmente independentes tais que $X_i|\theta\sim Exp(\theta),i=1,\ldots,n$ e $Y_j|\theta \sim Poisson(\theta),j=1,\ldots,m$. Considere que, a priori, $\theta \sim Gama(a,b)$. Então $\theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j~,~b+m+\sum_ix_i)$.
 
 > **Demo:**  
-$f(\boldsymbol x, \boldsymbol y|\theta)\overset{ci}{=}f(\boldsymbol x|\theta)f(\boldsymbol y|\theta)\overset{ci}{=}$ $\prod_{i=1}^nf(x_i|\theta)\prod_{j=1}^mf(y_i|\theta)=$ $\prod_{i=1}^n\theta e^{-\theta x_i}\prod_{j=1}^m\dfrac{\theta^{y_j}e^{-\theta}}{y_j!}=$ $\dfrac{1}{\prod_{j=1}^my_j!}\theta^{n+\sum_j y_j}e^{-(m+\sum_ix_i)\theta}$  
+$f(\boldsymbol x, \boldsymbol y|\theta)\overset{ci}{=}f(\boldsymbol x|\theta)f(\boldsymbol y|\theta)\overset{ci}{=}$ $\prod_{i=1}^nf(x_i|\theta)\prod_{j=1}^mf(y_i|\theta)=$ $\prod_{i=1}^n\theta e^{-\theta x_i}\prod_{j=1}^m\dfrac{\theta^{y_j}e^{-\theta}}{y_j!}=$ $\theta^{n}e^{-\theta\sum_i x_i}~ \dfrac{\theta^{\sum_j y_j}e^{-m\theta}}{\prod_{j=1}^my_j!}=$ $\dfrac{1}{\prod_{j=1}^my_j!}\theta^{n+\sum_j y_j}e^{-(m+\sum_ix_i)\theta}$  
 $~$  
 $f(\theta)=\dfrac{b^a}{\Gamma(a)}\theta^{a-1}e^{-b\theta}$
 $~$  
@@ -629,6 +646,24 @@ $\Rightarrow \theta| \boldsymbol x,\boldsymbol y \sim Gama(a+n+\sum_jy_j,b+m+\su
 
 $~$  
 
+**Exemplo.** Considere que a distribuição a priori é uma $\text{Gama}(2,2)$ e foi observado $n=4$, $\sum x=1$, $m=5$ e $\sum y=10$, de modo que a posteriori é $\text{Gama}(16,9)$.
+
+```{r GammaConjugatePrior}
+a=2;b=2
+n=4; sumx=1
+m=6; sumy=10
+t = seq(0,5,length.out=1000)
+prior = dgamma(t,a,b)
+vero = dgamma(t,n+sumy+1,m+sumx)
+post = dgamma(t,a+n+sumy,b+m+sumx)
+tibble(theta=rep(t,3),dens=c(prior,vero,post),
+    Dist=rep(c('1.Priori Gama(2,2)','2.Verossimilhança','3.Posteriori'),each=length(t))) %>%
+  ggplot(data=.) +
+  geom_line(aes(x=theta,y=dens,colour=Dist),lwd=1.2)
+```
+
+$~$
+
 **Resultado 5.** Seja $~\mathcal{P}=\{f(\boldsymbol x|\theta):\; \theta \in \Theta\}~$ e $~\mathcal{C}=\{h(\theta|a):\;a\in A\}~$ uma *família conjugada* para $\mathcal{P}$. Considere $\mathcal{M}=\{h(\theta)=\sum_{i=1}^mw_ih_i(\theta):$ $h_i \in \mathcal{C} \; e \; w_i>0,\; \sum_{i=1}^m w_i=1\}$. Então $\mathcal{M}$ é *família conjugada* para $\mathcal{P}$.
 
 >**Demo:** Como $\mathcal{C}$ é conjugada para $\mathcal{P}$, para toda função $h_i \in \mathcal{C}$, temos que $f_i(\theta|\boldsymbol x)\propto h_i(\theta)f(\boldsymbol x|\theta)\in \mathcal{C}$. Então  
@@ -637,7 +672,7 @@ $h\in \mathcal{M}$ $~\Rightarrow~ f(\theta|\boldsymbol x)$ $~\propto~ h(\theta)f
 
 $~$
 
-**Exemplo.**  Seja $X|\theta \sim Bin(n,\theta)$ e $f(\theta)$ $=wf_1(\theta)+(1-w)f_2(\theta)$, com $f_1\sim Beta(a_1,b_1)$ e $f_2\sim Beta(a_2,b_2)$.
+**Exemplo 1.**  Seja $X|\theta \sim Bin(n,\theta)$ e $f(\theta)$ $=wf_1(\theta)+(1-w)f_2(\theta)$, com $f_1\sim Beta(a_1,b_1)$ e $f_2\sim Beta(a_2,b_2)$.
 
 $~$
 
@@ -823,6 +858,211 @@ tibble(w=as.factor(rep(w,each=length(theta))),
   gganimate::transition_states(w)
 ```
 
+$~$
+
+**Exemplo 2.** Suponha que $\theta$ é uma proporção e você deseja construir uma distribuição a priori baseada em estudos anteriores. Como, em geral, os dados de outros estudos não estão disponíveis na íntegra, você pode utilizar estatísticas resumo.
+
+```{r ExMeta_Estudos}
+estudos = tibble(Paper=c("Estudo 1", "Estudo 2", "Estudo 3"),
+                 n=c(78,60,40),Cases=c(30,42,30)) %>% 
+            mutate(p=Cases/n) %>% 
+            mutate(inf=round(p-qnorm(0.975)*sqrt(p*(1-p)/n),3),
+                   sup=round(p+qnorm(0.975)*sqrt(p*(1-p)/n),3)) %>% 
+            mutate(inf=ifelse(inf<0,0.000,inf),
+                   sup=ifelse(sup>1,1.000,sup)) %>% 
+            mutate(CI=paste("[",inf," ; ",sup," ]"))
+
+rbind(estudos) %>% 
+  select(Paper,n,Cases,p,CI) %>%
+  kableExtra::kbl(.,digits=3,align=c('l','c','c','c','c')) %>% 
+  kableExtra::kable_classic(full_width=FALSE)
+```
+
+**Proposta 1.** Uma primeira forma de fazer isso seria supor que, antes de observar esses estudos, você não tem informação sobre $\theta$, e usar a posteriori obtida com os dados do estudos como priori. Assim, seja $X_i|\theta \sim \text{Bin}(n_i,\theta)$, $i=1,2,3$, e $\theta \sim \text{Uniforme}(0,1)$. Temos que
+$$\theta | x_1 \sim \text{Beta}(1+x_1,1+n_1-x_1)$$
+$$\theta | x_1,x_2 \sim \text{Beta}(1+x_1+x_2,1+n_1-x_1+n_2-x_2)$$
+$$\theta | x_1,x_2,x_3 \sim \text{Beta}(1+x_1+x_2+x_3,1+n_1-x_1+n_2-x_2+n3-x_3)$$
+
+Isso é equivalente a juntar todos os estudos e calcular diretamente a posteriori. Seja $x=x_1+x_2+x_3$ e $n=n_1+n_2+n_3$. Então,
+$$\theta \sim \text{Beta}(1,1) \implies \theta | x_1,x_2,x_3 \sim \text{Beta}(1+x,1+n-x)~.$$
+$~$
+
+De fato, se $X$ e $Y$ são, condicionalmente independentes dado $\theta$,
+
+$f(\theta|x)$ $\propto f(x|\theta)f(\theta)$
+
+$f(\theta|x,y)$ $\propto f(y|\theta)~f(\theta|x)$ 
+$\propto f(y|\theta)f(x|\theta)f(\theta)$ 
+$\propto f(x,y|\theta)f(\theta)~.$
+
+$~$
+
+
+```{r ExMeta_Beta, echo=TRUE}
+eixox=c(min(estudos$inf),max(estudos$sup))
+
+PriorsPlot=tibble(theta=seq(eixox[1],eixox[2],length.out=1000),
+              beta=dbeta(theta,sum(estudos$Cases)+1,
+                            sum(estudos$n)-sum(estudos$Cases)+1)) %>% 
+  ggplot() + theme_bw() +
+  geom_line(aes(x=theta,y=beta, colour="Beta")) +
+  labs(colour="Priori") + xlim(eixox) + 
+  xlab("theta") + ylab("Prior")
+
+Meta=estudos %>%
+  ggplot(aes(y=Paper))+theme_bw()+
+  geom_point(aes(x=p))+
+  geom_segment(aes(x=inf,xend=sup,y=Paper,yend=Paper))+
+  theme(axis.title.x=element_blank(),axis.title.y=element_blank())+
+  xlim(eixox)+geom_vline(xintercept=sum(estudos$Cases)/sum(estudos$n), color='darkgrey', linetype='dashed')
+
+ggpubr::ggarrange(PriorsPlot,Meta,heights=c(2,1),
+          ncol = 1, align = "v",common.legend=T,legend="bottom")
+```
+
+**Proposta 2.** Considere agora que a priori será construída da seguinte forma: para cada estudo será calculada uma "posteriori" supondo que $\theta \sim \text{Uniforme}(0,1)$ e faremos uma mistura dessas posterioris ponderada pelo tamanho amostral dos estudos. Assim:
+
+$$f(\theta) = \sum_{i=1}^{3} \frac{n_i}{n}~f(\theta~|~a_i=1+x_i~,~b_i=1+n_i-x_i)~,$$
+em que $f(\theta~|~a~,~b)$ é a densidade da $\text{Beta}(a,b)$ e $n=n_1+n_2+n_3$. No exemplo,
+
+$$f(\theta) = 0.44~f(\theta~|~a_1=31,b_1=49)+0.34~f(\theta~|~a_2=43,b_2=19)+0.22~f(\theta~|~a_3=31,b_3=11)~.$$
+
+As funções de densidade, distribuição e para gerar números aleatórios de misturas de densidades betas podem ser escritas no R como:
+
+```{r ExMeta_mixbeta, echo=TRUE}
+dmixbeta=function(theta,w,a,b){
+  w = w/sum(w)
+  apply(as.matrix(theta),1,function(t){t(w)%*%dbeta(t,a,b)})
+}
+pmixbeta=function(theta,w,a,b){
+  w = w/sum(w)
+  apply(as.matrix(theta),1,function(t){t(w)%*%pbeta(t,a,b)})
+}
+rmixbeta=function(n,w,a,b){
+  w = w/sum(w)
+  s = rmultinom(n=n,size=1,prob=w)
+  apply(t(s),1,function(l){rbeta(1,l%*%a,l%*%b)})
+}
+```
+
+Assim, a nova distribuição a priori é apresentada do gráfico a seguir.
+
+```{r ExMeta_Meta}
+eixox=c(min(estudos$inf),max(estudos$sup))
+#Parametros da Priori
+w=estudos$n/sum(estudos$n)
+a=estudos$Cases+1
+b=estudos$n-estudos$Cases+1
+
+PriorsPlot=tibble(theta=seq(eixox[1],eixox[2],length.out=1000),
+              beta=dbeta(theta,sum(estudos$Cases)+1,
+                            sum(estudos$n)-sum(estudos$Cases)+1),
+              meta=dmixbeta(theta,w,a,b)) %>% 
+  ggplot() + theme_bw() +
+  geom_line(aes(x=theta,y=beta, colour="Beta")) +
+  geom_line(aes(x=theta,y=meta, colour="Metanalítica")) +
+  labs(colour="Priori") + xlim(eixox) + 
+  xlab("theta") + ylab("Prior")
+
+Meta=estudos %>%
+  ggplot(aes(y=Paper))+theme_bw()+
+  geom_point(aes(x=p))+
+  geom_segment(aes(x=inf,xend=sup,y=Paper,yend=Paper))+
+  theme(axis.title.x=element_blank(),axis.title.y=element_blank())+
+  xlim(eixox)+geom_vline(xintercept=sum(estudos$Cases)/sum(estudos$n), color='darkgrey', linetype='dashed')
+
+ggpubr::ggarrange(PriorsPlot,Meta,heights=c(2,1),
+          ncol = 1, align = "v",common.legend=T,legend="bottom")
+```
+
+Como vimos em aulas anteriores, como a priori é mistura de distribuições conjugadas, a posteriori também será. Suponha então que foi observada uma amostra de tamanho $n=100$ com $x=67$ sucessos. A posteriori é
+
+$$f(\theta|x) = 0.0007~f(\theta~|~a_1=98,b_1=82)+0.7007~f(\theta~|~a_2=110,b_2=52)+0.2986~f(\theta~|~a_3=98,b_3=44)~.$$
+
+```{r ExMeta_Posteriori}
+n=100; x=67
+# Parametros da posteriori
+wx = exp( log(w)+lgamma(a+b)+lgamma(a+x)+lgamma(b+n-x)-
+             lgamma(a+b+n)-lgamma(a)-lgamma(b) )
+wx = wx/sum(wx)
+ax=a+x
+bx=b+n-x
+
+tibble(theta=seq(eixox[1],eixox[2],length.out=1000),
+       meta=dmixbeta(theta,w,a,b), post=dmixbeta(theta,wx,ax,bx)) %>% 
+  ggplot() + theme_bw() +
+  geom_line(aes(x=theta,y=meta, colour="Priori")) +
+  geom_line(aes(x=theta,y=post, colour="Posteriori")) +
+  labs(colour="Distribuição") + xlim(eixox) + 
+  xlab("theta") + ylab("densidade")
+```
+
+<!-- ### Intervalo de Credibilidade -->
+
+
+<!-- ```{r ICr} -->
+<!-- gama=0.9; eps=0.0001 -->
+
+<!-- post = function(theta){ -->
+<!--   dmixbeta(theta,wx,ax,bx) -->
+<!-- } -->
+
+<!-- modapost = optimize(post,c(0,1),maximum = TRUE)$maximum -->
+
+<!-- hmax = optimize(post,c(0,1),maximum = TRUE)$objective -->
+<!-- hmin=0 -->
+<!-- h=(hmin+hmax)/2 -->
+<!-- li = uniroot(function(t){post(t)-h},c(0,modapost))$root -->
+<!-- ls = uniroot(function(t){post(t)-h},c(modapost,1))$root -->
+<!-- p=pmixbeta(ls,wx,ax,bx)-pmixbeta(li,wx,ax,bx) -->
+
+<!-- while(p>gama+eps | p<gama-eps){ -->
+<!--   if(p<gama+eps){ -->
+<!--     hmax=h -->
+<!--     h=(hmax+hmin)/2 -->
+<!--   } else{ -->
+<!--     hmin=h -->
+<!--     h=(hmax+hmin)/2 -->
+<!--   } -->
+<!--   li = uniroot(function(t){post(t)-h},c(0,modapost))$root -->
+<!--   ls = uniroot(function(t){post(t)-h},c(modapost,1))$root -->
+<!--   p=pmixbeta(ls,wx,ax,bx)-pmixbeta(li,wx,ax,bx) -->
+<!-- } -->
+
+<!-- tibble(theta=seq(eixox[1],eixox[2],length.out=1000), -->
+<!--        pos=post(theta)) %>%  -->
+<!--   ggplot() + theme_bw() + -->
+<!--     geom_line(aes(theta,pos))+ -->
+<!--     geom_hline(yintercept = h,linetype=2,colour="darkgrey")+ -->
+<!--     geom_segment(x=li,xend=li,y=0,yend=post(li),color="red",linetype=2)+ -->
+<!--     geom_segment(x=ls,xend=ls,y=0,yend=post(ls),color="red",linetype=2)+ -->
+<!--     geom_segment(x=li,xend=ls,y=0,yend=0,color="red",lwd=2) -->
+
+<!-- cat("IC = [",li," ; ",ls,"]") -->
+<!-- ``` -->
+
+<!-- ```{r IC_simul} -->
+<!-- t = rmixbeta(10000,wx,ax,bx) -->
+<!-- ft = post(t) -->
+
+<!-- corte = quantile(ft,1-gama) -->
+
+<!-- #t[ft==corte] -->
+
+<!-- lis = uniroot(function(t){post(t)-corte},c(0,modapost))$root -->
+<!-- lss = uniroot(function(t){post(t)-corte},c(modapost,1))$root -->
+
+<!-- tibble(theta=seq(eixox[1],eixox[2],length.out=1000), -->
+<!--        pos=post(theta)) %>%  -->
+<!--   ggplot() + theme_bw() + -->
+<!--     geom_line(aes(theta,pos))+ -->
+<!--     geom_hline(yintercept = corte,linetype=2,colour="darkgrey")+ -->
+<!--     geom_segment(x=lis,xend=lis,y=0,yend=post(lis),color="red",linetype=2)+ -->
+<!--     geom_segment(x=lss,xend=lss,y=0,yend=post(lss),color="red",linetype=2)+ -->
+<!--     geom_segment(x=lis,xend=lss,y=0,yend=0,color="red",lwd=2) -->
+
+<!-- cat("IC_simul = [",lis," ; ",lss,"]") -->
+<!-- ``` -->
 
 $~$
 
